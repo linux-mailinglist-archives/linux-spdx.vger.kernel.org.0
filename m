@@ -2,80 +2,76 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 709381083C6
-	for <lists+linux-spdx@lfdr.de>; Sun, 24 Nov 2019 15:15:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA0FF110606
+	for <lists+linux-spdx@lfdr.de>; Tue,  3 Dec 2019 21:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726970AbfKXOPv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+linux-spdx@lfdr.de>); Sun, 24 Nov 2019 09:15:51 -0500
-Received: from customer-187-141-72-141-sta.uninet-ide.com.mx ([187.141.72.141]:40802
-        "EHLO correo.opb.gob.mx" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1726779AbfKXOPv (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 24 Nov 2019 09:15:51 -0500
-X-Greylist: delayed 4888 seconds by postgrey-1.27 at vger.kernel.org; Sun, 24 Nov 2019 09:15:49 EST
-Received: from localhost (localhost [127.0.0.1])
-        by correo.opb.gob.mx (Postfix) with ESMTP id E583C1A322D;
-        Sun, 24 Nov 2019 06:57:37 -0500 (EST)
-Received: from correo.opb.gob.mx ([127.0.0.1])
-        by localhost (correo.opb.gob.mx [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id dNCeQ6LoFeWR; Sun, 24 Nov 2019 06:57:37 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-        by correo.opb.gob.mx (Postfix) with ESMTP id 1BCE41A3223;
-        Sun, 24 Nov 2019 06:57:35 -0500 (EST)
-X-Virus-Scanned: amavisd-new at opb.gob.mx
-Received: from correo.opb.gob.mx ([127.0.0.1])
-        by localhost (correo.opb.gob.mx [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id odZvaJKm3JFG; Sun, 24 Nov 2019 06:57:34 -0500 (EST)
-Received: from correo.opb.gob.mx (correo.opb.gob.mx [172.16.254.57])
-        by correo.opb.gob.mx (Postfix) with ESMTP id 476171A3205;
-        Sun, 24 Nov 2019 06:57:30 -0500 (EST)
-Date:   Sun, 24 Nov 2019 05:57:30 -0600 (CST)
-From:   "Mr.WEHNER DAVID M." <jesus.valencia@opb.gob.mx>
-Reply-To: "Mr.WEHNER DAVID M." <info@zbukgroupltd.info>
-Message-ID: <1105698182.24559.1574596650210.JavaMail.zimbra@opb.gob.mx>
-In-Reply-To: <1063337394.24307.1574596445839.JavaMail.zimbra@opb.gob.mx>
-Subject: =?utf-8?Q?Pengar_=C3=B6verf=C3=B6rs?=
+        id S1726990AbfLCUhO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 3 Dec 2019 15:37:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726567AbfLCUhO (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Tue, 3 Dec 2019 15:37:14 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3F97C20803;
+        Tue,  3 Dec 2019 20:37:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1575405433;
+        bh=OCSI2LzloDpnctHPnYG4kiEWVi+4HK516dI/r+4tQ/w=;
+        h=Date:From:To:Cc:Subject:From;
+        b=0D+FSGM8Fj1Anu4XRWyly3UQWRO6Zbz30rs1hzGH3G5iig9MYIiKwsDoQJQQSiZiE
+         rAfx2o7afWyy3VaEOqIRG3I/fJcz39gBpM1at1f/yLTiEUHA7JQGrMif7EnuvXX9tF
+         lVwvdY4z9E39Xe9sNTfmm7M1G7rIBRJkI+A4C8To=
+Date:   Tue, 3 Dec 2019 21:37:11 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+        linux-spdx@vger.kernel.org
+Subject: [GIT PULL] SPDX fix for 5.5-rc1
+Message-ID: <20191203203711.GA3189820@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [198.199.76.158]
-X-Mailer: Zimbra 8.0.7_GA_6021 (ZimbraWebClient - GC75 (Win)/8.0.7_GA_6021)
-Thread-Topic: Pengar =?utf-8?B?w7Z2ZXJmw7Zycw==?=
-Thread-Index: Wlue1ObLHW28G6QK4CR7qvueCy2AHA==
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Office Of The Head
-Internationell överföring
-Operation Zenith Bank
-(UK) Ltd LONDON United
-Storbritannien och Irland
-Tel: +44 203 389 5674
-Fax: +44 704 307 1539
+The following changes since commit 31f4f5b495a62c9a8b15b1c3581acd5efeb9af8c:
 
-Hälsning,
+  Linux 5.4-rc7 (2019-11-10 16:17:15 -0800)
 
-Din e-postadress kom upp i ett slumpmässigt drag som genomfördes i Zenith Banks huvudkontor, International Transfer Operation i London, Storbritannien.
+are available in the Git repository at:
 
-Jag är Mr.WEHNER DAVID M.A personlig bokföring till avdöd Michael Blair som arbetade med Shell British Petroleum. Mr.Michael Blair, en välkänd filantropist, innan han dog, gjorde en testamente i ett advokatbyrå om att 12,5 miljoner US dollar (tolv miljoner femhundra tusen amerikanska dollar) bör doneras till någon lycklig individuell filantrop eller välgörenhetsorganisation utomlands.
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-5.5-rc1
 
-Zenith Bank Abp är en överenskommelse med sena Michael Blair om att donera fonden till alla lyckliga individer i Amerika, Europa, Asien och Afrika i andra för att förbättra liv och företag
+for you to fetch changes up to bf49d9dd6fef688733e2ddbd55f7bcb57df194e4:
 
-Vi har gjort vårt slumpmässiga drag och din e-postadress valdes för att ta emot denna fond som mottagare av hans testament. Vänligen snälla tillbaka till mig
-så snart du har fått vårt e-postmeddelande för att aktivera överföringen
-Operationen riktar dig till vad du ska göra för att få denna fond lagligen.
+  export,module: add SPDX GPL-2.0 license identifier to headers with no license (2019-11-14 11:36:53 +0800)
 
-Du rekommenderas att ta med följande nedan:
+----------------------------------------------------------------
+SPDX fix for 5.5-rc1
 
-FULLSTÄNDIGA NAMN:
+Here is a single SPDX fixup for 5.5-rc1
 
-FULL KONTAKTADRESS:
+It resolves an issue where we had missed a few .h files with the
+auto-tagging scripts because they had "GPL" text in strings within the
+file themselves.  This single patch fixes up the issue and provides the
+proper SPDX tags at the top of them as needed.
 
-TELEFON- OCH FAXNUMMER:
+This patch has been in linux-next for many many weeks now with no
+reported issues.
 
-Med vänliga hälsningar,
-Mr.WEHNER DAVID M.
-Chef, internationell överföringsoperation
-Zenith Bank (UK) Abp
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Masahiro Yamada (1):
+      export,module: add SPDX GPL-2.0 license identifier to headers with no license
+
+ include/asm-generic/export.h | 1 +
+ include/linux/export.h       | 1 +
+ include/linux/license.h      | 1 +
+ include/linux/module.h       | 7 +++++--
+ 4 files changed, 8 insertions(+), 2 deletions(-)

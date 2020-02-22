@@ -2,105 +2,131 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08722154452
-	for <lists+linux-spdx@lfdr.de>; Thu,  6 Feb 2020 13:54:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6864168C32
+	for <lists+linux-spdx@lfdr.de>; Sat, 22 Feb 2020 04:37:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727325AbgBFMy6 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 6 Feb 2020 07:54:58 -0500
-Received: from Galois.linutronix.de ([193.142.43.55]:37774 "EHLO
-        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726765AbgBFMy6 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 6 Feb 2020 07:54:58 -0500
-Received: from [212.140.138.205] (helo=nanos.tec.linutronix.de)
-        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
-        (Exim 4.80)
-        (envelope-from <tglx@linutronix.de>)
-        id 1izggH-0003AQ-T2; Thu, 06 Feb 2020 13:54:54 +0100
-Received: by nanos.tec.linutronix.de (Postfix, from userid 1000)
-        id 7814A100C31; Thu,  6 Feb 2020 12:54:53 +0000 (GMT)
-From:   Thomas Gleixner <tglx@linutronix.de>
-To:     bage@linutronix.de, devicetree@vger.kernel.org
-Cc:     Bastian Germann <bage@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benedikt Spranger <b.spranger@linutronix.de>,
-        Jelle de Jong <jelledejong@powercraft.nl>,
-        linux-spdx@vger.kernel.org
-Subject: Re: [PATCH 3/5] ARM: dts: sun7i: lamobo-r1: Use SPDX identifier
-In-Reply-To: <20200206113328.7296-4-bage@linutronix.de>
-References: <20200206113328.7296-1-bage@linutronix.de> <20200206113328.7296-4-bage@linutronix.de>
-Date:   Thu, 06 Feb 2020 12:54:53 +0000
-Message-ID: <87eev7swo2.fsf@nanos.tec.linutronix.de>
+        id S1726713AbgBVDhU (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 21 Feb 2020 22:37:20 -0500
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:45237 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726387AbgBVDhU (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 21 Feb 2020 22:37:20 -0500
+X-Originating-IP: 185.189.113.83
+Received: from orivej.orivej.org (unknown [185.189.113.83])
+        (Authenticated sender: orivej@orivej.org)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id CDD4D20004;
+        Sat, 22 Feb 2020 03:37:15 +0000 (UTC)
+Date:   Sat, 22 Feb 2020 03:37:09 +0000
+From:   Orivej Desh <c@orivej.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-spdx@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Subject: Confusing Usage-Guide in LICENSES/exceptions/Linux-syscall-note
+Message-ID: <20200222023147.3cc31b90@orivej.orivej.org>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Linutronix-Spam-Score: -1.0
-X-Linutronix-Spam-Level: -
-X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Bastian,
+For the reference, here is the Linux syscall note:
 
-bage@linutronix.de writes:
-> From: Bastian Germann <bage@linutronix.de>
->
-> Adopt the SPDX license identifier.
->
-> The 2nd license text is specified by SPDX as MIT.  So the identifier has
-> to be (GPL-2.0-or-later OR MIT).  SPDX's X11 has an additional advertising
-> clause.
+     NOTE! This copyright does *not* cover user programs that use kernel
+     services by normal system calls - this is merely considered normal use
+     of the kernel, and does *not* fall under the heading of "derived work".
 
-Yes, the license text of the alternative license is plain MIT.
+When Linux-syscall-note was split from the COPYING file [1] [2], it
+added a Usage-Guide section that says that "This exception" marks
+"user space API (uapi) header files so they can be included into non
+GPL compliant user space application code". However, the License-Text
+extracted from the COPYING does not say anything about including
+headers; instead it says that programs that make system calls to the
+kernel are not considered derived from the kernel.
 
-> @@ -1,43 +1,6 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
->  /*
->   * Copyright 2015 Jelle de Jong <jelledejong@powercraft.nl>
-> - *
-> - * This file is dual-licensed: you can use it either under the terms
-> - * of the GPL or the X11 license, at your option. Note that this dual
-> - * licensing only applies to this file, and not this project as a
-> - * whole.
+I think that Linus shares the view expressed by Stallman [3]:
 
-Jelle, can you please clarify your intention here?
+     Someone recently made the claim that including a header file
+     always makes a derivative work.
 
-> - *  a) This file is free software; you can redistribute it and/or
-> - *     modify it under the terms of the GNU General Public License as
-> - *     published by the Free Software Foundation; either version 2 of the
-> - *     License, or (at your option) any later version.
-> - *
-> - *     This file is distributed in the hope that it will be useful,
-> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - *     GNU General Public License for more details.
-> - *
-> - * Or, alternatively,
-> - *
-> - *  b) Permission is hereby granted, free of charge, to any person
-> - *     obtaining a copy of this software and associated documentation
-> - *     files (the "Software"), to deal in the Software without
-> - *     restriction, including without limitation the rights to use,
-> - *     copy, modify, merge, publish, distribute, sublicense, and/or
-> - *     sell copies of the Software, and to permit persons to whom the
-> - *     Software is furnished to do so, subject to the following
-> - *     conditions:
-> - *
-> - *     The above copyright notice and this permission notice shall be
-> - *     included in all copies or substantial portions of the Software.
-> - *
-> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> - *     OTHER DEALINGS IN THE SOFTWARE.
->   */
+     That's not the FSF's view. Our view is that just using structure
+     definitions, typedefs, enumeration constants, macros with simple
+     bodies, etc., is NOT enough to make a derivative work. It would
+     take a substantial amount of code (coming from inline functions
+     or macros with substantial bodies) to do that.
 
-Thanks,
+and wrote the syscall note as something to be added on top of this
+view, while Thomas Gleixner took the note as a relaxation of GPL that
+allows the use of the headers in non-GPL programs when he wrote the
+Usage-Guide and Documentation/process/license-rules.rst that says:
 
-        tglx
+     The User-space API (UAPI) header files, which describe the
+     interface of user-space programs to the kernel are a special
+     case. According to the note in the kernel COPYING file, the
+     syscall interface is a clear boundary, which does not extend the
+     GPL requirements to any software which uses it to communicate
+     with the kernel. Because the UAPI headers must be includable into
+     any source files which create an executable running on the Linux
+     kernel, the exception must be documented by a special license
+     expression.
+
+I think that the lawyers should review whether the syscall note grants
+anything not already granted by GPL-2.0. If it unambiguously does not
+than the note could be deleted, overwise the following mistakes should
+be corrected:
+
+1. Since the note declares user programs to not be considered derived
+   from the running kernel, it applies to the kernel as a whole. It
+   does not make sense to restrict Linux-syscall-note to UAPI headers
+   only (in their SPDX-License-Identifier) and not to apply it to the
+   whole kernel. "WITH Linux-syscall-note" should be deleted from all
+   sources; the link to the note from the root COPYING is enough.
+
+2. Linux-syscall-note should be cleared from these parts of the old
+   COPYING unrelated to the note:
+
+      Also note that the GPL below is copyrighted by the Free Software
+      Foundation, but the instance of code that it refers to (the Linux
+      kernel) is copyrighted by me and others who actually wrote it.
+
+      Also note that the only valid version of the GPL as far as the kernel
+      is concerned is _this_ particular version of the license (ie v2, not
+      v2.2 or v3.x or whatever), unless explicitly otherwise stated.
+
+                             Linus Torvalds
+
+   Note that there is no GPL text below.
+
+3. Linux-syscall-note Usage-Guide could be deleted (does a three line
+   note need a guide?), or it may say something like this:
+
+     This exception allows non-GPL programs to run on Linux.
+
+4. Documentation/process/license-rules.rst should be updated
+   accordingly. Something like the Stallman explanation of derived
+   works would be useful.
+
+5. SPDX license list maintainers should be notified to update [5]. Its
+   current Note about the exception is unclear and mistaken:
+
+     This note is used with the Linux kernel to clarify how user space
+     API files should be treated.
+
+The people seem easily confused by the Usage-Guide: they believe that
+the syscall exception does what it does not (allowing uapi includes in
+user programs), and do not understand what it does (allowing making
+system calls). Please correct it!
+
+[1] https://lore.kernel.org/patchwork/patch/851955/
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bf02d491237eea10290bd379bf7fc8c37ac6c3b4
+[3] http://lkml.iu.edu/hypermail/linux/kernel/0301.1/0362.html
+[4] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/process/license-rules.rst?id=aa19a176df95d6e49295d6ff77f7967224c71761
+[5] https://spdx.org/licenses/Linux-syscall-note.html
+
+--
+
+This is my second attempt to reach @vger, as my message from @gmx.fr seems to
+have been dropped.
+
+Please CC me in response.

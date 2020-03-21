@@ -2,85 +2,97 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F2918E0C3
-	for <lists+linux-spdx@lfdr.de>; Sat, 21 Mar 2020 12:40:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 023D518E0F0
+	for <lists+linux-spdx@lfdr.de>; Sat, 21 Mar 2020 13:05:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbgCULkh (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sat, 21 Mar 2020 07:40:37 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:45180 "EHLO
+        id S1726933AbgCUMFa (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sat, 21 Mar 2020 08:05:30 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:41300 "EHLO
         mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726192AbgCULkg (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sat, 21 Mar 2020 07:40:36 -0400
-Received: by mail-wr1-f67.google.com with SMTP id t7so5879430wrw.12;
-        Sat, 21 Mar 2020 04:40:35 -0700 (PDT)
+        with ESMTP id S1726192AbgCUMFa (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sat, 21 Mar 2020 08:05:30 -0400
+Received: by mail-wr1-f67.google.com with SMTP id h9so10621777wrc.8;
+        Sat, 21 Mar 2020 05:05:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
-        bh=7jR/DJniamHEDhpAAfPOcbN20Xg7ftVEruh/hyhO0PE=;
-        b=LsLAT8+uDmGSdQQJntAF8vnUqUnpGplRkCu3wIrpjOm72QwxiPSyucWszlZYxKozpk
-         qp1vUdTtSmAetmlLU6jTQsYrGZZvda/aPVoulZxELtCJkR0Tsk815tDkL+3HK/YXbxmF
-         jtLdYdPDUeiOXDU/BXFfAiZiw+i+o+K8v/k6ReFNHkMNTlclmAibR2TVRvpJfZhdkJjf
-         PO6EcEnhKLmfdn1TCVDGkM0VDNM4QsMMh+da0N9WrkDmlYc+Nei1FaumMXpQqwIkgw4S
-         CSLK6Su/ZLNqr4Y5WZVY9LyUUDLzSlUN8nngsIj++Gs1w7nQoRTiQsF98zCyGaGin7Oz
-         uAYQ==
+        bh=EfodRmW2l478YoUF/NEMb3epOdAHJYA9K519pesBxmk=;
+        b=i9zi7vf2mSwVRJeZGA7d3dFGu2uoE6XGrfBngyYBxngyzvwSCZKgcH7gd8W8uH9YPa
+         fUGjBd1Z92kvMPBYwVqcuIQPlYYg/fa8ASYL89cDISg0HiXxxi7NAR8nXLubPl0A57vT
+         h/Ws/GRLKAT120f8/62vnRzasDbb3528SspE8a6pyOCQsqgemnnAGJKfFAXeE1Do/Knu
+         VIl3dcRdH4zxaw3fXIifN4LEOzIO8YVycMxLLW7ILxMsz4HV/xnwC/j/YW517O6TeZmO
+         v8Zzog4st9TkZN3RQczcPto+8RKQeKgNzEjt4jMxJT3GC8bsr6AqRNSpe2kpxwFQgg4H
+         XqRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=7jR/DJniamHEDhpAAfPOcbN20Xg7ftVEruh/hyhO0PE=;
-        b=lnoDl6VB76srfchnE7J18kPiMq0Wm7i35VXnkMH4Bex6m5OHsKoe8zAPf7A0NQyrBW
-         lfyWppK91+HOJxajwOnYjXVlft9MBWhgziPMsXq2I24Crvr61f1rarxKopWPAuxWN9If
-         UHXKThJpxCXrWtlv/NTQ2jduVkxYMMnbOuXXMVIvI4ZaHbZR2HTrKT9n5uoSbOxvAA2y
-         kIdJ/L2RBexJMDvVdm3dZL12lZ9swvo1Nd37Njz/rO9bc60dBJ7JoccBpFH4boFXstb+
-         Oviy/ke05J3WLOB54TsXQ1TWp0SU9LPasZCfbeb7peZWpLziEnghQl+GJVQMRK7Y8ced
-         X8nA==
-X-Gm-Message-State: ANhLgQ10wVdU+46+pNwyWvAml6wdkVOg/oaWGJU6kLbc5wFYfIVl6yX/
-        f1NCPCcMfX7uDw/no3AfkD4=
-X-Google-Smtp-Source: ADFU+vvxfx5Oi42isr8/wePrVDB2XPv0PjWByfMkPVW34u6Ng9Fb9YvXxU3xXUegrdwEReYm41u9Cg==
-X-Received: by 2002:a5d:6a4b:: with SMTP id t11mr17009174wrw.52.1584790834729;
-        Sat, 21 Mar 2020 04:40:34 -0700 (PDT)
+        bh=EfodRmW2l478YoUF/NEMb3epOdAHJYA9K519pesBxmk=;
+        b=MXzUijT/WUjV5uStyCS6aKRy2DbraPJ5EHU2za3TYvxU6jCOAefbFedi9SQNGRpyW0
+         QTF8BvjifRDoMBwjNAggmIQM6Vf1Xm7/QTXk7QGGL8gmAcI3x/CMalNb8DpW2WCDQcWF
+         5+yZ3HGmP/qeLS5N60HT1KMfxVAM48YyqwFYcSDWkWpfGXdM61sipg9flhl1n0lM9K4H
+         DVt7lzLqPfuNtrQLzIZj05z32SKjACe40huhdecO832FSX85B4FZgqeGFgA2gdj0ICfZ
+         v7XmI02BqTN+3f/QcVAZ6BVCPmCAdBATLtWX/MoZG5Qne14NcuEgudzd55Y1CPSeZGH1
+         6pkw==
+X-Gm-Message-State: ANhLgQ1sMMOmTG8n9TxeWUP10JXdlvdNr9+xcmqT1JQQqJou5Rs0KHyi
+        GzfR1e4UZOD70EBoROlDXDk=
+X-Google-Smtp-Source: ADFU+vsKwO+JvuQBHLV7YV3cVJhZb0IeN24HEx0xAO/6OxzgxPpmQRlsCvam2SAHP0OnLpdk86PP7g==
+X-Received: by 2002:a5d:52d0:: with SMTP id r16mr16496453wrv.379.1584792326004;
+        Sat, 21 Mar 2020 05:05:26 -0700 (PDT)
 Received: from felia.fritz.box ([2001:16b8:2d49:b100:e503:a7c7:f4c6:1aab])
-        by smtp.gmail.com with ESMTPSA id t16sm9533091wra.17.2020.03.21.04.40.33
+        by smtp.gmail.com with ESMTPSA id c4sm12246120wml.7.2020.03.21.05.05.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Mar 2020 04:40:34 -0700 (PDT)
+        Sat, 21 Mar 2020 05:05:25 -0700 (PDT)
 From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Jeff Chang <jeff_chang@richtek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org, linux-spdx@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+To:     Shannon Nelson <snelson@pensando.io>, netdev@vger.kernel.org
+Cc:     linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org,
         Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] ASoC: MT6660: make spdxcheck.py happy
-Date:   Sat, 21 Mar 2020 12:40:22 +0100
-Message-Id: <20200321114022.8545-1-lukas.bulwahn@gmail.com>
+Subject: [PATCH] ionic: make spdxcheck.py happy
+Date:   Sat, 21 Mar 2020 13:05:14 +0100
+Message-Id: <20200321120514.10464-1-lukas.bulwahn@gmail.com>
 X-Mailer: git-send-email 2.17.1
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-The SPDX-License-Identifier shall not be suffixed with anything further.
-This makes ./scripts/spdxcheck.py complain:
+Headers ionic_if.h and ionic_regs.h are licensed under three alternative
+licenses and the used SPDX-License-Identifier expression makes
+./scripts/spdxcheck.py complain:
 
-  sound/soc/codecs/mt6660.c: 1:36 Invalid token: //
+drivers/net/ethernet/pensando/ionic/ionic_if.h: 1:52 Syntax error: OR
+drivers/net/ethernet/pensando/ionic/ionic_regs.h: 1:52 Syntax error: OR
 
-Clean up SPDX-License-Identifier line to make spdxcheck.py happy.
+As OR is associative, it is irrelevant if the parentheses are put around
+the first or the second OR-expression.
+
+Simply add parentheses to make spdxcheck.py happy.
 
 Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 ---
- sound/soc/codecs/mt6660.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/ethernet/pensando/ionic/ionic_if.h   | 2 +-
+ drivers/net/ethernet/pensando/ionic/ionic_regs.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/codecs/mt6660.c b/sound/soc/codecs/mt6660.c
-index a36c416caad4..06ab1d39d2c1 100644
---- a/sound/soc/codecs/mt6660.c
-+++ b/sound/soc/codecs/mt6660.c
+diff --git a/drivers/net/ethernet/pensando/ionic/ionic_if.h b/drivers/net/ethernet/pensando/ionic/ionic_if.h
+index 54547d53b0f2..51adf5059834 100644
+--- a/drivers/net/ethernet/pensando/ionic/ionic_if.h
++++ b/drivers/net/ethernet/pensando/ionic/ionic_if.h
 @@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 //
-+// SPDX-License-Identifier: GPL-2.0
+-/* SPDX-License-Identifier: GPL-2.0 OR Linux-OpenIB OR BSD-2-Clause */
++/* SPDX-License-Identifier: (GPL-2.0 OR Linux-OpenIB) OR BSD-2-Clause */
+ /* Copyright (c) 2017-2019 Pensando Systems, Inc.  All rights reserved. */
  
- // Copyright (c) 2019 MediaTek Inc.
+ #ifndef _IONIC_IF_H_
+diff --git a/drivers/net/ethernet/pensando/ionic/ionic_regs.h b/drivers/net/ethernet/pensando/ionic/ionic_regs.h
+index 03ee5a36472b..2e174f45c030 100644
+--- a/drivers/net/ethernet/pensando/ionic/ionic_regs.h
++++ b/drivers/net/ethernet/pensando/ionic/ionic_regs.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 OR Linux-OpenIB OR BSD-2-Clause */
++/* SPDX-License-Identifier: (GPL-2.0 OR Linux-OpenIB) OR BSD-2-Clause */
+ /* Copyright (c) 2018-2019 Pensando Systems, Inc.  All rights reserved. */
  
+ #ifndef IONIC_REGS_H
 -- 
 2.17.1
 

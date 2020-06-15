@@ -2,65 +2,81 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E45281DF9FB
-	for <lists+linux-spdx@lfdr.de>; Sat, 23 May 2020 20:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C494F1F9EE4
+	for <lists+linux-spdx@lfdr.de>; Mon, 15 Jun 2020 19:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387926AbgEWSAt (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sat, 23 May 2020 14:00:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55822 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728671AbgEWSAo (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sat, 23 May 2020 14:00:44 -0400
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C34C0086D4
-        for <linux-spdx@vger.kernel.org>; Sat, 23 May 2020 11:00:40 -0700 (PDT)
-Received: by mail-qk1-x744.google.com with SMTP id z80so14042486qka.0
-        for <linux-spdx@vger.kernel.org>; Sat, 23 May 2020 11:00:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=F3NMDrR9dummcUXdRfruEEfbIS6yB2vx68nB8Asq/5Q=;
-        b=vhvRG4iP0p/cCM0/gHqK0xx0MaMNF3/azTtn5P0fCT1b4XLjGRAoR85FXgvwYtowP6
-         J1ev3dPiedOMtPyOzUYmKFEqsj6BkIi2lR8s0YRNLylOZ8MbeWQpwNTWDXPX57LUrKeO
-         FLL54WToKnc9WyFCTQNZdn8yjuqVF61dsdwJrbIWn1f8+mXNgwQXd1Xox425XdFJLCTr
-         UNYtD5Mkr7J8HytQpl125rrGiBWdOVTtdeDic18s2v1Ex5H4EMrCDseWe8z8QJUA2DPl
-         pMcmWf9nM5lni1dYRbVMyTKtLHSFCzrJM5oRvB7Hp9K31CMWsqtaG47ZQbJG6ZEre6uU
-         kwNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=F3NMDrR9dummcUXdRfruEEfbIS6yB2vx68nB8Asq/5Q=;
-        b=Q6+Ae7QrxXBW3pWiVlubKU+jGkK+kDmxGoREqUXWWaZ0scKgy65MB2Uw05lScmvtb5
-         1T+q6kriPf6yQtGZJ2kXGU8bdv2AItWf/8yxALHBooTkg2XaEYvj3WPV+7jLBM5MaelJ
-         r2wPAgOFZcUFFXvyqo6SJ86A0ughmlyklRm4lIVRVwyDRrnBN/igB5TVbmTktzYsFLN4
-         LVfbMpnlOas3CKZ/yVML+9HpACbMXXdy7xa7GIST1tvkaZ+YOTa+0kfoHXRuj1SzPg1A
-         1KF3WlbI4mk9HmaW65otHB8XR3SAfPcio9CSQqk4hEwbTg9haU+R+O1UC9WTHj+krJy5
-         X0Yw==
-X-Gm-Message-State: AOAM531eWvYaZS3YF60mHcJh/7ppIBYhI69vFC4WBIKZifzkmCQsMlNK
-        Q2INJL8lqZGNKqIIED6RuOUAucVamGf5Iw1MSJkjS4vY
-X-Google-Smtp-Source: ABdhPJw4JSLl4s8hKmdikxPHOZTjp7LuShJQWo5DKJXfhdyHNpRWrWLXX1iWw/azZwGF2Nz0kU5bTrWvyq5YmK6naS0=
-X-Received: by 2002:ac8:1e16:: with SMTP id n22mr21502226qtl.78.1590256838401;
- Sat, 23 May 2020 11:00:38 -0700 (PDT)
+        id S1729402AbgFOR5M (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 15 Jun 2020 13:57:12 -0400
+Received: from smtprelay0184.hostedemail.com ([216.40.44.184]:51034 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728585AbgFOR5L (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>);
+        Mon, 15 Jun 2020 13:57:11 -0400
+X-Greylist: delayed 529 seconds by postgrey-1.27 at vger.kernel.org; Mon, 15 Jun 2020 13:57:11 EDT
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
+        by smtpgrave07.hostedemail.com (Postfix) with ESMTP id 66EB818021867
+        for <linux-spdx@vger.kernel.org>; Mon, 15 Jun 2020 17:48:23 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay04.hostedemail.com (Postfix) with ESMTP id 60AFF180AD393;
+        Mon, 15 Jun 2020 17:48:21 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:966:967:973:988:989:1042:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2194:2196:2199:2200:2393:2525:2561:2564:2682:2685:2828:2859:2902:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3871:3872:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4250:4321:4385:5007:6117:6119:7875:7903:9025:10004:10400:10848:11658:11914:12043:12114:12297:12740:12760:12895:13019:13069:13311:13357:13439:13845:14096:14097:14181:14659:14721:14764:14819:21080:21433:21451:21627:21772:21939:30054:30060:30079:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
+X-HE-Tag: thing04_3f0858226df8
+X-Filterd-Recvd-Size: 2362
+Received: from XPS-9350.home (unknown [47.151.136.130])
+        (Authenticated sender: joe@perches.com)
+        by omf04.hostedemail.com (Postfix) with ESMTPA;
+        Mon, 15 Jun 2020 17:48:20 +0000 (UTC)
+Message-ID: <4e00b2fa91f1f818de4658f2695d4b433852959d.camel@perches.com>
+Subject: Re: [PATCH 18/22] docs: trace: ring-buffer-design.txt: convert to
+ ReST format
+From:   Joe Perches <joe@perches.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-spdx@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Kate Stewart <kstewart@linuxfoundation.org>
+Date:   Mon, 15 Jun 2020 10:48:10 -0700
+In-Reply-To: <c11ee0be2bf63626887d7cd38e7572b31e2a2ce2.1592203650.git.mchehab+huawei@kernel.org>
+References: <cover.1592203650.git.mchehab+huawei@kernel.org>
+         <c11ee0be2bf63626887d7cd38e7572b31e2a2ce2.1592203650.git.mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.36.2-0ubuntu1 
 MIME-Version: 1.0
-Received: by 2002:a37:9fd3:0:0:0:0:0 with HTTP; Sat, 23 May 2020 11:00:37
- -0700 (PDT)
-Reply-To: mrs.chantala2055@gmail.com
-From:   mrs chantal <mrs.chantalas1@gmail.com>
-Date:   Sat, 23 May 2020 18:00:37 +0000
-Message-ID: <CAMdkyyDY_0O7YgysHCjgRTJ=8-B7XurK7o1razRHDVOjgr2V2g@mail.gmail.com>
-Subject: jjCompliment
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-     Compliment of the day to you. I am Mrs.CHANTAL I am sending this brief
-    letter to solicit your partnership to transfer $13.5 Million US
-    Dollars.I shall send you more information and procedures when I receive
-    positive response From you. Please send me a message in My private
-    email address is ( mrschantal066@gmail.com  )
-    Best Regards
-    MrS.Chantal
+On Mon, 2020-06-15 at 08:50 +0200, Mauro Carvalho Chehab wrote:
+> - Just like some media documents, this file is dual licensed
+>   with GPL and GFDL. As right now the GFDL SPDX definition is
+>   bogus (as it doesn't tell anything about invariant parts),
+>   let's not use SPDX here. Let's use, instead, the same test
+>   as we have on media.
+[]
+> diff --git a/Documentation/trace/ring-buffer-design.txt b/Documentation/trace/ring-buffer-design.rst
+> []
+> +.. Or, alternatively,
+> +..
+> +.. b) Permission is granted to copy, distribute and/or modify this
+> +..    document under the terms of the GNU Free Documentation License,
+> +..    Version 1.1 or any later version published by the Free Software
+> +..    Foundation, with no Invariant Sections, no Front-Cover Texts
+> +..    and no Back-Cover Texts. A copy of the license is available at
+> +..    https://www.gnu.org/licenses/old-licenses/fdl-1.2.html
+
+Use of a version 1.1 reference with a 1.2 link.
+
+Perhaps the link should be:
+https://www.gnu.org/licenses/old-licenses/fdl-1.1.html
+
+> +..
+> +.. TODO: replace it to GPL-2.0 OR GFDL-1.2-or-later WITH no-invariant-sections
+
+Is there some reason a new GFDL entry has not yet been added
+to the LICENSES directory?
+
+
+

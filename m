@@ -2,65 +2,121 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 850392051A9
-	for <lists+linux-spdx@lfdr.de>; Tue, 23 Jun 2020 14:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D17692053A0
+	for <lists+linux-spdx@lfdr.de>; Tue, 23 Jun 2020 15:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732463AbgFWMCO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 23 Jun 2020 08:02:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729611AbgFWMCN (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 23 Jun 2020 08:02:13 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5BBAC061755
-        for <linux-spdx@vger.kernel.org>; Tue, 23 Jun 2020 05:02:13 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id d27so15120760qtg.4
-        for <linux-spdx@vger.kernel.org>; Tue, 23 Jun 2020 05:02:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=7fNnQnFssZCc2Jtw2cUlJB4v7zrpRiQS682aXMZO9+Q=;
-        b=UJLFqH+nz6JL18vmMp9AOPI2FroC31pq+teAwHPNar1eiBQ9Yy+80ms5K4v1/p3T2J
-         L2/VBlv2V7VfKE4rYCdbWJvLLZVc6lYLnv+fXOe3DKiEunpb4W19D97rUv9DtkFDrPR6
-         bxx9SCKFFR7oxS5wyOawR10NgiPx7iNPtQtk1jgGWBrP8t2WHU3s2Svu9XywyJgiovqp
-         l3N+/UeaWFg1/B0rDgEZev7snS4P5yMRqccSmgr8wtgvtp7SCEkaeMIuLfVC1abYn28a
-         0lOm8r0Y3ORb/ecNi+nwJO1PSdlC3wO2gaNbjCYRAGTYyl1dNKtQmi5TFLPwZkpxG3z2
-         jLVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=7fNnQnFssZCc2Jtw2cUlJB4v7zrpRiQS682aXMZO9+Q=;
-        b=mmqt/nJ5mcqt+eqj3D10IU8mPpJJvYxFjiO0dID7CoKCGLeQiueY4i3GFBrQJZvEYK
-         yCAqzCrQOGMOKJFtbvlly4662d4HzbD9YoHAm8iUgchunoHsNpGC4WPXyAq44+n9Z5uf
-         CDeaxfbtINA0boIOXIYH6RFs8BltIpZgSt3J+tyj4mXxmBfZ/g7pFDioTQj1SB2lUmWx
-         bVESY42tfgF6sipJkMIIGW1soXqiwuM9umByUtAIA0FLg2/MRwEqyAEIpj7RtKAdwfdz
-         mFLY23ISDL0ojYTZ/rvoWDmyArh5RldvhOHOGguyCBE/rNuAvAfhJZrwbJNhvOgkxNaF
-         qZAw==
-X-Gm-Message-State: AOAM532WJcVd2xRyOg5vFqqic4QrWTd2Yu7bgv2o36EzmqlsR/SKdbmE
-        atGbcHsZf+YelGSwYcq9OrWOWJzIbNri0bE7inI=
-X-Google-Smtp-Source: ABdhPJy9hL0j/lhNbfcB00DeOK7b0U4zsoic5mnnMbHNRRfvtq2YEG4GVY9xM4euUA/qj/6OFeVzDzuTpkOX9D54k0k=
-X-Received: by 2002:ac8:2fb0:: with SMTP id l45mr20693117qta.260.1592913733005;
- Tue, 23 Jun 2020 05:02:13 -0700 (PDT)
+        id S1732655AbgFWNhZ (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 23 Jun 2020 09:37:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53228 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732631AbgFWNhY (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Tue, 23 Jun 2020 09:37:24 -0400
+Received: from coco.lan (ip5f5ad5c5.dynamic.kabel-deutschland.de [95.90.213.197])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 59CEF2070E;
+        Tue, 23 Jun 2020 13:37:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1592919443;
+        bh=6YgqTqpzXNk6G5h5tbtGEM3OeaCxBlz+iED1nYuxZaE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Sq2RoIup4I8YKO42/klL8ky4Pktk9BSuOz5eofHdUAN8fFQH8ZqzKcxvAspetKkiZ
+         B/NBMX3qMnB9yFtuaW1Kqt4MWr4uDWeHrtdD5QrMCCRg8CRPuzpDvGHecLCx867g+B
+         fc2T1tehkIEpPE88M2hQzL8jfnqCwTMf5R9lxaeA=
+Date:   Tue, 23 Jun 2020 15:37:15 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Kate Stewart <kstewart@linuxfoundation.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bingbu Cao <bingbu.cao@intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Yong Zhi <yong.zhi@intel.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tian Shu Qiu <tian.shu.qiu@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-spdx@vger.kernel.org, linux-mm@kvack.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Harry Wei <harryxiyou@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Alex Shi <alex.shi@linux.alibaba.com>
+Subject: Re: [PATCH v2 0/9] Convert the remaining text files to ReST and add
+ SPDX for GFDL
+Message-ID: <20200623153442.5d0c91b2@coco.lan>
+In-Reply-To: <CAG_66ZRjeX0AERQ0g_d0u=quhrhKHzXRu__m46trqzLLt=8XDA@mail.gmail.com>
+References: <cover.1592905407.git.mchehab+huawei@kernel.org>
+        <CAG_66ZRjeX0AERQ0g_d0u=quhrhKHzXRu__m46trqzLLt=8XDA@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Received: by 2002:ac8:47c2:0:0:0:0:0 with HTTP; Tue, 23 Jun 2020 05:02:12
- -0700 (PDT)
-Reply-To: bektery@outlook.com
-From:   YAVUZ BEKTER <bakert.jg@gmail.com>
-Date:   Tue, 23 Jun 2020 05:02:12 -0700
-Message-ID: <CAAUSuTW=r1zPYsLsMYZRnSyv_sPyVA3dnZKNBmSk5AVRmY-kDQ@mail.gmail.com>
-Subject: Hello.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-I am the foreign operations director of Bank of Turkey.
-My name is Mr, Yavuz. I have a sensitive investment project to discuss
-with you, please reply now.
-________________________
-Ik ben de directeur buitenlandse activiteiten van de Bank of Turkey.
-Mijn naam is meneer Yavuz. Ik moet een gevoelig investeringsproject bespreken
-met u, antwoord dan nu.
+Hi Kate,
+
+Em Tue, 23 Jun 2020 06:58:55 -0500
+Kate Stewart <kstewart@linuxfoundation.org> escreveu:
+
+> On Tue, Jun 23, 2020 at 4:53 AM Mauro Carvalho Chehab
+> <mchehab+huawei@kernel.org> wrote:
+> >
+> > The main goal of this series is to finish the ReST conversion. After this
+> > series, we have just those files still in plain old format:
+> >
+> >         - Documentation/RCU/RTFP.txt
+> >         - Documentation/atomic_bitops.txt
+> >         - Documentation/memory-barriers.txt
+> >         - Documentation/atomic_t.txt
+> >         - Documentation/filesystems/dax.txt
+> >         - Documentation/filesystems/path-lookup.txt
+> >         - Documentation/virt/kvm/devices/README
+> >
+> > PS.: I'm using a script to remove false-positives and ignore non-converted
+> > translated files.
+> >
+> > It is worth to mention that this fseries contain licenses for the two
+> > GFDL licenses used within the Kernel: GFDL-1.1+ and GFDL-1.2.
+> >
+> > Those licenses are the result of long discussions with the SPDX legal
+> > team, and are part of this commit, to be added for the future
+> > SPDX 3.10 version:
+> >         https://github.com/spdx/license-list-XML/pull/1048/commits/f695d2ac65230d0f4161ba58fff2f9d87bb5a053
+> >
+> > Mauro Carvalho Chehab (9):
+> >   docs: dt: convert booting-without-of.txt to ReST format
+> >   LICENSES: add GFDL licenses
+> >   media: docs: use SPDX GFDL-1.1-or-later-no-invariants  
+> 
+> The identifier "GFDL-1.1-or-later-no-invariants" isn't following expected
+> construction (or-later and -only at the end) and the pull request is
+> still under
+> discussion on the SPDX license list, so please hold off on applying this
+> until the correct identifier is figured out there.
+
+Thanks for checking this. I assumed that the discussions on SPDX were
+finished. For now, I'll keep using a license text at the Kernel
+(on media and on another file dual-licensed GPL and GFDL).
+
+I'm keeping the patches changing the license on a temp branch. I'll
+re-submit them once the patch gets merged at SPDX specs tree.
+
+Btw, another file using both GPL and GFDL was just added via the
+media tree[1]. I need to remember that when re-submitting this one,
+as otherwise it would be a left-over.
+
+[1] Due to historic reasons, media userspace API is licensed under
+GFDL. We're using a dual-license model for newer files at the
+media uAPI book.
+
+Thanks!
+Mauro

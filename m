@@ -2,131 +2,150 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2FD62426AC
-	for <lists+linux-spdx@lfdr.de>; Wed, 12 Aug 2020 10:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BEA6242B8B
+	for <lists+linux-spdx@lfdr.de>; Wed, 12 Aug 2020 16:45:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726517AbgHLIXk (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 12 Aug 2020 04:23:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52474 "EHLO mail.kernel.org"
+        id S1726627AbgHLOpD (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 12 Aug 2020 10:45:03 -0400
+Received: from mga06.intel.com ([134.134.136.31]:37915 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726264AbgHLIXk (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Wed, 12 Aug 2020 04:23:40 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0FCA20774;
-        Wed, 12 Aug 2020 08:23:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1597220620;
-        bh=lhDThOiTPgNSzgKF/RniQ33GxO+fED7sAL99/NmPs8M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hfjurPkIr5/wydgdszFImpHYw+XPJVWVAWTFCkJUp/tv8wDQN+Pf7NvkX3zQPXDp/
-         g76KEGSqfgC3oHrMpV0ceK2yWBhSm2opIHOtAEAqLexNIEB3Dpd053WozyfoBZKR5N
-         hTPOsjrM/lXBASQ+U+TSS9Wjds+pnovw6lFJ4Yu0=
-Date:   Wed, 12 Aug 2020 10:23:50 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Dave Hansen <dave.hansen@linux.intel.com>
+        id S1726434AbgHLOpD (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Wed, 12 Aug 2020 10:45:03 -0400
+IronPort-SDR: FHT6WImsPBzH77luKU2N4pWV3yvbB3LunRhofCCT2TiQErBXX7laID85Sg5e/4km1ri3kgkrVJ
+ dxsrGoNO691w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9711"; a="215493209"
+X-IronPort-AV: E=Sophos;i="5.76,304,1592895600"; 
+   d="scan'208";a="215493209"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2020 07:45:02 -0700
+IronPort-SDR: Imu37Oz8OQSiHlgO8tP0j1NXo+Tuw3QnF5dlWHwxK915/5XmDUHQft6vIivRQbPVRyeaXuq0em
+ 8JzcL9pBliTw==
+X-IronPort-AV: E=Sophos;i="5.76,304,1592895600"; 
+   d="scan'208";a="295085448"
+Received: from hungngux-mobl.amr.corp.intel.com (HELO [10.254.80.79]) ([10.254.80.79])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2020 07:45:01 -0700
+Subject: Re: [PATCH] Documentation: clarify driver licensing rules
+To:     Greg KH <gregkh@linuxfoundation.org>
 Cc:     linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
         h.peter.anvin@intel.com, tglx@linutronix.de, corbet@lwn.net,
         linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH] Documentation: clarify driver licensing rules
-Message-ID: <20200812082350.GB851575@kroah.com>
 References: <20200811171748.F22CD85A@viggo.jf.intel.com>
+ <20200812082350.GB851575@kroah.com>
+From:   Dave Hansen <dave.hansen@intel.com>
+Autocrypt: addr=dave.hansen@intel.com; keydata=
+ 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
+ z5cecg==
+Message-ID: <dd23860c-7e45-2d43-0405-c8037f4a7d8f@intel.com>
+Date:   Wed, 12 Aug 2020 07:45:00 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200811171748.F22CD85A@viggo.jf.intel.com>
+In-Reply-To: <20200812082350.GB851575@kroah.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Tue, Aug 11, 2020 at 10:17:48AM -0700, Dave Hansen wrote:
+On 8/12/20 1:23 AM, Greg KH wrote:
+> On Tue, Aug 11, 2020 at 10:17:48AM -0700, Dave Hansen wrote:
+>> But, this left submitters (and the folks who help them pick licenses)
+>> a bit confused. They have read things like
+>> Documentation/process/license-rules.rst which says:
+>>
+>> 	individual source files can have a different license
+>> 	which is required to be compatible with the GPL-2.0
+>>
+>> and Documentation/process/submitting-drivers.rst:
+>>
+>> 	We don't insist on any kind of exclusive GPL licensing,
+>> 	and if you wish ... you may well wish to release under
+>> 	multiple licenses.
 > 
-> Resend. Something appears to have eaten this on the way to LKML
-> (at least) the last time.
+> Both of these are fine, but maybe you need to put:
+> 	"don't try to do stupid things just because you can!"
+> somewhere in here instead?
+
+Folks never think what _they_ are doing is stupid, so I fear that would
+fall on deaf ears.
+
+...
+>>  Licensing:
+>> -		The code must be released to us under the
+>> -		GNU General Public License. We don't insist on any kind
+>> -		of exclusive GPL licensing, and if you wish the driver
+>> -		to be useful to other communities such as BSD you may well
+>> -		wish to release under multiple licenses.
+>> +		The code must be released to us under the GNU General Public
+>> +		License. While there are no kernel-wide rules, some maintainers
+>> +		may insist on exclusive GPL licensing by default.
 > 
-> --
+> Maintainers should not do that, it is not their place to do so.  They
+> _can_ push back on, again, stupid things, but in the end, they should
+> accept anything that is a compatible license with the kernel as it is
+> really up to the copyright owner as to what license they wish to use.
+
+I wonder if we're not quite on the same page.  I thought the pitfall
+recently was from overly-aggressive dual-licensing on code that wasn't
+likely to be able to be used in another project.  Was that the misstep?
+ Or was it that the code shouldn't have been dual-licensed in the first
+place because it was too intertwined with GPLv2 code to be anything but
+purely GPLv2?
+
+> So while I like the intent here, I don't think this wording change is
+> good as-is.
 > 
-> From: Dave Hansen <dave.hansen@linux.intel.com>
-> 
-> Greg has challenged some recent driver submitters on their license
-> choices. He was correct to do so, as the choices in these instances
-> did not always advance the aims of the submitters.
+> As it stands, the text makes sense, but as always, if you have legal
+> questions, you should be talking to a lawyer, not a kernel developer :)
 
-And, to be honest, they were totally dumb attempts at doing things that
-ended up not doing what they thought they were doing.
-
-> But, this left submitters (and the folks who help them pick licenses)
-> a bit confused. They have read things like
-> Documentation/process/license-rules.rst which says:
-> 
-> 	individual source files can have a different license
-> 	which is required to be compatible with the GPL-2.0
-> 
-> and Documentation/process/submitting-drivers.rst:
-> 
-> 	We don't insist on any kind of exclusive GPL licensing,
-> 	and if you wish ... you may well wish to release under
-> 	multiple licenses.
-
-Both of these are find, but maybe you need to put:
-	"don't try to do stupid things just because you can!"
-somewhere in here instead?
-
-> As written, these appear a _bit_ more laissez faire than we've been in
-> practice lately. It sounds like we at least expect submitters to make
-> a well-reasoned license choice and to explain their rationale. It does
-> not appear that we blindly accept anything that is simply
-> GPLv2-compatible.
-
-That is correct, we shouldn't.
-
-> Drivers appear to be the most acute source of misunderstanding, so fix
-> the driver documentation first. Update it to clarify maintainer
-> expectations.
-> 
-> Signed-off-by: Dave Hansen <dave.hansen@linux.intel.com>
-> Cc: Dan Williams <dan.j.williams@intel.com>
-> Cc: H. Peter Anvin <h.peter.anvin@intel.com>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: linux-spdx@vger.kernel.org
-> Cc: linux-doc@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> ---
-> 
->  b/Documentation/process/submitting-drivers.rst |   12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
-> 
-> diff -puN Documentation/process/submitting-drivers.rst~clarify-dual-licensing Documentation/process/submitting-drivers.rst
-> --- a/Documentation/process/submitting-drivers.rst~clarify-dual-licensing	2020-08-11 09:35:55.493109636 -0700
-> +++ b/Documentation/process/submitting-drivers.rst	2020-08-11 09:35:55.496109636 -0700
-> @@ -59,11 +59,13 @@ What Criteria Determine Acceptance
->  ----------------------------------
->  
->  Licensing:
-> -		The code must be released to us under the
-> -		GNU General Public License. We don't insist on any kind
-> -		of exclusive GPL licensing, and if you wish the driver
-> -		to be useful to other communities such as BSD you may well
-> -		wish to release under multiple licenses.
-> +		The code must be released to us under the GNU General Public
-> +		License. While there are no kernel-wide rules, some maintainers
-> +		may insist on exclusive GPL licensing by default.
-
-Maintainers should not do that, it is not their place to do so.  They
-_can_ push back on, again, stupid things, but in the end, they should
-accept anything that is a compatible license with the kernel as it is
-really up to the copyright owner as to what license they wish to use.
-
-So while I like the intent here, I don't think this wording change is
-good as-is.
-
-As it stands, the text makes sense, but as always, if you have legal
-questions, you should be talking to a lawyer, not a kernel developer :)
-
-thanks,
-
-greg k-h
+I'd like to do two things with this Documentation/.  First, to _get_
+folks to go talk to their lawyers.  Second, the lawyers and the
+non-lawyers who do licensing _will_ read this documentation.  If they
+understand what the kernel expects, they are in the best position to
+pass that understanding on to developers since they're the gatekeepers.
+  That will hopefully make your job easier because it will filter out
+some of the stupid things before you see them.

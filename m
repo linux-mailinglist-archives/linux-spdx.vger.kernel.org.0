@@ -2,96 +2,120 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93376245828
-	for <lists+linux-spdx@lfdr.de>; Sun, 16 Aug 2020 16:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37166246CA3
+	for <lists+linux-spdx@lfdr.de>; Mon, 17 Aug 2020 18:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729481AbgHPOcQ (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 16 Aug 2020 10:32:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57092 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729619AbgHPOba (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 16 Aug 2020 10:31:30 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C81AC0612F4
-        for <linux-spdx@vger.kernel.org>; Sun, 16 Aug 2020 07:28:39 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id k8so11872604wma.2
-        for <linux-spdx@vger.kernel.org>; Sun, 16 Aug 2020 07:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=Duxa+mmNF3T3C2WDKsmzowR2OzvdY892XFjTPp0RWRI=;
-        b=NAKDDu3zYGlp6/1rTFA3zLXzfLNUWElMFpld1DGXTqZ3f2C1G5vMMGgQBtzYdv61gR
-         j0gW2VjYzcAEQEK9JcrA+yGSHFEXNhE9RNkaz3uxkanP37gacJrIVytgT7/c7zGkA2Dy
-         XJB3L8ToVDoWAD9Rvm7U849RIrxncLk9xI9S/Uu5ZGT/cXsim2IUQmYeZsKFSBsv6kJT
-         3kDR9KLYjND6JPpx0YTAndrQaTelzP3558OkivI4ykhj79/nak1F6z80uX1/EQIXmTKV
-         I+kUa6Zt2XAbNuMItIuLndMdaWWyo32PYvWKoOywYCMLUV2UDlYdbpJ66arhF+MiPCa0
-         yMKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=Duxa+mmNF3T3C2WDKsmzowR2OzvdY892XFjTPp0RWRI=;
-        b=rjw/RvZsMT0PlfNpWtB+NgwI99tEwJRxeojdm71sAGQ8/LhjwU3z53HqqmrRs1WLNs
-         SaJ5oBjIjPjpRMR03r6rTdkyZM+gReF/k0ujRyHxdT8JaMo50POlfZarYQOXBgpqwh7U
-         JAGr2Rr6faw8EUI7rvT6pyG4T2CasW7RpQusEZKwcJHl0bOOqqzWf6YmJoRzo5wrsWlv
-         EykFkgdNPCvVyzhAC/sx4XfLejZNdxc4kzgOs82c9z2uJkXUg9yOUqGEvZwN4Id+aty9
-         XhLKflmIly4WFo3wMYE8D57CJZOn7seMFGw4OTAlcZtKL/F8UpzNHh/w8HiLLBqeoqqe
-         CHCQ==
-X-Gm-Message-State: AOAM532wult0/A3hg0Pf8ncnYOf7B9sA6Yqd2v0o9JHzB1WD6SkLCtHU
-        ErlckJdL1WWCwslD8fsqM3MxaTetkFImgn17jhHGlpvX26c=
-X-Google-Smtp-Source: ABdhPJydZZ8FQlFGmrB/EDLy0Z8gH5X03F6EFXypW4K1vf8iv94WhLhI3iwPKgeJEaRZZocHWED4lUmYPOBkTFPeX+4=
-X-Received: by 2002:a1c:a1c7:: with SMTP id k190mr10461870wme.1.1597588111746;
- Sun, 16 Aug 2020 07:28:31 -0700 (PDT)
+        id S1730813AbgHQQXL (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 17 Aug 2020 12:23:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47422 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730752AbgHQQWw (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Mon, 17 Aug 2020 12:22:52 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1D6C02063A;
+        Mon, 17 Aug 2020 16:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597681371;
+        bh=bt8auQMASs61Uors6Csh903y3WqUBEQ+mJDO41OeRX8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BsdV5+swurJnpwiMu+96tzx7cgZ4BuNmSQ0jSLzhF5k5sFvj2UFTAW2e7hSy2t4dp
+         6ZnLQ28n8Oc+gFoEgZJXnPpxKvo+cxYIS+cj3SQVPmv2E7St+8JYqs1Jw/t35cKehI
+         +Fx7MPQYVzw/BiClKvdjnymBgmdKF/7rb77mED34=
+Date:   Mon, 17 Aug 2020 17:48:31 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Dave Hansen <dave.hansen@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
+        h.peter.anvin@intel.com, tglx@linutronix.de, corbet@lwn.net,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH] [v2] Documentation: clarify driver licensing rules
+Message-ID: <20200817154831.GF699147@kroah.com>
+References: <20200814145625.8B708079@viggo.jf.intel.com>
 MIME-Version: 1.0
-Received: by 2002:a5d:6cd3:0:0:0:0:0 with HTTP; Sun, 16 Aug 2020 07:28:30
- -0700 (PDT)
-Reply-To: sctnld11170@tlen.pl
-From:   "Mr. Scott Donald" <confianzayrentabilidad@gmail.com>
-Date:   Sun, 16 Aug 2020 07:28:30 -0700
-Message-ID: <CANrrfX7wwL97G=jb--8nb9jH8oRO8T90L6NGSfg1HfnzMyyHcw@mail.gmail.com>
-Subject: Hello, Please
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200814145625.8B708079@viggo.jf.intel.com>
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
---=20
-Dear Friend,
+On Fri, Aug 14, 2020 at 07:56:25AM -0700, Dave Hansen wrote:
+> 
+> From: Dave Hansen <dave.hansen@linux.intel.com>
+> 
+> Greg has challenged some recent driver submitters on their license
+> choices. He was correct to do so, as the choices in these instances
+> did not always advance the aims of the submitters.
+> 
+> But, this left submitters (and the folks who help them pick licenses)
+> a bit confused. They have read things like
+> Documentation/process/license-rules.rst which says:
+> 
+> 	individual source files can have a different license
+> 	which is required to be compatible with the GPL-2.0
+> 
+> and Documentation/process/submitting-drivers.rst:
+> 
+> 	We don't insist on any kind of exclusive GPL licensing,
+> 	and if you wish ... you may well wish to release under
+> 	multiple licenses.
+> 
+> As written, these appear a _bit_ more laissez faire than we've been in
+> practice lately. It sounds like we at least expect submitters to make
+> a well-reasoned license choice and to explain their rationale. It does
+> not appear that we blindly accept anything that is simply
+> GPLv2-compatible.
+> 
+> Drivers appear to be the most acute source of misunderstanding, so fix
+> the driver documentation first. Update it to clarify expectations.
+> 
+> Signed-off-by: Dave Hansen <dave.hansen@linux.intel.com>
+> Cc: Dan Williams <dan.j.williams@intel.com>
+> Cc: H. Peter Anvin <h.peter.anvin@intel.com>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: linux-spdx@vger.kernel.org
+> Cc: linux-doc@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> 
+> --
+> 
+> Changes from v1:
+>  * Remove mention of maintainers enforcing particular license
+>    choices.
+>  * Change the wording to ensure that folks understand that the
+>    trigger that requires an explanation is not multiple
+>    licenses per se, but non-GPL licenses.  You could argue that
+>    GPLv2-or-later is multiple liceses, for instance.
+> ---
+> 
+>  b/Documentation/process/submitting-drivers.rst |    9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
+> 
+> diff -puN Documentation/process/submitting-drivers.rst~clarify-dual-licensing Documentation/process/submitting-drivers.rst
+> --- a/Documentation/process/submitting-drivers.rst~clarify-dual-licensing	2020-08-14 07:42:06.300480229 -0700
+> +++ b/Documentation/process/submitting-drivers.rst	2020-08-14 07:53:10.373478573 -0700
+> @@ -60,10 +60,11 @@ What Criteria Determine Acceptance
+>  
+>  Licensing:
+>  		The code must be released to us under the
+> -		GNU General Public License. We don't insist on any kind
+> -		of exclusive GPL licensing, and if you wish the driver
+> -		to be useful to other communities such as BSD you may well
+> -		wish to release under multiple licenses.
+> +		GNU General Public License. If you wish the driver to be
+> +		useful to other communities such as BSD you may release
+> +		under multiple licenses. If you choose to release under
+> +		licenses other than the GPL, you should include your
+> +		rationale for your license choices in your cover letter.
+>  		See accepted licenses at include/linux/module.h
+>  
+>  Copyright:
+> _
 
-I'm Mr. Scott Donald a Successful businessMan dealing with
-Exportation, I got your mail contact through search to let you know my
-intension and my Ugly Situation Am a dying Man here in Los Angeles
-California Hospital Bed in (USA), I Lost my Wife and my only Daughter
-for Covid-19 and I also have a problem in my Health and I can die
-anytime I Know,
+Looks good, thanks for the modifications:
 
-I have a project that I am about to hand over to you. and I already
-instructed the Bankia S.A. Madrid, Spain(BSA) to transfer my fund sum
-of =C2=A33,7M GBP. Equivalent to =E2=82=AC4,077,033.91 EUR, to you as to en=
-able you
-to give 50% of this fund to Charitable Home in your State and take 50%
-don't think otherwise and why would anybody send someone you barely
-know to help you deliver a message, help me do this for the happiness
-of my soul and for God to mercy me and my Family and give Us a good
-place.
-
-please, do as I said there was someone from your State that I deeply
-love so very very much and I miss her so badly I have no means to
-reach any Charitable Home there. that is why I go for a personal
-search of the Country and State and I got your mail contact through
-search to let you know my Bitterness and please, help me is getting
-Dark I ask my Doctor to help me keep you notice failure for me to
-reach you in person Your urgent Response, here is my Doctor Whats-app
-Number for urgent notice +13019692737
-
-Hope To Hear From You. I'm sending this email to you for the second
-time yet no response from you.
-
-My Regards.
-
-Mr. Scott Donald
-CEO
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>

@@ -2,97 +2,153 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B636F253D56
-	for <lists+linux-spdx@lfdr.de>; Thu, 27 Aug 2020 08:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5ECC25420A
+	for <lists+linux-spdx@lfdr.de>; Thu, 27 Aug 2020 11:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726199AbgH0GAa (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 27 Aug 2020 02:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34634 "EHLO
+        id S1728451AbgH0JYS (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 27 Aug 2020 05:24:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726028AbgH0GAa (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 27 Aug 2020 02:00:30 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1961C061246
-        for <linux-spdx@vger.kernel.org>; Wed, 26 Aug 2020 23:00:29 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id i17so2284966edx.12
-        for <linux-spdx@vger.kernel.org>; Wed, 26 Aug 2020 23:00:29 -0700 (PDT)
+        with ESMTP id S1728447AbgH0JYR (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 27 Aug 2020 05:24:17 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3676C061264;
+        Thu, 27 Aug 2020 02:24:16 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id u128so3034459pfb.6;
+        Thu, 27 Aug 2020 02:24:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:message-id:user-agent:mime-version;
-        bh=K6cJEGmuEyaQOs9bcYEwntgd23ZW2gHl7NNPIw1e7r8=;
-        b=GE9H3NkQtMgyHnz+OBMp2NxzpkALzgmXu8m4EK+i05OxDKoquqJW3bTybDoI6WHecq
-         892P4MP+C5NgjDQBH8nI2M8NlFUxkI9jr+741mRsiS3pBia61Lz6EAjoIo3WRd7C2BVM
-         0Mwp89O0BXpzV5HYJNAdADqBLD0emQb+6i0Fs/naa7lUZZNkY9hkAt/HkISLDW/gX5s3
-         tPbNoC661Mefs84Q+8umlDbx8imyJntW6I912hlRRJ7vRsn9VrOvy9KeLqDtIUJ/WaQ+
-         TR9tkMUOiFk0sigrhp5WOs6gCSHFklj1452lu3uJIwSqLBp7jQas3LfKKqP2mmxhtB0h
-         PvfQ==
+        h=date:from:to:subject:message-id:mime-version:content-disposition;
+        bh=LKDlLMP9o2eEBH2C9x6MfpYAdPfjU1Lhdny/aQSn3mQ=;
+        b=nps0Q3QE2BQWBse5vZkI+sdXMY2D/c8G5TGbzNAIOQra2MtG1iokjOZi7I6baSrlIV
+         EgveQc89VgkQKqnNpSwL/Vq1HuuSoW4KD6yNV/RHFvYMeKf9fLBI9na6c/SLjM8P2NVT
+         /ccSZKOHAc4TlTWqLSfnGLDWv0uRpigAm8a4Ri39nI4m9sPBQvR+lTxYixIIuxA7I77N
+         BfNtKWHDiFGfE2IVyQHWKV2qt1wcuaIn9NwD+am9/UY7tqaTt4U6qDmXLPeJybvgcyfy
+         xVJF91TZRLhfuP6JUuFF9UnD/8fVQYBlaicTFUIUWHoifJQ3tKodh7orhvTcVGaUetCx
+         FZKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:user-agent
-         :mime-version;
-        bh=K6cJEGmuEyaQOs9bcYEwntgd23ZW2gHl7NNPIw1e7r8=;
-        b=X47gUkQGxxVCb04SON6fPbZAMKmakVux+rcMwaa8xu+ykuEkScTVBgr99+HDjmDSxb
-         cErOERAPF7HfFWyBEgaytcdBJdlnFVSyZ3EMu70MwAGZoDlbIUpc5fEW3M+b/QiX0vu1
-         g1Iq5eXpLJ5truE81hDhIWBD6KKDnkerhbdqfK2KEHmUsccso4aK0nMj/5IeT2kbeNBy
-         L2VUpJrgkdV6nxbGJTdsoRLrjDebBAGQiRncKtTbiDil4hbTuBwYNUnikTcE/xtJ5YEK
-         cmaXW2pVwp6xy77yYW8/hq4N5gDaWSJUmPQrzbsf7SishtI8lUM9cTL45h7kN41wk/jt
-         z/bA==
-X-Gm-Message-State: AOAM533k2z/l7RCgn+CIVhcDWk+X8byQe+dbvqroJLz2xxpF3J7sYybW
-        GKFMXpXjoh55PHaPS9MR2fA=
-X-Google-Smtp-Source: ABdhPJzyurGQ8MJE8oZPqIoXbEgnvzhGxe3tPDcZGiVkSIJZnHZvqOLvdQcQ16jk7OhA50N5iYnHag==
-X-Received: by 2002:a50:f607:: with SMTP id c7mr18040460edn.162.1598508028306;
-        Wed, 26 Aug 2020 23:00:28 -0700 (PDT)
-Received: from felia ([2001:16b8:2d0c:fc00:340b:71b8:4541:aa75])
-        by smtp.gmail.com with ESMTPSA id s30sm774582edc.8.2020.08.26.23.00.27
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition;
+        bh=LKDlLMP9o2eEBH2C9x6MfpYAdPfjU1Lhdny/aQSn3mQ=;
+        b=kUJLv1LHU6RHaKSDbk7ttrSaM86uKHwg2C6sBl0lNooYTfvnay29c99kKXfrdxnfnS
+         uabZe1DSj2w45ms4fKZxyiaVaX9e6OaPxD9mF0vHMPerAcREvpUhcWj2qVCZjUXaaRow
+         tI7Cjo04++7ET210CyXiwXsNVsGXzNsA5FKDPAS6nOrS9mi/iWMMrkJw778X4U535DwD
+         PiKegcEDyGtk3Q8KR6MDdDjba2ELcGsWNkcF13hPvYNWCYPRrY76L7eoNV/IXKb8hPIW
+         sJAjRQPpr+C30TC1Hqodeb/BG7ka7O4mUtWEmEQDAV77z8Aei0qzWt/rtqpXMeDBL4YE
+         hufQ==
+X-Gm-Message-State: AOAM533b5mJk6gXN7wOQXpN5X1PYHIau8wQ7hnltB5hschNmmJqy063y
+        YOvEcRuyYvPMZfzlTJT4Eyg=
+X-Google-Smtp-Source: ABdhPJyJnn+Y0xkU7A6fORQ70ufnhZfpwvrdE3TVhKTWjAN8yS0FY5rJRek4AruTHw2j7KaURP9ejw==
+X-Received: by 2002:a62:7d4c:: with SMTP id y73mr12907266pfc.137.1598520256334;
+        Thu, 27 Aug 2020 02:24:16 -0700 (PDT)
+Received: from localhost ([1.23.143.13])
+        by smtp.gmail.com with ESMTPSA id t12sm1542334pjv.55.2020.08.27.02.24.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Aug 2020 23:00:27 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
-Date:   Thu, 27 Aug 2020 08:00:17 +0200 (CEST)
-X-X-Sender: lukas@felia
-To:     qla2xxx-upstream@qlogic.com, QLogic-Storage-Upstream@qlogic.com,
-        GR-Linux-NIC-Dev@marvell.com, Nilesh Javali <njavali@marvell.com>,
-        Shahed Shaikh <shshaikh@marvell.com>,
-        Manish Chopra <manishc@marvell.com>
-cc:     linux-spdx@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
-Subject: SECOND REMINDER on Qlogic driver license conversion
-Message-ID: <alpine.DEB.2.21.2008270740140.31123@felia>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        Thu, 27 Aug 2020 02:24:15 -0700 (PDT)
+Date:   Thu, 27 Aug 2020 14:54:05 +0530
+From:   Mrinal Pandey <mrinalmni@gmail.com>
+To:     skhan@linuxfoundation.org,
+        Linux-kernel-mentees@lists.linuxfoundation.org,
+        lukas.bulwahn@gmail.com, keescook@chromium.org, re.emese@gmail.com,
+        maennich@google.com, tglx@linutronix.de,
+        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
+        kernel-hardening@lists.openwall.com, linux-kernel@vger.kernel.org,
+        linux-spdx@vger.kernel.org, mrinalmni@gmail.com
+Subject: [PATCH] scripts: Add intended executable mode and SPDX license
+Message-ID: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7psxwnjzxvwj4cgh"
+Content-Disposition: inline
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dear Qlogic driver maintainers, dear Nilesh, deat Shahed, dear Manish,
+
+--7psxwnjzxvwj4cgh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+commit b72231eb7084 ("scripts: add spdxcheck.py self test") added the file
+spdxcheck-test.sh to the repository without the executable flag and license
+information.
+
+commit eb8305aecb95 ("scripts: Coccinelle script for namespace
+dependencies.") added the file nsdeps, commit 313dd1b62921 ("gcc-plugins:
+Add the randstruct plugin") added the file gcc-plugins/gen-random-seed.sh
+and commit 9b4ade226f74 ("xen: build infrastructure for generating
+hypercall depending symbols") added the file xen-hypercalls.sh without the
+executable bit.
+
+Set to usual modes for these files and provide the SPDX license for
+spdxcheck-test.sh. No functional changes.
+
+Signed-off-by: Mrinal Pandey <mrinalmni@gmail.com>
+---
+applies cleanly on next-20200827
+
+Kees, Matthias, Thomas, please ack this patch.
+
+Andrew, please pick this minor non-urgent cleanup patch once the
+mainainers ack.
+
+ scripts/gcc-plugins/gen-random-seed.sh | 0
+ scripts/nsdeps                         | 0
+ scripts/spdxcheck-test.sh              | 1 +
+ scripts/xen-hypercalls.sh              | 0
+ 4 files changed, 1 insertion(+)
+ mode change 100644 =3D> 100755 scripts/gcc-plugins/gen-random-seed.sh
+ mode change 100644 =3D> 100755 scripts/nsdeps
+ mode change 100644 =3D> 100755 scripts/spdxcheck-test.sh
+ mode change 100644 =3D> 100755 scripts/xen-hypercalls.sh
+
+diff --git a/scripts/gcc-plugins/gen-random-seed.sh b/scripts/gcc-plugins/g=
+en-random-seed.sh
+old mode 100644
+new mode 100755
+diff --git a/scripts/nsdeps b/scripts/nsdeps
+old mode 100644
+new mode 100755
+diff --git a/scripts/spdxcheck-test.sh b/scripts/spdxcheck-test.sh
+old mode 100644
+new mode 100755
+index cfea6a0d1cc0..e2902520a081
+--- a/scripts/spdxcheck-test.sh
++++ b/scripts/spdxcheck-test.sh
+@@ -1,4 +1,5 @@
+ #!/bin/sh
++# SPDX-License-Identifier: GPL-2.0
+=20
+ for PYTHON in python2 python3; do
+ 	# run check on a text and a binary file
+diff --git a/scripts/xen-hypercalls.sh b/scripts/xen-hypercalls.sh
+old mode 100644
+new mode 100755
+--=20
+2.25.1
 
 
-during an unrelated kernel clean-up task, I noticed some LICENSE files for 
-the qlogic drivers hanging around in Documentation.
+--7psxwnjzxvwj4cgh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thomas Gleixner has provided you a patch series in June 2019 to pick up or 
-simply add a Reviewed-by tag here:
+-----BEGIN PGP SIGNATURE-----
 
-https://lore.kernel.org/linux-spdx/20190606205526.447558989@linutronix.de
+iQIzBAEBCgAdFiEE8DwCG1PwaC2uTI99xIwpEWwxhGQFAl9He60ACgkQxIwpEWwx
+hGQO/BAAirslyT/RyRsBnm80OnJYSZ0oaAjsSp0sC0LHZawGPPnCbrZRjS/6FQBe
+kKJjI/Y7z7Hi38d2morG9nKhvcjGonI3vxSysJK4/LSD2FvS9FcKJkfHYsf5HPOj
+BNqRNvN+CGvUtV6EEBvMoRafI5xAqXinpglR7yd094qv/SzNTL60QtMXVCNiKaph
+5kemWnjMmlJQDJVxsK0qVSN5yfGhwt92DUHYBdabPgBMLPADdk0BKo/FHCV4vO5J
+8Cz4fGZmO3p3trX5bPTXMMVbhRC2IPHHK+bscQZ3rPAHRSfccTdmN4tP32dQjXiZ
+0Dq+QNuTSxtsTdAVXFUCy55CtFGVEl4GXkPZHaWX/jRqpqcvmY4Ih5TgX25MS8gB
++hlVbQ+YQraZRezEdYzt53Orkwlq+8j/I2UvKBs5sBRYMiCnz3DVj1BgKheCL8vI
+id5nUpqSCRQau8UWRZgdTFzZiIrs9JZq1qzT1v8U3XVQGRb6XtQWoewYlnP431YA
+1sIbVErQKgp+Hrtjdmj/I4shV2Poq1ppu1bpBorMBuZdcId8t6FSqipAi+UaNpm3
+lMZ7w0z/TmzAEMCkXlrzh9THaCzbrhclf2cte0IvVvb8NYc+NajOPhVVgUObpFnL
+yRODk3RXJK+fDf5fKPnSrHmbBlItBXnncrv32bV2lW+/jc3POSs=
+=5uhu
+-----END PGP SIGNATURE-----
 
-As it seems from the public mailing list archive, you have never responded 
-to Thomas' request. If you could indicate that the change is fine for you,
-I am happy to rebase the patch series to the current next tree, so that 
-Thomas can pick that up and let it travel through the spdx tree to Linus 
-for the next release.
-
-See first reminder here:
-
-https://lore.kernel.org/linux-spdx/alpine.DEB.2.21.2006300644130.4919@felia/
-
-Just to let you know, I will send a third reminder in a few months, and 
-if there is no response to that, I will just send a patch to mark those 
-drivers where QLogic-Storage-Upstream@qlogic.com or 
-GR-Linux-NIC-Dev@marvell.com are maintainers as Orphaned, just to keep 
-MAINTAINERS reflect the actual state.
-
-
-Best regards,
-
-Lukas
+--7psxwnjzxvwj4cgh--

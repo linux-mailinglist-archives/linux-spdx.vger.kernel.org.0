@@ -2,79 +2,49 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A45254280
-	for <lists+linux-spdx@lfdr.de>; Thu, 27 Aug 2020 11:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53C982542A2
+	for <lists+linux-spdx@lfdr.de>; Thu, 27 Aug 2020 11:43:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728074AbgH0JeZ (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 27 Aug 2020 05:34:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40010 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727030AbgH0JeV (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 27 Aug 2020 05:34:21 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8EDC061264;
-        Thu, 27 Aug 2020 02:34:20 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id b17so6743235ejq.8;
-        Thu, 27 Aug 2020 02:34:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=OPN019dv0ZwUErJy29rnKsWnH/b9Woj3nbMNGrhAC8c=;
-        b=QyauHyC15viX8/8BETQHlA5pax/IjzY2rWvLVuAuDl/aesI3URhsEWV8La+UcF2aVm
-         m6zW1XaCMrXpkMix02OjT9BelGbwB5kM1LV7nGw+onYgBfkOhl/NE6CTCBRofdXqL6+A
-         19IcOKKtBV1dOQ6wXaWpYAG/z8wtS28hnixs8V4HiKzuVENEFpmnYlSrLlzRJIAGK7Ka
-         fwlStZZUBm8wIffQaA9j/8d80xQB63VXetYk8UTIJX0Ava4YvK/QW1H7BYkCdkwYs/wu
-         /jc6vpwc3osLgK3/HEFkDTlRVMKL/cpNloPS8Wd4o3iszmzY7jEpij2iumzvqffjt49H
-         k3QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=OPN019dv0ZwUErJy29rnKsWnH/b9Woj3nbMNGrhAC8c=;
-        b=UjaO9AxHQ9VyohGDpHhMuZW9OBrQ4YPn2WKi0NV6JK3SyQNIBzAghrN66TnOcrjJIs
-         ED7qiL+mKTrJtyf9uHOlvjTYx1qBHbVvZ79lFf9EGjIIwjFDTYMi8hxWOs/Falh+kwXZ
-         D+no/yAOiGsDMHsExLvbKaae8DWPu8wVXi5/kWDFOZQQFDGMTH1Z5GgQDSOsc3DlraRk
-         XjeZgq8fwciSjRQAqc0HugyFagNKq87XT3EKTCN1WMj2fk2YVI2vshffYE8w1SprYDxx
-         UbIQr5+lvhixokbJNmcu6AZthLeN3N/6soAaZ8XIB5gRCbGoMVoijM2/HT5WswF9Zmgg
-         L1gw==
-X-Gm-Message-State: AOAM532RQima0ejLWuOc8eMbQrehe6DF+tcWYfLXmAPfTHdwjB5iqIGv
-        XxGYWylXY3lyGeLGDzOGRh0BmZTpi9//bfzI
-X-Google-Smtp-Source: ABdhPJzffUigmoS/TVvnVrsWqLpw6dP+dVGX9uIaZIdtyoo+ufdyWlLglYNyqstNFbsWvQVHH8RfgA==
-X-Received: by 2002:a17:906:780f:: with SMTP id u15mr6347818ejm.259.1598520858899;
-        Thu, 27 Aug 2020 02:34:18 -0700 (PDT)
-Received: from felia ([2001:16b8:2d0c:fc00:340b:71b8:4541:aa75])
-        by smtp.gmail.com with ESMTPSA id f5sm1132738edv.4.2020.08.27.02.34.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Aug 2020 02:34:18 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
-Date:   Thu, 27 Aug 2020 11:34:17 +0200 (CEST)
-X-X-Sender: lukas@felia
+        id S1727030AbgH0Jnc (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 27 Aug 2020 05:43:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48098 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726157AbgH0Jnb (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Thu, 27 Aug 2020 05:43:31 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3642A20738;
+        Thu, 27 Aug 2020 09:43:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598521410;
+        bh=6swQyYkYC4Z1c7XhfVxkd28d4ymWKX09l25zxnCPTsE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C8IZPMlnAgOmvHfdnp2bPcQKpKbf6aDNvCVOyQIEPnvCwsAnUVB5t0wB/c5LBdhYL
+         rI5R5iGtVyxlKvWSqLhj1lmmgmenPFV3ArvZ5OZPe01s63M4gz7qhkj9P5oC7jjGw9
+         ER7wvatdCzNUCXRlIm3KKt8fh+18Ckx/3dAQrmeM=
+Date:   Thu, 27 Aug 2020 11:43:44 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
 To:     Mrinal Pandey <mrinalmni@gmail.com>
-cc:     skhan@linuxfoundation.org,
+Cc:     skhan@linuxfoundation.org,
         Linux-kernel-mentees@lists.linuxfoundation.org,
         lukas.bulwahn@gmail.com, keescook@chromium.org, re.emese@gmail.com,
-        maennich@google.com, tglx@linutronix.de,
-        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
+        maennich@google.com, tglx@linutronix.de, akpm@linux-foundation.org,
         kernel-hardening@lists.openwall.com, linux-kernel@vger.kernel.org,
         linux-spdx@vger.kernel.org
 Subject: Re: [PATCH] scripts: Add intended executable mode and SPDX license
-In-Reply-To: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
-Message-ID: <alpine.DEB.2.21.2008271128540.25858@felia>
+Message-ID: <20200827094344.GA400189@kroah.com>
 References: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-
-
-On Thu, 27 Aug 2020, Mrinal Pandey wrote:
-
+On Thu, Aug 27, 2020 at 02:54:05PM +0530, Mrinal Pandey wrote:
 > commit b72231eb7084 ("scripts: add spdxcheck.py self test") added the file
 > spdxcheck-test.sh to the repository without the executable flag and license
 > information.
@@ -90,17 +60,6 @@ On Thu, 27 Aug 2020, Mrinal Pandey wrote:
 > spdxcheck-test.sh. No functional changes.
 > 
 > Signed-off-by: Mrinal Pandey <mrinalmni@gmail.com>
-
-This is a contribution from a candidate of the Linux Kernel Onboarding 
-Mentorship. If successful, the candidate will work on improving 
-checkpatch.pl so that we get closer to a state where we can run it as a 
-bot reporting on patch submissions to mailing lists.
-
-This was clean-up work we came across looking at SPDX license warnings,
-script shebangs, and executable modes of files.
-
-Acked-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-
 > ---
 > applies cleanly on next-20200827
 > 
@@ -118,29 +77,10 @@ Acked-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 >  mode change 100644 => 100755 scripts/nsdeps
 >  mode change 100644 => 100755 scripts/spdxcheck-test.sh
 >  mode change 100644 => 100755 scripts/xen-hypercalls.sh
-> 
-> diff --git a/scripts/gcc-plugins/gen-random-seed.sh b/scripts/gcc-plugins/gen-random-seed.sh
-> old mode 100644
-> new mode 100755
-> diff --git a/scripts/nsdeps b/scripts/nsdeps
-> old mode 100644
-> new mode 100755
-> diff --git a/scripts/spdxcheck-test.sh b/scripts/spdxcheck-test.sh
-> old mode 100644
-> new mode 100755
-> index cfea6a0d1cc0..e2902520a081
-> --- a/scripts/spdxcheck-test.sh
-> +++ b/scripts/spdxcheck-test.sh
-> @@ -1,4 +1,5 @@
->  #!/bin/sh
-> +# SPDX-License-Identifier: GPL-2.0
->  
->  for PYTHON in python2 python3; do
->  	# run check on a text and a binary file
-> diff --git a/scripts/xen-hypercalls.sh b/scripts/xen-hypercalls.sh
-> old mode 100644
-> new mode 100755
-> -- 
-> 2.25.1
-> 
-> 
+
+This does 2 different things in one patch, shouldn't this be 2 different
+patches?  One to change the permissions and one to add the SPDX line?
+
+thanks,
+
+greg k-h

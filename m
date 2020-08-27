@@ -2,103 +2,82 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B6B32542F8
-	for <lists+linux-spdx@lfdr.de>; Thu, 27 Aug 2020 12:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B1CF254812
+	for <lists+linux-spdx@lfdr.de>; Thu, 27 Aug 2020 16:58:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728675AbgH0J75 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 27 Aug 2020 05:59:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55232 "EHLO mail.kernel.org"
+        id S1727952AbgH0O5p (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 27 Aug 2020 10:57:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50130 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728303AbgH0J7z (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Thu, 27 Aug 2020 05:59:55 -0400
+        id S1729031AbgH0MZ2 (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Thu, 27 Aug 2020 08:25:28 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BEB4D207CD;
-        Thu, 27 Aug 2020 09:59:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3E4AC22BF5;
+        Thu, 27 Aug 2020 12:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598522394;
-        bh=kLOwClv6cLLdqgQ6u8r+eTVLWMVWAPwOxRLFW4eZjbA=;
+        s=default; t=1598530692;
+        bh=XA/2SOWzpOKYqsWNqmRW2VWhio0avdiOVEXAmnk7eqg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aKv0rDmKS+We0eGWLP28VHPdK3FuCBdHYDM1jJqcogL4tZoqFhx5/DrygPOvX1aSL
-         RUaVxu8O1D7L1O/vPnI0wmlQhjPxwvbhm9QtvwDcPw4iw0Q4GdP7O/uc6A61Ri3KqA
-         LyhjigTVaO6BkxQ/c688Xk4Y6av0OmXCPoDtH50Y=
-Date:   Thu, 27 Aug 2020 12:00:08 +0200
+        b=FA+HQ5u4GLkBMRdJIGYiEu2Yim8rrhku7zK1NQmwnwHpntgDjqoY7/LxbsOPz5Gof
+         ljext+7bAg34IrmpC4Njegr4VF6dB3oySSI2nj/7h9OOz3h2j3BUPseBb9RiUcfzrT
+         2ZxAkgC8+VZQ+TAEcnlkH/xeV8YtCsrs5hm15qt4=
+Date:   Thu, 27 Aug 2020 14:18:26 +0200
 From:   Greg KH <gregkh@linuxfoundation.org>
 To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Mrinal Pandey <mrinalmni@gmail.com>, skhan@linuxfoundation.org,
-        Linux-kernel-mentees@lists.linuxfoundation.org,
-        keescook@chromium.org, re.emese@gmail.com, maennich@google.com,
-        tglx@linutronix.de, akpm@linux-foundation.org,
-        kernel-hardening@lists.openwall.com, linux-kernel@vger.kernel.org,
-        linux-spdx@vger.kernel.org
-Subject: Re: [PATCH] scripts: Add intended executable mode and SPDX license
-Message-ID: <20200827100008.GA403378@kroah.com>
-References: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
- <20200827094344.GA400189@kroah.com>
- <alpine.DEB.2.21.2008271145370.25858@felia>
+Cc:     qla2xxx-upstream@qlogic.com, QLogic-Storage-Upstream@qlogic.com,
+        GR-Linux-NIC-Dev@marvell.com, Nilesh Javali <njavali@marvell.com>,
+        Shahed Shaikh <shshaikh@marvell.com>,
+        Manish Chopra <manishc@marvell.com>,
+        linux-spdx@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: SECOND REMINDER on Qlogic driver license conversion
+Message-ID: <20200827121826.GB420527@kroah.com>
+References: <alpine.DEB.2.21.2008270740140.31123@felia>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.21.2008271145370.25858@felia>
+In-Reply-To: <alpine.DEB.2.21.2008270740140.31123@felia>
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Thu, Aug 27, 2020 at 11:49:31AM +0200, Lukas Bulwahn wrote:
+On Thu, Aug 27, 2020 at 08:00:17AM +0200, Lukas Bulwahn wrote:
+> Dear Qlogic driver maintainers, dear Nilesh, deat Shahed, dear Manish,
 > 
 > 
-> On Thu, 27 Aug 2020, Greg KH wrote:
+> during an unrelated kernel clean-up task, I noticed some LICENSE files for 
+> the qlogic drivers hanging around in Documentation.
 > 
-> > On Thu, Aug 27, 2020 at 02:54:05PM +0530, Mrinal Pandey wrote:
-> > > commit b72231eb7084 ("scripts: add spdxcheck.py self test") added the file
-> > > spdxcheck-test.sh to the repository without the executable flag and license
-> > > information.
-> > > 
-> > > commit eb8305aecb95 ("scripts: Coccinelle script for namespace
-> > > dependencies.") added the file nsdeps, commit 313dd1b62921 ("gcc-plugins:
-> > > Add the randstruct plugin") added the file gcc-plugins/gen-random-seed.sh
-> > > and commit 9b4ade226f74 ("xen: build infrastructure for generating
-> > > hypercall depending symbols") added the file xen-hypercalls.sh without the
-> > > executable bit.
-> > > 
-> > > Set to usual modes for these files and provide the SPDX license for
-> > > spdxcheck-test.sh. No functional changes.
-> > > 
-> > > Signed-off-by: Mrinal Pandey <mrinalmni@gmail.com>
-> > > ---
-> > > applies cleanly on next-20200827
-> > > 
-> > > Kees, Matthias, Thomas, please ack this patch.
-> > > 
-> > > Andrew, please pick this minor non-urgent cleanup patch once the
-> > > mainainers ack.
-> > > 
-> > >  scripts/gcc-plugins/gen-random-seed.sh | 0
-> > >  scripts/nsdeps                         | 0
-> > >  scripts/spdxcheck-test.sh              | 1 +
-> > >  scripts/xen-hypercalls.sh              | 0
-> > >  4 files changed, 1 insertion(+)
-> > >  mode change 100644 => 100755 scripts/gcc-plugins/gen-random-seed.sh
-> > >  mode change 100644 => 100755 scripts/nsdeps
-> > >  mode change 100644 => 100755 scripts/spdxcheck-test.sh
-> > >  mode change 100644 => 100755 scripts/xen-hypercalls.sh
-> > 
-> > This does 2 different things in one patch, shouldn't this be 2 different
-> > patches?  One to change the permissions and one to add the SPDX line?
-> >
+> Thomas Gleixner has provided you a patch series in June 2019 to pick up or 
+> simply add a Reviewed-by tag here:
 > 
-> For me, this was one thing: minor cleanup; and taking one 
-> minor patch is easier than taking two, but you make the call. Then, the 
-> two or even three patches would also just travel through different trees, 
-> the spdx tree and Andrew's.
+> https://lore.kernel.org/linux-spdx/20190606205526.447558989@linutronix.de
+> 
+> As it seems from the public mailing list archive, you have never responded 
+> to Thomas' request. If you could indicate that the change is fine for you,
+> I am happy to rebase the patch series to the current next tree, so that 
+> Thomas can pick that up and let it travel through the spdx tree to Linus 
+> for the next release.
+> 
+> See first reminder here:
+> 
+> https://lore.kernel.org/linux-spdx/alpine.DEB.2.21.2006300644130.4919@felia/
+> 
+> Just to let you know, I will send a third reminder in a few months, and 
+> if there is no response to that, I will just send a patch to mark those 
+> drivers where QLogic-Storage-Upstream@qlogic.com or 
+> GR-Linux-NIC-Dev@marvell.com are maintainers as Orphaned, just to keep 
+> MAINTAINERS reflect the actual state.
 
-License "additions" are good to separate from other changes, in case
-people have questions/comments/objections about them, they can be easier
-to discuss and possibly reverted.
+This is why I hate having "group aliases" as maintainers.  It doesn't
+work as we never know who "really" is maintaining the code, and there is
+no accountability.
 
-More patches is not a problem :)
+Given the length of a lack of response so far, I would suggest just
+marking it orphaned now.  If someone wants to step up in the future to
+maintain it, great, but it needs to be a person, not an email alias.
 
 thanks,
 

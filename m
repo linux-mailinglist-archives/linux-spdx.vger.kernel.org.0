@@ -2,53 +2,83 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DD6D255823
-	for <lists+linux-spdx@lfdr.de>; Fri, 28 Aug 2020 12:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6765F255B6A
+	for <lists+linux-spdx@lfdr.de>; Fri, 28 Aug 2020 15:44:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728957AbgH1KAl (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 28 Aug 2020 06:00:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40092 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728218AbgH1KAh (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Fri, 28 Aug 2020 06:00:37 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 84FA42078A;
-        Fri, 28 Aug 2020 10:00:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598608836;
-        bh=sqJqYmGsrcZElJ0eIt1DDvGzLzBOscBm1LDUda7F5RM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i31hSp8bPrdNGQNpJQZSoFNam+AFIlE7FvuXcZYibC9fo602ow06v4rMVY6EGkeP1
-         iyxDeKCu79LIBm/3hceUgb0KbtjAZsXD4sTsA1oC9NyuyVKEHXJc2jkEd0rt+lsFpO
-         YwUexOu8ydV13OE4YzmS9q3gz0Lt/7aAWnVq5Xoo=
-Date:   Fri, 28 Aug 2020 12:00:48 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+        id S1729627AbgH1Nnu (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 28 Aug 2020 09:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48348 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729582AbgH1NmD (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 28 Aug 2020 09:42:03 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1B1C061264;
+        Fri, 28 Aug 2020 06:30:57 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id i7so383257wre.13;
+        Fri, 28 Aug 2020 06:30:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:date:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=rLh0TPLDRuHOF1sa434RgV9ws5clmGQaNXDdUaR7GmQ=;
+        b=pCT4pUfIHlx9O2ITdmY6m/sbmp1b1Z/cp65/o1lcKDvl+A7DMxXchyIHOA3WZkjsnF
+         Ism/mGsI1nxAb3iPvLqcseknvp16pzyRaW7N12cqo/tAfKaQLv11ndd95ebWN8IBp/sl
+         xdJntUwPN/YbxE+zK5hu7FXMWD+z3QXXSx+7mgf4ANazLT1oBJyPJKGxnP1c8MVM8iRu
+         kV+8zEi6/87Y1xmCWm/qxLLkNr5o/HwZTwv+uyUoF876Xsi7mbAtItMVLPgojpKICY9e
+         h4ZjhziNfOgPemc/weD7q5VXzTVlLhfmKwgW4ghnwWtxi3Q+f8bLea4WWfHZWopVXQuH
+         ohWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=rLh0TPLDRuHOF1sa434RgV9ws5clmGQaNXDdUaR7GmQ=;
+        b=dX2FToRh8fq5gO+xziDaU3R/vO+/MeJidtpPJzO5qPZD66/oQYnbgZEJISjfO/A72q
+         +sAcj5bUtucWDleEks8IHRrPJT9egzYL4Nr7upRB0ph8i8696v04cpl1vzJevGNWJntA
+         6vq5fncKOszMdokPMfYfj8/qqW9DbhyYaxxPMqZ+1dm9z86Gcr9fTXEDvf0T7J2zRD0l
+         DZckUBEc/Cjj6Uz4DPKl/BiVaWmysUTGQjwvaJYaisVeJ2BoxK8JZ1uDN0sItjvJsWAu
+         vtsHyH2StC5lb1DhTwZLtorOthWGe7LjXUqiEGdiEXgRj7vywCcjqNxw98i4AF7RoZmP
+         /KGA==
+X-Gm-Message-State: AOAM5333+N9zPW/t52r2DKg9Uu/YjfDuikT/yiKZ6BOc0uZOkEMuW0GO
+        DN+ULrMlE5KdGmRWZwo42yg=
+X-Google-Smtp-Source: ABdhPJyfgahGUNslcWxi1Qo1bcb+12VpnW3m9WmMwH9GuULHZ3CZ8GQBwKDjrNeoJpwJ4+ZgVCKvEQ==
+X-Received: by 2002:adf:de08:: with SMTP id b8mr1503680wrm.4.1598621456377;
+        Fri, 28 Aug 2020 06:30:56 -0700 (PDT)
+Received: from felia ([2001:16b8:2d94:4000:f807:c6f3:919:9c25])
+        by smtp.gmail.com with ESMTPSA id n205sm2539670wma.47.2020.08.28.06.30.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Aug 2020 06:30:55 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
+Date:   Fri, 28 Aug 2020 15:30:44 +0200 (CEST)
+X-X-Sender: lukas@felia
 To:     Roman Bolshakov <r.bolshakov@yadro.com>
-Cc:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+cc:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
         "James E . J . Bottomley" <jejb@linux.ibm.com>,
         "Martin K . Petersen" <martin.petersen@oracle.com>,
         linux-scsi@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Anil Gurumurthy <anil.gurumurthy@qlogic.com>,
         Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
         linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org,
         GR-QLogic-Storage-Upstream@marvell.com,
         Arun Easi <aeasi@marvell.com>
-Subject: Re: [PATCH] MAINTAINERS: orphan sections with qlogic.com group alias
-Message-ID: <20200828100048.GA1229122@kroah.com>
-References: <20200828070824.8032-1-lukas.bulwahn@gmail.com>
- <20200828091758.GF54274@SPB-NB-133.local>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: Re: [PATCH] MAINTAINERS: orphan sections with qlogic.com group
+ alias
 In-Reply-To: <20200828091758.GF54274@SPB-NB-133.local>
+Message-ID: <alpine.DEB.2.21.2008281524360.11562@felia>
+References: <20200828070824.8032-1-lukas.bulwahn@gmail.com> <20200828091758.GF54274@SPB-NB-133.local>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 12:17:58PM +0300, Roman Bolshakov wrote:
+
+
+On Fri, 28 Aug 2020, Roman Bolshakov wrote:
+
 > On Fri, Aug 28, 2020 at 09:08:24AM +0200, Lukas Bulwahn wrote:
 > > Previous attempts of getting an answer from the qlogic.com group alias,
 > > i.e., QLogic-Storage-Upstream@qlogic.com, have remained unanswered; see
@@ -61,65 +91,17 @@ On Fri, Aug 28, 2020 at 12:17:58PM +0300, Roman Bolshakov wrote:
 > > Link: https://lore.kernel.org/linux-spdx/alpine.DEB.2.21.2006300644130.4919@felia
 > > Link: https://lore.kernel.org/linux-spdx/alpine.DEB.2.21.2008270740140.31123@felia
 > > 
-> > Suggested-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> > ---
-> > applies cleanly on current master and next-20200828
-> > 
-> > James, Martin, please pick this minor non-urgent patch.
-> > 
-> > Anil, Sudarsana, if these drivers are still maintained by qlogic, please
-> > provide actual names of people that maintain these drivers.
-> > 
-> >  MAINTAINERS | 9 +++------
-> >  1 file changed, 3 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 3b186ade3597..415058b48a2e 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -3507,15 +3507,13 @@ F:	drivers/net/ethernet/broadcom/bnx2.*
-> >  F:	drivers/net/ethernet/broadcom/bnx2_*
-> >  
-> >  BROADCOM BNX2FC 10 GIGABIT FCOE DRIVER
-> > -M:	QLogic-Storage-Upstream@qlogic.com
-> >  L:	linux-scsi@vger.kernel.org
-> > -S:	Supported
-> > +S:	Orphan
-> >  F:	drivers/scsi/bnx2fc/
-> >  
-> >  BROADCOM BNX2I 1/10 GIGABIT iSCSI DRIVER
-> > -M:	QLogic-Storage-Upstream@qlogic.com
-> >  L:	linux-scsi@vger.kernel.org
-> > -S:	Supported
-> > +S:	Orphan
-> >  F:	drivers/scsi/bnx2i/
-> >  
-> >  BROADCOM BNX2X 10 GIGABIT ETHERNET DRIVER
-> > @@ -14212,9 +14210,8 @@ F:	Documentation/networking/device_drivers/ethernet/qlogic/LICENSE.qla3xxx
-> >  F:	drivers/net/ethernet/qlogic/qla3xxx.*
-> >  
-> >  QLOGIC QLA4XXX iSCSI DRIVER
-> > -M:	QLogic-Storage-Upstream@qlogic.com
-> >  L:	linux-scsi@vger.kernel.org
-> > -S:	Supported
-> > +S:	Orphan
-> >  F:	Documentation/scsi/LICENSE.qla4xxx
-> >  F:	drivers/scsi/qla4xxx/
-> >  
-> > -- 
-> > 2.17.1
-> > 
 > 
 > CC'd Arun,
 > 
 > I think it's worth to update the alias to:
 > 
 > GR-QLogic-Storage-Upstream@marvell.com
+> 
 
-Again, no, please remove aliases and use real names and email addresses,
-otherwise accountability is lost over time, as we have seen constantly.
+So, if these drivers are not orphans, you can answer Thomas Gleixner's 
+original email from 2019. If you can quickly ack that patch set, I am 
+happy to do the donkey work to get this apply nicely on the current 
+master (please CC me on that response).
 
-thanks,
-
-greg k-h
+Lukas

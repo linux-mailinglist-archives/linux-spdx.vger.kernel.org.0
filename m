@@ -2,46 +2,56 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4551258422
-	for <lists+linux-spdx@lfdr.de>; Tue,  1 Sep 2020 00:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E38258446
+	for <lists+linux-spdx@lfdr.de>; Tue,  1 Sep 2020 01:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726174AbgHaWhX (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 31 Aug 2020 18:37:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37854 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726117AbgHaWhX (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 31 Aug 2020 18:37:23 -0400
-Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41535C061573;
-        Mon, 31 Aug 2020 15:37:22 -0700 (PDT)
-Received: from lwn.net (localhost [127.0.0.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ms.lwn.net (Postfix) with ESMTPSA id 57BFB537;
-        Mon, 31 Aug 2020 22:37:21 +0000 (UTC)
-Date:   Mon, 31 Aug 2020 16:37:20 -0600
-From:   Jonathan Corbet <corbet@lwn.net>
-To:     Dave Hansen <dave.hansen@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
-        h.peter.anvin@intel.com, tglx@linutronix.de,
-        gregkh@linuxfoundation.org, linux-spdx@vger.kernel.org,
-        linux-doc@vger.kernel.org
+        id S1725987AbgHaXD2 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 31 Aug 2020 19:03:28 -0400
+Received: from mga03.intel.com ([134.134.136.65]:63036 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725941AbgHaXD2 (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Mon, 31 Aug 2020 19:03:28 -0400
+IronPort-SDR: LYNVkYdKY02CNwWRnQm6P1NBpKDMpksrP8NzQWNybgfl8gIm+VVgfVMutKoARg4rghU46x0xE2
+ dwkiFwvEC5mg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9730"; a="157075818"
+X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; 
+   d="scan'208";a="157075818"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2020 16:03:24 -0700
+IronPort-SDR: FSNiuSSh9FuGEJ16qFFsUm2ORfPKLQEB6matnKwAl6obtcwJBijUWuhlwguFkebssPeLEw16E6
+ ZQkxqOgvCv2Q==
+X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; 
+   d="scan'208";a="502016400"
+Received: from hrandhaw-mobl.amr.corp.intel.com (HELO hanvin-mobl2.amr.corp.intel.com) ([10.212.244.158])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2020 16:03:23 -0700
 Subject: Re: [PATCH] [v2] Documentation: clarify driver licensing rules
-Message-ID: <20200831163720.3c70d17d@lwn.net>
-In-Reply-To: <20200814145625.8B708079@viggo.jf.intel.com>
+To:     Dave Hansen <dave.hansen@linux.intel.com>,
+        linux-kernel@vger.kernel.org
+Cc:     dan.j.williams@intel.com, tglx@linutronix.de,
+        gregkh@linuxfoundation.org, corbet@lwn.net,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org
 References: <20200814145625.8B708079@viggo.jf.intel.com>
-Organization: LWN.net
+From:   "H. Peter Anvin" <h.peter.anvin@intel.com>
+Message-ID: <1a4de696-2409-8de5-db77-9c5a21a762e0@intel.com>
+Date:   Mon, 31 Aug 2020 16:03:22 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200814145625.8B708079@viggo.jf.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Fri, 14 Aug 2020 07:56:25 -0700
-Dave Hansen <dave.hansen@linux.intel.com> wrote:
-
+On 2020-08-14 07:56, Dave Hansen wrote:
+> 
+> From: Dave Hansen <dave.hansen@linux.intel.com>
+> 
 > Greg has challenged some recent driver submitters on their license
 > choices. He was correct to do so, as the choices in these instances
 > did not always advance the aims of the submitters.
@@ -67,7 +77,9 @@ Dave Hansen <dave.hansen@linux.intel.com> wrote:
 > 
 > Drivers appear to be the most acute source of misunderstanding, so fix
 > the driver documentation first. Update it to clarify expectations.
+> 
 
-Applied, thanks.
+Well written! Retroactive Ack from me :)
 
-jon
+	-hpa
+

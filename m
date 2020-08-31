@@ -2,59 +2,106 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9735B25713E
-	for <lists+linux-spdx@lfdr.de>; Mon, 31 Aug 2020 02:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C6EF257361
+	for <lists+linux-spdx@lfdr.de>; Mon, 31 Aug 2020 07:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726388AbgHaAoM (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 30 Aug 2020 20:44:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51232 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726179AbgHaAoL (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Sun, 30 Aug 2020 20:44:11 -0400
-Received: from X1 (unknown [65.49.58.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F10C9207BB;
-        Mon, 31 Aug 2020 00:44:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1598834651;
-        bh=6LFPsle47n36rc0FcyNKsEGD+oQ4SDQDYywUFSKldSk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=FqO+brb/S1ZYZR+ybuH+M8gh/BEZ8/GsluEaod9qSVDzwNgYPGNyU7DDH2mFQJtGk
-         1rt59pZPUr/dPHYYhq9IJH9JCvqG/i49ZHYaUV8gikAXPEDtE0GC2ilTIEc2ySqG8J
-         bmXa2J5CykCnsfwLD9XSikkCFf2IWpjf+0P9Yy9s=
-Date:   Sun, 30 Aug 2020 17:44:09 -0700
-From:   Andrew Morton <akpm@linux-foundation.org>
-To:     Mrinal Pandey <mrinalmni@gmail.com>
-Cc:     skhan@linuxfoundation.org,
+        id S1725747AbgHaFpc (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 31 Aug 2020 01:45:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725794AbgHaFpb (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 31 Aug 2020 01:45:31 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F74DC061573;
+        Sun, 30 Aug 2020 22:45:29 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id h4so5264711ejj.0;
+        Sun, 30 Aug 2020 22:45:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:date:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=QpctQpS39czKh39FA3DsibwWwLFrQ9w8q7Ndiy8iuZ4=;
+        b=SthwgJj9Az/3r32xLQsxuUe6T0MewJhKyV/Hco3TxmWIHJj4DepBs8La5TxnUWFCCG
+         YDn3y6jKbzNdsEUab+UBYdjdvbPZomqG13t6p8nzlelUtTXVQS1uaGXb80OBXi+4Au46
+         1L99scYJ1+LtDsC0z9eqriy6BlmgGSmz/z5KSiSQjMTS1UULHACE/5DaJ3g3oP9V0tn+
+         C3kyRGQK3bTbPAdNgXOpiaUidK5MERG8Tl2BHWeof41BecEt9Tnk+4OqBnN8F5QmevL6
+         pOXpVep53mhoYUJxxhX6fNo279JakvMOSGWcnagCYOiR+6vNOpVVBtpi5yRoxBjyL1K6
+         bkNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=QpctQpS39czKh39FA3DsibwWwLFrQ9w8q7Ndiy8iuZ4=;
+        b=DfyCEZBmZd1TDetIO1sVrA5OZT+mOWhUXJ18s1AGvL8x9CUOjoY1uGkFFV8hmVPxTa
+         bnFBcs9gPgweX9h2Swa/4fTYd1FuPI19zHVHWX9vwSHs0kVvkcV9C9FQ9PbXkkKlFhbh
+         Tx48+q64+tsePiCLp7Wv3XTotKUPH58+cnST2qV188aBZdSbQIpjVsJ5quohSogfgfDH
+         KcyWe4Q9YHw8RZSHXda06bR+wumb8lBQ1XOQ6T6QrOLFKaGUQdtakq4LnQ14fb7PqPKb
+         xBpnZfJS4vp3BwUX1XyQ5arCes+N2+BgsTthJU+npbfyAKC9F4Cp858omgPnwkUy9JOi
+         ncPg==
+X-Gm-Message-State: AOAM530Dx2ld/eJmJ7f8kQN+XDJa8kIZTIeuVva5Ib40sSy5zWwUu4/+
+        qvbduzEusld9/+yR+ptflUI=
+X-Google-Smtp-Source: ABdhPJww5C52aNdNrjE6lwcruAeSoi0YPmIcXls0hV/emdb9wLo+Twlo+eLLVBqIT1XjQOuheM96mQ==
+X-Received: by 2002:a17:907:270d:: with SMTP id w13mr10151624ejk.191.1598852727702;
+        Sun, 30 Aug 2020 22:45:27 -0700 (PDT)
+Received: from felia ([2001:16b8:2de1:2200:9c37:36bb:80e7:91d])
+        by smtp.gmail.com with ESMTPSA id t16sm7073952eju.125.2020.08.30.22.45.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Aug 2020 22:45:27 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
+Date:   Mon, 31 Aug 2020 07:45:25 +0200 (CEST)
+X-X-Sender: lukas@felia
+To:     Andrew Morton <akpm@linux-foundation.org>, keescook@chromium.org
+cc:     Mrinal Pandey <mrinalmni@gmail.com>, skhan@linuxfoundation.org,
         Linux-kernel-mentees@lists.linuxfoundation.org,
-        lukas.bulwahn@gmail.com, keescook@chromium.org, re.emese@gmail.com,
-        maennich@google.com, tglx@linutronix.de,
-        gregkh@linuxfoundation.org, kernel-hardening@lists.openwall.com,
-        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
+        lukas.bulwahn@gmail.com, re.emese@gmail.com, maennich@google.com,
+        tglx@linutronix.de, gregkh@linuxfoundation.org,
+        kernel-hardening@lists.openwall.com, linux-kernel@vger.kernel.org,
+        linux-spdx@vger.kernel.org
 Subject: Re: [PATCH] scripts: Add intended executable mode and SPDX license
-Message-Id: <20200830174409.c24c3f67addcce0cea9a9d4c@linux-foundation.org>
-In-Reply-To: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
-References: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
+In-Reply-To: <20200830174409.c24c3f67addcce0cea9a9d4c@linux-foundation.org>
+Message-ID: <alpine.DEB.2.21.2008310714560.8556@felia>
+References: <20200827092405.b6hymjxufn2nvgml@mrinalpandey> <20200830174409.c24c3f67addcce0cea9a9d4c@linux-foundation.org>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Thu, 27 Aug 2020 14:54:05 +0530 Mrinal Pandey <mrinalmni@gmail.com> wrote:
 
-> commit b72231eb7084 ("scripts: add spdxcheck.py self test") added the file
-> spdxcheck-test.sh to the repository without the executable flag and license
-> information.
 
-The x bit shouldn't matter.
+On Sun, 30 Aug 2020, Andrew Morton wrote:
 
-If someone downloads and applies patch-5.9.xz (which is a supported way
-of obtaining a kernel) then patch(1) will erase the x bit anyway.
+> On Thu, 27 Aug 2020 14:54:05 +0530 Mrinal Pandey <mrinalmni@gmail.com> wrote:
+> 
+> > commit b72231eb7084 ("scripts: add spdxcheck.py self test") added the file
+> > spdxcheck-test.sh to the repository without the executable flag and license
+> > information.
+> 
+> The x bit shouldn't matter.
+> 
+> If someone downloads and applies patch-5.9.xz (which is a supported way
+> of obtaining a kernel) then patch(1) will erase the x bit anyway.
+>
 
-Is some other script invoking spdxcheck-test.sh directly, instead of
-using `/bin/sh spdxcheck-test.sh'?  If so, please let's fix that.
+Andrew, Kees,
+
+thanks for the feedback.
+
+As his mentor, I see two valuable tasks for Mrinal to work on:
+
+1. Document this knowledge how scripts should be called, not relying on 
+the executable bit, probably best somewhere here:
+./Documentation/kbuild/makefiles.rst, a new section on using dedicated 
+scripts in chapter 3 ("The  kbuild files").
+
+https://www.kernel.org/doc/html/latest/kbuild/makefiles.html#the-kbuild-files
+
+2. Determine if there are places in the build Makefiles that do rely on 
+the executable bit and fix those script invocations. (Kees' idea of remove 
+all executable bits and see...)
+
+
+Lukas

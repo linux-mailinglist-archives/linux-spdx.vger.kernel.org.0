@@ -2,99 +2,59 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F4CF255E1E
-	for <lists+linux-spdx@lfdr.de>; Fri, 28 Aug 2020 17:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9735B25713E
+	for <lists+linux-spdx@lfdr.de>; Mon, 31 Aug 2020 02:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728370AbgH1Pqa (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 28 Aug 2020 11:46:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728235AbgH1Pq2 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 28 Aug 2020 11:46:28 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B26C061264;
-        Fri, 28 Aug 2020 08:46:27 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id t2so1376993wma.0;
-        Fri, 28 Aug 2020 08:46:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=Aqq6rPsX+W7iIliHjghmhHUibKq8+l+/BXXT8k2vJoI=;
-        b=bfkjdGZNtR3X0fbFjilpa02iQ+bbO3tkdlQwoa52bJIGiIOVmQhkd5fAOsAfgbwI5y
-         yQ8YOepKd5ahX8Hb2uA/iu0/xb6jSsFym00buPQkPU46bAE8v+1kr8j6N6qD+S+BCbvl
-         IV+cthw/LTz91yXb3RYJhyGqhCc6MGEUhTYKtYBiFweESqIse0fFTZB9GKSrzeYXFpY+
-         jizFlnR8wTFjDVbGsBETR87L+cMWOv4byksNEJhG4T39Z8kW1U7dbS2kk/Hdzn1TRqzD
-         WWxOnyUU1sLtkYTUXwvHr+0iziGSDQuhx0olOEDr4JEPUSy2XBsHgIkmmhDebLy1vR0B
-         OrGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=Aqq6rPsX+W7iIliHjghmhHUibKq8+l+/BXXT8k2vJoI=;
-        b=MZmCxhF3hY3dwM88Qt7E4qSLyq9MH8nStfw8ETf0i865Wu1MaQntyRaWRUhp1Sj1kx
-         0RrF5JAPkjvqDGvZAq9JbpzDz6h+0a7pwzNHkY3c0jdb1s4xVbLxXT1A0xV5MjlwL6Ea
-         hw/MikUSy2Run5J/isf5pPImqOoWI1Ep3kYnHxHArPi7VZHOMPzTbAS5hdM+ZYqfIliI
-         bc8NmX4fZFdez+QAnUlIZh1kdF7nM9Vp4YbZsWhKrZ/8fSPY2kgOz0P8YjQXAWkuxEgC
-         V+jFTvubFkCUCkX5xOHieo4N2PRF/643JbJj/i3R7SWu0HS/OkvyBAJjoZtcK86bvF5r
-         bzsA==
-X-Gm-Message-State: AOAM532u+UGZ+67S9JMBAfbSk6OVzmF5YPC6PDP1xM01uuvCVqfnec0N
-        wrap1yO7qfWLvqiQiVIvEcWlWE/Bo77KHbN4
-X-Google-Smtp-Source: ABdhPJz/gCyVAUjyyOAcncSR0LIOX8MlP5uO0ndSzpSxgTiQyq1SHLD6S2TvvQbdHTSPBTY7o8wb+w==
-X-Received: by 2002:a1c:ab55:: with SMTP id u82mr2228964wme.139.1598629585772;
-        Fri, 28 Aug 2020 08:46:25 -0700 (PDT)
-Received: from felia ([2001:16b8:2d94:4000:f807:c6f3:919:9c25])
-        by smtp.gmail.com with ESMTPSA id 70sm3082258wme.15.2020.08.28.08.46.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Aug 2020 08:46:24 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
-Date:   Fri, 28 Aug 2020 17:46:19 +0200 (CEST)
-X-X-Sender: lukas@felia
-To:     "Martin K. Petersen" <martin.petersen@oracle.com>
-cc:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Roman Bolshakov <r.bolshakov@yadro.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        linux-scsi@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Anil Gurumurthy <anil.gurumurthy@qlogic.com>,
-        Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
-        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org,
-        GR-QLogic-Storage-Upstream@marvell.com,
-        Arun Easi <aeasi@marvell.com>
-Subject: Re: [PATCH] MAINTAINERS: orphan sections with qlogic.com group
- alias
-In-Reply-To: <yq1h7smkcqc.fsf@ca-mkp.ca.oracle.com>
-Message-ID: <alpine.DEB.2.21.2008281745450.608@felia>
-References: <20200828070824.8032-1-lukas.bulwahn@gmail.com> <20200828091758.GF54274@SPB-NB-133.local> <alpine.DEB.2.21.2008281524360.11562@felia> <yq1h7smkcqc.fsf@ca-mkp.ca.oracle.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-MIME-Version: 1.0
+        id S1726388AbgHaAoM (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 30 Aug 2020 20:44:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51232 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726179AbgHaAoL (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Sun, 30 Aug 2020 20:44:11 -0400
+Received: from X1 (unknown [65.49.58.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F10C9207BB;
+        Mon, 31 Aug 2020 00:44:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1598834651;
+        bh=6LFPsle47n36rc0FcyNKsEGD+oQ4SDQDYywUFSKldSk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=FqO+brb/S1ZYZR+ybuH+M8gh/BEZ8/GsluEaod9qSVDzwNgYPGNyU7DDH2mFQJtGk
+         1rt59pZPUr/dPHYYhq9IJH9JCvqG/i49ZHYaUV8gikAXPEDtE0GC2ilTIEc2ySqG8J
+         bmXa2J5CykCnsfwLD9XSikkCFf2IWpjf+0P9Yy9s=
+Date:   Sun, 30 Aug 2020 17:44:09 -0700
+From:   Andrew Morton <akpm@linux-foundation.org>
+To:     Mrinal Pandey <mrinalmni@gmail.com>
+Cc:     skhan@linuxfoundation.org,
+        Linux-kernel-mentees@lists.linuxfoundation.org,
+        lukas.bulwahn@gmail.com, keescook@chromium.org, re.emese@gmail.com,
+        maennich@google.com, tglx@linutronix.de,
+        gregkh@linuxfoundation.org, kernel-hardening@lists.openwall.com,
+        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
+Subject: Re: [PATCH] scripts: Add intended executable mode and SPDX license
+Message-Id: <20200830174409.c24c3f67addcce0cea9a9d4c@linux-foundation.org>
+In-Reply-To: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
+References: <20200827092405.b6hymjxufn2nvgml@mrinalpandey>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+On Thu, 27 Aug 2020 14:54:05 +0530 Mrinal Pandey <mrinalmni@gmail.com> wrote:
 
+> commit b72231eb7084 ("scripts: add spdxcheck.py self test") added the file
+> spdxcheck-test.sh to the repository without the executable flag and license
+> information.
 
-On Fri, 28 Aug 2020, Martin K. Petersen wrote:
+The x bit shouldn't matter.
 
-> 
-> Lukas,
-> 
-> > So, if these drivers are not orphans, you can answer Thomas Gleixner's
-> > original email from 2019. If you can quickly ack that patch set, I am
-> > happy to do the donkey work to get this apply nicely on the current
-> > master (please CC me on that response).
-> 
-> This is the first I hear of this since the patches weren't CC:ed to
-> linux-scsi. And not all of these changes pertain to storage drivers but
-> to networking so I am also not sure that mails sent to the above Storage
-> alias would have ended up in the right place.
-> 
-> But we'll get this fixed up. Reaching out to our contacts at Marvell.
->
+If someone downloads and applies patch-5.9.xz (which is a supported way
+of obtaining a kernel) then patch(1) will erase the x bit anyway.
 
-Thanks, Martin, it is appreciated.
-
-Lukas
+Is some other script invoking spdxcheck-test.sh directly, instead of
+using `/bin/sh spdxcheck-test.sh'?  If so, please let's fix that.

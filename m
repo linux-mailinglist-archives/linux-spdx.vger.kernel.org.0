@@ -2,98 +2,107 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 596C6262743
-	for <lists+linux-spdx@lfdr.de>; Wed,  9 Sep 2020 08:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C068262940
+	for <lists+linux-spdx@lfdr.de>; Wed,  9 Sep 2020 09:52:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbgIIGiD (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 9 Sep 2020 02:38:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49666 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725877AbgIIGiA (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 9 Sep 2020 02:38:00 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA95C061573
-        for <linux-spdx@vger.kernel.org>; Tue,  8 Sep 2020 23:37:59 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id c8so1465369edv.5
-        for <linux-spdx@vger.kernel.org>; Tue, 08 Sep 2020 23:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=OdX0XLqV/D/rU3RIyWxBK8n5hXQtKTt0nIYaGF7q+y8=;
-        b=SsYW3Kv8x5G4Gz8eMmEqoxkh49TAK4jQPgpUXhUNS7GIr+qKYQ4TLAkaXmr5CrCm7R
-         JtqIb7YB7W+SemDvim7Nraku8ZblFTlvdDM8sRoxo6Jmh2s2/SHYbAnnie9x5Rm6VqBI
-         4Ch+pdmKv26SZ2yF9S/BSg9hfgMgprq6rxtpNKXUsMpgp2laT40QlYUFAhJ2O93KLtAq
-         UU8B7XOHXKcNYUYbGDDiJ0geXjFS5KOuJKif8cRPVeFBwinxRi47j/Q3fDp8YY2LMYmz
-         +rGA0F73XeQz0/ZWpKJ5sZ/ZZTrPpt7lD/jXFL3L1n4DfJeEFO2unOSD3NjsVczetCSh
-         XX5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=OdX0XLqV/D/rU3RIyWxBK8n5hXQtKTt0nIYaGF7q+y8=;
-        b=KH2qEmntLYYt8JAQADYrPN03YRwmrQNLIMmnZuty0zPhGkFX7nzOv2XJdaGD8El7g1
-         vUGQhQhuiheSa97qrGBJeFowOTnxiINPb7qpZiCbXhBKDrx1Ftq0nole7uMTLM9q4gij
-         3289gIu+HAan0BwoExxbmKZFXd/uReHbsWFosHy5nRAduW0Etggbdi05GDvq5FF0cT2t
-         KIXMRE0RRrGV9S9nuagUWBzEDXsbvEOgrRhXEFpGFoLGXnujoW6/z+FvKcbJmZ6eRXWE
-         Atp+ABOfXu8cCHLC4aZGCyj2MPwPY7mQQMlCFWyh2GSgjS+vD+ShVra51NHt1cniit6b
-         YIWw==
-X-Gm-Message-State: AOAM530PyxAvwCIpwHZlB4aoRcN+EWt52N3P+Asypm43YMAFx6ivNuZg
-        oSXvaeQj3OGsd0bOnPgGUXGhgzPNAawZ7g==
-X-Google-Smtp-Source: ABdhPJzHDWdntnfCW4DQ868pmddakF0nsMBODiyB0/WZk7eNlV6seby0I2djYUDNAEBaDz8J2FntIg==
-X-Received: by 2002:a05:6402:292:: with SMTP id l18mr2729205edv.6.1599633478075;
-        Tue, 08 Sep 2020 23:37:58 -0700 (PDT)
-Received: from felia ([2001:16b8:2d44:6000:6108:df55:7b8e:67d4])
-        by smtp.gmail.com with ESMTPSA id q10sm1080191eja.107.2020.09.08.23.37.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 23:37:57 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
-Date:   Wed, 9 Sep 2020 08:37:49 +0200 (CEST)
-X-X-Sender: lukas@felia
-To:     Nilesh Javali <njavali@marvell.com>
-cc:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        GR-QLogic-Storage-Upstream <GR-QLogic-Storage-Upstream@marvell.com>,
-        GR-Linux-NIC-Dev <GR-Linux-NIC-Dev@marvell.com>,
-        Shahed Shaikh <shshaikh@marvell.com>,
-        Manish Chopra <manishc@marvell.com>,
-        "linux-spdx@vger.kernel.org" <linux-spdx@vger.kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: RE: [EXT] SECOND REMINDER on Qlogic driver license conversion
-In-Reply-To: <DM6PR18MB305281D28830537F81914796AF260@DM6PR18MB3052.namprd18.prod.outlook.com>
-Message-ID: <alpine.DEB.2.21.2009090834080.5622@felia>
-References: <alpine.DEB.2.21.2008270740140.31123@felia> <DM6PR18MB30524C8D1F431EC8316C4051AF510@DM6PR18MB3052.namprd18.prod.outlook.com> <DM6PR18MB305281D28830537F81914796AF260@DM6PR18MB3052.namprd18.prod.outlook.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        id S1728214AbgIIHwU (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 9 Sep 2020 03:52:20 -0400
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:17040 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725877AbgIIHwO (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 9 Sep 2020 03:52:14 -0400
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08975FBR016400;
+        Wed, 9 Sep 2020 00:52:01 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=pfpt0220;
+ bh=iYQzP7Po5e5NwxSiJzqN05/WoG8Ijh+5gf9FLTnk+HE=;
+ b=Z1M9ntolSHxSc0Sk+hQwYlEfVxky1sEm0dIhkdbB+iNhDUR7zBOhtsZCrgwKT0a3WEBl
+ znxgbXPYHYSW8UadMKRjW03Jap3g0Y/0J+LsBVXkeeVzIQ1ejP6iim5kLCr+sBJfplmm
+ cDSKnl+vYLKsLTi3ey+WYPhS8L1xNfthWkuPga6Zbk9G+2wmf9KBllvgqU3yFqMQGQhE
+ dwOsYOYq8jjblB8q5KcknvWGeKHnPY8rN8qGnfD8hWSRp1e4L8dD54tzPMR2k7QEye0d
+ QWylE4mQ4d8cYUfadMwra5WGZyJUwLLSIhy/B73cznMR874iU6pxHY+wp1dx+Hc/c87x rQ== 
+Received: from sc-exch02.marvell.com ([199.233.58.182])
+        by mx0a-0016f401.pphosted.com with ESMTP id 33c81pxvg6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Wed, 09 Sep 2020 00:52:01 -0700
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by SC-EXCH02.marvell.com
+ (10.93.176.82) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 9 Sep
+ 2020 00:52:01 -0700
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 9 Sep
+ 2020 00:52:00 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 9 Sep 2020 00:52:00 -0700
+Received: from [10.6.200.75] (NN-LT0019.marvell.com [10.6.200.75])
+        by maili.marvell.com (Postfix) with ESMTP id 2D7B53F7043;
+        Wed,  9 Sep 2020 00:51:57 -0700 (PDT)
+Subject: Re: [EXT] [PATCH 2/5] scsi/qla2xxx: Convert to SPDX license
+ identifiers
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        <linux-spdx@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>
+References: <20200908123451.7215-1-lukas.bulwahn@gmail.com>
+ <20200908123451.7215-3-lukas.bulwahn@gmail.com>
+From:   Igor Russkikh <irusskikh@marvell.com>
+Message-ID: <81ef3e30-9245-f2f9-3a4f-cd644caed608@marvell.com>
+Date:   Wed, 9 Sep 2020 10:51:56 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101
+ Thunderbird/81.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20200908123451.7215-3-lukas.bulwahn@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-09_03:2020-09-08,2020-09-09 signatures=0
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+Thanks Lukas, Thomas,
 
-
-On Wed, 9 Sep 2020, Nilesh Javali wrote:
-
-> Lukas, Thomas,
+> From: Thomas Gleixner <tglx@linutronix.de>
 > 
-> We have got green signal from our internal legal and would like to give ACK for qla2xxx and qla4xxx driver license conversion.
+> All files in this driver directory contain the following notice:
 > 
-> Acked-by: Nilesh Javali <njavali@marvell.com>
->
+>   See LICENSE.qla2xxx for copyright and licensing details.
+> 
+> LICENSE.qla2xxx can be found in Documentation/scsi/. The file contains:
+> 
+>   - A copyright notice
+> 
+>     This copyright notice is redundant as all files contain the same
+>     copyright notice already
+> 
+>   - A license notice
+> 
+>     You may modify and redistribute the device driver code under the
+>     GNU General Public License (a copy of which is attached hereto as
+>     Exhibit A) published by the Free Software Foundation (version 2).
+> 
+>     This can be replaced with the corresponding SPDX license identifier
+>     (GPL-2.0-only) in the source files which reference this license
+>     file.
+> 
+>   - The full GPLv2 license text
+> 
+>     A redundant copy of LICENSES/preferred/GPL-2.0
+> 
+> Remove the notices and add the SPDX license identifier GPL-2.0-only to the
+> source files.
+> 
+> Finally remove the now redundant LICENSE.qla2xxx file.
+> 
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> Reviewed-by: Richard Fontana <rfontana@redhat.com>
+> Reviewed-by: Jilayne Lovejoy <opensource@jilayne.com>
+> Reviewed-by: Alexios Zavras <alexios.zavras@intel.com>
+> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 
-Nilesh, that is great!
+Acked-by: Igor Russkikh <irusskikh@marvell.com>
 
-In the meantime, I have rebased Thomas' patchset from 2019 to v5.9-rc4 
-here:
-
-https://lore.kernel.org/linux-spdx/20200908123451.7215-1-lukas.bulwahn@gmail.com/
-
-Nilesh, can you ack all those patches in that patchset, please?
-
-And quickly answer if you pick up those patches or if they shall travel 
-through the spdx tree.
-
-Thanks,
-
-Lukas

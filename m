@@ -2,131 +2,93 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83A6A262B3F
-	for <lists+linux-spdx@lfdr.de>; Wed,  9 Sep 2020 11:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F011F262C0F
+	for <lists+linux-spdx@lfdr.de>; Wed,  9 Sep 2020 11:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727055AbgIIJDR (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 9 Sep 2020 05:03:17 -0400
-Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:2358 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726605AbgIIJDO (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 9 Sep 2020 05:03:14 -0400
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08991P0w000533;
-        Wed, 9 Sep 2020 02:03:11 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pfpt0220;
- bh=/JIqeIMliPpLI7MXfGCJv+nmaDcf2OutKVubInCaDQk=;
- b=SHaJDFwya6Lk5EXeDyD2FScojOkgeSxF85GFLIOe2uHga54xEJA26qcaG0AU/n4ogn1I
- OERJNbp/iPIpDquccZJgDQ14lGE6Fvh9pwzEepgOIVjM/R4zWLA8PfGuMmqDezlK2R2I
- ujLoP7ngV+yp0WKXHMntZg+NQkygw2uTszXUUQP4LmwOpm+FsmKE/mdOuLTZPxKc3xje
- TkpgEB7iqtDEL78GeIZOz3etl6TPNHvNzA+kyP7bM0imLy4bxYVFJ9CJgQWp7snYF8RL
- 9wG2bqKDGqX/xQTwp6189ucQzLFUqYbXcxO1Sn2vRZ79PsFctLi5pYtIaJkhRPaV+UDW 3w== 
-Received: from sc-exch02.marvell.com ([199.233.58.182])
-        by mx0a-0016f401.pphosted.com with ESMTP id 33c81py38h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Wed, 09 Sep 2020 02:03:11 -0700
-Received: from SC-EXCH02.marvell.com (10.93.176.82) by SC-EXCH02.marvell.com
- (10.93.176.82) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 9 Sep
- 2020 02:03:10 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
- by SC-EXCH02.marvell.com (10.93.176.82) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2 via Frontend Transport; Wed, 9 Sep 2020 02:03:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ndvPO7ugEb6MB3G7TiciLwUM7KpirrhUUia1/91nHor0fwtQaucqRJPzOvZItEe+EhFJRdIqfi/V/TSLsTBgAN1IXna7vDAyQWaIvICB2n8ZJRITVhafSdT8T5y29kTN0F1MYx2e3GSppvyaK49I/qOXorRNcY+VFdFZ1owMV6fE4bePnDyBmsFaGC3mLQCftprGR5TIzBmL81dfgqp987DlqsA1rdccrIU+2n+AhEy1Ue1P2jpe4xc5FFfVSJsqUKX+FL3XWt9+hULZOmznVql/yFbjqggnzaGaThTqbL4otq78dAf1Oz9yglVAzscdfdvTB1Cs3YCyT/MUfJ/j4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/JIqeIMliPpLI7MXfGCJv+nmaDcf2OutKVubInCaDQk=;
- b=LKqUEjAbyELVU/HDGH39a0h6PHRXdtBnFyygwdvhqBE1ReUBHh4QHckkempo1GO+NACpU7Kncxa7VSRdu1xZF542GlAuvGPZey59PEX3FXF7oLjoHCZd4mi04KBY6uJ6DWkVn9h0UaH845QKgbSXILZiBMrz6v1ozA08sUsQmSZDz6Fu3zOSa0whSZ8gg0clLRqqBPQS87id0aXkez39EeFATOu5xpbLG9R81Ol/Grt6j4WGYVz6B1hb9Cl3qlkrzFayfV6jX5CCUOnuG/mUpzi9nUooNMk9ASYPz1JoIMA+6Bure/Q/czcFEbSyoVT89GRknVvqmuJshTjDelfoYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
+        id S1730068AbgIIJgx (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 9 Sep 2020 05:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49098 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728197AbgIIJgu (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 9 Sep 2020 05:36:50 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44160C061573;
+        Wed,  9 Sep 2020 02:36:48 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id l63so1933000edl.9;
+        Wed, 09 Sep 2020 02:36:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/JIqeIMliPpLI7MXfGCJv+nmaDcf2OutKVubInCaDQk=;
- b=WQjjKh2927XgrrUiODLNVF+ua+Epm4bzacsBtIP5Td83rE68PXAX3MyGcmVVkpZvRQQ4QfBGr8krNpqbZCKsypjtkzo7h9xHigDGE2dkD8F9/VCmYlhyhRIMlHcGChHZclHUZEVjQtzAvKo/xfNBA30+/HZhk7RU1i79V1iD3D8=
-Received: from DM6PR18MB3052.namprd18.prod.outlook.com (2603:10b6:5:167::19)
- by DM6PR18MB3131.namprd18.prod.outlook.com (2603:10b6:5:1c1::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.18; Wed, 9 Sep
- 2020 09:03:08 +0000
-Received: from DM6PR18MB3052.namprd18.prod.outlook.com
- ([fe80::905a:ebb4:369c:ae1b]) by DM6PR18MB3052.namprd18.prod.outlook.com
- ([fe80::905a:ebb4:369c:ae1b%7]) with mapi id 15.20.3348.019; Wed, 9 Sep 2020
- 09:03:08 +0000
-From:   Nilesh Javali <njavali@marvell.com>
-To:     Igor Russkikh <irusskikh@marvell.com>,
+        d=gmail.com; s=20161025;
+        h=from:date:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=Pv6iapq4O5SjVtL1iPYVDh7JKWlokNzhK+8UbOeBFUo=;
+        b=l5qIP+HJ3LRN88aaWALWmY59d9psHRG4Hb0Srkk15LDEvgmE5fi/+JourmV+safV+4
+         jeF4v2tkPmlGclswpxcp7fQD4/T95DcHOKTjy8M7a1hBEkMU9DXgamVslHRPCDGTLqaj
+         AJ0mzWZ0Z7YKniv4BH3qtlBDqHJaOc5HQzwTNbIhz6xerBIjnhqKELWMgzOCVeNHGPbg
+         vzQdQK3T3jscMzP1G00X4+mCKSYT4GNS7Mw2RyaGDoI06sF3xXIi3StOIkP8+Iq5tubG
+         fyY/KaOklPT3WVqwszVuVvyx6QGiAogRXq4QiEmN+Fc++B2DVUZnC4pHEuGOyuWgIGD7
+         BbEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=Pv6iapq4O5SjVtL1iPYVDh7JKWlokNzhK+8UbOeBFUo=;
+        b=OyNIGLsf9W3UkrHnUI3F6U3R83mf8NKTrgJOnXwnf71unDS8TDrDm0emUgPOJggMkB
+         NcRmkb9QPdwYEyKambRPoqHz20GOTt2yN1m+mjACowi6Isbre1RWV5fd0yugUYk2CLf3
+         EQrMQXgoF6KtI4RIbrBA/y82/8EnXI1nD7RhnmmJgPba/Z3mQim6VIUDP5nXv6dRl0t1
+         s/Of7iyT3iWaJFtH2wij7iCfKAh/ViaF8umlKJll/jcZp0Ap3Q8apIQ7HjgUrPtZB2Lc
+         T8UNBDVuu3ak0j51xUPtTNTxbY9uPVyjaAOQ4skTjWNLNbOeVTbPparSTFQZpOFmi9Gz
+         20fQ==
+X-Gm-Message-State: AOAM5316yb8xgg7E5TSI3zYuRzUK52MCqHBNAPlWRACWCti+UzI1321W
+        xR2wJAXeMIbKjE1YLc/kUnU9OybITbmzm9MS
+X-Google-Smtp-Source: ABdhPJyHkS4fr/EaoKgqk7aw9pkfvPCT6zW8m7v5aBiX5PcAhV8fYS3EhOdjTPhbI5mF/c4VhkvQ6g==
+X-Received: by 2002:a05:6402:644:: with SMTP id u4mr3118816edx.182.1599644206902;
+        Wed, 09 Sep 2020 02:36:46 -0700 (PDT)
+Received: from felia ([2001:16b8:2d44:6000:6108:df55:7b8e:67d4])
+        by smtp.gmail.com with ESMTPSA id y21sm1542739eju.46.2020.09.09.02.36.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 02:36:46 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
+Date:   Wed, 9 Sep 2020 11:36:44 +0200 (CEST)
+X-X-Sender: lukas@felia
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+cc:     Igor Russkikh <irusskikh@marvell.com>,
+        Nilesh Javali <njavali@marvell.com>,
         Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "linux-spdx@vger.kernel.org" <linux-spdx@vger.kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] [PATCH 0/5 REBASED to v5.9-rc4] Qlogic drivers: Convert to
- SPDX license identifiers
-Thread-Topic: [EXT] [PATCH 0/5 REBASED to v5.9-rc4] Qlogic drivers: Convert to
- SPDX license identifiers
-Thread-Index: AQHWhn6QL3LPlNANDEaj6Qg9hD4b46lgAk3Q
-Date:   Wed, 9 Sep 2020 09:03:08 +0000
-Message-ID: <DM6PR18MB305266178BB9982CBDF05319AF260@DM6PR18MB3052.namprd18.prod.outlook.com>
-References: <20200908123451.7215-1-lukas.bulwahn@gmail.com>
- <e5688d4c-f512-6705-6bb1-db832828fb35@marvell.com>
-In-Reply-To: <e5688d4c-f512-6705-6bb1-db832828fb35@marvell.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [117.220.251.152]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3ca57eff-70a0-4234-646d-08d8549f2bad
-x-ms-traffictypediagnostic: DM6PR18MB3131:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR18MB3131DD8E854F20BC686588C6AF260@DM6PR18MB3131.namprd18.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OJR2kr3aK8BEJOW+HC+Xp3SSEYJde+C/foGlEJ3/+X2ZJxsraYsohR3q17AbGQKrPUPbAg+H6+GZCmFDgCqUD3mSUeaW5Ul0h+V6nAgy9guImHiH08+oh/jAK6TxAjVoVMlU9ERZOR2EdoO60N1RBcAisoagTB/wA4cOm6RrMoC09Hae66Mgjm76Q3Zk+5rDINFHrHEgyREAiyMXsQwaD40nEjAa8CUpgx0nHrqg3Yv2/hxkIlJ7mSeUVc9xboNsR6SRB8wnRj7yd0nHa2O3QhS09Vl5nriefiovWyH5L95LQYgeoaLGfJwPIz1z0LHXpvCdjEM2XV3myncKAEu2xQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR18MB3052.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(39860400002)(396003)(366004)(8676002)(55016002)(2906002)(110136005)(83380400001)(4326008)(9686003)(71200400001)(4744005)(33656002)(64756008)(66446008)(66476007)(66556008)(76116006)(8936002)(66946007)(478600001)(6506007)(186003)(7696005)(5660300002)(316002)(53546011)(52536014)(86362001)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: Y69SUTcdgNPWbNZ6xwpBb/t4w8fWTTRbAxi4SPhbKjGx7I6uy+WqJaP4HNSOhMs2wF97Q1iGYyxbDjYVNLRZmfHpx8T7JCrflfI6ZNG6LYPaEvKC0eFXyCoJVophb2riEA+k8gKbeql6Kn4UY4lOzrc2suDFz9T5N5NLbqC5LQMAJ6LO2YV2wU73kHs+XvSeMgPAEHy8OUFflzHb+ZbDL1GBin3izmKVWbD85RGaa6hBYmCuYuQIJp86PR3zjuoqgsuOP6k304GnMp2lAKELbJu9Qh6JYIq11f2NufWTYEoYDL9Bvc+waYHz1IRMFv32BO+4pkitnZtoebYajqS2DLZgZTseZCdmPA20SkYWtTuqP5sGUJv62uZxfshdzT96isHqc0t/dtGN2g/6Ty5hl4DexSvLrcBspbZzvoW/LekcP/q9ZyCdp91XC8u+Nuqn2S4YUemd8JVd3GIQQY39l0FH8AhdR10YPVIkh4FFUVjRgQF3jD+kVuAL6OXsNi3wUXbe4i9Zhi2E4TOQJ4N+o3ykqO6pQ3Q9CzTGjqrXJxw9QOulRYB3JUF95uFkZ7lpUmppWT6akjqpFNY0a/kVUdpPxQzUlxNmEoj/TaMAp33Tx78THD4ymUw92rvZC7uymM0ZEyVu2AZoH0Nug9XyDw==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        "linux-spdx@vger.kernel.org" <linux-spdx@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [EXT] [PATCH 0/5 REBASED to v5.9-rc4] Qlogic drivers: Convert
+ to SPDX license identifiers
+In-Reply-To: <DM6PR18MB305266178BB9982CBDF05319AF260@DM6PR18MB3052.namprd18.prod.outlook.com>
+Message-ID: <alpine.DEB.2.21.2009091126290.5622@felia>
+References: <20200908123451.7215-1-lukas.bulwahn@gmail.com> <e5688d4c-f512-6705-6bb1-db832828fb35@marvell.com> <DM6PR18MB305266178BB9982CBDF05319AF260@DM6PR18MB3052.namprd18.prod.outlook.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR18MB3052.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ca57eff-70a0-4234-646d-08d8549f2bad
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2020 09:03:08.1842
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jaUMjU6GsnonaO6xj/j5Hv7w1zhMH2MP/DJstfSBkttH4+91/A5ak5Gh0lZec+ZVRGMBiC9qcsXHzGokme2I/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR18MB3131
-X-OriginatorOrg: marvell.com
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-09_03:2020-09-08,2020-09-09 signatures=0
+Content-Type: text/plain; charset=US-ASCII
 Sender: linux-spdx-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-THVrYXMsDQoNCkkgaGF2ZSBBY2tlZCBmb3IgdGhlIHN0b3JhZ2UgZHJpdmVycyBhbmQgb3B0IGZv
-ciBvcHRpb24gQiBiZWxvdyBmb3Igc3BkeCBtYWludGFpbmVycyB0byBwaWNrLg0KDQpUaGFua3Ms
-DQpOaWxlc2gNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJZ29yIFJ1
-c3NraWtoIDxpcnVzc2tpa2hAbWFydmVsbC5jb20+DQo+IFNlbnQ6IFdlZG5lc2RheSwgU2VwdGVt
-YmVyIDksIDIwMjAgMToyNSBQTQ0KPiBUbzogTHVrYXMgQnVsd2FobiA8bHVrYXMuYnVsd2FobkBn
-bWFpbC5jb20+OyBUaG9tYXMgR2xlaXhuZXINCj4gPHRnbHhAbGludXRyb25peC5kZT47IGxpbnV4
-LXNwZHhAdmdlci5rZXJuZWwub3JnDQo+IENjOiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3Jn
-OyBOaWxlc2ggSmF2YWxpIDxuamF2YWxpQG1hcnZlbGwuY29tPg0KPiBTdWJqZWN0OiBSZTogW0VY
-VF0gW1BBVENIIDAvNSBSRUJBU0VEIHRvIHY1LjktcmM0XSBRbG9naWMgZHJpdmVyczogQ29udmVy
-dCB0bw0KPiBTUERYIGxpY2Vuc2UgaWRlbnRpZmllcnMNCj4gDQo+IA0KPiANCj4gPiBJZ29yLCBj
-YW4geW91IHBsZWFzZSBhY2sgdGhlc2UgcGF0Y2hlcz8NCj4gPg0KPiA+IElnb3IsIHBsZWFzZSBh
-bHNvIGxldCB1cyBrbm93Og0KPiA+ICAgQS4gaWYgeW91IHdpbGwgcGljayB0aGVtIHVwIGFuZCBs
-ZXQgdGhlbSB0cmF2ZWwgdGhyb3VnaCB5b3VyIHRyZWUsIG9yDQo+ID4gICBCLiBpZiB0aGUgc3Bk
-eCBtYWludGFpbmVycyBzaGFsbCBwaWNrIHRoZW0gdXAgYW5kIHRoZXkgc2hhbGwgcm91dGUgdGhl
-bQ0KPiA+ICAgICAgZGlyZWN0bHkgdG8gTGludXMuDQo+IA0KPiBUaGFua3MgTHVrYXMsDQo+IA0K
-PiBBY2tlZCBvbiBldGhlcm5ldCBkcml2ZXIgcGF0Y2hlcy4gRm9yIHN0b3JhZ2UgZHJpdmVycyBJ
-IGJlbGlldmUgeW91J2xsIGhhdmUNCj4gQUNLIGZyb20gTmlsZXNoLg0KPiANCj4gV2UgZG9uJ3Qg
-bWFuYWdlIG91ciBvd24gdHJlZSwgd2Ugbm9ybWFsbHkgZG8gZGlyZWN0bHkgb24gbmV0ZGV2IGxp
-c3QuDQo+IFRodXMgSSB0aGluayBpdHMgc2FmZSB0byBnbyB3aXRoIChCKSBhbmQgZG8gdGhpcyB0
-aHJvdWdoIHNwZHggdHJlZS4NCj4gDQo+IFJlZ2FyZHMsDQo+ICAgSWdvcg0K
+
+
+On Wed, 9 Sep 2020, Nilesh Javali wrote:
+
+> Lukas,
+> 
+> I have Acked for the storage drivers and opt for option B below for spdx maintainers to pick.
+>
+
+Thomas, Greg,
+
+We got everything straightened out with Igor and Nilesh.
+
+Can you pick this patchset with Igor's and Nilesh's Acked-bys into the 
+spdx tree and forward it to Linus?
+
+One down. Another century of license work ahead to get it done :)
+
+Thanks,
+
+Lukas

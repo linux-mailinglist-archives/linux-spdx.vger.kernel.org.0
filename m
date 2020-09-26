@@ -2,89 +2,87 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3BF9279B17
-	for <lists+linux-spdx@lfdr.de>; Sat, 26 Sep 2020 19:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEEFE279B4D
+	for <lists+linux-spdx@lfdr.de>; Sat, 26 Sep 2020 19:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729289AbgIZRBm (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sat, 26 Sep 2020 13:01:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45586 "EHLO
+        id S1726244AbgIZRTN (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sat, 26 Sep 2020 13:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726210AbgIZRBm (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sat, 26 Sep 2020 13:01:42 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F89AC0613CE;
-        Sat, 26 Sep 2020 10:01:42 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id e23so2813199eja.3;
-        Sat, 26 Sep 2020 10:01:42 -0700 (PDT)
+        with ESMTP id S1730031AbgIZRTK (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sat, 26 Sep 2020 13:19:10 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 819ADC0613D4
+        for <linux-spdx@vger.kernel.org>; Sat, 26 Sep 2020 10:19:10 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id q9so2348568wmj.2
+        for <linux-spdx@vger.kernel.org>; Sat, 26 Sep 2020 10:19:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:message-id:user-agent:mime-version;
-        bh=Jt8GccEnjq1iGwDCAIard4XMHgfmZQ7MJ7ku4c4id5Q=;
-        b=oTYsBQ2lajSe8mxBNlatgPAwZgxPzkDW/f1s9lSDbl8Rf/UMktz1W0ygjeB5S4NTM2
-         S2p4j2Dt9tV0BXzu/MQzAlW9+nBKnUV4dz63rrxJUUkZywoLFY2LDmbQwHnKFaMgW0f+
-         LIfX9wBTX0eiMIZgp9syKPU9YZvmuiP88C+xleDm4btd4iFX9qZrUYJ0iC0sY/94jS9A
-         oVtXre2b4bmlLH+i9dlvCTj20hMA6XY+UkWCOm62OS66Lq6Bglx5TD5K0Ji/KplfC2z2
-         xDmI/hgWPa0gfoNAaHGk2jRXi94O9KICYm1pEFe5vTdhNqF/iNVgYjx0fAh7mFQhWvuu
-         MNHQ==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Lkvu6Do6zi8mY6e4YbMjyVYGYPqXE9nNWYgmKxJTz5Y=;
+        b=gMWbjhinVtmFxKlT6A60gjXT9XbVk4Hu5WEqGrnA+SpGJgNw5NfIjmoIYXpNlw7D9b
+         UWtugf4K6WrVMGDY/BkC85+7HKzZP09rQodoKB+o2qxQNQp61yvF11WYTXj8ii60ayia
+         AxEPZGJLz6d1Mb2xcl7FxkTw0zPSmZWJesmPhq73e2IUz6vprRd8u54439u/O/Iu8B9C
+         VjPNWfnpqpCE3GNI2fMdTFJI4UjcfYrwqjSMUMRuGLOeksias9GIFzjjJweMh5mFh5em
+         h7yFF1E6dUndkLq3k3yFX1f9OLUh127FtVzlD0vLE3VJnI8huZUwCu4iNtMatQu9kIQ8
+         WL7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:user-agent
-         :mime-version;
-        bh=Jt8GccEnjq1iGwDCAIard4XMHgfmZQ7MJ7ku4c4id5Q=;
-        b=HAX/yml1K0RZNJ0FHUJBi2+9nqBxkzLPjh9W6GmrGuQz3T0qmfS5Vu4Ytwrua4rI2W
-         SX1WDpFOluG3Gg5x8YT5qQY6dwkUR5lYkbY0LsifeHSvY8jgImyhJ9BOJnqPe0E3wJu9
-         DU8OoveytKDeS3XjX4PkKdrNBWNFAxS4mosE2dVpr44VGTeAIQQLRTkw6JvgAbKzVbV6
-         CI3iBrWTA7Q7Ym7LdfF6TZktl2mM2XC/Dm0eh0mGB/wZIvcbkARpOx/OURdSkaNkSlrG
-         e8L2whoV8FuP+0mHxuF2EI9PPyjRt22r4Fowa9+nl3qaLd04rEj2fEHOv6IExvHlmrZO
-         Qjvg==
-X-Gm-Message-State: AOAM533SOS25nrt7hsNBr9W/p+QWsYN54m/1+18r813kWIjtNgKZC02S
-        cr6JZamMopxhZsnwgyZpljw=
-X-Google-Smtp-Source: ABdhPJyvnq26+Osyszon1/5y4kE4IL1r1Jx8cTPZL0t2ZczE/RIGdAomLjAXX1/ER4U6SAbeZ90GJw==
-X-Received: by 2002:a17:906:249b:: with SMTP id e27mr8031434ejb.105.1601139700052;
-        Sat, 26 Sep 2020 10:01:40 -0700 (PDT)
-Received: from felia ([2001:16b8:2daa:2000:7547:ca13:c101:33d2])
-        by smtp.gmail.com with ESMTPSA id a26sm4383926ejk.66.2020.09.26.10.01.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Sep 2020 10:01:39 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
-Date:   Sat, 26 Sep 2020 19:01:32 +0200 (CEST)
-X-X-Sender: lukas@felia
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Lkvu6Do6zi8mY6e4YbMjyVYGYPqXE9nNWYgmKxJTz5Y=;
+        b=nMovhaP9/l95pZDiVN3/6C1XvmASa81kDV+jhU1RYn4FwXRhFeQhfbLitNClpFF5ay
+         OIh3iVF1Aa3/Sz4NxudKhBLBH/VRq6omw/0MaeHnma7Tu+RaFzYh4KaHIdqNsW1OGiXs
+         tEr/rEkqD3g4jKrSva3x8nR8+a3auEfSYDr3xDsMAutAghGbnp+82OogvydPUrHTuu6u
+         k7/E+QDz37V3flmmodm8aTF9o904GsRTdL51PNb9MXWggHEIvbiytzd3z6i6AW4AIBHK
+         j2tr0zVb0sQtubbsV64nA5u9DuuSzUS/s0/pGG1SQMFhXRQK3q11dF3sASZ29KbIB0vV
+         ppkA==
+X-Gm-Message-State: AOAM530R234BAiAz28skeLM7NY+dBhUU6L+Zotv07mNG91dMU0z1mS15
+        PzH9dNPdkz6tTwW6zTJTZSt9ULSO4VSrBw==
+X-Google-Smtp-Source: ABdhPJxEOGhVqSdsVDi20EGXCiOZDwnuLJWllECZphdU5gP9knDCQbeADdpGF+mxv29Cz+FkSu63Rw==
+X-Received: by 2002:a7b:c4d1:: with SMTP id g17mr3298799wmk.167.1601140748905;
+        Sat, 26 Sep 2020 10:19:08 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id o16sm7080304wrp.52.2020.09.26.10.19.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 26 Sep 2020 10:19:08 -0700 (PDT)
+Subject: Re: License clarification of sound/soc/qcom/qdsp6/q6afe-clocks.c
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         linux-spdx@vger.kernel.org
-Subject: License clarification of sound/soc/qcom/qdsp6/q6afe-clocks.c
-Message-ID: <alpine.DEB.2.21.2009261855280.31589@felia>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+References: <alpine.DEB.2.21.2009261855280.31589@felia>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <dab67d9c-8ef6-bf41-dd9a-fbd6e29d6818@linaro.org>
+Date:   Sat, 26 Sep 2020 18:19:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <alpine.DEB.2.21.2009261855280.31589@felia>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dear Srinivas,
 
-with commit 520a1c396d19 ("ASoC: q6afe-clocks: add q6afe clock 
-controller"), you have added the file sound/soc/qcom/qdsp6/q6afe-clocks.c 
-with the SPDX-License-Identifier: GPL-1.0.
-
-The use of 'GPL-1.0 only' is strongly not recommended as the Usage-Guide 
-in ./LICENSES/deprecated/GPL-1.0 points out:
-
-  The GNU General Public License (GPL) version 1 should not be used in new
-  code. For existing kernel code the 'or any later version' option is
-  required to be compatible with the general license of the project: GPLv2.
-
-At the end of the file, you further state it licensed with GPL-2.0 with 
-the following line:
-
-MODULE_LICENSE("GPL v2");
-
-So, is this just a typo in the SPDX-License-Identifier or do you really 
-intend to license this file under GPL-1.0 only?
+Thanks Lukas for spotting this,
 
 
-Best regards,
+On 26/09/2020 18:01, Lukas Bulwahn wrote:
+> At the end of the file, you further state it licensed with GPL-2.0 with
+> the following line:
+> 
+> MODULE_LICENSE("GPL v2");
+> 
+> So, is this just a typo in the SPDX-License-Identifier or do you really
+> intend to license this file under GPL-1.0 only?
 
-Lukas
+yes, this was totally unintended typo from my side, Just sent a patch to 
+fix this!
+
+thanks,
+srini

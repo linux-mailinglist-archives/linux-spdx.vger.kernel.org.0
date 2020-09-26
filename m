@@ -2,87 +2,96 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEFE279B4D
-	for <lists+linux-spdx@lfdr.de>; Sat, 26 Sep 2020 19:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF0BB279BFF
+	for <lists+linux-spdx@lfdr.de>; Sat, 26 Sep 2020 21:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbgIZRTN (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sat, 26 Sep 2020 13:19:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48272 "EHLO
+        id S1729106AbgIZTEF (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sat, 26 Sep 2020 15:04:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730031AbgIZRTK (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sat, 26 Sep 2020 13:19:10 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 819ADC0613D4
-        for <linux-spdx@vger.kernel.org>; Sat, 26 Sep 2020 10:19:10 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id q9so2348568wmj.2
-        for <linux-spdx@vger.kernel.org>; Sat, 26 Sep 2020 10:19:10 -0700 (PDT)
+        with ESMTP id S1726183AbgIZTEE (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sat, 26 Sep 2020 15:04:04 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 970B0C0613CE;
+        Sat, 26 Sep 2020 12:04:04 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id p9so3017444ejf.6;
+        Sat, 26 Sep 2020 12:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Lkvu6Do6zi8mY6e4YbMjyVYGYPqXE9nNWYgmKxJTz5Y=;
-        b=gMWbjhinVtmFxKlT6A60gjXT9XbVk4Hu5WEqGrnA+SpGJgNw5NfIjmoIYXpNlw7D9b
-         UWtugf4K6WrVMGDY/BkC85+7HKzZP09rQodoKB+o2qxQNQp61yvF11WYTXj8ii60ayia
-         AxEPZGJLz6d1Mb2xcl7FxkTw0zPSmZWJesmPhq73e2IUz6vprRd8u54439u/O/Iu8B9C
-         VjPNWfnpqpCE3GNI2fMdTFJI4UjcfYrwqjSMUMRuGLOeksias9GIFzjjJweMh5mFh5em
-         h7yFF1E6dUndkLq3k3yFX1f9OLUh127FtVzlD0vLE3VJnI8huZUwCu4iNtMatQu9kIQ8
-         WL7Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=el9DZyLyFdP/+cP0w9X7FpHYnAdbkFSV+0r7utpIGhE=;
+        b=ApMqTlo7oj7ATCcxJY1+KT3ll5lzWpGPHTGizNww9rzX/Jgx9nZZ6C/xRB2ED86+Bq
+         0yyAmAxSjtSw9pfFHLvuls0u0OWOpazPwditpdS+xo6pGiyUCJxuqX7SBhNxiPRKGFu6
+         FwH7L2rhVeHl8qH5Rw6/VSDjx74nHWnyjEEZ8qasdyJLRDnsWd1uR8b3kE5vzY1ZyZZg
+         FMX7HGRyQQCBMcrqZT/D7Tbiv0yEuN+OqNZLW3iJchPhcuAufc5J6XwOojqJzSrquQC5
+         M0nHXA8RFALPRxHtBUZfXbx3yMoM34lrTMmEM/GDlnWJ0ZQ/THg2myEJRU4E6uYKNWdT
+         3KXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Lkvu6Do6zi8mY6e4YbMjyVYGYPqXE9nNWYgmKxJTz5Y=;
-        b=nMovhaP9/l95pZDiVN3/6C1XvmASa81kDV+jhU1RYn4FwXRhFeQhfbLitNClpFF5ay
-         OIh3iVF1Aa3/Sz4NxudKhBLBH/VRq6omw/0MaeHnma7Tu+RaFzYh4KaHIdqNsW1OGiXs
-         tEr/rEkqD3g4jKrSva3x8nR8+a3auEfSYDr3xDsMAutAghGbnp+82OogvydPUrHTuu6u
-         k7/E+QDz37V3flmmodm8aTF9o904GsRTdL51PNb9MXWggHEIvbiytzd3z6i6AW4AIBHK
-         j2tr0zVb0sQtubbsV64nA5u9DuuSzUS/s0/pGG1SQMFhXRQK3q11dF3sASZ29KbIB0vV
-         ppkA==
-X-Gm-Message-State: AOAM530R234BAiAz28skeLM7NY+dBhUU6L+Zotv07mNG91dMU0z1mS15
-        PzH9dNPdkz6tTwW6zTJTZSt9ULSO4VSrBw==
-X-Google-Smtp-Source: ABdhPJxEOGhVqSdsVDi20EGXCiOZDwnuLJWllECZphdU5gP9knDCQbeADdpGF+mxv29Cz+FkSu63Rw==
-X-Received: by 2002:a7b:c4d1:: with SMTP id g17mr3298799wmk.167.1601140748905;
-        Sat, 26 Sep 2020 10:19:08 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id o16sm7080304wrp.52.2020.09.26.10.19.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 26 Sep 2020 10:19:08 -0700 (PDT)
-Subject: Re: License clarification of sound/soc/qcom/qdsp6/q6afe-clocks.c
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=el9DZyLyFdP/+cP0w9X7FpHYnAdbkFSV+0r7utpIGhE=;
+        b=Pe0kJ8DAP/vkcW+NYHpzJ76pqR7HjJZv75USvjD+i2UNHP/WZ1UrZlyFxylOdJR2Q9
+         q6SJFZfFkM9FeluOcCJHAJ9qPIB1k2GVo3DaOzfla7hZosOU4dZOSEQeGcs0TiBTpQOP
+         Attde5RZZMR+KA1Xdtbw0/aFSLMSgyhhv8ieM4vEHjYRyADkycWWLHCIMgbzZJ9dD6+0
+         apMnzgpyP0woXzpOu6lsTEh//EpvfKePNJ0TxQG/3WBo7/DZMPeDCAbofxKW8aoQgd26
+         732BRFZ2gZ2tRk4xchjxDlvBV9eVGmQezrW0Qft5BY+LdQzGjMDe/xeNbrOZOpudJdkA
+         kVuw==
+X-Gm-Message-State: AOAM532CI6TRGwHfXV+XbCXcfrJhpNC3aT6QH3YZsRwu4FtHnn8LHIsH
+        83XL+RpFd1KPD7K0Iqc6r5k=
+X-Google-Smtp-Source: ABdhPJwi+J6K7E2UiXyKZLRsNtL2mkCX87NkmDhC2O7Hf1rAkDD7DifU6M6L/32UPJbIUV/seDOK+w==
+X-Received: by 2002:a17:906:3e08:: with SMTP id k8mr8321644eji.480.1601147043197;
+        Sat, 26 Sep 2020 12:04:03 -0700 (PDT)
+Received: from felia.fritz.box ([2001:16b8:2daa:2000:30ed:2765:20d9:efd3])
+        by smtp.gmail.com with ESMTPSA id o23sm4592634eju.17.2020.09.26.12.04.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Sep 2020 12:04:02 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-spdx@vger.kernel.org
-References: <alpine.DEB.2.21.2009261855280.31589@felia>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <dab67d9c-8ef6-bf41-dd9a-fbd6e29d6818@linaro.org>
-Date:   Sat, 26 Sep 2020 18:19:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.2009261855280.31589@felia>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] scripts/spdxcheck.py: handle license identifiers in XML comments
+Date:   Sat, 26 Sep 2020 21:03:54 +0200
+Message-Id: <20200926190354.13194-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+Commit cc9539e7884c ("media: docs: use the new SPDX header for GFDL-1.1 on
+*.svg files") adds SPDX-License-Identifiers enclosed in XML comments,
+i.e., <!-- ... -->, for svg files.
 
-Thanks Lukas for spotting this,
+Unfortunately, ./scripts/spdxcheck.py does not handle
+SPDX-License-Identifiers in XML comments, so it simply fails on checking
+these files with 'Invalid License ID: --'.
 
+Strip the XML comment ending simply by copying how it was done for comments
+in C. With that, ./scripts/spdxcheck.py handles the svg files properly.
 
-On 26/09/2020 18:01, Lukas Bulwahn wrote:
-> At the end of the file, you further state it licensed with GPL-2.0 with
-> the following line:
-> 
-> MODULE_LICENSE("GPL v2");
-> 
-> So, is this just a typo in the SPDX-License-Identifier or do you really
-> intend to license this file under GPL-1.0 only?
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+applies cleanly on current master and next-20200925
 
-yes, this was totally unintended typo from my side, Just sent a patch to 
-fix this!
+Greg, please pick this quick minor patch for your spdx tree. thanks.
 
-thanks,
-srini
+ scripts/spdxcheck.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/scripts/spdxcheck.py b/scripts/spdxcheck.py
+index 6374e078a5f2..bc87200f9c7c 100755
+--- a/scripts/spdxcheck.py
++++ b/scripts/spdxcheck.py
+@@ -180,6 +180,9 @@ class id_parser(object):
+                 # Remove trailing comment closure
+                 if line.strip().endswith('*/'):
+                     expr = expr.rstrip('*/').strip()
++                # Remove trailing xml comment closure
++                if line.strip().endswith('-->'):
++                    expr = expr.rstrip('-->').strip()
+                 # Special case for SH magic boot code files
+                 if line.startswith('LIST \"'):
+                     expr = expr.rstrip('\"').strip()
+-- 
+2.17.1
+

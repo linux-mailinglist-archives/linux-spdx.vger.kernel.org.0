@@ -2,78 +2,183 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88669286486
-	for <lists+linux-spdx@lfdr.de>; Wed,  7 Oct 2020 18:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94FBB28E5BC
+	for <lists+linux-spdx@lfdr.de>; Wed, 14 Oct 2020 19:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726504AbgJGQew (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 7 Oct 2020 12:34:52 -0400
-Received: from sonic307-9.consmr.mail.ne1.yahoo.com ([66.163.190.32]:38033
-        "EHLO sonic307-9.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726981AbgJGQew (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 7 Oct 2020 12:34:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1602088491; bh=PxMwWzXvs+dqOoH0/FHvFmQpYH2JguaCUHYAVLLmaiw=; h=Date:From:Reply-To:Subject:References:From:Subject; b=b5tzIyOWX562g+1+7XFwP3F0qHlylBE4VR/DySfRlJE8RQQWCKdX0Cvx1QRIxF9dsRC7jYv3AisLjpuuO4+IgVT9TxjdWg48nFsfHqGw+yc0ONmgC8s3OooF7t/L2Hl+ZZjU1fPJ4aDPupYfXBBkwP7TkhCT/zJ/Y9CsCaLAM5IamjT0zQxdq0RCCHaOtMIRIUcfQWqv3TL4lVZLDRHzBfVeF1P2FOWZRFUkxrUSJ6AjMLb53Mc6EoqrjXo0WbXuF30CHvzch7cOcDDRLuC0tVL+ijM0BI9f5DU0ETM9fr+guRY7LVQnisc/bXHIv7Rri/uKmMBd48m253kV9QvNbA==
-X-YMail-OSG: cf9kJ2oVM1kK3T6VOOsgCsR19qP6pE4rv1Nkqt8rGR35kXS4fZJOqche7JeIlVR
- qFthOBPawK3fABEy1f3x47yELoM1QdPVIllcbCXZVpJ0XyZbOmT4Q_yomz8zS2l8RYB_tlobF.FQ
- K7gHjq1ogZyKC2aXDERtALMxQvba7_ca52_I5wgxZyFmLtb033Zel3zSFylJkd9b3WaKMH0OaRqE
- BP8F8lIUADgHcryBS2fY3yUPQANCvYlJn4H9H1vbqUi5xKU_bSw92NMqbk.szYfMx5IdVn43XT_t
- ZNBAByWC1LFpBtagT7gRcNYqYpd1aGcSohQJSDPxVA2L4z6VzjZK6vJpYr4lI4gEc_aP10R4wAaC
- gkzjssh1Gx_O.Mrh8Hz8CPoEWVzdT0iGRrLDoxYzTXRS8xpGz1A8jfZImPixqLrLbM7lEDfeWufV
- e57Dz1o1_qia3jbLryDy5Pj04omBoguJckpndBrmee38e4sDY2JbbQ2Az5MhjVZrwCkwSaj9NNkU
- ccPShg4OIGUNZDefirSman0b6.CNIirWdHxgqfwBe5qswzVaOabmaoyMpyjAUS2cIxITZI8_heZJ
- 5nREsHs0I9HnoE5bZu9GHK3WcG8x44tYQyHkyPfVE2bhg4unpggrrocvJsEQ7MlE__Bo1iZfF7Fx
- gdr5HoaP3LJL6a2w3zl9L3QceCILU7izsaUV2Cd0NccbkAvF0vkGu.GAwmuBcikZWTrplskMeZ1e
- CGIVyZZwhpRI7AOA8tzYjv84T46.Qwkgc7SNTijBdBplRIRP6OzD41w6kiZtx59Q4GAZj9Gj6t0v
- OrzudK30FDXm2k5cBk5jHucRVPMCBja8Nz2STyyVL2HoeaovSvlhJs.BB6jyh0Cq2tLw5fEqeYLP
- ubHwtUVJaUOlb8U0MSa8aFAzHu1t1mni8EZjQ6vJOq4mexRo8a4Cvjlgg_438wZkh8AOU2HkWoSZ
- _TdkaiosH0Hki5uVn.fOuz3xA3EGU5sMUcaTbNtxEMEH.gTBByzfJ4n4Pwhudt.O.ITgtiC0xu3F
- 5bmXe3smr84rMtWNk.9RqyR1D6yOUOKkvhyJlLX8nOiyf4HDnLdy_jmABIVeRYQFxgSt202UngQv
- RG8xh8F2WZjbMR9yf6v3BvRWwdpKcxRUJ5sPFLZbtLYE08p3LJ0jZXue.lT47Psa87zKjQPRXgDr
- MJ6B9yzn1PswBC7nmTervV.AEsSO5ns.Ea8Of1o8ioFdXMEKPTZWwPCiwq_vZYh5sVBAYWX4Ol8X
- 5KpPHoBSs79EBP8V2BYMuoyuSGU0ocVtZ3G1QEhBoP2eiv7J3o3d6qVx4utjcArT55FD828IRVD1
- 6yvXR9ZKy6VugjgeVUHBMJ2zh2Foe9spleuVwSUcBVgf38s5qGqQezwNVoI4cBuqWMFC9VqLJbpL
- bfBQVVy7z1jEkXDrF.jp9Vs.n8WemnfN2EIkq8KnY
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ne1.yahoo.com with HTTP; Wed, 7 Oct 2020 16:34:51 +0000
-Date:   Wed, 7 Oct 2020 16:34:47 +0000 (UTC)
-From:   Marilyn Robert <fredodinga22@gmail.com>
-Reply-To: marilyobert@gmail.com
-Message-ID: <1477561969.293747.1602088487254@mail.yahoo.com>
-Subject: =?UTF-8?B?0J3QsNGY0LzQuNC70LAg0LrQsNGYINCz0L7RgdC/0L7QtNCw0YDQvtGC?=
+        id S1726334AbgJNRvn (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 14 Oct 2020 13:51:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40164 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726019AbgJNRvn (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Wed, 14 Oct 2020 13:51:43 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7CBCD21D7F;
+        Wed, 14 Oct 2020 17:51:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1602697902;
+        bh=UgjPcgSwO2CMV8epFPjr2u2qsJklKn6QeLFhLfwCVbA=;
+        h=Date:From:To:Cc:Subject:From;
+        b=RcVxu6Sida3yO9vy1vtWSmeZsg8Xqgbm8YSADvE3shv3Nxe4Fz2fNCC1hX9eS7zWg
+         mOUyGRF3mXJaiZxkpSUlVNwLqQO9eM0kkEdfQUKq6npkPfjmLVgn7VEBK1LOHB6OOX
+         FMV4o9v/4wy2FSYcW5CDIzKjjazf/K9mbruU/qIA=
+Date:   Wed, 14 Oct 2020 19:52:16 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+        linux-spdx@vger.kernel.org
+Subject: [GIT PULL] SPDX patches for 5.10-rc1
+Message-ID: <20201014175216.GA3787023@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-References: <1477561969.293747.1602088487254.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.16795 YMailNodin Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-DQoNCtCd0LDRmNC80LjQu9CwINC60LDRmCDQs9C+0YHQv9C+0LTQsNGA0L7Rgg0KDQrQiNCw0YEg
-0YHRg9C8IDY4LdCz0L7QtNC40YjQvdCwINC20LXQvdCwLCDQutC+0ZjQsCDRgdGC0YDQsNC00LAg
-0L7QtCDQv9GA0L7QtNC+0LvQttC10L0g0LrQsNGA0YbQuNC90L7QvCDQvdCwINC00L7RmNC60LAs
-INC+0LQg0YHQuNGC0LUg0LzQtdC00LjRhtC40L3RgdC60Lgg0LjQvdC00LjQutCw0YbQuNC4LCDQ
-vNC+0ZjQsNGC0LAg0YHQvtGB0YLQvtGY0LHQsCDQvdCw0LLQuNGB0YLQuNC90LAg0YHQtSDQstC7
-0L7RiNC4INC4INC+0YfQuNCz0LvQtdC00L3QviDQtSDQtNC10LrQsCDQvNC+0LbQtdCx0Lgg0L3Q
-tdC80LAg0LTQsCDQttC40LLQtdCw0Lwg0L/QvtCy0LXRnNC1INC+0LQg0YjQtdGB0YIg0LzQtdGB
-0LXRhtC4INC60LDQutC+INGA0LXQt9GD0LvRgtCw0YIg0L3QsCDQsdGA0LfQuNC+0YIg0YDQsNGB
-0YIg0Lgg0LHQvtC70LrQsNGC0LAg0YjRgtC+INGB0LUg0ZjQsNCy0YPQstCwINC60LDRmCDQvdC1
-0LAuINCc0L7RmNC+0YIg0YHQvtC/0YDRg9CzINC/0L7Rh9C40L3QsCDQvdC10LrQvtC70LrRgyDQ
-s9C+0LTQuNC90Lgg0L3QsNC90LDQt9Cw0LQg0Lgg0L3QsNGI0LjRgtC1INC00L7Qu9Cz0Lgg0LPQ
-vtC00LjQvdC4INCx0YDQsNC6INC90LUg0LHQtdCwINCx0LvQsNCz0L7RgdC70L7QstC10L3QuCDR
-gdC+INC90LjRgtGDINC10LTQvdC+INC00LXRgtC1LCDQv9C+INC90LXQs9C+0LLQsNGC0LAg0YHQ
-vNGA0YIg0LPQviDQvdCw0YHQu9C10LTQuNCyINGG0LXQu9C+0YLQviDQvdC10LPQvtCy0L4g0LHQ
-vtCz0LDRgtGB0YLQstC+Lg0KDQrQlNC+0LDRk9Cw0Lwg0LrQsNGYINCy0LDRgSDQvtGC0LrQsNC6
-0L4g0YHQtSDQv9C+0LzQvtC70LjQsiDQt9CwINGC0L7QsCwg0L/QvtC00LPQvtGC0LLQtdC9INGB
-0YPQvCDQtNCwINC00L7QvdC40YDQsNC8INGB0YPQvNCwINC+0LQgMiwgMzAwLCAwMDAg0LXQstGA
-0LAg0LfQsCDQv9C+0LzQvtGIINC90LAg0YHQuNGA0L7QvNCw0YjQvdC40YLQtSwg0YHQuNGA0L7Q
-vNCw0YjQvdC40YLQtSDQuCDQv9C+0LzQsNC70LrRgyDQv9GA0LjQstC40LvQtdCz0LjRgNCw0L3Q
-uNGC0LUg0LzQtdGT0YMg0LLQsNGI0LjRgtC1INGB0L7QsdGA0LDQvdC40ZjQsCAvINC+0L/RiNGC
-0LXRgdGC0LLQvi4g0JfQsNCx0LXQu9C10LbQtdGC0LUg0LTQtdC60LAg0L7QstC+0Zgg0YTQvtC9
-0LQg0LUg0LTQtdC/0L7QvdC40YDQsNC9INCy0L4g0LHQsNC90LrQsCDQutCw0LTQtSDRiNGC0L4g
-0YDQsNCx0L7RgtC10YjQtSDQvNC+0ZjQvtGCINGB0L7Qv9GA0YPQsy4gQXBwcmVjaWF0ZdC1INGG
-0LXQvdCw0Lwg0LDQutC+INC+0LHRgNC90LXRgtC1INCy0L3QuNC80LDQvdC40LUg0L3QsCDQvNC+
-0LXRgtC+INCx0LDRgNCw0ZrQtSDQt9CwINC/0YDQvtC/0LDQs9C40YDQsNGa0LUg0L3QsCDQvNCw
-0YHQsNC20LDRgtCwINC90LAg0LrRgNCw0LvRgdGC0LLQvtGC0L4sINGc0LUg0LLQuCDQtNCw0LTQ
-sNC8INC/0L7QstC10ZzQtSDQtNC10YLQsNC70Lgg0LfQsCDRgtC+0LAg0LrQsNC60L4g0LTQsCDQ
-v9C+0YHRgtCw0L/QuNGC0LUuDQoNCtCR0LvQsNCz0L7QtNCw0YDQsNC8DQrQky3Rk9CwINCc0LXR
-gNC40LvQuNC9INCg0L7QsdC10YDRgg==
+The following changes since commit 856deb866d16e29bd65952e0289066f6078af773:
+
+  Linux 5.9-rc5 (2020-09-13 16:06:00 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-5.10-rc1
+
+for you to fetch changes up to c5c553850899e2662ecf749ac21fff95d17f59a4:
+
+  scripts/spdxcheck.py: handle license identifiers in XML comments (2020-10-02 11:31:26 +0200)
+
+----------------------------------------------------------------
+SPDX patches for 5.10-rc1
+
+Here are some SPDX-specific changes for 5.10-rc1.
+
+They include:
+	- driver fixes to make spdxcheck.pl work properly
+	- add GFDL licenses as "deprecated" but required due to some of
+	  our documentation using them
+	- add Zlib license as "deprecated" but required because we have
+	  code with this license in the tree.
+	- convert some drivers to have SPDX identifiers that previously
+	  didn't have them.
+
+All have been in linux-next for a very long time with no reported
+issues.
+
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Lukas Bulwahn (2):
+      net/mlx5: IPsec: make spdxcheck.py happy
+      scripts/spdxcheck.py: handle license identifiers in XML comments
+
+Mauro Carvalho Chehab (1):
+      LICENSE: add GFDL deprecated licenses
+
+Mikhail Zaslonko (1):
+      LICENSES/deprecated: add Zlib license text
+
+Thomas Gleixner (5):
+      scsi/qla4xxx: Convert to SPDX license identifiers
+      scsi/qla2xxx: Convert to SPDX license identifiers
+      net/qlcnic: Convert to SPDX license identifiers
+      net/qlge: Convert to SPDX license identifiers
+      net/qla3xxx: Convert to SPDX license identifiers
+
+ .../device_drivers/qlogic/LICENSE.qla3xxx          |  46 ---
+ .../device_drivers/qlogic/LICENSE.qlcnic           | 288 --------------
+ .../networking/device_drivers/qlogic/LICENSE.qlge  | 288 --------------
+ Documentation/scsi/LICENSE.qla2xxx                 | 290 --------------
+ Documentation/scsi/LICENSE.qla4xxx                 | 289 --------------
+ LICENSES/deprecated/GFDL-1.1                       | 377 +++++++++++++++++++
+ LICENSES/deprecated/GFDL-1.2                       | 417 +++++++++++++++++++++
+ LICENSES/deprecated/Zlib                           |  27 ++
+ MAINTAINERS                                        |   3 -
+ .../mellanox/mlx5/core/accel/ipsec_offload.c       |   2 +-
+ drivers/net/ethernet/qlogic/qla3xxx.c              |   3 +-
+ drivers/net/ethernet/qlogic/qla3xxx.h              |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic.h        |   3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_83xx_hw.c    |   3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_83xx_hw.h    |   3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_83xx_init.c  |   3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_83xx_vnic.c  |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_ctx.c    |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_dcb.c    |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_dcb.h    |   3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_ethtool.c    |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_hdr.h    |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_hw.c     |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_hw.h     |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_init.c   |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_io.c     |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_main.c   |   3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_minidump.c   |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_sriov.h  |   3 +-
+ .../ethernet/qlogic/qlcnic/qlcnic_sriov_common.c   |   3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_sriov_pf.c   |   3 +-
+ drivers/net/ethernet/qlogic/qlcnic/qlcnic_sysfs.c  |   3 +-
+ drivers/scsi/qla2xxx/qla_attr.c                    |   3 +-
+ drivers/scsi/qla2xxx/qla_bsg.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_bsg.h                     |   3 +-
+ drivers/scsi/qla2xxx/qla_dbg.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_dbg.h                     |   3 +-
+ drivers/scsi/qla2xxx/qla_def.h                     |   3 +-
+ drivers/scsi/qla2xxx/qla_dfs.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_fw.h                      |   3 +-
+ drivers/scsi/qla2xxx/qla_gbl.h                     |   3 +-
+ drivers/scsi/qla2xxx/qla_gs.c                      |   3 +-
+ drivers/scsi/qla2xxx/qla_init.c                    |   3 +-
+ drivers/scsi/qla2xxx/qla_inline.h                  |   3 +-
+ drivers/scsi/qla2xxx/qla_iocb.c                    |   3 +-
+ drivers/scsi/qla2xxx/qla_isr.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_mbx.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_mid.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_mr.c                      |   3 +-
+ drivers/scsi/qla2xxx/qla_mr.h                      |   3 +-
+ drivers/scsi/qla2xxx/qla_nvme.c                    |   3 +-
+ drivers/scsi/qla2xxx/qla_nvme.h                    |   3 +-
+ drivers/scsi/qla2xxx/qla_nx.c                      |   3 +-
+ drivers/scsi/qla2xxx/qla_nx.h                      |   3 +-
+ drivers/scsi/qla2xxx/qla_nx2.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_nx2.h                     |   3 +-
+ drivers/scsi/qla2xxx/qla_os.c                      |   3 +-
+ drivers/scsi/qla2xxx/qla_settings.h                |   3 +-
+ drivers/scsi/qla2xxx/qla_sup.c                     |   3 +-
+ drivers/scsi/qla2xxx/qla_tmpl.c                    |   3 +-
+ drivers/scsi/qla2xxx/qla_tmpl.h                    |   3 +-
+ drivers/scsi/qla2xxx/qla_version.h                 |   3 +-
+ drivers/scsi/qla4xxx/ql4_83xx.c                    |   3 +-
+ drivers/scsi/qla4xxx/ql4_83xx.h                    |   3 +-
+ drivers/scsi/qla4xxx/ql4_attr.c                    |   3 +-
+ drivers/scsi/qla4xxx/ql4_bsg.c                     |   3 +-
+ drivers/scsi/qla4xxx/ql4_bsg.h                     |   3 +-
+ drivers/scsi/qla4xxx/ql4_dbg.c                     |   3 +-
+ drivers/scsi/qla4xxx/ql4_dbg.h                     |   3 +-
+ drivers/scsi/qla4xxx/ql4_def.h                     |   3 +-
+ drivers/scsi/qla4xxx/ql4_fw.h                      |   3 +-
+ drivers/scsi/qla4xxx/ql4_glbl.h                    |   3 +-
+ drivers/scsi/qla4xxx/ql4_init.c                    |   3 +-
+ drivers/scsi/qla4xxx/ql4_inline.h                  |   3 +-
+ drivers/scsi/qla4xxx/ql4_iocb.c                    |   3 +-
+ drivers/scsi/qla4xxx/ql4_isr.c                     |   3 +-
+ drivers/scsi/qla4xxx/ql4_mbx.c                     |   3 +-
+ drivers/scsi/qla4xxx/ql4_nvram.c                   |   3 +-
+ drivers/scsi/qla4xxx/ql4_nvram.h                   |   3 +-
+ drivers/scsi/qla4xxx/ql4_nx.c                      |   3 +-
+ drivers/scsi/qla4xxx/ql4_nx.h                      |   3 +-
+ drivers/scsi/qla4xxx/ql4_os.c                      |   3 +-
+ drivers/scsi/qla4xxx/ql4_version.h                 |   3 +-
+ drivers/staging/qlge/qlge.h                        |   3 +-
+ drivers/staging/qlge/qlge_main.c                   |   2 +-
+ scripts/spdxcheck.py                               |   3 +
+ 86 files changed, 900 insertions(+), 1354 deletions(-)
+ delete mode 100644 Documentation/networking/device_drivers/qlogic/LICENSE.qla3xxx
+ delete mode 100644 Documentation/networking/device_drivers/qlogic/LICENSE.qlcnic
+ delete mode 100644 Documentation/networking/device_drivers/qlogic/LICENSE.qlge
+ delete mode 100644 Documentation/scsi/LICENSE.qla2xxx
+ delete mode 100644 Documentation/scsi/LICENSE.qla4xxx
+ create mode 100644 LICENSES/deprecated/GFDL-1.1
+ create mode 100644 LICENSES/deprecated/GFDL-1.2
+ create mode 100644 LICENSES/deprecated/Zlib

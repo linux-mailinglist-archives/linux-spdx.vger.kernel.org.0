@@ -2,110 +2,82 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF0529F40F
-	for <lists+linux-spdx@lfdr.de>; Thu, 29 Oct 2020 19:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 072412A08CB
+	for <lists+linux-spdx@lfdr.de>; Fri, 30 Oct 2020 16:00:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725791AbgJ2SZw (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 29 Oct 2020 14:25:52 -0400
-Received: from smtprelay0057.hostedemail.com ([216.40.44.57]:59732 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725785AbgJ2SZw (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>);
-        Thu, 29 Oct 2020 14:25:52 -0400
-X-Greylist: delayed 402 seconds by postgrey-1.27 at vger.kernel.org; Thu, 29 Oct 2020 14:25:51 EDT
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
-        by smtpgrave06.hostedemail.com (Postfix) with ESMTP id 2C73D8004314
-        for <linux-spdx@vger.kernel.org>; Thu, 29 Oct 2020 18:19:11 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay01.hostedemail.com (Postfix) with ESMTP id 11EB9100E7B42;
-        Thu, 29 Oct 2020 18:19:08 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,coupons@perches.com,,RULES_HIT:41:69:355:379:800:960:966:968:973:988:989:1042:1260:1277:1311:1313:1314:1345:1437:1472:1515:1516:1518:1534:1542:1593:1594:1711:1714:1730:1747:1777:1792:2196:2199:2393:2538:2553:2559:2562:2734:2736:2828:3138:3139:3140:3141:3142:3351:3855:3865:3866:3867:3868:3870:3871:3874:4250:4321:4385:5007:6117:6119:7809:7901:8784:9149:10004:10400:10450:10455:10848:11658:11914:12043:12050:12262:12291:12295:12296:12297:12438:12555:12679:12683:12700:12737:12740:12760:12895:12986:13017:13018:13019:13439:13972:14093:14096:14097:14181:14345:14659:14721:14824:19904:19999:21067:21080:21212:21220:21365:21433:21451:21611:21627:21740:21772:21773:21939:30012:30054:30067:30079:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:9,LUA_SUMMARY:none
-X-HE-Tag: heat72_0c1867e2728f
-X-Filterd-Recvd-Size: 3640
-Received: from XPS-9350.home (unknown [47.151.133.149])
-        (Authenticated sender: joe@perches.com)
-        by omf19.hostedemail.com (Postfix) with ESMTPA;
-        Thu, 29 Oct 2020 18:19:06 +0000 (UTC)
-Message-ID: <0d249f3a1dfb74c7d37716d2b3024345b0a27512.camel@perches.com>
-Subject: drivers/char/agp/hp-agp.c - mismatch between SPDX and MODULE_LICENSE
-From:   Joe Perches <coupons@perches.com>
-To:     Dave Jones <davej@codemonkey.org.uk>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Date:   Thu, 29 Oct 2020 11:19:05 -0700
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.38.1-1 
+        id S1726957AbgJ3PAi (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 30 Oct 2020 11:00:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726954AbgJ3PAb (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 30 Oct 2020 11:00:31 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD26C0613B9
+        for <linux-spdx@vger.kernel.org>; Fri, 30 Oct 2020 07:59:36 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id l16so7005405eds.3
+        for <linux-spdx@vger.kernel.org>; Fri, 30 Oct 2020 07:59:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=9fkQXWnoPSypfyxvIrXWSyd1r4Ua0eeDJczOBpIf/BU=;
+        b=TjZDjTDUyG5IOPAjtKhDz6bJNm6DqwPh3GYjQnJOtk58Qe+VS+LrjG9D+UJTL89L5a
+         hPszd6YttBU2gVDN4Hgd0nVvKmUsgBGa0RfR9y4dU1VG6wqrOSeXXlqa/jT4b2a91QjD
+         sT+ma7QKBtdbME0ZKxl0kc6DEI2BSZsRxuMkNkQsvOWxO6URWAKkh65L3Tk879AJ4LqG
+         Bj9eXYFDUcjXqha9S32esb82rsLCjf9rEdFYrDoZfWxC18Um3HNxqbzetSufrWkdrmWB
+         Hgfuw2XlX0g8ZkLr3paRT5DvZbKL3ccSJq24BaLzNsiQWn1tArC4uUyPSHMQ3hVqPZo6
+         Sb9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=9fkQXWnoPSypfyxvIrXWSyd1r4Ua0eeDJczOBpIf/BU=;
+        b=sBExWwv57I1e5sb/meP7cx4uEn28pMOf4EfKkzAhLakzeGQmtU0oYncxLijK050cWs
+         WcHL7HMO2CH1aE/uSi/6Hs3OEewnVZIcrIPFCN1PWtoTXmdACcsP+BsWmxpttlFkH/lM
+         JAYUk9kkFania8JOm7nyfg/ODnOmUkMAD9352fURWZ5StueeZLn7XOYTdiahBjyoUWt2
+         WCkUUqyyfzZOEuRguY00OLN12xhDW9apfZQP6mPAP82rMkjkC9ZE1+FlEEnlMkYjWmKO
+         o9LLLpIcPO+GpcT3OPgS0n+RokjUqxFIttWWz7EOyZd4d5bRSC5cLkmGFZn9KslzKx1l
+         ZJsA==
+X-Gm-Message-State: AOAM5315Xs7iSHGuivzhYeYvZHz+PsDHTt0xOq4q72xlBXnSaLUlL3S7
+        OXwphmGRblgfNAeQaTsv61WUOgfRGs7ILKr0IDrWo5Re+g==
+X-Google-Smtp-Source: ABdhPJz0XXuJnPS5g3+lbBiW+XXmkDUqYoNBDu76t3os6QvlPQSI6Onyl30CWs+Md1o+E0r28qs03HXLpOQosKz8YWo=
+X-Received: by 2002:a50:f307:: with SMTP id p7mr2761574edm.235.1604069974505;
+ Fri, 30 Oct 2020 07:59:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a50:f14c:0:0:0:0:0 with HTTP; Fri, 30 Oct 2020 07:59:34
+ -0700 (PDT)
+Reply-To: li.anable85@gmail.com
+From:   Liliane Abel <k.griest04@gmail.com>
+Date:   Fri, 30 Oct 2020 15:59:34 +0100
+Message-ID: <CABAZL7=b-NWks3DKb=fdDjnu_xt_-CcJCqf-F5s0yQCFVH73-A@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-(SPDX mismatches found using this grep)
+Dearest
 
-$ git grep --name-only 'MODULE_LICENSE("GPL and add' -- '*.c' | xargs grep SPDX
-drivers/char/agp/hp-agp.c:// SPDX-License-Identifier: GPL-2.0-only
-drivers/dma-buf/selftest.c:/* SPDX-License-Identifier: MIT */
-drivers/gpu/drm/ttm/ttm_module.c:/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-drivers/gpu/drm/vboxvideo/vbox_drv.c:// SPDX-License-Identifier: MIT
-drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:// SPDX-License-Identifier: GPL-2.0 OR MIT
+Greeting my dear, I am Liliane Abel by name, The only daughter of late
+Mr.Benson Abel. My father is one of the top Politician in our country
+and my mother is a farmers and cocoa merchant when they were both
+alive. After the death of my mother, long ago, my father was
+controlling their business until he was poisoned by his business
+associates which he suffered and died.
 
-Back in 2003, the (fullhist) commit below perhaps inappropriately
-removed license text that allowed arbitrary changes to source
-code while adding 'MODULE_LICENSE("GPL and additional rights");'
-
-Today, the license for this file is:
-
-// SPDX-License-Identifier: GPL-2.0-only
-
-So there is a mismatch between the SPDX identifier and the
-MODULE_LICENSE in the file.
-
-So the SPDX identifier now seems inappropriate.
-Perhaps that can be rectified somehow...
- 
-commit 229f2fcdfa1377fb20174e6990460d8c60d33ada
-Author: Dave Jones <davej@codemonkey.org.uk>
-Date:   Tue Dec 3 01:22:23 2002 -0100
-
-    rework as per Linus' suggestion. Chipset drivers are now seperate modules
-    that use the pci driver interfaces, and register with the agpgart backend.
----
- drivers/char/agp/hp-agp.c | 98 ++++++++++++++++++++++++++++++++---------------
- 1 file changed, 67 insertions(+), 31 deletions(-)
-
-diff --git a/drivers/char/agp/hp-agp.c b/drivers/char/agp/hp-agp.c
-index b1911f1dce7a..a733f38a3928 100644
---- a/drivers/char/agp/hp-agp.c
-+++ b/drivers/char/agp/hp-agp.c
-@@ -1,29 +1,5 @@
- /*
-- * AGPGART module version 0.99
-- * Copyright (C) 1999 Jeff Hartmann
-- * Copyright (C) 1999 Precision Insight, Inc.
-- * Copyright (C) 1999 Xi Graphics, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included
-- * in all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * JEFF HARTMANN, OR ANY OTHER CONTRIBUTORS BE LIABLE FOR ANY CLAIM, 
-- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
-- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
-- * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-
-
+Before the death of my father, He told me about (two million five
+hundred thousand united states dollars) which he deposited in the bank
+in Lome-Togo, It was the money he intended to transfer overseas for
+investment before he was poisoned. He also instructed me that I should
+seek for foreign partners in any country of my choice who will assist
+me transfer this money in overseas account where the money will be
+wisely invested.
+I am seeking for your kind assistance in the following ways:  (1) to
+provide a safe bank account into where the money will be transferred
+for investment. (2) To serve as a guardian of this fund since I am a
+girl of 19 years old. (3) To make arrangement for me to come over to
+your country to further my education. This is my reason for writing to
+you. Please if you are willing to assist me I will offer you 25% of
+the total money. Reply if  you are interested
+Best regards.
+Liliane Abel.

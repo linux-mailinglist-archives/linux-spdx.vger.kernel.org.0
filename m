@@ -2,99 +2,94 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C606B307E35
-	for <lists+linux-spdx@lfdr.de>; Thu, 28 Jan 2021 19:39:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28ABD309FF5
+	for <lists+linux-spdx@lfdr.de>; Mon,  1 Feb 2021 02:23:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbhA1Sih (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 28 Jan 2021 13:38:37 -0500
-Received: from spe8-2.ucebox.co.za ([197.242.156.207]:33013 "EHLO
-        spe8-2.ucebox.co.za" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231730AbhA1ShI (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 28 Jan 2021 13:37:08 -0500
-X-Greylist: delayed 1090 seconds by postgrey-1.27 at vger.kernel.org; Thu, 28 Jan 2021 13:36:34 EST
-Received: from cornucopia.aserv.co.za ([154.0.175.203])
-        by spe8.ucebox.co.za with esmtps (TLSv1.2:AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <manornutgrovemanor@gmail.com>)
-        id 1l5Bpi-0007LJ-Au; Thu, 28 Jan 2021 20:16:15 +0200
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by cornucopia.aserv.co.za (Postfix) with ESMTPA id CF403C1250;
-        Thu, 28 Jan 2021 20:14:51 +0200 (SAST)
+        id S229765AbhBABXK (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 31 Jan 2021 20:23:10 -0500
+Received: from condef-10.nifty.com ([202.248.20.75]:52329 "EHLO
+        condef-10.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231191AbhBABVw (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 31 Jan 2021 20:21:52 -0500
+X-Greylist: delayed 447 seconds by postgrey-1.27 at vger.kernel.org; Sun, 31 Jan 2021 20:21:50 EST
+Received: from conuserg-12.nifty.com ([10.126.8.75])by condef-10.nifty.com with ESMTP id 1111AcPg002725
+        for <linux-spdx@vger.kernel.org>; Mon, 1 Feb 2021 10:10:38 +0900
+Received: from grover.flets-west.jp (softbank126026094251.bbtec.net [126.26.94.251]) (authenticated)
+        by conuserg-12.nifty.com with ESMTP id 11118Msg002624;
+        Mon, 1 Feb 2021 10:08:23 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-12.nifty.com 11118Msg002624
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1612141703;
+        bh=eXbmZVUON4I0dEihsAGwk68LJPotOUe3IiJ7+FBD0Dc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=1fsNDfi7BthfW44xk0eXORECiU+C2HoMcJRM4QMnsV1gZVopX5SNDRmz9Iu3SKbr/
+         wzkNCvwnjAZY6+Tw+YhdsXxTKvMBh5FQJMQ3c5d0fLW2SB3YJv4sM9XBoP9enaAyb9
+         eetqDpR9lfx89s6OdLuroV9M02ezWpkAB2geb9n8GyRD5mVdv8ZqQBgiFNKAfaQdtV
+         KaeEinu455NYGdOljdBye0JNriRp/mwfJr6MsYHN0IM9rNhUwj6945INc6SbedUv6A
+         mPTTEg4ngFRyG6h1TimBkUkB0G1T6RvEZc8B56IvZL0w5uD6yYA8miBrCYabf6Uq55
+         sOkOXXZYol1rw==
+X-Nifty-SrcIP: [126.26.94.251]
+From:   Masahiro Yamada <masahiroy@kernel.org>
+To:     linux-kbuild@vger.kernel.org
+Cc:     linux-doc@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        clang-built-linux@googlegroups.com, linux-kernel@vger.kernel.org,
+        linux-spdx@vger.kernel.org
+Subject: [PATCH] scripts: switch some more scripts explicitly to Python 3
+Date:   Mon,  1 Feb 2021 10:08:18 +0900
+Message-Id: <20210201010819.655597-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 28 Jan 2021 20:14:51 +0200
-From:   Nut Grove Manor <manornutgrovemanor@gmail.com>
-To:     undisclosed-recipients:;
-Subject: Invitation To Quote
-User-Agent: Roundcube Webmail/1.4.1
-Message-ID: <f4df241716ca77b03e15c5275364cf84@gmail.com>
-X-Sender: manornutgrovemanor@gmail.com
-X-Originating-IP: 154.0.175.203
-X-Afrihost-Domain: pesci.aserv.co.za
-X-Afrihost-Username: 154.0.175.203
-Authentication-Results: ucebox.co.za; auth=pass smtp.auth=154.0.175.203@pesci.aserv.co.za
-X-Afrihost-Outgoing-Class: unsure
-X-Afrihost-Outgoing-Evidence: Combined (0.71)
-X-Recommended-Action: accept
-X-Filter-ID: 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
-X-Report-Abuse-To: spam@spe1.ucebox.co.za
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Good Day Sir
+For the same reason as commit 51839e29cb59 ("scripts: switch explicitly
+to Python 3"), switch some more scripts, which I tested and confirmed
+working on Python 3.
 
-We are please to invite you/your company to quote the following item
-listed
-below:
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+---
 
-Product/Model No: TM9653 PRESSURE REGULATOR
-Product Name:MEKO
-Qty. 30 units
+ scripts/clang-tools/gen_compile_commands.py | 2 +-
+ scripts/clang-tools/run-clang-tools.py      | 2 +-
+ scripts/spdxcheck.py                        | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Compulsory,Kindly send your quotation
-for immediate approval.
+diff --git a/scripts/clang-tools/gen_compile_commands.py b/scripts/clang-tools/gen_compile_commands.py
+index 19963708bcf8..8ddb5d099029 100755
+--- a/scripts/clang-tools/gen_compile_commands.py
++++ b/scripts/clang-tools/gen_compile_commands.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ # SPDX-License-Identifier: GPL-2.0
+ #
+ # Copyright (C) Google LLC, 2018
+diff --git a/scripts/clang-tools/run-clang-tools.py b/scripts/clang-tools/run-clang-tools.py
+index fa7655c7cec0..f754415af398 100755
+--- a/scripts/clang-tools/run-clang-tools.py
++++ b/scripts/clang-tools/run-clang-tools.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ # SPDX-License-Identifier: GPL-2.0
+ #
+ # Copyright (C) Google LLC, 2020
+diff --git a/scripts/spdxcheck.py b/scripts/spdxcheck.py
+index bc87200f9c7c..cbdb5c83c08f 100755
+--- a/scripts/spdxcheck.py
++++ b/scripts/spdxcheck.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ # SPDX-License-Identifier: GPL-2.0
+ # Copyright Thomas Gleixner <tglx@linutronix.de>
+ 
+-- 
+2.27.0
 
-Kind Regards,
-Albert Bourla
-PFIZER B.V Supply Chain Manager
-Tel: +31(0)208080 880
-ADDRESS: Rivium Westlaan 142, 2909 LD
-Capelle aan den IJssel, Netherlands

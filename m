@@ -2,56 +2,47 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E8E330AF49
-	for <lists+linux-spdx@lfdr.de>; Mon,  1 Feb 2021 19:31:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E08E30B7AB
+	for <lists+linux-spdx@lfdr.de>; Tue,  2 Feb 2021 07:11:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232146AbhBASaF (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 1 Feb 2021 13:30:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231902AbhBAS26 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 1 Feb 2021 13:28:58 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 159A5C061756
-        for <linux-spdx@vger.kernel.org>; Mon,  1 Feb 2021 10:28:18 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id g15so12645685pgu.9
-        for <linux-spdx@vger.kernel.org>; Mon, 01 Feb 2021 10:28:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZpTMPQ2QiuaE7YgK9D97So9gGS45ZWVWJvJLwPy7gVE=;
-        b=n7LNoaNuf95Q4NZEiOJJmi/AUUVJd8pv3Gq/pEbjwLx+2am/cNePL+YKe4qJwyyAvh
-         RaXG4rMwHv/Ac+OyaYaZUKTj1CnrkVyujna3JevD7q0jOIkimyNMTN1RDXOD2LonqJik
-         1AWFBndBZzdqO+wmI1yyhXRVSS62XmpNaPKYjRmdhlMKVQOmWw1utTN/Da3AbWqw6tlH
-         hJU7D3tMF9rac5YfYnTugcrshG5E1BM9QP/RHLV96Wy8+JyXeHUAL47G4P0LUuMviSeN
-         6wqCH7/Hl6QHAlXlLnV3BCzdRCU4nmPUTLF3YMXKtolEvIttx8LlzXsqwdG/07FtpfDL
-         4dvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZpTMPQ2QiuaE7YgK9D97So9gGS45ZWVWJvJLwPy7gVE=;
-        b=NLE44ZmZfYs2akRc62iSf2ICCfSCMPwoMRyim8CqjLwiai0i86+/SLOyqSb3m1AZ26
-         JHDBMyph82Bf9+ocmFBFpCWIyMet5OqEp2ay/ZVAnEyZPFa/e2RoPzDXHbiqwMtuCs1w
-         I7CJ9QklKTC8UPCpG/rtpTNTq/BIq+kl8gHDfGETfKBiLDpxu/U/qSsKeV/GwQggUkV+
-         173r5AUDjIYgzOB0RopJXRK1mGnguND5ZxwqgmjNNOB7XEFYmd29GQLtTWJkt0G2g7po
-         huNLx7sXarCvPsbXzBTkJ+65J46sg0IeWjFHNcKUYX6ye5RCYF8iyKi8le9+i702REzv
-         2Irg==
-X-Gm-Message-State: AOAM530waI6A83/xL/Rap5LKp3YyNVj9RilhPSnWXMTM9KYfjUaO/pXI
-        uvHuLC1rJVz3gKgX5uA49Oebpunj+N9rmT/lVXJwpA==
-X-Google-Smtp-Source: ABdhPJyj+nqwhsWtSMAc77QUN3iH+51wGBli74byxlse5q8S9UBykrdYICOgPFkVfNbslN7hddoFuUFiqOa1DDwNkcc=
-X-Received: by 2002:a62:7896:0:b029:1b6:7319:52a7 with SMTP id
- t144-20020a6278960000b02901b6731952a7mr17982053pfc.30.1612204097451; Mon, 01
- Feb 2021 10:28:17 -0800 (PST)
+        id S231546AbhBBGLP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 2 Feb 2021 01:11:15 -0500
+Received: from conssluserg-02.nifty.com ([210.131.2.81]:54889 "EHLO
+        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231621AbhBBGLO (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 2 Feb 2021 01:11:14 -0500
+X-Greylist: delayed 104440 seconds by postgrey-1.27 at vger.kernel.org; Tue, 02 Feb 2021 01:11:13 EST
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46]) (authenticated)
+        by conssluserg-02.nifty.com with ESMTP id 1126AFmT030335;
+        Tue, 2 Feb 2021 15:10:16 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 1126AFmT030335
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1612246216;
+        bh=2faiPUU1kCn9CAla/zsNtBG+tChwSI/0/LPuqDKvFFo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=xeb4ljx2coq4CTT4KH1ixIBqET/OVNoJqOAgpVpvmJ103knAnHtg60AJuqDrpSiqJ
+         Q3Dh/vA6bHO/WaBQq2oJHZRUnGZJsSg6J49C7mbxE2JGMx/mO3JASVvH3HuHmFCzp/
+         rhSCM7FTPX7xQ+y6KaSsni4vdUd8701HF/wnPU4oBU3a04ZpPQ4cI2wb4OnUPIraKV
+         D1/9PERUB6usDkNqSUMBCiASeM6BMOSFbrNlIk7sLklXAIVubMvRVzoM8ZoxabaWhG
+         Pl2QEY8rVbeK8y4m5EuMfk3DXn5UylBAQcdMz9ok5t8LwrbC3eJXTQHIWLL7yJUwH+
+         pmpd//aSFqRgA==
+X-Nifty-SrcIP: [209.85.216.46]
+Received: by mail-pj1-f46.google.com with SMTP id nm1so1606434pjb.3;
+        Mon, 01 Feb 2021 22:10:16 -0800 (PST)
+X-Gm-Message-State: AOAM530/q++j0gfcP5DELgw3oeOfNcu6r8k9V//SXHBxyFICkoAVL4T0
+        ILpYj8taoBM7y2jhboYPHfTnEFcqWEkTwvHoezs=
+X-Google-Smtp-Source: ABdhPJy7XtWW44+kUNWZz3iSggbI/ZB+xZxQGW6Cm9nmgZ7xrISemk/yF6L0G4Eu04oKtOWs4LsXiCS8a53x3ygpfo0=
+X-Received: by 2002:a17:90a:184:: with SMTP id 4mr2633282pjc.87.1612246215253;
+ Mon, 01 Feb 2021 22:10:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20210201010819.655597-1-masahiroy@kernel.org>
-In-Reply-To: <20210201010819.655597-1-masahiroy@kernel.org>
-From:   Nick Desaulniers <ndesaulniers@google.com>
-Date:   Mon, 1 Feb 2021 10:28:06 -0800
-Message-ID: <CAKwvOdnECGDFe=n6ms0Aj7FB0sN7ktZyk4dyVvV0UTgPvpuWpA@mail.gmail.com>
+References: <20210201010819.655597-1-masahiroy@kernel.org> <CAKwvOdnECGDFe=n6ms0Aj7FB0sN7ktZyk4dyVvV0UTgPvpuWpA@mail.gmail.com>
+In-Reply-To: <CAKwvOdnECGDFe=n6ms0Aj7FB0sN7ktZyk4dyVvV0UTgPvpuWpA@mail.gmail.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 2 Feb 2021 15:09:38 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATSna9f8cd5Lm=zx2vfJzk=WUnAUkA8V593O304zTx=vQ@mail.gmail.com>
+Message-ID: <CAK7LNATSna9f8cd5Lm=zx2vfJzk=WUnAUkA8V593O304zTx=vQ@mail.gmail.com>
 Subject: Re: [PATCH] scripts: switch some more scripts explicitly to Python 3
-To:     Masahiro Yamada <masahiroy@kernel.org>
+To:     Nick Desaulniers <ndesaulniers@google.com>
 Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
         Linux Doc Mailing List <linux-doc@vger.kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -64,69 +55,93 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Sun, Jan 31, 2021 at 5:08 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
+On Tue, Feb 2, 2021 at 3:28 AM Nick Desaulniers <ndesaulniers@google.com> wrote:
 >
-> For the same reason as commit 51839e29cb59 ("scripts: switch explicitly
-> to Python 3"), switch some more scripts, which I tested and confirmed
-> working on Python 3.
+> On Sun, Jan 31, 2021 at 5:08 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
+> >
+> > For the same reason as commit 51839e29cb59 ("scripts: switch explicitly
+> > to Python 3"), switch some more scripts, which I tested and confirmed
+> > working on Python 3.
+> >
+> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 >
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-
-Thanks for the patch. It's time to move on from Python 2.
-
-It looks like there's already a patch in -next for scripts/spdxcheck.py.
-("spdxcheck.py: Use Python 3") by Bert Vermeulen.
-https://lore.kernel.org/r/20210121085412.265400-1-bert@biot.com
-
-What about:
-scripts/tracing/draw_functrace.py
-scripts/show_delta
-scripts/jobserver-exec
-
-Or do those need additional source level changes?
-
-> ---
+> Thanks for the patch. It's time to move on from Python 2.
 >
->  scripts/clang-tools/gen_compile_commands.py | 2 +-
->  scripts/clang-tools/run-clang-tools.py      | 2 +-
->  scripts/spdxcheck.py                        | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
+> It looks like there's already a patch in -next for scripts/spdxcheck.py.
+> ("spdxcheck.py: Use Python 3") by Bert Vermeulen.
+> https://lore.kernel.org/r/20210121085412.265400-1-bert@biot.com
+
+OK, I dropped the spdxcheck.py change in v2.
+
+
+
+> What about:
+> scripts/tracing/draw_functrace.py
+> scripts/show_delta
+> scripts/jobserver-exec
 >
-> diff --git a/scripts/clang-tools/gen_compile_commands.py b/scripts/clang-tools/gen_compile_commands.py
-> index 19963708bcf8..8ddb5d099029 100755
-> --- a/scripts/clang-tools/gen_compile_commands.py
-> +++ b/scripts/clang-tools/gen_compile_commands.py
-> @@ -1,4 +1,4 @@
-> -#!/usr/bin/env python
-> +#!/usr/bin/env python3
->  # SPDX-License-Identifier: GPL-2.0
->  #
->  # Copyright (C) Google LLC, 2018
-> diff --git a/scripts/clang-tools/run-clang-tools.py b/scripts/clang-tools/run-clang-tools.py
-> index fa7655c7cec0..f754415af398 100755
-> --- a/scripts/clang-tools/run-clang-tools.py
-> +++ b/scripts/clang-tools/run-clang-tools.py
-> @@ -1,4 +1,4 @@
-> -#!/usr/bin/env python
-> +#!/usr/bin/env python3
->  # SPDX-License-Identifier: GPL-2.0
->  #
->  # Copyright (C) Google LLC, 2020
-> diff --git a/scripts/spdxcheck.py b/scripts/spdxcheck.py
-> index bc87200f9c7c..cbdb5c83c08f 100755
-> --- a/scripts/spdxcheck.py
-> +++ b/scripts/spdxcheck.py
-> @@ -1,4 +1,4 @@
-> -#!/usr/bin/env python
-> +#!/usr/bin/env python3
->  # SPDX-License-Identifier: GPL-2.0
->  # Copyright Thomas Gleixner <tglx@linutronix.de>
+> Or do those need additional source level changes?
+
+
+I touched jobserver-exec in this patch:
+
+https://patchwork.kernel.org/project/linux-kbuild/patch/20210201010024.654526-1-masahiroy@kernel.org/
+
+
+I have not tested draw_functrac.py or show_delta.
+
+
+
+
+
+> > ---
+> >
+> >  scripts/clang-tools/gen_compile_commands.py | 2 +-
+> >  scripts/clang-tools/run-clang-tools.py      | 2 +-
+> >  scripts/spdxcheck.py                        | 2 +-
+> >  3 files changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/scripts/clang-tools/gen_compile_commands.py b/scripts/clang-tools/gen_compile_commands.py
+> > index 19963708bcf8..8ddb5d099029 100755
+> > --- a/scripts/clang-tools/gen_compile_commands.py
+> > +++ b/scripts/clang-tools/gen_compile_commands.py
+> > @@ -1,4 +1,4 @@
+> > -#!/usr/bin/env python
+> > +#!/usr/bin/env python3
+> >  # SPDX-License-Identifier: GPL-2.0
+> >  #
+> >  # Copyright (C) Google LLC, 2018
+> > diff --git a/scripts/clang-tools/run-clang-tools.py b/scripts/clang-tools/run-clang-tools.py
+> > index fa7655c7cec0..f754415af398 100755
+> > --- a/scripts/clang-tools/run-clang-tools.py
+> > +++ b/scripts/clang-tools/run-clang-tools.py
+> > @@ -1,4 +1,4 @@
+> > -#!/usr/bin/env python
+> > +#!/usr/bin/env python3
+> >  # SPDX-License-Identifier: GPL-2.0
+> >  #
+> >  # Copyright (C) Google LLC, 2020
+> > diff --git a/scripts/spdxcheck.py b/scripts/spdxcheck.py
+> > index bc87200f9c7c..cbdb5c83c08f 100755
+> > --- a/scripts/spdxcheck.py
+> > +++ b/scripts/spdxcheck.py
+> > @@ -1,4 +1,4 @@
+> > -#!/usr/bin/env python
+> > +#!/usr/bin/env python3
+> >  # SPDX-License-Identifier: GPL-2.0
+> >  # Copyright Thomas Gleixner <tglx@linutronix.de>
+> >
+> > --
+> > 2.27.0
+> >
+>
 >
 > --
-> 2.27.0
->
+> Thanks,
+> ~Nick Desaulniers
+
 
 
 -- 
-Thanks,
-~Nick Desaulniers
+Best Regards
+Masahiro Yamada

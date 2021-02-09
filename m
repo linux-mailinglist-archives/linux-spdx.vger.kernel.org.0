@@ -2,68 +2,78 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0668311DD6
-	for <lists+linux-spdx@lfdr.de>; Sat,  6 Feb 2021 15:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6679B315C7C
+	for <lists+linux-spdx@lfdr.de>; Wed, 10 Feb 2021 02:45:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229969AbhBFOjp (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sat, 6 Feb 2021 09:39:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51862 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbhBFOjQ (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sat, 6 Feb 2021 09:39:16 -0500
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A38CC06178B
-        for <linux-spdx@vger.kernel.org>; Sat,  6 Feb 2021 06:38:36 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id r21so1358630otk.13
-        for <linux-spdx@vger.kernel.org>; Sat, 06 Feb 2021 06:38:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=sY4fgq/DSyThalwU7QX+pWYKs/8sGH7ZznMUn5qQ1EY=;
-        b=k6g4h14QCOZxUuS0WtdOy5Cv/enfoTR1UoK0M3h8ZEcrHsx3vZ44qFuL7veaWNn9lj
-         OLKNbz5IAYtLrBr8I5rQ5XUXP5RpE9ePifi5VYlcueXNltzLELCAG1hgh5HhRiemP7Zd
-         us/ViSwfZDr++uFa/xe04YpZl6B2bh12HAKR5z6ExoSPJ66vrb3MLKOo9sYIkkT4rgU8
-         Bes1o8LMnAqumSnd2YioV3Hb8n/krxj/6aElKh1IrYzQous3ZUJhjsdVo3nEooIVpihu
-         IKSuzNUUFSw89UWMgkppKRD8zk4dcawcUSmUcqHZwKhbFSR+4O2jTJvmrcrH/c1T8LGw
-         eePQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=sY4fgq/DSyThalwU7QX+pWYKs/8sGH7ZznMUn5qQ1EY=;
-        b=dk3tZS/yzOfadHu2YfTDLxdz0HJ/n+Y5ziBp2zvK2yqpfVtTrg9UMZrP+Mv3FE1g1t
-         PUnYQJBasy46tgmMb5nvM/YIjS9ZLNGj+jZrth05udXaWQN+qJdOoREDK65m+CG5RfE5
-         58pRKaNo2j+HOUBfNh3UQIwUQVd+AbLBH5Cx0PM7WAsl0wOwKYF7naURP4fjchL4fyWA
-         NEEQ/FP8bGaMgEEOjy4BeBnye71SXAXxFbOfXlo4rKM0kbKLXDFfqtKMuup8YSGRtNsD
-         rFT5/ijMuHWWbuK8cs9UHZAvH2B7VkzQ2zy3sxmr15Ax+tUE8gxWfHA2lDKPYSWCn7S6
-         oQbA==
-X-Gm-Message-State: AOAM531GaiyJL1IVBPWpk0HZRsGlW90sLvy7vzB9aiELSxuu4xbMbw2u
-        zwbrIWE8KIIuQMZUukQpVw63zSv1FC2nIvlXX28=
-X-Google-Smtp-Source: ABdhPJy50OWDS13imtA1XFGJzGjBXx0EQEZx8DuBWLPVcnuyiwHX/pGSFbInQDBq+ZPoUA762HXZDAYhvWRXue7Z66A=
-X-Received: by 2002:a9d:69cf:: with SMTP id v15mr7280167oto.122.1612622315687;
- Sat, 06 Feb 2021 06:38:35 -0800 (PST)
+        id S233918AbhBJBn2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+linux-spdx@lfdr.de>); Tue, 9 Feb 2021 20:43:28 -0500
+Received: from spam.auroraoh.com ([24.56.89.101]:43000 "EHLO
+        barracuda.auroraoh.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235003AbhBJBlA (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 9 Feb 2021 20:41:00 -0500
+X-ASG-Debug-ID: 1612921191-112c0d6a799bde0001-0Hskv2
+Received: from COASRV-MAIL2.auroraoh.loc (coasrv-mail2.auroraoh.loc [10.3.1.15]) by barracuda.auroraoh.com with ESMTP id 6iz53B5S3u8py0D5; Tue, 09 Feb 2021 20:39:51 -0500 (EST)
+X-Barracuda-Envelope-From: JanuskaD@auroraoh.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.3.1.15
+Received: from [172.20.10.5] (197.210.29.8) by COASRV-MAIL2.auroraoh.loc
+ (10.3.1.15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 9 Feb 2021
+ 02:46:18 -0500
+Content-Type: text/plain; charset="iso-8859-1"
+X-Barracuda-RBL-Trusted-Forwarder: 172.20.10.5
 MIME-Version: 1.0
-Received: by 2002:a9d:3e4c:0:0:0:0:0 with HTTP; Sat, 6 Feb 2021 06:38:35 -0800 (PST)
-Reply-To: lawyer.nba@gmail.com
-From:   Barrister Daven Bango <stephennbada@gmail.com>
-Date:   Sat, 6 Feb 2021 15:38:35 +0100
-Message-ID: <CAO_fDi-7cZzW18vF3SsjEC8f8hjQR+6f2gZbxoRKNp4R3q+nXA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: We are a registered Private Loan Investment Company in the United Kingdom,
+ we also registered with the Turkish British Chamber of Commerce and Industry
+ (TBCCI) we have operations in Europe and Asia.
+To:     Recipients <januskad@auroraoh.com>
+X-ASG-Orig-Subj: We are a registered Private Loan Investment Company in the United Kingdom,
+ we also registered with the Turkish British Chamber of Commerce and Industry
+ (TBCCI) we have operations in Europe and Asia.
+From:   <januskad@auroraoh.com>
+Date:   Tue, 9 Feb 2021 15:45:32 +0800
+Reply-To: <cfolimiited@gmail.com>
+X-Priority: 1 (High)
+X-Antivirus: Avast (VPS 210207-2, 02/07/2021), Outbound message
+X-Antivirus-Status: Clean
+Message-ID: <fcb0cdea-e224-43e7-87c3-ae3968f6d483@COASRV-MAIL2.auroraoh.loc>
+X-Originating-IP: [197.210.29.8]
+X-ClientProxiedBy: COASRV-MAIL3.auroraoh.loc (10.3.1.13) To
+ COASRV-MAIL2.auroraoh.loc (10.3.1.15)
+X-Barracuda-Connect: coasrv-mail2.auroraoh.loc[10.3.1.15]
+X-Barracuda-Start-Time: 1612921191
+X-Barracuda-URL: https://10.3.1.12:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at auroraoh.com
+X-Barracuda-Scan-Msg-Size: 755
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 1.61
+X-Barracuda-Spam-Status: No, SCORE=1.61 using global scores of TAG_LEVEL=1000.0 QUARANTINE_LEVEL=1000.0 KILL_LEVEL=5.0 tests=BSF_SC0_SA609_NRN, BSF_SC0_SA912_RP_FR, BSF_SC0_SA_TO_FROM_ADDR_MATCH, NO_REAL_NAME
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.87874
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------------------------
+        0.00 NO_REAL_NAME           From: does not include a real name
+        0.01 BSF_SC0_SA912_RP_FR    Custom Rule BSF_SC0_SA912_RP_FR
+        0.50 BSF_SC0_SA_TO_FROM_ADDR_MATCH Sender Address Matches Recipient
+                                   Address
+        1.10 BSF_SC0_SA609_NRN      Custom Rule SA609_NRN
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
---=20
-Korisnik fonda =C4=8Destitanja, Va=C5=A1a sredstva za naknadu od 850.000,00
-ameri=C4=8Dkih dolara odobrila je Me=C4=91unarodna monetarna organizacija (=
-MMF)
-u suradnji s (FBI) nakon mnogo istraga. =C4=8Cekamo da se obratimo za
-dodatne informacije
+We are seeking for beneficiaries who source for fund to expand/relocating their business interest abroad. We are ready to fund projects outside Turkey and United Kingdom in the form of Soft Loan. We grant loans to both corporate and private entities at a low interest rate of 2% R.O.I per annul.
 
-Advokat: Daven Bango
-Telefon: +22891667276
-(URED MMF-a LOME TOGO)
+We like to grant loan in the following sectors: oil/Gas, banking, real estate, stock speculation and mining, transportation, health sector and tobacco, Communication Services, Agriculture Forestry & Fishing, thus any sector. The terms are very flexible and interesting.
+
+Please contact us for more details;
+
+
+Kind regards,
+
+Paul McCann
+
+-- 
+This email has been checked for viruses by Avast antivirus software.
+https://www.avast.com/antivirus
+

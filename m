@@ -2,78 +2,88 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6679B315C7C
-	for <lists+linux-spdx@lfdr.de>; Wed, 10 Feb 2021 02:45:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA3633C2A1
+	for <lists+linux-spdx@lfdr.de>; Mon, 15 Mar 2021 17:56:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233918AbhBJBn2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+linux-spdx@lfdr.de>); Tue, 9 Feb 2021 20:43:28 -0500
-Received: from spam.auroraoh.com ([24.56.89.101]:43000 "EHLO
-        barracuda.auroraoh.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235003AbhBJBlA (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 9 Feb 2021 20:41:00 -0500
-X-ASG-Debug-ID: 1612921191-112c0d6a799bde0001-0Hskv2
-Received: from COASRV-MAIL2.auroraoh.loc (coasrv-mail2.auroraoh.loc [10.3.1.15]) by barracuda.auroraoh.com with ESMTP id 6iz53B5S3u8py0D5; Tue, 09 Feb 2021 20:39:51 -0500 (EST)
-X-Barracuda-Envelope-From: JanuskaD@auroraoh.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.3.1.15
-Received: from [172.20.10.5] (197.210.29.8) by COASRV-MAIL2.auroraoh.loc
- (10.3.1.15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 9 Feb 2021
- 02:46:18 -0500
-Content-Type: text/plain; charset="iso-8859-1"
-X-Barracuda-RBL-Trusted-Forwarder: 172.20.10.5
+        id S234088AbhCOQ4D (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 15 Mar 2021 12:56:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54990 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234000AbhCOQz4 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 15 Mar 2021 12:55:56 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C4BC0613D8
+        for <linux-spdx@vger.kernel.org>; Mon, 15 Mar 2021 09:55:55 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id x4so51259269lfu.7
+        for <linux-spdx@vger.kernel.org>; Mon, 15 Mar 2021 09:55:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=nn1W9Wc+k1CJYE8WxkSJGXK0N+qf/mcCb4Whw81sCBc=;
+        b=NFIKK+nfxU1Bk+3WCrU9O3MGPlJFWuI8pQsA4NO+khcy4IfqkRAKK0AWxN7+EKZoLp
+         ZJdTuC+bpEdcdWNQ48J87QTkicfcXwM5vDqZ8THerD1aG4Htzvz9a8JuF6RyJkH/0P/H
+         YgO1aQNpeqjVVeUnRQEq3uywJyLa3nZEYCEBnu4oOP+0oHYiPqvxycfJjg+Miw3Su0Ly
+         Onkizp0dFVpKsHJYeRS3jOJIv2iHgnLZCWQKktBFLeEPOJEkBM6YPDst3Txzn97hyyCo
+         2L0z4aN/23aR2RV7uI7XCiWyNGs6jwGUBK0c+VJVf2SO//1QRq75v2XWVIep95A54pTN
+         yPCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=nn1W9Wc+k1CJYE8WxkSJGXK0N+qf/mcCb4Whw81sCBc=;
+        b=SCFKD++4b3Ig80d582sHsOZmQWTih1Qpt9fcx9VG/Xr1ERScyG042Csuldm/5tqLGb
+         +21KreHy3uAD8yNQH/mPfHzlv9P5Gkzvy9WY85vHJpHxxP9EJa5El+VInfW/QB6jbDba
+         N8r/iAgS6Zxgh6VmoWGgbioaDlCIl7m7rDWRLgx6+CRbTKHVhysqTV6szoU4/iogECWm
+         Ggal/0QSMg6NaqkSoVxG+d4PSTE9v+JZB7XsVs0ZneheTDeYFUYHhv8AOVVnfS44HEDW
+         m/0W0BlH5aKYPnvSLMK9rRiI3fQyy4ukoj3WrA8BEAXbHoT+tg2K2cDBOkA9HO/+OpEO
+         2G1A==
+X-Gm-Message-State: AOAM530nqFaWJj6U3o0MAXRv6UDJxd2O17I0bbQZmvOebWRNJK1eDRol
+        TBPjnUtoJUL3CY+dS07v6o75/5L1RDvZuszCP44=
+X-Google-Smtp-Source: ABdhPJyti9j1xbG7VWGMZ7aPtd7Btkjs1GN0IVYGnPzacRUiAM0k8HHHlBfAb/Fiz24mX/Aiqm6jmarQAvIoeTz7Yr8=
+X-Received: by 2002:a19:c309:: with SMTP id t9mr8176362lff.348.1615827353222;
+ Mon, 15 Mar 2021 09:55:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: We are a registered Private Loan Investment Company in the United Kingdom,
- we also registered with the Turkish British Chamber of Commerce and Industry
- (TBCCI) we have operations in Europe and Asia.
-To:     Recipients <januskad@auroraoh.com>
-X-ASG-Orig-Subj: We are a registered Private Loan Investment Company in the United Kingdom,
- we also registered with the Turkish British Chamber of Commerce and Industry
- (TBCCI) we have operations in Europe and Asia.
-From:   <januskad@auroraoh.com>
-Date:   Tue, 9 Feb 2021 15:45:32 +0800
-Reply-To: <cfolimiited@gmail.com>
-X-Priority: 1 (High)
-X-Antivirus: Avast (VPS 210207-2, 02/07/2021), Outbound message
-X-Antivirus-Status: Clean
-Message-ID: <fcb0cdea-e224-43e7-87c3-ae3968f6d483@COASRV-MAIL2.auroraoh.loc>
-X-Originating-IP: [197.210.29.8]
-X-ClientProxiedBy: COASRV-MAIL3.auroraoh.loc (10.3.1.13) To
- COASRV-MAIL2.auroraoh.loc (10.3.1.15)
-X-Barracuda-Connect: coasrv-mail2.auroraoh.loc[10.3.1.15]
-X-Barracuda-Start-Time: 1612921191
-X-Barracuda-URL: https://10.3.1.12:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at auroraoh.com
-X-Barracuda-Scan-Msg-Size: 755
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 1.61
-X-Barracuda-Spam-Status: No, SCORE=1.61 using global scores of TAG_LEVEL=1000.0 QUARANTINE_LEVEL=1000.0 KILL_LEVEL=5.0 tests=BSF_SC0_SA609_NRN, BSF_SC0_SA912_RP_FR, BSF_SC0_SA_TO_FROM_ADDR_MATCH, NO_REAL_NAME
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.87874
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------------------------
-        0.00 NO_REAL_NAME           From: does not include a real name
-        0.01 BSF_SC0_SA912_RP_FR    Custom Rule BSF_SC0_SA912_RP_FR
-        0.50 BSF_SC0_SA_TO_FROM_ADDR_MATCH Sender Address Matches Recipient
-                                   Address
-        1.10 BSF_SC0_SA609_NRN      Custom Rule SA609_NRN
+Received: by 2002:a05:651c:1382:0:0:0:0 with HTTP; Mon, 15 Mar 2021 09:55:52
+ -0700 (PDT)
+Reply-To: ezbtg22@gmail.com
+From:   "Mrs.Glenn" <mrganuserge@gmail.com>
+Date:   Mon, 15 Mar 2021 09:55:52 -0700
+Message-ID: <CA+Wfa7YVrx0ws3646y2_O1kPsYemM7JwcJJmf2b35t-FLHsF1g@mail.gmail.com>
+Subject: From Mrs.Glenn
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-We are seeking for beneficiaries who source for fund to expand/relocating their business interest abroad. We are ready to fund projects outside Turkey and United Kingdom in the form of Soft Loan. We grant loans to both corporate and private entities at a low interest rate of 2% R.O.I per annul.
-
-We like to grant loan in the following sectors: oil/Gas, banking, real estate, stock speculation and mining, transportation, health sector and tobacco, Communication Services, Agriculture Forestry & Fishing, thus any sector. The terms are very flexible and interesting.
-
-Please contact us for more details;
-
-
-Kind regards,
-
-Paul McCann
-
 -- 
-This email has been checked for viruses by Avast antivirus software.
-https://www.avast.com/antivirus
+Dear Beloved,
 
+I am Mrs Elizabet Glenn from Israel. I am a missionary but right now
+in a hospital bed in Israel. I am 59 years and childless; my husband
+is dead. I was diagnosed with terminal cancer. And my doctor just
+predicted that I have but very limited time to live due to damages in
+my system and as a result of that I decided to dispose my 10.5 million
+US dollars to a God-fearing one for the continuation of charitable
+work. This is why I located you.My guess about you may not be accurate
+because I came across your contact at the humanitarian calendar event
+of the year but I believe in God who  divinely directed me to you for
+this solemn proposal of charitable work. I wholeheartedly wish to
+bequeath my fortune to you as a God-fearing person for the
+continuation of charitable work anywhere around the world.
+
+I shall be going in for a surgery operations soonest and desire this
+money to be transferred to you as I do not wish to leave this money in
+the bank because bankers might misuse it for their own interest after
+my death. As soon as I receive your quick reply assuring me that you
+will utilize the money as I instructed you for the benefit of the less
+privilege, I shall give you more details and also instruct my bank to
+release the money to you for the charity project. I hope you receive
+this mail in good health.
+
+Because I don t know what will be my situation in next minute,
+
+I am waiting for your reply.
+
+Yours sincerely,
+Mrs Elizabet Glenn.

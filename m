@@ -2,88 +2,86 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DA3633C2A1
-	for <lists+linux-spdx@lfdr.de>; Mon, 15 Mar 2021 17:56:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E904234A410
+	for <lists+linux-spdx@lfdr.de>; Fri, 26 Mar 2021 10:18:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234088AbhCOQ4D (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 15 Mar 2021 12:56:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54990 "EHLO
+        id S231268AbhCZJR0 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 26 Mar 2021 05:17:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234000AbhCOQz4 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 15 Mar 2021 12:55:56 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C4BC0613D8
-        for <linux-spdx@vger.kernel.org>; Mon, 15 Mar 2021 09:55:55 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id x4so51259269lfu.7
-        for <linux-spdx@vger.kernel.org>; Mon, 15 Mar 2021 09:55:55 -0700 (PDT)
+        with ESMTP id S230250AbhCZJQ5 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 26 Mar 2021 05:16:57 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6E7C0613AA;
+        Fri, 26 Mar 2021 02:16:56 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id i19so3755620qtv.7;
+        Fri, 26 Mar 2021 02:16:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=nn1W9Wc+k1CJYE8WxkSJGXK0N+qf/mcCb4Whw81sCBc=;
-        b=NFIKK+nfxU1Bk+3WCrU9O3MGPlJFWuI8pQsA4NO+khcy4IfqkRAKK0AWxN7+EKZoLp
-         ZJdTuC+bpEdcdWNQ48J87QTkicfcXwM5vDqZ8THerD1aG4Htzvz9a8JuF6RyJkH/0P/H
-         YgO1aQNpeqjVVeUnRQEq3uywJyLa3nZEYCEBnu4oOP+0oHYiPqvxycfJjg+Miw3Su0Ly
-         Onkizp0dFVpKsHJYeRS3jOJIv2iHgnLZCWQKktBFLeEPOJEkBM6YPDst3Txzn97hyyCo
-         2L0z4aN/23aR2RV7uI7XCiWyNGs6jwGUBK0c+VJVf2SO//1QRq75v2XWVIep95A54pTN
-         yPCw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PyIt38WFE9vg0s63Vp8tusIm5eIJviBYRHvIiSBOVAw=;
+        b=mwoR+rQ7OTBklKUmL52HXE6v87oGhrFOYXni4lI8IJtN6jsqS6OXuVjATYd+7AgUGR
+         CzXy8hVIzkDfbsxMQa9xzP/qRgQKPBpjfcpcoicH0syWA2FHYzOCMTUCdoDaIWO33+Aj
+         gkXYgry6Lrlbu6KHZT5DfEeR92E5T8pXwpLLIBGxoRTOlaOnghmpn1buh6J0v3DxSR6Q
+         rZRbQlFYck3lfB+NqSwakcvQ1jT8XQgR+BZueLt6Ze6O3rC6Lrp3dLC+kpVqe4jDqHRh
+         3sF/akQ95jFiyGDVkt7wLxiw6VPOQyHgImtd2lll5eOK24pI0x/nG7eearhBqSbBPP03
+         AJbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=nn1W9Wc+k1CJYE8WxkSJGXK0N+qf/mcCb4Whw81sCBc=;
-        b=SCFKD++4b3Ig80d582sHsOZmQWTih1Qpt9fcx9VG/Xr1ERScyG042Csuldm/5tqLGb
-         +21KreHy3uAD8yNQH/mPfHzlv9P5Gkzvy9WY85vHJpHxxP9EJa5El+VInfW/QB6jbDba
-         N8r/iAgS6Zxgh6VmoWGgbioaDlCIl7m7rDWRLgx6+CRbTKHVhysqTV6szoU4/iogECWm
-         Ggal/0QSMg6NaqkSoVxG+d4PSTE9v+JZB7XsVs0ZneheTDeYFUYHhv8AOVVnfS44HEDW
-         m/0W0BlH5aKYPnvSLMK9rRiI3fQyy4ukoj3WrA8BEAXbHoT+tg2K2cDBOkA9HO/+OpEO
-         2G1A==
-X-Gm-Message-State: AOAM530nqFaWJj6U3o0MAXRv6UDJxd2O17I0bbQZmvOebWRNJK1eDRol
-        TBPjnUtoJUL3CY+dS07v6o75/5L1RDvZuszCP44=
-X-Google-Smtp-Source: ABdhPJyti9j1xbG7VWGMZ7aPtd7Btkjs1GN0IVYGnPzacRUiAM0k8HHHlBfAb/Fiz24mX/Aiqm6jmarQAvIoeTz7Yr8=
-X-Received: by 2002:a19:c309:: with SMTP id t9mr8176362lff.348.1615827353222;
- Mon, 15 Mar 2021 09:55:53 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PyIt38WFE9vg0s63Vp8tusIm5eIJviBYRHvIiSBOVAw=;
+        b=fcvolXKKC/IWOGix1X6IpSJMU8Ho/P2nxvTacMrsGk+p3kxk56S4xaH0q233iHyzJO
+         onYRYJ6d0ZQW7rvN82G/dFYO0UHlOIPSCyZQMrZun7cEThnZiQBPFVbgxcInY0T4gmWv
+         3aj9HetIBMbTzPq+4tlwMcD7Z/OEWnudNSMVlAN4LyEOhPv8obseA09nVw+0ZZn33dst
+         4wfvPD4JYWg66bAXgdYQMwG1YbiqZH3knD5DKderMYiNV1jSL2PhLq1fFjhNL5AI3EcI
+         RrQtI18p1iRhLgySjzSLJXCaq6jds89+EJjBCuytdtODQVhWQYmAY7LOoYsuB8/LGl2Z
+         611Q==
+X-Gm-Message-State: AOAM531N3OkRk85zFkMqj7W1AfBsMKkP7sVHYx+jdCvEcNeJFZw/8OqT
+        goyTy4OOIrqTFZVcqSGxnEv69EjkrqOd6COm
+X-Google-Smtp-Source: ABdhPJy6F3KDTZ7GmJ2NV72l7kd1PkSAgCoBE+KJBhMH4sK4nqBy1QqJaqK3Wi+eMw0N4DoQAuUaIw==
+X-Received: by 2002:ac8:469a:: with SMTP id g26mr11499010qto.89.1616750215929;
+        Fri, 26 Mar 2021 02:16:55 -0700 (PDT)
+Received: from localhost.localdomain ([37.19.198.107])
+        by smtp.gmail.com with ESMTPSA id e1sm5620114qti.10.2021.03.26.02.16.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 02:16:55 -0700 (PDT)
+From:   Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To:     tglx@linutronix.de, gregkh@linuxfoundation.org,
+        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     rdunlap@infradead.org, Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Subject: [PATCH] scripts/spdxcheck.py: Fix a typo
+Date:   Fri, 26 Mar 2021 14:44:43 +0530
+Message-Id: <20210326091443.26525-1-unixbhaskar@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Received: by 2002:a05:651c:1382:0:0:0:0 with HTTP; Mon, 15 Mar 2021 09:55:52
- -0700 (PDT)
-Reply-To: ezbtg22@gmail.com
-From:   "Mrs.Glenn" <mrganuserge@gmail.com>
-Date:   Mon, 15 Mar 2021 09:55:52 -0700
-Message-ID: <CA+Wfa7YVrx0ws3646y2_O1kPsYemM7JwcJJmf2b35t-FLHsF1g@mail.gmail.com>
-Subject: From Mrs.Glenn
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
--- 
-Dear Beloved,
 
-I am Mrs Elizabet Glenn from Israel. I am a missionary but right now
-in a hospital bed in Israel. I am 59 years and childless; my husband
-is dead. I was diagnosed with terminal cancer. And my doctor just
-predicted that I have but very limited time to live due to damages in
-my system and as a result of that I decided to dispose my 10.5 million
-US dollars to a God-fearing one for the continuation of charitable
-work. This is why I located you.My guess about you may not be accurate
-because I came across your contact at the humanitarian calendar event
-of the year but I believe in God who  divinely directed me to you for
-this solemn proposal of charitable work. I wholeheartedly wish to
-bequeath my fortune to you as a God-fearing person for the
-continuation of charitable work anywhere around the world.
+s/Initilize/Initialize/
 
-I shall be going in for a surgery operations soonest and desire this
-money to be transferred to you as I do not wish to leave this money in
-the bank because bankers might misuse it for their own interest after
-my death. As soon as I receive your quick reply assuring me that you
-will utilize the money as I instructed you for the benefit of the less
-privilege, I shall give you more details and also instruct my bank to
-release the money to you for the charity project. I hope you receive
-this mail in good health.
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+---
+ scripts/spdxcheck.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Because I don t know what will be my situation in next minute,
+diff --git a/scripts/spdxcheck.py b/scripts/spdxcheck.py
+index cbdb5c83c08f..3e784cf9f401 100755
+--- a/scripts/spdxcheck.py
++++ b/scripts/spdxcheck.py
+@@ -243,7 +243,7 @@ if __name__ == '__main__':
+         # Initialize SPDX data
+         spdx = read_spdxdata(repo)
 
-I am waiting for your reply.
+-        # Initilize the parser
++        # Initialize the parser
+         parser = id_parser(spdx)
 
-Yours sincerely,
-Mrs Elizabet Glenn.
+     except SPDXException as se:
+--
+2.26.2
+

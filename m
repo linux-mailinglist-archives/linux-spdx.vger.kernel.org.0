@@ -2,84 +2,77 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 642933BE4DD
-	for <lists+linux-spdx@lfdr.de>; Wed,  7 Jul 2021 11:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC9823BE513
+	for <lists+linux-spdx@lfdr.de>; Wed,  7 Jul 2021 11:04:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbhGGJDP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 7 Jul 2021 05:03:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51236 "EHLO
+        id S230219AbhGGJH2 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 7 Jul 2021 05:07:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbhGGJDO (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 7 Jul 2021 05:03:14 -0400
+        with ESMTP id S230517AbhGGJH2 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 7 Jul 2021 05:07:28 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD414C061574;
-        Wed,  7 Jul 2021 02:00:34 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31364C061574;
+        Wed,  7 Jul 2021 02:04:48 -0700 (PDT)
 From:   Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1625648431;
+        s=2020; t=1625648685;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=zKAn8Dx3Y/L0pbsgSbA9OgZ7rDKTbASTW3EYoEIIFa4=;
-        b=eVr6Wnxy0OoN8+QuLtOOjr5eycSwcNsbgtTOEt9WMEm++cvWdSqI2DomT3G7kyigmjlgrp
-        py0yctsCiprDmgVh8091lkKgKuGVB/9wdWmdo2zD3T/vwgujci1sNkO3KEMdegpViu1OAg
-        uL1r6xwPWLjK/95h/cowe2maqz6Lr1GaAbGfkagMl7hRKvn0f2G4LFO3zC90awe8nJ+eLJ
-        lgrU/CHi92cS+/caaP9WKzFVLkFvWt/K5vyMUSwA1oJxGqH/N8FhidwHLvIZaKkVDM//Gy
-        xfK8sWK/IFTL3LhEA+KvUrAckql/13hccm96ajjkxhH4O7SN6OIM7RcefdIuXg==
+        bh=6KA4zh50Vy7cN7XMqgCrDYfFsQROF3Kqzlq265H9GB0=;
+        b=oPUgyfZHilFAm6ZfWHTKY2nS6zXnCCjYWSz/LDGhjnkzdiUq1UQ4A1JUCl4N5Kinp4GYpF
+        Uj31JiWkSEJcSL07x9VisLOwEu0p7hFeYk3MhFyxafFPPESQ4rI49Mb5FHqj3jrOYurf7h
+        WWNaDDDc0/AKisCLQ8+YV7L5I97XJW0h6ES4vBepI4IEfK+rXbTPjk/iatb4gL8LUGX2+P
+        vKTyz7FTxrVTXrCm9ECFdnJt00hjVNbNQk3NCNx2M/7JSWXLrgwfFNQKzVXkLlp5FP1Dj7
+        BljZdhJ4ln3/SroJGM2dfLV24GET4lrujwDizv7v/aZ1LAO6wkGLBi/Asc5Uzg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1625648431;
+        s=2020e; t=1625648685;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=zKAn8Dx3Y/L0pbsgSbA9OgZ7rDKTbASTW3EYoEIIFa4=;
-        b=vBsHwFIFbn+3aL5gtPuo/Wfkpr4xNFykm75s3sPA7dIw8WqgHFiPnM7P7zWt5AWRcUcfNv
-        cad8rWx5i5MRrbBQ==
+        bh=6KA4zh50Vy7cN7XMqgCrDYfFsQROF3Kqzlq265H9GB0=;
+        b=npDBNOM+rafYFMXRExrTYurWwUsiaKyaolwufsCCiTkDtOvpvREd4+aA8UJSEAjHANjlxM
+        ZypW2UMjP9VRMWAQ==
 To:     Nishanth Menon <nm@ti.com>,
+        Thorsten Leemhuis <linux@leemhuis.info>,
+        Jonathan Corbet <corbet@lwn.net>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org,
-        Rahul T R <r-ravikumar@ti.com>, Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH] scripts/spdxcheck.py: Lets strictly read license files in utf-8
-In-Reply-To: <20210703012128.27946-1-nm@ti.com>
-References: <20210703012128.27946-1-nm@ti.com>
-Date:   Wed, 07 Jul 2021 11:00:31 +0200
-Message-ID: <87h7h6qz0w.ffs@nanos.tec.linutronix.de>
+        Nishanth Menon <nm@ti.com>, Christoph Hellwig <hch@lst.de>,
+        Rahul T R <r-ravikumar@ti.com>
+Subject: Re: [PATCH] LICENSES/dual/CC-BY-4.0: Lets switch to utf-8
+In-Reply-To: <20210703012931.30604-1-nm@ti.com>
+References: <20210703012931.30604-1-nm@ti.com>
+Date:   Wed, 07 Jul 2021 11:04:45 +0200
+Message-ID: <87eecaqytu.ffs@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
 Nishanth,
-On Fri, Jul 02 2021 at 20:21, Nishanth Menon wrote:
-> Commit bc41a7f36469 ("LICENSES: Add the CC-BY-4.0 license")
-> unfortunately introduced LICENSES/dual/CC-BY-4.0 in UTF-8 Unicode text
 
-Sigh. Why are people adding such things w/o running this script in the
-first place.
+On Fri, Jul 02 2021 at 20:29, Nishanth Menon wrote:
+> Lets drop the unicode characters that peeped in and replace with
 
-> While python will barf at it with:
->
-> FAIL: 'ascii' codec can't decode byte 0xe2 in position 2109: ordinal not in range(128)
-> Traceback (most recent call last):
->   File "scripts/spdxcheck.py", line 244, in <module>
->     spdx = read_spdxdata(repo)
->   File "scripts/spdxcheck.py", line 47, in read_spdxdata
->     for l in open(el.path).readlines():
->   File "/usr/lib/python3.6/encodings/ascii.py", line 26, in decode
->     return codecs.ascii_decode(input, self.errors)[0]
-> UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2 in position 2109: ordinal not in range(128)
->
-> While it is indeed debatable if 'Licensor.' used in the license file
-> needs unicode quotes, instead, let us force spdxcheck to read utf-8
-> instead.
+Again: s/Lets//=20
 
-s/let us//
+> equivalent utf-8 characters. This makes the CC-BY-4.0 file inline with
+> rest of license files.
 
-Ditto for the $subject. See Documentation/process/ for further enlightment.
+>  Creative Commons is not a party to its public
+>  licenses. Notwithstanding, Creative Commons may elect to apply one of
+>  its public licenses to material it publishes and in those instances
+> -will be considered the =E2=80=9CLicensor.=E2=80=9D The text of the Creat=
+ive Commons
+> +will be considered the "Licensor." The text of the Creative Commons
 
-> Reported-by: Rahul T R <r-ravikumar@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+In theory the License text should be a verbatim copy. But yes, this
+unicode stuff is a pain.
 
-With that fixed:
-
-Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+Acked-by: Thomas Gleixner <tglx@linutronix.de>

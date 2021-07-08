@@ -2,100 +2,49 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD403BF131
-	for <lists+linux-spdx@lfdr.de>; Wed,  7 Jul 2021 23:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8753BF479
+	for <lists+linux-spdx@lfdr.de>; Thu,  8 Jul 2021 06:14:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbhGGVIw (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 7 Jul 2021 17:08:52 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:34236 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbhGGVIv (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 7 Jul 2021 17:08:51 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 167L64BT123290;
-        Wed, 7 Jul 2021 16:06:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1625691964;
-        bh=cBdek8vW38iLskZ5uj04DHrfr+HzrGMK3kExFl48NHk=;
-        h=From:To:CC:Subject:Date;
-        b=FVZhsIn4emD1AsiQnUpSveuG2cQ66eTt5jBT3RcuVcrasjv6QGDs+YTDLuCKLi4tF
-         7aY/qLmgfd5O03U6gPnW6sAKjzUREmawwMVR/rPCw7YZYYtNe7tvO3h6+yFw5WM4jp
-         6XcpJtw95FW21PQYZ+HKINJI58xnEbL0XlfabRNY=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 167L63t1114961
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 7 Jul 2021 16:06:04 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 7 Jul
- 2021 16:06:03 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 7 Jul 2021 16:06:03 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 167L63wR061298;
-        Wed, 7 Jul 2021 16:06:03 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-CC:     <linux-kernel@vger.kernel.org>, <linux-spdx@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>, Bert Vermeulen <bert@biot.com>
-Subject: [PATCH] scripts/spdxcheck-test.sh: Drop python2
-Date:   Wed, 7 Jul 2021 16:06:00 -0500
-Message-ID: <20210707210600.7266-1-nm@ti.com>
-X-Mailer: git-send-email 2.32.0
+        id S229580AbhGHERg (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 8 Jul 2021 00:17:36 -0400
+Received: from verein.lst.de ([213.95.11.211]:39111 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229482AbhGHERg (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
+        Thu, 8 Jul 2021 00:17:36 -0400
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 0839F68BFE; Thu,  8 Jul 2021 06:14:47 +0200 (CEST)
+Date:   Thu, 8 Jul 2021 06:14:46 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     Luis Chamberlain <mcgrof@kernel.org>
+Cc:     gregkh@linuxfoundation.org, tglx@linutronix.de,
+        akpm@linux-foundation.org, shuah@kernel.org, rafael@kernel.org,
+        rgoldwyn@suse.com, kuno@frob.nl, fontana@sharpeleven.org,
+        Ciaran.Farrell@suse.com, Christopher.DeNicolo@suse.com, hch@lst.de,
+        corbet@lwn.net, linux@leemhuis.info, ast@kernel.org,
+        andriin@fb.com, daniel@iogearbox.net, atenart@kernel.org,
+        alobakin@pm.me, weiwan@google.com, ap420073@gmail.com,
+        tj@kernel.org, jeyu@kernel.org, ngupta@vflare.org,
+        sergey.senozhatsky.work@gmail.com, minchan@kernel.org,
+        axboe@kernel.dk, mbenes@suse.com, jpoimboe@redhat.com,
+        keescook@chromium.org, jikos@kernel.org, rostedt@goodmis.org,
+        peterz@infradead.org, linux-block@vger.kernel.org,
+        linux-spdx@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-kernel@vger.kernel.org, copyleft-next@lists.fedorahosted.org
+Subject: Re: [PATCH 0/2] LICENSES: add and use copyleft-next-0.3.1
+Message-ID: <20210708041446.GA17410@lst.de>
+References: <20210707184310.3624761-1-mcgrof@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210707184310.3624761-1-mcgrof@kernel.org>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Since commit d0259c42abff ("spdxcheck.py: Use Python 3"), spdxcheck.py
-explicitly expects to run as python3 script, there is no further point
-in attempting to test with python2.
+On Wed, Jul 07, 2021 at 11:43:08AM -0700, Luis Chamberlain wrote:
+> This adds the copyleft-next-0.3.1 SPDX tag and replaces existing
+> boilerplate with the tag.
 
-Cc: Bert Vermeulen <bert@biot.com>
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-
-Also see checkpatch.pl patch
-https://lore.kernel.org/lkml/20210505211720.447111-1-linux@roeck-us.net/
-
-PS: While it may be debatable if *ever* there is going to be a python4
-and hence leave the for loop alone (in addition to reducing the
-diffstat). I just took the path where I hope if we ever see that day,
-we pick one version.
-
- scripts/spdxcheck-test.sh | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
-
-diff --git a/scripts/spdxcheck-test.sh b/scripts/spdxcheck-test.sh
-index cfea6a0d1cc0..cb76324756bd 100644
---- a/scripts/spdxcheck-test.sh
-+++ b/scripts/spdxcheck-test.sh
-@@ -1,12 +1,10 @@
- #!/bin/sh
- 
--for PYTHON in python2 python3; do
--	# run check on a text and a binary file
--	for FILE in Makefile Documentation/logo.gif; do
--		$PYTHON scripts/spdxcheck.py $FILE
--		$PYTHON scripts/spdxcheck.py - < $FILE
--	done
--
--	# run check on complete tree to catch any other issues
--	$PYTHON scripts/spdxcheck.py > /dev/null
-+# run check on a text and a binary file
-+for FILE in Makefile Documentation/logo.gif; do
-+	python3 scripts/spdxcheck.py $FILE
-+	python3 scripts/spdxcheck.py - < $FILE
- done
-+
-+# run check on complete tree to catch any other issues
-+python3 scripts/spdxcheck.py > /dev/null
--- 
-2.32.0
-
+Why do we need a random weirdo license in the kernel tree?  Is there
+any benefit?  If so it needs to be clearly spelled out.

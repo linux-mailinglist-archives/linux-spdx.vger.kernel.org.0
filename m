@@ -2,64 +2,76 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D143C1A55
-	for <lists+linux-spdx@lfdr.de>; Thu,  8 Jul 2021 22:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B62E53C5FF2
+	for <lists+linux-spdx@lfdr.de>; Mon, 12 Jul 2021 17:58:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbhGHUKs (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 8 Jul 2021 16:10:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59676 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229866AbhGHUKr (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Thu, 8 Jul 2021 16:10:47 -0400
-Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
+        id S234870AbhGLQBq (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 12 Jul 2021 12:01:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232979AbhGLQBp (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 12 Jul 2021 12:01:45 -0400
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E5A4C0613DD
+        for <linux-spdx@vger.kernel.org>; Mon, 12 Jul 2021 08:58:57 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2601:281:8300:104d::5f6])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 36E60613BA;
-        Thu,  8 Jul 2021 20:08:02 +0000 (UTC)
-Date:   Thu, 8 Jul 2021 16:08:00 -0400
-From:   Steven Rostedt <rostedt@goodmis.org>
-To:     Luis Chamberlain <mcgrof@kernel.org>
-Cc:     "Bradley M. Kuhn" <bkuhn@ebb.org>,
-        Greg KH <gregkh@linuxfoundation.org>, tglx@linutronix.de,
-        akpm@linux-foundation.org, shuah@kernel.org, rafael@kernel.org,
-        rgoldwyn@suse.com, kuno@frob.nl, fontana@sharpeleven.org,
-        Ciaran.Farrell@suse.com, Christopher.DeNicolo@suse.com, hch@lst.de,
-        corbet@lwn.net, linux@leemhuis.info, ast@kernel.org,
-        andriin@fb.com, daniel@iogearbox.net, atenart@kernel.org,
-        alobakin@pm.me, weiwan@google.com, ap420073@gmail.com,
-        tj@kernel.org, jeyu@kernel.org, ngupta@vflare.org,
-        sergey.senozhatsky.work@gmail.com, minchan@kernel.org,
-        axboe@kernel.dk, mbenes@suse.com, jpoimboe@redhat.com,
-        keescook@chromium.org, jikos@kernel.org, peterz@infradead.org,
-        linux-block@vger.kernel.org, linux-spdx@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
-        copyleft-next@lists.fedorahosted.org
-Subject: Re: [PATCH 0/2] LICENSES: add and use copyleft-next-0.3.1
-Message-ID: <20210708160800.75b7c86d@gandalf.local.home>
-In-Reply-To: <20210708193746.7e2dbpgs33cl73wx@garbanzo>
-References: <20210707184310.3624761-1-mcgrof@kernel.org>
-        <YOaZohB/2Z3x5grc@kroah.com>
-        <YOcSwXkpzAFGucXM@ebb.org>
-        <YOcakETswyEN58j6@kroah.com>
-        <YOc7dgBq/N5vDjhx@ebb.org>
-        <20210708150158.08ba548c@gandalf.local.home>
-        <20210708193746.7e2dbpgs33cl73wx@garbanzo>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        by ms.lwn.net (Postfix) with ESMTPSA id 10B0736E;
+        Mon, 12 Jul 2021 15:58:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 10B0736E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+        t=1626105536; bh=Qb3OXo7qhoaP3C4INVLiWv6MZA+pYBII5/GUopy3zWs=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=Aae8KS5Z6cOukMDwLjn9CLgDbWIL2ZDm2u898yF8m+4X/Zj9AT3uOZ1aWUmQYk7vF
+         LqJ9yD4YN3DIOaVpzWoiRhahezYUlmkGyH1rYeI+nk6Cm6Ec4ybFN2hqyH1IQ1wKCn
+         Sv57PGROrEU/LjRiUO7APcayTASSPIULykk1lqv/WSvXUbZCG/6yF58XylEnbXqD0V
+         u0foO8nM+J2/plsjJ80i6W94l2VUm2SKTqLEMVdyhC+gp+WiM/9LCuRH144pWaR04Q
+         BViKBkvSsLId6otZGTIepkG3AZ6YfXYubuBM15YibFAY9hkfzQlnj+5Mpj/lB+QK/S
+         DujrTKjPfSQcQ==
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Nishanth Menon <nm@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     "Ravikumar, Rahul" <r-ravikumar@ti.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-spdx <linux-spdx@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH V2] scripts/spdxcheck.py: Strictly read license files in
+ utf-8
+In-Reply-To: <20210707204840.30891-1-nm@ti.com>
+References: <20210707204840.30891-1-nm@ti.com>
+Date:   Mon, 12 Jul 2021 09:58:55 -0600
+Message-ID: <87y2abr0ao.fsf@meer.lwn.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Thu, 8 Jul 2021 12:37:46 -0700
-Luis Chamberlain <mcgrof@kernel.org> wrote:
+Nishanth Menon <nm@ti.com> writes:
 
-> The Signed-off-by tag implies you are making a contribution under the
-> same license as the license file states. The more people are aware of
-> this fact, the better, and its then why we made DCO a public thing and
-> now other projects embrace it.
+> Commit bc41a7f36469 ("LICENSES: Add the CC-BY-4.0 license")
+> unfortunately introduced LICENSES/dual/CC-BY-4.0 in UTF-8 Unicode text
+> While python will barf at it with:
+>
+> FAIL: 'ascii' codec can't decode byte 0xe2 in position 2109: ordinal not in range(128)
+> Traceback (most recent call last):
+>   File "scripts/spdxcheck.py", line 244, in <module>
+>     spdx = read_spdxdata(repo)
+>   File "scripts/spdxcheck.py", line 47, in read_spdxdata
+>     for l in open(el.path).readlines():
+>   File "/usr/lib/python3.6/encodings/ascii.py", line 26, in decode
+>     return codecs.ascii_decode(input, self.errors)[0]
+> UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2 in position 2109: ordinal not in range(128)
+>
+> While it is indeed debatable if 'Licensor.' used in the license file
+> needs unicode quotes, instead, force spdxcheck to read utf-8.
+>
+> Reported-by: Rahul T R <r-ravikumar@ti.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
 
-Ah, I forgot it was "per-file" and not "per-project". That's the difference.
+I've applied this, thanks.
 
--- Steve
+jon

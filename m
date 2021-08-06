@@ -2,105 +2,98 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65BE23E1E4E
-	for <lists+linux-spdx@lfdr.de>; Fri,  6 Aug 2021 00:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A620F3E236F
+	for <lists+linux-spdx@lfdr.de>; Fri,  6 Aug 2021 08:44:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237209AbhHEWEd (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 5 Aug 2021 18:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33774 "EHLO
+        id S232382AbhHFGpN (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 6 Aug 2021 02:45:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236929AbhHEWEc (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 5 Aug 2021 18:04:32 -0400
-Received: from server.example.com (unknown [IPv6:2001:41d0:8:808d::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A0DC061798
-        for <linux-spdx@vger.kernel.org>; Thu,  5 Aug 2021 15:04:17 -0700 (PDT)
-Received: by server.example.com (Postfix, from userid 1023)
-        id E72B2D462A0; Thu,  5 Aug 2021 21:15:15 +0000 (UTC)
-To:     linux-spdx@vger.kernel.org
-Subject: {Spam?} =?UTF-8?Q?Z._HD,Sehr_geehrte_/_r_Fondsempf=C3=A4nger?=
-Date:   Thu, 5 Aug 2021 21:15:15 +0000
-From:   "ANWALT BILBAO &EMMA ASSOZIIERT & CO..." 
-        <support@quali.speed.hebergement-com4design.fr>
-Reply-To: buroLotto.es@spainmail.com
-Message-ID: <7c63db1963a671752b6423fb88dfd4e8@www.quali.speed.hebergement-com4design.fr>
+        with ESMTP id S229482AbhHFGpN (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 6 Aug 2021 02:45:13 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5451C061798
+        for <linux-spdx@vger.kernel.org>; Thu,  5 Aug 2021 23:44:52 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id b13so9695886wrs.3
+        for <linux-spdx@vger.kernel.org>; Thu, 05 Aug 2021 23:44:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :mime-version;
+        bh=eDYdU8+2wJKRA2w9sVC28e1VJ1wYpo9Gc5OrbtBotgY=;
+        b=hiOFpCaeXLDZwDK8OlaBSmGjsbYz1OjWEBM5O3tyypWcePNJSWZIVxYNSSYDEgMYa5
+         WjI9Mc2YBENdsNO5iYdfbxd0ePdbzdijyC3+SO48oaLSG63jiC8p/CHy8918lk1mDUwf
+         8ydInLRf6MPMcP7djLux64x9U5Q5ZnQuETCOTzMf25gmrI5eNMD7asl4oaOA6VhNpiwR
+         PDA96z0X4pLi15rztCFZwZ+UY7UR4/tLr0xlUJbfx1gkWqj9YBFdg5hufzWOI2Q206kj
+         onttnTimqI7aM4qR7UlDg/xw4yH6k+d9XHX9IZ3k52M1jHRBbFdnc3sTevPC5P8XvYD9
+         oEXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:mime-version;
+        bh=eDYdU8+2wJKRA2w9sVC28e1VJ1wYpo9Gc5OrbtBotgY=;
+        b=fx1e2A6HKOQKtmy2zFJzuvEZyqwTv4ItGhCi+dLz/Kzp89S/m5r/C0LjaGLt0kHKip
+         zNqVl8bBOVVlva/oXtjbHG9HzWO7MkeNrEo5TpcwMQL399s7iN9B7ZKScfyqlULhO49y
+         292U6n4GVrFutGX+k9QyEvEBnSYzmN++qgh43kiLevG862JXLlggUvkSxvOhnPcvJAX+
+         lf934JhYMTKxbUAlbUyhcCCFUeBC9X3mFW4DHOiqSgHL3q6fFrWFIrbkOOUnM9Obu4zv
+         pnNoe5pFhu0tfUCjNVUlNisAU5Olcr3F/jDLz4KjBXPoANu/aVnGQVoXU6uIqOI51xox
+         kvbQ==
+X-Gm-Message-State: AOAM5331UXCbARsmv0OBXzC/KiXhedvIpbF6aq/mSs15Z4dA51R2q/bU
+        B1Sv3jYXpAGHGolztynlk3MrufJ6zvY=
+X-Google-Smtp-Source: ABdhPJxhnCn9XwYj4GdzpKamxUcw68s2GVwaUcsJLBDtzhZE8zUmLCmuN+FCKFNjd2LpgURV+/ka6Q==
+X-Received: by 2002:adf:f485:: with SMTP id l5mr8751053wro.8.1628232290617;
+        Thu, 05 Aug 2021 23:44:50 -0700 (PDT)
+Received: from rigel.lan ([90.195.46.18])
+        by smtp.gmail.com with ESMTPSA id g12sm8371600wri.49.2021.08.05.23.44.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Aug 2021 23:44:50 -0700 (PDT)
+Date:   Fri, 6 Aug 2021 07:44:41 +0100 (BST)
+From:   Nicky Chorley <ndchorley@gmail.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+cc:     Nicky Chorley <ndchorley@gmail.com>, linux-spdx@vger.kernel.org
+Subject: Re: Fwd: scripts/spdxcheck.py's third-party dependencies
+In-Reply-To: <YQvX4u/H8cV1pAPu@kroah.com>
+Message-ID: <42bfb9dc-3bbf-eba6-d1e9-ae56bc49f94@rigel.lan>
+References: <efcdf26-fd74-3d7d-25b1-d77ed3c493@rigel.lan> <CAG-xSoY-Z=AD8KhXrJvzqgA+mYZwUGEbAQ7UfPEbH6e4g7VD4w@mail.gmail.com> <YP+sCqNlB2g/srHc@kroah.com> <CAG-xSobn6hyMpuhiwMLpTQ7X00xQRNW6-jf9pk5g2UfApzHBsw@mail.gmail.com> <YQvX4u/H8cV1pAPu@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-yoursite-MailScanner-Information: Please contact the ISP for more information
-X-yoursite-MailScanner-ID: E72B2D462A0.AB0EC
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-SpamCheck: spam, SpamAssassin (cached, score=7.061,
-        required 6, ADVANCE_FEE_2_NEW_MONEY 0.15,
-        FREEMAIL_FORGED_REPLYTO 2.50, FREEMAIL_REPLYTO 1.00,
-        LOTS_OF_MONEY 0.00, MONEY_FREEMAIL_REPTO 2.43, MONEY_NOHTML 0.97,
-        NO_RELAYS -0.00, T_FILL_THIS_FORM_SHORT 0.01, XFER_LOTSA_MONEY 0.00)
-X-yoursite-MailScanner-SpamScore: sssssss
-X-yoursite-MailScanner-From: support@quali.speed.hebergement-com4design.fr
-X-Spam-Status: Yes
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Rechtsanwältin BILBAO &EMMA ASSOZIIERT & CO...
-#########################################
-AV/DE GRAN VIA NO.38k, 28008 MADRID.   SPAIN 
-TEL. ( 34) 602 810 185 FAX: ( 34) 931-702-120
-Eingetragener Fall NR: GY/Q3J63753 / SQQ/93000XS10.
+On Thu, 5 Aug 2021, Greg KH wrote:
 
-Ihnen wird empfohlen, die folgenden Informationen an Ihre Bevollmächtigte zu senden. Rechtsanwältin  BILBAO & EMMA  ASSOZIIERT CO ERMÖGLICHT IHNEN DIE FREIGABE IHRES FONDS:Wir bitten dringend, Ihre E-Mails an unsere Büro-E-Mail zu beantworten, buroLotto.es@spainmail.com, 
+> But we do not use pip to do kernel builds, so what is this going to help
+> with?
 
-Wir gratulieren und informieren Sie über die Auswahl des Geldpreises €935.470,00 EUROS, SOMMERBONANZA, EL GORDO DE LA PRIMITIVA LOTTERIE IN VERBINDUNG MIT EUROMILLIONS ESPAÑA INTERNATIONAL LOTTERIE BEFÖRDERUNG  PROGRAMM Madrid Spanien
+It's just about making people's lives easier for running the spdxcheck.py 
+script - not everyone will have the third-party libraries installed, so 
+listing them means they can be installed easily. For example:
 
- Sehr Geehrter  Begünstigten, 
-Wir möchten Sie informieren, dass das Büro des nicht Beanspruchten Preisgeldes in Spanien,unsere Anwaltskanzlei ernannt hat, als gesetzliche Berater zu handeln, in der Verarbeitung und der Zahlung eines Preisgeldes, das auf Ihrem Namen gutgeschrieben wurde, und nun seit über zwei Jahren nicht beansprucht wurde.
+diff --git a/scripts/README.spdxcheck b/scripts/README.spdxcheck
+new file mode 100644
+index 000000000000..80bb6308e5c5
+--- /dev/null
++++ b/scripts/README.spdxcheck
+@@ -0,0 +1,6 @@
++The script spdxcheck.py requires installation of some third party
++libraries. These are listed in ``requirements-spdxcheck.txt`` and can
++be installed with
++
++``pip install -r requirements-spdxcheck.txt``
++
+diff --git a/scripts/requirements-spdxcheck.txt b/scripts/requirements-spdxcheck.txt
+new file mode 100644
+index 000000000000..9a4633040897
+--- /dev/null
++++ b/scripts/requirements-spdxcheck.txt
+@@ -0,0 +1,3 @@
++ply
++GitPython
++
 
- Der Gesamtbetrag der ihnen zusteht beträgt momentan €935, 470, 15, cent.
+I'll reformat as a proper patch with any changes if this is useful.
 
-Der Gesamtbetrag der ihnen zusteht beträgt momentan  €935, 470, 15, neunhundert fünfunddreißigtausend, vierhundertsiebzig und fünfzehn Cent, Das ursprüngliche Preisgeld bertug €785.810, 15.00 EUROS. Siebenhundert Fünfundachtzigtausend Acht Hundertzehn Euro und fünfzehn Cent Diese Summe wurde fuer nun mehr als zwei Jahre,Gewinnbringend  angelegt,daher die aufstockung auf die oben genannte Gesamtsumme.Entsprechend dem Büros des nicht Beanspruchten  Preisgeldes,wurde dieses Geld als nicht beanspruchten Gewinn einer Lotterie Firma bei ihnen zum verwalten niedergelegt und  in ihrem namen versichert. Nach Ansicht der Lotterie Firma wurde ihnen das Geld nach einer Weihnachts Förderung Lotterie  zugesprochen. 
+Best,
 
- Die Kupons wurden von einer Investmentgesellschaft gekauft.Nach Ansicht der Lotterie Firma wurden sie damals Angeschrieben um Sie über dieses Geld zu informieren es hat sich aber leider bis zum Ablauf  der  gesetzten  Frist  keiner gemeldet um den Gewinn zu Beanspruchen. Dieses war der Grund weshalb das Geld zum verwalten niedergelegt wurde. Gemab des Spanischen Gesetzes muss der inhaber alle zwei Jahre ueber seinen vorhanden Gewinn informiert werden.Sollte dass Geld wieder nicht beansprucht werden,.wird der Gewinn abermals ueber eine Investierung gesellschaft fur eine weitere Periode von zwei Jahren angelegt werden.Wir sind daher, durch das Buro des nicht Beanspruchten Preisgelds beauftragt worden sie anzuschreiben.Dies ist eine Notifikation für das Beanspruchen dieses Gelds.
-
-Wir möchten sie darauf hinweisen, dass die Lotteriegesellschaft überprüfen und bestätigen wird ob ihre Identität  übereinstimmt bevor ihnen ihr Geld ausbezahlt wird.Wir werden sie beraten wie sie ihren Anspruch geltend machen.Bitte  setzen sie sich dafuer mit unserer Deutsch Spanisch oder Englisch Sprachigen Rechtsanwalt in Verbindung Rechtsanwältin: Bilbao & Emma ASSOZIIERT & CO.., TEL( 34) 602 810 185 & email,( Ihre Antwort sollte an diese E-MAIL-Adresse gerichtet, (promolottooffice@spainmail.com  )ist zustaendig fuer  Auszahlungen ins Ausland und wird ihnen in dieser sache zur seite stehen. Der Anspruch sollte vor den 30 August 2021 geltend  gemacht werden,da sonst dass Geld wieder angelegt werden wuerde.Wir freuen uns, von Ihnen zu hören, während wir Ihnen  unsere Rechtshilfe Versichern.
-
-Nachdem Sie die von Ihnen geforderten Daten bereitgestellt haben, können Sie davon ausgehen, dass Sie innerhalb weniger  Stunden direkt von diesem Büro erfahren werden. Bis dahin müssen wir Ihre Informationen verarbeitet und Ihre Fonds Akte für  die Zustellung vorbereitet haben, um Verzögerungen zu vermeiden. 
-Wir gehen davon aus, dass Sie die erläuternden Anweisungen und Anweisungen für den Erhalt Ihrer Prämien (935 €, 470, 15 Cent) verstehen, die Ihnen von der spanischen Euro Millones /El Gordo de la Primitiva International lotterie Madrid Spain legal zugesprochen werden.
-
-HINWEIS: Um unnötige Verzögerungen zu vermeiden, wenn es eine Änderung Ihrer Adresse oder Komplikationen geben, informieren Sie Ihren Agenten so schnell wie möglich, Ihr Agent wird 10% des Premium Preises bezahlt, da die Provision NACH Dem, was Sie Ihr Geld auf Ihr kostenpflichtiges Konto erhalten haben. Das Zahlungsbearbeitung Formular ist mit einer Fotokopie Ihres Ausweises auszufüllen und zur Überprüfung per Faxnummer zu senden: ( 34) 935457490 & E-Mail: Wir bitten dringend, Ihre E-Mails an unsere Büro-E-Mail zu beantworten  promolottooffice@spainmail.com
-
-Mit Freundlichen Grüßen
-Rechtsanwältin Bilbao & Emma ASSOZIIERT & CO..
-
-ANMELDEFORMULAR FÜR DEN GEWINNANSPRUCH Vom 28. Juni bis 30. August 2021
-Hinweis bitte geben Sie die folgenden Informationen, wie unten gefordert, faxen   34935457490 oder e mail: promolottooffice@spainmail.com ,es zurück in mein Büro sofort für uns in der Lage zu sein die Legalisierung Prozess Ihrer  Persönliche investiertes Preisgeld zu vervollständigen, und das Geld wird Ihnen von Zentralbank spain Int  ausgezahlt.  Alle Prozess Überprüfung durch unsere Kanzlei ist für Sie kostenlos, weil unsere Kosten werden von der internationalen  Lotto Kommission am Ende des Prozesses zu zahlen, wenn Sie Ihr Geld erhalten.Wenn Sie nicht die erforderlichen  Informationen vor der Zeit gegeben hat, können ist Anwaltskanzlei nicht haftbar gemacht werden, wenn Ihr Geld reinvestiert  wurde.
-
-Ein Bestätigungsschreiben wird Ihnen gefaxt werden sofort wenn wir komplette Überprüfung der Informationen die Sie uns zur  Verfügung stellen habe, Ich werde die Investmentbank unverzüglich über die von Ihnen angegebene Informationen zu kommen,  bevor sie werden mit Ihnen Kontakt aufnehmen für die ausZahlung von Ihrem Geld . Ihre Daten werden vertraulich gehalten  nach der Europäischen Union Datenschutzrecht.
-
-"Antworten Sie nicht auf die Absenderadresse oder die Quell-E-Mail-Adresse, es wird über den Computer gesendet virtuelle  Hilfe für die Antwort wird  nicht meine menschliche sondern Computer" Daher müssen Sie die Treuhänder über Telefon und E- Mail-Adresse oben" (ACHTUNG Wir (bitten Sie, auf diese E-Mail-Adresse zu antworten, (promolottooffice@spainmail.com )
-########################################################
-
-REF.NR:………………………………STAPELN Sie NR:…………………………
-Vorname:……………………Vor-NACHNAME…………………………………
-GEBURTSDATUM:……………………………BERUF:……………………………
-STRASSE:………………………………………PLZ/ORT…………………………
-ADRESSE:……………………………………………………………………………
-TELEFON:(___)……………………HANDY:(__)………………FAX (__)………
-EMAIL:…………………………………………………………Nationalitit:……
-
-HINWEIS: BANKVERBINDUNG IST NUR ERFORDERLICH, WENN SIE BESCHLIEßEN, IHREN GEWINN ZU ERHALTEN PER ÜBERWEISUNG
-
-Nachdem Sie die von Ihnen geforderten Daten bereitgestellt haben, können Sie davon ausgehen, dass Sie innerhalb weniger  Stunden direkt von diesem Büro erfahren werden. Bis dahin müssen wir Ihre Informationen verarbeitet und Ihre Fonds Akte für  die Zustellung vorbereitet haben, um Verzögerungen zu vermeiden. Wir gehen davon aus, dass Sie die erklärenden Anweisungen  und Anweisungen zum Einholen und Einholen Ihrer Auszeichnungen (€935,470,15 EUROS) verstehen, die Ihnen vom spanischen Euro Millones de La Primitiva International Madrid legal zugesprochen wurden
-
-BANK ZAHLUNGSOPTIONEN: A / BANKÜBERWEISUNG Oder BANK CERTIFIED CHECK (BANKDATEN SIND NUR NOTWENDIG, WENN SIE SICH FÜR EINE  BANKÜBERWEISUNG ENTSCHIEDEN HABEN)
-ZAHLUNGSOPTION: (A) BESTÄTIGTER SCHECK (BEZAHLEN Sie ÜBERTRAGUNG EIN
-
-BETRÄGE GEWONNEN: ……………………………………………………
-NAME DER BANK:……………………………………………………………
-KONTONUMMER:…………………………SWIFT-CODE:…………………
-ADRESSE DER BANK …………………………………………………………
-GEB-DATUM:…………Unterschrift …………(Erst bei hmeAbna)
-
-Rechtsanwältin  Bilbao & Emma Asociados, Abogados, Fiscal Y Accesorios horario de consultas Lunes.bis Samstag De. 09 - 16.30 Uhr  654280 / MLA & (Seien Sie informiert, dass Ihr Vertreter 10% des Preises als Provision erhält, wenn Sie Ihr Geld auf Ihrem  angegebenen Konto erhalten haben) Mitglied des Consejo de Constitucional de España, (ACHTUNG Wir bitten Sie, auf diese E-Mail-Adresse zu antworten (promolottooffice@spainmail.com) BÜRO-KONTOINFORMATIONEN- BANK NAME: P.F.S.SPAIN SL SWIFT CODE: PFSSESM1 IBAN: ES17 6713   0002 5700 0584 3906)COPYRIGHT 2019.LOTERIA SPANIEN. Alle Rechte vorbehalten. NUTZUNGSBEDINGUNGEN HANDELSPOLITIK DATENSCHUTZ VON BESCHWERDEN....
- 
-Diese E-Mail ist für den vorgesehenen Empfänger bestimmt und enthält Informationen, die vertraulich sein können. Wenn Sie nicht der beabsichtigte Empfänger sind, benachrichtigen Sie bitte den Absender per E-Mail und löschen Sie diese E-Mail aus Ihrem Posteingang. Jede unbefugte Nutzung oder Verbreitung dieser E-Mail, ganz oder teilweise, ist strengstens untersagt und kann rechtswidrig sein. Alle in dieser E-Mail enthaltenen Preisangebote sind nur indikativ und führen zu keiner rechtlich bindenden oder durchsetzbaren Verpflichtung. Sofern nicht ausdrücklich als beabsichtigter E-Vertrag bezeichnet, stellt diese E-Mail kein Vertragsangebot, keine Vertragsänderung oder eine Annahme eines Vertragsangebots dar.
-WWW.GORDO/ EUROMILLIONS ESPAÑA  Sitz der Gesellschaft: Torre Europa Paseo de la Barcelona 15. Planta 16 28006 • Madrid. (Spanien)
-
+Nicky

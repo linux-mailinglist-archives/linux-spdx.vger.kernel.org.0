@@ -2,85 +2,60 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9CE23E84E4
-	for <lists+linux-spdx@lfdr.de>; Tue, 10 Aug 2021 23:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D5773E9170
+	for <lists+linux-spdx@lfdr.de>; Wed, 11 Aug 2021 14:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231894AbhHJVBV (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 10 Aug 2021 17:01:21 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:45928 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233782AbhHJVBU (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 10 Aug 2021 17:01:20 -0400
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1628629257;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+kNEFWBE6RrK5jDlol8kVe8T5lcS2vZ2vfroSLYD7d4=;
-        b=M842l2Up1saVsH/qdA4VdlM2FrsIhbiR95qevIneEix44joRWjZQ2aAASj5pbYrPDTrnOE
-        V6XZvtZq171emPK6JCz2y4V/vHs2KiYuuS27LuBJVZ6KksNAf1kUVzAltHwnDNG35zdEQm
-        XgVWw+4FRl95/R6L89RSa9dXogUoMc4yhqVEYTUIVuwwIEk48KeENDvn0SVAnNOA1bO0eD
-        nwfxELbnkdYroYUWa1IgsHB7sgOAe1OqiBYTqlCA5RDn73HlGpvGch8csBerSrFyd6lD/9
-        1H937btPC/5AaT0lKJE2e5NniePDhBypFxA9f1ROTtfKmZbRoye1KsJicZArpg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1628629257;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+kNEFWBE6RrK5jDlol8kVe8T5lcS2vZ2vfroSLYD7d4=;
-        b=wBoqejVCmY8Bex0gyAwtcL64hHT83+x1/xj6xJVQC+p2CFD1phZ8sg8FeAJMT2j5OrS9CB
-        OYNw1I22SSY3QCAw==
-To:     Christoph Hellwig <hch@infradead.org>,
-        Nicky Chorley <ndchorley@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, linux-spdx@vger.kernel.org
-Subject: Re: Fwd: scripts/spdxcheck.py's third-party dependencies
-In-Reply-To: <YRKv6cpxaUfa6Abv@infradead.org>
-References: <efcdf26-fd74-3d7d-25b1-d77ed3c493@rigel.lan>
- <CAG-xSoY-Z=AD8KhXrJvzqgA+mYZwUGEbAQ7UfPEbH6e4g7VD4w@mail.gmail.com>
- <YP+sCqNlB2g/srHc@kroah.com>
- <CAG-xSobn6hyMpuhiwMLpTQ7X00xQRNW6-jf9pk5g2UfApzHBsw@mail.gmail.com>
- <YQvX4u/H8cV1pAPu@kroah.com>
- <42bfb9dc-3bbf-eba6-d1e9-ae56bc49f94@rigel.lan>
- <YRKv6cpxaUfa6Abv@infradead.org>
-Date:   Tue, 10 Aug 2021 23:00:56 +0200
-Message-ID: <87pmulovzr.ffs@tglx>
+        id S231419AbhHKMdC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 11 Aug 2021 08:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230141AbhHKMc4 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 11 Aug 2021 08:32:56 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621C7C08EA50
+        for <linux-spdx@vger.kernel.org>; Wed, 11 Aug 2021 05:31:07 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id o185so4229827oih.13
+        for <linux-spdx@vger.kernel.org>; Wed, 11 Aug 2021 05:31:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
+        b=V2WNyYdLJoP6K8E9RJHda7LwABozwr3cIVvw6Vvde1lUvj7nEn1kwTUjYENmT632Mo
+         WIvrh1+vLbSYzoPuX6Jvs3ShmY85CXNRULiOryYERC5VxiduWi1eHXykl4rZM4plaPY9
+         v0bjHvKbPX4Dmx5VGMryZtevBJBtYqlBmyCVADyoJGpXTeFxDC0rBPdZ27wWjxlPHWYz
+         44e14rCDZLm5cj050Iix5aVHNgFsagqH3cnFq7JAXcrKgC2Fka4hZJKUHzp5yDGNsN2N
+         es2oehf9N517PT8Y97WToSGj6n+Bj5wnkCVHjnDVkM+in2erAaksScM3DAQFVo4RjSvJ
+         Sh7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
+        b=VSnX2oJKxZQbi2hjk6H/r5T8wYVyiJ4kcgG8RQI044+QLeqouTdxHqu1ZR3MLHBJZU
+         UJ4L/vYd8gq+zdZ7p8QbpioLGeE0MSun6naWir0EQaBk7DYAfsRsiBM1z5AUEdvBfwGp
+         YWH1smKO2OkTE3uiU2qIIrkPlYmoM32Zp4dLLGFLOyxItqxEHJoTlL8oYZnrdqxlJVNa
+         RECk4Ef4Q7vtZ0xS1lH1MB3Vu90gl6gl4SB/fSgnq9V1AQj9qOrl8Bflj0DRDx8IpYYv
+         U/ua2i+0bme8Xkr6B5+BLymayTLs+FkZ5j/Pw4h6o4NZ7NOBD0rsPnxUhk64z5JZFJ3l
+         Z4sQ==
+X-Gm-Message-State: AOAM5326MFD2A+WMXSIgftgCFCOCSxmymlEL/6nv7e1zqNYDyyvG2fFA
+        jCgpfBcOEU0P5O3TepCzBnn/itSh4xDnJ0QjB94=
+X-Google-Smtp-Source: ABdhPJzKX4bddhdfg8RiiyHYBr+yLXTM9M8N23Wzjnw2ULmtvMc+zP5mUiQ+LhDoka/W+ZMFsKP6zQ+h+O0KVwFq6y0=
+X-Received: by 2002:a05:6808:1924:: with SMTP id bf36mr24193426oib.106.1628685066760;
+ Wed, 11 Aug 2021 05:31:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+Received: by 2002:a05:6830:23a5:0:0:0:0 with HTTP; Wed, 11 Aug 2021 05:31:06
+ -0700 (PDT)
+Reply-To: rihabmanyang07@yahoo.com
+From:   Rihab Manyang <ndourandiogou1@gmail.com>
+Date:   Wed, 11 Aug 2021 13:31:06 +0100
+Message-ID: <CAP5_mB5hsG9XL1on3vsap=m7kWJuxk1JNYnqREpDhZc=rXpfpQ@mail.gmail.com>
+Subject: hi
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Tue, Aug 10 2021 at 17:57, Christoph Hellwig wrote:
-
-> On Fri, Aug 06, 2021 at 07:44:41AM +0100, Nicky Chorley wrote:
->> On Thu, 5 Aug 2021, Greg KH wrote:
->> 
->> > But we do not use pip to do kernel builds, so what is this going to help
->> > with?
->> 
->> It's just about making people's lives easier for running the spdxcheck.py
->> script - not everyone will have the third-party libraries installed, so
->> listing them means they can be installed easily. For example:
->
-> I think the most useful thing here would be to find a way to make
-> spdxcheck just work without the non-standard python module.  As far
-> as I can tell it uses the module only to do the recursive travesal
-> of the current tree anyway, which seems rather pointless to start with.
-
-Yes, it's just the tree traversal and it turned out to be convenient to
-just use the git python bindings to avoid scanning random crap in the
-source tree. It should be simple enough to make it use the output of a
-subprocess running 'git ls-files'.
-
-But python-git is packaged in most distros, so when I wrote this script
-I really could not be bothered to deal with parsing subprocess output
-and aside of that resolving:
-
-  ModuleNotFoundError: No module named 'git'
-
-is not rocket science by any means.
-
-Thanks,
-
-        tglx
+-- 
+How are you?I am miss.Rihab Manyang i will like to be your friend
+please write me back on my email for more details, Thanks.

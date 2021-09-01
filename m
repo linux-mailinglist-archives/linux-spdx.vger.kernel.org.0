@@ -2,60 +2,91 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D5773E9170
-	for <lists+linux-spdx@lfdr.de>; Wed, 11 Aug 2021 14:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2383FE202
+	for <lists+linux-spdx@lfdr.de>; Wed,  1 Sep 2021 20:11:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231419AbhHKMdC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 11 Aug 2021 08:33:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56040 "EHLO
+        id S1344654AbhIASMa (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 1 Sep 2021 14:12:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbhHKMc4 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 11 Aug 2021 08:32:56 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621C7C08EA50
-        for <linux-spdx@vger.kernel.org>; Wed, 11 Aug 2021 05:31:07 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id o185so4229827oih.13
-        for <linux-spdx@vger.kernel.org>; Wed, 11 Aug 2021 05:31:07 -0700 (PDT)
+        with ESMTP id S1346740AbhIASMX (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 1 Sep 2021 14:12:23 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D844C0611F8
+        for <linux-spdx@vger.kernel.org>; Wed,  1 Sep 2021 11:11:23 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id fs6so159338pjb.4
+        for <linux-spdx@vger.kernel.org>; Wed, 01 Sep 2021 11:11:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
-        b=V2WNyYdLJoP6K8E9RJHda7LwABozwr3cIVvw6Vvde1lUvj7nEn1kwTUjYENmT632Mo
-         WIvrh1+vLbSYzoPuX6Jvs3ShmY85CXNRULiOryYERC5VxiduWi1eHXykl4rZM4plaPY9
-         v0bjHvKbPX4Dmx5VGMryZtevBJBtYqlBmyCVADyoJGpXTeFxDC0rBPdZ27wWjxlPHWYz
-         44e14rCDZLm5cj050Iix5aVHNgFsagqH3cnFq7JAXcrKgC2Fka4hZJKUHzp5yDGNsN2N
-         es2oehf9N517PT8Y97WToSGj6n+Bj5wnkCVHjnDVkM+in2erAaksScM3DAQFVo4RjSvJ
-         Sh7A==
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=2joGkq8i8C5vglZO1FYNTlWqLyr4vSiCXKQYXBVnv4Q=;
+        b=LD3mpzy1s09M3e/Eheelu/QMtbN6lrYJQ+S1BsYhmG4zP9OQuKOeD1zHV2lZaK7Hdt
+         vXoBMumPRACuZhnwd8TYAFIvdImPe0Zn4DA41GnzHGsnpDZPE0wUFWVFNzgpxF6bh6D8
+         CVxTiiIN7w8BVpPirFLytZKK2cFqqV6q9qR8cw4XmdYYgGZs+MdnDeP+neEr/SbnLI2h
+         mwT6gqJ8+HvNCQei5Zu6b3U+/YcUOepEDfVn6t0IkNG5YzxTV8mH8IqZ4zEsqBchdgxI
+         E/zGH3KCiuS7UdfEMBVKPbpzhhPyh4quLRALvE4iCHtswqSZDgWUuzksodIw8OWwGR1Z
+         0RlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
-        b=VSnX2oJKxZQbi2hjk6H/r5T8wYVyiJ4kcgG8RQI044+QLeqouTdxHqu1ZR3MLHBJZU
-         UJ4L/vYd8gq+zdZ7p8QbpioLGeE0MSun6naWir0EQaBk7DYAfsRsiBM1z5AUEdvBfwGp
-         YWH1smKO2OkTE3uiU2qIIrkPlYmoM32Zp4dLLGFLOyxItqxEHJoTlL8oYZnrdqxlJVNa
-         RECk4Ef4Q7vtZ0xS1lH1MB3Vu90gl6gl4SB/fSgnq9V1AQj9qOrl8Bflj0DRDx8IpYYv
-         U/ua2i+0bme8Xkr6B5+BLymayTLs+FkZ5j/Pw4h6o4NZ7NOBD0rsPnxUhk64z5JZFJ3l
-         Z4sQ==
-X-Gm-Message-State: AOAM5326MFD2A+WMXSIgftgCFCOCSxmymlEL/6nv7e1zqNYDyyvG2fFA
-        jCgpfBcOEU0P5O3TepCzBnn/itSh4xDnJ0QjB94=
-X-Google-Smtp-Source: ABdhPJzKX4bddhdfg8RiiyHYBr+yLXTM9M8N23Wzjnw2ULmtvMc+zP5mUiQ+LhDoka/W+ZMFsKP6zQ+h+O0KVwFq6y0=
-X-Received: by 2002:a05:6808:1924:: with SMTP id bf36mr24193426oib.106.1628685066760;
- Wed, 11 Aug 2021 05:31:06 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=2joGkq8i8C5vglZO1FYNTlWqLyr4vSiCXKQYXBVnv4Q=;
+        b=kM+2nXJt3skTdLDFSe8EzZ8umW3RS9G5Gkihxm0t301uNP60R1kvMc+VWbzPa8P6Tc
+         0Af6SRmceo8f+g/MKsrXCNW07GGdPVxC9NreIANnuxyciogt6QcYx0AJEwz4DAIw91rl
+         R5Gi4ZpfkWNopRDrFRtZZLxz2l3uZLHPmNJUAU7N7goMP4um0ci1QlkYQVTfPt7eSL3m
+         9tvLveQgelY+bCrGPjZ1DELvxybjU5UE+zyvJlQKvDqbQKFgNFDxGOduBQrJ5mrZPM+v
+         EWcEaffZIRX5/HaFZ5HRVXkzBywxRyKXV80m+6d38W87wTzk+BknR+qrnGGhYEuLJJeo
+         8UFA==
+X-Gm-Message-State: AOAM5310MeRre0Q+sT8BnDtBMCjCTN6Rn5KqZnizgPe/vVkU0fBPBK+g
+        BcWkI8ridp5ooj7/GAntTm6xARL8KMg/6L9OaJScGshm8Y8J9g==
+X-Google-Smtp-Source: ABdhPJwbbBYGjUEQSS3Bb7EfYk34O3AVuG22pVIF78fkATQG8c+PQmeHgcc35+YrriS74Wl5STB8JbzOasp+8kCVBlk=
+X-Received: by 2002:a67:8c5:: with SMTP id 188mr1017695vsi.4.1630519870726;
+ Wed, 01 Sep 2021 11:11:10 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a05:6830:23a5:0:0:0:0 with HTTP; Wed, 11 Aug 2021 05:31:06
- -0700 (PDT)
-Reply-To: rihabmanyang07@yahoo.com
-From:   Rihab Manyang <ndourandiogou1@gmail.com>
-Date:   Wed, 11 Aug 2021 13:31:06 +0100
-Message-ID: <CAP5_mB5hsG9XL1on3vsap=m7kWJuxk1JNYnqREpDhZc=rXpfpQ@mail.gmail.com>
-Subject: hi
+Received: by 2002:ab0:740d:0:0:0:0:0 with HTTP; Wed, 1 Sep 2021 11:11:10 -0700 (PDT)
+From:   CorisBank International <corisbankintlbf@gmail.com>
+Date:   Wed, 1 Sep 2021 11:11:10 -0700
+Message-ID: <CA+25hwzjLgVdtDXYWeuqFBTvAbpc4oxK0dW54s7tjGNyU_m0ow@mail.gmail.com>
+Subject: CORISBANK INTERNATIONAL OFFICIAL NOTIFICATION
 To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
--- 
-How are you?I am miss.Rihab Manyang i will like to be your friend
-please write me back on my email for more details, Thanks.
+Att: Client
+
+
+CORISBANK INTERNATIONAL URGENT NOTIFICATION
+
+Notification / Notification/ Notification
+
+Note, We are writing to inform you officially that Finally the Central
+Bank Financial Authority have approved to transfer your $8.2Million
+which was signed by late Mrs Rose Banneth the COVID.19 victim to
+transfer to you, Late Mrs Rose Banneth the France Lady contacted us to
+transfer her fund in our bank to you for Orphanage work before she
+died by the COVID.19
+and as it is now, you will receive your fund through our corresponding
+bank in Dubai [Emirate Investment Bank ] for security reason. Please
+you should reconfirm your details to receive the $8.2Million.
+
+Name, Country, Address, occupations, Age, Telephone number, account
+Details so that we can immediately forward to the World Bank to
+transfer the fund.
+You are advised to comply on timely manner to permit this esteem bank
+transfer your fund as scheduled.
+
+We look forward to serving you better
+Your Financial Comfort Is A Priority
+Thank you for choosing Corisbank International.
+
+Sincerely,
+
+----
+
+Mr Diakarya Ouattara
+Managing Director
+Bank Coris
+Burkina Faso
++226 556 163 37
+financial_bf_info@accountant.com

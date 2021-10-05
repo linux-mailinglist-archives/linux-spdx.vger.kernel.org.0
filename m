@@ -2,213 +2,502 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EC5F422F1A
-	for <lists+linux-spdx@lfdr.de>; Tue,  5 Oct 2021 19:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975E64230EE
+	for <lists+linux-spdx@lfdr.de>; Tue,  5 Oct 2021 21:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236068AbhJERYT (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 5 Oct 2021 13:24:19 -0400
-Received: from mx07-001d1705.pphosted.com ([185.132.183.11]:46920 "EHLO
-        mx07-001d1705.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234938AbhJERYR (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 5 Oct 2021 13:24:17 -0400
-X-Greylist: delayed 1417 seconds by postgrey-1.27 at vger.kernel.org; Tue, 05 Oct 2021 13:24:14 EDT
-Received: from pps.filterd (m0209329.ppops.net [127.0.0.1])
-        by mx08-001d1705.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 195GnZIf025817;
-        Tue, 5 Oct 2021 16:58:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sony.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=S1;
- bh=bFq0gUCj+1rZhXMwCeMtZr757fLcC8Pl9kMcvt+8FRw=;
- b=B/qAGZ0zVn9AxTBgv8rXnuDrSGV+LWWQNN7mQz00mnC5RBAJgiy5XWkqR6XXx6/0bRBV
- tQw6qpohUAgVeZt5LdRNHlXxKcFkzNvwHRHHCuEWWXYjMJcrpYLevV7TVIroQsI4kd0z
- jBwztWmW8mU4HKxz5wF+SWunXJks8aB1snX7xnf0ilIaRYmizYCWvDd0rQrsgC5h34ZA
- jdXimUyDkn0unyldqnL/JhxSmrLChPaF0FMBaXnwuHjeipUh2nXyZVyFthicJkCPYxpk
- BRsGVNI9kHFh8Znj11ONOUohMNVk03BVn2DULkP3uEzLt3jIXSDflL9Uttpi9XGemBdX mw== 
-Received: from nam04-dm6-obe.outbound.protection.outlook.com (mail-dm6nam08lp2047.outbound.protection.outlook.com [104.47.73.47])
-        by mx08-001d1705.pphosted.com with ESMTP id 3bg3sm0v3g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 05 Oct 2021 16:58:00 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CyxLDTl2VeUGkTsjUKM5EAeGzWUaPG6coTRIwwr7Co+t7Mjq7MCrXu+RoZCdsR3FZCnn589FheGKYqm/GUOmDkV+5qj91dajVQQ6c/C+SvVyMFquU8e+RjXobPp2m8B/X1sNH075Arj0e3vCZpTqtPuF0jZsIiC2OuNmRC/9jdX9JW3JIPxC7tSiqNmFCyjswncLtH/VbpPgxxG6pw7JGE5/LR+4ZT+wnogvOiBl/3/5Ab7CpFccqLpTP+ecLchEHYA9qak7O7KRElrIkWweSWKLciK4IJfi1ZF4dDROxIeT3u1cPofwBfXDNLZVheYa4gYz6v3l5VRNFNABmnRbSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bFq0gUCj+1rZhXMwCeMtZr757fLcC8Pl9kMcvt+8FRw=;
- b=Tu7bA/exG0Q8i6PR/Nw2/cs51RZLzr88i/SwDFu78KTOhz9B/q5SS6Ko9GRwpooMpIQPrIkyHIUJnrl29IEAAlxEWsVfl0tw3dAUYDAtHZuatIXKv8APx8ePr6w9u9tSM7YRaPAfceMvH2EdDIZbHv70RyHJZCK5wMwfbpHTguhMJSaaBO0CYm3aK7krJ4x7o7V5NFX8xnl+KypDQWW+lymUm9eSIhZJ6fuOYh1uOZOSo/v0kemnS/HWKDEINjKTcC+b36TMyTLEATRkZ3JVexrt+m/D2GCAxAIwDFpiWi4ggrMFmkotoRcGUc34zMOCnHsAxScmMTmSUGJnu9GP4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sony.com; dmarc=pass action=none header.from=sony.com;
- dkim=pass header.d=sony.com; arc=none
-Received: from BYAPR13MB2503.namprd13.prod.outlook.com (2603:10b6:a02:cd::33)
- by BY5PR13MB4455.namprd13.prod.outlook.com (2603:10b6:a03:1d4::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.12; Tue, 5 Oct
- 2021 16:57:56 +0000
-Received: from BYAPR13MB2503.namprd13.prod.outlook.com
- ([fe80::f544:a41:f814:7be9]) by BYAPR13MB2503.namprd13.prod.outlook.com
- ([fe80::f544:a41:f814:7be9%6]) with mapi id 15.20.4587.018; Tue, 5 Oct 2021
- 16:57:56 +0000
-From:   <Tim.Bird@sony.com>
-To:     <gregkh@linuxfoundation.org>, <mcgrof@kernel.org>
-CC:     <tj@kernel.org>, <akpm@linux-foundation.org>, <minchan@kernel.org>,
-        <jeyu@kernel.org>, <shuah@kernel.org>, <bvanassche@acm.org>,
-        <dan.j.williams@intel.com>, <joe@perches.com>,
-        <tglx@linutronix.de>, <keescook@chromium.org>,
-        <rostedt@goodmis.org>, <linux-spdx@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-block@vger.kernel.org>,
-        <linux-fsdevel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v8 03/12] selftests: add tests_sysfs module
-Thread-Topic: [PATCH v8 03/12] selftests: add tests_sysfs module
-Thread-Index: AQHXs74tItgg1rfm00mmBKYUROs6y6vEf8UAgAArAZA=
-Date:   Tue, 5 Oct 2021 16:57:55 +0000
-Message-ID: <BYAPR13MB2503180449E0863CFD4672F5FDAF9@BYAPR13MB2503.namprd13.prod.outlook.com>
+        id S235628AbhJETtQ (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 5 Oct 2021 15:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235545AbhJETtO (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 5 Oct 2021 15:49:14 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD7EC061755
+        for <linux-spdx@vger.kernel.org>; Tue,  5 Oct 2021 12:47:24 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id k26so436706pfi.5
+        for <linux-spdx@vger.kernel.org>; Tue, 05 Oct 2021 12:47:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qkCPekbpEDYGwhlOfyAIA3I+UiuzlYJMJltSakAIdZc=;
+        b=S13VUg/QnYYkvQ+R1A1zbvAPOkCbL2fLfrYDbRam9Ekzbn6gRSQM4wc9pVUQyPK2Nd
+         EnBjSxt7knLmlUt7qHqO8cIcDkNQ8ZUa5EVfr/BZsNcIAQ/diKpkAc/MiWI6eaih820H
+         Jcjlu3OoF3cA5IXl5FSVPE7ZrzW23UcdTPOS8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qkCPekbpEDYGwhlOfyAIA3I+UiuzlYJMJltSakAIdZc=;
+        b=6goOx1K62c4l/r6jJu27o9XgEn/UGFECcTu46losbMoq41Bebhp/TQ0CQJ3UdZj3/x
+         lCBhzyRITRF0MOVq0u8AedLKhXf9DRuSsk4BG2JFmEovzGbTT5553gm58DZfHG83d6Lt
+         Rc+BH2W+OeBy8W276r/tEkPlHZOPk38AjCQgxaW24i54NpbHV7tJSScMVVo9kM2Yr8Rf
+         hMbDfYxw4UOiaS0DdYKg/kQO9KU5CCjT73gX7KrAMw8CZCnT0/Hl6Epe92ue6vLd2YoK
+         9R8jQFSdMcTBMUClBfoRdNk1lvRTTM4HNoXf1+fDkvgRG19XF9jLXCX4accxX7dx3XJm
+         wTqQ==
+X-Gm-Message-State: AOAM5334mkw75rDLXFTgE9BdCjTGICb7l3P7WXqVIMDUjK8ItIaUDLB9
+        9hw9x7mV8DzbLmecfWLRcrrk5Piv78RqKw==
+X-Google-Smtp-Source: ABdhPJxkJ/A7j051CT/sSu9pcT/gf0qUN0UbUyp7hIb1ZYaEsjs7D8BL/cJPyqsTp/vJhryzKuYBzQ==
+X-Received: by 2002:a62:cd0f:0:b0:447:b8fe:d6c2 with SMTP id o15-20020a62cd0f000000b00447b8fed6c2mr33105130pfg.70.1633463243376;
+        Tue, 05 Oct 2021 12:47:23 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id l19sm3295785pff.131.2021.10.05.12.47.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Oct 2021 12:47:22 -0700 (PDT)
+Date:   Tue, 5 Oct 2021 12:47:22 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Luis Chamberlain <mcgrof@kernel.org>
+Cc:     tj@kernel.org, gregkh@linuxfoundation.org,
+        akpm@linux-foundation.org, minchan@kernel.org, jeyu@kernel.org,
+        shuah@kernel.org, bvanassche@acm.org, dan.j.williams@intel.com,
+        joe@perches.com, tglx@linutronix.de, rostedt@goodmis.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 04/12] kernfs: add initial failure injection support
+Message-ID: <202110051225.419CD64@keescook>
 References: <20210927163805.808907-1-mcgrof@kernel.org>
- <20210927163805.808907-4-mcgrof@kernel.org> <YVxeTvKkYs938g94@kroah.com>
-In-Reply-To: <YVxeTvKkYs938g94@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linuxfoundation.org; dkim=none (message not signed)
- header.d=none;linuxfoundation.org; dmarc=none action=none
- header.from=sony.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fcaf89cc-738e-498a-a50f-08d98821473f
-x-ms-traffictypediagnostic: BY5PR13MB4455:
-x-microsoft-antispam-prvs: <BY5PR13MB44557ABC8CDDDB570A0813B6FDAF9@BY5PR13MB4455.namprd13.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OodLZs6s01a9+4yb3m0yojogOzxScmtOWoxP3IfGkJtaTgtiLg+myi3lIU7tkwAMAuXf6R+VM39UM15dIQRgh9B74GD2r3DGjH76Nyqydglh2MujWQAH/3+f03NgsXr3NNkWpcFrN/5VKHO6aLYgMnVEHjhsrCnGW7JKf+Dq/eOuUv3ozob9htAdxqvqWmftXqb3BYsmUMSMWSn0UdB9lkMFe9MucqBs5I2uz7HHWFad0s1FZCpmPH/+WeaPSHBOd9tIsNm1tMoKbO8/XSyE56K4Eqn3FXNV9LME0lMP8gLc2HOgC2TgQEyzDADO7QWnfhM36BHovuSkkIppSDipK02RzJE5+J2zo1mnoqAQtAxFqQkYOa6a0oMOf/e0S4oVV033AuJchzziUM/0HDQm3V4f9ArOgpQfbgIoOejBK0l2zeIJSHWdEOyoFvuVuJfjyLh5Z+s2mdVE3+xefi/zuNQAfbvXs0trqRpTmAa1w7ECiZ0VHLvF63bNGarPP6420cD3mlaWSvTMT6R14rcx3SeFxG9qa8xbI9pvYtjGfq851cCop7p3nBP9i2zk44kWirDJjvjMF75cwNv5SXhNctrm0lLNRZj0zNo9+1/UwVfaOCS4U4aqCtDkeGKkEtLN43Q0WwJ0Q+hHvkIbcmXU+4WX3RBvOxu97Pacf5sxHRUrUIHTVa3+nFq3Zke22skvTMgSamD1N5mVs1/2sh4x00AIaWSNCXKvkI0TMTQ95/VoWaxe7a3K2rPyHC7FeG2CigYPG0Js/AOi+gPao7Kx1c/zU3FlQx+mll8I6At6e4/+FmwO39tifQZJZkxvV2ZE
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR13MB2503.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66556008)(52536014)(6506007)(64756008)(53546011)(66476007)(26005)(55016002)(66446008)(9686003)(8936002)(186003)(5660300002)(7416002)(4326008)(7696005)(38070700005)(8676002)(86362001)(38100700002)(966005)(122000001)(508600001)(110136005)(54906003)(316002)(71200400001)(83380400001)(76116006)(2906002)(66946007)(33656002)(2004002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9YZlHFC5BrHJ7pC2ntWfXdxuexsli+3htodJcsUnhisAIcScgzuj4zLqW0cn?=
- =?us-ascii?Q?z4kPIW7QoQ7Fk7Qf6+v9lAeQgVzvNc0uTz7OswKdyOgHKEDUKpFKtxF3Q/LJ?=
- =?us-ascii?Q?EERbDYEkhvLzuuC623pfjR5P1AmTtIdGiQP1KRI7ZGSDuG4G3gaoWI1Nz3oP?=
- =?us-ascii?Q?chKusI1+UeKcrhnwzwyBJH3rRwCsEB/pJAHf+mr8wvnHYP8SnafDJ5gmpIlS?=
- =?us-ascii?Q?esBUHIuxwUj+vwAvQMKAGtVgEEXCsGENQmeoIVLNLlZP7YXx8qhr/T71bens?=
- =?us-ascii?Q?ABCezZg0NIwAiQEGlN35LIXp+Bfo3PVW5Smz137Hj9SUjtSw3fhbnYDJm2Wt?=
- =?us-ascii?Q?PsIdFYcEjhFFayjGxU506zJWPgaZjsH5VMb01n7n8tN/OaAHLtfo3ziS2KpF?=
- =?us-ascii?Q?6PFtPxlhATfx1xnTjL4n+4U3Kr3OsjfHYh34c22FZjO7rfhBpLLRZB+gcSSf?=
- =?us-ascii?Q?66smtVVyb+CQnXOiDjkrhnVkxBcVvoEsaefI5nJkL9bAkX4axjdl77GRT1zM?=
- =?us-ascii?Q?pxxxU013p8gE+UcByTBTcZiTDm707orWKYLUmv4lX4AN89xqsu0Voc2CCBSt?=
- =?us-ascii?Q?21qfbtqAhaFuiZxUQT8tfFHeCCwux+QoCqSuMS39W+GxKKhSperhBbB05eaG?=
- =?us-ascii?Q?CJjGE8x5Yi+l+RCemYfJgA2x28OJoeEWCpQS9Cj0iyhnCf6AkMGBovwMIQWb?=
- =?us-ascii?Q?LPT4WLMz+O6Szx4wpYrmMOIWbgXYTerCDcx31ZFYrBiVDKE3uYNNtznxZCGo?=
- =?us-ascii?Q?ypxjzdih/jpgOmvm5+yqzR/LTst2yJsivldghaNLiV8YctwAMoiYSGoLG5WF?=
- =?us-ascii?Q?rCfkdrTf4AJg9xrBxpp3+8VOKQdoIEZO2mVD2+T+X2YlIRVkb4lg8JQZVLP+?=
- =?us-ascii?Q?xolspMSYWB3VpMk/WJd7kscfuwd1PtD5VafWpPzr8aM08y6f80ZRSl4Bhmhh?=
- =?us-ascii?Q?yldMcaL2HtEkrHhRXVBlvHrJ2OOK/sTbpovWFrY3Wuxb0QxJHQejX+GYtNKV?=
- =?us-ascii?Q?GKwLq4Dhx9IyCwg8beBVE91FXd4Rh+sX50KYb4KnowR271KfDXJJlEMBpsU/?=
- =?us-ascii?Q?rX8d5Sj/SVoUbAp8OZh23jEmt+OfPfxCXIshfoiz7gUdUnYp88pUP9ZKt6HO?=
- =?us-ascii?Q?SI9TQhU09FKxczDaeo9O47wRxeivaZR+ET4ialyHWa82F/vhc5yo3TgWpHND?=
- =?us-ascii?Q?2zyCUBAPhl55U7cUgzMvLicNRCM4EwPvmZonPGB2JzT4jEbuGh6+UNP6wrsA?=
- =?us-ascii?Q?VTmZcL8WlUbxPwcRg9Rf61FtBYE6CJ/9NyIe/ek5A6xUEQiOHJ2akDf6o3LT?=
- =?us-ascii?Q?fDXubILr6aGTANWKDSYw2DrP?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ <20210927163805.808907-5-mcgrof@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: sony.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR13MB2503.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcaf89cc-738e-498a-a50f-08d98821473f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2021 16:57:55.9298
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 66c65d8a-9158-4521-a2d8-664963db48e4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LJMrV12k30eNAm1sFG++4jZuHUspmtP82pTHORpKt+u+WkhL+fw5zHRff7fAeDV10MkAggewImJioSOhxkcrwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR13MB4455
-X-Proofpoint-ORIG-GUID: EeylVr4NBOriIM-rODFr0fTwLx2nZqSX
-X-Proofpoint-GUID: EeylVr4NBOriIM-rODFr0fTwLx2nZqSX
-X-Sony-Outbound-GUID: EeylVr4NBOriIM-rODFr0fTwLx2nZqSX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-10-05_03,2021-10-04_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
- bulkscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
- mlxlogscore=999 mlxscore=0 phishscore=0 priorityscore=1501 suspectscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109230001 definitions=main-2110050102
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210927163805.808907-5-mcgrof@kernel.org>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+On Mon, Sep 27, 2021 at 09:37:57AM -0700, Luis Chamberlain wrote:
+> This adds initial failure injection support to kernfs. We start
+> off with debug knobs which when enabled allow test drivers, such as
+> test_sysfs, to then make use of these to try to force certain
+> difficult races to take place with a high degree of certainty.
+> 
+> This only adds runtime code *iff* the new bool CONFIG_FAIL_KERNFS_KNOBS is
+> enabled in your kernel. If you don't have this enabled this provides
+> no new functional. When CONFIG_FAIL_KERNFS_KNOBS is disabled the new
+> routine kernfs_debug_should_wait() ends up being transformed to if
+> (false), and so the compiler should optimize these out as dead code
+> producing no new effective binary changes.
+> 
+> We start off with enabling failure injections in kernfs by allowing us to
+> alter the way kernfs_fop_write_iter() behaves. We allow for the routine
+> kernfs_fop_write_iter() to wait for a certain condition in the kernel to
+> occur, after which it will sleep a predefined amount of time. This lets
+> kernfs users to time exactly when it want kernfs_fop_write_iter() to
+> complete, allowing for developing race conditions and test for correctness
+> in kernfs.
+> 
+> You'd boot with this enabled on your kernel command line:
+> 
+> fail_kernfs_fop_write_iter=1,100,0,1
+> 
+> The values are <interval,probability,size,times>, we don't care for
+> size, so for now we ignore it. The above ensures a failure will trigger
+> only once.
+> 
+> *How* we allow for this routine to change behaviour is left to knobs we
+> expose under debugfs:
+> 
+>  # ls -1 /sys/kernel/debug/kernfs/config_fail_kernfs_fop_write_iter/
 
+I'd expect this to live under /sys/kernel/debug/fail_kernfs, like the
+other fault injectors.
 
-> -----Original Message-----
-> From: Greg KH <gregkh@linuxfoundation.org>
-> Sent: Tuesday, October 5, 2021 8:17 AM
-> To: Luis Chamberlain <mcgrof@kernel.org>
-> Cc: tj@kernel.org; akpm@linux-foundation.org; minchan@kernel.org; jeyu@ke=
-rnel.org; shuah@kernel.org; bvanassche@acm.org;
-> dan.j.williams@intel.com; joe@perches.com; tglx@linutronix.de; keescook@c=
-hromium.org; rostedt@goodmis.org; linux-
-> spdx@vger.kernel.org; linux-doc@vger.kernel.org; linux-block@vger.kernel.=
-org; linux-fsdevel@vger.kernel.org; linux-
-> kselftest@vger.kernel.org; linux-kernel@vger.kernel.org
-> Subject: Re: [PATCH v8 03/12] selftests: add tests_sysfs module
->=20
-> On Mon, Sep 27, 2021 at 09:37:56AM -0700, Luis Chamberlain wrote:
-> > --- /dev/null
-> > +++ b/lib/test_sysfs.c
-> > @@ -0,0 +1,921 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later OR copyleft-next-0.3.1
-> > +/*
-> > + * sysfs test driver
-> > + *
-> > + * Copyright (C) 2021 Luis Chamberlain <mcgrof@kernel.org>
-> > + *
-> > + * This program is free software; you can redistribute it and/or modif=
-y it
-> > + * under the terms of the GNU General Public License as published by t=
-he Free
-> > + * Software Foundation; either version 2 of the License, or at your op=
-tion any
-> > + * later version; or, when distributed separately from the Linux kerne=
-l or
-> > + * when incorporated into other software packages, subject to the foll=
-owing
-> > + * license:
+> wait_after_active
+> wait_after_mutex
+> wait_at_start
+> wait_before_mutex
+> 
+> A debugfs entry also exists to allow us to sleep a configurabler amount
+> of time after the completion:
+> 
+> /sys/kernel/debug/kernfs/sleep_after_wait_ms
+> 
+> These two sets of knobs allow us to construct races and demonstrate
+> how the kernfs active reference should suffice to project against
+> races.
+> 
+> Enabling CONFIG_FAULT_INJECTION_DEBUG_FS enables us to configure the
+> differnt fault injection parametres for the new fail_kernfs_fop_write_iter
+> fault injection at run time:
+> 
+> ls -1 /sys/kernel/debug/kernfs/fail_kernfs_fop_write_iter/
+> interval
+> probability
+> space
+> times
+> task-filter
+> verbose
+> verbose_ratelimit_burst
+> verbose_ratelimit_interval_ms
+> 
+> Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
+> ---
+>  .../fault-injection/fault-injection.rst       | 22 +++++
+>  MAINTAINERS                                   |  2 +-
+>  fs/kernfs/Makefile                            |  1 +
+>  fs/kernfs/failure-injection.c                 | 91 +++++++++++++++++++
+>  fs/kernfs/file.c                              | 13 +++
+>  fs/kernfs/kernfs-internal.h                   | 72 +++++++++++++++
+>  include/linux/kernfs.h                        |  5 +
+>  lib/Kconfig.debug                             | 10 ++
+>  8 files changed, 215 insertions(+), 1 deletion(-)
+>  create mode 100644 fs/kernfs/failure-injection.c
+> 
+> diff --git a/Documentation/fault-injection/fault-injection.rst b/Documentation/fault-injection/fault-injection.rst
+> index 4a25c5eb6f07..d4d34b082f47 100644
+> --- a/Documentation/fault-injection/fault-injection.rst
+> +++ b/Documentation/fault-injection/fault-injection.rst
+> @@ -28,6 +28,28 @@ Available fault injection capabilities
+>  
+>    injects kernel RPC client and server failures.
+>  
+> +- fail_kernfs_fop_write_iter
+> +
+> +  Allows for failures to be enabled inside kernfs_fop_write_iter(). Enabling
+> +  this does not immediately enable any errors to occur. You must configure
+> +  how you want this routine to fail or change behaviour by using the debugfs
+> +  knobs for it:
+> +
+> +  # ls -1 /sys/kernel/debug/kernfs/config_fail_kernfs_fop_write_iter/
+> +  wait_after_active
+> +  wait_after_mutex
+> +  wait_at_start
+> +  wait_before_mutex
 
-This is a very strange license grant, which I'm not sure is covered by any
-current SPDX syntax.
-" when distributed separately from the Linux kernel or when incorporated in=
-to
-other software packages, subject to the following license:"
+This should be split up and detailed in the "debugfs entries" section
+below here.
 
-Why would we care about the license used when the code is used in a non-ker=
-nel
-project?  If it is desired for the code to be available outside the kernel =
-under a
-different license, then surely the easiest thing is to make it available se=
-parately
-under that license.  I'm not sure why the kernel needs to carry this licens=
-e for
-non-kernel use of the code.
+> +
+> +  You can also configure how long to sleep after a wait under
+> +
+> +  /sys/kernel/debug/kernfs/sleep_after_wait_ms
+> +
+> +  If you enable CONFIG_FAULT_INJECTION_DEBUG_FS the fail_add_disk failure
+> +  injection parameters are placed under:
+> +
+> +  /sys/kernel/debug/kernfs/fail_kernfs_fop_write_iter/
+> +
+>  - fail_make_request
+>  
+>    injects disk IO errors on devices permitted by setting
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1b4cefcb064c..fadfd961ad80 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10384,7 +10384,7 @@ M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>  M:	Tejun Heo <tj@kernel.org>
+>  S:	Supported
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git
+> -F:	fs/kernfs/
+> +F:	fs/kernfs/*
+>  F:	include/linux/kernfs.h
+>  
+>  KEXEC
+> diff --git a/fs/kernfs/Makefile b/fs/kernfs/Makefile
+> index 4ca54ff54c98..bc5b32ca39f9 100644
+> --- a/fs/kernfs/Makefile
+> +++ b/fs/kernfs/Makefile
+> @@ -4,3 +4,4 @@
+>  #
+>  
+>  obj-y		:= mount.o inode.o dir.o file.o symlink.o
+> +obj-$(CONFIG_FAIL_KERNFS_KNOBS)    += failure-injection.o
+> diff --git a/fs/kernfs/failure-injection.c b/fs/kernfs/failure-injection.c
+> new file mode 100644
+> index 000000000000..4130d202c13b
+> --- /dev/null
+> +++ b/fs/kernfs/failure-injection.c
 
-I would recommend giving this a GPLv2 SPDX header, and maybe in the comment
-at the top of the file put a reference to a git repository where the code c=
-an be
-obtained under a different license.
+I'd name this fault_inject.c, which matches the more common case:
 
-Just my 2 cents.
- -- Tim
+$ find . -type f -name '*fault*inject*.c'
+./fs/nfsd/fault_inject.c
+./drivers/nvme/host/fault_inject.c
+./drivers/scsi/ufs/ufs-fault-injection.c
+./lib/fault-inject.c
+./lib/fault-inject-usercopy.c
 
-> > + *
-> > + * This program is free software; you can redistribute it and/or modif=
-y it
-> > + * under the terms of copyleft-next (version 0.3.1 or later) as publis=
-hed
-> > + * at http://copyleft-next.org/.
->=20
-> Independant of the fact that I don't like sysfs code attempting to be
-> accessed in the kernel with licenses other than GPLv2, you do not need
-> the license "boilerplate" text at all in files.  That's what the SPDX
-> line is for.
->=20
-> thanks,
->=20
-> greg k-h
+> @@ -0,0 +1,91 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/fault-inject.h>
+> +#include <linux/delay.h>
+> +
+> +#include "kernfs-internal.h"
+> +
+> +static DECLARE_FAULT_ATTR(fail_kernfs_fop_write_iter);
+> +struct kernfs_config_fail kernfs_config_fail;
+> +
+> +#define kernfs_config_fail(when) \
+> +	kernfs_config_fail.kernfs_fop_write_iter_fail.wait_ ## when
+> +
+> +#define kernfs_config_fail(when) \
+> +	kernfs_config_fail.kernfs_fop_write_iter_fail.wait_ ## when
+> +
+> +static int __init setup_fail_kernfs_fop_write_iter(char *str)
+> +{
+> +	return setup_fault_attr(&fail_kernfs_fop_write_iter, str);
+> +}
+> +
+> +__setup("fail_kernfs_fop_write_iter=", setup_fail_kernfs_fop_write_iter);
+> +
+> +struct dentry *kernfs_debugfs_root;
+> +struct dentry *config_fail_kernfs_fop_write_iter;
+> +
+> +static int __init kernfs_init_failure_injection(void)
+> +{
+> +	kernfs_config_fail.sleep_after_wait_ms = 100;
+> +	kernfs_debugfs_root = debugfs_create_dir("kernfs", NULL);
+> +
+> +	fault_create_debugfs_attr("fail_kernfs_fop_write_iter",
+> +				  kernfs_debugfs_root, &fail_kernfs_fop_write_iter);
+> +
+> +	config_fail_kernfs_fop_write_iter =
+> +		debugfs_create_dir("config_fail_kernfs_fop_write_iter",
+> +				   kernfs_debugfs_root);
+> +
+> +	debugfs_create_u32("sleep_after_wait_ms", 0600,
+> +			   kernfs_debugfs_root,
+> +			   &kernfs_config_fail.sleep_after_wait_ms);
+> +
+> +	debugfs_create_bool("wait_at_start", 0600,
+> +			    config_fail_kernfs_fop_write_iter,
+> +			    &kernfs_config_fail(at_start));
+> +	debugfs_create_bool("wait_before_mutex", 0600,
+> +			    config_fail_kernfs_fop_write_iter,
+> +			    &kernfs_config_fail(before_mutex));
+> +	debugfs_create_bool("wait_after_mutex", 0600,
+> +			    config_fail_kernfs_fop_write_iter,
+> +			    &kernfs_config_fail(after_mutex));
+> +	debugfs_create_bool("wait_after_active", 0600,
+> +			    config_fail_kernfs_fop_write_iter,
+> +			    &kernfs_config_fail(after_active));
+> +	return 0;
+> +}
+> +late_initcall(kernfs_init_failure_injection);
+> +
+> +int __kernfs_debug_should_wait_kernfs_fop_write_iter(bool evaluate)
+> +{
+> +	if (!evaluate)
+> +		return 0;
+> +
+> +	return should_fail(&fail_kernfs_fop_write_iter, 0);
+> +}
+
+Every caller ends up doing the wait, so how about just including that
+here instead? It should make things much less intrusive and more readable.
+
+And for the naming, other fault injectors use "should_fail_$topic", so
+maybe better here would be something like may_wait_kernfs(...).
+
+> +
+> +DECLARE_COMPLETION(kernfs_debug_wait_completion);
+> +EXPORT_SYMBOL_NS_GPL(kernfs_debug_wait_completion, KERNFS_DEBUG_PRIVATE);
+> +
+> +void kernfs_debug_wait(void)
+> +{
+> +	unsigned long timeout;
+> +
+> +	timeout = wait_for_completion_timeout(&kernfs_debug_wait_completion,
+> +					      msecs_to_jiffies(3000));
+> +	if (!timeout)
+> +		pr_info("%s waiting for kernfs_debug_wait_completion timed out\n",
+> +			__func__);
+> +	else
+> +		pr_info("%s received completion with time left on timeout %u ms\n",
+> +			__func__, jiffies_to_msecs(timeout));
+> +
+> +	/**
+> +	 * The goal is wait for an event, and *then* once we have
+> +	 * reached it, the other side will try to do something which
+> +	 * it thinks will break. So we must give it some time to do
+> +	 * that. The amount of time is configurable.
+> +	 */
+> +	msleep(kernfs_config_fail.sleep_after_wait_ms);
+> +	pr_info("%s ended\n", __func__);
+> +}
+
+All the uses of "__func__" here seems redundant; I would drop them.
+
+> diff --git a/fs/kernfs/file.c b/fs/kernfs/file.c
+> index 60e2a86c535e..4479c6580333 100644
+> --- a/fs/kernfs/file.c
+> +++ b/fs/kernfs/file.c
+> @@ -259,6 +259,9 @@ static ssize_t kernfs_fop_write_iter(struct kiocb *iocb, struct iov_iter *iter)
+>  	const struct kernfs_ops *ops;
+>  	char *buf;
+>  
+> +	if (kernfs_debug_should_wait(kernfs_fop_write_iter, at_start))
+> +		kernfs_debug_wait();
+
+So this could just be:
+
+	may_wait_kernfs(kernfs_fop_write_iter, at_start);
+
+> +
+>  	if (of->atomic_write_len) {
+>  		if (len > of->atomic_write_len)
+>  			return -E2BIG;
+> @@ -280,17 +283,27 @@ static ssize_t kernfs_fop_write_iter(struct kiocb *iocb, struct iov_iter *iter)
+>  	}
+>  	buf[len] = '\0';	/* guarantee string termination */
+>  
+> +	if (kernfs_debug_should_wait(kernfs_fop_write_iter, before_mutex))
+> +		kernfs_debug_wait();
+> +
+>  	/*
+>  	 * @of->mutex nests outside active ref and is used both to ensure that
+>  	 * the ops aren't called concurrently for the same open file.
+>  	 */
+>  	mutex_lock(&of->mutex);
+> +
+> +	if (kernfs_debug_should_wait(kernfs_fop_write_iter, after_mutex))
+> +		kernfs_debug_wait();
+> +
+>  	if (!kernfs_get_active(of->kn)) {
+>  		mutex_unlock(&of->mutex);
+>  		len = -ENODEV;
+>  		goto out_free;
+>  	}
+>  
+> +	if (kernfs_debug_should_wait(kernfs_fop_write_iter, after_active))
+> +		kernfs_debug_wait();
+> +
+>  	ops = kernfs_ops(of->kn);
+>  	if (ops->write)
+>  		len = ops->write(of, buf, len, iocb->ki_pos);
+> diff --git a/fs/kernfs/kernfs-internal.h b/fs/kernfs/kernfs-internal.h
+> index f9cc912c31e1..9e3abf597e2d 100644
+> --- a/fs/kernfs/kernfs-internal.h
+> +++ b/fs/kernfs/kernfs-internal.h
+> @@ -18,6 +18,7 @@
+>  
+>  #include <linux/kernfs.h>
+>  #include <linux/fs_context.h>
+> +#include <linux/stringify.h>
+>  
+>  struct kernfs_iattrs {
+>  	kuid_t			ia_uid;
+> @@ -147,4 +148,75 @@ void kernfs_drain_open_files(struct kernfs_node *kn);
+>   */
+>  extern const struct inode_operations kernfs_symlink_iops;
+>  
+> +/*
+> + * failure-injection.c
+> + */
+> +#ifdef CONFIG_FAIL_KERNFS_KNOBS
+> +
+> +/**
+> + * struct kernfs_fop_write_iter_fail - how kernfs_fop_write_iter_fail fails
+> + *
+> + * This lets you configure what part of kernfs_fop_write_iter() should behave
+> + * in a specific way to allow userspace to capture possible failures in
+> + * kernfs. The wait knobs are allowed to let you design capture possible
+> + * race conditions which would otherwise be difficult to reproduce. A
+> + * secondary driver would tell kernfs's wait completion when it is done.
+> + *
+> + * The point to the wait completion failure injection tests are to confirm
+> + * that the kernfs active refcount suffice to ensure other objects in other
+> + * layers are also gauranteed to exist, even they are opaque to kernfs. This
+> + * includes kobjects, devices, and other objects built on top of this, like
+> + * the block layer when using sysfs block device attributes.
+> + *
+> + * @wait_at_start: waits for completion from a third party at the start of
+> + *	the routine.
+> + * @wait_before_mutex: waits for completion from a third party before we
+> + *	are allowed to continue before the of->mutex is held.
+> + * @wait_after_mutex: waits for completion from a third party after we
+> + *	have held the of->mutex.
+> + * @wait_after_active: waits for completion from a thid party after we
+> + *	have refcounted the struct kernfs_node.
+> + */
+> +struct kernfs_fop_write_iter_fail {
+> +	bool wait_at_start;
+> +	bool wait_before_mutex;
+> +	bool wait_after_mutex;
+> +	bool wait_after_active;
+> +};
+> +
+> +/**
+> + * struct kernfs_config_fail - kernfs configuration for failure injection
+> + *
+> + * You can kernfs failure injection on boot, and in particular we currently
+> + * only support failures for kernfs_fop_write_iter(). However, we don't
+> + * want to always enable errors on this call when failure injection is enabled
+> + * as this routine is used by many parts of the kernel for proper functionality.
+> + * The compromise we make is we let userspace start enabling which parts it
+> + * wants to fail after boot, if and only if failure injection has been enabled.
+> + *
+> + * @kernfs_fop_write_iter_fail: configuration for how we want to allow
+> + *	for failure injection on kernfs_fop_write_iter()
+> + * @sleep_after_wait_ms: how many ms to wait after completion is received.
+> + */
+> +struct kernfs_config_fail {
+> +	struct kernfs_fop_write_iter_fail kernfs_fop_write_iter_fail;
+> +	u32 sleep_after_wait_ms;
+> +};
+> +
+> +extern struct kernfs_config_fail kernfs_config_fail;
+> +
+> +#define __kernfs_config_wait_var(func, when) \
+> +	(kernfs_config_fail.  func  ## _fail.wait_  ## when)
+                            ^^     ^               ^
+nit: needless spaces
+
+> +#define __kernfs_debug_should_wait_func_name(func) __kernfs_debug_should_wait_## func
+> +
+> +#define kernfs_debug_should_wait(func, when) \
+> +	__kernfs_debug_should_wait_func_name(func)(__kernfs_config_wait_var(func, when))
+> +int __kernfs_debug_should_wait_kernfs_fop_write_iter(bool evaluate);
+> +void kernfs_debug_wait(void);
+> +#else
+> +static inline void kernfs_init_failure_injection(void) {}
+> +#define kernfs_debug_should_wait(func, when) (false)
+> +static inline void kernfs_debug_wait(void) {}
+> +#endif
+> +
+>  #endif	/* __KERNFS_INTERNAL_H */
+> diff --git a/include/linux/kernfs.h b/include/linux/kernfs.h
+> index 3ccce6f24548..cd968ee2b503 100644
+> --- a/include/linux/kernfs.h
+> +++ b/include/linux/kernfs.h
+> @@ -411,6 +411,11 @@ void kernfs_init(void);
+>  
+>  struct kernfs_node *kernfs_find_and_get_node_by_id(struct kernfs_root *root,
+>  						   u64 id);
+> +
+> +#ifdef CONFIG_FAIL_KERNFS_KNOBS
+> +extern struct completion kernfs_debug_wait_completion;
+> +#endif
+> +
+>  #else	/* CONFIG_KERNFS */
+>  
+>  static inline enum kernfs_node_type kernfs_type(struct kernfs_node *kn)
+> diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+> index ae19bf1a21b8..a29b7d398c4e 100644
+> --- a/lib/Kconfig.debug
+> +++ b/lib/Kconfig.debug
+> @@ -1902,6 +1902,16 @@ config FAULT_INJECTION_USERCOPY
+>  	  Provides fault-injection capability to inject failures
+>  	  in usercopy functions (copy_from_user(), get_user(), ...).
+>  
+> +config FAIL_KERNFS_KNOBS
+> +	bool "Fault-injection support in kernfs"
+> +	depends on FAULT_INJECTION
+> +	help
+> +	  Provide fault-injection capability for kernfs. This only enables
+> +	  the error injection functionality. To use it you must configure which
+> +	  which path you want to trigger on error on using debugfs under
+> +	  /sys/kernel/debug/kernfs/config_fail_kernfs_fop_write_iter/. By
+> +	  default all of these are disabled.
+> +
+>  config FAIL_MAKE_REQUEST
+>  	bool "Fault-injection capability for disk IO"
+>  	depends on FAULT_INJECTION && BLOCK
+> -- 
+> 2.30.2
+> 
+
+-- 
+Kees Cook

@@ -2,65 +2,161 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA9442C043
-	for <lists+linux-spdx@lfdr.de>; Wed, 13 Oct 2021 14:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4846542C466
+	for <lists+linux-spdx@lfdr.de>; Wed, 13 Oct 2021 17:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233564AbhJMMoG (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 13 Oct 2021 08:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52540 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbhJMMoG (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 13 Oct 2021 08:44:06 -0400
-Received: from bombadil.infradead.org (unknown [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21F66C061570;
-        Wed, 13 Oct 2021 05:42:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=ZOJVOG5TPmwro9XVUCu0WLliPWZ0LeekD1uGNl5wZzs=; b=i37otEyCeSc+Ed6QP63HmDUoeK
-        nyEGtCVCdea+zOQT3MR2vMjX2N3nEbH6VeajvaqJCNsy2JKhrs2y7pEZ6SnXyi0QVj23aRsJm6PVa
-        FFIw6hc6ynV2EdXjiuKjytahoIVKcLkHtM9zf6rTdMwn1ujChgk8BK98xOHLJlU791WlJaBfkX35w
-        QxDIXQ3KnNEoAiP4hLSrp68oE1SGAt8phequyiaYWDLk0w3FbCbiOfkLJWj+Nxt8/wQxqec558jly
-        NLNdHzyapNsqVZEXn+FxmyOwcMsL8R55I5P/W4dVtbvPSAjDAcaAsQ8RPgbSUn1QwKImLleH3Ysyd
-        ucatYAkQ==;
-Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mada2-00GdSy-Jx; Wed, 13 Oct 2021 12:41:58 +0000
-Date:   Wed, 13 Oct 2021 05:41:58 -0700
-From:   Luis Chamberlain <mcgrof@kernel.org>
-To:     Kees Cook <keescook@chromium.org>
-Cc:     tj@kernel.org, gregkh@linuxfoundation.org,
-        akpm@linux-foundation.org, minchan@kernel.org, jeyu@kernel.org,
-        shuah@kernel.org, bvanassche@acm.org, dan.j.williams@intel.com,
-        joe@perches.com, tglx@linutronix.de, rostedt@goodmis.org,
+        id S236719AbhJMPGm (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 13 Oct 2021 11:06:42 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:54159 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233969AbhJMPGl (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>);
+        Wed, 13 Oct 2021 11:06:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1634137478;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=d+mcxn9Yq7uI+Viy+K4BQvLPxElVK5331udxqYrTR1s=;
+        b=HGBEVqk9Fi8SItaH0I5jBlgPDGIEKXn3Rgivklx+csfSYBVC1GZMX5nLbW6s/UR+upqkkb
+        bfqkZ3QTNPQb69iM/q16/GH/tCpciv/sSr4BXk5p2o9JNEkMTxu9lWYHpBNNgP6DL8s8kD
+        AXyoikJH/Xe0pwqsULeup213SlhxNIo=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-16-yR6kJGqXNkKhVj3G7P5dzg-1; Wed, 13 Oct 2021 11:04:34 -0400
+X-MC-Unique: yR6kJGqXNkKhVj3G7P5dzg-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4EDE0802CB8;
+        Wed, 13 Oct 2021 15:04:31 +0000 (UTC)
+Received: from T590 (ovpn-8-39.pek2.redhat.com [10.72.8.39])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 0AAC357CB9;
+        Wed, 13 Oct 2021 15:04:12 +0000 (UTC)
+Date:   Wed, 13 Oct 2021 23:04:07 +0800
+From:   Ming Lei <ming.lei@redhat.com>
+To:     Luis Chamberlain <mcgrof@kernel.org>
+Cc:     Miroslav Benes <mbenes@suse.cz>, tj@kernel.org,
+        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
+        minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
+        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
         linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
         linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ming.lei@redhat.com
 Subject: Re: [PATCH v8 09/12] sysfs: fix deadlock race with module removal
-Message-ID: <YWbUFnway11HwuZl@bombadil.infradead.org>
+Message-ID: <YWb1Z7EXruo6gaEp@T590>
 References: <20210927163805.808907-1-mcgrof@kernel.org>
  <20210927163805.808907-10-mcgrof@kernel.org>
- <202110051315.B2165F455@keescook>
- <YWS5+uyDQ4qklTcT@bombadil.infradead.org>
+ <YVwZwh7qDKfSM59h@T590>
+ <YWSr2trabEJflzlj@bombadil.infradead.org>
+ <YWTU3kTlJKONyFjZ@T590>
+ <YWX7pAn0YMaJeJBA@bombadil.infradead.org>
+ <YWYxN875B6rlmAjC@T590>
+ <YWbSk6p3bfXUPZ92@bombadil.infradead.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YWS5+uyDQ4qklTcT@bombadil.infradead.org>
-Sender: Luis Chamberlain <mcgrof@infradead.org>
+In-Reply-To: <YWbSk6p3bfXUPZ92@bombadil.infradead.org>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 03:26:02PM -0700, Luis Chamberlain wrote:
-> On Tue, Oct 05, 2021 at 01:50:31PM -0700, Kees Cook wrote:
-> > For example, why does this not work?
+On Wed, Oct 13, 2021 at 05:35:31AM -0700, Luis Chamberlain wrote:
+> On Wed, Oct 13, 2021 at 09:07:03AM +0800, Ming Lei wrote:
+> > On Tue, Oct 12, 2021 at 02:18:28PM -0700, Luis Chamberlain wrote:
+> > > > Looks test_sysfs isn't in linus tree, where can I find it?
+> > > 
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux-next.git/log/?h=20210927-sysfs-generic-deadlock-fix
+> > > 
+> > > To reproduce the deadlock revert the patch in this thread and then run
+> > > either of these two tests as root:
+> > > 
+> > > ./tools/testing/selftests/sysfs/sysfs.sh -w 0027
+> > > ./tools/testing/selftests/sysfs/sysfs.sh -w 0028
+> > > 
+> > > You will need to enable the test_sysfs driver.
+> > > > Can you share the code which waits for the sysfs / kernfs files to be
+> > > > stop being used?
+> > > 
+> > > How about a call trace of the two tasks which deadlock, here is one of
+> > > running test 0027:
+> > > 
+> > > kdevops login: [  363.875459] INFO: task sysfs.sh:1271 blocked for more
+> > > than 120 seconds.
 > 
-> It does for the write case for sure,
+> <-- snip -->
+> 
+> > That doesn't show the deadlock is related with module_exit().
+> 
+> Not directly no.
 
-I mispoke, just for the record, the changes you mentioned actually don't
-suffice for the test cases in question for test_sysfs, the deadlock
-still occurs with those changes. At first I thought it did but I had failed
-to remove my own fix first on fs/kernfs/dir.c. After removing that and
-just trying the proposed changes I confirm it does not fix the deadlock.
+Then the patch title of 'sysfs: fix deadlock race with module removal'
+is wrong.
 
-  Luis
+> 
+> > It is clearly one AA deadlock, what I meant was that it isn't related with
+> > module exit cause lock & device_del() isn't always done in module exit, so
+> > I doubt your fix with grabbing module refcnt is good or generic enough.
+> 
+> A device_del() *can* happen in other areas other than module exit sure,
+> but the issue is if a shared lock is used *before* device_del() and also
+> used on a sysfs op. Typically this can happen on module exit, and the
+> other common use case in my experience is on sysfs ops, such is the case
+> with the zram driver. Both cases are covered then by this fix.
+
+Again, can you share the related zram code about the issue? In
+zram_drv.c of linus or next tree, I don't see any lock is held before
+calling del_gendisk().
+
+> 
+> If there are other areas, that is still driver specific, but of the
+> things we *can* generalize, definitely module exit is a common path.
+> 
+> > Except for your cooked test_sys module, how many real drivers do suffer the
+> > problem? What are they?
+> 
+> I only really seriously considered trying to generalize this after it
+
+IMO your generalization isn't good or correct because this kind of issue
+is _not_ related with module exit at all. What matters is just that one lock is
+held before calling device_del(), meantime the same lock is required
+in the device's attribute show/store function().
+
+There are many cases in which we call device_del() not from module_exit(),
+such as scsi scan, scsi sysfs store(), or even handling event from
+device side, nvme error handling, usb hotplug, ...
+
+> was hinted to me live patching was also affected, and so clearly
+> something generic was desirable.
+
+It might be just the only two drivers(zram and live patch) with this bug, and
+it is one simply AA bug in driver. Not mention I don't see such usage in
+zram_drv.c.
+
+> 
+> There may be other drivers for sure, but a hunt for that with semantics
+> would require a bit complex coccinelle patch with iteration support.
+> 
+> > Why can't we fix the exact driver?
+> 
+> You can try, the way the lock is used in zram is correct, specially
+
+What is the lock in zram? Again can you share the related functions?
+
+> after my other fix in this series which addresses another unrelated bug
+> with cpu hotplug multistate support. So we then can proceed to either
+> take the position to say: "Thou shalt not use a shared lock on module
+> exit and a sysfs op" and try to fix all places, or we generalize a fix
+> for this. A generic fix seems more desirable.
+
+What matters is that the lock is held before calling device_del()
+instead of being held in module_exit().
+
+
+
+Thanks,
+Ming
+

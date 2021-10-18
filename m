@@ -2,40 +2,35 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E80EB430266
-	for <lists+linux-spdx@lfdr.de>; Sat, 16 Oct 2021 13:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 673214327BB
+	for <lists+linux-spdx@lfdr.de>; Mon, 18 Oct 2021 21:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244328AbhJPLbQ (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sat, 16 Oct 2021 07:31:16 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:38887 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S244327AbhJPLbO (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>);
-        Sat, 16 Oct 2021 07:31:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1634383746;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=FpnA9lYWxkJjvg75Ewu7vyuMBg8oJ+36xZYExlcfae0=;
-        b=ZxOgza67eEA3nZSGcVGzOgt8Zo3VMz/s933ufyETQY+x630hAu432e6qGH9wRCM+XZmohj
-        Mc317AnkPnqOV/fTHHKCJCbUBeWKSFds8Auw4Kwqn0fvbwuQHP8rc0QI8VZSjXSYj/5+ED
-        KA9JnhA2yAgXOxpA7Xc48fzHWeX6fVI=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-401-AX-aE8PPOTGtJ1ZuG3mfog-1; Sat, 16 Oct 2021 07:29:00 -0400
-X-MC-Unique: AX-aE8PPOTGtJ1ZuG3mfog-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 91F0010A8E00;
-        Sat, 16 Oct 2021 11:28:57 +0000 (UTC)
-Received: from T590 (ovpn-8-19.pek2.redhat.com [10.72.8.19])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 4C8695DA61;
-        Sat, 16 Oct 2021 11:28:44 +0000 (UTC)
-Date:   Sat, 16 Oct 2021 19:28:39 +0800
-From:   Ming Lei <ming.lei@redhat.com>
-To:     Luis Chamberlain <mcgrof@kernel.org>
+        id S233508AbhJRTen (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 18 Oct 2021 15:34:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231969AbhJRTem (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 18 Oct 2021 15:34:42 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7260CC06161C;
+        Mon, 18 Oct 2021 12:32:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=B9bByHMOUaNb4hIzLjt6ee5iMVKuoAuSSlDfjNfXcVw=; b=XtN6iHFYDXFCgENpbEdGOr2pmU
+        yFFYqYJYUwhdr5Zlp2UsdTC2rL+hCJS1bFB6SdwLPL8YHN2d2igwldOx4aN39GeV7zWYehrfXe2jn
+        xPp8Wbs+3g4hxTSveCN7QqtgeFHuYXz8JAy/ZGSgg4zr67ZKFiZkEZvtfzpv+LZY72zafXjqhxeu+
+        5Fsq/DwQleE7J00WQFTjv7uxD1NogvR0qdqKtmAPsd2KXSwIcnQ3dqcWurIfkTXkOc6O9SU7pasYf
+        Jps0O7g4MB47gCoKXLrVqcnjY2O026y80dKCw6tVa5/wa0aFv5cYUejuIFIsV/jimkvEoP7FdHUzf
+        FB3gz3QQ==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mcYMl-00H11w-Tb; Mon, 18 Oct 2021 19:32:11 +0000
+Date:   Mon, 18 Oct 2021 12:32:11 -0700
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Ming Lei <ming.lei@redhat.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>
 Cc:     tj@kernel.org, gregkh@linuxfoundation.org,
         akpm@linux-foundation.org, minchan@kernel.org, jeyu@kernel.org,
         shuah@kernel.org, bvanassche@acm.org, dan.j.williams@intel.com,
@@ -45,7 +40,7 @@ Cc:     tj@kernel.org, gregkh@linuxfoundation.org,
         linux-fsdevel@vger.kernel.org, linux-kselftest@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YWq3Z++uoJ/kcp+3@T590>
+Message-ID: <YW3LuzaPhW96jSBK@bombadil.infradead.org>
 References: <20210927163805.808907-1-mcgrof@kernel.org>
  <20210927163805.808907-12-mcgrof@kernel.org>
  <YWeOJP2UJWYF94fu@T590>
@@ -55,102 +50,157 @@ References: <20210927163805.808907-1-mcgrof@kernel.org>
  <YWjJ0O7K+31Iz3ox@bombadil.infradead.org>
  <YWk9e957Hb+I7HvR@T590>
  <YWm68xUnAofop3PZ@bombadil.infradead.org>
+ <YWq3Z++uoJ/kcp+3@T590>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YWm68xUnAofop3PZ@bombadil.infradead.org>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+In-Reply-To: <YWq3Z++uoJ/kcp+3@T590>
+Sender: Luis Chamberlain <mcgrof@infradead.org>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Fri, Oct 15, 2021 at 10:31:31AM -0700, Luis Chamberlain wrote:
-> On Fri, Oct 15, 2021 at 04:36:11PM +0800, Ming Lei wrote:
-> > On Thu, Oct 14, 2021 at 05:22:40PM -0700, Luis Chamberlain wrote:
-> > > On Fri, Oct 15, 2021 at 07:52:04AM +0800, Ming Lei wrote:
-> > ...
+On Sat, Oct 16, 2021 at 07:28:39PM +0800, Ming Lei wrote:
+> On Fri, Oct 15, 2021 at 10:31:31AM -0700, Luis Chamberlain wrote:
+> > On Fri, Oct 15, 2021 at 04:36:11PM +0800, Ming Lei wrote:
+> > > On Thu, Oct 14, 2021 at 05:22:40PM -0700, Luis Chamberlain wrote:
+> > > > On Fri, Oct 15, 2021 at 07:52:04AM +0800, Ming Lei wrote:
+> > > ...
+> > > > > 
+> > > > > We need to understand the exact reason why there is still cpuhp node
+> > > > > left, can you share us the exact steps for reproducing the issue?
+> > > > > Otherwise we may have to trace and narrow down the reason.
 > > > > 
-> > > > We need to understand the exact reason why there is still cpuhp node
-> > > > left, can you share us the exact steps for reproducing the issue?
-> > > > Otherwise we may have to trace and narrow down the reason.
+> > > > See my commit log for my own fix for this issue.
 > > > 
-> > > See my commit log for my own fix for this issue.
+> > > OK, thanks!
+> > > 
+> > > I can reproduce the issue, and the reason is that reset_store fails
+> > > zram_remove() when unloading module, then the warning is caused.
+> > > 
+> > > The top 3 patches in the following tree can fix the issue:
+> > > 
+> > > https://github.com/ming1/linux/commits/my_v5.15-blk-dev
 > > 
-> > OK, thanks!
-> > 
-> > I can reproduce the issue, and the reason is that reset_store fails
-> > zram_remove() when unloading module, then the warning is caused.
-> > 
-> > The top 3 patches in the following tree can fix the issue:
-> > 
-> > https://github.com/ming1/linux/commits/my_v5.15-blk-dev
+> > Thanks for trying an alternative fix! A crash stops yes, however this
 > 
-> Thanks for trying an alternative fix! A crash stops yes, however this
+> I doubt it is alternative since your patchset doesn't mention the exact
+> reason of 'Error: Removing state 63 which has instances left.', that is
+> simply caused by failing to remove zram because ->claim is set during
+> unloading module.
 
-I doubt it is alternative since your patchset doesn't mention the exact
-reason of 'Error: Removing state 63 which has instances left.', that is
-simply caused by failing to remove zram because ->claim is set during
-unloading module.
+Well I disagree because it does explain how the race can happen, and it
+also explains how since the sysfs interface is exposed until module
+removal completes, it leaves exposed knobs to allow re-initializing of a
+struct zcomp for a zram device before the exit.
 
-Yeah, you mentioned the race between disksize_store() vs. zram_remove(),
-however I don't think it is reproduced easily in the test because the race
-window is pretty small, also it can be fixed easily in my 3rd path
-without any complicated tricks.
+> Yeah, you mentioned the race between disksize_store() vs. zram_remove(),
+> however I don't think it is reproduced easily in the test because the race
+> window is pretty small, also it can be fixed easily in my 3rd path
+> without any complicated tricks.
 
-Not dig into details of your patchset via grabbing module reference
-count during show/store attribute of kernfs which is done in your patch
-9, but IMO this way isn't necessary:
+Reproducing for me is... extremely easy.
 
-1) any driver module has to cleanup anything which may refer to symbols
-or data defined in module_exit of this driver
+> Not dig into details of your patchset via grabbing module reference
+> count during show/store attribute of kernfs which is done in your patch
+> 9, but IMO this way isn't necessary:
 
-2) device_del() is often done in module_exit(), once device_del()
-returns, no any new show/store on the device's kobject attribute
-is possible.
+That's to address the deadlock only.
 
-3) it is _not_ a must or pattern for fixing bugs to hold one lock before
-calling device_del(), meantime the lock is required in the device's
-attribute show()/store(), which causes AA deadlock easily. Your approach
-just avoids the issue by not releasing module until all show/store are
-done.
+> 1) any driver module has to cleanup anything which may refer to symbols
+> or data defined in module_exit of this driver
 
-Also the model of using module refcount is usually that if anyone will
-use the module, grab one extra ref, and once the use is done, release
-it. For example of block device, the driver's module refcnt is grabbed
-when the disk/part is opened, and released when the disk/part is closed.
+Yes, and as the cpu multistate hotplug documentation warns (although
+such documentation is kind of hidden) that driver authors need to be
+careful with module removal too, refer to the warning at the end of
+__cpuhp_remove_state_cpuslocked() about module removal.
 
+> 2) device_del() is often done in module_exit(), once device_del()
+> returns, no any new show/store on the device's kobject attribute
+> is possible.
 
-> also ends up leaving the driver in an unrecoverable state after a few
-> tries. Ie, you CTRL-C the scripts and try again over and over again and
-> the driver ends up in a situation where it just says:
+Right and if a syfs knob is exposed before device_del() completely
+and is allowed to do things, the driver should take care to prevent
+races for CPU multistate support. The small state machine I added ensures
+we don't run over any expectations from cpu hotplug multistate support.
+
+I've *never* suggested there cannot be alternatives to my solution with
+the small state machine, but for you to say it is incorrect is simply
+not right either.
+
+> 3) it is _not_ a must or pattern for fixing bugs to hold one lock before
+> calling device_del(), meantime the lock is required in the device's
+> attribute show()/store(), which causes AA deadlock easily. Your approach
+> just avoids the issue by not releasing module until all show/store are
+> done.
+
+Right, there are two approaches here:
+
+a) Your approach is to accept the deadlock as a requirement and so
+you would prefer to implement an alternative to using a shared lock
+on module exit and sysfs op.
+
+b) While I address such a deadlock head on as I think this sort of locking
+be allowed for two reasons:
+   b1) as we never documented such requirement otherwise.
+   b2) There is a possibility that other drivers already exist too
+       which *do* use a shared lock on module removal and sysfs ops
+       (and I just confirmed this to be true)
+
+By you only addressing the deadlock as a requirement on approach a) you are
+forgetting that there *may* already be present drivers which *do* implement
+such patterns in the kernel. I worked on addressing the deadlock because
+I was informed livepatching *did* have that issue as well and so very
+likely a generic solution to the deadlock could be beneficial to other
+random drivers.
+
+So I *really* don't think it is wise for us to simply accept this new
+found deadlock as a *new* requirement, specially if we can fix it easily.
+
+A cursory review using Coccinelle potential issues with mutex lock
+directly used on module exit (so this doesn't cover drivers like zram
+which uses a routine and then grabs the lock through indirection) and a
+sysfs op shows these drivers are also affected by this deadlock:
+
+  * arch/powerpc/sysdev/fsl_mpic_timer_wakeup.c
+  * lib/test_firmware.c
+
+Note that this cursory review does not cover spin_lock uses, and other
+forms locks. Consider the case where a routine is used and then that
+routine grabs a lock, so one level indirection. There are many levels
+of indirections possible here. And likewise there are different types
+of locks.
+
+> > also ends up leaving the driver in an unrecoverable state after a few
+> > tries. Ie, you CTRL-C the scripts and try again over and over again and
+> > the driver ends up in a situation where it just says:
+> > 
+> > zram: Can't change algorithm for initialized device
 > 
-> zram: Can't change algorithm for initialized device
+> It means the algorithm can't be changed for one initialized device
+> at the exact time. That is understandable because two zram02.sh are
+> running concurrently.
 
-It means the algorithm can't be changed for one initialized device
-at the exact time. That is understandable because two zram02.sh are
-running concurrently.
+Indeed but with your patch it can get stuck and cannot be taken out of this
+state.
 
-Your test script just runs two ./zram02.sh tasks concurrently forever,
-so what is your expected result for the test? Of course, it can't be
-over.
+> Your test script just runs two ./zram02.sh tasks concurrently forever,
+> so what is your expected result for the test? Of course, it can't be
+> over.
+>
+> I can't reproduce the 'unrecoverable' state in my test, can you share the
+> stack trace log after that happens?
 
-I can't reproduce the 'unrecoverable' state in my test, can you share the
-stack trace log after that happens?
+Try a bit harder, cancel the scripts after running for a while randomly
+(CTRL C a few times until the script finishes) and have them race again.
+Do this a few times.
 
-Is the zram02.sh still running or slept somewhere in the 'unrecoverable'
-state? If it is still running, it means the current sleep point isn't
-interruptable when running 'CTRL-C'. In my test, after several 'CTRL-C',
-both the two zram02.sh started from two terminals can be terminated. If
-it is slept somewhere forever, it can be one problem.
-
+> > And the zram module can't be removed at that point.
 > 
-> And the zram module can't be removed at that point.
+> It is just that systemd opens the zram or the disk is opened as swap
+> disk, and once systemd closes it or after you run swapoff, it can be
+> unloaded.
 
-It is just that systemd opens the zram or the disk is opened as swap
-disk, and once systemd closes it or after you run swapoff, it can be
-unloaded.
+With my patch this issues does not happen.
 
-
-Thanks,
-Ming
-
+  Luis

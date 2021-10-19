@@ -2,79 +2,109 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D8B433D78
-	for <lists+linux-spdx@lfdr.de>; Tue, 19 Oct 2021 19:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24119433F52
+	for <lists+linux-spdx@lfdr.de>; Tue, 19 Oct 2021 21:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234517AbhJSRav (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 19 Oct 2021 13:30:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56440 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231226AbhJSRau (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Tue, 19 Oct 2021 13:30:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2BE4F61355;
-        Tue, 19 Oct 2021 17:28:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1634664517;
-        bh=59LlQsuP3ZW+Cqkg0bmKDDTdZJ6xYatNGwXXx+Ql12c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YWZi9VFvsWHjYkDIPd8f49GxBVmj/S9NVGgH7d94tK3kKeCF+lF3syMiKzMmqfuyg
-         JEHxrMIxVUmTbr2P3UxsxW/NFBzES4GLdSmR5jSm9QRoc0t7a8kiYYJnuP8TXiAFgt
-         ifpV2BfQaooqVVlB4sG6JiSoyYkjtUSC8FI4Ss/k=
-Date:   Tue, 19 Oct 2021 19:28:35 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Luis Chamberlain <mcgrof@kernel.org>
-Cc:     Ming Lei <ming.lei@redhat.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        id S233340AbhJSTjM (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 19 Oct 2021 15:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51106 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230432AbhJSTjM (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 19 Oct 2021 15:39:12 -0400
+Received: from bombadil.infradead.org (unknown [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49CABC06161C;
+        Tue, 19 Oct 2021 12:36:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=npiA1/BckufA/m+irMg6eqFPqYx0reNFf9Z4p7vaYXU=; b=HBXrBM4kBn1mIISA6ZRTEsVa/a
+        HbBElJD/ZtV+aPX7EEvN/Ig7haO5MpBSF61XfTafLHBdoosPyZzQkAF2gVZCx44+eUHwMH8ynYmYh
+        d5HggA4pW6WC5wxQPWEA52Fhh9joVMOrt9ac2f8Ytgcl3iwSvkVi6clwuAn7GwJNPk0R9qKP0xzQo
+        TM7za36h8cD0QShOa3WPbe3xYmOxnF64R0jxhDduGpQq7N1QPCyFHW+PscBcEhLiDwoGbMvRHCovb
+        XHUwkw1dDZY01MdpXO0tIa86xh/71FnxSRi30TsVo+CQEepu4V0EW7DLrufD3qQupRSkFWGZgJnTi
+        630Qdx0g==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mcuug-002X6t-6v; Tue, 19 Oct 2021 19:36:42 +0000
+Date:   Tue, 19 Oct 2021 12:36:42 -0700
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Ming Lei <ming.lei@redhat.com>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>, tj@kernel.org,
-        akpm@linux-foundation.org, minchan@kernel.org, jeyu@kernel.org,
-        shuah@kernel.org, bvanassche@acm.org, dan.j.williams@intel.com,
-        joe@perches.com, tglx@linutronix.de, keescook@chromium.org,
-        rostedt@goodmis.org, linux-spdx@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-block@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
+        minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
+        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YW8AQ4fMNV8MT1vX@kroah.com>
-References: <YWjCpLUNPF3s4P2U@T590>
+Message-ID: <YW8eSq2B+5FtOLZb@bombadil.infradead.org>
+References: <YWiSAN6xfYcUDJCb@bombadil.infradead.org>
+ <YWjCpLUNPF3s4P2U@T590>
  <YWjJ0O7K+31Iz3ox@bombadil.infradead.org>
  <YWk9e957Hb+I7HvR@T590>
  <YWm68xUnAofop3PZ@bombadil.infradead.org>
  <YWq3Z++uoJ/kcp+3@T590>
  <YW3LuzaPhW96jSBK@bombadil.infradead.org>
  <YW4uwep3BCe9Vxq8@T590>
- <YW7pQKi8AlV+ZemU@bombadil.infradead.org>
- <YW7xbnrqfzifa9OC@kroah.com>
- <YW7yjQVC4NRfrWxD@bombadil.infradead.org>
+ <YW7kFXlzRrvwzARP@bombadil.infradead.org>
+ <YW7ygbLAwm2/LZFl@T590>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YW7yjQVC4NRfrWxD@bombadil.infradead.org>
+In-Reply-To: <YW7ygbLAwm2/LZFl@T590>
+Sender: Luis Chamberlain <mcgrof@infradead.org>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 09:30:05AM -0700, Luis Chamberlain wrote:
-> On Tue, Oct 19, 2021 at 06:25:18PM +0200, Greg KH wrote:
-> > On Tue, Oct 19, 2021 at 08:50:24AM -0700, Luis Chamberlain wrote:
-> > > So do you want to take the position:
-> > > 
-> > > Hey driver authors: you cannot use any shared lock on module removal and
-> > > on sysfs ops?
+On Wed, Oct 20, 2021 at 12:29:53AM +0800, Ming Lei wrote:
+> On Tue, Oct 19, 2021 at 08:28:21AM -0700, Luis Chamberlain wrote:
+> > On Tue, Oct 19, 2021 at 10:34:41AM +0800, Ming Lei wrote:
+> > > Please try the following patch against upstream(linus or next) tree(basically
+> > > fold revised 2 and 3 of V1, and cover two issues: not fail zram_remove in
+> > > module_exit(), race between zram_remove() and disksize_store()), and see if
+> > > everything is fine for you:
 > > 
-> > Yes, I would not recommend using such a lock at all.  sysfs operations
-> > happen on a per-device basis, so you can lock the device structure.
+> > Page fault ...
+> > 
+> > [   18.284256] zram: Removed device: zram0
+> > [   18.312974] BUG: unable to handle page fault for address:
+> > ffffad86de903008
+> > [   18.313707] #PF: supervisor read access in kernel mode
+> > [   18.314248] #PF: error_code(0x0000) - not-present page
+> > [   18.314797] PGD 100000067 P4D 100000067 PUD 10031e067 PMD 136a28067
 > 
-> All devices are going to be removed on module removal and so cannot be locked.
+> That is another race between zram_reset_device() and disksize_store(),
+> which is supposed to be covered by ->init_lock, and follows the delta fix
+> against the last patch I posted, and the whole patch can be found in the
+> github link:
+> 
+> https://github.com/ming1/linux/commit/fa6045b1371eb301f392ac84adaf3ad53bb16894
+> 
+> 
+> diff --git a/drivers/block/zram/zram_drv.c b/drivers/block/zram/zram_drv.c
+> index d0cae7a42f4d..a14ba3d350ea 100644
+> --- a/drivers/block/zram/zram_drv.c
+> +++ b/drivers/block/zram/zram_drv.c
+> @@ -1704,12 +1704,12 @@ static void zram_reset_device(struct zram *zram)
+>  	set_capacity_and_notify(zram->disk, 0);
+>  	part_stat_set_all(zram->disk->part0, 0);
+>  
+> -	up_write(&zram->init_lock);
+>  	/* I/O operation under all of CPU are done so let's free */
+>  	zram_meta_free(zram, disksize);
+>  	memset(&zram->stats, 0, sizeof(zram->stats));
+>  	zcomp_destroy(comp);
+>  	reset_bdev(zram);
+> +	up_write(&zram->init_lock);
+>  }
+>  
+>  static ssize_t disksize_store(struct device *dev,
 
-devices are not normally created by a driver, that is up to the bus
-controller logic.  A module will just disconnect itself from the device,
-the device does not go away.
+With this, it still ends up in a state where we loop and can't get out of:
 
-But yes, there are exceptions, and if you are doing something odd like
-that, then you need to be aware of crazy things like this, so be
-careful.  But for all normal drivers, they do not have to worry about
-this.
+zram: Can't change algorithm for initialized device
 
-thanks,
-
-greg k-h
+  Luis

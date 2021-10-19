@@ -2,31 +2,31 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 507E6433A4D
-	for <lists+linux-spdx@lfdr.de>; Tue, 19 Oct 2021 17:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DD6C433B22
+	for <lists+linux-spdx@lfdr.de>; Tue, 19 Oct 2021 17:50:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231189AbhJSPau (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 19 Oct 2021 11:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50332 "EHLO
+        id S232929AbhJSPwu (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 19 Oct 2021 11:52:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232568AbhJSPas (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 19 Oct 2021 11:30:48 -0400
+        with ESMTP id S232841AbhJSPwt (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 19 Oct 2021 11:52:49 -0400
 Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B98ABC06161C;
-        Tue, 19 Oct 2021 08:28:35 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D84DC061746;
+        Tue, 19 Oct 2021 08:50:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
         MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=Irq5/RNAL7WL43IvnY258AeD+l1VaGXwOE52U+SqXPo=; b=BqHGICTN9X/CcGdj7L0ihv22zQ
-        9q/SVG92dfC5oLbZmYixLJ1VoeZjUhyTv0j7beDiDnYzqJ574VBpdNozgOG0wpkTvZgUtJfb+eyRU
-        67mH1EwkXdtlZ3p5s0bUScCzno9A7LX9i7efipTyVJ8Wvw3A2x28NbLz1TSEa3PmID9extSQyAg1g
-        Iy6XY94RjdxjfyH304yfNLl/hOiRqm1zKIKcEjznjnyFeorh9b7ERTaNViTYOlgikBzTH5y7st9g2
-        xMUWCCoYsKuj3jtlez6AQl+/jXVPGHzvIk5GfkVgDpt28kwJfj8iFoHzuzjSrPyUkz9cXJgIJB0eg
-        OMGR8F7g==;
+        bh=nT27txnUfGO6REhnP4Je8DDqpo3m4O97nM5Zogzy7nM=; b=ZYDbmU796/03+AMtI14zcM4M31
+        6Ao9ei1XYKGhGbgqITEZjHyabP1/hfOh2LByUVBpJ9GSIMh0H7faAdB2IA0a9utbG4x/Stce0t6aE
+        whbES1u1pKnlhkFDDTK+frP8ISJiT6vLvGToN9xppwP0+d8MD/gRVje6VzHjnweGjxZEOoiP/vd1w
+        vs2HGEwsoANUFNNO2Obw9mIwNFUCq36hwJSj8TGYSoUfvE//SP6geF31S+S/k/IvGgDewGubMWGzo
+        zV41hYO2OhUBjNH6rZ4MWvCs6/nJJnHWoSAnvQrVm9tRYq5JN4PtXS0WsJgiRcip6Ek3JulADX7zK
+        fZ9sYfDQ==;
 Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mcr2L-001gwU-3x; Tue, 19 Oct 2021 15:28:21 +0000
-Date:   Tue, 19 Oct 2021 08:28:21 -0700
+        id 1mcrNg-001kpn-RU; Tue, 19 Oct 2021 15:50:24 +0000
+Date:   Tue, 19 Oct 2021 08:50:24 -0700
 From:   Luis Chamberlain <mcgrof@kernel.org>
 To:     Ming Lei <ming.lei@redhat.com>
 Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
@@ -39,7 +39,7 @@ Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
         linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YW7kFXlzRrvwzARP@bombadil.infradead.org>
+Message-ID: <YW7pQKi8AlV+ZemU@bombadil.infradead.org>
 References: <YWeOJP2UJWYF94fu@T590>
  <YWeR4moCRh+ZHOmH@T590>
  <YWiSAN6xfYcUDJCb@bombadil.infradead.org>
@@ -60,61 +60,172 @@ List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
 On Tue, Oct 19, 2021 at 10:34:41AM +0800, Ming Lei wrote:
-> Please try the following patch against upstream(linus or next) tree(basically
-> fold revised 2 and 3 of V1, and cover two issues: not fail zram_remove in
-> module_exit(), race between zram_remove() and disksize_store()), and see if
-> everything is fine for you:
+> On Mon, Oct 18, 2021 at 12:32:11PM -0700, Luis Chamberlain wrote:
+> > On Sat, Oct 16, 2021 at 07:28:39PM +0800, Ming Lei wrote:
+> > > On Fri, Oct 15, 2021 at 10:31:31AM -0700, Luis Chamberlain wrote:
+> > > > On Fri, Oct 15, 2021 at 04:36:11PM +0800, Ming Lei wrote:
+> > > > > On Thu, Oct 14, 2021 at 05:22:40PM -0700, Luis Chamberlain wrote:
+> > > > > > On Fri, Oct 15, 2021 at 07:52:04AM +0800, Ming Lei wrote:
+> > > > > ...
+> > > > > > > 
+> > > > > > > We need to understand the exact reason why there is still cpuhp node
+> > > > > > > left, can you share us the exact steps for reproducing the issue?
+> > > > > > > Otherwise we may have to trace and narrow down the reason.
+> > > > > > 
+> > > > > > See my commit log for my own fix for this issue.
+> > > > > 
+> > > > > OK, thanks!
+> > > > > 
+> > > > > I can reproduce the issue, and the reason is that reset_store fails
+> > > > > zram_remove() when unloading module, then the warning is caused.
+> > > > > 
+> > > > > The top 3 patches in the following tree can fix the issue:
+> > > > > 
+> > > > > https://github.com/ming1/linux/commits/my_v5.15-blk-dev
+> > > > 
+> > > > Thanks for trying an alternative fix! A crash stops yes, however this
+> > > 
+> > > I doubt it is alternative since your patchset doesn't mention the exact
+> > > reason of 'Error: Removing state 63 which has instances left.', that is
+> > > simply caused by failing to remove zram because ->claim is set during
+> > > unloading module.
+> > 
+> > Well I disagree because it does explain how the race can happen, and it
+> > also explains how since the sysfs interface is exposed until module
+> > removal completes, it leaves exposed knobs to allow re-initializing of a
+> > struct zcomp for a zram device before the exit.
+> > 
+> > > Yeah, you mentioned the race between disksize_store() vs. zram_remove(),
+> > > however I don't think it is reproduced easily in the test because the race
+> > > window is pretty small, also it can be fixed easily in my 3rd path
+> > > without any complicated tricks.
+> > 
+> > Reproducing for me is... extremely easy.
+> 
+> In my observation, failing zram_remove() is extremely easy to trigger, which
+> is caused by reset_store() which sets ->reclaim as true, so
+> zram_remove() is failed and zram_reset_device() is bypassed , then the
+> failure of 'Error: Removing state 63 which has instances left.' is caused.
+> 
+> We are in same page?
 
-Page fault ...
+The actual first issue is the CPU hotplug remove callback is long gone and
+in the meantime we allow a race to add a new "instance", in the zram
+driver's case a cpu struct zcomp instance though the sysfs interface.
 
-[   18.284256] zram: Removed device: zram0
-[   18.312974] BUG: unable to handle page fault for address:
-ffffad86de903008
-[   18.313707] #PF: supervisor read access in kernel mode
-[   18.314248] #PF: error_code(0x0000) - not-present page
-[   18.314797] PGD 100000067 P4D 100000067 PUD 10031e067 PMD 136a28067
-PTE 0
-[   18.315538] Oops: 0000 [#1] PREEMPT SMP NOPTI
-[   18.316012] CPU: 3 PID: 1198 Comm: rmmod Tainted: G            E
-5.15.0-rc3-next-20210927+ #89
-[   18.316979] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996),
-BIOS 1.14.0-2 04/01/2014
-[   18.317876] RIP: 0010:zram_free_page+0x1b/0xf0 [zram]
-[   18.318430] Code: 1f 44 00 00 48 89 c8 c3 0f 1f 80 00 00 00 00 0f 1f
-44 00 00 41 54 49 89 f4 55 89 f5 53 48 8b 17 48 c1 e5 04 48 89 fb 48 01
-ea <48> 8b 42 08 a9 00 00 00 20 74 14 48 25 ff ff ff df 48 89 42 08 48
-[   18.320412] RSP: 0018:ffffad86f8013df8 EFLAGS: 00010286
-[   18.320978] RAX: 0000000000000001 RBX: ffff9b7b435c7800 RCX:
-0000000000000200
-[   18.321758] RDX: ffffad86de903000 RSI: 0000000000000000 RDI:
-ffff9b7b435c7800
-[   18.322524] RBP: 0000000000000000 R08: 0000000000000200 R09:
-0000000000000000
-[   18.323299] R10: 0000000000000200 R11: 0000000000000000 R12:
-0000000000000000
-[   18.324030] R13: ffff9b7b55191800 R14: ffff9b7b435c7820 R15:
-ffff9b7b4677f960
-[   18.324784] FS:  00007fc8e4c90580(0000) GS:ffff9b7c77cc0000(0000)
-knlGS:0000000000000000
-[   18.325651] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   18.326272] CR2: ffffad86de903008 CR3: 000000014f1de003 CR4:
-0000000000370ee0
-[   18.327047] DR0: 0000000000000000 DR1: 0000000000000000 DR2:
-0000000000000000
-[   18.327818] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7:
-0000000000000400
-[   18.328586] Call Trace:
-[   18.328852]  <TASK>
-[   18.329284]  zram_reset_device+0xd8/0x140 [zram]
-[   18.329983]  zram_remove.cold+0xa/0x20 [zram]
-[   18.330644]  ? hot_remove_store+0xe0/0xe0 [zram]
-[   18.331367]  zram_remove_cb+0xd/0x10 [zram]
-[   18.332010]  idr_for_each+0x5b/0xd0
-[   18.332578]  destroy_devices+0x26/0x50 [zram]
-[   18.333238]  __do_sys_delete_module+0x18d/0x2a0
-[   18.333913]  ? fpregs_assert_state_consistent+0x1e/0x40
-[   18.334665]  ? exit_to_user_mode_prepare+0x3a/0x180
-[   18.335395]  do_syscall_64+0x38/0xc0
-[   18.335966]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-[   18.336681] RIP: 0033:0x7fc8e4db64a7
+Regardless of if zram_remove() can fail or not, the above race needs to
+be addressed.
 
+> > > Not dig into details of your patchset via grabbing module reference
+> > > count during show/store attribute of kernfs which is done in your patch
+> > > 9, but IMO this way isn't necessary:
+> > 
+> > That's to address the deadlock only.
+> > 
+> > > 1) any driver module has to cleanup anything which may refer to symbols
+> > > or data defined in module_exit of this driver
+> > 
+> > Yes, and as the cpu multistate hotplug documentation warns (although
+> > such documentation is kind of hidden) that driver authors need to be
+> > careful with module removal too, refer to the warning at the end of
+> > __cpuhp_remove_state_cpuslocked() about module removal.
+> 
+> It is zram's bug. zram has to clean everything in module_exit(),
+> unfortunately zram_remove() can be failed when calling from
+> module_exit() because ->claim is set as true by reset_store(), then
+> zram_reset_device()(->zcomp_destroy) isn't called, and this failure should
+> not happen when unloading module, should it?
+
+You're addressing a possible failig zram_remove() while I address not
+allowing entry to muck with the zram driver at all once we're bailing
+on module removal.
+
+> > > 2) device_del() is often done in module_exit(), once device_del()
+> > > returns, no any new show/store on the device's kobject attribute
+> > > is possible.
+> > 
+> > Right and if a syfs knob is exposed before device_del() completely
+> > and is allowed to do things, the driver should take care to prevent
+> > races for CPU multistate support. The small state machine I added ensures
+> 
+> What is the race for CPU multistate support? If you mean 'Error: Removing
+> state 63 which has instances left.', it is zram's bug since zram has to
+> cleanup everything in module_exit().
+
+Yes. And it is what my out of tree yet Acked patch, 'zram: fix     
+crashes with cpu hotplug multistate' does.
+
+> > we don't run over any expectations from cpu hotplug multistate support.
+> > 
+> > I've *never* suggested there cannot be alternatives to my solution with
+> > the small state machine, but for you to say it is incorrect is simply
+> > not right either.
+> > 
+> > > 3) it is _not_ a must or pattern for fixing bugs to hold one lock before
+> > > calling device_del(), meantime the lock is required in the device's
+> > > attribute show()/store(), which causes AA deadlock easily. Your approach
+> > > just avoids the issue by not releasing module until all show/store are
+> > > done.
+> > 
+> > Right, there are two approaches here:
+> > 
+> > a) Your approach is to accept the deadlock as a requirement and so
+> > you would prefer to implement an alternative to using a shared lock
+> > on module exit and sysfs op.
+> 
+> wrt. in-tree zram, there is neither any deadlock in linus tree, nor after
+> applying my 3 patches. If you think there is, please share us the code
+> or lockdep warning.
+
+Right, 'zram: fix crashes with cpu hotplug multistate' is not yet
+merged, my approach to fixing that does add a lock use on module removal
+which does introduce a possible deadlock with syfs, which is later addressed
+generically between sysfs and module removal for all drivers.
+
+> > b) While I address such a deadlock head on as I think this sort of locking
+> > be allowed for two reasons:
+> >    b1) as we never documented such requirement otherwise.
+> >    b2) There is a possibility that other drivers already exist too
+> >        which *do* use a shared lock on module removal and sysfs ops
+> >        (and I just confirmed this to be true)
+> 
+> The 'deadlock' is actually caused by your out-of-tree patch of 'zram: fix
+> crashes with cpu hotplug multistate' which adds mutex_lock(zram_index_mutex)
+> in destroy_devices().
+
+Yes yes, but you are completely throwing out the window that other
+possible deadlocks can exist in the kernel *and* that *new* cases of
+the deadlock can easily also be added!
+
+> We can fix this issue easily without needing the global lock, please see the
+> attached(pre-V2) patch.
+
+So far your patches do not fix the issues though...
+
+> > So I *really* don't think it is wise for us to simply accept this new
+> > found deadlock as a *new* requirement, specially if we can fix it easily.
+> > 
+> > A cursory review using Coccinelle potential issues with mutex lock
+> > directly used on module exit (so this doesn't cover drivers like zram
+> > which uses a routine and then grabs the lock through indirection) and a
+> > sysfs op shows these drivers are also affected by this deadlock:
+> > 
+> >   * arch/powerpc/sysdev/fsl_mpic_timer_wakeup.c
+> 
+> In fsl_wakeup_sys_exit(), device_remove_file() is called before
+> acquiring &sysfs_lock, so there shouldn't be such AA deadlock.
+> 
+> >   * lib/test_firmware.c
+> 
+> Yeah, there is the AA deadlock risk, but it should be fixed by moving
+> misc_deregister() out of &test_fw_mutex.
+
+And just like that you are ignoring other possible uses in the kernel
+which might have similar deadlocks.
+
+So do you want to take the position:
+
+Hey driver authors: you cannot use any shared lock on module removal and
+on sysfs ops?
+
+  Luis

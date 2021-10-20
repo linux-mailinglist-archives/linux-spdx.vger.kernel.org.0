@@ -2,41 +2,44 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F8214342C2
-	for <lists+linux-spdx@lfdr.de>; Wed, 20 Oct 2021 03:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB553434555
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Oct 2021 08:43:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbhJTBSM (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 19 Oct 2021 21:18:12 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:59745 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229629AbhJTBSL (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>);
-        Tue, 19 Oct 2021 21:18:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1634692557;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+        id S229842AbhJTGpy (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 20 Oct 2021 02:45:54 -0400
+Received: from smtp-out1.suse.de ([195.135.220.28]:35098 "EHLO
+        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229591AbhJTGpx (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 20 Oct 2021 02:45:53 -0400
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id E871121A74;
+        Wed, 20 Oct 2021 06:43:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+        t=1634712217; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=pvXKWp5O7DbTOunj1Tco1QEipNh0fp+oWhrMqd+8fnM=;
-        b=BGn6cCIeH4ghEEoJK37mMhZXKTdgpYGlxwqjCS4UPulYNIEnBJC20MXkgcwjaOLC4WCIsu
-        fu+RUAwe0mB6X7xo31YoZb1IdwGHUXabCBP8c4uO85/oYpYvADkLnKGTfV2KjpQvQMV79P
-        z9dXsejuqEk3V1kpkUzO+1r4yIkhN3U=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-563-J7Vtp_-gN3iXKv6um-MuyA-1; Tue, 19 Oct 2021 21:15:54 -0400
-X-MC-Unique: J7Vtp_-gN3iXKv6um-MuyA-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        bh=rNHGewS1yJSMHeXcGNkiPH4/vSqZ+kkloqucx8CrHpg=;
+        b=xaE2gnmQOesLnomNZFvJ0r1pNN1Ha5LABsYOH5p9EvC62iNKUw3U+HkW9BHEOSHWmVkg57
+        v3e5QjRkN0kJ1LMa4LOcTq7lEbgvtEmIM7xkdKx+sZpMeGZ9qNOEI0qF8Jua8wWo2GWSXy
+        k1c4uaE+0f7BF7q5mqJQHYQ2yrySS/g=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+        s=susede2_ed25519; t=1634712217;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=rNHGewS1yJSMHeXcGNkiPH4/vSqZ+kkloqucx8CrHpg=;
+        b=hQautgroTigJwzFHF1d+IXOU6BywnWwjsMxbnt810LVJ8uC7aXRTFWkw0nwWrh6mRaIT74
+        k14k8MQMA7a4pcDQ==
+Received: from pobox.suse.cz (pobox.suse.cz [10.100.2.14])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3BB5818414A0;
-        Wed, 20 Oct 2021 01:15:51 +0000 (UTC)
-Received: from T590 (ovpn-8-20.pek2.redhat.com [10.72.8.20])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 4E5F617CEE;
-        Wed, 20 Oct 2021 01:15:24 +0000 (UTC)
-Date:   Wed, 20 Oct 2021 09:15:20 +0800
-From:   Ming Lei <ming.lei@redhat.com>
-To:     Luis Chamberlain <mcgrof@kernel.org>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        by relay2.suse.de (Postfix) with ESMTPS id 25BA9A3B81;
+        Wed, 20 Oct 2021 06:43:37 +0000 (UTC)
+Date:   Wed, 20 Oct 2021 08:43:37 +0200 (CEST)
+From:   Miroslav Benes <mbenes@suse.cz>
+To:     Ming Lei <ming.lei@redhat.com>
+cc:     Luis Chamberlain <mcgrof@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>, tj@kernel.org,
         gregkh@linuxfoundation.org, akpm@linux-foundation.org,
         minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
@@ -44,97 +47,89 @@ Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
         linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
         linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        live-patching@vger.kernel.org
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YW9tqPunx5bssxIz@T590>
-References: <YWjCpLUNPF3s4P2U@T590>
- <YWjJ0O7K+31Iz3ox@bombadil.infradead.org>
- <YWk9e957Hb+I7HvR@T590>
- <YWm68xUnAofop3PZ@bombadil.infradead.org>
- <YWq3Z++uoJ/kcp+3@T590>
- <YW3LuzaPhW96jSBK@bombadil.infradead.org>
- <YW4uwep3BCe9Vxq8@T590>
- <YW7kFXlzRrvwzARP@bombadil.infradead.org>
- <YW7ygbLAwm2/LZFl@T590>
- <YW8eSq2B+5FtOLZb@bombadil.infradead.org>
+In-Reply-To: <YW6OptglA6UykZg/@T590>
+Message-ID: <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz>
+References: <YWeR4moCRh+ZHOmH@T590> <YWiSAN6xfYcUDJCb@bombadil.infradead.org> <YWjCpLUNPF3s4P2U@T590> <YWjJ0O7K+31Iz3ox@bombadil.infradead.org> <YWk9e957Hb+I7HvR@T590> <YWm68xUnAofop3PZ@bombadil.infradead.org> <YWq3Z++uoJ/kcp+3@T590> <YW3LuzaPhW96jSBK@bombadil.infradead.org>
+ <YW4uwep3BCe9Vxq8@T590> <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz> <YW6OptglA6UykZg/@T590>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YW8eSq2B+5FtOLZb@bombadil.infradead.org>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 12:36:42PM -0700, Luis Chamberlain wrote:
-> On Wed, Oct 20, 2021 at 12:29:53AM +0800, Ming Lei wrote:
-> > On Tue, Oct 19, 2021 at 08:28:21AM -0700, Luis Chamberlain wrote:
-> > > On Tue, Oct 19, 2021 at 10:34:41AM +0800, Ming Lei wrote:
-> > > > Please try the following patch against upstream(linus or next) tree(basically
-> > > > fold revised 2 and 3 of V1, and cover two issues: not fail zram_remove in
-> > > > module_exit(), race between zram_remove() and disksize_store()), and see if
-> > > > everything is fine for you:
+On Tue, 19 Oct 2021, Ming Lei wrote:
+
+> On Tue, Oct 19, 2021 at 08:23:51AM +0200, Miroslav Benes wrote:
+> > > > By you only addressing the deadlock as a requirement on approach a) you are
+> > > > forgetting that there *may* already be present drivers which *do* implement
+> > > > such patterns in the kernel. I worked on addressing the deadlock because
+> > > > I was informed livepatching *did* have that issue as well and so very
+> > > > likely a generic solution to the deadlock could be beneficial to other
+> > > > random drivers.
 > > > 
-> > > Page fault ...
-> > > 
-> > > [   18.284256] zram: Removed device: zram0
-> > > [   18.312974] BUG: unable to handle page fault for address:
-> > > ffffad86de903008
-> > > [   18.313707] #PF: supervisor read access in kernel mode
-> > > [   18.314248] #PF: error_code(0x0000) - not-present page
-> > > [   18.314797] PGD 100000067 P4D 100000067 PUD 10031e067 PMD 136a28067
+> > > In-tree zram doesn't have such deadlock, if livepatching has such AA deadlock,
+> > > just fixed it, and seems it has been fixed by 3ec24776bfd0.
 > > 
-> > That is another race between zram_reset_device() and disksize_store(),
-> > which is supposed to be covered by ->init_lock, and follows the delta fix
-> > against the last patch I posted, and the whole patch can be found in the
-> > github link:
-> > 
-> > https://github.com/ming1/linux/commit/fa6045b1371eb301f392ac84adaf3ad53bb16894
-> > 
-> > 
-> > diff --git a/drivers/block/zram/zram_drv.c b/drivers/block/zram/zram_drv.c
-> > index d0cae7a42f4d..a14ba3d350ea 100644
-> > --- a/drivers/block/zram/zram_drv.c
-> > +++ b/drivers/block/zram/zram_drv.c
-> > @@ -1704,12 +1704,12 @@ static void zram_reset_device(struct zram *zram)
-> >  	set_capacity_and_notify(zram->disk, 0);
-> >  	part_stat_set_all(zram->disk->part0, 0);
-> >  
-> > -	up_write(&zram->init_lock);
-> >  	/* I/O operation under all of CPU are done so let's free */
-> >  	zram_meta_free(zram, disksize);
-> >  	memset(&zram->stats, 0, sizeof(zram->stats));
-> >  	zcomp_destroy(comp);
-> >  	reset_bdev(zram);
-> > +	up_write(&zram->init_lock);
-> >  }
-> >  
-> >  static ssize_t disksize_store(struct device *dev,
+> > I would not call it a fix. It is a kind of ugly workaround because the 
+> > generic infrastructure lacked (lacks) the proper support in my opinion. 
+> > Luis is trying to fix that.
 > 
-> With this, it still ends up in a state where we loop and can't get out of:
+> What is the proper support of the generic infrastructure? I am not
+> familiar with livepatching's model(especially with module unload), you mean
+> livepatching have to do the following way from sysfs:
 > 
-> zram: Can't change algorithm for initialized device
+> 1) during module exit:
+> 	
+> 	mutex_lock(lp_lock);
+> 	kobject_put(lp_kobj);
+> 	mutex_unlock(lp_lock);
+> 	
+> 2) show()/store() method of attributes of lp_kobj
+> 	
+> 	mutex_lock(lp_lock)
+> 	...
+> 	mutex_unlock(lp_lock)
 
-Again, you are running two zram02.sh[1] on /dev/zram0, that isn't unexpected
-behavior. Here the difference is just timing. In my test VM,
-this message shows a while on one task, then it may be switched to
-another task.
+Yes, this was exactly the case. We then reworked it a lot (see 
+958ef1e39d24 ("livepatch: Simplify API by removing registration step"), so 
+now the call sequence is different. kobject_put() is basically offloaded 
+to a workqueue scheduled right from the store() method. Meaning that 
+Luis's work would probably not help us currently, but on the other hand 
+the issues with AA deadlock were one of the main drivers of the redesign 
+(if I remember correctly). There were other reasons too as the changelog 
+of the commit describes.
 
-Just run your patches a while, nothing real difference here, and the
-following message can be dumped from one task for long time:
+So, from my perspective, if there was a way to easily synchronize between 
+a data cleanup from module_exit callback and sysfs/kernfs operations, it 
+could spare people many headaches.
+ 
+> IMO, the above usage simply caused AA deadlock. Even in Luis's patch
+> 'zram: fix crashes with cpu hotplug multistate', new/same AA deadlock
+> (hot_remove_store() vs. disksize_store() or reset_store()) is added
+> because hot_remove_store() isn't called from module_exit().
+> 
+> Luis tries to delay unloading module until all show()/store() are done. But
+> that can be obtained by the following way simply during module_exit():
+> 
+> 	kobject_del(lp_kobj); //all pending store()/show() from lp_kobj are done,
+> 						  //no new store()/show() can come after
+> 						  //kobject_del() returns	
+> 	mutex_lock(lp_lock);
+> 	kobject_put(lp_kobj);
+> 	mutex_unlock(lp_lock);
 
-	can't set '107374182400' to /sys/block/zram0/disksize
+kobject_del() already calls kobject_put(). Did you mean __kobject_del(). 
+That one is internal though.
+ 
+> Or can you explain your requirement on kobject/module unload in a bit
+> details?
 
-Also you did not answer my question about your test expected result when
-running the following script from two terminal concurrently:
+Does the above makes sense?
 
-	while true; do
-		PATH=$PATH:$PWD:$PWD/../../../lib/ ./zram02.sh;
-	done
+Thanks
 
-
-
-
-Thanks,
-Ming
-
+Miroslav

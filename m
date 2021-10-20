@@ -2,42 +2,34 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E0334348AD
-	for <lists+linux-spdx@lfdr.de>; Wed, 20 Oct 2021 12:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 262F6434F4C
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Oct 2021 17:48:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbhJTKM5 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 20 Oct 2021 06:12:57 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:47910 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230063AbhJTKMx (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>);
-        Wed, 20 Oct 2021 06:12:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1634724639;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=iVYvpCAnj9ExJE6+BU/e/+6ORCn7prDFiQBrCjeMj74=;
-        b=etY5rukPlfWv3ST9qxpCmP4T9I/fWCxTCIgm167+Es1+T2B80D+8AuQV2Q72whjZqXscCL
-        amlP7Y3u/+PxJpvcG3vZVEIVM34MHYbmHegomgXETSEWDsx/jonu7RlCN/JeK7rScxUgiQ
-        4epKme6v6haHMGPDb1SYoVFWptzQ/HU=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-262-SDebCvAIP7iyuPJjpM4UEw-1; Wed, 20 Oct 2021 06:10:38 -0400
-X-MC-Unique: SDebCvAIP7iyuPJjpM4UEw-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4EC83802575;
-        Wed, 20 Oct 2021 10:10:35 +0000 (UTC)
-Received: from T590 (ovpn-8-41.pek2.redhat.com [10.72.8.41])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id A511D7621D;
-        Wed, 20 Oct 2021 10:09:56 +0000 (UTC)
-Date:   Wed, 20 Oct 2021 18:09:51 +0800
-From:   Ming Lei <ming.lei@redhat.com>
-To:     Miroslav Benes <mbenes@suse.cz>
-Cc:     Luis Chamberlain <mcgrof@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        id S230474AbhJTPue (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 20 Oct 2021 11:50:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230460AbhJTPud (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 20 Oct 2021 11:50:33 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEC4C06161C;
+        Wed, 20 Oct 2021 08:48:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=HBm/Dqi3jW7uqk4DDOcgZCLMM+rxars2xSrNqJBELD4=; b=2Nfb8jhDT8Z/1YppkaaGzMBE5F
+        7DhHQ0SucI4gkSMWSPV7qRIfV71Fm6qrfDrJmlPqzT7KRfnj1yBiDyOvhgFH59z59TYTW1kELLAVg
+        mLk1u/MgB+DYSZ1pYh9quyEyxaf9eS7gY6oh1R2myWpq2f4ZN+t8O9pDmupq3jh8lU1/6coGTgRIG
+        C8k2APmUBWLR1sFqAAQXTM7S5Y5k25OWJXYSBl+d9lruqyMox+TX5UmnYt1ffUmBrwhJfbE6Q8mm2
+        r6X/+eHUQhd8s8zbcTZND5RIi0WiXLOOp5v6be+Wi35/qyZrcuIhl8AEJKo3MYxcs2OMjnbQngNMf
+        RACz1Adg==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mdDoy-0057WV-4E; Wed, 20 Oct 2021 15:48:04 +0000
+Date:   Wed, 20 Oct 2021 08:48:04 -0700
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Ming Lei <ming.lei@redhat.com>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>, tj@kernel.org,
         gregkh@linuxfoundation.org, akpm@linux-foundation.org,
         minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
@@ -45,99 +37,83 @@ Cc:     Luis Chamberlain <mcgrof@kernel.org>,
         tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
         linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
         linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
-        live-patching@vger.kernel.org
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YW/q70dLyF+YudyF@T590>
-References: <YWk9e957Hb+I7HvR@T590>
+Message-ID: <YXA6NMhwoiIMeHji@bombadil.infradead.org>
+References: <YWjJ0O7K+31Iz3ox@bombadil.infradead.org>
+ <YWk9e957Hb+I7HvR@T590>
  <YWm68xUnAofop3PZ@bombadil.infradead.org>
  <YWq3Z++uoJ/kcp+3@T590>
  <YW3LuzaPhW96jSBK@bombadil.infradead.org>
  <YW4uwep3BCe9Vxq8@T590>
- <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz>
- <YW6OptglA6UykZg/@T590>
- <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz>
- <YW/KEsfWJMIPnz76@T590>
- <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz>
+ <YW7kFXlzRrvwzARP@bombadil.infradead.org>
+ <YW7ygbLAwm2/LZFl@T590>
+ <YW8eSq2B+5FtOLZb@bombadil.infradead.org>
+ <YW9tqPunx5bssxIz@T590>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+In-Reply-To: <YW9tqPunx5bssxIz@T590>
+Sender: Luis Chamberlain <mcgrof@infradead.org>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Wed, Oct 20, 2021 at 10:19:27AM +0200, Miroslav Benes wrote:
-> On Wed, 20 Oct 2021, Ming Lei wrote:
-> 
-> > On Wed, Oct 20, 2021 at 08:43:37AM +0200, Miroslav Benes wrote:
-> > > On Tue, 19 Oct 2021, Ming Lei wrote:
-> > > 
-> > > > On Tue, Oct 19, 2021 at 08:23:51AM +0200, Miroslav Benes wrote:
-> > > > > > > By you only addressing the deadlock as a requirement on approach a) you are
-> > > > > > > forgetting that there *may* already be present drivers which *do* implement
-> > > > > > > such patterns in the kernel. I worked on addressing the deadlock because
-> > > > > > > I was informed livepatching *did* have that issue as well and so very
-> > > > > > > likely a generic solution to the deadlock could be beneficial to other
-> > > > > > > random drivers.
-> > > > > > 
-> > > > > > In-tree zram doesn't have such deadlock, if livepatching has such AA deadlock,
-> > > > > > just fixed it, and seems it has been fixed by 3ec24776bfd0.
-> > > > > 
-> > > > > I would not call it a fix. It is a kind of ugly workaround because the 
-> > > > > generic infrastructure lacked (lacks) the proper support in my opinion. 
-> > > > > Luis is trying to fix that.
-> > > > 
-> > > > What is the proper support of the generic infrastructure? I am not
-> > > > familiar with livepatching's model(especially with module unload), you mean
-> > > > livepatching have to do the following way from sysfs:
-> > > > 
-> > > > 1) during module exit:
-> > > > 	
-> > > > 	mutex_lock(lp_lock);
-> > > > 	kobject_put(lp_kobj);
-> > > > 	mutex_unlock(lp_lock);
-> > > > 	
-> > > > 2) show()/store() method of attributes of lp_kobj
-> > > > 	
-> > > > 	mutex_lock(lp_lock)
-> > > > 	...
-> > > > 	mutex_unlock(lp_lock)
-> > > 
-> > > Yes, this was exactly the case. We then reworked it a lot (see 
-> > > 958ef1e39d24 ("livepatch: Simplify API by removing registration step"), so 
-> > > now the call sequence is different. kobject_put() is basically offloaded 
-> > > to a workqueue scheduled right from the store() method. Meaning that 
-> > > Luis's work would probably not help us currently, but on the other hand 
-> > > the issues with AA deadlock were one of the main drivers of the redesign 
-> > > (if I remember correctly). There were other reasons too as the changelog 
-> > > of the commit describes.
-> > > 
-> > > So, from my perspective, if there was a way to easily synchronize between 
-> > > a data cleanup from module_exit callback and sysfs/kernfs operations, it 
-> > > could spare people many headaches.
+On Wed, Oct 20, 2021 at 09:15:20AM +0800, Ming Lei wrote:
+> On Tue, Oct 19, 2021 at 12:36:42PM -0700, Luis Chamberlain wrote:
+> > On Wed, Oct 20, 2021 at 12:29:53AM +0800, Ming Lei wrote:
+> > > diff --git a/drivers/block/zram/zram_drv.c b/drivers/block/zram/zram_drv.c
+> > > index d0cae7a42f4d..a14ba3d350ea 100644
+> > > --- a/drivers/block/zram/zram_drv.c
+> > > +++ b/drivers/block/zram/zram_drv.c
+> > > @@ -1704,12 +1704,12 @@ static void zram_reset_device(struct zram *zram)
+> > >  	set_capacity_and_notify(zram->disk, 0);
+> > >  	part_stat_set_all(zram->disk->part0, 0);
+> > >  
+> > > -	up_write(&zram->init_lock);
+> > >  	/* I/O operation under all of CPU are done so let's free */
+> > >  	zram_meta_free(zram, disksize);
+> > >  	memset(&zram->stats, 0, sizeof(zram->stats));
+> > >  	zcomp_destroy(comp);
+> > >  	reset_bdev(zram);
+> > > +	up_write(&zram->init_lock);
+> > >  }
+> > >  
+> > >  static ssize_t disksize_store(struct device *dev,
 > > 
-> > kobject_del() is supposed to do so, but you can't hold a shared lock
-> > which is required in show()/store() method. Once kobject_del() returns,
-> > no pending show()/store() any more.
+> > With this, it still ends up in a state where we loop and can't get out of:
 > > 
-> > The question is that why one shared lock is required for livepatching to
-> > delete the kobject. What are you protecting when you delete one kobject?
+> > zram: Can't change algorithm for initialized device
 > 
-> I think it boils down to the fact that we embed kobject statically to 
-> structures which livepatch uses to maintain data. That is discouraged 
-> generally, but all the attempts to implement it correctly were utter 
-> failures.
+> Again, you are running two zram02.sh[1] on /dev/zram0, that isn't unexpected
 
-OK, then it isn't one common usage, in which kobject covers the release
-of the external object. What is the exact kobject in livepatching?
+You mean that it is not expected? If so then yes, of course.
 
-But kobject_del() won't release the kobject, you shouldn't need the lock
-to delete kobject first. After the kobject is deleted, no any show() and
-store() any more, isn't such sync[1] you expected?
+> behavior. Here the difference is just timing.
 
+Right, but that is what helped reproduce a difficutl to re-produce customer
+bug. Once you find an easy way to reproduce a reported issue you stick
+with it and try to make the situation worse to ensure no more bugs are
+present.
 
-Thanks,
-Ming
+> Also you did not answer my question about your test expected result when
+> running the following script from two terminal concurrently:
+> 
+> 	while true; do
+> 		PATH=$PATH:$PWD:$PWD/../../../lib/ ./zram02.sh;
+> 	done
 
+If you run this, you should see no failures.
+
+Once you start a second script that one should cause odd issues on both
+sides but never crash or stall the module.
+
+A second series of tests is hitting CTRL-C on either randonly and
+restarting testing once again randomly.
+
+Again, neither should crash the kernel or stall the module.
+
+In the end of these tests you should be able to run the script alone
+just once and not see issues.
+
+  Luis

@@ -2,135 +2,168 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F2C436EA1
-	for <lists+linux-spdx@lfdr.de>; Fri, 22 Oct 2021 02:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F95A439337
+	for <lists+linux-spdx@lfdr.de>; Mon, 25 Oct 2021 11:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231872AbhJVAIC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 21 Oct 2021 20:08:02 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:35474 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231629AbhJVAIC (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>);
-        Thu, 21 Oct 2021 20:08:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1634861145;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+        id S232710AbhJYKBR (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 25 Oct 2021 06:01:17 -0400
+Received: from smtp-out1.suse.de ([195.135.220.28]:36442 "EHLO
+        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230297AbhJYKBQ (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 25 Oct 2021 06:01:16 -0400
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id EF03B2191E;
+        Mon, 25 Oct 2021 09:58:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+        t=1635155932; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=N5JfCAsI+inccAUJ1Aaxw45z/l5KEHCFXJn6LAT6Uv8=;
-        b=gs0ydNl57/JUkxjCBrVde3aRhLoLGKgKIlpA5bQR0vwuEWY2XtZUfORY76B2hF91kX5pVQ
-        InFI9AemreBsL3a7DpR/Fg+euxJwKzUDcDik55mxGMJoNHkemeqPtfWYs8qVIWX1go5mq0
-        WQ5/gdYXTh9WB0f+gs9p31IzPPVVaZc=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-392-2rnw5DspNCGnqLASt3ZXsg-1; Thu, 21 Oct 2021 20:05:39 -0400
-X-MC-Unique: 2rnw5DspNCGnqLASt3ZXsg-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com [10.5.11.23])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        bh=DT/OTBMCYlwriv5HWVIwUqv72OWQWapWNPJDICv0yPg=;
+        b=W7Zw/nrZiA4UZbuSr/qogGK+E0KzuQF8C/nNafNbDs454vnam3HWvFibs3P3ppVLB573Pd
+        pcjluKXWNEeN0GDQh0V3sb+bLG9doxPr4I5VO9O6qCviitGL7zqC2/IWdaz++RWuDqmEO8
+        hPH/V5uiLhBHBPhm3hhY2gU0UrW7PTs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+        s=susede2_ed25519; t=1635155932;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=DT/OTBMCYlwriv5HWVIwUqv72OWQWapWNPJDICv0yPg=;
+        b=GGtCOE9aHLrFGguQIcVEHQWTiUfWvyUjgN07MJk1AkEGOmaktxaEin5n25sR0a3Nu2OV5T
+        gNPSgW4XevCQ0cCw==
+Received: from pobox.suse.cz (pobox.suse.cz [10.100.2.14])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 81E66806688;
-        Fri, 22 Oct 2021 00:05:36 +0000 (UTC)
-Received: from T590 (ovpn-8-17.pek2.redhat.com [10.72.8.17])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id EE0B819D9B;
-        Fri, 22 Oct 2021 00:05:23 +0000 (UTC)
-Date:   Fri, 22 Oct 2021 08:05:18 +0800
-From:   Ming Lei <ming.lei@redhat.com>
-To:     Luis Chamberlain <mcgrof@kernel.org>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        by relay2.suse.de (Postfix) with ESMTPS id 57932A3B81;
+        Mon, 25 Oct 2021 09:58:51 +0000 (UTC)
+Date:   Mon, 25 Oct 2021 11:58:51 +0200 (CEST)
+From:   Miroslav Benes <mbenes@suse.cz>
+To:     Greg KH <gregkh@linuxfoundation.org>
+cc:     Ming Lei <ming.lei@redhat.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>, tj@kernel.org,
-        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
-        minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
-        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
-        tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
-        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+        akpm@linux-foundation.org, minchan@kernel.org, jeyu@kernel.org,
+        shuah@kernel.org, bvanassche@acm.org, dan.j.williams@intel.com,
+        joe@perches.com, tglx@linutronix.de, keescook@chromium.org,
+        rostedt@goodmis.org, linux-spdx@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-block@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-kernel@vger.kernel.org, live-patching@vger.kernel.org,
+        pmladek@suse.com
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YXIAPtvxW98lyM9r@T590>
-References: <YWq3Z++uoJ/kcp+3@T590>
- <YW3LuzaPhW96jSBK@bombadil.infradead.org>
- <YW4uwep3BCe9Vxq8@T590>
- <YW7kFXlzRrvwzARP@bombadil.infradead.org>
- <YW7ygbLAwm2/LZFl@T590>
- <YW8eSq2B+5FtOLZb@bombadil.infradead.org>
- <YW9tqPunx5bssxIz@T590>
- <YXA6NMhwoiIMeHji@bombadil.infradead.org>
- <YXC2qcx/RlLwjrKx@T590>
- <YXGg95OcaR+5ktAZ@bombadil.infradead.org>
+In-Reply-To: <YW/TRkXth/mbTQ6b@kroah.com>
+Message-ID: <alpine.LSU.2.21.2110251144270.7294@pobox.suse.cz>
+References: <YWk9e957Hb+I7HvR@T590> <YWm68xUnAofop3PZ@bombadil.infradead.org> <YWq3Z++uoJ/kcp+3@T590> <YW3LuzaPhW96jSBK@bombadil.infradead.org> <YW4uwep3BCe9Vxq8@T590> <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz> <YW6OptglA6UykZg/@T590>
+ <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz> <YW/KEsfWJMIPnz76@T590> <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz> <YW/TRkXth/mbTQ6b@kroah.com>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YXGg95OcaR+5ktAZ@bombadil.infradead.org>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Thu, Oct 21, 2021 at 10:18:47AM -0700, Luis Chamberlain wrote:
-> On Thu, Oct 21, 2021 at 08:39:05AM +0800, Ming Lei wrote:
-> > On Wed, Oct 20, 2021 at 08:48:04AM -0700, Luis Chamberlain wrote:
-> > > A second series of tests is hitting CTRL-C on either randonly and
-> > > restarting testing once again randomly.
+On Wed, 20 Oct 2021, Greg KH wrote:
+
+> On Wed, Oct 20, 2021 at 10:19:27AM +0200, Miroslav Benes wrote:
+> > On Wed, 20 Oct 2021, Ming Lei wrote:
 > > 
-> > ltp/zram02.sh has cleanup handler via trap to clean everything(swapoff/umount/reset/
-> > rmmod), ctrl-c will terminate current forground task and cause shell to run the
-> > cleanup handler first, but further 'ctrl-c' will terminate the cleanup handler,
-> > then the cleanup won't be done completely, such as zram disk is left as swap
-> > device and zram can't be unloaded. The idea can be observed via the following
-> > script:
+> > > On Wed, Oct 20, 2021 at 08:43:37AM +0200, Miroslav Benes wrote:
+> > > > On Tue, 19 Oct 2021, Ming Lei wrote:
+> > > > 
+> > > > > On Tue, Oct 19, 2021 at 08:23:51AM +0200, Miroslav Benes wrote:
+> > > > > > > > By you only addressing the deadlock as a requirement on approach a) you are
+> > > > > > > > forgetting that there *may* already be present drivers which *do* implement
+> > > > > > > > such patterns in the kernel. I worked on addressing the deadlock because
+> > > > > > > > I was informed livepatching *did* have that issue as well and so very
+> > > > > > > > likely a generic solution to the deadlock could be beneficial to other
+> > > > > > > > random drivers.
+> > > > > > > 
+> > > > > > > In-tree zram doesn't have such deadlock, if livepatching has such AA deadlock,
+> > > > > > > just fixed it, and seems it has been fixed by 3ec24776bfd0.
+> > > > > > 
+> > > > > > I would not call it a fix. It is a kind of ugly workaround because the 
+> > > > > > generic infrastructure lacked (lacks) the proper support in my opinion. 
+> > > > > > Luis is trying to fix that.
+> > > > > 
+> > > > > What is the proper support of the generic infrastructure? I am not
+> > > > > familiar with livepatching's model(especially with module unload), you mean
+> > > > > livepatching have to do the following way from sysfs:
+> > > > > 
+> > > > > 1) during module exit:
+> > > > > 	
+> > > > > 	mutex_lock(lp_lock);
+> > > > > 	kobject_put(lp_kobj);
+> > > > > 	mutex_unlock(lp_lock);
+> > > > > 	
+> > > > > 2) show()/store() method of attributes of lp_kobj
+> > > > > 	
+> > > > > 	mutex_lock(lp_lock)
+> > > > > 	...
+> > > > > 	mutex_unlock(lp_lock)
+> > > > 
+> > > > Yes, this was exactly the case. We then reworked it a lot (see 
+> > > > 958ef1e39d24 ("livepatch: Simplify API by removing registration step"), so 
+> > > > now the call sequence is different. kobject_put() is basically offloaded 
+> > > > to a workqueue scheduled right from the store() method. Meaning that 
+> > > > Luis's work would probably not help us currently, but on the other hand 
+> > > > the issues with AA deadlock were one of the main drivers of the redesign 
+> > > > (if I remember correctly). There were other reasons too as the changelog 
+> > > > of the commit describes.
+> > > > 
+> > > > So, from my perspective, if there was a way to easily synchronize between 
+> > > > a data cleanup from module_exit callback and sysfs/kernfs operations, it 
+> > > > could spare people many headaches.
+> > > 
+> > > kobject_del() is supposed to do so, but you can't hold a shared lock
+> > > which is required in show()/store() method. Once kobject_del() returns,
+> > > no pending show()/store() any more.
+> > > 
+> > > The question is that why one shared lock is required for livepatching to
+> > > delete the kobject. What are you protecting when you delete one kobject?
 > > 
-> > 	#!/bin/bash
-> > 	trap 'echo "enter trap"; sleep 20; echo "exit trap";' INT
-> > 	sleep 30
-> > 
-> > After the above script is run foreground, when 1st ctrl-c is pressed, 'sleep 30'
-> > is terminated, then the trap command is run, so you can see "enter trap"
-> > dumped. Then if you pressed 2nd ctrl-c, 'sleep 20' is terminated immediately.
-> > So 'swapoff' from zram02.sh's trap function can be terminated in this way.
-> > 
-> > zram disk being left as swap disk can be observed with your patch too
-> > after terminating via multiple ctrl-c which has to be done this way because
-> > the test is dead loop.
-> > 
-> > So it is hard to cleanup everything completely after multiple 'CTRL-C' is
-> > involved, and it should be impossible. It needs violent multiple ctrl-c to
-> > terminate the dealoop test.
-> > 
-> > So it isn't reasonable to expect that zram can be always unloaded successfully
-> > after the test script is terminated via multiple ctrl-c.
+> > I think it boils down to the fact that we embed kobject statically to 
+> > structures which livepatch uses to maintain data. That is discouraged 
+> > generally, but all the attempts to implement it correctly were utter 
+> > failures.
 > 
-> For the life of me, I do not run into these issue with my patch. But
-> with yours I had.
-> 
-> To be clear, I run zram02.sh on two terminals. Then to interrupt I just leave
-> CTRL-C pressed to issue multiple terminations until the script is done
-> on each terminal at a time, until I see both have completed.
-> 
-> I repeat the same test, noting always that when I start one one terminal
-> the test is succeeding. And also when I cancel completely one script the
-> test continue fine without issue.
+> Sounds like this is the real problem that needs to be fixed.  kobjects
+> should always control the lifespan of the structure they are embedded
+> in.  If not, then that is a design flaw of the user of the kobject :(
 
-As I explained wrt. shell's trap, this issue won't be avoided from
-userspace because trap function can be terminated by ctrl-c too,
-otherwise one shell script may not be terminated at all.
+Right, and you've already told us. A couple of times.
 
-The unclean shutdown can be observed in single 'while true; do zram02.sh; done'
-too on both your patches and mine.
+For example 
+here https://lore.kernel.org/all/20190502074230.GA27847@kroah.com/
 
-Also it is insane to write write test in a deadloop, and people seldom
-do that, not see such way in either blktests/xfstests.
+:)
+ 
+> Where in the kernel is this happening?  And where have been the attempts
+> to fix this up?
 
-I you limit completion time of this test in long enough time(one or
-several hours) or big enough loops, I believe it can be done cleanly,
-such as:
+include/linux/livepatch.h and kernel/livepatch/core.c. See 
+klp_{patch,object,func}.
 
-cnt=0
-MAX=10000
-while [ $cnt -lt $MAX ]; do
-	PATH=$PATH:$PWD:$PWD/../../../lib/ ./zram02.sh;
-done
+It took some archeology, but I think 
+https://lore.kernel.org/all/1464018848-4303-1-git-send-email-pmladek@suse.com/ 
+is it. Petr might correct me.
 
+It was long before we added some important features to the code, so it 
+might be even more difficult today.
 
-Thanks,
-Ming
+It resurfaced later when Tobin tried to fix some of kobject call sites in 
+the kernel...
 
+https://lore.kernel.org/all/20190430001534.26246-1-tobin@kernel.org/
+https://lore.kernel.org/all/20190430233803.GB10777@eros.localdomain/
+https://lore.kernel.org/all/20190502023142.20139-6-tobin@kernel.org/
+
+There are probably more references.
+
+Anyway, the current code works fine (well, one could argue about that). If 
+someone wants to take a (another) stab at this, then why not, but it 
+seemed like a rabbit hole without a substantial gain in the past. On the 
+other hand, we currently misuse the API to some extent.
+
+/me scratches head
+
+Miroslav

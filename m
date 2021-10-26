@@ -2,68 +2,67 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F95A439337
-	for <lists+linux-spdx@lfdr.de>; Mon, 25 Oct 2021 11:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA92D43AE58
+	for <lists+linux-spdx@lfdr.de>; Tue, 26 Oct 2021 10:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232710AbhJYKBR (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 25 Oct 2021 06:01:17 -0400
-Received: from smtp-out1.suse.de ([195.135.220.28]:36442 "EHLO
+        id S234417AbhJZIur (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 26 Oct 2021 04:50:47 -0400
+Received: from smtp-out1.suse.de ([195.135.220.28]:48794 "EHLO
         smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230297AbhJYKBQ (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 25 Oct 2021 06:01:16 -0400
+        with ESMTP id S234356AbhJZIup (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 26 Oct 2021 04:50:45 -0400
 Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id EF03B2191E;
-        Mon, 25 Oct 2021 09:58:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-        t=1635155932; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+        by smtp-out1.suse.de (Postfix) with ESMTP id 95A69218F6;
+        Tue, 26 Oct 2021 08:48:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1635238099; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
          mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=DT/OTBMCYlwriv5HWVIwUqv72OWQWapWNPJDICv0yPg=;
-        b=W7Zw/nrZiA4UZbuSr/qogGK+E0KzuQF8C/nNafNbDs454vnam3HWvFibs3P3ppVLB573Pd
-        pcjluKXWNEeN0GDQh0V3sb+bLG9doxPr4I5VO9O6qCviitGL7zqC2/IWdaz++RWuDqmEO8
-        hPH/V5uiLhBHBPhm3hhY2gU0UrW7PTs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-        s=susede2_ed25519; t=1635155932;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=DT/OTBMCYlwriv5HWVIwUqv72OWQWapWNPJDICv0yPg=;
-        b=GGtCOE9aHLrFGguQIcVEHQWTiUfWvyUjgN07MJk1AkEGOmaktxaEin5n25sR0a3Nu2OV5T
-        gNPSgW4XevCQ0cCw==
-Received: from pobox.suse.cz (pobox.suse.cz [10.100.2.14])
+        bh=Q+98+lPkGDb22QCcyWAKWfGYWjs17jCOmjdrdsgCACM=;
+        b=brGyZg1VELqA3lLz8/GxVtAGDO5KLJV+h6TxCRn5ziptc07WGQnvihKlqw0Fi8jRY5zdYo
+        7oR4y9Ib1kNhPYt4gIgjqgboaKR/iaC/9646T3WjqNJrrmM/6G0pDjzn/xkQhGjExHGTyV
+        dhah+BW2dpu+75lhjQ2C4K/zNgtcMwg=
+Received: from suse.cz (unknown [10.100.224.162])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 57932A3B81;
-        Mon, 25 Oct 2021 09:58:51 +0000 (UTC)
-Date:   Mon, 25 Oct 2021 11:58:51 +0200 (CEST)
-From:   Miroslav Benes <mbenes@suse.cz>
-To:     Greg KH <gregkh@linuxfoundation.org>
-cc:     Ming Lei <ming.lei@redhat.com>,
+        by relay2.suse.de (Postfix) with ESMTPS id DA608A3B84;
+        Tue, 26 Oct 2021 08:48:18 +0000 (UTC)
+Date:   Tue, 26 Oct 2021 10:48:18 +0200
+From:   Petr Mladek <pmladek@suse.com>
+To:     Ming Lei <ming.lei@redhat.com>
+Cc:     Miroslav Benes <mbenes@suse.cz>,
         Luis Chamberlain <mcgrof@kernel.org>,
         Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>, tj@kernel.org,
-        akpm@linux-foundation.org, minchan@kernel.org, jeyu@kernel.org,
-        shuah@kernel.org, bvanassche@acm.org, dan.j.williams@intel.com,
-        joe@perches.com, tglx@linutronix.de, keescook@chromium.org,
-        rostedt@goodmis.org, linux-spdx@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-block@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-kernel@vger.kernel.org, live-patching@vger.kernel.org,
-        pmladek@suse.com
+        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
+        minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
+        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        live-patching@vger.kernel.org
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-In-Reply-To: <YW/TRkXth/mbTQ6b@kroah.com>
-Message-ID: <alpine.LSU.2.21.2110251144270.7294@pobox.suse.cz>
-References: <YWk9e957Hb+I7HvR@T590> <YWm68xUnAofop3PZ@bombadil.infradead.org> <YWq3Z++uoJ/kcp+3@T590> <YW3LuzaPhW96jSBK@bombadil.infradead.org> <YW4uwep3BCe9Vxq8@T590> <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz> <YW6OptglA6UykZg/@T590>
- <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz> <YW/KEsfWJMIPnz76@T590> <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz> <YW/TRkXth/mbTQ6b@kroah.com>
-User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
+Message-ID: <YXfA0jfazCPDTEBw@alley>
+References: <YWm68xUnAofop3PZ@bombadil.infradead.org>
+ <YWq3Z++uoJ/kcp+3@T590>
+ <YW3LuzaPhW96jSBK@bombadil.infradead.org>
+ <YW4uwep3BCe9Vxq8@T590>
+ <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz>
+ <YW6OptglA6UykZg/@T590>
+ <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz>
+ <YW/KEsfWJMIPnz76@T590>
+ <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz>
+ <YW/q70dLyF+YudyF@T590>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YW/q70dLyF+YudyF@T590>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Wed, 20 Oct 2021, Greg KH wrote:
-
+On Wed 2021-10-20 18:09:51, Ming Lei wrote:
 > On Wed, Oct 20, 2021 at 10:19:27AM +0200, Miroslav Benes wrote:
 > > On Wed, 20 Oct 2021, Ming Lei wrote:
 > > 
@@ -126,44 +125,59 @@ On Wed, 20 Oct 2021, Greg KH wrote:
 > > generally, but all the attempts to implement it correctly were utter 
 > > failures.
 > 
-> Sounds like this is the real problem that needs to be fixed.  kobjects
-> should always control the lifespan of the structure they are embedded
-> in.  If not, then that is a design flaw of the user of the kobject :(
+> OK, then it isn't one common usage, in which kobject covers the release
+> of the external object. What is the exact kobject in livepatching?
 
-Right, and you've already told us. A couple of times.
+Below are more details about the livepatch code. I hope that it will
+help you to see if zram has similar problems or not.
 
-For example 
-here https://lore.kernel.org/all/20190502074230.GA27847@kroah.com/
+We have kobject in three structures: klp_func, klp_object, and
+klp_patch, see include/linux/livepatch.h.
 
-:)
- 
-> Where in the kernel is this happening?  And where have been the attempts
-> to fix this up?
+These structures have to be statically defined in the module sources
+because they define what is livepatched, see
+samples/livepatch/livepatch-sample.c
 
-include/linux/livepatch.h and kernel/livepatch/core.c. See 
-klp_{patch,object,func}.
+The kobject is used there to show information about the patch, patched
+objects, and patched functions, in sysfs. And most importantly,
+the sysfs interface can be used to disable the livepatch.
 
-It took some archeology, but I think 
-https://lore.kernel.org/all/1464018848-4303-1-git-send-email-pmladek@suse.com/ 
-is it. Petr might correct me.
+The problem with static structures is that the module must stay
+in the memory as long as the sysfs interface exists. It can be
+solved in module_exit() callback. It could wait until the sysfs
+interface is destroyed.
 
-It was long before we added some important features to the code, so it 
-might be even more difficult today.
+kobject API does not support this scenario. The relase() callbacks
+are called asynchronously. It expects that the structure is bundled
+in a dynamically allocated structure.  As a result, the sysfs
+interface can be removed even after the module removal.
 
-It resurfaced later when Tobin tried to fix some of kobject call sites in 
-the kernel...
+The livepatching might create the dynamic structures by duplicating
+the structures defined in the module statically. It might safe us
+some headaches with kobject release. But it would also need an extra code
+that would need to be maintained. The structure constrains strings
+than need to be duplicated and later freed...
 
-https://lore.kernel.org/all/20190430001534.26246-1-tobin@kernel.org/
-https://lore.kernel.org/all/20190430233803.GB10777@eros.localdomain/
-https://lore.kernel.org/all/20190502023142.20139-6-tobin@kernel.org/
 
-There are probably more references.
+> But kobject_del() won't release the kobject, you shouldn't need the lock
+> to delete kobject first. After the kobject is deleted, no any show() and
+> store() any more, isn't such sync[1] you expected?
 
-Anyway, the current code works fine (well, one could argue about that). If 
-someone wants to take a (another) stab at this, then why not, but it 
-seemed like a rabbit hole without a substantial gain in the past. On the 
-other hand, we currently misuse the API to some extent.
+Livepatch code never called kobject_del() under a lock. It would cause
+the obvious deadlock. The historic code only waited in the
+module_exit() callback until the sysfs interface was removed.
 
-/me scratches head
+It has changed in the commit 958ef1e39d24d6cb8bf2a740 ("livepatch:
+Simplify API by removing registration step"). The livepatch could
+never get enabled again after it was disabled now. The sysfs interface
+is removed when the livepatch gets disabled. The module could
+be removed only after the sysfs interface is destroyed, see
+the module_put() in klp_free_patch_finish().
 
-Miroslav
+The livepatch code uses workqueue because the livepatch can be
+disabled via sysfs interface. It obviously could not wait until
+the sysfs interface is removed in the sysfs write() callback
+that triggered the removal.
+
+HTH,
+Petr

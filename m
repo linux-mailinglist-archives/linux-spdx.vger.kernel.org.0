@@ -2,78 +2,82 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5841E43BF6B
-	for <lists+linux-spdx@lfdr.de>; Wed, 27 Oct 2021 04:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 698FB43C8C5
+	for <lists+linux-spdx@lfdr.de>; Wed, 27 Oct 2021 13:42:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237972AbhJ0CP4 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 26 Oct 2021 22:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238156AbhJ0CPz (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 26 Oct 2021 22:15:55 -0400
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F924C0613B9
-        for <linux-spdx@vger.kernel.org>; Tue, 26 Oct 2021 19:13:30 -0700 (PDT)
-Received: by mail-oi1-x241.google.com with SMTP id y207so1346253oia.11
-        for <linux-spdx@vger.kernel.org>; Tue, 26 Oct 2021 19:13:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=+OhYyTKGmAf5Y61RBhMkXMlQv+hOjswu4u5NSWPSjMI=;
-        b=EG9Nsjl+Eip141PWF+gaBUl1KOWYkVWkt1OXOEZnqtckn0jrX24eTk8UDRzdanWsjC
-         9yBSsvsQJotknvFKA9EQtwg6TYbjKuB2B6TeA9FpEjuXwfev4spJrb1stelnldSVU05K
-         9gDfyUx9hxjQgXAvSoidRv5/L36SOUZnVcgUrTM9tbDStJSMOyaTK7co10bTYaslWL6G
-         KEMVQ2/UtsJj5Uhe9sAzIbF0NlCUlFDN4b2Grw7CXZCthk66H6QQ7cfpSD7pU+Ay2+Nj
-         Q0QsrrBll0HvZsVEqt8NPrW+XN3K+0FC+b/X0b9b+fJud88cD9kdaePkDe4cxFsTTvDp
-         HYfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=+OhYyTKGmAf5Y61RBhMkXMlQv+hOjswu4u5NSWPSjMI=;
-        b=EgY/PCBHyW1Ykfw8KQph7zBSty7VSX/xvpVa3203VB5a37ysbUDOGUGvkatmkRxKFg
-         5PjMK8W/WiLMn3MH8iGRiU0FBJIQAZo9MR+tnfLrUb2P20c4XPBm6Z6L2KgsPQFFSaOw
-         5K0SHUJD04SR8A/6o3XH8OrvjQZfSrEaePxXOQ8vZXRxGyyxMnHiQOKUpDSng/vUM/Aj
-         9yfCWYS7dsNtJX96QYAABPPeaGxFwd8s7MLElDbewCgMx1eiqLyWuGumdq3k6szbklMW
-         zmbJulJt6f0QYqbfHz2FDF2YZpWJDH17xan0QwLcaHqJXP6OgFP3Exwou307+v8hNjN+
-         NBQg==
-X-Gm-Message-State: AOAM532Y2bTbgET7JX3xrZrq2xyTDLdTNBsh2EDyekgLk2pcQDH/l775
-        bW7/mx279UqrAqQH3oU2Y6pVPiGaObv2Md2W7Ph8gJbos5PE0Q==
-X-Google-Smtp-Source: ABdhPJzwOfSEFC+ZhBFJFbO7cJJvi3wx28mFQEmwNZmSp0wIuhE8auS2ZQZdxDxGrsxbdq14UKAhXuffjqSVAtd5Ev8=
-X-Received: by 2002:a17:90b:1c02:: with SMTP id oc2mr2782635pjb.52.1635300799308;
- Tue, 26 Oct 2021 19:13:19 -0700 (PDT)
+        id S239823AbhJ0LpI (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 27 Oct 2021 07:45:08 -0400
+Received: from smtp-out2.suse.de ([195.135.220.29]:44210 "EHLO
+        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239798AbhJ0LpG (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 27 Oct 2021 07:45:06 -0400
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out2.suse.de (Postfix) with ESMTP id 633E01FD3C;
+        Wed, 27 Oct 2021 11:42:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+        t=1635334959; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=fo5sUfTsUY3UOkgJ2rkzuihsx0B4xmZU0SJdKHg3/K8=;
+        b=BOue54GcW/uw1WPm5hiAmIdhozSdpxtIujuKNq+5lCqra257QQ5+yVC0mYQ5eawxHlKDyr
+        nU0ifZU6580JYGww6p7MTa4j1eGWh/EpWynHxEW0BXP7jLQv8eUL4O/7yjEmIobBV3v+V+
+        clwH2P5+gllvmD14GruEDwwE2lrVid8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+        s=susede2_ed25519; t=1635334959;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=fo5sUfTsUY3UOkgJ2rkzuihsx0B4xmZU0SJdKHg3/K8=;
+        b=+LylReF1y8AGvSIYf9Izx8bkit9K4VmPNvnYXAU1IXcpJZ3PzIoU+CbwuMhJJKdrER1wb3
+        YbEesObRpQJsk5Bg==
+Received: from pobox.suse.cz (pobox.suse.cz [10.100.2.14])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id B48FCA3B84;
+        Wed, 27 Oct 2021 11:42:38 +0000 (UTC)
+Date:   Wed, 27 Oct 2021 13:42:38 +0200 (CEST)
+From:   Miroslav Benes <mbenes@suse.cz>
+To:     Ming Lei <ming.lei@redhat.com>
+cc:     Petr Mladek <pmladek@suse.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, tj@kernel.org,
+        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
+        minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
+        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        live-patching@vger.kernel.org
+Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
+In-Reply-To: <YXgguuAY5iEUIV0u@T590>
+Message-ID: <alpine.LSU.2.21.2110271340180.3655@pobox.suse.cz>
+References: <YWq3Z++uoJ/kcp+3@T590> <YW3LuzaPhW96jSBK@bombadil.infradead.org> <YW4uwep3BCe9Vxq8@T590> <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz> <YW6OptglA6UykZg/@T590> <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz> <YW/KEsfWJMIPnz76@T590>
+ <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz> <YW/q70dLyF+YudyF@T590> <YXfA0jfazCPDTEBw@alley> <YXgguuAY5iEUIV0u@T590>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 MIME-Version: 1.0
-Sender: officedeskofgeneral0@gmail.com
-Received: by 2002:a17:90b:4c11:0:0:0:0 with HTTP; Tue, 26 Oct 2021 19:13:18
- -0700 (PDT)
-From:   "Mr. Mustafa Ali." <muafalia@gmail.com>
-Date:   Wed, 27 Oct 2021 03:13:18 +0100
-X-Google-Sender-Auth: -ap4vRnh22PsKG1mBvTJWKrUl0o
-Message-ID: <CAL=mczUC43H-jvBwTepLgLaj-FOUBZcvw1kdD=RpB4-U2MPw0g@mail.gmail.com>
-Subject: Greetings Dear Friend.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Hello Friend,
+> > 
+> > The livepatch code uses workqueue because the livepatch can be
+> > disabled via sysfs interface. It obviously could not wait until
+> > the sysfs interface is removed in the sysfs write() callback
+> > that triggered the removal.
+> 
+> If klp_free_patch_* is moved into module_exit() and not let enable
+> store() to kill kobjects, all kobjects can be deleted in module_exit(),
+> then wait_for_completion(patch->finish) may be removed, also wq isn't
+> required for the async cleanup.
 
-This message might meet you in utmost surprise. However, It's just my
-urgent need for a foreign partner that made me contact you for this
-transaction. I assured you of honesty and reliability to champion this
-business opportunity. I am a banker by profession in Turkey, and
-currently holding the post of Auditor in Standard Chartered Bank.
+It sounds like a nice cleanup. If we combine kobject_del() to prevent any 
+show()/store() accesses and free everything later in module_exit(), it 
+could work. If I am not missing something around how we maintain internal 
+lists of live patches and their modules.
 
-I have the opportunity of transferring the leftover funds ($15 Million
-Dollars) of one of my clients who died along with his entire family in
-a crisis in Myanmar Asia. I am inviting you for a business deal where
-this money can be shared between us if you agree to my business
-proposal.
+Thanks
 
-Further details of the transfer will be forwarded to you immediately
-after I receive your return letter.
-
-Best Regards,
-Mr. Mustafa Ali.
-mustafa.ali@rahroco.com
+Miroslav

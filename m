@@ -2,103 +2,156 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEEA143CC37
-	for <lists+linux-spdx@lfdr.de>; Wed, 27 Oct 2021 16:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF36440252
+	for <lists+linux-spdx@lfdr.de>; Fri, 29 Oct 2021 20:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242550AbhJ0Oae (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 27 Oct 2021 10:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43746 "EHLO
+        id S230506AbhJ2Srs (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 29 Oct 2021 14:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242556AbhJ0Oad (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 27 Oct 2021 10:30:33 -0400
+        with ESMTP id S230044AbhJ2Sri (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 29 Oct 2021 14:47:38 -0400
 Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A83BC061570;
-        Wed, 27 Oct 2021 07:28:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C0DCC061766;
+        Fri, 29 Oct 2021 11:45:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=1KiXvZSEv7u0TMNxDkm/8GeTyuUOS2eLIKnX1ZpOfDU=; b=raBwmGRGud2Nulo6ceSvmmFwxW
-        765wjTHu35TF/PK97lqZlBigzDF0BesGgPJBxXHTFPhVHqwVMCxbbpc/axD2wxN5QkGHRlFfWe75u
-        Vi/uDG6hPXh3o69NhQEd3aNW62Hpb5ovqPBifM+Alunt1AcfBZSDhGaba0wsKfa68ttzsuT0sOlZS
-        D9YmborK2KVSDHFIAGXBMSAUTk5axrvJvSTdhseh9MXkOzRSr25d/LCUOQw7WpoP5AGd0fvxrig4u
-        Ub2+MYpgmXtvQySsHJ0Wf0Bi/eSvLkYsz0GI9EDSNcEkyLBGmfK/9x8o3+AuavxpZO8nQaushinyG
-        X6LqMnTg==;
+        d=infradead.org; s=bombadil.20210309; h=Sender:Content-Transfer-Encoding:
+        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+        Content-ID:Content-Description:In-Reply-To:References;
+        bh=eiqoJ/sT9tSkAQMOpJ5WDTuQjnGh8Wt2Zkw+2oSs1CA=; b=um+YvmgtYbJVDArMu18M/ab5/3
+        /HHXWIshZWdnhLpeVdILVapOVlGFL8kNlJjD3DbllVL1fIucru3dDk2A4KYvfuYX1FldHCX+G+Q9V
+        Z0Bx2XtzXJ5jJ2BTIMy371wj6EQzlfPmzUrWJ/k+YFZow6ZYh4X6uJ5rawUuAZcN93CJdBnkGji6f
+        k2jQ3HwMuUoETLKCZh2PSIqAt2SZQ46LxV3uFZpwbkJANgBuFHhM8GgMX7zDPD92PRN8mepSQwlNM
+        9i4GGeyKay/H6hFS2l+F3AuDpZDoTH8Xr1CcqNd4pHffLeQ//JN8cQrP4/NDWTHhMc3oR9f6gQV0f
+        tnKHSqjw==;
 Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mfju8-00579x-Pc; Wed, 27 Oct 2021 14:27:48 +0000
-Date:   Wed, 27 Oct 2021 07:27:48 -0700
+        id 1mgWsA-00Bq0K-16; Fri, 29 Oct 2021 18:45:02 +0000
 From:   Luis Chamberlain <mcgrof@kernel.org>
-To:     Miroslav Benes <mbenes@suse.cz>
-Cc:     Ming Lei <ming.lei@redhat.com>,
-        Julia Lawall <julia.lawall@inria.fr>,
-        Petr Mladek <pmladek@suse.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, tj@kernel.org,
-        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
-        minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
-        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
-        tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
+To:     tj@kernel.org, gregkh@linuxfoundation.org,
+        akpm@linux-foundation.org, jeyu@kernel.org, shuah@kernel.org
+Cc:     bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        tglx@linutronix.de, mcgrof@kernel.org, keescook@chromium.org,
+        rostedt@goodmis.org, minchan@kernel.org,
         linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
         linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
-        live-patching@vger.kernel.org
-Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YXlh5K7FyeBXNafM@bombadil.infradead.org>
-References: <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz>
- <YW6OptglA6UykZg/@T590>
- <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz>
- <YW/KEsfWJMIPnz76@T590>
- <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz>
- <YW/q70dLyF+YudyF@T590>
- <YXfA0jfazCPDTEBw@alley>
- <YXgguuAY5iEUIV0u@T590>
- <YXg0dFZ+6qHw7d0g@bombadil.infradead.org>
- <alpine.LSU.2.21.2110271343290.3655@pobox.suse.cz>
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/6] test_sysfs: add new selftest for sysfs
+Date:   Fri, 29 Oct 2021 11:44:54 -0700
+Message-Id: <20211029184500.2821444-1-mcgrof@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <alpine.LSU.2.21.2110271343290.3655@pobox.suse.cz>
+Content-Transfer-Encoding: 8bit
 Sender: Luis Chamberlain <mcgrof@infradead.org>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Wed, Oct 27, 2021 at 01:57:40PM +0200, Miroslav Benes wrote:
-> On Tue, 26 Oct 2021, Luis Chamberlain wrote:
-> 
-> > On Tue, Oct 26, 2021 at 11:37:30PM +0800, Ming Lei wrote:
-> > > OK, then Luis shouldn't consider livepatching as one such issue to solve
-> > > with one generic solution.
-> > 
-> > It's not what I was told when the deadlock was found with zram, so I was
-> > informed quite the contrary.
-> 
-> From my perspective, it is quite easy to get it wrong due to either a lack 
-> of generic support, or missing rules/documentation.
+On this v9 I've dropped the generic sysfs deadlock fix given Ming Lei
+has provided alternative fixes for the zram driver without incurring
+a generic lock *and* we don't yet have full assessment of how wide
+spread the deadlock case might be in the kernel. A full assessment
+effort is still underway using Coccinelle with iteration support,
+however that effort will take a bit more time to complete. We can
+re-evaluate the value of a generic fix later after the assessment
+is complete.
 
-Indeed. I agree some level of guidence is needed, even if subtle, rather
-than tribal knowledge. I'll start off with the test_sysfs demo'ing what
-not to do and documenting this there. I don't think it makes sense to
-formalize yet documentation for "though shalt not do this" generically
-until a full depth search is done with Coccinelle.
+This series now just adds the test_sysfs selftest and failure injection
+support for it on kernfs. The most valuable tests are those which
+confirm that once a kernfs active reference is obtained with
+kernfs_get_active() the pointers used there are still valid, and so
+using sysfs ops *are* safe if we race against module removal. Likewise
+it also confirms how module removal will *wait* for these ops to
+complete if a kernfs node is already active.
 
-> So if this thread 
-> leads to "do not share locks between a module removal and a sysfs 
-> operation" strict rule, it would be at least something.
+This v9 series also addresses feedback mostly provided by Kees Cook and Greg.
+I also made a few changes to the test_sysfs driver to account for changes in
+the block layer. I also improved the kernfs failure injection tests with
+documentation of how they work and to account for the real expected return
+value of a write before the kernfs active reference is obtained. Upstream
+commit 8e141f9eb803e ("block: drain file system I/O on del_gendisk") has
+revealed that small minor induced delays on del_gendisk() can make a few
+writes succeed if the delays used are small. So we clarify the logic of why
+writes could either fail or succeed before the kernfs active reference is taken.
 
-I think that's where we are at. I'll wait to complete my coccinelle
-deadlock hunt patch to complete the full search, and that could be
-useful to *warn* aboute new use cases, so to prevent this deadlock
-in the future. Until then I agree that the complexity introduced is
-not worth it given the evidence of users, but the full evidence of
-actual users still remains to be determined. A perfect job left to
-advances with Coccinelle.
+These changes also availble on this tree:
 
-> In the same 
-> manner as Luis proposed to document try_module_get() expectations.
+https://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux-next.git/log/?h=20211029-test-sysfs-v2
 
-Right and so sysfs ops using try_module_get() *still* remains safe,
-and so will keep that patch in my next iteration because there *are*
-*many* uses cases for that.
+v9:
+  * rebased onto linux-next tag next-20211029
+  * add Reviewed-by tags for the SPDX change, and the drivers which
+    get the tag for it
+  * drop the generic sysfs deadlock fix for now as the scope of how
+    wide spread the issue is still needs to be assessed
+  * drop the zram patches as they are replaced by Ming Lei's fixes
+  * drop already merged patches
+  * try_module_get() docs: enhanced using feedback from Kees Cook. I
+    extended the documention to make it clear that if proper care is not
+    taken the use of this routine could crash the kernel.
+  * kernfs: move failure injection knobs under /sys/kernel/debug/fail_kernfs
+    as suggested by Kees Cook
+  * kernfs: rename failure injection file to fault_inject.c as suggested
+    by Kees Cook
+  * kernfs: split up documentation of failure injection knobs as
+    suggested by Kees Cook
+  * kernfs: move the wait into debug call, and use a simple one liner
+    may_wait() calls to make the changes much less intrusive and more
+    readable  as suggested by Kees Cook 
+  * kernfs: drop __func__ uses as suggested by Kees Cook
+  * test_sysfs: use sizeof() instead of open coded 16 as suggested by
+    Kees Cook
+  * test_sysfs: use sysfs_emit as suggested by Kees Cook
+  * test_sysfs: drop boiler place license as suggested by Greg KH
+  * test_sysfs: use depends instead of select as suggested by Kees Cook
+  * test_sysfs: drop #ifdefery as suggested by Kees Cook
+  * test_sysfs: clarified that the use of a lock on rmmod which causes
+    a deadlock is something drivers should avoid, and its why we leave
+    the test disabled.
+  * test_sysfs: now that device_add_disk() returns an error, use the
+    new error return code, otherwise this is going to prevent us from
+    eventually embracing __must_check() on that call on the block layer.
+  * test_syfs: testdev_submit_bio() needed to change data types as now
+    it returns void.
+  * test_sysfs: enhance kernfs failure injection tests with documenation
+    and correct the expected return value for writes
 
-  Luis
+Luis Chamberlain (6):
+  LICENSES: Add the copyleft-next-0.3.1 license
+  testing: use the copyleft-next-0.3.1 SPDX tag
+  selftests: add tests_sysfs module
+  kernfs: add initial failure injection support
+  test_sysfs: add support to use kernfs failure injection
+  kernel/module: add documentation for try_module_get()
+
+ .../fault-injection/fault-injection.rst       |   50 +
+ LICENSES/dual/copyleft-next-0.3.1             |  237 +++
+ MAINTAINERS                                   |    9 +-
+ fs/kernfs/Makefile                            |    1 +
+ fs/kernfs/fault_inject.c                      |   93 ++
+ fs/kernfs/file.c                              |    9 +
+ fs/kernfs/kernfs-internal.h                   |   70 +
+ include/linux/kernfs.h                        |    5 +
+ include/linux/module.h                        |   37 +-
+ lib/Kconfig.debug                             |   23 +
+ lib/Makefile                                  |    1 +
+ lib/test_kmod.c                               |   12 +-
+ lib/test_sysctl.c                             |   12 +-
+ lib/test_sysfs.c                              |  913 +++++++++++
+ tools/testing/selftests/kmod/kmod.sh          |   13 +-
+ tools/testing/selftests/sysctl/sysctl.sh      |   12 +-
+ tools/testing/selftests/sysfs/Makefile        |   12 +
+ tools/testing/selftests/sysfs/config          |    5 +
+ tools/testing/selftests/sysfs/settings        |    1 +
+ tools/testing/selftests/sysfs/sysfs.sh        | 1411 +++++++++++++++++
+ 20 files changed, 2878 insertions(+), 48 deletions(-)
+ create mode 100644 LICENSES/dual/copyleft-next-0.3.1
+ create mode 100644 fs/kernfs/fault_inject.c
+ create mode 100644 lib/test_sysfs.c
+ create mode 100644 tools/testing/selftests/sysfs/Makefile
+ create mode 100644 tools/testing/selftests/sysfs/config
+ create mode 100644 tools/testing/selftests/sysfs/settings
+ create mode 100755 tools/testing/selftests/sysfs/sysfs.sh
+
+-- 
+2.30.2
+

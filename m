@@ -2,36 +2,34 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FFB7443189
-	for <lists+linux-spdx@lfdr.de>; Tue,  2 Nov 2021 16:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 469594432DF
+	for <lists+linux-spdx@lfdr.de>; Tue,  2 Nov 2021 17:36:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234342AbhKBP0u (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 2 Nov 2021 11:26:50 -0400
-Received: from smtp-out1.suse.de ([195.135.220.28]:56644 "EHLO
-        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbhKBP0t (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 2 Nov 2021 11:26:49 -0400
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 4CF42218B8;
-        Tue,  2 Nov 2021 15:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1635866650; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=20RoZlkpCStiyYhOpg9TxIwqB6XP6FGIk+CxFOjfgeQ=;
-        b=mH/HYqrgUC286FNV17ooHrSpqz0QxJaEA4gqCu8YSuFavlUVjcNclsFdd9vpEcjU4T1EWe
-        bCwYUnf+FgIGtgAvlwyq0SvUiSpGIPfWdx0lQnbh1+ec9SrxF+L+fnbM15px/lY04IQ1m3
-        VwstO6btwTo9UpMWzrGrsBPlQOpP034=
-Received: from suse.cz (unknown [10.100.216.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 3278AA3B83;
-        Tue,  2 Nov 2021 15:24:09 +0000 (UTC)
-Date:   Tue, 2 Nov 2021 16:24:06 +0100
-From:   Petr Mladek <pmladek@suse.com>
-To:     Miroslav Benes <mbenes@suse.cz>
-Cc:     Luis Chamberlain <mcgrof@kernel.org>,
-        Ming Lei <ming.lei@redhat.com>,
+        id S235014AbhKBQjC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 2 Nov 2021 12:39:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41660 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234881AbhKBQir (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 2 Nov 2021 12:38:47 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E670CC0797BA;
+        Tue,  2 Nov 2021 09:26:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=ZpP/HZLv604vtvae1cO/0WFon0sSJn671oAr7ZIWFxw=; b=UCimNJ3QWb++sHLFKw51gCkQKn
+        WWEC2X/M7um3LJKy9tXa7f8JPMslxJ5A40mI4Vct+q0Sv3gcUEgGzPrTFydyq7LDj4xgM8jIgE+YV
+        X3uJS07PEiYfQYOrNERQyGwoz4X0qZhFpi7WHnrxKGXUXB6VAT6jwbyJRPrTKcwzCTgUhlBeArX0X
+        zO89RZAmitmlNeBzM3i1PuQboNrclSbxS3a89BcNAExHk3J5/aTm3inLRkEvgG8Qe8rIDc2Dp0p5R
+        RjMjMh0QsXI8sIp4RfVofx0u3LD67AbwsVH9w4I/TlAdY/7UhPA3WEEHPuDBki1Eo1czIcKWZnbaH
+        DvYH7+8w==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mhwbY-002IBJ-2M; Tue, 02 Nov 2021 16:25:44 +0000
+Date:   Tue, 2 Nov 2021 09:25:44 -0700
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Petr Mladek <pmladek@suse.com>
+Cc:     Miroslav Benes <mbenes@suse.cz>, Ming Lei <ming.lei@redhat.com>,
         Julia Lawall <julia.lawall@inria.fr>,
         Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>, tj@kernel.org,
@@ -44,9 +42,8 @@ Cc:     Luis Chamberlain <mcgrof@kernel.org>,
         linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
         live-patching@vger.kernel.org
 Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
-Message-ID: <YYFYFrnhwPiyOtst@alley>
-References: <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz>
- <YW6OptglA6UykZg/@T590>
+Message-ID: <YYFmiAAYIA2X7Uv5@bombadil.infradead.org>
+References: <YW6OptglA6UykZg/@T590>
  <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz>
  <YW/KEsfWJMIPnz76@T590>
  <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz>
@@ -55,87 +52,82 @@ References: <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz>
  <YXgguuAY5iEUIV0u@T590>
  <YXg0dFZ+6qHw7d0g@bombadil.infradead.org>
  <alpine.LSU.2.21.2110271343290.3655@pobox.suse.cz>
+ <YYFYFrnhwPiyOtst@alley>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <alpine.LSU.2.21.2110271343290.3655@pobox.suse.cz>
+In-Reply-To: <YYFYFrnhwPiyOtst@alley>
+Sender: Luis Chamberlain <mcgrof@infradead.org>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Wed 2021-10-27 13:57:40, Miroslav Benes wrote:
-> On Tue, 26 Oct 2021, Luis Chamberlain wrote:
+On Tue, Nov 02, 2021 at 04:24:06PM +0100, Petr Mladek wrote:
+> On Wed 2021-10-27 13:57:40, Miroslav Benes wrote:
+> > >From my perspective, it is quite easy to get it wrong due to either a lack 
+> > of generic support, or missing rules/documentation. So if this thread 
+> > leads to "do not share locks between a module removal and a sysfs 
+> > operation" strict rule, it would be at least something. In the same 
+> > manner as Luis proposed to document try_module_get() expectations.
 > 
-> > On Tue, Oct 26, 2021 at 11:37:30PM +0800, Ming Lei wrote:
-> > > On Tue, Oct 26, 2021 at 10:48:18AM +0200, Petr Mladek wrote:
-> > > > Livepatch code never called kobject_del() under a lock. It would cause
-> > > > the obvious deadlock.
+> The rule "do not share locks between a module removal and a sysfs
+> operation" is not clear to me.
 
-I have to correct myself. IMHO, the deadlock is far from obvious. I
-always get lost in the code and the documentation is not clear.
-I always get lost.
+That's exactly it. It *is* not. The test_sysfs selftest will hopefully
+help with this. But I'll wait to take a final position on whether or not
+a generic fix should be merged until the Coccinelle patch which looks
+for all uses cases completes.
 
-> >
-> > Never?
+So I think that once that Coccinelle hunt is done for the deadlock, we
+should also remind folks of the potential deadlock and some of the rules
+you mentioned below so that if we take a position that we don't support
+this, we at least inform developers why and what to avoid. If Coccinelle
+finds quite a bit of cases, then perhaps evaluating the generic fix
+might be worth evaluating.
+
+> IMHO, there are the following rules:
 > 
-> kobject_put() to be precise.
-
-IMHO, the problem is actually with kobject_del() that gets blocked
-until the sysfs interface gets removed. kobject_put() will have
-the same problem only when the clean up is not delayed.
-
-
-> When I started working on the support for module/live patches removal, 
-> calling kobject_put() under our klp_mutex lock was the obvious first 
-> choice given how the code was structured, but I ran into problems with 
-> deadlocks immediately. So it was changed to async approach with the 
-> workqueue. Thus the mainline code has never suffered from this, but we 
-> knew about the issues.
->  
-> > > > The historic code only waited in the
-> > > > module_exit() callback until the sysfs interface was removed.
-> > > 
-> > > OK, then Luis shouldn't consider livepatching as one such issue to solve
-> > > with one generic solution.
-> > 
-> > It's not what I was told when the deadlock was found with zram, so I was
-> > informed quite the contrary.
+> 1. rule: kobject_del() or kobject_put() must not be called under a lock that
+> 	 is used by store()/show() callbacks.
 > 
-> >From my perspective, it is quite easy to get it wrong due to either a lack 
-> of generic support, or missing rules/documentation. So if this thread 
-> leads to "do not share locks between a module removal and a sysfs 
-> operation" strict rule, it would be at least something. In the same 
-> manner as Luis proposed to document try_module_get() expectations.
+>    reason: kobject_del() waits until the sysfs interface is destroyed.
+> 	 It has to wait until all store()/show() callbacks are finished.
 
-The rule "do not share locks between a module removal and a sysfs
-operation" is not clear to me.
+Right, this is what actually started this entire conversation.
 
-IMHO, there are the following rules:
+Note that as Ming pointed out, the generic kernfs fix I proposed would
+only cover the case when kobject_del() ends up being called on module
+exit, so it would not cover the cases where perhaps kobject_del() might
+be called outside of module exit, and so the cope of the possible
+deadlock then increases in scope.
 
-1. rule: kobject_del() or kobject_put() must not be called under a lock that
-	 is used by store()/show() callbacks.
+Likewise, the Coccinelle hunt I'm trying would only cover the module
+exit case. I'm a bit of afraid of the complexity of a generic hunt
+as expresed in rule 1.
 
-   reason: kobject_del() waits until the sysfs interface is destroyed.
-	 It has to wait until all store()/show() callbacks are finished.
+> 
+> 2. rule: kobject_del()/kobject_put() must not be called from the
+> 	related store() callbacks.
+> 
+>    reason: same as in 1st rule.
 
+Sensible corollary.
 
-2. rule: kobject_del()/kobject_put() must not be called from the
-	related store() callbacks.
+Given tha the exact kobjet_del() / kobject_put() which must not be
+called from the respective sysfs ops depends on which kobject is
+underneath the device for which the sysfs ops is being created,
+it would make this hunt in Coccinelle a bit tricky. My current iteration
+of a coccinelle hunt cheats and looks at any sysfs looking op and
+ensures a module exit exists.
 
-   reason: same as in 1st rule.
+> 3. rule: module_exit() must wait until all release() callbacks are called
+> 	 when kobject are static.
+> 
+>    reason: kobject_put() must be called to clean up internal
+> 	dependencies. The clean up might be done asynchronously
+> 	and need access to the kobject structure.
 
+This might be an easier rule to implement a respective Coccinelle rule
+for.
 
-3. rule: module_exit() must wait until all release() callbacks are called
-	 when kobject are static.
-
-   reason: kobject_put() must be called to clean up internal
-	dependencies. The clean up might be done asynchronously
-	and need access to the kobject structure.
-
-
-Best Regards,
-Petr
-
-PS: I am sorry if I am messing things. I want to be sure that we are
-    all talking about the same and understand it the same way.
-    
+  Luis

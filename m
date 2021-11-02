@@ -2,80 +2,110 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 039A84414A9
-	for <lists+linux-spdx@lfdr.de>; Mon,  1 Nov 2021 09:03:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7126744300B
+	for <lists+linux-spdx@lfdr.de>; Tue,  2 Nov 2021 15:15:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbhKAIFp (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 1 Nov 2021 04:05:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53338 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231473AbhKAIFn (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 1 Nov 2021 04:05:43 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF85C06120F
-        for <linux-spdx@vger.kernel.org>; Mon,  1 Nov 2021 01:03:09 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id bi35so34718438lfb.9
-        for <linux-spdx@vger.kernel.org>; Mon, 01 Nov 2021 01:03:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=kTlPYaJ3qmdiuwil3bN4/5BGELxQxYaH2mDV2D/+NOc=;
-        b=noIunhl9PvoPcUkMO1aIA1oVXnNEN4KUMnLzX81u41bUYmm654/d+8Zmtlo6rVUfiP
-         URKnr6K8ehg0Wh7FRqSI9k6fPv2DsXoeQF5RyVvvBWL5iE17ii0Hwy7DEGCxBrabSyNn
-         EOknVx9TADL+GR6CwdZv5iwiQkA+SgU+2TIIuYRY7UtEIvS3tf+3AOfWSGAHDegfCUDW
-         KFTXPeEWCeZvS9OsO77XW5FzLhbHNg24miTgIfpxgxdtWSxpsMgcVp1ovVt1nV8bPABY
-         Nt9t0GENejSl8bnKdYk9qzpsZJoEh4QUKHq3To1LyThtQ/UNoUZiShWGV9dnp4emntud
-         6TAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=kTlPYaJ3qmdiuwil3bN4/5BGELxQxYaH2mDV2D/+NOc=;
-        b=YQH4I1tjQWWNmh0YnGS3VGcFDI0QJ8nynZ7zzeyVMPB/u0eQG1iXIzAdTOcJF0o/0K
-         X+GAlVMT1rxQj6Iy2ly+1lRxfdeaOgEGISuu0grscVs+owIy1GZLkt01fdS8eak+Y2MB
-         KwIsf14xaGzIEbJJ4bEoOPBQmC0YQB+NBetbERv1zeM3h6ouon6wCEOxLwbcxU3bIGK/
-         rYtSl/V2KemOqltys+f554zFlyS2/x+mqDhjw2F/LyZZygS+ZE4GARF8dhxrKyony5P6
-         lttm19QjZeycqYM5NyfjSkBdnyxlJMwpGWCbzLAZfW+0L6K04xl/bAmDltRyPF0svSrl
-         ZBWw==
-X-Gm-Message-State: AOAM533WfRBq2ch3oyEM8gYmLwsPO2F9h0x+npH7U41RibOzgLR6mU6j
-        fhQ2PjvY0BleTe1vwUW4SCL23PH/C2JKBxr3QS0=
-X-Google-Smtp-Source: ABdhPJxXtE0G1whIGXe2hxI/YsBwuQCFdtv4O25KgKEw0cNYTytiUo7Vy8b5pLqj8uf6S/Zvq7lb35uF1vpbXYsY0v0=
-X-Received: by 2002:a05:6512:a8e:: with SMTP id m14mr26458494lfu.575.1635753787779;
- Mon, 01 Nov 2021 01:03:07 -0700 (PDT)
+        id S231194AbhKBOSA (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 2 Nov 2021 10:18:00 -0400
+Received: from smtp-out1.suse.de ([195.135.220.28]:51556 "EHLO
+        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229981AbhKBORy (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 2 Nov 2021 10:17:54 -0400
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id DA6F62190C;
+        Tue,  2 Nov 2021 14:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1635862517; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=xFpCDtO7PInDq/3jdlZmBNoQmZmKE1sd4nUqSIlkTbE=;
+        b=gRg9lKwlLjnDx6mCQy5M02cnZmit4lXJJrtjo+HMQTzOb0iwvl8CTZIh6RKkA+lpqn++ol
+        ohAiDp+5dkQNQJebie5mI3DHo57q+OuUSHa/tdu3iJEjMXE5e3OKad8Fn/SAPZ/9FShwrd
+        7XCNw7awdMa9MkhCOWcAhtZRuC36ggA=
+Received: from suse.cz (unknown [10.100.216.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id 5F626A3B83;
+        Tue,  2 Nov 2021 14:15:17 +0000 (UTC)
+Date:   Tue, 2 Nov 2021 15:15:15 +0100
+From:   Petr Mladek <pmladek@suse.com>
+To:     Ming Lei <ming.lei@redhat.com>
+Cc:     Miroslav Benes <mbenes@suse.cz>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, tj@kernel.org,
+        gregkh@linuxfoundation.org, akpm@linux-foundation.org,
+        minchan@kernel.org, jeyu@kernel.org, shuah@kernel.org,
+        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        tglx@linutronix.de, keescook@chromium.org, rostedt@goodmis.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        live-patching@vger.kernel.org
+Subject: Re: [PATCH v8 11/12] zram: fix crashes with cpu hotplug multistate
+Message-ID: <YYFH85CmVOYIMdYh@alley>
+References: <YW3LuzaPhW96jSBK@bombadil.infradead.org>
+ <YW4uwep3BCe9Vxq8@T590>
+ <alpine.LSU.2.21.2110190820590.15009@pobox.suse.cz>
+ <YW6OptglA6UykZg/@T590>
+ <alpine.LSU.2.21.2110200835490.26817@pobox.suse.cz>
+ <YW/KEsfWJMIPnz76@T590>
+ <alpine.LSU.2.21.2110201014400.26817@pobox.suse.cz>
+ <YW/q70dLyF+YudyF@T590>
+ <YXfA0jfazCPDTEBw@alley>
+ <YXgguuAY5iEUIV0u@T590>
 MIME-Version: 1.0
-Received: by 2002:a05:6512:304b:0:0:0:0 with HTTP; Mon, 1 Nov 2021 01:03:07
- -0700 (PDT)
-Reply-To: aisha.7d@yahoo.com
-From:   Aisha AG <rbx17058@gmail.com>
-Date:   Mon, 1 Nov 2021 00:03:07 -0800
-Message-ID: <CA+KbyyeEn+hP9T75RRy6+snGWxpAx+xn43MKdB30KYFYZNAV2Q@mail.gmail.com>
-Subject: Hello Dear,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YXgguuAY5iEUIV0u@T590>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
--- 
-Hello Dear,
+On Tue 2021-10-26 23:37:30, Ming Lei wrote:
+> On Tue, Oct 26, 2021 at 10:48:18AM +0200, Petr Mladek wrote:
+> > Below are more details about the livepatch code. I hope that it will
+> > help you to see if zram has similar problems or not.
+> > 
+> > We have kobject in three structures: klp_func, klp_object, and
+> > klp_patch, see include/linux/livepatch.h.
+> > 
+> > These structures have to be statically defined in the module sources
+> > because they define what is livepatched, see
+> > samples/livepatch/livepatch-sample.c
+> > 
+> > The kobject is used there to show information about the patch, patched
+> > objects, and patched functions, in sysfs. And most importantly,
+> > the sysfs interface can be used to disable the livepatch.
+> > 
+> > The problem with static structures is that the module must stay
+> > in the memory as long as the sysfs interface exists. It can be
+> > solved in module_exit() callback. It could wait until the sysfs
+> > interface is destroyed.
+> > 
+> > kobject API does not support this scenario. The relase() callbacks
+> 
+> kobject_delete() is for supporting this scenario, that is why we don't
+> need to grab module refcnt before calling show()/store() of the
+> kobject's attributes.
+> 
+> kobject_delete() can be called in module_exit(), then any show()/store()
+> will be done after kobject_delete() returns.
 
-I came across your e-mail contact prior to a private search while in
-need of your assistance. I am Aisha Al-Qaddafi, the only biological
-Daughter of Former President of Libya Col.Muammar Al-Qaddafi.
-Am a Widow and a single Mother with three Children.
+I am a bit confused. I do not see kobject_delete() anywhere in kernel
+sources.
 
-I have investment funds worth Twenty Seven Million Five Hundred
-Thousand United State Dollar $27.500.000.00, and i need a trusted
-investment Manager/Partner because of my current refugee status,
-however, I am interested in you for investment project assistance in
-your country, may be from there, we can build business relationship
-in the nearest future.
+I see only kobject_del() and kobject_put(). AFAIK, they do _not_
+guarantee that either the sysfs interface was destroyed or
+the release callbacks were called. For example, see
+schedule_delayed_work(&kobj->release, delay) in kobject_release().
 
-I am willing to negotiate an investment/business profit sharing ratio
-with you based on the future investment earning profits.
+By other words, anyone could still be using either the sysfs interface
+or the related structures after kobject_del() or kobject_put()
+returns.
 
-If you are willing to handle this project on my behalf kindly reply
-urgently to enable me to provide you more information about the
-investment funds.
-Best Regards
-Mrs Aisha Al-Qaddafi.
+IMHO, kobject API does not support static structures and module
+removal.
+
+Best Regards,
+Petr

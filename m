@@ -2,78 +2,86 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0D214771D1
-	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 13:30:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67F284772F9
+	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 14:17:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229818AbhLPMaV (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 16 Dec 2021 07:30:21 -0500
-Received: from mx24.baidu.com ([111.206.215.185]:37490 "EHLO baidu.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229452AbhLPMaU (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Thu, 16 Dec 2021 07:30:20 -0500
-Received: from BJHW-Mail-Ex14.internal.baidu.com (unknown [10.127.64.37])
-        by Forcepoint Email with ESMTPS id 5235F69EC4227F8F1B95;
-        Thu, 16 Dec 2021 20:30:15 +0800 (CST)
-Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BJHW-Mail-Ex14.internal.baidu.com (10.127.64.37) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.20; Thu, 16 Dec 2021 20:30:15 +0800
-Received: from localhost (172.31.63.8) by BJHW-MAIL-EX27.internal.baidu.com
- (10.127.64.42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Thu, 16
- Dec 2021 20:30:14 +0800
-Date:   Thu, 16 Dec 2021 20:30:14 +0800
-From:   Cai Huoqing <caihuoqing@baidu.com>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S232210AbhLPNRt (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 16 Dec 2021 08:17:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54740 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232126AbhLPNRt (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 16 Dec 2021 08:17:49 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB09C061574;
+        Thu, 16 Dec 2021 05:17:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DAB2DB8230C;
+        Thu, 16 Dec 2021 13:17:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E106C36AE0;
+        Thu, 16 Dec 2021 13:17:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1639660666;
+        bh=RXJSJUNjCddqB7i9e0oX0EbESmbM41nI6+hbp4GOdBE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=yOLw/vmr/cdUo/h/X6Kfc0kEsXmWfR1NwkmmEUD5j5KzuhCJsdtHvj3kA2l8P6gGR
+         bqDT2sIAg2hHYwVpgW3KwI1V/fS3671gwwnUi0PzSP4EvEjRLm/0HljmnZArOsM+It
+         aOxr3x8ECjmh5yQwTy30eEq0MMi/s8uWE4P8aQxA=
+Date:   Thu, 16 Dec 2021 14:17:44 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Cai Huoqing <caihuoqing@baidu.com>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <linux-spdx@vger.kernel.org>
+        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
 Subject: Re: [PATCH v3] LICENSES/LGPL-2.1: Add LGPL-2.1-or-later as valid
  identifiers
-Message-ID: <20211216123014.GA286@LAPTOP-UKSR4ENP.internal.baidu.com>
+Message-ID: <Ybs8eJOBwxw/Tj3o@kroah.com>
 References: <12f38ebde4dcd8b1ecbd37df1b6ce2018426f6dd.1639657049.git.mchehab+huawei@kernel.org>
+ <20211216123014.GA286@LAPTOP-UKSR4ENP.internal.baidu.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <12f38ebde4dcd8b1ecbd37df1b6ce2018426f6dd.1639657049.git.mchehab+huawei@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [172.31.63.8]
-X-ClientProxiedBy: BJHW-Mail-Ex12.internal.baidu.com (10.127.64.35) To
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
-X-Baidu-BdMsfe-DateCheck: 1_BJHW-Mail-Ex14_2021-12-16 20:30:15:262
+In-Reply-To: <20211216123014.GA286@LAPTOP-UKSR4ENP.internal.baidu.com>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On 16 12月 21 13:17:35, Mauro Carvalho Chehab wrote:
-> Some files have been flagged with the new LGPL-2.1-or-later
-> identifier which replace the original LGPL-2.1+ in the SPDX license
-> identifier specification, but the identifiers are not mentioned as
-> valid in the LGPL-2.1 license file.
-> 
-> Add it, together with the LGPL-2.1-only at the the license file.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  LICENSES/preferred/LGPL-2.1 | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/LICENSES/preferred/LGPL-2.1 b/LICENSES/preferred/LGPL-2.1
-> index 27bb4342a3e8..b73f9b6230f5 100644
-> --- a/LICENSES/preferred/LGPL-2.1
-> +++ b/LICENSES/preferred/LGPL-2.1
-> @@ -1,5 +1,7 @@
->  Valid-License-Identifier: LGPL-2.1
-> +Valid-License-Identifier: LGPL-2.1-only
->  Valid-License-Identifier: LGPL-2.1+
-> +Valid-License-Identifier: LGPL-2.1-or-later
->  SPDX-URL: https://spdx.org/licenses/LGPL-2.1.html
-The URL is deprecated, do we need to update it together.
-The same, GPL-2.0, LGPL-2.0
->  Usage-Guide:
->    To use this license in source code, put one of the following SPDX
-> -- 
-> 2.33.1
-> 
+On Thu, Dec 16, 2021 at 08:30:14PM +0800, Cai Huoqing wrote:
+> On 16 12月 21 13:17:35, Mauro Carvalho Chehab wrote:
+> > Some files have been flagged with the new LGPL-2.1-or-later
+> > identifier which replace the original LGPL-2.1+ in the SPDX license
+> > identifier specification, but the identifiers are not mentioned as
+> > valid in the LGPL-2.1 license file.
+> > 
+> > Add it, together with the LGPL-2.1-only at the the license file.
+> > 
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > ---
+> >  LICENSES/preferred/LGPL-2.1 | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/LICENSES/preferred/LGPL-2.1 b/LICENSES/preferred/LGPL-2.1
+> > index 27bb4342a3e8..b73f9b6230f5 100644
+> > --- a/LICENSES/preferred/LGPL-2.1
+> > +++ b/LICENSES/preferred/LGPL-2.1
+> > @@ -1,5 +1,7 @@
+> >  Valid-License-Identifier: LGPL-2.1
+> > +Valid-License-Identifier: LGPL-2.1-only
+> >  Valid-License-Identifier: LGPL-2.1+
+> > +Valid-License-Identifier: LGPL-2.1-or-later
+> >  SPDX-URL: https://spdx.org/licenses/LGPL-2.1.html
+> The URL is deprecated, do we need to update it together.
+
+No.
+
+> The same, GPL-2.0, LGPL-2.0
+
+Again, no.  We are using an older version of the SPDX specification,
+this is fine.
+
+thanks,
+
+greg k-h

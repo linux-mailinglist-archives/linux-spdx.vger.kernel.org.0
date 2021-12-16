@@ -2,101 +2,104 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1E11474BEF
-	for <lists+linux-spdx@lfdr.de>; Tue, 14 Dec 2021 20:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09607476DAF
+	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 10:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237442AbhLNTcB (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 14 Dec 2021 14:32:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47788 "EHLO
+        id S235546AbhLPJpP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 16 Dec 2021 04:45:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbhLNTcA (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 14 Dec 2021 14:32:00 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5783FC061574
-        for <linux-spdx@vger.kernel.org>; Tue, 14 Dec 2021 11:31:59 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id z7so38783758lfi.11
-        for <linux-spdx@vger.kernel.org>; Tue, 14 Dec 2021 11:31:59 -0800 (PST)
+        with ESMTP id S235544AbhLPJpP (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 16 Dec 2021 04:45:15 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2BEEC06173E;
+        Thu, 16 Dec 2021 01:45:14 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id s1so8932743wrg.1;
+        Thu, 16 Dec 2021 01:45:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sharpeleven-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CSsQizS2Alccn09uVVHMhRrxYpQSyu5zyJjpNQE3tlI=;
-        b=sf8PduFp6j+NjHLIpIDvQ4RC318EDH6SD3pXBY8xfLup36IkrZVN9oQ+iwUc+uldQE
-         XfARii3Mm4ENAJDWhQ2aqollunGkuGZQqDuyEhBie3Qzb4qdcwLZmMc5+0CKeFL3NiRr
-         Lm9gGApSYH53GjDTMQcbbMXqwjFAbIQtPHvpL3uo4xNqUgXY6zdIzQIl8iie1hfdPqwZ
-         lLgv3NrQA9H1tLpvfl/Ti7SwOb/pzX3wIhn6gZfUmExuxM4eZI/omnNoTvAHKthYywNU
-         s8LcP8l8Ye4ax2Vru+5+asaMOfzIr3AXQpo3D2mWkeb6a36bIyJTNPo5LqHk0KI09ETS
-         /fMA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=ARN4qeir3Hz4c3b/QWXg3h+IBfZ0AX5ARmmNbEMD7Bg=;
+        b=j0vD1zZLVa8psUzy5p/QOX2FqK+FVc6pWNRPLwbPdsMOjQVTfyuSA/zGc4t+j+FSAQ
+         fZCmaFjE0Ffel/LFeaAVrQqMg4/dvvuoqiC+qfV4Ai11W/X0igTRNoyIj7q36X/c0gu7
+         SpL7mSlWWiBnyKip4f577voNtQFgbaawN/7+IQ+6ZwpekyvnFpQX4f+L7IMiWmTegT9D
+         SVBabQ3M6MUmHEN4rMkhf+Y+20RdfdT3yB+uWjUnif80Uk1AQ/oIiu6msPHcv6QSs9Tz
+         FQ/Sl23i+zDy15ar70TbUbCq8MVAxtXniu7P43mhsTlQMiKZIp49sNPLC253NnMvv3XQ
+         BPrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CSsQizS2Alccn09uVVHMhRrxYpQSyu5zyJjpNQE3tlI=;
-        b=h1QmB1Kh7g3I6RE2mF7rq+SkqG1Y55cvsQR9IJ1wN9i+m5rpj/GW27LqkvTUj9XQ1k
-         YFBcgnswc5HFHIkM5PaHu2lYgTOKRsITJINMf3eyb5W+0bgUibLhrLvBEIKpAG+zyfMS
-         MYuWP9aCyCo047tVYBgKRw8pHjrAWEq6+MemTrt4vI8/pCCRf6P3q/erZMfBjCcXKuMP
-         sryjBn4DS4aVhVZSfk5+uSkTueW4qBY7teAFhoHQZqptuBUC8EtMW3IiaQ6LUNg8Mhrp
-         cDonvwgpYvYPpDsISacJfAdT1plJvs+6lLq2PxypfpV66aav8ctysFrG2hdkzH1G11bJ
-         lK0w==
-X-Gm-Message-State: AOAM530p//cNiL474GPif04jFJPnQG4cbcJsPPfvo8aiaYckXB/lka4O
-        x8b2MajXtAkMiRdj7Lsp0Dn1VSgkxZeqX+KrIwxXaQ==
-X-Google-Smtp-Source: ABdhPJzLUx4mda4fQ7H0Ga9lBWntpZB7VpWdQX2o1dcRwm3prFV7nNv/EX6mBWmoe0www35mz1g39dVYV3eVfxoc5SQ=
-X-Received: by 2002:ac2:5499:: with SMTP id t25mr6633200lfk.674.1639510317616;
- Tue, 14 Dec 2021 11:31:57 -0800 (PST)
-MIME-Version: 1.0
-References: <20211029184500.2821444-1-mcgrof@kernel.org> <20211029184500.2821444-4-mcgrof@kernel.org>
- <Yao3vtSKBKLyQY1E@kroah.com> <YbFgaSPPw4Y3pJoB@bombadil.infradead.org>
-In-Reply-To: <YbFgaSPPw4Y3pJoB@bombadil.infradead.org>
-From:   Richard Fontana <fontana@sharpeleven.org>
-Date:   Tue, 14 Dec 2021 14:31:46 -0500
-Message-ID: <CAGT84B35yEjPxtu=cShoxCNzi8kaYDBbHDsu9-g0UhdFrCS6Lg@mail.gmail.com>
-Subject: Re: [copyleft-next] Re: [PATCH v9 3/6] selftests: add tests_sysfs module
-To:     Discussion and development of copyleft-next 
-        <copyleft-next@lists.fedorahosted.org>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Petr Mladek <pmladek@suse.com>, akpm@linux-foundation.org,
-        jeyu@kernel.org, tglx@linutronix.de, linux-kernel@vger.kernel.org,
-        rostedt@goodmis.org, shuah@kernel.org, keescook@chromium.org,
-        linux-fsdevel@vger.kernel.org, linux-spdx@vger.kernel.org,
-        tj@kernel.org, dan.j.williams@intel.com, bvanassche@acm.org,
-        linux-kselftest@vger.kernel.org, joe@perches.com,
-        linux-doc@vger.kernel.org, linux-block@vger.kernel.org,
-        minchan@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ARN4qeir3Hz4c3b/QWXg3h+IBfZ0AX5ARmmNbEMD7Bg=;
+        b=JLgBdQxtd4SFDBn9iutzfQtX5mgKZlE9YTS8IT/BUf44SZRUxXY+4IW3/twyIx+cfr
+         6UkYU06ct/jtZbLQ+1fVuVt2y4fLO2CWv2chOVtVe9g47sV/ZD+8QSal/Tgjc3r06BC1
+         xmSlrurlhM6pa/25YBXoFznB7DQE99/lOlZ8yiNGYmuaopkgCkDm140ncwNiZi1DCJpc
+         zDouYKc3ZgrxCmaGYZri2C2MJCxrRdwuLj2Mhm2XqMikT2pIVIUhLNCL7jbFMFBOP7zY
+         10g0TMb/GqbZz1ikveXVU+7VW9uYj8um2pJWb0he/1wQKwYE945B0EWLJBMoZG/cgdJO
+         gOMw==
+X-Gm-Message-State: AOAM5314kHJ44TKrzXFGzamZKn8oN283TfDpb1KKrxyCCmKfrOmb2c+i
+        U2UUL1BDlNfAI5/4q4XyONY=
+X-Google-Smtp-Source: ABdhPJwbIjTPzZFy8VT5f8JT2Une97QMgC0Zd0FEEOycuRTMmUs5Tfgz4ZnfOy19zcLP6lRHpdTVYA==
+X-Received: by 2002:adf:dcd2:: with SMTP id x18mr8196312wrm.173.1639647913304;
+        Thu, 16 Dec 2021 01:45:13 -0800 (PST)
+Received: from felia.fritz.box ([2001:16b8:267b:1200:18af:bb55:aabf:94a8])
+        by smtp.gmail.com with ESMTPSA id g18sm4294270wrv.42.2021.12.16.01.45.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 01:45:13 -0800 (PST)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Felix Kuehling <Felix.Kuehling@amd.com>,
+        Jonathan Kim <jonathan.kim@amd.com>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        amd-gfx@lists.freedesktop.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] drm/amdkfd: make SPDX License expression more sound
+Date:   Thu, 16 Dec 2021 10:45:03 +0100
+Message-Id: <20211216094503.10597-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
- On Wed, Dec 8, 2021 at 8:52 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
->
-> On Fri, Dec 03, 2021 at 04:29:02PM +0100, Greg KH wrote:
-> > On Fri, Oct 29, 2021 at 11:44:57AM -0700, Luis Chamberlain wrote:
+Commit b5f57384805a ("drm/amdkfd: Add sysfs bitfields and enums to uAPI")
+adds include/uapi/linux/kfd_sysfs.h with the "GPL-2.0 OR MIT WITH
+Linux-syscall-note" SPDX-License expression.
 
-> > > diff --git a/lib/test_sysfs.c b/lib/test_sysfs.c
-> > > new file mode 100644
-> > > index 000000000000..2a6ec072da60
-> > > --- /dev/null
-> > > +++ b/lib/test_sysfs.c
-> > > @@ -0,0 +1,894 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-or-later OR copyleft-next-0.3.1
-> >
-> > Again, sorry, but no, I am going to object to this license as you are
-> > only accessing a GPL-v2-only api.  Any other license on a file that
-> > interacts with that, especially for core stuff like testing the
-> > functionality of this code, needs to have that same license.  Sorry.
->
-> Huh? The license is GPL-v2 compatible, and when used in the kernel the
-> GPLv2 applies.
->
-> Likewise, are you taking the position that permissively licensed code,
-> say BSD or ISC licensed code, cannot use EXPORT_SYMBOL_GPL() symbols?
+The command ./scripts/spdxcheck.py warns:
 
-Just chiming in here, not really because of any association with the
-copyleft-next license (or GPLv2 for that matter) but because of
-general personal immersion in open source licensing. I would think
-that code interacting with a GPLv2-only api could be under any
-GPLv2-only-compatible license, such as ISC, GPLv2-or-later, or
-copyleft-next. That said, of course kernel maintainers can establish
-stricter policies around acceptable forms of licensing.
+  include/uapi/linux/kfd_sysfs.h: 1:48 Exception not valid for license MIT: Linux-syscall-note
 
-Richard
+For a uapi header, the file under GPLv2 License must be combined with the
+Linux-syscall-note, but combining the MIT License with the
+Linux-syscall-note makes no sense, as the note provides an exception for
+GPL-licensed code, not for permissively licensed code.
+
+So, reorganize the SPDX expression to only combine the note with the GPL
+License condition. This makes spdxcheck happy again.
+
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+I am not a lawyer and I do not intend to modify the actual licensing of
+this header file. So, I really would like to have an Ack from some AMD
+developer here.
+
+Maybe also a lawyer on the linux-spdx list can check my reasoning on the
+licensing with the exception note?
+
+ include/uapi/linux/kfd_sysfs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/uapi/linux/kfd_sysfs.h b/include/uapi/linux/kfd_sysfs.h
+index e1fb78b4bf09..3e330f368917 100644
+--- a/include/uapi/linux/kfd_sysfs.h
++++ b/include/uapi/linux/kfd_sysfs.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 OR MIT WITH Linux-syscall-note */
++/* SPDX-License-Identifier: (GPL-2.0 WITH Linux-syscall-note) OR MIT */
+ /*
+  * Copyright 2021 Advanced Micro Devices, Inc.
+  *
+-- 
+2.17.1
+

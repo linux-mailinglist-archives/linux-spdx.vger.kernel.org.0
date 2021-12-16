@@ -2,77 +2,100 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42974477056
-	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 12:33:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6B947714A
+	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 13:05:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232915AbhLPLdi (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 16 Dec 2021 06:33:38 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:43082 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231231AbhLPLdh (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 16 Dec 2021 06:33:37 -0500
+        id S234504AbhLPMFO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 16 Dec 2021 07:05:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37262 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234285AbhLPMFO (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 16 Dec 2021 07:05:14 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713E8C061574;
+        Thu, 16 Dec 2021 04:05:14 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6975361D76;
-        Thu, 16 Dec 2021 11:33:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB46AC36AE3;
-        Thu, 16 Dec 2021 11:33:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639654416;
-        bh=UJ6aPJtkAUGmyExkszl/dWUZ5oh7wj/TvKfeJAAe8i8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hE/u5ofzgtfygO3HRR327lVvqs9OdoeLBLEd7a7QKXDkSv6IqRRgY0cugHm+ZNyEe
-         aH6kKS3FfBbCF9uqmK+NDS1svPSNKwhideGP6y0Dfvl8meOBvQotTbsyoSnntdKv+s
-         mDqHwO/ndyve9FfTlBVMn98dTPIZxFKV03s7NyHW4yq1nsXNIdM+XuMXqJfCvjPvtE
-         q1EsqgeO2NFN5omrszX9YFANgUuoN+W37eT7es/y5DYVm8PV98rk/W1MJO+/+KPTgK
-         C6AcQohuC3GvizhG5TIrJyaIp6FPBHSJnWA2xLsTvJndVL3d3hBK5QS6LL7HyEFo4I
-         5Y6q/lI6OOUSA==
-Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mxp0w-005bi7-Kp; Thu, 16 Dec 2021 12:33:34 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Thomas Gleixner <tglx@linutronix.de>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
-Subject: [PATCH v2] LICENSES/LGPL-2.1: Add LGPL-2.1-or-later as valid identifiers
-Date:   Thu, 16 Dec 2021 12:33:33 +0100
-Message-Id: <0af6460832237cbec13ff403695cf90e75488e96.1639654402.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <4f45e733caaa08b8b13f8cfd95848cc5ea89bfba.1639654324.git.mchehab+huawei@kernel.org>
-References: <4f45e733caaa08b8b13f8cfd95848cc5ea89bfba.1639654324.git.mchehab+huawei@kernel.org>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 10F9661D7A;
+        Thu, 16 Dec 2021 12:05:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED18C36AE4;
+        Thu, 16 Dec 2021 12:05:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1639656313;
+        bh=xnAVQ4r+VQvlqTGC/jY1NEPm3UtZVMG2RXgN8eve8aI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fg++ln0VLp60KAI5xSjOihbQGXru+Pmqy2duMxqezESEV9xgjv+PAQENFvNAu+x74
+         7rkyGzyCCYJH6pE7HbZXHi097iGuZp2ioLwPh16KwH4hXYNI2U7y0xvFtHxpLTHjWQ
+         prOt3GSCy+2py6nVhM3nNKHrsV6jsvsDHM9hIU1M=
+Date:   Thu, 16 Dec 2021 13:05:10 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Cai Huoqing <caihuoqing@baidu.com>,
+        linux-media@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: prefer generic SPDX-License expression to
+ deprecated one
+Message-ID: <Ybsrdll5sqIakINT@kroah.com>
+References: <20211216103132.8087-1-lukas.bulwahn@gmail.com>
+ <20211216122311.0c9d154e@coco.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211216122311.0c9d154e@coco.lan>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Some files have been flagged with the new LGPL-2.1-or-later
-identifier which replace the original LGPL-2.1+ in the SPDX license
-identifier specification, but the identifiers are not mentioned as
-valid in the LGPL-2.1 license file.
+On Thu, Dec 16, 2021 at 12:23:11PM +0100, Mauro Carvalho Chehab wrote:
+> Em Thu, 16 Dec 2021 11:31:32 +0100
+> Lukas Bulwahn <lukas.bulwahn@gmail.com> escreveu:
+> 
+> > Commit 8d395ce6f04b ("media: dvb-core: Convert to SPDX identifier") and
+> > commit e67219b0496b ("media: b2c2: flexcop: Convert to SPDX identifier")
+> > introduce the SPDX-License expression LGPL-2.1-or-later for some files.
+> > 
+> > The command ./scripts/spdxcheck.py warns:
+> > 
+> >   drivers/media/dvb-core/dmxdev.c: 1:28 Invalid License ID: LGPL-2.1-or-later
+> >   drivers/media/dvb-core/dvb_demux.c: 1:28 Invalid License ID: LGPL-2.1-or-later
+> >   drivers/media/dvb-core/dvbdev.c: 1:28 Invalid License ID: LGPL-2.1-or-later
+> >   drivers/media/common/b2c2/flexcop.c: 1:28 Invalid License ID: LGPL-2.1-or-later
+> > 
+> > The preferred SPDX expression for LGPL-2.1 or any later version is with
+> > the more generic "+"-extension for "any later version", so: LGPL-2.1+
+> > 
+> > This makes spdxcheck happy again.
+> 
+> It doesn't sound right to apply such patch.
+> 
+> See, the latest SPDX version uses LGPL-2.1-or-later:
+> 
+> 	https://spdx.org/licenses/LGPL-2.1-or-later.html
+> 
+> And it deprecated LGPL-2.1+:
+> 
+> 	https://spdx.org/licenses/LGPL-2.1+.html
+> 
+> So, those files are perfectly fine with regards to SPDX, and are
+> adherent to its latest specs. We do need the latest specs on media,
+> as our documentation is under GFDL-1.1-no-invariants-or-later, which
+> only exists on newer SPDX versions.
+> 
+> So, the right thing to do here seems to fix spdxcheck.py, letting it
+> either allow both variants (as we probably don't want to replace it
+> everywhere) or to emit a warning if the deprecated ones are used.
 
-Add it, together with the LGPL-2.1-only at the the license file.
+No, we are not going to add a "warning" for older SPDX versions like
+that, otherwise the majority of the kernel will start spitting out
+warnings.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- LICENSES/preferred/LGPL-2.1 | 2 ++
- 1 file changed, 2 insertions(+)
+Let's worry about actually fixing all of the files that do NOT have SPDX
+tags before even considering to move to a newer version of the spec.  We
+started this work before the FSF made the crazy change to their tags,
+let's not worry about any deprecated issues at the moment.
 
-diff --git a/LICENSES/preferred/LGPL-2.1 b/LICENSES/preferred/LGPL-2.1
-index 27bb4342a3e8..5feb8a6dbf15 100644
---- a/LICENSES/preferred/LGPL-2.1
-+++ b/LICENSES/preferred/LGPL-2.1
-@@ -1,5 +1,7 @@
- Valid-License-Identifier: LGPL-2.1
- Valid-License-Identifier: LGPL-2.1+
-+Valid-License-Identifier: LGPL-2.1-only
-+Valid-License-Identifier: LGPL-2.1-or-later
- SPDX-URL: https://spdx.org/licenses/LGPL-2.1.html
- Usage-Guide:
-   To use this license in source code, put one of the following SPDX
--- 
-2.33.1
+thanks,
 
+greg k-h

@@ -2,52 +2,58 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A06B0476F1F
-	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 11:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A336647701E
+	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 12:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236225AbhLPKtP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 16 Dec 2021 05:49:15 -0500
-Received: from mx24.baidu.com ([111.206.215.185]:48176 "EHLO baidu.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236195AbhLPKtP (ORCPT <rfc822;linux-spdx@vger.kernel.org>);
-        Thu, 16 Dec 2021 05:49:15 -0500
-Received: from BC-Mail-HQEX01.internal.baidu.com (unknown [172.31.51.57])
-        by Forcepoint Email with ESMTPS id BC2246EA63F6B8BE0EB7;
-        Thu, 16 Dec 2021 18:49:07 +0800 (CST)
-Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BC-Mail-HQEX01.internal.baidu.com (172.31.51.57) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.20; Thu, 16 Dec 2021 18:49:06 +0800
-Received: from localhost (172.31.63.8) by BJHW-MAIL-EX27.internal.baidu.com
- (10.127.64.42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Thu, 16
- Dec 2021 18:49:00 +0800
-Date:   Thu, 16 Dec 2021 18:48:59 +0800
-From:   Cai Huoqing <caihuoqing@baidu.com>
+        id S236593AbhLPLXT (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 16 Dec 2021 06:23:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55634 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236588AbhLPLXT (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 16 Dec 2021 06:23:19 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B19CC061574;
+        Thu, 16 Dec 2021 03:23:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 34322B8231A;
+        Thu, 16 Dec 2021 11:23:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F21AC36AE2;
+        Thu, 16 Dec 2021 11:23:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639653795;
+        bh=d+QVv28ZDuplqXtOqdHMlrxWGQCchRWFxwGf5qiQbD0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=GWnbaSnX43bKzSyjw91qm4c5NjJZCGEenoCLx9J2XkvUe6fB/nX1rq50xgAAoRH6a
+         wizB2B5p/l6agXQu0BNFJvJVKdT0qUG+XF1L/DjdRr74VpOiiu67ahRDK5fyjDpF/w
+         do5h9rrXAmI4FLyM/2YuLSOUTiUz4NWPFHGLZxZJSAoDnPfW90Rly5xfwzbJq4x1xu
+         9CYnHDi3g1FMk57M7kqJNaiHMRbA9E8uRoxp7c2NNBxGHOa64VYh37ahZ/3NPekpYo
+         JS8StnF9tU3FWrHQesoHCe/Ef24bXbCtX74dWOcM9ShUsazDWqnj3QSlFWHy9ZTcTZ
+         uBKa45WcJDCIg==
+Date:   Thu, 16 Dec 2021 12:23:11 +0100
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
 To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        <linux-media@vger.kernel.org>,
+Cc:     Cai Huoqing <caihuoqing@baidu.com>, linux-media@vger.kernel.org,
         Thomas Gleixner <tglx@linutronix.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-spdx@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] media: prefer generic SPDX-License expression to
  deprecated one
-Message-ID: <20211216104859.GA238@LAPTOP-UKSR4ENP.internal.baidu.com>
-References: <20211216103132.8087-1-lukas.bulwahn@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Message-ID: <20211216122311.0c9d154e@coco.lan>
 In-Reply-To: <20211216103132.8087-1-lukas.bulwahn@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [172.31.63.8]
-X-ClientProxiedBy: BC-Mail-Ex22.internal.baidu.com (172.31.51.16) To
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+References: <20211216103132.8087-1-lukas.bulwahn@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On 16 12月 21 11:31:32, Lukas Bulwahn wrote:
+Em Thu, 16 Dec 2021 11:31:32 +0100
+Lukas Bulwahn <lukas.bulwahn@gmail.com> escreveu:
+
 > Commit 8d395ce6f04b ("media: dvb-core: Convert to SPDX identifier") and
 > commit e67219b0496b ("media: b2c2: flexcop: Convert to SPDX identifier")
 > introduce the SPDX-License expression LGPL-2.1-or-later for some files.
@@ -63,6 +69,29 @@ On 16 12月 21 11:31:32, Lukas Bulwahn wrote:
 > the more generic "+"-extension for "any later version", so: LGPL-2.1+
 > 
 > This makes spdxcheck happy again.
+
+It doesn't sound right to apply such patch.
+
+See, the latest SPDX version uses LGPL-2.1-or-later:
+
+	https://spdx.org/licenses/LGPL-2.1-or-later.html
+
+And it deprecated LGPL-2.1+:
+
+	https://spdx.org/licenses/LGPL-2.1+.html
+
+So, those files are perfectly fine with regards to SPDX, and are
+adherent to its latest specs. We do need the latest specs on media,
+as our documentation is under GFDL-1.1-no-invariants-or-later, which
+only exists on newer SPDX versions.
+
+So, the right thing to do here seems to fix spdxcheck.py, letting it
+either allow both variants (as we probably don't want to replace it
+everywhere) or to emit a warning if the deprecated ones are used.
+
+Regards,
+Mauro
+
 > 
 > Fixes: 8d395ce6f04b ("media: dvb-core: Convert to SPDX identifier")
 > Fixes: e67219b0496b ("media: b2c2: flexcop: Convert to SPDX identifier")
@@ -111,12 +140,11 @@ On 16 12月 21 11:31:32, Lukas Bulwahn wrote:
 > @@ -1,4 +1,4 @@
 > -// SPDX-License-Identifier: LGPL-2.1-or-later
 > +// SPDX-License-Identifier: LGPL-2.1+
-Looks good to me.
-
-Reviewed-by: Cai Huoqing <caihuoqing@baidu.com>
 >  /*
 >   * dvbdev.c
 >   *
-> -- 
-> 2.17.1
-> 
+
+
+
+Thanks,
+Mauro

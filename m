@@ -2,105 +2,107 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCE40477325
-	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 14:30:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 473C4477A2C
+	for <lists+linux-spdx@lfdr.de>; Thu, 16 Dec 2021 18:14:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237544AbhLPNax (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 16 Dec 2021 08:30:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57736 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234536AbhLPNav (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 16 Dec 2021 08:30:51 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F73C061574;
-        Thu, 16 Dec 2021 05:30:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9FBAF61DE1;
-        Thu, 16 Dec 2021 13:30:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EC6DC36AE0;
-        Thu, 16 Dec 2021 13:30:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1639661450;
-        bh=DFkxvtxMqMUzTPeD8ypKgs/NOnPrlmnUQy5+INh5uY8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Buf8GtMlIjHdecx15IQgRj57NJaf2KpSeoYgXshUpjhmzB3RbVPB6W1HRxUvh0oS9
-         S2xjsEbZnKoocxKrcBZQY3FGz+CMBvXZCp+2qrCFUzjDmIdhb2vOMMLJAwGDbaAxwk
-         TNUTYwPS9hftZA+9Z4RzoMGT5fwBksq8e8STjIDU=
-Date:   Thu, 16 Dec 2021 14:30:47 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Cai Huoqing <caihuoqing@baidu.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-spdx@vger.kernel.org
-Subject: Re: [PATCH v3] LICENSES/LGPL-2.1: Add LGPL-2.1-or-later as valid
- identifiers
-Message-ID: <Ybs/h3WAY3FFVC4/@kroah.com>
-References: <12f38ebde4dcd8b1ecbd37df1b6ce2018426f6dd.1639657049.git.mchehab+huawei@kernel.org>
- <20211216123014.GA286@LAPTOP-UKSR4ENP.internal.baidu.com>
- <Ybs8eJOBwxw/Tj3o@kroah.com>
- <CAKXUXMwsxiUncxS4Fip=7iK-xrUZSXY61jNcO61bgMyQ0DYp6A@mail.gmail.com>
+        id S235600AbhLPROX (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 16 Dec 2021 12:14:23 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:42444 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235482AbhLPROX (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>);
+        Thu, 16 Dec 2021 12:14:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1639674862;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=oQgAhoiOjcEvvq4zHc3KhGoH9+9ZU/GHjebXeJBKCA8=;
+        b=U57Eq079r3DAtXddT3LENZtYvGr1bosHkPnF21U6w4mQUqFTlhE0SdlzpgCk1Z/ibt1hSm
+        eg2XpqyMGRr5+bVcVk0wkbieVf6GCCbUEAq3TG49amG9ghUhInFUah1IuACizumrJXhT/D
+        v1H2do4P8HEifp0rxtGsD4MwJt3qjtg=
+Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com
+ [209.85.221.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-362-3WGetNslPyedVxoI5yHcHw-1; Thu, 16 Dec 2021 12:14:21 -0500
+X-MC-Unique: 3WGetNslPyedVxoI5yHcHw-1
+Received: by mail-vk1-f197.google.com with SMTP id t5-20020a1f9105000000b002f7fbb56d22so4023180vkd.17
+        for <linux-spdx@vger.kernel.org>; Thu, 16 Dec 2021 09:14:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oQgAhoiOjcEvvq4zHc3KhGoH9+9ZU/GHjebXeJBKCA8=;
+        b=P/I1seuGLKNBeUadgQ0mf4xJW3hHMhkkiZioQg934uF88ZmyHPGQlfHeXWzNZXwLgd
+         XmTePbI8JdIbkGA+cmFdad4hugXTBEobZdU6xXYDQE0s75y4QzEsXkyV/PeQOVHqS+5X
+         5EW+Y76wF5L0PTpRdxDHxZi3WSveYQjm8uGJW0djGb/x/zQP6HvJxGvFwnMKjj8KImr4
+         3OxhJ+phSUFClq9FLq4gVbGaFXF+GqNQVjdZp0jSTqq3VJEYJQQTAx5dzn1/UgGpDu4Z
+         gNweuLQhBhZ8Oxv6JhTKmO9SR0Guy+ku5atbL+Eu7fIcIvPI99h7nuMho//gXvdIWTHT
+         Zclg==
+X-Gm-Message-State: AOAM533IwPsmOszcK5kHcqrcRZkthU5AuOMkE94r4k950qbuubh6QB8+
+        UFJfkizpnf+3sWT/IMj4CFSRJJ3fq15D6B/GhQhEdCjLKyCeUFsNwG1TUagU3MN3h/g49PyWid9
+        CCejftrCp7SHAGgQjNYgF0m9ocajYHNbe6nkfLg==
+X-Received: by 2002:a67:fc91:: with SMTP id x17mr5816408vsp.23.1639674860898;
+        Thu, 16 Dec 2021 09:14:20 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxZeE766WsJKtZAbhMyLrZU8A8/n/meEH7AyiHVqY8cf022RAtLRCFB9/m7y0IvBS9qdJ8zxCDFkGaW5OvF0IU=
+X-Received: by 2002:a67:fc91:: with SMTP id x17mr5816396vsp.23.1639674860652;
+ Thu, 16 Dec 2021 09:14:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKXUXMwsxiUncxS4Fip=7iK-xrUZSXY61jNcO61bgMyQ0DYp6A@mail.gmail.com>
+References: <20211216094503.10597-1-lukas.bulwahn@gmail.com>
+In-Reply-To: <20211216094503.10597-1-lukas.bulwahn@gmail.com>
+From:   Richard Fontana <rfontana@redhat.com>
+Date:   Thu, 16 Dec 2021 12:14:09 -0500
+Message-ID: <CAC1cPGyg_wNqusQX+OzPNtTc8GSpQKwxfFSKzLfENYoXihQYww@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdkfd: make SPDX License expression more sound
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Felix Kuehling <Felix.Kuehling@amd.com>,
+        Jonathan Kim <jonathan.kim@amd.com>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        amd-gfx@lists.freedesktop.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rfontana@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 02:28:10PM +0100, Lukas Bulwahn wrote:
-> On Thu, Dec 16, 2021 at 2:17 PM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Thu, Dec 16, 2021 at 08:30:14PM +0800, Cai Huoqing wrote:
-> > > On 16 12月 21 13:17:35, Mauro Carvalho Chehab wrote:
-> > > > Some files have been flagged with the new LGPL-2.1-or-later
-> > > > identifier which replace the original LGPL-2.1+ in the SPDX license
-> > > > identifier specification, but the identifiers are not mentioned as
-> > > > valid in the LGPL-2.1 license file.
-> > > >
-> > > > Add it, together with the LGPL-2.1-only at the the license file.
-> > > >
-> > > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > > > ---
-> > > >  LICENSES/preferred/LGPL-2.1 | 2 ++
-> > > >  1 file changed, 2 insertions(+)
-> > > >
-> > > > diff --git a/LICENSES/preferred/LGPL-2.1 b/LICENSES/preferred/LGPL-2.1
-> > > > index 27bb4342a3e8..b73f9b6230f5 100644
-> > > > --- a/LICENSES/preferred/LGPL-2.1
-> > > > +++ b/LICENSES/preferred/LGPL-2.1
-> > > > @@ -1,5 +1,7 @@
-> > > >  Valid-License-Identifier: LGPL-2.1
-> > > > +Valid-License-Identifier: LGPL-2.1-only
-> > > >  Valid-License-Identifier: LGPL-2.1+
-> > > > +Valid-License-Identifier: LGPL-2.1-or-later
-> > > >  SPDX-URL: https://spdx.org/licenses/LGPL-2.1.html
-> > > The URL is deprecated, do we need to update it together.
-> >
-> > No.
-> >
-> > > The same, GPL-2.0, LGPL-2.0
-> >
-> > Again, no.  We are using an older version of the SPDX specification,
-> > this is fine.
-> >
-> 
-> Mauro's patch just makes sure that spdxcheck.py does not complain
-> about the SPDX License Identifiers from SPDX spec v2 and from v3. It
-> really does not deprecate anything or implies that everything in the
-> kernel needs to move to v3 (which might really be some crazy
-> disturbing refactoring effort without a lot of gain), but it allows
-> developers that want to use the tags from SPDX spec v3 can do so.
-> 
-> I would assume making the kernel/a tool in the kernel supporting
-> something more while being backwards-compatible is the standard way we
-> work... So, Greg, this patch is fine to be included, right?
+On Thu, Dec 16, 2021 at 4:45 AM Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
+>
+> Commit b5f57384805a ("drm/amdkfd: Add sysfs bitfields and enums to uAPI")
+> adds include/uapi/linux/kfd_sysfs.h with the "GPL-2.0 OR MIT WITH
+> Linux-syscall-note" SPDX-License expression.
+>
+> The command ./scripts/spdxcheck.py warns:
+>
+>   include/uapi/linux/kfd_sysfs.h: 1:48 Exception not valid for license MIT: Linux-syscall-note
+>
+> For a uapi header, the file under GPLv2 License must be combined with the
+> Linux-syscall-note, but combining the MIT License with the
+> Linux-syscall-note makes no sense, as the note provides an exception for
+> GPL-licensed code, not for permissively licensed code.
+>
+> So, reorganize the SPDX expression to only combine the note with the GPL
+> License condition. This makes spdxcheck happy again.
+>
+> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+> ---
+> I am not a lawyer and I do not intend to modify the actual licensing of
+> this header file. So, I really would like to have an Ack from some AMD
+> developer here.
+>
+> Maybe also a lawyer on the linux-spdx list can check my reasoning on the
+> licensing with the exception note?
 
-Yes, this patch is fine, I will queue it up in a bit, thanks!
+I believe "MIT WITH Linux-syscall-note" is a syntactically correct
+SPDX expression but is otherwise sort of non-meaningful.
+"(GPL-2.0 WITH Linux-syscall-note) OR MIT" is presumably what is
+intended here. But yes would be good to get confirmation from someone
+associated with AMD.
 
-greg k-h
+Richard
+

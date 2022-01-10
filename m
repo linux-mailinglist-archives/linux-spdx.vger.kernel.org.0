@@ -2,111 +2,139 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D473148984E
-	for <lists+linux-spdx@lfdr.de>; Mon, 10 Jan 2022 13:13:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B646489973
+	for <lists+linux-spdx@lfdr.de>; Mon, 10 Jan 2022 14:12:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245258AbiAJMND (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 10 Jan 2022 07:13:03 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:36744 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235772AbiAJMNC (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 10 Jan 2022 07:13:02 -0500
-X-UUID: 179ec19712d345d59e3d4d68b1dc6a93-20220110
-X-UUID: 179ec19712d345d59e3d4d68b1dc6a93-20220110
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 923755758; Mon, 10 Jan 2022 20:12:57 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 10 Jan 2022 20:12:57 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 10 Jan 2022 20:12:57 +0800
-Message-ID: <0f3836a37d36dece52213d4b33e2b666cb187fc2.camel@mediatek.com>
-Subject: Re: GPL-1.0-licensed code for files
- drivers/clk/mediatek/clk-mt7986* included with commit ec97d23c8e22 ("clk:
- mediatek: add mt7986 clock support")
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        <linux-spdx@vger.kernel.org>,
-        kernel-janitors <kernel-janitors@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Date:   Mon, 10 Jan 2022 20:12:57 +0800
-In-Reply-To: <CAKXUXMy8ywQXqqmOvvm9wKL_ikixRJOFgCcgu4OdPUPhjq6MhA@mail.gmail.com>
-References: <CAKXUXMy8ywQXqqmOvvm9wKL_ikixRJOFgCcgu4OdPUPhjq6MhA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S230262AbiAJNLx (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 10 Jan 2022 08:11:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44370 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231195AbiAJNLq (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 10 Jan 2022 08:11:46 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 502E9C06118A
+        for <linux-spdx@vger.kernel.org>; Mon, 10 Jan 2022 05:11:46 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id s30so16337649lfo.7
+        for <linux-spdx@vger.kernel.org>; Mon, 10 Jan 2022 05:11:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=STst/NZz7XpLuhkw/fjT1YooCLQUEgoChj9j28RAYfs=;
+        b=Bgie3w5lZXcUpEJsNUNnYT9D80sz6831OKMgWSWMpAMR4c04HQM1hwHkoZ1AqHgJ5M
+         pQJfhFBsNTGc+jfMsWTuSDXhNBe5XPwJ8/UQZKbYcWTDQ68Eu4MBBVsHf0V3Baa+27Pp
+         IUJW/950IUGNsTto2NnsTW49/Cy4Vf+KfgzDT0+KZ2gcb/QkEKg3LEIj8qPJpiII0Qbk
+         buE3CbPl0T8T6omQLXT3KYJBxN98pPIrfxDam1Qs0diPFN43pWVugWbd8LU8WaIGviK3
+         O/t/NLMKhR03EdE8rMi5c8T5epCw09Yzc4YmAU5QrO9ZaREbayNwAtpm1SWYSR1IiBuY
+         5w9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=STst/NZz7XpLuhkw/fjT1YooCLQUEgoChj9j28RAYfs=;
+        b=tTNJYvWu8VG8STD7epW94nJdZVr95bjUGUBI9dwpJChBEDoRbp/jYxwL0oVNQWynuP
+         QY7nA/FQX3k1ZfVreN3KxI9nVGlJA5l+gSBeAE+4WJuVVDvob6u47kAFA8GXt4ljtIOJ
+         GyFhAnCjPlON5skxZuHtkD5cYcM9lfV/nJ7+eHY5//gIhbV5YxOYeJrYM46Iovnj/fuc
+         r6Upj4VvAM/Xd2ZKpTDzX7QXmuC6R9xdqMVbDRYYcnrhtsHel4+9FGTSf5W8j7OLUBaw
+         XHR8g8og9Q2N+42ugB6t1CEMRodWuhBhneNWoNz4GwU/tBQEnAA8hOcP1hG0M071XiYs
+         OO9w==
+X-Gm-Message-State: AOAM5300w2V21eUxR6T2kETy/OmBCFp03bFyhaLhA7u9gFta0KziBuMD
+        vVXZvTXG+RINHeUd36LF/XUHY5OltFR4USh+PQaHmAbQugU=
+X-Google-Smtp-Source: ABdhPJyUuzfRq9+VAp3YIslVsNF7E8r6u+SDvjtiaFw6sfTA9uOxrmlrl9JDay/jDh10uqplhgk07a+YHTpM3Ge0znw=
+X-Received: by 2002:ac2:4c51:: with SMTP id o17mr60639917lfk.558.1641820293776;
+ Mon, 10 Jan 2022 05:11:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Received: by 2002:a05:6504:15d1:0:0:0:0 with HTTP; Mon, 10 Jan 2022 05:11:32
+ -0800 (PST)
+Reply-To: gtbank107@yahoo.com
+From:   Barr Robert Richter <westernunion.benin982@gmail.com>
+Date:   Mon, 10 Jan 2022 14:11:32 +0100
+Message-ID: <CAP=nHBK9zHzp_=-EVswWQiLxEoc+HV4oqddgtnEqf-9qYab_4Q@mail.gmail.com>
+Subject: Contact GT Bank-Benin to receive your transfer amount of $18.5m US Dollars.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Hi Luka/Stephen,
+Attn,Dear
+I need you to know that the fear of the LORD is
+the beginning of wisdom, and knowledge of the Holy One is
+understanding. As power of God Most High. And This is the confidence
+we have in approaching God, that if we ask anything according to his
+will, he hears us. I will make you know that Slow and steady wins the race.
+It is your turn to receive your overdue compensation funds total
+amount $18.5Milion  USD.
+I actualized that you will receive your transfer today without any more delay
+No More fee OK, Believe me , I am your Attorney standing here on your favor.
+I just concluded conversation with the Gt Bank Director, Mrs Mary Gate
+And She told me that your transfer is ready today
 
-This is my mistake, I seem to use an old license header on it.
-Just like "clk-mt7986-eth.c" in the same patch series,
+So the Bank Asked you to contact them immediately by re-confirming
+your Bank details asap.
+Because this is the Only thing holding this transfer
+If you did not trust me and Mrs Mary Gate,Who Else will you Trust?
+For we are the ones trying to protect your funds here
+and make sure that your funds is secure.
+So Promisingly, I am here to assure you, that Grate Miracle is coming on
+your way, and this funds total amount of $18.500,000 is your
+compensation, entitlement inheritance overdue funds on your name.
+Which you cannot let anything delay you from receiving your funds now,
 
+Finally i advised you to try your possible best and contact Gt Bank Benin
+once you get this message to receive your transfer $18.5 USD today.
+I know that a journey of thousand miles begins with a single step.
+Always put your best foot forward
+Try as hard as you can, God give you best.
+take my advice and follow the due process of your payment, the
+transfer will be released to
+you smoothly without any hitches or hindrance.
 
-https://lore.kernel.org/all/20211217121148.6753-4-sam.shih@mediatek.com/
+Contact DR.MRS MARY GATE, Director Gt bank-Benin to receive your
+transfer amount of $18.5m US Dollars
+It was deposited and registered to your name this morning.
+Contact the Bank now to know when they will transfer to your
+country today
 
-I intend to license "clk-mt7986-apmixed.c", "clk-mt7986-infracfg.c",
-and "clk-mt7986-topckgen" under the kernel's standard GPL-2.0.
+Email id: gtbank107@yahoo.com
+Tel/mobile, +229 99069872
+Contact person, Mrs Mary Gate,Director Gt bank-Benin.
+Among the blind the one-eyed man is king
 
-Should I need to resend this patch?
-Or I can just send a follow-up patch to fix it?
+As you sow, so you shall reap, i want you to receive your funds
+Best things in life are free
+Send to her your Bank Details as i listed here.
 
-Regards,
-Sam
+Your account name-------------
+Your Bank Name----------------
+Account Number----------
+your Bank address----------
+Country-----------
+Your private phone number---------
+Routing Numbers-------------
+Swift Code-----------
 
+Note, Your funds is %100 Percent ready for
+transfer.
+Everything you do remember that Good things come to those who wait.
+I have done this work for you with my personally effort, Honesty is
+the best policy.
+now your transfer is currently deposited with paying bank this morning.
+It is by the grace of God that I received Christ, having known the truth.
+I had no choice than to do what is lawful and justice in the
+sight of God for eternal life and in the sight of man for witness of
+God & His Mercies and glory upon my life.
 
-On Mon, 2022-01-10 at 10:56 +0100, Lukas Bulwahn wrote:
-> Dear Sam,
-> 
-> 
-> Thanks for contributing the mt7986 clock support to the kernel
-> repository with commit ec97d23c8e22 ("clk: mediatek: add mt7986 clock
-> support").
-> 
-> You have marked the files below with the GPL-1.0 License, which
-> ./scripts/spdxcheck.py identifies and warns about:
-> 
-> drivers/clk/mediatek/clk-mt7986-apmixed.c: 1:28 Invalid License ID:
-> GPL-1.0
-> drivers/clk/mediatek/clk-mt7986-infracfg.c: 1:28 Invalid License ID:
-> GPL-1.0
-> drivers/clk/mediatek/clk-mt7986-topckgen.c: 1:28 Invalid License ID:
-> GPL-1.0
-> 
-> The kernel's licensing rules are described here:
-> 
-> 
-https://urldefense.com/v3/__https://www.kernel.org/doc/html/latest/process/license-rules.html*kernel-licensing__;Iw!!CTRNKA9wMg0ARbw!3vjYIYa2VqgzRgsUxjx-mwtOtidbamcTDphKaMUo-7ql0YlaB4Qi_Xc-1vDpFfju$
->  
-> 
-> The GPL-1.0 is a deprecated license in the kernel repository.
-> 
-> Driver code that is licensed with GPL-1.0 might not be compatible
-> with
-> GPL-2.0. I am not a lawyer, and we probably do not want to require
-> all
-> users of your driver code to needlessly involve a lawyer to get such
-> a
-> statement on license compatibility.
-> 
-> Do you really intend to license this code under GPL-1.0 and are you
-> aware of all the consequences for other developers and users? Or is
-> this a mistake and you intend to license it under the kernel's
-> standard GPL-2.0 license?
-> 
-> 
-> Best regards,
-> 
-> Lukas
+send this needed bank details to the bank today, so that you receive
+your transfer today as
+it is available for your confirmation today.
+Please do your best as a serious person and send the fee urgent, Note
+that this transfer of $18.500.000 M USD is a Gift from God to Bless
+you.
 
+If you did not contact the bank urgent, finally the Bank will release
+your transfer of $18.500.000M USD to  Mr. David Bollen as your
+representative.
+So not allow another to claim your Money.
+Thanks For your Understanding.
+
+Barr Robert Richter, UN Attorney At Law Court-Benin

@@ -2,66 +2,71 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71E6E48CC25
-	for <lists+linux-spdx@lfdr.de>; Wed, 12 Jan 2022 20:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6A548E238
+	for <lists+linux-spdx@lfdr.de>; Fri, 14 Jan 2022 02:43:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356925AbiALTkh (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 12 Jan 2022 14:40:37 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:33996 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357383AbiALTkJ (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 12 Jan 2022 14:40:09 -0500
+        id S235922AbiANBnv (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 13 Jan 2022 20:43:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233397AbiANBnv (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 13 Jan 2022 20:43:51 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCBEC061574;
+        Thu, 13 Jan 2022 17:43:50 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C6ADEB820E0;
-        Wed, 12 Jan 2022 19:40:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9DB0EC36AEF;
-        Wed, 12 Jan 2022 19:40:06 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EE3BEB823E5;
+        Fri, 14 Jan 2022 01:43:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 947F3C36AE3;
+        Fri, 14 Jan 2022 01:43:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642016406;
-        bh=wSBLToXmBu1q0nRiptB0lPv7GNJ6wue0y7kQ2DaH7JI=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=tNys5s5KENOCrczkCYEUb4uX2F0mMkybUpL/+SfLG2D/M+t1hbFKi4j50j7x5a9CU
-         Ef8uckMlEQY1z1jzk3vX9sAL4AzOdQE5TNZl9bKksEPcmnK4ZWg3TJtJFp7t1oiCmo
-         Uzc+9PWH2FZ0Ojw0jJvv+AqDFRjPIlx8OzOAbD9TOSeziHDQfIRFw7EPuPXgKh9LF6
-         6ZEI1agWzQBSoRe7mD67v9PXbsaT/FByqdmaiyZFj2jdLuvZSrIrPvcUb/LdDjiNae
-         h/zdnRjLei8hgz2Q3WhVe9j/iHc/TSYHdqK3AaQt2afRV2eeIDNU0B52pH/ObK1hxP
-         y/1+zW1zNUNBg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8C202F60796;
-        Wed, 12 Jan 2022 19:40:06 +0000 (UTC)
-Subject: Re: [GIT PULL] SPDX update for 5.17-rc1
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <Yd7etLWYHrtjFRdq@kroah.com>
-References: <Yd7etLWYHrtjFRdq@kroah.com>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <Yd7etLWYHrtjFRdq@kroah.com>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-5.17-rc1
-X-PR-Tracked-Commit-Id: bc128349588d571b55bfec471a773e29cfcd2d73
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 81ff0be4b9e3bcfee022d71cf89d72f7e2ed41ba
-Message-Id: <164201640656.24328.9407358004484514665.pr-tracker-bot@kernel.org>
-Date:   Wed, 12 Jan 2022 19:40:06 +0000
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
+        s=k20201202; t=1642124626;
+        bh=VbYaOOUNdvRi/6OFam1hc6qimqnMsLtwWXOXwTZSL3U=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=sWKaXi7qF4iopRYzdN15QLGrGhGF/kwtPEENjGcbdL0NsMafA0r6NVXr60gPv2W/t
+         doSkyoIzcbtQIvNVFlzaJ9B9aIIE8hO0L8l28e1X3GEbnaGkvOiBeD7jxiFjBxvrNt
+         ffDIn/LpEYu4viI0oyq1QVRd6Gk9ZREMYbjOooc/bbgFYiYGaZwm+mAm3tmTMIluX/
+         DjRIXksfktFdhintICbLKz1ausK9jcPk6G2H8uRCenhKBQp4nLW4vklA5Es9YXY7S3
+         tvugfZ84NX6RrWUnWXq5dPy+wJRK7yRAbfkpbAtfZ2eFUpMqqGn4TWJHnf2NMWvRpt
+         TAwRC7Ulxb/IQ==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <0f3836a37d36dece52213d4b33e2b666cb187fc2.camel@mediatek.com>
+References: <CAKXUXMy8ywQXqqmOvvm9wKL_ikixRJOFgCcgu4OdPUPhjq6MhA@mail.gmail.com> <0f3836a37d36dece52213d4b33e2b666cb187fc2.camel@mediatek.com>
+Subject: Re: GPL-1.0-licensed code for files drivers/clk/mediatek/clk-mt7986* included with commit ec97d23c8e22 ("clk: mediatek: add mt7986 clock support")
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
+        linux-spdx@vger.kernel.org,
+        kernel-janitors <kernel-janitors@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>
+Date:   Thu, 13 Jan 2022 17:43:45 -0800
+User-Agent: alot/0.9.1
+Message-Id: <20220114014346.947F3C36AE3@smtp.kernel.org>
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-The pull request you sent on Wed, 12 Jan 2022 14:59:16 +0100:
+Quoting Sam Shih (2022-01-10 04:12:57)
+> Hi Luka/Stephen,
+>=20
+> This is my mistake, I seem to use an old license header on it.
+> Just like "clk-mt7986-eth.c" in the same patch series,
+>=20
+>=20
+> https://lore.kernel.org/all/20211217121148.6753-4-sam.shih@mediatek.com/
+>=20
+> I intend to license "clk-mt7986-apmixed.c", "clk-mt7986-infracfg.c",
+> and "clk-mt7986-topckgen" under the kernel's standard GPL-2.0.
+>=20
+> Should I need to resend this patch?
+> Or I can just send a follow-up patch to fix it?
+>=20
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-5.17-rc1
-
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/81ff0be4b9e3bcfee022d71cf89d72f7e2ed41ba
-
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Please send a followup to fix it.

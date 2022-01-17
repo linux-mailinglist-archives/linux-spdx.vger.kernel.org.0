@@ -2,78 +2,83 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C053490397
-	for <lists+linux-spdx@lfdr.de>; Mon, 17 Jan 2022 09:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 140D0490B9D
+	for <lists+linux-spdx@lfdr.de>; Mon, 17 Jan 2022 16:42:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235401AbiAQITD (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 17 Jan 2022 03:19:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37872 "EHLO
+        id S240580AbiAQPlz (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 17 Jan 2022 10:41:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231253AbiAQITD (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 17 Jan 2022 03:19:03 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58A5C061574;
-        Mon, 17 Jan 2022 00:19:02 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 62B8961017;
-        Mon, 17 Jan 2022 08:19:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AE81C36AE7;
-        Mon, 17 Jan 2022 08:19:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1642407541;
-        bh=ETISPVgo24AGeOAgB8tUjhJrTBKIAvd8h8N9Nd/B6qE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GCfqFO/kV9D6sYEiRkXw/hJbRTyhPndm+2Z9Yd6XoMu3XemG4oMnDxRA0+jq9ezwa
-         pw5AfYgnsaMpTLiVi5yE2gWxFvLcLWPZ/yLohxgI7G7VfD4xhVoGjF+/b0QPICQiiq
-         yqmgC5ku/Pro59ZZgiexHau/GBi1VVY7JwBG5sgU=
-Date:   Mon, 17 Jan 2022 09:18:58 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        Thomas Gleixner <gleixner@linutronix.de>,
-        "linux-spdx@vger.kernel.org" <linux-spdx@vger.kernel.org>
-Subject: Re: [PATCH v2] powerpc: Add missing SPDX license identifiers
-Message-ID: <YeUmcnyx499r6oYq@kroah.com>
-References: <f46026c3157dd856847ee8cb7ccac08453f58174.1642401402.git.christophe.leroy@csgroup.eu>
+        with ESMTP id S237263AbiAQPlx (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 17 Jan 2022 10:41:53 -0500
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A2EC061574
+        for <linux-spdx@vger.kernel.org>; Mon, 17 Jan 2022 07:41:53 -0800 (PST)
+Received: by mail-qk1-x744.google.com with SMTP id u3so9891432qku.1
+        for <linux-spdx@vger.kernel.org>; Mon, 17 Jan 2022 07:41:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
+        b=Ee31WhcSAoh/lxM0irPYoAatwbf63kBeieGEdHORtlk+FH+RzPqx0HW1M5D75HhS0Y
+         WkDaVhuGLUikIxZPsh2bEyRaVnVk8lZODnEPPdl8bvabQuWQYeUJ/pmaoctt9TU7iCUU
+         Hkfm12hyVs4noaQw2MRgIsBkSl8u40wVVMMM4SzFW1H5weh51Ch+WmCA1ewqPfMpaJNd
+         bsxELhISZ8GVAzaoiYqI40J7qmQuU+p3M5l14TJHX6VdpT4DJzr0RJwe+C8jJ4Kph+HY
+         la313MOjxvEwsw++1LDbhe+iQ2Cls/ivVCX4TI6ffI8nuLvh6IpTgP5t54bZPoNChalK
+         iLSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
+        b=X/ZQ1Oi01EMQxFJth5jaJPkOdh8i0sTJ60oE9so48CQEVxHQPP87q9DlI+EOV9UmKK
+         yjTqC+qNeFlmDXIKCCv5Q3+VRfAutnTY3OfydiEi/v+nM3kYyJF5IdsAzFkYuyqU8SY8
+         RXev2xZh11vNsVPqIT97W2lhFwzBIeQzhI0D1lbfuHv4SKFr3glJSs/ZLXZakTbMCAAl
+         j8ONtC0dC/CxJ9JqRYbDSLM1H+46joDvt9dhoa+TnzXYnh7O7LT+eymg1gAUr1xOR9zc
+         3vAfbbL7IED/dj32Uqfwx1hsJ8/0/6JQOS2mmUiIl2Uwsxm8Mg3MAgy4itDxZIGzNaiI
+         KZsA==
+X-Gm-Message-State: AOAM5314+wLx8pVGe2cXdFEzXUy+lQNbNQu+DISaIVwqlFa86JhgIC+R
+        XAJckeqyaE8rEEagU9TMJvPq4eoRozn4Es9SwbE=
+X-Google-Smtp-Source: ABdhPJxKAldfShhC8wZdY2Htq9hJGgXreaXEjiB1miYL4bVcqXdK1BUQ46o5M7iSwz6vWn6VdAI2GEFwVYsTwqDnwxw=
+X-Received: by 2002:a05:620a:4450:: with SMTP id w16mr14879837qkp.189.1642434112813;
+ Mon, 17 Jan 2022 07:41:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f46026c3157dd856847ee8cb7ccac08453f58174.1642401402.git.christophe.leroy@csgroup.eu>
+Reply-To: salkavar2@gmail.com
+Sender: carolineregt@gmail.com
+Received: by 2002:ae9:ed0c:0:0:0:0:0 with HTTP; Mon, 17 Jan 2022 07:41:52
+ -0800 (PST)
+From:   "Mr.Sal kavar" <salkavar2@gmail.com>
+Date:   Mon, 17 Jan 2022 16:41:52 +0100
+X-Google-Sender-Auth: Rmg3t_RMlCbbQyliM2-B1b_cilM
+Message-ID: <CA+sSZD+g206m+jZKhkMPB+Df1YqxeSYunccMHKX4ky3Aub4hGw@mail.gmail.com>
+Subject: Yours Faithful,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 06:41:45AM +0000, Christophe Leroy wrote:
-> Several files are missing SPDX license identifiers.
-> 
-> Following files are given the following SPDX identifier based on the comments in the top of the file:
-> 
-> 	boot/crtsavres.S:/* SPDX-License-Identifier: GPL-2.0+ */
-> 	include/asm/epapr_hcalls.h:/* SPDX-License-Identifier: GPL-2.0+ OR BSD */
-> 	include/asm/fsl_hcalls.h:/* SPDX-License-Identifier: GPL-2.0+ OR BSD */
-> 	include/asm/ibmebus.h:/* SPDX-License-Identifier: GPL-2.0 OR OpenIB BSD */
-> 	include/asm/sfp-machine.h:/* SPDX-License-Identifier: LGPL-2.0+ */
-> 	kvm/mpic.c:// SPDX-License-Identifier: GPL-2.0
-> 	lib/crtsavres.S:/* SPDX-License-Identifier: GPL-2.0+ */
-> 	mm/book3s64/hash_4k.c:// SPDX-License-Identifier: LGPL-2.0
-> 	mm/book3s64/hash_64k.c:// SPDX-License-Identifier: LGPL-2.0
-> 	mm/book3s64/hash_hugepage.c:// SPDX-License-Identifier: LGPL-2.1
-> 	platforms/pseries/ibmebus.c:// SPDX-License-Identifier: GPL-2.0 OR OpenIB BSD
-> 	tools/head_check.sh:# SPDX-License-Identifier: GPL-2.0+
-> 	xmon/ppc.h:/* SPDX-License-Identifier: GPL-1.0+ */
-> 
-> Add to other files the default kernel license identifier, in extenso GPL-2.0.
+I assume you and your family are in good health. I am the foreign
+operations Manager
 
-Please also remove the old license text at the same time so that we can
-verify that you got the licenses correct.  As-is, we can not do that
-easily with this patch so it's not ok.
+This being a wide world in which it can be difficult to make new
+acquaintances and because it is virtually impossible to know who is
+trustworthy and who can be believed, i have decided to repose
+confidence in you after much fasting and prayer. It is only because of
+this that I have decided to confide in you and to share with you this
+confidential business.
 
-thanks,
+overdue and unclaimed sum of $15.5m, (Fifteen Million Five Hundred
+Thousand Dollars Only) when the account holder suddenly passed on, he
+left no beneficiary who would be entitled to the receipt of this fund.
+For this reason, I have found it expedient to transfer this fund to a
+trustworthy individual with capacity to act as foreign business
+partner.
 
-greg k-h
+Thus i humbly request your assistance to claim this fund. Upon the
+transfer of this fund in your account, you will take 45% as your share
+from the total fund, 10% will be shared to Charity Organizations in
+both country and 45% will be for me.
+
+Yours Faithful,
+Mr.Sal Kavar.

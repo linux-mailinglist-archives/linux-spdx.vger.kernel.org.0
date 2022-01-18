@@ -2,83 +2,76 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 140D0490B9D
-	for <lists+linux-spdx@lfdr.de>; Mon, 17 Jan 2022 16:42:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E04554921EA
+	for <lists+linux-spdx@lfdr.de>; Tue, 18 Jan 2022 10:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240580AbiAQPlz (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 17 Jan 2022 10:41:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54916 "EHLO
+        id S1345161AbiARJEO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 18 Jan 2022 04:04:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237263AbiAQPlx (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 17 Jan 2022 10:41:53 -0500
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A2EC061574
-        for <linux-spdx@vger.kernel.org>; Mon, 17 Jan 2022 07:41:53 -0800 (PST)
-Received: by mail-qk1-x744.google.com with SMTP id u3so9891432qku.1
-        for <linux-spdx@vger.kernel.org>; Mon, 17 Jan 2022 07:41:53 -0800 (PST)
+        with ESMTP id S1345159AbiARJED (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 18 Jan 2022 04:04:03 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D62C06175A
+        for <linux-spdx@vger.kernel.org>; Tue, 18 Jan 2022 01:03:59 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id v45so3379003ybi.0
+        for <linux-spdx@vger.kernel.org>; Tue, 18 Jan 2022 01:03:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
-        b=Ee31WhcSAoh/lxM0irPYoAatwbf63kBeieGEdHORtlk+FH+RzPqx0HW1M5D75HhS0Y
-         WkDaVhuGLUikIxZPsh2bEyRaVnVk8lZODnEPPdl8bvabQuWQYeUJ/pmaoctt9TU7iCUU
-         Hkfm12hyVs4noaQw2MRgIsBkSl8u40wVVMMM4SzFW1H5weh51Ch+WmCA1ewqPfMpaJNd
-         bsxELhISZ8GVAzaoiYqI40J7qmQuU+p3M5l14TJHX6VdpT4DJzr0RJwe+C8jJ4Kph+HY
-         la313MOjxvEwsw++1LDbhe+iQ2Cls/ivVCX4TI6ffI8nuLvh6IpTgP5t54bZPoNChalK
-         iLSg==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=IAamEH5Xu1dJ3X0trVcFTPIrL7aTtcDGn5mUS4vw1a8=;
+        b=NHprezroMsvNvJXQj44poYAHm3bYOXBJZX5Wg8cW9F++sdGchhDxOadiHN0N74BqVo
+         LLsuxLOWO8eNb9Df+WO3omzRkxx9CES4mNA3Io5+oAgtUVpSbYHogg87+gCtw68c4I2t
+         jU5NFjjkmYDNDUVEzOuCjT2//b/zcZNUhM8rDEil4EjAKikZAouVCPfFT1ek6iBkNaWB
+         bcv0AUKVrFCVpxHEBYPBv8KSS3FHlu8eykSeEYJmKwrS5qbSbzeHmao2+zqXdm7uNchU
+         Rqamo/TlsQaFmHXGfCx8STX0aSjqEkHcratuhlypnT20IcvCVcqt6eV72JWjrAN3qvU0
+         7wEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
-        b=X/ZQ1Oi01EMQxFJth5jaJPkOdh8i0sTJ60oE9so48CQEVxHQPP87q9DlI+EOV9UmKK
-         yjTqC+qNeFlmDXIKCCv5Q3+VRfAutnTY3OfydiEi/v+nM3kYyJF5IdsAzFkYuyqU8SY8
-         RXev2xZh11vNsVPqIT97W2lhFwzBIeQzhI0D1lbfuHv4SKFr3glJSs/ZLXZakTbMCAAl
-         j8ONtC0dC/CxJ9JqRYbDSLM1H+46joDvt9dhoa+TnzXYnh7O7LT+eymg1gAUr1xOR9zc
-         3vAfbbL7IED/dj32Uqfwx1hsJ8/0/6JQOS2mmUiIl2Uwsxm8Mg3MAgy4itDxZIGzNaiI
-         KZsA==
-X-Gm-Message-State: AOAM5314+wLx8pVGe2cXdFEzXUy+lQNbNQu+DISaIVwqlFa86JhgIC+R
-        XAJckeqyaE8rEEagU9TMJvPq4eoRozn4Es9SwbE=
-X-Google-Smtp-Source: ABdhPJxKAldfShhC8wZdY2Htq9hJGgXreaXEjiB1miYL4bVcqXdK1BUQ46o5M7iSwz6vWn6VdAI2GEFwVYsTwqDnwxw=
-X-Received: by 2002:a05:620a:4450:: with SMTP id w16mr14879837qkp.189.1642434112813;
- Mon, 17 Jan 2022 07:41:52 -0800 (PST)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=IAamEH5Xu1dJ3X0trVcFTPIrL7aTtcDGn5mUS4vw1a8=;
+        b=ovrG1kl2KoM5UQv5JoAE3D48hFLlZnzQ/HXU9vekoXYVXxgPbusSjIhINUHQftJO+H
+         uQnIZIgJcOXugiM29ZoUVynjajk66xf3f/ZhJk4HRlqfeVUBqtklsmN7jehJQLXyQTf6
+         Mk55kTSsD6VEqAyufpMnQhL4BgcZfDAjcnh3EILa+IlKXNdc17CHEjDw/eWZ6GZdvGkL
+         DOYcSbZJpwEPojPCs8Aspo82MaqVDj8ZvPZrexHLGI3Re5E4g3k7U18v0zbxnflIzYIA
+         ySbTcjGR3k67BT2fQpVkqzgaIUdPsxzJRs07Xo66dxY7wCnt9yW/BERkrPuZbJ/P3+KG
+         7G0Q==
+X-Gm-Message-State: AOAM532Tr6i9TTsn1cw9Zt4fUc8Fcvh735rMywSJqHseEFJyIQ/gEYEJ
+        39isvtXrANtoRQFFCq3TFChhknimSBmNbO3j71Q=
+X-Google-Smtp-Source: ABdhPJykqN6yybQfaT0kT/1JcofcZUp4wlVhtJ/gATn7SS5XA0pfx+GW8LgTxWINZerrn1yMSBF81skqvw8cEBrK9Sg=
+X-Received: by 2002:a25:e549:: with SMTP id c70mr10839900ybh.339.1642496638937;
+ Tue, 18 Jan 2022 01:03:58 -0800 (PST)
 MIME-Version: 1.0
-Reply-To: salkavar2@gmail.com
-Sender: carolineregt@gmail.com
-Received: by 2002:ae9:ed0c:0:0:0:0:0 with HTTP; Mon, 17 Jan 2022 07:41:52
+Received: by 2002:a05:7108:3655:0:0:0:0 with HTTP; Tue, 18 Jan 2022 01:03:58
  -0800 (PST)
-From:   "Mr.Sal kavar" <salkavar2@gmail.com>
-Date:   Mon, 17 Jan 2022 16:41:52 +0100
-X-Google-Sender-Auth: Rmg3t_RMlCbbQyliM2-B1b_cilM
-Message-ID: <CA+sSZD+g206m+jZKhkMPB+Df1YqxeSYunccMHKX4ky3Aub4hGw@mail.gmail.com>
-Subject: Yours Faithful,
+Reply-To: asil.ajwad@gmail.com
+From:   Asil Ajwad <graceyaogokamboule@gmail.com>
+Date:   Mon, 17 Jan 2022 21:03:58 -1200
+Message-ID: <CA+Yy_gCoV9jOYW1qG-5psBKMTZyzWOj2x6Pu5iusfy4TEMaBwQ@mail.gmail.com>
+Subject: Greetings,
 To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-I assume you and your family are in good health. I am the foreign
-operations Manager
+-- 
+Greetings,
 
-This being a wide world in which it can be difficult to make new
-acquaintances and because it is virtually impossible to know who is
-trustworthy and who can be believed, i have decided to repose
-confidence in you after much fasting and prayer. It is only because of
-this that I have decided to confide in you and to share with you this
-confidential business.
+I am Mr.Asil Ajwad, I work with United Bank of Africa, can you use
+an ATM Visa Card to withdraw money at, ATM Cash Machine in your
+country, if yes I want to transfer abounded fund the sum of $10.5million
+US-Dollars, to you from my country, this is part of the money that was
+abounded by our late old client a politician who unfortunately lost
+his life and was forced out of power Du to greedy act, the bank will
 
-overdue and unclaimed sum of $15.5m, (Fifteen Million Five Hundred
-Thousand Dollars Only) when the account holder suddenly passed on, he
-left no beneficiary who would be entitled to the receipt of this fund.
-For this reason, I have found it expedient to transfer this fund to a
-trustworthy individual with capacity to act as foreign business
-partner.
+change the account details to your name, and apply for a Visa Card
+with your details, the Visa Card will be send to you, and you can be
+withdrawing money with it always, whatever any amount you withdraw
+daily, you will send 60% to me and you will take 40%, the Visa Card
+and the bank account will be on your name, I will be waiting for your
+response for more details, thanks to you a lot for giving me your time.
 
-Thus i humbly request your assistance to claim this fund. Upon the
-transfer of this fund in your account, you will take 45% as your share
-from the total fund, 10% will be shared to Charity Organizations in
-both country and 45% will be for me.
-
-Yours Faithful,
-Mr.Sal Kavar.
+regards,
+Mr.Asil Ajwad.

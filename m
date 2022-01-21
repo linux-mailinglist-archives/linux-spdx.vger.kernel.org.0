@@ -2,34 +2,58 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3D8496281
-	for <lists+linux-spdx@lfdr.de>; Fri, 21 Jan 2022 17:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 454D94964D1
+	for <lists+linux-spdx@lfdr.de>; Fri, 21 Jan 2022 19:10:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381731AbiAUQAe (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 21 Jan 2022 11:00:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381713AbiAUQAe (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 21 Jan 2022 11:00:34 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E55C06173B;
-        Fri, 21 Jan 2022 08:00:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D045BB82067;
-        Fri, 21 Jan 2022 16:00:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7E36C340E1;
-        Fri, 21 Jan 2022 16:00:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1642780831;
-        bh=KmwEb7jWchsW/K1+WMCn24NvCHz3jZARETYvGom7mFI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZGgwbcxrOqaY8HO1bxM0Uzp6CwF9qY1bb1lJbuWa9vbOTuPzEe9hs/eg/FRp0MkMJ
-         vzD+e/xpj4lzimqqcMt5vzGxcIP1lQtxHOM3Q9yGMK6Ir0obO35ShPYbAR28EsAnCQ
-         Y5sTrqFDhg9ER/3/inri0JZokc8F2ZKoygLvUCLM=
-Date:   Fri, 21 Jan 2022 17:00:23 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+        id S1382054AbiAUSKI (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 21 Jan 2022 13:10:08 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:41501 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1382045AbiAUSKH (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>);
+        Fri, 21 Jan 2022 13:10:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1642788607;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=rqh1++d+JY4BasdGg/7RHLKqtDDn+ODlJo6mE4WZL2o=;
+        b=MFETu4uJ9i3I2viXk0PaCTc+WfTQCmvlyGANrpluC/w/nRt8dDdCSIMJsfcQrMcfq65TlU
+        2ByQoYmWGbVng94HxADtn3c2bDQW6Kp4YtyEIACOtreIdZgHtf7iRXm9WaVlHsCO35yEip
+        y21uBDE42pdzKRgC7w1l5Rtv9/4gs8A=
+Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com
+ [209.85.222.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-35-cX6w41tfO9ekXmR4_Mwg4Q-1; Fri, 21 Jan 2022 13:10:03 -0500
+X-MC-Unique: cX6w41tfO9ekXmR4_Mwg4Q-1
+Received: by mail-ua1-f71.google.com with SMTP id q19-20020ab04a13000000b002fef2f854a6so6038144uae.7
+        for <linux-spdx@vger.kernel.org>; Fri, 21 Jan 2022 10:10:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rqh1++d+JY4BasdGg/7RHLKqtDDn+ODlJo6mE4WZL2o=;
+        b=KoyGIWxt7pGscuC27ktT1fdVnrwUE4ZbC1Y9TXaTiNMPHJBkczZz0AdiW99LoN6CM5
+         iukh3oKuwp81yjlmf3H1sol9QJewqogJ8Y3t1VOO3K3Uc6v8KabXNpZkAHD+ar4dsRMa
+         tLg7rlr/ow9YcYhsxG7VwZenXf/9RpsC43nUBgQoYhPM6nAohDQ79TBkmw8NI9SyRlUJ
+         I9WCnpah5a2w4r0fgFptUx0H2CtGZ6Q+c/M6n/F04S2vffyX48zf3luc6Uke6dbOhUfq
+         kO02QTXc1SyuxYkE6ZlQe4uxEz37O3NbVIuRCtrZz888LeSFz63F2JgLlk7zfWZ26c+w
+         lKYg==
+X-Gm-Message-State: AOAM530JNXnnr2XvgcoRWzNyJyI5RZaWnaUNUo/EDk+BOus4mPczx/Od
+        rBL9+L9IL8paHBGEXMwtEqGpMbla6djApg4+q0i+KqvczH89yQshP6xTzTLFEIZYQ50OixnFSq0
+        ed7wiPnZ6SFnjL+Ig9BIpHp7QECCohVHolnrWBA==
+X-Received: by 2002:a67:c911:: with SMTP id w17mr2052001vsk.23.1642788602588;
+        Fri, 21 Jan 2022 10:10:02 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzIcdTU8wiDW6QlfD7iXb6wp73IfAqgwR1iqWVlTAgtLeEudcV3iLG/Aae+NYvTZGwrcZ+6r/lnRcWIx3JHH+o=
+X-Received: by 2002:a67:c911:: with SMTP id w17mr2051986vsk.23.1642788602329;
+ Fri, 21 Jan 2022 10:10:02 -0800 (PST)
+MIME-Version: 1.0
+References: <d2c52284244d6dcb3472d2041abe43b456d116df.1642762977.git.christophe.leroy@csgroup.eu>
+In-Reply-To: <d2c52284244d6dcb3472d2041abe43b456d116df.1642762977.git.christophe.leroy@csgroup.eu>
+From:   Richard Fontana <rfontana@redhat.com>
+Date:   Fri, 21 Jan 2022 13:09:51 -0500
+Message-ID: <CAC1cPGwb9eM=0VWiZx+G909Jt7a7=yx1CnVJ=kaFJfn4qxNWPw@mail.gmail.com>
+Subject: Re: [PATCH v3] powerpc: Add missing SPDX license identifiers
 To:     Christophe Leroy <christophe.leroy@csgroup.eu>
 Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>,
@@ -37,77 +61,29 @@ Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
         Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "linux-spdx@vger.kernel.org" <linux-spdx@vger.kernel.org>
-Subject: Re: [PATCH v3] powerpc: Add missing SPDX license identifiers
-Message-ID: <YerYl3xPnp7uelS4@kroah.com>
-References: <d2c52284244d6dcb3472d2041abe43b456d116df.1642762977.git.christophe.leroy@csgroup.eu>
- <YerEuE6XlslE3Goo@kroah.com>
- <24829c2f-6855-c8d6-7ae4-17c5517f890d@csgroup.eu>
- <YerO8MjbXlvbMEsZ@kroah.com>
- <7d551fc7-0b71-dd34-c489-43bf9e337efb@csgroup.eu>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7d551fc7-0b71-dd34-c489-43bf9e337efb@csgroup.eu>
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rfontana@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 03:34:24PM +0000, Christophe Leroy wrote:
-> 
-> 
-> Le 21/01/2022 à 16:19, Greg Kroah-Hartman a écrit :
-> > On Fri, Jan 21, 2022 at 03:13:50PM +0000, Christophe Leroy wrote:
-> >>
-> >>
-> >> Le 21/01/2022 à 15:35, Greg Kroah-Hartman a écrit :
-> 
-> ...
-> 
-> >>>> @@ -20,16 +16,6 @@
-> >>>>     * respects; for example, they cover modification of the file, and
-> >>>>     * distribution when not linked into another program.)
-> >>>>     *
-> >>>> - * This file is distributed in the hope that it will be useful, but
-> >>>> - * WITHOUT ANY WARRANTY; without even the implied warranty of
-> >>>> - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-> >>>> - * General Public License for more details.
-> >>>> - *
-> >>>> - * You should have received a copy of the GNU General Public License
-> >>>> - * along with this program; see the file COPYING.  If not, write to
-> >>>> - * the Free Software Foundation, 51 Franklin Street, Fifth Floor,
-> >>>> - * Boston, MA 02110-1301, USA.
-> >>>> - *
-> >>>>     *    As a special exception, if you link this library with files
-> >>>>     *    compiled with GCC to produce an executable, this does not cause
-> >>>>     *    the resulting executable to be covered by the GNU General Public License.
-> >>>
-> >>> Look at that "special exception", why are you ignoring it here?  You
-> >>> can't do that :(
-> >>
-> >> I'm not ignoring it, that's the reason why I left it.
-> > 
-> > You ignore that part of the license in the SPDX line, why?
-> > 
-> >> Isn't it the correct way to do ? How should it be done ?
-> > 
-> > You need to properly describe this in the SPDX line.  You did not do so
-> > here, which means that any tool just looking at the SPDX line would get
-> > this license wrong.
-> 
-> How do you describe such an exception on the SPDX line then ?
-> 
-> You add " WITH GCC-exception-2.0" to the SPDX line ? Am I understanding 
-> correctly ?
+On Fri, Jan 21, 2022 at 6:03 AM Christophe Leroy
+<christophe.leroy@csgroup.eu> wrote:
+>
+> Several files are missing SPDX license identifiers.
+>
+> Following files are given the following SPDX identifier based on the comments in the top of the file:
+>
+>         include/asm/epapr_hcalls.h:/* SPDX-License-Identifier: GPL-2.0+ OR BSD */
+>         include/asm/fsl_hcalls.h:/* SPDX-License-Identifier: GPL-2.0+ OR BSD */
 
-I do not know, please ask the SPDX people.
+"BSD" is not a defined SPDX identifier. I believe what you want here
+is "BSD-3-Clause" (see: https://spdx.org/licenses/BSD-3-Clause.html)
 
-There's a reason we didn't catch these files in our original sweep, and
-that is because they take some manual work.  Which is great to see you
-doing, but realize it isn't as simple as your first set of patches were
-:)
+Richard
 
-thanks,
-
-greg k-h

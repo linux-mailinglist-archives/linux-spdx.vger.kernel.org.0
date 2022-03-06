@@ -2,76 +2,75 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 753AD4B13F2
-	for <lists+linux-spdx@lfdr.de>; Thu, 10 Feb 2022 18:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3408C4CE9B8
+	for <lists+linux-spdx@lfdr.de>; Sun,  6 Mar 2022 07:51:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245051AbiBJRNA (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 10 Feb 2022 12:13:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58928 "EHLO
+        id S233079AbiCFGv5 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 6 Mar 2022 01:51:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236851AbiBJRM7 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 10 Feb 2022 12:12:59 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 057A11A8;
-        Thu, 10 Feb 2022 09:13:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9609561DD3;
-        Thu, 10 Feb 2022 17:13:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7015FC340EB;
-        Thu, 10 Feb 2022 17:12:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1644513180;
-        bh=Te2mhSy45Q5nEGKWCJFmASXitEiV2m8w4DTe7Pvhs/E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=n/iR7PvQfYeuOHEiBZHcEotatjagDXQqSATQaGXKP+H9jClLErDU9fr6hz4tNDZi5
-         FRSPzMXBKhpbQn2gjusVxE+XpdVjpCRe2xxkWVSy+y64nULDOStqbPP+9jYARCKpNC
-         5EwOBc4zO8SfnzgHwXAEpU5Voo9e7nYOvUM6tQG8=
-Date:   Thu, 10 Feb 2022 18:12:57 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     "Jason A. Donenfeld" <Jason@zx2c4.com>
-Cc:     linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Theodore Ts'o <tytso@mit.edu>,
-        Dominik Brodowski <linux@dominikbrodowski.net>
-Subject: Re: [PATCH v3] random: add proper SPDX header
-Message-ID: <YgVHmRCBe85YFLLg@kroah.com>
-References: <CAHmME9q5uExD5bUdPscZn6mKQYnf80YPq=KqCk8XYuH1uXpS6Q@mail.gmail.com>
- <20220210170651.163974-1-Jason@zx2c4.com>
+        with ESMTP id S233041AbiCFGvx (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 6 Mar 2022 01:51:53 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75AF331DE3
+        for <linux-spdx@vger.kernel.org>; Sat,  5 Mar 2022 22:51:00 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id g3so3607413edu.1
+        for <linux-spdx@vger.kernel.org>; Sat, 05 Mar 2022 22:51:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=VaaSLAJ+hgNGNq49WyPsh3ndDLo+mnrYcswrOHpJSv8=;
+        b=KDgAx1nMZI4VA0728iAuqALj69hyn7X0WLLUiz2m+OH09NDtWJqkn0K0IjhaqXccDL
+         nYA9IS56U+BvEYDp5ZuYOTDJ28DkbGQXOo4nCoFRXwOq8btCUGBKve+nLdvXGAtQGfZd
+         8/3HmQyIohZytZNIAaZ2YSJ+VGfF2cuAbX+92kqJIy7dPjcCYPV+qxcIVHj5OJkNioe8
+         RnnPJV63I7FofbcYlKCR7cawwHR+Gyj/OksLFoNh7LOBENUnMHRRrWfgS+R5N0DbQgRd
+         FM7OvtlHYW5haJ9bCovh/xFv8pj40s/F/HFWyLhlvxnDTkjGlvvz7xTkeBicCtgptiHh
+         fIkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=VaaSLAJ+hgNGNq49WyPsh3ndDLo+mnrYcswrOHpJSv8=;
+        b=YwlZsoFTrs39f/B8pp2yR01Zupk4qkaTanOGtvNRlGdPHMGEEYrHfvEUs3tbZAC37K
+         WT7o6Eqg0hHOe7elntuCIbA28XusoABfMocNZxhjqZzkwrOGSZw1+bxrFfxCG/qu0PFg
+         bLk9QuOAJ6Ymzr25mBZOoTCCgAA2jgU8/LZK1jeHqBGI5FwT4sCztEqAZRc6Or5+hiq+
+         jIxKt3D4nRtqJv8qWD+pL/KFB1Iial//MSGB0X8FGcB0g/rto2fgzWJ6Wo+4ofe5EUzY
+         ChGr1e7DtyhHO9QUsrYhinY53oKHLkWpKl5LIkIegUle05v0WFhLArYNo8eR2D7J0FrX
+         C77A==
+X-Gm-Message-State: AOAM530TvhkQMb0cXgFu+Ffv7kBB63h7S4r2CoT6UAlrQNnKT7kyK1Ia
+        a+4OxhKpqg6c3VEj4MW6/4O03azRiSiJQl6cz6Adx5/yBD0=
+X-Google-Smtp-Source: ABdhPJzq04i8VJyC6uwySEx5tzgrtxCg/XL0hqdBTWFWm66/zQAuy3m2ubrZV75jrYUP9jvmG0PdhfRUhLuebg8/B7w=
+X-Received: by 2002:a2e:94c7:0:b0:247:de4e:e9bc with SMTP id
+ r7-20020a2e94c7000000b00247de4ee9bcmr2397951ljh.397.1646549448778; Sat, 05
+ Mar 2022 22:50:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220210170651.163974-1-Jason@zx2c4.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Reply-To: mrs.susanelwoodhara17@gmail.com
+Sender: mrs.arawyann@gmail.com
+Received: by 2002:ab3:7d89:0:0:0:0:0 with HTTP; Sat, 5 Mar 2022 22:50:48 -0800 (PST)
+From:   Mrs Susan Elwood Hara <mrs.susanelwoodhara17@gmail.com>
+Date:   Sun, 6 Mar 2022 06:50:48 +0000
+X-Google-Sender-Auth: NOWRSnt_sskMD3s295a30bcHvEs
+Message-ID: <CACppo47TD9J4Sy+vaJu1wXHqd88WqFwMNn6OdkY1khwXu3TuFw@mail.gmail.com>
+Subject: GOD BLESS YOU AS YOU REPLY URGENTLY
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        SUBJ_ALL_CAPS,T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Thu, Feb 10, 2022 at 06:06:51PM +0100, Jason A. Donenfeld wrote:
-> Convert the current license into the SPDX notation of "(GPL-2.0 OR
-> BSD-3-Clause)". This infers GPL-2.0 from the text "ALTERNATIVELY, this
-> product may be distributed under the terms of the GNU General Public
-> License, in which case the provisions of the GPL are required INSTEAD OF
-> the above restrictions" and it infers BSD-3-Clause from the verbatim
-> BSD 3 clause license in the file.
-> 
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Theodore Ts'o <tytso@mit.edu>
-> Cc: Dominik Brodowski <linux@dominikbrodowski.net>
-> Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
-> ---
-> Changes v2->v3:
-> - GPL-2.0-or-later is now a vanilla GPL-2.0.
-> - Remove non-license changes.
-> 
->  drivers/char/random.c | 37 +------------------------------------
->  1 file changed, 1 insertion(+), 36 deletions(-)
+GOD BLESS YOU AS YOU REPLY URGENTLY
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+ Hello Dear,
+Greetings, I am contacting you regarding an important information i
+have for you please reply to confirm your email address and for more
+details Thanks
+Regards
+Mrs Susan Elwood Hara.

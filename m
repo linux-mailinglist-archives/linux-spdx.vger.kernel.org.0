@@ -2,99 +2,84 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 657944E6713
-	for <lists+linux-spdx@lfdr.de>; Thu, 24 Mar 2022 17:34:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C5D94EB5B6
+	for <lists+linux-spdx@lfdr.de>; Wed, 30 Mar 2022 00:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351711AbiCXQfP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 24 Mar 2022 12:35:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41594 "EHLO
+        id S236320AbiC2WQY (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 29 Mar 2022 18:16:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351722AbiCXQfN (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 24 Mar 2022 12:35:13 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AAF922BF5
-        for <linux-spdx@vger.kernel.org>; Thu, 24 Mar 2022 09:33:40 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id x34so6250121ede.8
-        for <linux-spdx@vger.kernel.org>; Thu, 24 Mar 2022 09:33:40 -0700 (PDT)
+        with ESMTP id S235927AbiC2WQX (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 29 Mar 2022 18:16:23 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CE5186FAD
+        for <linux-spdx@vger.kernel.org>; Tue, 29 Mar 2022 15:14:38 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso114013wme.5
+        for <linux-spdx@vger.kernel.org>; Tue, 29 Mar 2022 15:14:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=CpmeVTNjPk8RQF+wdo8O8+a1dNSGCeEVhuPKHrfT8Hw=;
-        b=W4VxZE1lalVd9KG7bCxcAb+RHKlwEX4jpC1gp72sC3Xjbs0f1huKLaam/gJzVVIsgI
-         4w2wH0VDchpQy0+lj3Q2DvBP93CXg7YcMliJwrHR9c9Q17+aRQEPyWNE0tiqY8GhZMsZ
-         aYC3csm0EDVW/Hg8nxNq2bRljP728TnfvA7G6Yu9ZsAKA1rraI/fvmdhgOrRHNbZYcLx
-         +awKC7Tb0sfLqT2Nh7HQcOwc8PmEy4LhHHmbGwVK24yn/9uSMNN1xnxbYqeydYd62En4
-         s86oZkljxeYVF8IsJZqN/Agoq5ggEeJrLm3pCQy39ucPU/2VNuuDsvykIorcD+6J68up
-         Ly2A==
+        h=message-id:mime-version:content-transfer-encoding
+         :content-description:subject:to:from:date:reply-to;
+        bh=+v//v9bV1cKxYYqp6E5HrJfuFydY/JXcjMGnmfr7lM0=;
+        b=GZ4zVQeu/Ck5BYMf2yD2aEApLLeApqBkOoNmncQTeoR6UtnLioJH36gGP6s+GxDAti
+         dg1dUIJk6NzwjEa4/vgtOLKlqUATbvgIWbEQoVA+RehYVpOrwlcWk/DIfzlb1rjkj6Hg
+         uiMB82bfDu4OvPi7eAFHDvJi7bGJp0sdEYxU7K6tgYFUjgT6HfxVQXiT/Y1RU9Ln4xys
+         6XpDnWxLvJNZKs3kJvsqtVkJyoQtdGSN8pPVV0ZJLzxJqeDFU3K030eLSF/7tc6jxewy
+         aXLYrjUDYVVneiv1ESownsNSBB9dy3Q6THCIuO2kuM6BQ18adIyQZdkdRfdn5YfhVwpE
+         bs7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=CpmeVTNjPk8RQF+wdo8O8+a1dNSGCeEVhuPKHrfT8Hw=;
-        b=OsCwG1Q4dacGMfLNMRPHZoDaFNz8vCldrNBvyW69ysNeKPG2emVthvnnl2d7zEj9kA
-         9/UHcka3rWzFrWbSr7Pkc4qBPiUFRyRVlJR2zRpGsytsXHLZ01ME6xcwAM6hA2UFGX0V
-         pGfRK6WlGF9A/Az5i4TGfczqv22ykxHgQIuBZYPeElAcjp5bE23sZLx7SwVRNZditkgF
-         sYLifIADQpHlItKg83nVNegGpCDOtcmaJIxlK6jPVk0FCaoFqQVA9UudL8p5rhrC2zYW
-         Xm61xuifsBQGaNMDt8BctbJXLR+rYZN6797UcmDcplExGEs+7XD5UbLwe4feypgc0lAN
-         eHCg==
-X-Gm-Message-State: AOAM531ykZc+slkvyQSKr6lcSB+yGT9mxDLApWo6DVOtToqXnlwRg7Wh
-        sTz7U4QQNYzxoeM2vpgxHTMnoyopecRB93cb9ys=
-X-Google-Smtp-Source: ABdhPJxBBFpZi7I0tJk1tmG2BiIsDa6v4HD0k5PPUYXsJpMqXBtDnov6zf47U8Te/9WbWL/lTGEGsuRZU/KaDLn63c8=
-X-Received: by 2002:a05:6402:51d2:b0:419:7d2e:9d0 with SMTP id
- r18-20020a05640251d200b004197d2e09d0mr7697846edd.82.1648139619017; Thu, 24
- Mar 2022 09:33:39 -0700 (PDT)
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:content-description:subject:to:from:date
+         :reply-to;
+        bh=+v//v9bV1cKxYYqp6E5HrJfuFydY/JXcjMGnmfr7lM0=;
+        b=G+1pe/CIH5SZqrrfZnTbvDS6TykjJwGe62MoRMoHYIdqyvm1cgxnr8pN1sCjiSxIBm
+         RJbAXwW7TkzY8m7BNUQKl16AEiWKgmW+CZCgPxawzeXinLiRImUfdxKCC27WOvp32H7C
+         xZSAarp/2ub5Biz3pEw6fM0q5KRRXGtDRkijcNRbJPuPXgZbxFAHlckbSJ4/lfB6d8YC
+         1+bX3Y2n7fEkrv3je9CUxJIK80mYTdOzJ17XVk56F6WKGUckMMu/Id8EJXXbYzeaYTK+
+         1YUHKwDezj6LedSDMoaicX3b+c+nWM6I/MSAJCEEhwLN2BzRnBCkEUrKFypqAiovm5pi
+         kfhQ==
+X-Gm-Message-State: AOAM5311jeobUfHkTMnqpih6pz+IrLNdPHBgAwhkE51ExA2IUzw75T67
+        iu9XCj4hIxLeVYPjf3OtcLA=
+X-Google-Smtp-Source: ABdhPJxOCQuWXUyI7pETG8wmW1/OlrdfxyvlGuWVOsiFk3rosCr8Nivk9OljdbSfahRRhCnk4MFmNg==
+X-Received: by 2002:a7b:cd82:0:b0:389:77ef:66d7 with SMTP id y2-20020a7bcd82000000b0038977ef66d7mr1456530wmj.171.1648592077453;
+        Tue, 29 Mar 2022 15:14:37 -0700 (PDT)
+Received: from [172.20.10.4] ([197.210.71.189])
+        by smtp.gmail.com with ESMTPSA id o9-20020a05600c4fc900b0038cd93a59e4sm3424443wmq.28.2022.03.29.15.14.33
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Tue, 29 Mar 2022 15:14:36 -0700 (PDT)
+Message-ID: <624384cc.1c69fb81.3d6f1.e49a@mx.google.com>
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Received: by 2002:a17:906:5786:0:0:0:0 with HTTP; Thu, 24 Mar 2022 09:33:38
- -0700 (PDT)
-Reply-To: pmaurice837@gmail.com
-From:   pmaurice maurice <skougnassoukou2@gmail.com>
-Date:   Thu, 24 Mar 2022 16:33:38 +0000
-Message-ID: <CAF7+SkQaWU2FjSV4U3rBEFpwpDyfcRcSB8HzeEiMAfrSjiJ3tA@mail.gmail.com>
-Subject: Hello
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_40,DKIM_SIGNED,
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: Gefeliciteerd, er is geld aan je gedoneerd
+To:     Recipients <adeboyejofolashade55@gmail.com>
+From:   adeboyejofolashade55@gmail.com
+Date:   Tue, 29 Mar 2022 23:14:28 +0100
+Reply-To: mike.weirsky.foundation003@gmail.com
+X-Spam-Status: No, score=2.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:541 listed in]
-        [list.dnswl.org]
-        * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-        *      [score: 0.2045]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [skougnassoukou2[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [pmaurice837[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [skougnassoukou2[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.8 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+        LOTS_OF_MONEY,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,RCVD_IN_SBL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,T_US_DOLLARS_3
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Please, can we talk?
-Something just came up and it's very urgent, please, I need your attention.
+Beste begunstigde,
 
-regards
-Peace of Maurice.
+ Je hebt een liefdadigheidsdonatie van ($ 10.000.000,00) van Mr. Mike Weirs=
+ky, een winnaar van een powerball-jackpotloterij van $ 273 miljoen.  Ik don=
+eer aan 5 willekeurige personen als je deze e-mail ontvangt, dan is je e-ma=
+il geselecteerd na een spin-ball. Ik heb vrijwillig besloten om het bedrag =
+van $ 10 miljoen USD aan jou te doneren als een van de geselecteerde 5, om =
+mijn winst te verifi=EBren
+ =
+
+  Vriendelijk antwoord op: mike.weirsky.foundation003@gmail.com
+ Voor uw claim.

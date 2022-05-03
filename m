@@ -2,80 +2,62 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8714518795
-	for <lists+linux-spdx@lfdr.de>; Tue,  3 May 2022 16:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC17518DDD
+	for <lists+linux-spdx@lfdr.de>; Tue,  3 May 2022 22:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237630AbiECPC7 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+linux-spdx@lfdr.de>); Tue, 3 May 2022 11:02:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55494 "EHLO
+        id S234527AbiECUKO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 3 May 2022 16:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237617AbiECPCw (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 3 May 2022 11:02:52 -0400
-X-Greylist: delayed 440 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 03 May 2022 07:59:19 PDT
-Received: from mail.megasoftsol.com (mail.megasoftsol.com [43.231.250.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CBD93980E
-        for <linux-spdx@vger.kernel.org>; Tue,  3 May 2022 07:59:19 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.megasoftsol.com (Postfix) with ESMTP id 20AE090D997
-        for <linux-spdx@vger.kernel.org>; Tue,  3 May 2022 20:17:06 +0530 (IST)
-Received: from mail.megasoftsol.com ([127.0.0.1])
-        by localhost (mail.megasoftsol.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id UzKAI0d-Cq82 for <linux-spdx@vger.kernel.org>;
-        Tue,  3 May 2022 20:17:05 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.megasoftsol.com (Postfix) with ESMTP id 9510090D996
-        for <linux-spdx@vger.kernel.org>; Tue,  3 May 2022 20:17:05 +0530 (IST)
-X-Virus-Scanned: amavisd-new at megasoftsol.com
-Received: from mail.megasoftsol.com ([127.0.0.1])
-        by localhost (mail.megasoftsol.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id EKQrLoXhw9la for <linux-spdx@vger.kernel.org>;
-        Tue,  3 May 2022 20:17:05 +0530 (IST)
-Received: from asda.co.uk (unknown [20.97.211.134])
-        (Authenticated sender: admin)
-        by mail.megasoftsol.com (Postfix) with ESMTPSA id C828D90D95F
-        for <linux-spdx@vger.kernel.org>; Tue,  3 May 2022 20:17:04 +0530 (IST)
-Reply-To: sales@asdaa.uk
-From:   ASDA Stores Limited <Hanes.Thomas23877@asda.co.uk>
-To:     linux-spdx@vger.kernel.org
-Subject: 2nd Quater puchase request
-Date:   03 May 2022 14:49:33 +0000
-Message-ID: <20220503092157.A11BC258309A89F9@asda.co.uk>
+        with ESMTP id S231220AbiECUKJ (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 3 May 2022 16:10:09 -0400
+Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC7521E0F;
+        Tue,  3 May 2022 13:06:36 -0700 (PDT)
+Received: from cwcc.thunk.org (pool-108-7-220-252.bstnma.fios.verizon.net [108.7.220.252])
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 243K6SNK021603
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 3 May 2022 16:06:28 -0400
+Received: by cwcc.thunk.org (Postfix, from userid 15806)
+        id 38AF315C3EA1; Tue,  3 May 2022 16:06:28 -0400 (EDT)
+Date:   Tue, 3 May 2022 16:06:28 -0400
+From:   "Theodore Ts'o" <tytso@mit.edu>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Jens Axboe <axboe@kernel.dk>, linux-block@vger.kernel.org,
+        linux-spdx@vger.kernel.org
+Subject: Re: SPDX tag and top of file comment cleanups for the loop driver
+Message-ID: <YnGLRAuS8QGaSADK@mit.edu>
+References: <20220419063303.583106-1-hch@lst.de>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_50,
-        RCVD_IN_BL_SPAMCOP_NET,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: **
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419063303.583106-1-hch@lst.de>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dear linux-spdx
+On Tue, Apr 19, 2022 at 08:32:59AM +0200, Christoph Hellwig wrote:
+> Hi Jens, hi Ted,
+> 
+> the loop driver still had no SPDX tag, so this series cleans up some
+> lose ends and fixes that up.
+> 
+> Ted, does the SPDX tag match your original licensing decision back then,
+> or do we need to correct it?  Does the auto-converted tag on the loop.h
+> SPDX header (GPL1.0 or later with syscall exception) make sense, or
+> should that have been GPL2 only with syscall exception?
 
-We are interested in having some of your hot selling product in 
-our stores and outlets spread all over United Kingdom, Northern 
-Island and Africa. ASDA Stores Limited is one of the highest-
-ranking Wholesale & Retail outlets in the United Kingdom. 
-  
-We shall furnish our detailed company profile in our next 
-correspondent. However, it would be appreciated if you can send 
-us your catalog through email to learn more about your company's 
-products and wholesale quote. It is hopeful that we can start a 
-viable long-lasting business relationship (partnership) with you.  
-  
-  
-Your prompt response would be delightfully appreciated. 
-  
-Best Wishes 
-  
-  
-Hanes S. Thomas 
-Procurement Office. 
-ASDA Stores Limited 
-Tel:  + 44 - 7451271650 
-WhatsApp: + 44 – 7441440360 
-Website: www.asda.co.uk
+I think you've removed the loop.h in the patch series, so it shouldn't
+matter what the tag would be for loop.h, right?  In any case, GPLv2
+only was certainly the intent at the time.
+
+Cheers,
+
+						- Ted

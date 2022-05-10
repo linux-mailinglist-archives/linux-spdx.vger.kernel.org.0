@@ -2,100 +2,64 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E77E51B41A
-	for <lists+linux-spdx@lfdr.de>; Thu,  5 May 2022 02:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0126520EB3
+	for <lists+linux-spdx@lfdr.de>; Tue, 10 May 2022 09:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235311AbiEEAGr (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 4 May 2022 20:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42792 "EHLO
+        id S235031AbiEJHiz (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 10 May 2022 03:38:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347243AbiEDX6u (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 4 May 2022 19:58:50 -0400
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1314B53A70
-        for <linux-spdx@vger.kernel.org>; Wed,  4 May 2022 16:54:11 -0700 (PDT)
-Received: by mail-yb1-xb43.google.com with SMTP id h10so5060240ybc.4
-        for <linux-spdx@vger.kernel.org>; Wed, 04 May 2022 16:54:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=ampHH5WJLIBWSsxWwzVjbk5pO9UBFxn81pZ6QIDzZtY=;
-        b=Dn1MT8x7p4Rbn+pctwVkt7IgIdUxT0LRLjox/JaF9ttsZ2N8sUUglHFRxQa3sl75aK
-         h1U1JpCoOjPff8rV+LL0edQuBh+YvYlTbZ4zx127Qa80qMcS49J0d2nS2s7mVVadwp/M
-         vGp6wV8qQhR9tMRiQjyWHIJslgvG4HigF7p24aLxixJ1l99K68kLikab9Y0HgtSpkDYW
-         0+riuhXlj9dAnGs04evyYz4sFXKtm0FlJKiBI2Dtbo7ebvKr6E7XJkxgxzCXhReMwL1D
-         yv9OUeo9KjH+/RIlVXefhsYivAQRdlwo604eWoXrrvRFVxcSgXwgPis+UtVhyLpBWx3z
-         WyWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=ampHH5WJLIBWSsxWwzVjbk5pO9UBFxn81pZ6QIDzZtY=;
-        b=1l0nAE7KHrFL2JqkHXvBOsjakifo6XTGj8kB897BMGj0WgPLjKVwfAUuSD+0DtDas3
-         jnm/Kr8ZgrOkibIRFphjo6l9LlxW+a9TaJXMT82buxKmXhO/vp6vFDlyUBbcMKz/zbiy
-         PVTTK99JB8m8oVzVViU78Yf49iBuvFCM63jxAg0VnWFiSgYbdRb7ky9prZsYZD3HmYTO
-         K9LscQwrwcHMUZlz4fm+1YTjWebFmuAfkjXo2C5r8Comr6SOMn+Kna96xIcrTOxmBBtf
-         Q4a1bZePM3y99PkamUW8ibJGTVH3QneAYXMY54qftKfsw/0JHCwXH8iajzXagK/7oM9y
-         ayVQ==
-X-Gm-Message-State: AOAM532ZNJNZ3dvVmmoI9pdg/NM8xVKjbDkfLctqd6xg5BPUIwnyj8xa
-        tyNvzS9UJGA3v/DNVZwVjTcCfXU4OVO5ToLQe4YLzxiWGIY4FQ==
-X-Google-Smtp-Source: ABdhPJyXbFHNtxfp8+qt+M9kuv/iG7XfFeFFPd7I4/fmpdxuycMtmf6dIJw5ghtZAT2CwgvAVE/kUl0HxsirxLIU8v0=
-X-Received: by 2002:a9d:6b16:0:b0:605:e0eb:d3d6 with SMTP id
- g22-20020a9d6b16000000b00605e0ebd3d6mr8263208otp.213.1651708440302; Wed, 04
- May 2022 16:54:00 -0700 (PDT)
+        with ESMTP id S240996AbiEJH0n (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 10 May 2022 03:26:43 -0400
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B680532D3;
+        Tue, 10 May 2022 00:22:47 -0700 (PDT)
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id C5A6D68AFE; Tue, 10 May 2022 09:22:43 +0200 (CEST)
+Date:   Tue, 10 May 2022 09:22:43 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     tytso <tytso@mit.edu>
+Cc:     Christoph Hellwig <hch@lst.de>, Jens Axboe <axboe@kernel.dk>,
+        linux-block@vger.kernel.org, linux-spdx@vger.kernel.org
+Subject: Re: SPDX tag and top of file comment cleanups for the loop driver
+Message-ID: <20220510072243.GB11929@lst.de>
+References: <20220419063303.583106-1-hch@lst.de> <YnGLRAuS8QGaSADK@mit.edu> <20220503201334.GA7325@lst.de> <YnGgP7ubsXxFTaZE@mit.edu>
 MIME-Version: 1.0
-Received: by 2002:a05:6802:1a9:0:0:0:0 with HTTP; Wed, 4 May 2022 16:53:59
- -0700 (PDT)
-Reply-To: ortegainvestmmentforrealinvest@gmail.com
-From:   Info <joybhector64@gmail.com>
-Date:   Thu, 5 May 2022 05:23:59 +0530
-Message-ID: <CAP7KLYgH9LcKHS-KgR0zObHAgC6Fr3D+dOJSbDKurTc_12+iFw@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:b43 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5004]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [joybhector64[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [joybhector64[at]gmail.com]
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YnGgP7ubsXxFTaZE@mit.edu>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
--- 
-I am an investor. I came from the USA and I have many investments all
-over the world.
+Jens,
 
-I want you to partner with me to invest in your country I am into many
-investment such as real Estate or buying of properties i can also
-invest money in any of existing business with equity royalty or by %
-percentage so on,
-Warm regards
+are the comments from Ted here enough to apply the series?  Or do
+we need a formal Acked-by to be on the safe side?
+
+On Tue, May 03, 2022 at 02:35:59PM -0700, tytso wrote:
+> On Tue, May 03, 2022 at 10:13:34PM +0200, Christoph Hellwig wrote:
+> > On Tue, May 03, 2022 at 04:06:28PM -0400, Theodore Ts'o wrote:
+> > > > Ted, does the SPDX tag match your original licensing decision back then,
+> > > > or do we need to correct it?  Does the auto-converted tag on the loop.h
+> > > > SPDX header (GPL1.0 or later with syscall exception) make sense, or
+> > > > should that have been GPL2 only with syscall exception?
+> > > 
+> > > I think you've removed the loop.h in the patch series, so it shouldn't
+> > > matter what the tag would be for loop.h, right?  In any case, GPLv2
+> > > only was certainly the intent at the time.
+> > 
+> > Well, there were two loop.h files - drivers/block/loop.h gets removed
+> > in this series, but include/uapi/linux/loop.h stays.
+> 
+> Ah, thanks for the clarification.  Yes, GPLv2 with the syscall
+> extension is what would be appropriate for include/uapi/linux/loop.h.
+> 
+> 	     	  	   	       - Ted
+---end quoted text---

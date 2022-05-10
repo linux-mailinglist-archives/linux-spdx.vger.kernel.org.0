@@ -2,64 +2,71 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0126520EB3
-	for <lists+linux-spdx@lfdr.de>; Tue, 10 May 2022 09:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D19B521014
+	for <lists+linux-spdx@lfdr.de>; Tue, 10 May 2022 10:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235031AbiEJHiz (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 10 May 2022 03:38:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51190 "EHLO
+        id S231691AbiEJI5k (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 10 May 2022 04:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240996AbiEJH0n (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 10 May 2022 03:26:43 -0400
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B680532D3;
-        Tue, 10 May 2022 00:22:47 -0700 (PDT)
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id C5A6D68AFE; Tue, 10 May 2022 09:22:43 +0200 (CEST)
-Date:   Tue, 10 May 2022 09:22:43 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     tytso <tytso@mit.edu>
-Cc:     Christoph Hellwig <hch@lst.de>, Jens Axboe <axboe@kernel.dk>,
-        linux-block@vger.kernel.org, linux-spdx@vger.kernel.org
-Subject: Re: SPDX tag and top of file comment cleanups for the loop driver
-Message-ID: <20220510072243.GB11929@lst.de>
-References: <20220419063303.583106-1-hch@lst.de> <YnGLRAuS8QGaSADK@mit.edu> <20220503201334.GA7325@lst.de> <YnGgP7ubsXxFTaZE@mit.edu>
+        with ESMTP id S230126AbiEJI5k (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 10 May 2022 04:57:40 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8642AC6C5;
+        Tue, 10 May 2022 01:53:43 -0700 (PDT)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1652172822;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+        bh=VyW/pgclapZRlcTTJzzE/icqxkwWumTJuh4R6WTC77Q=;
+        b=qRQn0qwFHixTsIez14IYsjNwL2hMAEYnj7CZGKl1+KXdCz6NOq0ClvgQGI5QWj4ZjNUJ+L
+        97jc5cb485uuchetrCdfnNOs1D+tMyV8tptxQiGYYxg4QW3iRU07fGtUPnYi8ZAiRNPD7E
+        IYsDEgGmyI8DwzIS/0l5Yq7pNyTkFRNyQOoshP/Sc1mquAEiSDwDtcYrzty/oBYkcQjl1k
+        9g8rczUfNo0HqCBTYBtSnAD4zUhZTF1cOZ2vQbYlzkkz5VabP84O3TVeBjK6KYwuBFT50S
+        PtIuJe0FEPH+ewAg0hXaVN3Lff5jlM9+C/Uid8p4bRNxcog4yiRmg03VeA2tFg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1652172822;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+        bh=VyW/pgclapZRlcTTJzzE/icqxkwWumTJuh4R6WTC77Q=;
+        b=vgtl5DaZrRVjhAeuxskTsrhJiVG6lvFOu3JGwD5Zn0ua0KiNv6mahvjaejbiDG0cJ5uWpB
+        NcuSpjCbxiuCFWCA==
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     linux-spdx@vger.kernel.org
+Subject: debugobjects: Convert to SPDX license identifier
+Date:   Tue, 10 May 2022 10:53:41 +0200
+Message-ID: <87v8udpy3u.ffs@tglx>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YnGgP7ubsXxFTaZE@mit.edu>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Jens,
 
-are the comments from Ted here enough to apply the series?  Or do
-we need a formal Acked-by to be on the safe side?
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+---
+ lib/debugobjects.c |    5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-On Tue, May 03, 2022 at 02:35:59PM -0700, tytso wrote:
-> On Tue, May 03, 2022 at 10:13:34PM +0200, Christoph Hellwig wrote:
-> > On Tue, May 03, 2022 at 04:06:28PM -0400, Theodore Ts'o wrote:
-> > > > Ted, does the SPDX tag match your original licensing decision back then,
-> > > > or do we need to correct it?  Does the auto-converted tag on the loop.h
-> > > > SPDX header (GPL1.0 or later with syscall exception) make sense, or
-> > > > should that have been GPL2 only with syscall exception?
-> > > 
-> > > I think you've removed the loop.h in the patch series, so it shouldn't
-> > > matter what the tag would be for loop.h, right?  In any case, GPLv2
-> > > only was certainly the intent at the time.
-> > 
-> > Well, there were two loop.h files - drivers/block/loop.h gets removed
-> > in this series, but include/uapi/linux/loop.h stays.
-> 
-> Ah, thanks for the clarification.  Yes, GPLv2 with the syscall
-> extension is what would be appropriate for include/uapi/linux/loop.h.
-> 
-> 	     	  	   	       - Ted
----end quoted text---
+--- a/lib/debugobjects.c
++++ b/lib/debugobjects.c
+@@ -1,11 +1,8 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Generic infrastructure for lifetime debugging of objects.
+  *
+- * Started by Thomas Gleixner
+- *
+  * Copyright (C) 2008, Thomas Gleixner <tglx@linutronix.de>
+- *
+- * For licencing details see kernel-base/COPYING
+  */
+ 
+ #define pr_fmt(fmt) "ODEBUG: " fmt

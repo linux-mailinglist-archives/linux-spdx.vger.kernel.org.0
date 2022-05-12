@@ -2,103 +2,108 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF79522A6A
-	for <lists+linux-spdx@lfdr.de>; Wed, 11 May 2022 05:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C991524172
+	for <lists+linux-spdx@lfdr.de>; Thu, 12 May 2022 02:17:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234873AbiEKD3b (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 10 May 2022 23:29:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
+        id S1349608AbiELARM (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 11 May 2022 20:17:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231142AbiEKD3a (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 10 May 2022 23:29:30 -0400
-Received: from mail.tkos.co.il (wiki.tkos.co.il [84.110.109.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C732415F6D9;
-        Tue, 10 May 2022 20:29:27 -0700 (PDT)
-Received: from tarshish (unknown [10.0.8.3])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.tkos.co.il (Postfix) with ESMTPS id B75EC4405D7;
-        Wed, 11 May 2022 06:28:13 +0300 (IDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1652239705;
-        bh=hLkOr9Q3wOOxVxVqfRPVJC9npyiSf6OayQQDHuAhlug=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=rVQoBExujuCZYosFgWxBdp2r/XDI/UPoL+0AslXUaS0tcPrBtQZlOFULsi5kGucjQ
-         GRrjAZ2qOrIiD+38mxyDTCLvsBtdrd59kZPin/o7C2FCrtUArzqujf3P9QwCiXKleQ
-         vXi4P47nmvBRYZY2DI65/4nLroL0/TEwdnu0e4EQs3HOVsD0wHujStZt3Oxff98PNr
-         /xVHSoUPDJXjkHqWZYQs+WNyxIsEuiaFlXQCBA24sQv0yifez2uifHdCKtltaWB9h0
-         2vXSKiwW4Ye1KJ+HqGuPz6pbUvQkINHvXe+u2ySUZnpF62ERotkcyX5Aql1Q+xJm/F
-         9+ppGVxEoqZqg==
-References: <20220510171003.952873904@linutronix.de>
- <20220510171254.655035023@linutronix.de>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
+        with ESMTP id S1345344AbiELARJ (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 11 May 2022 20:17:09 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0048814913E;
+        Wed, 11 May 2022 17:17:06 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id g16so4574883lja.3;
+        Wed, 11 May 2022 17:17:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6ewN4iebyG9uMgew1c//0eeNZDOPRJNH8c+AIOoPtww=;
+        b=I/D3IQssuH9XhW4LG1S8Ij/AirFKHPjUHHDdVkyRnf+QiaZCVa6ciRWZAD7Bi2Pyxt
+         cqujdsSbRBf5BppjlGnqydo7noSBRZ9kAsYd8p+9zHh2ZnJZ8Tr6U2LPo96gHcdX/Ycj
+         fvwu4KYwTT2GbaYgMOurp8elrvkG3yf7eNiyANvgE4VEU8WM4RqRfTGdKGRdBLz0pBdA
+         HK4mA6DueIjj0ZR6neU05sZclXW2NxgWOaZ7lzUW2Q7OjvSk5Ne9SOSs3yl5hq/Xvc9o
+         FOv0OqZMU9P5XEOjYyaNn/INcz2bxCRW7ZwD3lvk0e+OOWHpcH2txGxRhal2ToH6ZPUW
+         fqbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6ewN4iebyG9uMgew1c//0eeNZDOPRJNH8c+AIOoPtww=;
+        b=2P2QRiIbTx3h0X8jW9eYPlstYSlYTF9ODWBuDjj8ePGjhkKderAVqMGtqZH3eS+uL3
+         dPbFj/mGZz5BmVJPZOgSLVBcvjf/DBvVs1WtfvIjEWsTAHxqXgw9/qGWUHhwbcniPOAY
+         1kFWIpjv9ANEZf814dhf1kUAhPg+q6fsDnLHU/SMJpo8njqVmerkFwg+wUEzUL96pOs4
+         UpNNOCPL5YswKZW1KieH957KfOjhM2CL6SP48exL/8SAILBI/tyM+2dMVNXJJ84vXjFo
+         QYa62oBzVJsuIs8zIHrMH3r3Hc97RZIjU32tTxHmYfy0kUKWuvStfuBZ7RXP0JiE6DtD
+         4nsQ==
+X-Gm-Message-State: AOAM533UEKi3a9t5q8xIjECYRZrEajBPvseCLxkQukQLgX3/yDXdpNi1
+        UNtbMlG9JKueH3RR9EbN1L0=
+X-Google-Smtp-Source: ABdhPJytZO4CvmhspGSwFD2e5Vgp3ZwOtKrciZj9kXfeEmlIwA/B6ZuKw8AWR3CBePT65bMn9m6A7g==
+X-Received: by 2002:a2e:9993:0:b0:250:b5a9:18dc with SMTP id w19-20020a2e9993000000b00250b5a918dcmr14870158lji.364.1652314625399;
+        Wed, 11 May 2022 17:17:05 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id o18-20020ac24c52000000b0047255d211bbsm507362lfk.234.2022.05.11.17.17.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 May 2022 17:17:04 -0700 (PDT)
+Date:   Thu, 12 May 2022 03:17:02 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
 To:     Thomas Gleixner <tglx@linutronix.de>
 Cc:     LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [patch 05/10] clocksource/drivers/digicolor: Convert to SPDX
- identifier
-Date:   Wed, 11 May 2022 06:28:23 +0300
-In-reply-to: <20220510171254.655035023@linutronix.de>
-Message-ID: <87h75w9285.fsf@tarshish>
+        linux-mips@vger.kernel.org
+Subject: Re: [patch 03/10] clocksource/drivers/mips-gic-timer: Convert to
+ SPDX identifier
+Message-ID: <20220512001702.japqljr6ayxyzwn6@mobilestation>
+References: <20220510171003.952873904@linutronix.de>
+ <20220510171254.529249404@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220510171254.529249404@linutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Hi Thomas,
+On Tue, May 10, 2022 at 07:24:40PM +0200, Thomas Gleixner wrote:
+> The licensing text references explicitely the COPYING file in the kernel
+> base directory, which is clearly GPL version 2 only.
 
-On Tue, May 10 2022, Thomas Gleixner wrote:
+Acked-by: Serge Semin <fancer.lancer@gmail.com>
 
-> The license information clearly states GPL version 2 only. The extra text
-> which excludes warranties is an excerpt of the corresponding GPLv2 clause
-> 11.
->
-> So the SPDX identifier covers it completely.
->
+-Serge
+
+> 
 > Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Serge Semin <fancer.lancer@gmail.com>
 > Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Baruch Siach <baruch@tkos.co.il>
-> Cc: linux-arm-kernel@lists.infradead.org
-
-Acked-by: Baruch Siach <baruch@tkos.co.il>
-
-Thanks,
-baruch
-
+> Cc: linux-mips@vger.kernel.org
 > ---
->  drivers/clocksource/timer-digicolor.c |    5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
->
-> --- a/drivers/clocksource/timer-digicolor.c
-> +++ b/drivers/clocksource/timer-digicolor.c
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: GPL-2.0
->  /*
->   * Conexant Digicolor timer driver
->   *
-> @@ -11,10 +12,6 @@
->   * Copyright (C) 2013 Maxime Ripard
->   *
->   * Maxime Ripard <maxime.ripard@free-electrons.com>
+>  drivers/clocksource/mips-gic-timer.c |    9 ++-------
+>  1 file changed, 2 insertions(+), 7 deletions(-)
+> 
+> --- a/drivers/clocksource/mips-gic-timer.c
+> +++ b/drivers/clocksource/mips-gic-timer.c
+> @@ -1,10 +1,5 @@
+> -/*
+> - * This file is subject to the terms and conditions of the GNU General Public
+> - * License.  See the file "COPYING" in the main directory of this archive
+> - * for more details.
 > - *
-> - * This file is licensed under the terms of the GNU General Public
-> - * License version 2.  This program is licensed "as is" without any
-> - * warranty of any kind, whether express or implied.
->   */
+> - * Copyright (C) 2012 MIPS Technologies, Inc.  All rights reserved.
+> - */
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (C) 2012 MIPS Technologies, Inc.  All rights reserved.
 >  
->  /*
-
-
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+>  #define pr_fmt(fmt) "mips-gic-timer: " fmt
+>  
+> 

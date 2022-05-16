@@ -2,86 +2,812 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D12B5286DB
-	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 16:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0E225288E0
+	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 17:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244517AbiEPOXO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 16 May 2022 10:23:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59562 "EHLO
+        id S245115AbiEPPaz (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 16 May 2022 11:30:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244468AbiEPOXM (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 10:23:12 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 830463B017;
-        Mon, 16 May 2022 07:23:10 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id z18so16080498iob.5;
-        Mon, 16 May 2022 07:23:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WfuLbMFnE6T2gqljbFDnxPAiIollkJqGTTqUZar1THg=;
-        b=mFTpIx7QJd9OPa2rfI+BdVzP84MpmVIgyY0ts0fmvC5ELBnjn8KhgXvspalPHgDl65
-         GAlhZDDcNlPTjVz9f0cysymZt577t9/Ltz+wYdsk6YiWL/ImRshShRPwYid59CfKfK3m
-         Gl8WoVDDixM/uYu0wDa8ACGVAbL9t+WWpAWDM8NWSX471CE4cVE8a7wQGgxhyRz9hCBH
-         ULKT4O8zR2VmqUkTgkbm6fZnn9M5Z0y3U1o5amDwNRtA9ndnEDrC27b+4EBgLoFqe32/
-         PY6NtQQx973ICwstG8vUooMm69SIHAYklrWJJPLJ4D+5OEcKjId8fRp2Q2LsmwmWtXth
-         9KIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WfuLbMFnE6T2gqljbFDnxPAiIollkJqGTTqUZar1THg=;
-        b=hTHgnIvUTzi2p5czXo2Bt++0uBikv25EHMTtmjRwsTbbIf7KzDfj7ZiDtEwhHwqXqr
-         +dkfJKF0pc6Y75Nu8+a9yneyac70wy+uFOIbS4ktwQO6IaKVRbxgQOoo37SbYOR87I0L
-         yRlUaqL3UVGy4BfRW96rzajw5QPkTxNzxtVqKjcDO8yQ+nX4Cv4LE9gNDJWwWtGGz5u3
-         0PWzK2MWvNug9hHX10Nx16SE4BrP5m6/MJUzVu9GwYxEMcx/mtmLp78iJmhFouSE1lCS
-         auIzvnqFK1lbmjbNHVvX8wxjN6p7FqHRv7Ic6k1u1evL5+zR/cATee/ElK9gdhdL2rff
-         IjEg==
-X-Gm-Message-State: AOAM533aByTjVs9EmfjDE60wMXXpNx1K5xb4/7VPDbY8geeTPEXJtbtf
-        tQ4Y3WEU3uNCxHiV/UVRby9qqBZL9wDuCO3HsdU=
-X-Google-Smtp-Source: ABdhPJwES2wc7TdMhiod+Gfl69w6wPnCgbe1YGCtJzOYOWtZ/sszBlzxfySY/AjwJEJtLVYes/CfhrG1dOOG8apzh38=
-X-Received: by 2002:a05:6638:110e:b0:32e:4068:fd99 with SMTP id
- n14-20020a056638110e00b0032e4068fd99mr1425584jal.264.1652710988705; Mon, 16
- May 2022 07:23:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220516101901.475557433@linutronix.de> <20220516102615.884180377@linutronix.de>
-In-Reply-To: <20220516102615.884180377@linutronix.de>
-From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Mon, 16 May 2022 16:22:57 +0200
-Message-ID: <CANiq72kSqKqoUsiFhg0+a65vc3KPTW4zpt-Dh8geVWUMPkWFwg@mail.gmail.com>
-Subject: Re: [patch 8/9] scripts/spdxcheck: Exclude dot files
-To:     Thomas Gleixner <tglx@linutronix.de>
-Cc:     LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christoph Hellwig <hch@lst.de>
+        with ESMTP id S235228AbiEPPay (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 11:30:54 -0400
+X-Greylist: delayed 499 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 May 2022 08:30:47 PDT
+Received: from mail-ogi-t60-f221.ogicom.net (mail-ogi-t60-f221.ogicom.net [213.108.60.221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058DA60D1;
+        Mon, 16 May 2022 08:30:46 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail43.ogicom.net (Postfix) with ESMTP id 37F76150C0625;
+        Mon, 16 May 2022 17:22:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mail43.ogicom.net
+Received: from mail43.ogicom.net ([127.0.0.1])
+        by localhost (mail43.ogicom.net [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id oU34Nk2aGn26; Mon, 16 May 2022 17:22:19 +0200 (CEST)
+Received: from linux-m4k8.home (62-69-247-172.internetia.net.pl [62.69.247.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kb@sysmikro.com.pl)
+        by mail43.ogicom.net (Postfix) with ESMTPSA id 74419150C06AD;
+        Mon, 16 May 2022 17:22:19 +0200 (CEST)
+Message-ID: <1652713968.3497.416.camel@sysmikro.com.pl>
+Subject: Re: [PATCH] freevxfs: relicense to GPLv2 only
+From:   Krzysztof =?UTF-8?Q?B=C5=82aszkowski?= <kb@sysmikro.com.pl>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     linux-spdx@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Mon, 16 May 2022 17:12:48 +0200
+In-Reply-To: <20220516133825.2810911-1-hch@lst.de>
+References: <20220516133825.2810911-1-hch@lst.de>
+Organization: Systemy mikroprocesorowe
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.20.5 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, May 16, 2022 at 3:55 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->
-> None of these files
->
->      .clang-format, .cocciconfig, .get_maintainer.ignore, .gitattributes,
->      .gitignore, .mailmap
->
-> have copyrightable content. They are configuration files which use a
-> publicly documented format.
+Acked-by: Krzysztof Błaszkowski <kb@sysmikro.com.pl>
 
-Should this files remove their SPDX-License-Identifier? If yes, we
-should do that for `.clang-format`.
-
-As another suggestion, we should check that the ignored files actually
-do _not_ have the `SPDX-License-Identifier` (i.e. so the above case
-would trigger a diagnostic).
-
-Cheers,
-Miguel
+On Mon, 2022-05-16 at 15:38 +0200, Christoph Hellwig wrote:
+> When I wrote the freevxfs driver I had some odd choice of licensing
+> statements, the options are either GPL (without version) or an odd
+> BSD-ish licensense with advertising clause.
+> 
+> The GPL vs always meant to be the same as the kernel, that is version
+> 2 only, and the odd BSD-ish license doesn't make much sense.  Add
+> a GPL2.0-only SPDX tag to make the GPL intentions clear and drop the
+> bogus BSD license.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+> 
+>  fs/freevxfs/vxfs.h        | 27 +--------------------------
+>  fs/freevxfs/vxfs_bmap.c   | 26 +-------------------------
+>  fs/freevxfs/vxfs_dir.h    | 27 +--------------------------
+>  fs/freevxfs/vxfs_extern.h | 27 +--------------------------
+>  fs/freevxfs/vxfs_fshead.c | 26 +-------------------------
+>  fs/freevxfs/vxfs_fshead.h | 27 +--------------------------
+>  fs/freevxfs/vxfs_immed.c  | 26 +-------------------------
+>  fs/freevxfs/vxfs_inode.c  | 26 +-------------------------
+>  fs/freevxfs/vxfs_inode.h  | 27 +--------------------------
+>  fs/freevxfs/vxfs_lookup.c | 26 +-------------------------
+>  fs/freevxfs/vxfs_olt.c    | 26 +-------------------------
+>  fs/freevxfs/vxfs_olt.h    | 27 +--------------------------
+>  fs/freevxfs/vxfs_subr.c   | 26 +-------------------------
+>  fs/freevxfs/vxfs_super.c  | 26 +-------------------------
+>  14 files changed, 14 insertions(+), 356 deletions(-)
+> 
+> diff --git a/fs/freevxfs/vxfs.h b/fs/freevxfs/vxfs.h
+> index a41ea0ba69433..bffd156d6434c 100644
+> --- a/fs/freevxfs/vxfs.h
+> +++ b/fs/freevxfs/vxfs.h
+> @@ -1,32 +1,7 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+>   * Copyright (c) 2016 Krzysztof Blaszkowski
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+> - *
+>   */
+>  #ifndef _VXFS_SUPER_H_
+>  #define _VXFS_SUPER_H_
+> diff --git a/fs/freevxfs/vxfs_bmap.c b/fs/freevxfs/vxfs_bmap.c
+> index 1fd41cf98b9fc..de2a5bccb9307 100644
+> --- a/fs/freevxfs/vxfs_bmap.c
+> +++ b/fs/freevxfs/vxfs_bmap.c
+> @@ -1,30 +1,6 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /*
+> diff --git a/fs/freevxfs/vxfs_dir.h b/fs/freevxfs/vxfs_dir.h
+> index acc5477b3f232..fbcd603365ad6 100644
+> --- a/fs/freevxfs/vxfs_dir.h
+> +++ b/fs/freevxfs/vxfs_dir.h
+> @@ -1,31 +1,6 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+> - *
+>   */
+>  #ifndef _VXFS_DIR_H_
+>  #define _VXFS_DIR_H_
+> diff --git a/fs/freevxfs/vxfs_extern.h b/fs/freevxfs/vxfs_extern.h
+> index f5c428e210245..3a2180c5e208d 100644
+> --- a/fs/freevxfs/vxfs_extern.h
+> +++ b/fs/freevxfs/vxfs_extern.h
+> @@ -1,31 +1,6 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+> - *
+>   */
+>  #ifndef _VXFS_EXTERN_H_
+>  #define _VXFS_EXTERN_H_
+> diff --git a/fs/freevxfs/vxfs_fshead.c b/fs/freevxfs/vxfs_fshead.c
+> index a4610a77649e5..c1174a3f89905 100644
+> --- a/fs/freevxfs/vxfs_fshead.c
+> +++ b/fs/freevxfs/vxfs_fshead.c
+> @@ -1,31 +1,7 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+>   * Copyright (c) 2016 Krzysztof Blaszkowski
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /*
+> diff --git a/fs/freevxfs/vxfs_fshead.h b/fs/freevxfs/vxfs_fshead.h
+> index e026f0c491596..dfd2147599c49 100644
+> --- a/fs/freevxfs/vxfs_fshead.h
+> +++ b/fs/freevxfs/vxfs_fshead.h
+> @@ -1,32 +1,7 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+>   * Copyright (c) 2016 Krzysztof Blaszkowski
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+> - *
+>   */
+>  #ifndef _VXFS_FSHEAD_H_
+>  #define _VXFS_FSHEAD_H_
+> diff --git a/fs/freevxfs/vxfs_immed.c b/fs/freevxfs/vxfs_immed.c
+> index bfc780c682fb8..334822dd8dbef 100644
+> --- a/fs/freevxfs/vxfs_immed.c
+> +++ b/fs/freevxfs/vxfs_immed.c
+> @@ -1,30 +1,6 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /*
+> diff --git a/fs/freevxfs/vxfs_inode.c b/fs/freevxfs/vxfs_inode.c
+> index 1f41b25ef38b2..ceb6a12649ba6 100644
+> --- a/fs/freevxfs/vxfs_inode.c
+> +++ b/fs/freevxfs/vxfs_inode.c
+> @@ -1,31 +1,7 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+>   * Copyright (c) 2016 Krzysztof Blaszkowski
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /*
+> diff --git a/fs/freevxfs/vxfs_inode.h b/fs/freevxfs/vxfs_inode.h
+> index f012abed125d6..1e9e138d2b338 100644
+> --- a/fs/freevxfs/vxfs_inode.h
+> +++ b/fs/freevxfs/vxfs_inode.h
+> @@ -1,32 +1,7 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+>   * Copyright (c) 2016 Krzysztof Blaszkowski
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+> - *
+>   */
+>  #ifndef _VXFS_INODE_H_
+>  #define _VXFS_INODE_H_
+> diff --git a/fs/freevxfs/vxfs_lookup.c b/fs/freevxfs/vxfs_lookup.c
+> index a51425634f659..f04ba2ed1e1aa 100644
+> --- a/fs/freevxfs/vxfs_lookup.c
+> +++ b/fs/freevxfs/vxfs_lookup.c
+> @@ -1,31 +1,7 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+>   * Copyright (c) 2016 Krzysztof Blaszkowski
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /*
+> diff --git a/fs/freevxfs/vxfs_olt.c b/fs/freevxfs/vxfs_olt.c
+> index 813da66851510..23f35187c2896 100644
+> --- a/fs/freevxfs/vxfs_olt.c
+> +++ b/fs/freevxfs/vxfs_olt.c
+> @@ -1,30 +1,6 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /* 
+> diff --git a/fs/freevxfs/vxfs_olt.h b/fs/freevxfs/vxfs_olt.h
+> index 0c0b0c9fa5579..53afba08d617f 100644
+> --- a/fs/freevxfs/vxfs_olt.h
+> +++ b/fs/freevxfs/vxfs_olt.h
+> @@ -1,31 +1,6 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+> - *
+>   */
+>  #ifndef _VXFS_OLT_H_
+>  #define _VXFS_OLT_H_
+> diff --git a/fs/freevxfs/vxfs_subr.c b/fs/freevxfs/vxfs_subr.c
+> index e806694d4145e..ae19e315788d3 100644
+> --- a/fs/freevxfs/vxfs_subr.c
+> +++ b/fs/freevxfs/vxfs_subr.c
+> @@ -1,30 +1,6 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /*
+> diff --git a/fs/freevxfs/vxfs_super.c b/fs/freevxfs/vxfs_super.c
+> index 22eed5a73ac24..c3b82f716f9a7 100644
+> --- a/fs/freevxfs/vxfs_super.c
+> +++ b/fs/freevxfs/vxfs_super.c
+> @@ -1,31 +1,7 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2000-2001 Christoph Hellwig.
+>   * Copyright (c) 2016 Krzysztof Blaszkowski
+> - * All rights reserved.
+> - *
+> - * Redistribution and use in source and binary forms, with or
+> without
+> - * modification, are permitted provided that the following
+> conditions
+> - * are met:
+> - * 1. Redistributions of source code must retain the above copyright
+> - *    notice, this list of conditions, and the following disclaimer,
+> - *    without modification.
+> - * 2. The name of the author may not be used to endorse or promote
+> products
+> - *    derived from this software without specific prior written
+> permission.
+> - *
+> - * Alternatively, this software may be distributed under the terms
+> of the
+> - * GNU General Public License ("GPL").
+> - *
+> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS
+> IS'' AND
+> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+> THE
+> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+> PARTICULAR PURPOSE
+> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+> LIABLE FOR
+> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL
+> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+> GOODS
+> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+> INTERRUPTION)
+> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+> CONTRACT, STRICT
+> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+> ANY WAY
+> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+> POSSIBILITY OF
+> - * SUCH DAMAGE.
+>   */
+>  
+>  /*
+-- 
+Krzysztof Blaszkowski

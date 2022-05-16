@@ -2,37 +2,54 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADF0528B15
-	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 18:54:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 462A6528D52
+	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 20:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232270AbiEPQyF (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 16 May 2022 12:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50876 "EHLO
+        id S236483AbiEPSn5 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 16 May 2022 14:43:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237190AbiEPQyD (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 12:54:03 -0400
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D95427B33;
-        Mon, 16 May 2022 09:54:01 -0700 (PDT)
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 575A968AA6; Mon, 16 May 2022 18:53:58 +0200 (CEST)
-Date:   Mon, 16 May 2022 18:53:58 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Krzysztof =?utf-8?Q?B=C5=82aszkowski?= <kb@sysmikro.com.pl>,
-        Christoph Hellwig <hch@lst.de>, linux-spdx@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] freevxfs: relicense to GPLv2 only
-Message-ID: <20220516165358.GA23039@lst.de>
-References: <20220516133825.2810911-1-hch@lst.de> <1652713968.3497.416.camel@sysmikro.com.pl> <YoKA4AhEXF4tEVlZ@kroah.com>
+        with ESMTP id S233865AbiEPSn4 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 14:43:56 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7030F3EA87;
+        Mon, 16 May 2022 11:43:55 -0700 (PDT)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1652726632;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hR0g/69/6yafTNMHGbFIjFGN3eZ6lE1gFBvP50Z8AxU=;
+        b=TeAbVnMTJG1LbUa/idMiHC6KQ9kBnjn/g/biW0agexy+eXDD+ZCVnDZHAxuo6GgLBzY+5N
+        2A5Xw8zgHtoTAh/or+f00mzggrlvL1hmvdlfPa7PVH4Xw+fiPwK3f9dJIa8a7hj9173kfq
+        MF/47IIWZYk8cmF/v58R5PhUOeJVPG+0A5SiakKWYBe8wbQXARabTLYQo7YABRwGoLxCwL
+        qfSzz7jrBai9iajPP8bCHEcGbEg1E/YwCsnmGd3xN43jKwv2pq8RDKn7lDCsNUk5IRfcd4
+        KU6ugAGXrF6N4trujVSQcAhm41OCzQc0bcimgyPJsNROVayYb4Y4d4/A+U0UjQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1652726632;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hR0g/69/6yafTNMHGbFIjFGN3eZ6lE1gFBvP50Z8AxU=;
+        b=k/ief/N4zghzjOp1cXZhIZH4TiOooTG5wjHCbpqyKfInoPrlD2VtqNCoW+z/Te8Q9iw7KQ
+        P0FZYdmx8i03f0AQ==
+To:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Christoph Hellwig <hch@lst.de>
+Subject: Re: [patch 8/9] scripts/spdxcheck: Exclude dot files
+In-Reply-To: <CANiq72kSqKqoUsiFhg0+a65vc3KPTW4zpt-Dh8geVWUMPkWFwg@mail.gmail.com>
+References: <20220516101901.475557433@linutronix.de>
+ <20220516102615.884180377@linutronix.de>
+ <CANiq72kSqKqoUsiFhg0+a65vc3KPTW4zpt-Dh8geVWUMPkWFwg@mail.gmail.com>
+Date:   Mon, 16 May 2022 20:43:52 +0200
+Message-ID: <875ym5qpw7.ffs@tglx>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YoKA4AhEXF4tEVlZ@kroah.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -40,13 +57,27 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, May 16, 2022 at 06:50:40PM +0200, Greg KH wrote:
-> On Mon, May 16, 2022 at 05:12:48PM +0200, Krzysztof Błaszkowski wrote:
-> > Acked-by: Krzysztof Błaszkowski <kb@sysmikro.com.pl>
-> 
-> Thanks!
-> 
-> Christoph, want me to take this through my spdx.git tree, or are you
-> going to take it through some vfs tree?
+On Mon, May 16 2022 at 16:22, Miguel Ojeda wrote:
+> On Mon, May 16, 2022 at 3:55 PM Thomas Gleixner <tglx@linutronix.de> wrote:
+>>
+>> None of these files
+>>
+>>      .clang-format, .cocciconfig, .get_maintainer.ignore, .gitattributes,
+>>      .gitignore, .mailmap
+>>
+>> have copyrightable content. They are configuration files which use a
+>> publicly documented format.
+>
+> Should this files remove their SPDX-License-Identifier? If yes, we
+> should do that for `.clang-format`.
+>
+> As another suggestion, we should check that the ignored files actually
+> do _not_ have the `SPDX-License-Identifier` (i.e. so the above case
+> would trigger a diagnostic).
 
-The spdx tree sounds good to me.
+Good questions. I'm happy to drop this patch for now until this
+discussion has been settled.
+
+Thanks,
+
+        tglx

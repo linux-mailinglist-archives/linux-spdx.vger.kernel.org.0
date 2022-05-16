@@ -2,49 +2,48 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 462A6528D52
-	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 20:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A93528D7B
+	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 20:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236483AbiEPSn5 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 16 May 2022 14:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
+        id S233244AbiEPSwz (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 16 May 2022 14:52:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233865AbiEPSn4 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 14:43:56 -0400
+        with ESMTP id S1345082AbiEPSwz (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 14:52:55 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7030F3EA87;
-        Mon, 16 May 2022 11:43:55 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625F23EB83;
+        Mon, 16 May 2022 11:52:54 -0700 (PDT)
 From:   Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1652726632;
+        s=2020; t=1652727173;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=hR0g/69/6yafTNMHGbFIjFGN3eZ6lE1gFBvP50Z8AxU=;
-        b=TeAbVnMTJG1LbUa/idMiHC6KQ9kBnjn/g/biW0agexy+eXDD+ZCVnDZHAxuo6GgLBzY+5N
-        2A5Xw8zgHtoTAh/or+f00mzggrlvL1hmvdlfPa7PVH4Xw+fiPwK3f9dJIa8a7hj9173kfq
-        MF/47IIWZYk8cmF/v58R5PhUOeJVPG+0A5SiakKWYBe8wbQXARabTLYQo7YABRwGoLxCwL
-        qfSzz7jrBai9iajPP8bCHEcGbEg1E/YwCsnmGd3xN43jKwv2pq8RDKn7lDCsNUk5IRfcd4
-        KU6ugAGXrF6N4trujVSQcAhm41OCzQc0bcimgyPJsNROVayYb4Y4d4/A+U0UjQ==
+        bh=aD86N6duEnXjJa8sE+96XgfKrmYJDh6pUQ8+2kW0T4w=;
+        b=Pm+mXx87j1ajufcmunnMTRWiGm075XOHoA4ZpZtnq6Jw7QvN3bI926/xg07KmtVe+E0/Cj
+        RbV5zl4lPrFE6gAF1S0gJO6E0SZK1CE7VD7OGVBBRgbOHY8UozE/+mk7MfR0XfWT/DXZwZ
+        dQbhymPUCOA4KL8iSBJPv+yZYw7qR8KJU0CaQnDFFh5Uzy1T1/j3i/NrFh80fUkSLYW4QR
+        y0qsW+E6/uvmfbJJpVwjzrPPgKKlCiUO8pOI8Qox2qxY7KalojEJeDBcsEuB9RWY906lCR
+        wyn9PAp07g/fdLI0mqQGJUcBdUck1VAHRLKapBRmbiVI6cHkRx0T65ZDcS8n5A==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1652726632;
+        s=2020e; t=1652727173;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=hR0g/69/6yafTNMHGbFIjFGN3eZ6lE1gFBvP50Z8AxU=;
-        b=k/ief/N4zghzjOp1cXZhIZH4TiOooTG5wjHCbpqyKfInoPrlD2VtqNCoW+z/Te8Q9iw7KQ
-        P0FZYdmx8i03f0AQ==
-To:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christoph Hellwig <hch@lst.de>
-Subject: Re: [patch 8/9] scripts/spdxcheck: Exclude dot files
-In-Reply-To: <CANiq72kSqKqoUsiFhg0+a65vc3KPTW4zpt-Dh8geVWUMPkWFwg@mail.gmail.com>
+        bh=aD86N6duEnXjJa8sE+96XgfKrmYJDh6pUQ8+2kW0T4w=;
+        b=PI7CIio8mQoCEEXktb2auMn/c1mnJfSiaku1HzQQtXRJebUdKqfF6RDmv1DjooeHW4viMW
+        DQHwkVusAEwflmCw==
+To:     Max Mehl <max.mehl@fsfe.org>, LKML <linux-kernel@vger.kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Christoph Hellwig <hch@lst.de>, linux-spdx@vger.kernel.org
+Subject: Re: [patch 0/9] scripts/spdxcheck: Better statistics and exclude
+ handling
+In-Reply-To: <1652706350.kh41opdwg4.2220@fsfe.org>
 References: <20220516101901.475557433@linutronix.de>
- <20220516102615.884180377@linutronix.de>
- <CANiq72kSqKqoUsiFhg0+a65vc3KPTW4zpt-Dh8geVWUMPkWFwg@mail.gmail.com>
-Date:   Mon, 16 May 2022 20:43:52 +0200
-Message-ID: <875ym5qpw7.ffs@tglx>
+ <1652706350.kh41opdwg4.2220@fsfe.org>
+Date:   Mon, 16 May 2022 20:52:52 +0200
+Message-ID: <87zgjhpawr.ffs@tglx>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -57,26 +56,29 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, May 16 2022 at 16:22, Miguel Ojeda wrote:
-> On Mon, May 16, 2022 at 3:55 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->>
->> None of these files
->>
->>      .clang-format, .cocciconfig, .get_maintainer.ignore, .gitattributes,
->>      .gitignore, .mailmap
->>
->> have copyrightable content. They are configuration files which use a
->> publicly documented format.
->
-> Should this files remove their SPDX-License-Identifier? If yes, we
-> should do that for `.clang-format`.
->
-> As another suggestion, we should check that the ignored files actually
-> do _not_ have the `SPDX-License-Identifier` (i.e. so the above case
-> would trigger a diagnostic).
+On Mon, May 16 2022 at 15:14, Max Mehl wrote:
+> Thank you for picking up the effort to add license (and perhaps also
+> copyright) info to all files in the Kernel.
 
-Good questions. I'm happy to drop this patch for now until this
-discussion has been settled.
+Adding copyright notices retroactively is not going to happen
+ever. That's just impossible.
+
+>> The exclude of files and directories is hardcoded in the script which makes
+>> it hard to maintain and the information cannot be accessed by external tools.
+>
+> Unfortunately, excluding files (i.e. not adding machine-readable
+> license/copyright information to it) would also block reaching full
+> compliance with the REUSE best practices. Have you considered making
+> them available under GPL-2.0-only or a license similar to public domain
+> [^2]?
+
+The LICENSE directory is already handled by spdxcheck as the license
+information is read from there. And no, we cannot add a GPL-2.0-only
+identifier to all of the files under the LICENSE directory for obvious
+reasons.
+
+license-rules.rst is not longer a problem as all incarnations have a
+proper SPDX identifier today.
 
 Thanks,
 

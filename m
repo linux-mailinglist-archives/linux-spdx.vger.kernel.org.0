@@ -2,68 +2,92 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AB9C528205
-	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 12:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 920F6528530
+	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 15:21:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233233AbiEPK1p (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 16 May 2022 06:27:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
+        id S232470AbiEPNVd (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 16 May 2022 09:21:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242608AbiEPK1i (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 06:27:38 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF0912A86;
-        Mon, 16 May 2022 03:27:37 -0700 (PDT)
-Message-ID: <20220516102615.947490347@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1652696856;
+        with ESMTP id S243940AbiEPNVL (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 09:21:11 -0400
+X-Greylist: delayed 386 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 May 2022 06:21:06 PDT
+Received: from mail1.fsfe.org (mail1.fsfe.org [217.69.89.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975A72655F;
+        Mon, 16 May 2022 06:21:05 -0700 (PDT)
+Date:   Mon, 16 May 2022 15:14:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fsfe.org; s=2021100501;
+        t=1652706874;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=1eoy5klb8svAdIn9/UXgJevyTb9Ww/jSlczBpVi7ZNQ=;
-        b=rP1Gt0hSMwM7kYHgwY2C/ntB3s+H1l/1S6Km3OE8/0DZSiXO+N34LP58EkR/cK5y5ZA+vl
-        rCWdp5xSsaIN6io1zjKsLjBMvlaLBcMUpFxr5/7WhC2sRknoYnhYII+b5BBK8j91zHb8nT
-        mwBEvkbCWlzSFQiak01DaUqEyHZpla7pzVWnN27XI3fDcHv8gcy1Sk34rP/2+zY3rVjgac
-        DUDprnEnjAC5I55v/zWRtcfdCkdtjVnrNq5ir3arzOKHnsyC9yJEC2XNj+DmdxfJbuGHa9
-        YCAeEM6lsU0ulctTwMK154VMv12Y5c92F6x1echwCe6n9er2/w1cZkeemGlsog==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1652696856;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=1eoy5klb8svAdIn9/UXgJevyTb9Ww/jSlczBpVi7ZNQ=;
-        b=lssgXrIntPIE3+KeFtioEjxQhOZYiNdcS54BaTMXZbEgYUywepWrJcAAiZpO710cCWZsWo
-        53HbHOG5ATwx3aBg==
-From:   Thomas Gleixner <tglx@linutronix.de>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     linux-spdx@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christoph Hellwig <hch@lst.de>
-Subject: [patch 9/9] scripts/spdxcheck: Exclude top-level README
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=wHI3M8k0s+6SKuJM83gBORyGyL9zJEh7+p5BY+tErwI=;
+        b=C9XGB87ee1pDrXxfeYbKRN/HK6T9qLGo7RtHWWuDZnHZlv3pvjm+ywpgVPI8bACZNep5Fh
+        ICs5jvQRwNsKQvIiDWeISoY5882t9bwzyN+Vq7HuJ2zP/GuaK/dLYtu3ULJWjpBwQ9QITM
+        b9VegXDSI9OO/pBRxVbgSVas5hQc+6A=
+From:   Max Mehl <max.mehl@fsfe.org>
+Subject: Re: [patch 0/9] scripts/spdxcheck: Better statistics and exclude
+ handling
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Christoph Hellwig <hch@lst.de>, linux-spdx@vger.kernel.org
 References: <20220516101901.475557433@linutronix.de>
+In-Reply-To: <20220516101901.475557433@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 16 May 2022 12:27:35 +0200 (CEST)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: astroid/0.13
+Message-Id: <1652706350.kh41opdwg4.2220@fsfe.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_40,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Nothing copyrightable to see here.
+Thank you for picking up the effort to add license (and perhaps also
+copyright) info to all files in the Kernel. This, as you know, is also
+working towards making the whole repo REUSE compliant [^1].
 
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
----
- scripts/spdxexclude |    1 +
- 1 file changed, 1 insertion(+)
+~ Thomas Gleixner [2022-05-16 12:27 +0200]:
+> Finding files without SPDX identifiers is cumbersome with spdxcheck, thou=
+gh
+> it has all the information required.
+>=20
+> The exclude of files and directories is hardcoded in the script which mak=
+es
+> it hard to maintain and the information cannot be accessed by external to=
+ols.
 
---- a/scripts/spdxexclude
-+++ b/scripts/spdxexclude
-@@ -21,3 +21,4 @@ arch/*/configs/
- # Other files without copyrightable content
- /CREDITS
- /MAINTAINERS
-+/README
+Unfortunately, excluding files (i.e. not adding machine-readable
+license/copyright information to it) would also block reaching full
+compliance with the REUSE best practices. Have you considered making
+them available under GPL-2.0-only or a license similar to public domain
+[^2]?
 
+Regarding false-positives, e.g. in license-rules.rst, you could use the
+brand-new feature that allows to ignore blocks of code (to be released
+later this week) [^3]. I am aware that spdxcheck would not be able to
+detect this, but using the REUSE helper tool [^4] could also be a
+solution to scan for missing files.
+
+Best,
+Max
+
+
+[^1]: https://reuse.software
+
+[^2]: https://reuse.software/faq/#exclude-file
+
+[^3]: https://github.com/fsfe/reuse-docs/pull/104/files
+
+[^4]: https://github.com/fsfe/reuse-tool
+
+--=20
+Max Mehl - Programme Manager -- Free Software Foundation Europe
+Contact and information: https://fsfe.org/about/mehl -- @mxmehl
+The FSFE is a charity that empowers users to control technology

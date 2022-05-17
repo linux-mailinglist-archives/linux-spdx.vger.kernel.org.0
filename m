@@ -2,96 +2,95 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0A2B528D95
-	for <lists+linux-spdx@lfdr.de>; Mon, 16 May 2022 20:59:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5914E529C4D
+	for <lists+linux-spdx@lfdr.de>; Tue, 17 May 2022 10:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345158AbiEPS7W (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 16 May 2022 14:59:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33684 "EHLO
+        id S242394AbiEQIZo (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 17 May 2022 04:25:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345162AbiEPS7V (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 16 May 2022 14:59:21 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C862E3EB9D;
-        Mon, 16 May 2022 11:59:18 -0700 (PDT)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1652727557;
+        with ESMTP id S234309AbiEQIZm (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 17 May 2022 04:25:42 -0400
+Received: from mail1.fsfe.org (mail1.fsfe.org [217.69.89.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45F631DC7;
+        Tue, 17 May 2022 01:25:39 -0700 (PDT)
+Date:   Tue, 17 May 2022 10:25:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fsfe.org; s=2021100501;
+        t=1652775937;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=Bk6aAOMGXkpTA7bxdXvA2u7my35PykkS8vmgE62yIIg=;
-        b=YW/wI8S1ilWxdav/qldIAI1+xm8jljKSdGMgKWB447TQEgdq1ZnnCgTrLNgOWqR+4JloJf
-        2iOvsNOe1iYIS1LeU1ubMtf/N7LE/69zLFZ3qT9E2qu4Cy8b8DvppzATamANaU3YIAQb90
-        W9g3XeDMXF5YaHy1XsgOmIKipCLzQECK9R817dX5IyBdadPnMYxGcr6RzDoBEx/WlTuWG8
-        9PitS2mZkuORaHDoB7dgCoS3ojeJLH0WSf0wLCU0rqmXd/EP7K6CNJm/dLmJxf71+f8Kwx
-        LVS32ikvJpli17vDjh4pqyyY9e1gswKUA8SG3HAf+vq7X+RbhEqihk8Un9q9+g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1652727557;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Bk6aAOMGXkpTA7bxdXvA2u7my35PykkS8vmgE62yIIg=;
-        b=BNVWYtXohtuR9SnP8sqhfaX9c0M30W8eKYbQ+zUKJrWSVZqHV5QzDMeJKOBGte6qZw01et
-        jEAn7i4G6gTHaxDA==
-To:     Max Mehl <max.mehl@fsfe.org>, LKML <linux-kernel@vger.kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christoph Hellwig <hch@lst.de>, linux-spdx@vger.kernel.org
+        bh=jAxw8aWlu/LUZ5JLpxzuteI1viXYrIoRdyP/NaQqL5c=;
+        b=Nfeae+QvFsmneXKolwYLwwLjpMRY/7ruwwhQ3AUXseItA4peX9kJmoGJDGGsca2AzTDuDV
+        bukifL35mbRGTxrXBux2vhQW6tAyKJP9sSVjjB0TmgDvPOAIhN0yFlNjWdX9qv6f8UaDJo
+        PO0bXKRGah1JumlcRWiGrWswKYafV/k=
+From:   Max Mehl <max.mehl@fsfe.org>
 Subject: Re: [patch 0/9] scripts/spdxcheck: Better statistics and exclude
  handling
-In-Reply-To: <87zgjhpawr.ffs@tglx>
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Christoph Hellwig <hch@lst.de>, linux-spdx@vger.kernel.org
 References: <20220516101901.475557433@linutronix.de>
- <1652706350.kh41opdwg4.2220@fsfe.org> <87zgjhpawr.ffs@tglx>
-Date:   Mon, 16 May 2022 20:59:16 +0200
-Message-ID: <87wnelpam3.ffs@tglx>
+        <1652706350.kh41opdwg4.2220@fsfe.org> <87zgjhpawr.ffs@tglx>
+        <87wnelpam3.ffs@tglx>
+In-Reply-To: <87wnelpam3.ffs@tglx>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: astroid/0.13
+Message-Id: <1652775347.3cr9dmk5qv.2220@fsfe.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, May 16 2022 at 20:52, Thomas Gleixner wrote:
-
-> On Mon, May 16 2022 at 15:14, Max Mehl wrote:
->> Thank you for picking up the effort to add license (and perhaps also
->> copyright) info to all files in the Kernel.
->
-> Adding copyright notices retroactively is not going to happen
-> ever. That's just impossible.
->
->>> The exclude of files and directories is hardcoded in the script which makes
->>> it hard to maintain and the information cannot be accessed by external tools.
+~ Thomas Gleixner [2022-05-16 20:59 +0200]:
+> On Mon, May 16 2022 at 20:52, Thomas Gleixner wrote:
+>>> Unfortunately, excluding files (i.e. not adding machine-readable
+>>> license/copyright information to it) would also block reaching full
+>>> compliance with the REUSE best practices. Have you considered making
+>>> them available under GPL-2.0-only or a license similar to public domain
+>>> [^2]?
 >>
->> Unfortunately, excluding files (i.e. not adding machine-readable
->> license/copyright information to it) would also block reaching full
->> compliance with the REUSE best practices. Have you considered making
->> them available under GPL-2.0-only or a license similar to public domain
->> [^2]?
->
-> The LICENSE directory is already handled by spdxcheck as the license
-> information is read from there. And no, we cannot add a GPL-2.0-only
-> identifier to all of the files under the LICENSE directory for obvious
-> reasons.
->
-> license-rules.rst is not longer a problem as all incarnations have a
-> proper SPDX identifier today.
+>> The LICENSE directory is already handled by spdxcheck as the license
+>> information is read from there. And no, we cannot add a GPL-2.0-only
+>> identifier to all of the files under the LICENSE directory for obvious
+>> reasons.
 
-There is also an argument to be made whether we really need to have SPDX
-identifiers on trivial files:
+Absolutely. REUSE obviously also ignores this directory, as well as
+e.g. zero-length files, symlinks, submodules, or .git directory.
 
-#include <someheader.h>
-<EOF>
+> There is also an argument to be made whether we really need to have SPDX
+> identifiers on trivial files:
+>=20
+> #include <someheader.h>
+> <EOF>
+>=20
+> Such files are not copyrightable by any means. So what's the value of
+> doubling the line count to add an SPDX identifier? Just to make nice
+> statistics?
 
-Such files are not copyrightable by any means. So what's the value of
-doubling the line count to add an SPDX identifier? Just to make nice
-statistics?
+We agree that such files are not copyrightable. But where is the
+threshold? Lines of code? Creativity? Number of used functions? And how
+to embed this threshold in tooling? So instead of fuzzy exclusion of
+such files in tools like spdxcheck or REUSE, it makes sense to treat
+them as every other file with the cost of adding two comment lines.
 
-Thanks,
+This clear-cut rule eases maintaining and growing the effort you and
+others did because developers would know exactly what to add to a new
+file (license + copyright) without requiring looking up the thresholds
+or a manual review by maintainers who can interpret them.
 
-        tglx
+Best,
+Max
+
+--=20
+Max Mehl - Programme Manager -- Free Software Foundation Europe
+Contact and information: https://fsfe.org/about/mehl -- @mxmehl
+The FSFE is a charity that empowers users to control technology

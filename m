@@ -2,49 +2,40 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A158852AD9F
-	for <lists+linux-spdx@lfdr.de>; Tue, 17 May 2022 23:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C4352AE9F
+	for <lists+linux-spdx@lfdr.de>; Wed, 18 May 2022 01:31:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbiEQVoD (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 17 May 2022 17:44:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
+        id S231816AbiEQXbx (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 17 May 2022 19:31:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiEQVoC (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 17 May 2022 17:44:02 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818C750445;
-        Tue, 17 May 2022 14:43:52 -0700 (PDT)
+        with ESMTP id S231823AbiEQXbt (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 17 May 2022 19:31:49 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B96E2AE21
+        for <linux-spdx@vger.kernel.org>; Tue, 17 May 2022 16:31:45 -0700 (PDT)
 From:   Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1652823829;
+        s=2020; t=1652830303;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=38MBY5TPzPDWJJ7wfIQbCIMC4tpzXNoTQctp5Q2omdE=;
-        b=qZ3I2loQXge4Fi5CVcicg69+ghn9lriVgyi3NPWmWzPAuEX4KXYC/io9C4AXS96a19FZvx
-        sk1Umv9m5xJUUCYUQidygcv20wzvES58fTIPGUWt0HIL1u/BmyZdNqbM5FBXKK5ZXJIU0o
-        IwORWcFZnh1x4G9pJZ42qKzguh2Xm6q6vcOIWCmplWNOrx00Xh8cYmEN3xKCCQJ0r+c5jw
-        +zXFQBy0yHB/DcGyPRPBTS9NrvwdKbO349DVwwFkmaupoE5CSeEK+sbcC3lOXhDL/FPGr3
-        VHXaGq808dpm0+s5+EGiQ7S1/uOkK2esRwO6IJSSDj5CRwxKkfdO+o168nD1KA==
+         to:to:cc:mime-version:mime-version:content-type:content-type;
+        bh=l5kuNjNBl9+fH3PONgL09pmuj3tLgCwMoKlP16Cqack=;
+        b=YOIEE+fuW3QDA/U77tRYAONJalISx5apnt0kPJVcaDgXCYJp1r2bfFXb4zfIcpcKgPqAML
+        9CafcBiwQBiSF5f8gGyW5Rlws/V1ivR7mx1o+/YKyDNT7kYJwlVPjl7zgIoBRFLMN27BpW
+        WsZ2KtQZ1gAQzlqxQ4dheEWLzQTgqksVUb11gwk6sFd2hpMrYjq/WkaHxQuNmfr8eWJz4S
+        LqvOkeH/cnOg9nCu3BdxkbiGJ4UmZLl+AOmGpC12jHClDXYYqvCspRqDKY/MkzpBcCX2He
+        swvHF6Jp3Ju8249Oq7q1Ppa5xREafuBsAFRZiVx8IvzDagalhApGBlM29uTWuQ==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1652823829;
+        s=2020e; t=1652830303;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=38MBY5TPzPDWJJ7wfIQbCIMC4tpzXNoTQctp5Q2omdE=;
-        b=if0dLSyC9FrNTNSWRenQex+bMgszw9+Et1v5yB1Ku/+X13/fdyfRbbOCPfr0sAhB0cGrJk
-        aExYqttNsV6KH+AA==
-To:     Max Mehl <max.mehl@fsfe.org>, LKML <linux-kernel@vger.kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christoph Hellwig <hch@lst.de>, linux-spdx@vger.kernel.org
-Subject: Re: [patch 0/9] scripts/spdxcheck: Better statistics and exclude
- handling
-In-Reply-To: <1652775347.3cr9dmk5qv.2220@fsfe.org>
-References: <20220516101901.475557433@linutronix.de>
- <1652706350.kh41opdwg4.2220@fsfe.org> <87zgjhpawr.ffs@tglx>
- <87wnelpam3.ffs@tglx> <1652775347.3cr9dmk5qv.2220@fsfe.org>
-Date:   Tue, 17 May 2022 23:43:49 +0200
-Message-ID: <8735h7ltre.ffs@tglx>
+         to:to:cc:mime-version:mime-version:content-type:content-type;
+        bh=l5kuNjNBl9+fH3PONgL09pmuj3tLgCwMoKlP16Cqack=;
+        b=15/KEH2/GJk8fQSU2HRkDa3rzs9SZs5BkKJg56li1znOKF3fFflVVaiU4FMWRlI+MFFLJu
+        SfFm8CGi83FTAVDg==
+To:     linux-spdx@vger.kernel.org
+Subject: SPDX in the kernel: State of the union
+Date:   Wed, 18 May 2022 01:31:42 +0200
+Message-ID: <87zgjfka75.ffs@tglx>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -57,88 +48,190 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Tue, May 17 2022 at 10:25, Max Mehl wrote:
-> ~ Thomas Gleixner [2022-05-16 20:59 +0200]:
->> There is also an argument to be made whether we really need to have SPDX
->> identifiers on trivial files:
->> 
->> #include <someheader.h>
->> <EOF>
->> 
->> Such files are not copyrightable by any means. So what's the value of
->> doubling the line count to add an SPDX identifier? Just to make nice
->> statistics?
->
-> We agree that such files are not copyrightable. But where is the
-> threshold? Lines of code? Creativity? Number of used functions? And how
-> to embed this threshold in tooling? So instead of fuzzy exclusion of
-> such files in tools like spdxcheck or REUSE, it makes sense to treat
-> them as every other file with the cost of adding two comment lines.
->
-> This clear-cut rule eases maintaining and growing the effort you and
-> others did because developers would know exactly what to add to a new
-> file (license + copyright) without requiring looking up the thresholds
-> or a manual review by maintainers who can interpret them.
+Folks!
 
-Seriously no. I'm outright refusing to add my copyright to a trivial
-file with one or two includes or a silly comment like '/* empty because */.
+After the initial SPDX effort which ended about three years ago there
+was not really much progress neither in terms of file statistics nor in
+terms of activity on this list... I'm refraining from asking the obvious
+questions...
 
-     There is nothing copyrightable there.
+Nevertheless I'm trying to cut myself some cycles to get this rolling
+again.
 
-I'm not going to make myself a fool just to make tools happy, which can
-figure out on their own whether there is reasonable content in the vast
-majority of cases.
+As a first step I tried to resurrect my old scripts. That was not really an
+enjoyable experience due to the python2 -> python3 fallout and the changes
+in scancode since then.
 
-Also you need some exclude rules in any case. Why?
+Though after quite some cursing I was able to gather at least initial
+statistics and to analyze patches based on the scancode detection rules.
 
-  - How do you tell a tool that a file is generated, e.g. in the kernel
-    the default configuration files?
+I surely have to say quite some words about the 'improved' scancode
+detection rules too, but I sort that out with Philippe off-list.
 
-    Yes, the file content depends on human input to the generator tool,
-    but I'm looking forward for the explanation how this is
-    copyrightable especially with multiple people updating this file
-    over time where some of the updates are just done by invoking the
-    generator tool itself.
+So here is where we are:
 
-  - How do you tell a tool that a file contains licensing documentation?
+Files without SPDX identifier:		16410	~78% of total files
 
-    Go and look what license scanners make out of all the various
-    license-rules.rst files.
+Files without any license hint:	         7131   ~43% of !SPDX'ed files
+Files with one license hint:		 6673   ~40% of !SPDX'ed files
+Files with two license hints:            2267   ~13% of !SPDX'ed files
+Files with more than two hints:           339   ~ 2% of !SPDX'ed files
 
-  - ....
+Files with less than 4 lines content:
 
-  Do all scanners have to grow heuristics for ignoring the content past
-  the topmost SPDX License identifier in certain files or for figuring
-  out what might be generated content?
+        0 length:	   33   (some can be removed)
+	1 line:		  276
+	2 lines:	  109
+	3 lines:	  135
 
-You also might need to add information about binary blobs, which
-obviously cannot be part of the binary blobs themself.
+Files without any license hint:
 
-The exclude rules I added are lazy and mostly focussed on spdxcheck, but
-I'm happy to make them more useful and let them carry information about
-the nature of the exclude or morph them into a general scanner info
-which also contains binary blob info and other helpful information. But
-that needs a larger discussion about the format and rules for such a
-file.
+        arch                 774
+	block		       1
+	certs		       2
+	crypto		      10
+	Documentation	    4266
+	drivers		     320
+	fs		      26
+	include		     124
+	init		       0
+	ipc		       0
+	kernel		      14
+	lib		      26
+	mm		       3
+	net		      15
+	samples		       7
+	scripts		      63
+	security	       8
+	sound		       9
+	tools		    1457
+	usr		       0
+	virt		       0
 
-That said, I'm all for clear cut rules, but rules just for the rules
-sake are almost as bad as no rules at all.
+Files with one license hint:
 
-As always you have to apply common sense and look at the bigger picture
-and come up with solutions which are practicable, enforcable and useful
-for the larger eco-system.
+        arch		    1405
+	block		       0
+	certs		       1
+	crypto		       1
+	Documentation	      65
+	drivers		    4369
+	fs		     126
+	include		     356
+	init		       0
+	ipc		       1
+	kernel		      18
+	lib		      35
+	mm		       4
+	net		      69
+	samples		      14
+	scripts		      26
+	security	       0
+	sound		      40
+	tools		     141
+	usr		       1
+	virt		       0
 
-Your goal of having SPDX ids and copyright notices in every file of a
-project is honorable, but impractical for various reasons.
+Files with two license hints:
 
-See above.
+        arch		     731
+	block		       0
+	certs		       0
+	crypto		       3
+	Documentation	      13
+	drivers		    1114
+	fs		      66
+	include		     101
+	init		       0
+	ipc		       0
+	kernel		       0
+	lib		      54
+	mm		       0
+	net		      91
+	samples		      39
+	scripts		       5
+	security	       1
+	sound		      14
+	tools		      35
+	usr		       0
+	virt		       0
 
-Aside of that you cannot replace a full blown license scanner by REUSE
-even if your project is SPDX and Copyright notice clean at the top level
-of a file. You still need to verify that there is no other information
-in a 'clean' file which might be contradicting or supplemental. You
-cannot add all of this functionality to REUSE or whatever.
+Script-able files with reasonable effort:
+
+	No hint:            6501 ~90% of no-hint files
+	One hint:	    5129 ~76% of one-hint files
+	Two hints:	     584 ~25% of two-hint files
+	Total:		   12213 ~75% of !SPDX'ed file
+
+	Remaining:          4197 ~5% of total files
+
+Scancode rules involved:     561
+Scancode rules validated:    117
+
+My plan is to focus on the 'low hanging' fruit of reasonably easy
+script-able files first.
+
+For the files with zero hints that requires a few questions to be answered
+upfront:
+
+   1) What's the approach for files with obviously not copyright-able
+      content:
+
+      - Files which just include other file[s] (one or two lines)
+
+      - Files which have just a more or less useful comment why they
+      	are otherwise empty (one to three lines)
+
+      - Files which just contain a #define FOO and an include of
+        another file to compile the included file with some other
+	functionality (two or three lines)
+
+   2) What's the approach for machine generated files:
+
+      - Primarily kernel configuration files
+
+   3) What's the approach for 'hidden' dot-files like .gitignore:
+
+      Those files are just providing information to tools. The file format
+      is defined by the tool (git, clang, coccinelle....) and the creative
+      content is exactly zero...
+
+   4) What's the approch for binary blobs or other files which cannot carry
+      license information in the file itself?
+
+Which is related to the discussion in this thread:
+
+  https://lore.kernel.org/all/20220516101901.475557433@linutronix.de
+
+The other question for these files with zero hints is which license to
+chose. Sure you can argue that all files w/o any hint fall under the
+project license, but especially the Documentation directory is interesting
+as it's not clear for all of the various content what the preferred and
+assumed license should be. That needs some thoughts and clarifications.
+For the kernel code itself that's not a real question, but the tools
+directory might need some care too.
+
+For the files which have a licensing hint in whatever form, I think
+resuming the work where we left off, i.e. mainly reviewing per scancode
+match rules based patterns, makes a lot of sense.
+
+Based on my cursory validation of those patterns I'm confident that we can
+reach a 95% coverage within a reasonable amount of time.
+
+Finally here is another round of important questions:
+
+  #1 Is there still interest to get this done? The silence on this list
+     after the initial effort is deafening.
+
+  #2 Are there still enough interested and comptent people on this list to
+     handle the legal questions?
+
+  #3 Was there any progress on the outstanding questions on this list where
+     discussion dried out almost 3 years ago?
+
+I'm willing to pull the cart again, but if the interest and support stays
+around zero, I surely have other things to do.
 
 Thanks,
 
-        tglx
+	Thomas

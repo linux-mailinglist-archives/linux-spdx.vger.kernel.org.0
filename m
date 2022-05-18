@@ -2,82 +2,108 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7892A52BD30
+	by mail.lfdr.de (Postfix) with ESMTP id EA91452BD31
 	for <lists+linux-spdx@lfdr.de>; Wed, 18 May 2022 16:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238001AbiERNgp (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 18 May 2022 09:36:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36266 "EHLO
+        id S238288AbiERNrs (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 18 May 2022 09:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238080AbiERNgL (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 18 May 2022 09:36:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B152DFD;
-        Wed, 18 May 2022 06:36:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S238078AbiERNrs (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 18 May 2022 09:47:48 -0400
+X-Greylist: delayed 326 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 18 May 2022 06:47:46 PDT
+Received: from pb-smtp1.pobox.com (pb-smtp1.pobox.com [64.147.108.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083401A6AF2
+        for <linux-spdx@vger.kernel.org>; Wed, 18 May 2022 06:47:45 -0700 (PDT)
+Received: from pb-smtp1.pobox.com (unknown [127.0.0.1])
+        by pb-smtp1.pobox.com (Postfix) with ESMTP id 2BE6413CE79;
+        Wed, 18 May 2022 09:42:16 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=pobox.com; h=message-id
+        :date:mime-version:subject:to:references:from:in-reply-to
+        :content-type:content-transfer-encoding; s=sasl; bh=Tf/g6DpMjQFT
+        xPPhPjRFTGVWe/rvHhMGhSwzc5EgbeE=; b=O5MBuO75dsvUAK4m7LqXfyU47Z1g
+        dGJDaqysRKXgrfe3XFMvNdS8362q2YPCAlj+7YAbiYIbEaB3jybleGV+fJ2OnOA5
+        z6Gcci3RS5hhBpH9nfJ9KLcz51CBxiNHO0hryFmP30Niw1lnXgOhNPquI6jXCLot
+        9hyfW2ZpmZc9UWo=
+Received: from pb-smtp1.nyi.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp1.pobox.com (Postfix) with ESMTP id 2123413CE78;
+        Wed, 18 May 2022 09:42:16 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=lohutok.net;
+ h=message-id:date:mime-version:subject:to:references:from:in-reply-to:content-type:content-transfer-encoding; s=2018-11.pbsmtp; bh=Tf/g6DpMjQFTxPPhPjRFTGVWe/rvHhMGhSwzc5EgbeE=; b=L6CBqGE6F+Oeop4YXrUfhRUVRsMcF+MG6rP62Va6JCufHZRwhlaz/RXh5xFWqCw9i44sqeuVrUTR1N0rp+r7TgvYW4DiMe6pM1CXPx6sX2Da7MdTHyvu5hnUzi4aI/sUuDYdd0cJkura6/dHv9JYIhAuZQnLttNu2+DjbCh2B/o=
+Received: from [10.0.0.38] (unknown [24.186.244.147])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 543C4B82083;
-        Wed, 18 May 2022 13:36:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89616C385A5;
-        Wed, 18 May 2022 13:36:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1652880966;
-        bh=oJgGE/U/600vozHy4AelMqkmeOz+tzQfDwltmuWAQPA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KsBIZPmx/Fm1G53huMfh7NxwlHW6csG8TbCvHk3u8f9DkrUSwAgIXK8V2z8ydyzNL
-         urNz97aVVwDzm+1ewrXeAKM+pLk7domZdR5srRIfnl3nUMY+Gacb8KNKJtHE7PcHCh
-         YXYZjaMQuW75VFu+3bVYIPpzTbC8BKA7lRHLk/4E=
-Date:   Wed, 18 May 2022 15:36:03 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Thomas Gleixner <tglx@linutronix.de>
-Cc:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org,
-        Christoph Hellwig <hch@lst.de>
-Subject: Re: [patch 8/9] scripts/spdxcheck: Exclude dot files
-Message-ID: <YoT2QwOuaQXs17Bk@kroah.com>
-References: <20220516101901.475557433@linutronix.de>
- <20220516102615.884180377@linutronix.de>
- <CANiq72kSqKqoUsiFhg0+a65vc3KPTW4zpt-Dh8geVWUMPkWFwg@mail.gmail.com>
- <875ym5qpw7.ffs@tglx>
+        by pb-smtp1.pobox.com (Postfix) with ESMTPSA id 7C03A13CE77;
+        Wed, 18 May 2022 09:42:15 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+Message-ID: <9ea648b2-3430-bec8-c697-3017283e03b1@lohutok.net>
+Date:   Wed, 18 May 2022 09:42:14 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <875ym5qpw7.ffs@tglx>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: SPDX in the kernel: State of the union
+Content-Language: en-US
+To:     Thomas Gleixner <tglx@linutronix.de>, linux-spdx@vger.kernel.org
+References: <87zgjfka75.ffs@tglx>
+From:   Allison Randal <allison@lohutok.net>
+In-Reply-To: <87zgjfka75.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Pobox-Relay-ID: 541F3942-D6B0-11EC-B65C-5E84C8D8090B-44123303!pb-smtp1.pobox.com
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, May 16, 2022 at 08:43:52PM +0200, Thomas Gleixner wrote:
-> On Mon, May 16 2022 at 16:22, Miguel Ojeda wrote:
-> > On Mon, May 16, 2022 at 3:55 PM Thomas Gleixner <tglx@linutronix.de> wrote:
-> >>
-> >> None of these files
-> >>
-> >>      .clang-format, .cocciconfig, .get_maintainer.ignore, .gitattributes,
-> >>      .gitignore, .mailmap
-> >>
-> >> have copyrightable content. They are configuration files which use a
-> >> publicly documented format.
-> >
-> > Should this files remove their SPDX-License-Identifier? If yes, we
-> > should do that for `.clang-format`.
-> >
-> > As another suggestion, we should check that the ignored files actually
-> > do _not_ have the `SPDX-License-Identifier` (i.e. so the above case
-> > would trigger a diagnostic).
+On 5/17/22 7:31 PM, Thomas Gleixner wrote:
 > 
-> Good questions. I'm happy to drop this patch for now until this
-> discussion has been settled.
+> Finally here is another round of important questions:
+> 
+>   #1 Is there still interest to get this done? The silence on this list
+>      after the initial effort is deafening.
 
-I've now taken all patches in this series except for this one.
+This list had 210 messages in 2021, and 64 so far in 2022, which may be
+silence compared to LKML, but is reasonably respectable ongoing traffic
+for a small cleanup project.
 
-thanks for doing this work,
+I'm still reviewing all patches as they flow through this list. I
+haven't been actively marking them as reviewed-by me, but I would raise
+any problems I saw, and I've seen others raising problems.
 
-greg k-h
+So, yes, there's still interest, and if you want to start generating
+more patches, I'll happily contribute to the review process.
+
+I actually thought you just ran out of easily scriptable fixes, but it's
+nice to hear that there's still substantially more we can do with
+scancode rules.
+
+>   #2 Are there still enough interested and comptent people on this list to
+>      handle the legal questions?
+
+I think so, yes. If we've lost some of our reviewers, we can recruit new
+ones.
+
+With the auto-generated patches, you will probably need to rate-limit
+like you did in 2019, since the tools can generate patches far more
+rapidly than the humans can review them.
+
+>   #3 Was there any progress on the outstanding questions on this list where
+>      discussion dried out almost 3 years ago?
+
+ISTR reaching conclusions on all the questions before, but if there are
+some lingering, we can revive them. And, you raised good new questions too.
+
+> I'm willing to pull the cart again, but if the interest and support stays
+> around zero, I surely have other things to do.
+
+If you have the time and energy to do another burst, go for it. I don't
+know that we'll ever get to 100%, but every file we clean up is helpful,
+so it's worth continuing.
+
+Allison

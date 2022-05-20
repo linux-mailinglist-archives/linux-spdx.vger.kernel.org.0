@@ -2,80 +2,109 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9CD52F1E8
-	for <lists+linux-spdx@lfdr.de>; Fri, 20 May 2022 19:54:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 783F252F3D0
+	for <lists+linux-spdx@lfdr.de>; Fri, 20 May 2022 21:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352100AbiETRyF (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 20 May 2022 13:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34692 "EHLO
+        id S1353246AbiETTcJ (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 20 May 2022 15:32:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352175AbiETRyE (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 20 May 2022 13:54:04 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D939187DB4
-        for <linux-spdx@vger.kernel.org>; Fri, 20 May 2022 10:54:03 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id j2so15510050ybu.0
-        for <linux-spdx@vger.kernel.org>; Fri, 20 May 2022 10:54:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iApAdyBX8ilcGDG8gvIwdHm4qN+IMFua5cISFSS7Cfc=;
-        b=B+rcO9Cf3hWEhVg8pGKEqlPG/bloz6ugIfqlnsZUR4YGABayH9/9wpTXUXNuT7hbWR
-         2WhsO+0vg5oPL52Cv6BkQLugaiF2fg54BlMy7gwJqJBLLiqDCt9SjBFm+CLxZU/R1ydV
-         c4VTCsH2JXA+QDMzte+jLWNKo8xtir4fRhguk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iApAdyBX8ilcGDG8gvIwdHm4qN+IMFua5cISFSS7Cfc=;
-        b=sf66FL1X0ZbezRWOJziQbukqRA1oHEQEXHu9wjWafbkhj+NRCESQHrv9Xy1znV9ZXw
-         ZvN/F+mviXlde4vGQfbXk/x1gIcO4SUdO5a323E+C8uGiRtjQrLJ1ZAL1A3Ungifzx3A
-         Ak/LfT8ipJuiC5L07KShle/cafqtmzxpfDkvFgtP6i2nLKD4cUvZZ3eOP4rmFtNoem3N
-         Dzg2eXlg86EiYI6QKcuIp+zFKBH9hka+rKh75ZxZB0w8pQU2DbmOkHk4ihOSqtsKigUJ
-         VJqibexgmyQ7+BSE3r3fuMFV+D5V6kidlQZsZjn+WQlxHwojurR0xqLOXn8MqxtMi6Od
-         nv+g==
-X-Gm-Message-State: AOAM530qJhD71pLjguyUYLAgu0gH01zGlxxC3gUTDNGfVFCubhMnKBiA
-        yfM13KMGYt2aESDkD8hOJq+Nmj7raTpA/9Q29Es9wFLC44EZFw==
-X-Google-Smtp-Source: ABdhPJwIhh8yTz4dzzAk7wj2hCgyY+1vKToTj62xyVZw/o722sTV3hniOTX3c5D6FummiSKEVhTO8GlyC0kJptSJLks=
-X-Received: by 2002:a25:7695:0:b0:64e:b01b:c94c with SMTP id
- r143-20020a257695000000b0064eb01bc94cmr11168738ybc.35.1653069242275; Fri, 20
- May 2022 10:54:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220518132345.40615-1-Jason@zx2c4.com> <87v8u0i0vq.ffs@tglx>
-In-Reply-To: <87v8u0i0vq.ffs@tglx>
-From:   Kate Stewart <kstewart@linuxfoundation.org>
-Date:   Fri, 20 May 2022 12:53:50 -0500
-Message-ID: <CAG_66ZSHrHpXu7mJ_-67QgdL2Ubrxg2BAtn3n3YECdHYDHtSDg@mail.gmail.com>
-Subject: Re: [PATCH] siphash: add SPDX tags as sole licensing authority
-To:     Thomas Gleixner <tglx@linutronix.de>
-Cc:     "Jason A. Donenfeld" <Jason@zx2c4.com>,
+        with ESMTP id S1353236AbiETTcH (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 20 May 2022 15:32:07 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA70195792;
+        Fri, 20 May 2022 12:32:06 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id E1A455C017C;
+        Fri, 20 May 2022 15:32:05 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 20 May 2022 15:32:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1653075125; x=1653161525; bh=cqQSed8XRQ
+        7quGXTmZG7RLWpQtZBLF7WVLzBsujlnyM=; b=JqpGUZk+G/Wyj6ALN1hhl1O34f
+        eY2tYK22JEuiz2W8GJroTKWb3sqJy9vMYsknrOmG5xk4AIonNKjbs+vGpwiYKM0Q
+        QSLkdpk/zp7hXdG69qGeCicfg3DQG1Zi+J3X9crmAZhdw8yj+p+Rho9dJdxMyzd9
+        BDDzjDiUQ9EbrOgV8GwJuPNVdJc95MhnKqAC9/erdswx2DPYbzr6YToQk8OLGvxW
+        ZZf6OD0F0iRoWGc/zqLwJrC4U7hxnkGddcmT53WhbTsTZChnMt1j1OhjFPDgJk1A
+        /Mlq1YeYTnrk6DWfvmx4wu8zy59+HQkUU3jxJDp1CXfi6DrW8G5osVNdaFLQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1653075125; x=1653161525; bh=cqQSed8XRQ7quGXTmZG7RLWpQtZB
+        LF7WVLzBsujlnyM=; b=sExieXHlgyXUBfalogiNEhrWSmHaHLoPpgSbkLE8fkk4
+        zrMgxY8NZjNZhSspKwhkstQFeaF2R2sF1R6J4XF9cRK7Q1yHMBUWZzVRg8akIWgE
+        IB6qwJG5uuXqm9Zh7AYsQliXPCZk9lUN4MOzyQ1LmnIuIXLLlFYK49AFO0tcsy0Q
+        dGH6TwgT20trzfpxPFAsZa0i9Pd8Wuj+clZMpAe+7snOlLzV7eWJyBissBFrkJMM
+        OtplYyskmlcbT8FQxQsLBm/N8reHL0LXfNv54jU7AUtcjzCwMjFWefB2CONWnGrZ
+        IQzVLmdo/9GORt/IG9qzS9i15FEghGMT+IZJIfxhKA==
+X-ME-Sender: <xms:teyHYlWeMVZHQYPdgbNHT68DLg13AJqZPkM0ReYiMb-sbVlMVWzSzw>
+    <xme:teyHYlnksjvrHHkIDJzlHxqqaqcDgEF4rCOpk9x-UUqZQSE36n-PgEgmV8gFzpf5K
+    1P7QV4U9L-V5w>
+X-ME-Received: <xmr:teyHYhaIv8tefRzOlsYDxZOQdWzIoKbmmBbJZNoTMcJ1h6uKe6XrgD7khJU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrieefgddufeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
+    ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepheegvd
+    evvdeljeeugfdtudduhfekledtiefhveejkeejuefhtdeufefhgfehkeetnecuvehluhhs
+    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
+    hhrdgtohhm
+X-ME-Proxy: <xmx:teyHYoUh_KE7MOwh7dcQX7BN18O79NZhIdhDzzvhoYKjLSnBJQ08og>
+    <xmx:teyHYvmHV_f1oLdbPpaJu9UlMy6c1XHLmSC1dbkBdkmH-jK0yviKDQ>
+    <xmx:teyHYlc34bxJvJeeL1NpKqng4_UmrXMnP76ovzRGdjkhsUbqXHxmUg>
+    <xmx:teyHYh6iWFzbR7F2AyPZMyoz91UttD47fr8senPQKbCLFWMWZBeCRw>
+Feedback-ID: i787e41f1:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 20 May 2022 15:32:04 -0400 (EDT)
+Date:   Fri, 20 May 2022 21:21:29 +0200
+From:   Greg KH <greg@kroah.com>
+To:     Kate Stewart <kstewart@linuxfoundation.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        "Jason A. Donenfeld" <Jason@zx2c4.com>,
         LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH] siphash: add SPDX tags as sole licensing authority
+Message-ID: <YofqOfHNKKRoTds5@kroah.com>
+References: <20220518132345.40615-1-Jason@zx2c4.com>
+ <87v8u0i0vq.ffs@tglx>
+ <CAG_66ZSHrHpXu7mJ_-67QgdL2Ubrxg2BAtn3n3YECdHYDHtSDg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAG_66ZSHrHpXu7mJ_-67QgdL2Ubrxg2BAtn3n3YECdHYDHtSDg@mail.gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Thanks for this bit of cleanup Jason!   Much appreciated.
-
-On Fri, May 20, 2022 at 12:12 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->
-> On Wed, May 18 2022 at 15:23, Jason A. Donenfeld wrote:
-> > The text "dual BSD/GPLv2 license" is somewhat ambiguous, and moving this
-> > over to SPDX is overdue. This commit adds SPDX tags to the relevant
-> > files and clarifies that it's GPLv2 only and 3-clause BSD. It also
-> > removes the old text, so that the SPDX tags are the only source of the
-> > information.
+On Fri, May 20, 2022 at 12:53:50PM -0500, Kate Stewart wrote:
+> Thanks for this bit of cleanup Jason!   Much appreciated.
+> 
+> On Fri, May 20, 2022 at 12:12 PM Thomas Gleixner <tglx@linutronix.de> wrote:
 > >
-> > Suggested-by: Thomas Gleixner <tglx@linutronix.de>
-> > Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
->
-> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+> > On Wed, May 18 2022 at 15:23, Jason A. Donenfeld wrote:
+> > > The text "dual BSD/GPLv2 license" is somewhat ambiguous, and moving this
+> > > over to SPDX is overdue. This commit adds SPDX tags to the relevant
+> > > files and clarifies that it's GPLv2 only and 3-clause BSD. It also
+> > > removes the old text, so that the SPDX tags are the only source of the
+> > > information.
+> > >
+> > > Suggested-by: Thomas Gleixner <tglx@linutronix.de>
+> > > Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+> >
+> > Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+> 
+> Reviewed-by: Kate Stewart <kstewart@linuxfoundation.org>
 
-Reviewed-by: Kate Stewart <kstewart@linuxfoundation.org>
+Thanks all, I queued this up before the additional review comments, next
+time I'll be slower :)
+
+greg k-h

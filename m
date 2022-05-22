@@ -2,109 +2,119 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E435952F3C9
-	for <lists+linux-spdx@lfdr.de>; Fri, 20 May 2022 21:32:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 937CC5301A4
+	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 09:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353235AbiETTcG (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 20 May 2022 15:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39778 "EHLO
+        id S236124AbiEVHhB (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 22 May 2022 03:37:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353229AbiETTcF (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 20 May 2022 15:32:05 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54267193239;
-        Fri, 20 May 2022 12:32:04 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id AD8845C0164;
-        Fri, 20 May 2022 15:32:03 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Fri, 20 May 2022 15:32:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1653075123; x=1653161523; bh=cqQSed8XRQ
-        7quGXTmZG7RLWpQtZBLF7WVLzBsujlnyM=; b=gRZUUSOFsuPiBr24KzABbt2bcj
-        CFXq/Ek6joLhQzxI0jX4tk8uw3937rE5OmyEXfcPC/4Ox7VtHlnGOh/gq2jFjSQ0
-        4J8q6RKDKONPUa3zBGxvpWU0id8ou1xIf/RUonbkWajgfCLaGjRPBgNQKls+9j2o
-        +dt5CtOldICJLbGQIElirOraW2y2DaPIRKpTi8EfKHSizyvMERjCHW8bWeB4xnIC
-        mj11CHF2RKeRHrgSWMynxAodt7pFWD9Jo8yeEXCnS9VfGR18vrVGF2Zv2Zy9HSeP
-        J0iilV5II6QMZlDnCL7OLarZjTFaoNFkGVyhQ6l9nanMpRsEkgzQjO66E6Hw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1653075123; x=1653161523; bh=cqQSed8XRQ7quGXTmZG7RLWpQtZB
-        LF7WVLzBsujlnyM=; b=hLE0wHjbuUQxnvrQCE/+XMrXaX91/+u9f+vM7HW3uUHk
-        ewHDM1xFoG2aKlJmrf9CWZlQ8q7VwB3cT+Kf09mYrVpqs7QFrfglvapzXmXuHh59
-        KDVezepwQlK7ZtBt9vnQ2awNreI4lvVq7lD8jSoJsno46b5fZaWy1sUVV+yaY6my
-        g2UaVbwhy8eqZxdZW6ce6qzxzd7WwKEPQTmSNfb9LK22nA1AlsWfwUaPWyw9YZLb
-        GGN6yEgvNmVJs5+gJ6DEVjH/KyZB5gW7tLD8BGa8SjHngaCiKE0ihVtFFEhxp2hW
-        1iNbjWvBMRgk3P01SMyBObqRrq0ctPhaGGUiJ2EI1A==
-X-ME-Sender: <xms:s-yHYr8sbt_ahioDM-gteqI-lLSXBeBZCGxmRlankpuIEgRv_O2dvw>
-    <xme:s-yHYnvDJkgfWvUl1w2GEz_IyABmpWN2oDIsaClq5lI0TYw7ubfM-Oc8r3qYhx_PI
-    hP5kV_iFgKsdA>
-X-ME-Received: <xmr:s-yHYpAV5mKyAyk6RqN8nzzu4d3oEfJQMB5rkYLuliL8h5P6iuvvwy8kCA4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrieefgddufeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
-    ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepheegvd
-    evvdeljeeugfdtudduhfekledtiefhveejkeejuefhtdeufefhgfehkeetnecuvehluhhs
-    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
-    hhrdgtohhm
-X-ME-Proxy: <xmx:s-yHYnf6-djJmDCIYHVyBWqL9OIapmAZUu4VtSf2IqVqZ2H7C95fSg>
-    <xmx:s-yHYgNTbk2wWbyxEpb1NP9HbBOoI61lCBS3ZgCCdLHuU7ULYTfB7A>
-    <xmx:s-yHYpmmOLid0Ywfqw8q58a1aQef-Y8DdxdUj6iVlg2pyynD49Vmcg>
-    <xmx:s-yHYhiCheU7ddNTgOwYBiLekJkYuabep5fGSuMlhjtaNPgkS2Ldrw>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 20 May 2022 15:32:02 -0400 (EDT)
-Date:   Fri, 20 May 2022 21:21:29 +0200
-From:   Greg KH <greg@kroah.com>
-To:     Kate Stewart <kstewart@linuxfoundation.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        "Jason A. Donenfeld" <Jason@zx2c4.com>,
-        LKML <linux-kernel@vger.kernel.org>, linux-spdx@vger.kernel.org
-Subject: Re: [PATCH] siphash: add SPDX tags as sole licensing authority
-Message-ID: <YofqOfHNKKRoTds5@kroah.com>
-References: <20220518132345.40615-1-Jason@zx2c4.com>
- <87v8u0i0vq.ffs@tglx>
- <CAG_66ZSHrHpXu7mJ_-67QgdL2Ubrxg2BAtn3n3YECdHYDHtSDg@mail.gmail.com>
+        with ESMTP id S235982AbiEVHhB (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 03:37:01 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD0923CA61;
+        Sun, 22 May 2022 00:36:59 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id gi33so14343169ejc.3;
+        Sun, 22 May 2022 00:36:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=WXPZMIuDMh3nH2dL31GT3vk5sClUvSn8jN8RcdsCbL4=;
+        b=k91qRNUzU0dwmpRuQtkAG3m/N0VPpXanYb3QoApiKq42cFZT4HQL5JmtaVxgdYhlBu
+         MqX+fzyKkAde9IqUMQ0ovn6zF3DCuzqSl+F5AuJTnBj1MReyWEs9yN57f6OyO4qogsD2
+         LPbJGJ0hX0TxPvAR1qJMdENQajTcq/1bF2wGNhtkxjTqzB4Wu43kDbSZoMjz03+w7IQ9
+         vLe4QTWG+wPpI4jcChvpgtHBbmzd3GPKw/PLATBgy2wuK+52Nt9U0kDxRSpQ+LstVk5J
+         PFTRxCRtvjj1l436l5vtgAVlthegT4+iCUwVWPVjwTOxrB6fxEFMgY+oERNLFI+K/aIO
+         D5SQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=WXPZMIuDMh3nH2dL31GT3vk5sClUvSn8jN8RcdsCbL4=;
+        b=BAD5nx4NDmBzVvU1AlTQshWE6eSUGaQ6o2e65PxjXpvIdylDxqR1tx1OeTU0AMoKxc
+         k1RAKhGOQR4fpuJSS73BQosdXNSzxfaky407lndvqmB69lvuWxLmVAXuCLqWQzsSqJXP
+         SgjqR8PBst/uEoUo9Cn0caMMhtxa62UTKaO+iYV+hMGZf+bxpGurcLfHJM6nNZtUB16E
+         kspyEb9kkPK1AoJvwKMDLfyWUtopuyI9mJyPX4X8NWAmCSr6n9Ye5nqwinhs2K+1aHeO
+         +r7CMES5hfgMzCoiye+IJ3QBnRUsFxc7KBgiVk9BkHwLonhVmXiHyUGthQOXA8J1Jhai
+         KLlw==
+X-Gm-Message-State: AOAM530+vPVXN5H4Gpov6lktsxlqJTWR0ZaEog96lbXAvNC0hyIIvn8v
+        gxwz+5N0LIHW+8Q9FiJPtkvEISy0YTfipw==
+X-Google-Smtp-Source: ABdhPJx8/8naAzFBDiHnI0FTe8FKv3lYnIyerQW26X4ehpEB/p2aGjgHgEbyP6lICoR5V1gtsekP1Q==
+X-Received: by 2002:a17:907:7283:b0:6f4:ff4f:1b6e with SMTP id dt3-20020a170907728300b006f4ff4f1b6emr14752427ejc.344.1653205018257;
+        Sun, 22 May 2022 00:36:58 -0700 (PDT)
+Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
+        by smtp.gmail.com with ESMTPSA id s27-20020a170906221b00b006f3ef214dbdsm4911430ejs.35.2022.05.22.00.36.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 May 2022 00:36:57 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     linux-spdx@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [patch 09/10] clocksource/drivers/timer-sun4i: Convert to SPDX identifier
+Date:   Sun, 22 May 2022 09:36:56 +0200
+Message-ID: <5567157.DvuYhMxLoT@jernej-laptop>
+In-Reply-To: <20220510171254.908144392@linutronix.de>
+References: <20220510171003.952873904@linutronix.de> <20220510171254.908144392@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAG_66ZSHrHpXu7mJ_-67QgdL2Ubrxg2BAtn3n3YECdHYDHtSDg@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Fri, May 20, 2022 at 12:53:50PM -0500, Kate Stewart wrote:
-> Thanks for this bit of cleanup Jason!   Much appreciated.
+Dne torek, 10. maj 2022 ob 19:24:49 CEST je Thomas Gleixner napisal(a):
+> The license information clearly states GPL version 2 only. The extra text
+> which excludes warranties is an excerpt of the corresponding GPLv2 clause
+> 11.
 > 
-> On Fri, May 20, 2022 at 12:12 PM Thomas Gleixner <tglx@linutronix.de> wrote:
-> >
-> > On Wed, May 18 2022 at 15:23, Jason A. Donenfeld wrote:
-> > > The text "dual BSD/GPLv2 license" is somewhat ambiguous, and moving this
-> > > over to SPDX is overdue. This commit adds SPDX tags to the relevant
-> > > files and clarifies that it's GPLv2 only and 3-clause BSD. It also
-> > > removes the old text, so that the SPDX tags are the only source of the
-> > > information.
-> > >
-> > > Suggested-by: Thomas Gleixner <tglx@linutronix.de>
-> > > Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
-> >
-> > Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+> So the SPDX identifier covers it completely.
 > 
-> Reviewed-by: Kate Stewart <kstewart@linuxfoundation.org>
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Samuel Holland <samuel@sholland.org>
+> Cc: linux-sunxi@lists.linux.dev
 
-Thanks all, I queued this up before the additional review comments, next
-time I'll be slower :)
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-greg k-h
+Best regards,
+Jernej
+
+> ---
+>  drivers/clocksource/timer-sun4i.c |    5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+> 
+> --- a/drivers/clocksource/timer-sun4i.c
+> +++ b/drivers/clocksource/timer-sun4i.c
+> @@ -1,3 +1,4 @@
+> +// SPDX-License-Identifier: GPL-2.0
+>  /*
+>   * Allwinner A1X SoCs timer handling.
+>   *
+> @@ -8,10 +9,6 @@
+>   * Based on code from
+>   * Allwinner Technology Co., Ltd. <www.allwinnertech.com>
+>   * Benn Huang <benn@allwinnertech.com>
+> - *
+> - * This file is licensed under the terms of the GNU General Public
+> - * License version 2.  This program is licensed "as is" without any
+> - * warranty of any kind, whether express or implied.
+>   */
+> 
+>  #include <linux/clk.h>
+
+
+
+

@@ -2,46 +2,55 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D545303B7
-	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 17:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA8F5303BF
+	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 17:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239795AbiEVPEp (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 22 May 2022 11:04:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
+        id S1347731AbiEVPGt (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 22 May 2022 11:06:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiEVPEo (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 11:04:44 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF3AB33A2D
-        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 08:04:43 -0700 (PDT)
+        with ESMTP id S230290AbiEVPGr (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 11:06:47 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97BAF34BAA;
+        Sun, 22 May 2022 08:06:46 -0700 (PDT)
 From:   Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1653231882;
+        s=2020; t=1653232005;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=KX+mkF27ADJSA/kTifuX46V/RyTrsBcws6f+Xb9NBSs=;
-        b=sMs1Z1q+JrDOQLpQmKPoR7tf48wWEuZQ/2XZt6UwmfP9xKCa9u5DKEw8a8Uk6hiBUiVXDZ
-        SSmkP893v4NSsG42EEU6XpuxkkmZcJ3dcEOEWmomVcd3emzAWvQwk+n7JuKxHJPeJixEEi
-        jl0u8l/42AaFE1yiTa9HIJBDl/zADn2wUh10gNxsU8HlsQOQdtmxvSDDVEc01vjA1Ckk5e
-        22cnxM4Mci75QUY6sqOL73a9AV0ylbhi14gk1jy5qFge9YbKMvuoM8WjGv0wJQwVPGkkUh
-        1SgvR/yCgH6yPt85EmP+D9uuxR27pSeQzpJconmNRjsiMMlH9pS5QUfwsiL5rw==
+         in-reply-to:in-reply-to:references:references;
+        bh=WQJxoIOG9BwCxxHhxQMhF2ZBIhG1CDWoR7s9LjjPX0Y=;
+        b=W7okeNoZ6TeXYA9CiZ8DUMjWTYHZ++NYvSYoc6xB+vqeT9ZfbQQZDoDDUFvguvDe+eY3YX
+        uqSKcrAd279SjCUAUHbgFYHI5S/FYuERBof46BnwS8+zH48h/V6K65hPCQKYATHwJ/EXXe
+        BKprNgYX9lo5HgRDyfYHDsGEJoWkT2Xu3RobDM7HJ8jW6fr0vJ024EHDZ5Y26ZvJIWNLf4
+        9p90Lb7HcabJTEVg/QSOgijHEgrYwQt1MqsRJ6a1dwLTSYybWiRy8/TrZgQSal64A2mJfx
+        FAci8rRLfFNTFpD1X6PU72+CNcNZyMmBk5qiuRJvW1SeY4g4Y02alsjMrxsGdw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1653231882;
+        s=2020e; t=1653232005;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=KX+mkF27ADJSA/kTifuX46V/RyTrsBcws6f+Xb9NBSs=;
-        b=jwVyOkDe5UqZXpTxcAtRVdedpC2jAU4Ul1r4aY/Qj4U570HUuST4XqQNRzRZGPY8UYZzry
-        oQ+zTNyaGVku6bAw==
-To:     Dave Jones <davej@redhat.com>
-Cc:     linux-spdx@vger.kernel.org
-Subject: list_debug, pcmcia: License cleanup
-Message-ID: <165322121191.3770149.399639028538521068.tglx@xen13>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+         in-reply-to:in-reply-to:references:references;
+        bh=WQJxoIOG9BwCxxHhxQMhF2ZBIhG1CDWoR7s9LjjPX0Y=;
+        b=W/lqxyrm75peM69EweXkxgQFSW4gzSeg0W15Y0rs3B6x5LRaGKDp9wBeI/DRQNI17aXPN2
+        yVde12xMql8cddDQ==
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Luis Chamberlain <mcgrof@kernel.org>, tj@kernel.org,
+        akpm@linux-foundation.org, jeyu@kernel.org, shuah@kernel.org,
+        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        keescook@chromium.org, rostedt@goodmis.org, minchan@kernel.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 3/6] selftests: add tests_sysfs module
+In-Reply-To: <YopM5XGMdqVCU+bL@kroah.com>
+References: <20211029184500.2821444-1-mcgrof@kernel.org>
+ <20211029184500.2821444-4-mcgrof@kernel.org> <Yao3vtSKBKLyQY1E@kroah.com>
+ <87fsl1iqg0.ffs@tglx> <YopM5XGMdqVCU+bL@kroah.com>
+Date:   Sun, 22 May 2022 17:06:44 +0200
+Message-ID: <87czg5ip2z.ffs@tglx>
 MIME-Version: 1.0
-Date:   Sun, 22 May 2022 17:04:41 +0200 (CEST)
+Content-Type: text/plain
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -52,43 +61,25 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dave!
+On Sun, May 22 2022 at 16:47, Greg KH wrote:
+> On Sun, May 22, 2022 at 04:37:19PM +0200, Thomas Gleixner wrote:
+>> On Fri, Dec 03 2021 at 16:29, Greg KH wrote:
+>> 
+>> While I agree that we want to keep the number of licenses as small as
+>> possible, we cannot really dictate which dual licensing options a
+>> submitter selects unless the license is GPL-2.0-only incompatible, which
+>> copyleft-next is not.
+>> 
+>> Can we just get over this, add the license with the SPDX identifier and
+>> move on?
+>
+> From what I recall, I had technical reasons I didn't take this series,
+> but that was a long time ago and I would be glad to review it again if
+> it were rebased and resubmitted after the next merge window is closed.
 
-As you might know we are working on cleaning up the licensing mess in the
-kernel and convert it to SPDX license identifiers as the only source of
-license information.
-
-Archaeology found unspecific GPL license references, which have been
-authored by you.
-
-1) released under the general public license (gpl)
-
-   lib/list_debug.c
-
-
-2) this code is released under the gnu general public license (gpl) this
-   software is provided as is and any express or implied warranties
-   including but not limited to the implied warranties of merchantability
-   and fitness for a particular purpose are disclaimed in no event shall
-   the author be liable for any direct indirect incidental special
-   exemplary or consequential damages (including but not limited to
-   procurement of substitute goods or services loss of use data or profits
-   or business interruption) however caused and on any theory of liability
-   whether in contract strict liability or tort (including negligence or
-   otherwise) arising in any way out of the use of this software even if
-   advised of the possibility of such damage
-
-   drivers/char/pcmcia/synclink_cs.c
-
-     https://git.kernel.org/pub/scm/linux/kernel/git/tglx/history.git/commit/=
-?id=3D61e17e546cebe
-
-Can you please either send cleanup patches for the affected files or
-indicate which GPLv2 variant you had in mind and I run it through my
-cleanup machinery.
+The license addition and the SPDX identifier cleanup should be seperated
+from the new test code which was part of the series.
 
 Thanks,
 
-	Thomas
-
-
+        tglx

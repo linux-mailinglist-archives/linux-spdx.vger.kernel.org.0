@@ -2,47 +2,46 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 297195303AA
-	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 16:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D545303B7
+	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 17:04:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244894AbiEVOzC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 22 May 2022 10:55:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54972 "EHLO
+        id S239795AbiEVPEp (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 22 May 2022 11:04:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347589AbiEVOzB (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 10:55:01 -0400
+        with ESMTP id S230290AbiEVPEo (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 11:04:44 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896E117AA7
-        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 07:55:00 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF3AB33A2D
+        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 08:04:43 -0700 (PDT)
 From:   Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1653231299;
+        s=2020; t=1653231882;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding;
-        bh=fInSg1LFJH1sqoqptTSkfwdgcx305i3Xh8tCBmNjD0g=;
-        b=vMMNqu36Kw8rt4f91APhGNBz/s2hN683YQ0o4qpIvMyZX/HzMxjVt3OfJz57R8W9+bNLQ8
-        qx7SgeWxTAm6GmudpbgPAa6sxYBNHRGVx4FgYM9x8qR4+jjC1vqAixnmCF0oaEE9bdBWoh
-        bvDizOT2sFd3slm3YRF95rZBWo26qeL/YGUvllpXIFeXIa5uPjDsIZTCEAu4IUrRdNWrl/
-        Tx+Fst/sZHdDCG33Gpz/olJGQzKG99VtgfYXA1rmfhKXCQNIxjjdkBVzRB+Y+CKMOOdkkm
-        PsoHos7m9PMTfmPzud6f1f0tl2gEPEDJh8I9r0PTtcsgAs1LP8WMwUFB68BWFQ==
+        bh=KX+mkF27ADJSA/kTifuX46V/RyTrsBcws6f+Xb9NBSs=;
+        b=sMs1Z1q+JrDOQLpQmKPoR7tf48wWEuZQ/2XZt6UwmfP9xKCa9u5DKEw8a8Uk6hiBUiVXDZ
+        SSmkP893v4NSsG42EEU6XpuxkkmZcJ3dcEOEWmomVcd3emzAWvQwk+n7JuKxHJPeJixEEi
+        jl0u8l/42AaFE1yiTa9HIJBDl/zADn2wUh10gNxsU8HlsQOQdtmxvSDDVEc01vjA1Ckk5e
+        22cnxM4Mci75QUY6sqOL73a9AV0ylbhi14gk1jy5qFge9YbKMvuoM8WjGv0wJQwVPGkkUh
+        1SgvR/yCgH6yPt85EmP+D9uuxR27pSeQzpJconmNRjsiMMlH9pS5QUfwsiL5rw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1653231299;
+        s=2020e; t=1653231882;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding;
-        bh=fInSg1LFJH1sqoqptTSkfwdgcx305i3Xh8tCBmNjD0g=;
-        b=XtqNpvEkXs0Q73Z1jQtHuu35Sr4WHeVuRJLA05UrUvvY6FJebFUfT9wXuQkYzwr4aOCvtc
-        4KT2+H6TDDvq26Bw==
-To:     Tom Zanussi <zanussi@kernel.org>,
-        Karim Yaghmour <karim.yaghmour@opersys.com>
+        bh=KX+mkF27ADJSA/kTifuX46V/RyTrsBcws6f+Xb9NBSs=;
+        b=jwVyOkDe5UqZXpTxcAtRVdedpC2jAU4Ul1r4aY/Qj4U570HUuST4XqQNRzRZGPY8UYZzry
+        oQ+zTNyaGVku6bAw==
+To:     Dave Jones <davej@redhat.com>
 Cc:     linux-spdx@vger.kernel.org
-Subject: relay: License cleanup
-Message-ID: <165322122630.3770149.12589163038624151820.tglx@xen13>
+Subject: list_debug, pcmcia: License cleanup
+Message-ID: <165322121191.3770149.399639028538521068.tglx@xen13>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Date:   Sun, 22 May 2022 16:54:58 +0200 (CEST)
+Date:   Sun, 22 May 2022 17:04:41 +0200 (CEST)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -53,7 +52,7 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Tom, Karim!
+Dave!
 
 As you might know we are working on cleaning up the licensing mess in the
 kernel and convert it to SPDX license identifiers as the only source of
@@ -62,9 +61,27 @@ license information.
 Archaeology found unspecific GPL license references, which have been
 authored by you.
 
-1) this file is released under the gpl
+1) released under the general public license (gpl)
 
-   kernel/relay.c
+   lib/list_debug.c
+
+
+2) this code is released under the gnu general public license (gpl) this
+   software is provided as is and any express or implied warranties
+   including but not limited to the implied warranties of merchantability
+   and fitness for a particular purpose are disclaimed in no event shall
+   the author be liable for any direct indirect incidental special
+   exemplary or consequential damages (including but not limited to
+   procurement of substitute goods or services loss of use data or profits
+   or business interruption) however caused and on any theory of liability
+   whether in contract strict liability or tort (including negligence or
+   otherwise) arising in any way out of the use of this software even if
+   advised of the possibility of such damage
+
+   drivers/char/pcmcia/synclink_cs.c
+
+     https://git.kernel.org/pub/scm/linux/kernel/git/tglx/history.git/commit/=
+?id=3D61e17e546cebe
 
 Can you please either send cleanup patches for the affected files or
 indicate which GPLv2 variant you had in mind and I run it through my
@@ -73,4 +90,5 @@ cleanup machinery.
 Thanks,
 
 	Thomas
+
 

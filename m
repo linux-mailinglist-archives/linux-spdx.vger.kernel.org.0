@@ -2,73 +2,52 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A870D530514
-	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 20:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 001F253051B
+	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 20:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241474AbiEVSFG (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 22 May 2022 14:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39138 "EHLO
+        id S235686AbiEVSNO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 22 May 2022 14:13:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232223AbiEVSFF (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 14:05:05 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 63BC235AA8
-        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 11:05:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1653242701;
+        with ESMTP id S234665AbiEVSNO (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 14:13:14 -0400
+Received: from galois.linutronix.de (unknown [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9038139B9E
+        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 11:13:12 -0700 (PDT)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1653243176;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=nb/Q1TTgqPNzREeY2SNCLbuEoHdqTlZbsx1pwWEIsRg=;
-        b=ckk11ru+WFjtTuhtb8XCY/vn0Ck7tq3mh9uVmHUd0hF+nffaFkHEA5bZWsbx/HYdT8cbY9
-        PGF2WeIYZ3WgelKw3pMw9amnjzZB8YUpMFeaWuoEwWKqvOdLOhm4nZSK783GBmMiDp/xY6
-        REg3pYTQYq/PEPS8uGFjhI/rgZEDDiE=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-589-KiMtACKeNS2c_7ucKNGGZA-1; Sun, 22 May 2022 14:04:59 -0400
-X-MC-Unique: KiMtACKeNS2c_7ucKNGGZA-1
-Received: by mail-qv1-f70.google.com with SMTP id a1-20020a056214130100b00456549a0589so9617263qvv.2
-        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 11:04:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nb/Q1TTgqPNzREeY2SNCLbuEoHdqTlZbsx1pwWEIsRg=;
-        b=xKWbeggSWmddog3dcfPDSYdouaYAJfp9FW2YpVemSVzHsv33SPIniTAhavyFJCkS1e
-         vhv52NIlzX6GBY1sJpPt8ZO3C7Ckg4b6tskpsYjUWRPQHJgodq1Y3qirKYYVOwcnzYTB
-         CU24rhWsCIkP/4ePMMfIfRcSqGVLSi8gErG/9+QFpm/0/DbJgujkEO9uikGSl3mAGSID
-         k9rpX9Kh+MFSBDM0M7azSs9SsxJHDmtEI73kAeHglONgSuf3XF360QHMNKaXe+LFsIbX
-         uya5OqDPuy9s5+OGbxZvKKsUFhWdodUPyOZanXKiL4dzH7YsUnEkTUzvXPrX20FIle4v
-         iGFg==
-X-Gm-Message-State: AOAM531irSpqwisd9czF5FothLVmca7GmxKK9hTrETeSf7AAqtUiE5pP
-        pEgoAEVZDoUebOXZQz3BMAUsdtMEpvJNkPQTZ4pBQoMNgjsNwPK5xyZInMgKEo+MCDyCiEagr6k
-        lPN6+WhnG9scgq3zYLEW6+d6qnf9Z9AkXlF0BYw==
-X-Received: by 2002:a05:620a:d4f:b0:67e:9cbf:a969 with SMTP id o15-20020a05620a0d4f00b0067e9cbfa969mr11799643qkl.509.1653242699080;
-        Sun, 22 May 2022 11:04:59 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwXP7IlN3R7XWBkJKpz7D0sS6z9da8PoP9GTcC961kfYQ/do4cJlUeJNMSAiZt2pL6FwB43MgbeOQ+t6Rf0rA8=
-X-Received: by 2002:a05:620a:d4f:b0:67e:9cbf:a969 with SMTP id
- o15-20020a05620a0d4f00b0067e9cbfa969mr11799632qkl.509.1653242698850; Sun, 22
- May 2022 11:04:58 -0700 (PDT)
+        bh=QqS5obm1DH0NxY/AXQctm+WAxZ3F7EdCQ0bS/Gx/X0k=;
+        b=vIpa4Yw7UaA3P4nQX3E4KVWAQNraOW7gH3JKtDYXYarzZ/fdt4vIt0xMXnGn34KuWL+r09
+        Ic2uDaZHogXBDkPYjqHTQ7+D7fYqVMenlfvzrhRPvhyEIlHaKLdNelXAMK+n8Hb1qu/G97
+        ffRyOG60vk2lHa+c7LX7lVqaH/gL9Ck3ByYS2ASuGjO0urV53LMMilV997W2rHStjHWmI2
+        dTAlsZ+GFrooiZg5NI2X/QTfn4XkJn8W0ePJKVQSjP77wB/cBYWVMyqInSvQNvwYx5xIMm
+        XWHe6KvLbYwUeFlzKI8T5EMoWR6OetnsvwbPB6PWdXFdAA/SsUxpVjtG6p+QIw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1653243176;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=QqS5obm1DH0NxY/AXQctm+WAxZ3F7EdCQ0bS/Gx/X0k=;
+        b=A19ml06A0PxmDRfnyIIMfBsVQn/TrnJ5dU8Q0pAClOrcjlK+xAnRZTCOs8IA/y0Tya5Sb5
+        MBZU5TU84/sGGbBg==
+To:     Richard Fontana <rfontana@redhat.com>
+Cc:     linux-spdx@vger.kernel.org, Mike Snitzer <snitzer@redhat.com>,
+        Jonathan Brassow <jbrassow@redhat.com>
+Subject: Re: treewide: License cleanup - RedHat originated
+In-Reply-To: <CAC1cPGz4CVCqb7P72sWjJ5S6s6HcxzqiwuykwGFswkovOuALHA@mail.gmail.com>
+References: <165322121770.3770149.18166071018834854082.tglx@xen13>
+ <CAC1cPGz4CVCqb7P72sWjJ5S6s6HcxzqiwuykwGFswkovOuALHA@mail.gmail.com>
+Date:   Sun, 22 May 2022 20:12:55 +0200
+Message-ID: <874k1higgo.ffs@tglx>
 MIME-Version: 1.0
-References: <87a6b9iia3.ffs@tglx>
-In-Reply-To: <87a6b9iia3.ffs@tglx>
-From:   Richard Fontana <rfontana@redhat.com>
-Date:   Sun, 22 May 2022 14:04:47 -0400
-Message-ID: <CAC1cPGze5VtsKLpumm6ZR_Y5PZ06MxoT931JTDKhMH=JjcPWog@mail.gmail.com>
-Subject: Re: Licensing of mq_open_tests.c
-To:     Thomas Gleixner <tglx@linutronix.de>
-Cc:     Doug Ledford <dledford@redhat.com>, Shuah Khan <shuah@kernel.org>,
-        Michael Dolan <mdolan@linuxfoundation.org>,
-        linux-spdx@vger.kernel.org
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rfontana@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,24 +55,65 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Sun, May 22, 2022 at 1:33 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->
-> Folks!
->
-> The file tools/testing/selftests/mqueue/mq_open_tests.c which was
-> authored by Doug is licensed under GPLv3 only.
->
-> While this is a user space program it includes a GPLv2 only kernel
-> header (kselftest.h), which results in a license conflict.
->
-> So one of both needs to be relicensed.
+Richard!
 
-From a Red Hat perspective, no problem with this userspace program
-being under GPLv2 or GPLv3 (or both, etc.) but as it stands, having
-looked at kselftest.h I agree with Thomas that it would have to be
-relicensed to something GPLv3-compatible, not necessarily GPLv3
-though. I will leave this to Doug and Shuah and anyone else who should
-be involved to work out.
+On Sun, May 22 2022 at 13:33, Richard Fontana wrote:
+> On Sun, May 22, 2022 at 10:55 AM Thomas Gleixner <tglx@linutronix.de> wrote:
+> I assume you're selecting files that have some sort of Red Hat or
+> Sistina copyright notice. Just as a disclaimer, I can't speak to
+> copyrights in these files that may be held by other organizations or
+> individuals (and I can't say definitively whether any file bearing a
+> Red Hat or Sistina copyright notice has or retains any copyright owned
+> by Red Hat). With that said:
+>
+>> 1) this file is released under the gpl
+>
+> I am fine with saying that any Red Hat copyrights (including any
+> Sistina copyrights acquired by Red Hat) in these can be represented
+> with SPDX-License-Identifier: GPL-2.0.
+>
+> I would note that the following files did not seem to have any Red Hat
+> or Sistina copyright notices:
+>
+>>    drivers/md/dm-log-writes.c
+>>    drivers/md/dm-ps-queue-length.c
+>>    drivers/md/dm-ps-service-time.c
+>>    drivers/md/dm-unstripe.c
+>>    drivers/md/dm-zero.c
 
-Richard
+Oops, yes. They are clearly flagged as not Red Hat.
 
+>> 2) this file is released under the lgpl
+>>
+>>    drivers/md/dm-core.h
+>>    drivers/md/dm-log-userspace-base.c
+>>    drivers/md/dm-log-userspace-transfer.c
+>>    drivers/md/dm-log-userspace-transfer.h
+>>    drivers/md/dm-log.c
+>>    drivers/md/dm-rq.h
+>>    drivers/md/dm.h
+>>    include/linux/device-mapper.h
+>>    include/linux/dm-dirty-log.h
+>
+> For these, if the question is just about what version of the LGPL we
+> should treat these as, I'd be fine with representing them as
+> SDPX-License-Identifier: LGPL-2.1.
+>
+> However, and I realize this may go beyond my 'remit' as someone
+> consulted for linux-spdx stuff or open some additional bag of worms,
+> I'm wondering if these would be better off just relicensed under
+> GPLv2, and thus represented as SPDX-License-Identifier: GPL-2.0. Even
+> treating this code as having been LGPLv2.x-licensed, this would be
+> authorized or at any rate contemplated by the largely-overlooked
+> LGPLv2.0/LGPLv2.1 section 3. Suggesting this because it would seem to
+> help marginally with some of the goals of this initiative and also
+> because it's not obvious to me why LGPL would have been preferred over
+> GPLv2 for these files to begin with, assuming they weren't copied from
+> some unrelated LGPL-licensed project. I've cc'd Jonathan Brassow and
+> Mike Snitzer in case they have any thoughts on this.
+
+Let's see :)
+
+Thanks,
+
+        Thomas

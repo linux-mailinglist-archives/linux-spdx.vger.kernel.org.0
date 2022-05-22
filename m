@@ -2,58 +2,60 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA8F5303BF
-	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 17:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0446C5303CB
+	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 17:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347731AbiEVPGt (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 22 May 2022 11:06:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49438 "EHLO
+        id S1347858AbiEVPVN (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 22 May 2022 11:21:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiEVPGr (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 11:06:47 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97BAF34BAA;
-        Sun, 22 May 2022 08:06:46 -0700 (PDT)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1653232005;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=WQJxoIOG9BwCxxHhxQMhF2ZBIhG1CDWoR7s9LjjPX0Y=;
-        b=W7okeNoZ6TeXYA9CiZ8DUMjWTYHZ++NYvSYoc6xB+vqeT9ZfbQQZDoDDUFvguvDe+eY3YX
-        uqSKcrAd279SjCUAUHbgFYHI5S/FYuERBof46BnwS8+zH48h/V6K65hPCQKYATHwJ/EXXe
-        BKprNgYX9lo5HgRDyfYHDsGEJoWkT2Xu3RobDM7HJ8jW6fr0vJ024EHDZ5Y26ZvJIWNLf4
-        9p90Lb7HcabJTEVg/QSOgijHEgrYwQt1MqsRJ6a1dwLTSYybWiRy8/TrZgQSal64A2mJfx
-        FAci8rRLfFNTFpD1X6PU72+CNcNZyMmBk5qiuRJvW1SeY4g4Y02alsjMrxsGdw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1653232005;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=WQJxoIOG9BwCxxHhxQMhF2ZBIhG1CDWoR7s9LjjPX0Y=;
-        b=W/lqxyrm75peM69EweXkxgQFSW4gzSeg0W15Y0rs3B6x5LRaGKDp9wBeI/DRQNI17aXPN2
-        yVde12xMql8cddDQ==
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Luis Chamberlain <mcgrof@kernel.org>, tj@kernel.org,
-        akpm@linux-foundation.org, jeyu@kernel.org, shuah@kernel.org,
-        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
-        keescook@chromium.org, rostedt@goodmis.org, minchan@kernel.org,
-        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 3/6] selftests: add tests_sysfs module
-In-Reply-To: <YopM5XGMdqVCU+bL@kroah.com>
-References: <20211029184500.2821444-1-mcgrof@kernel.org>
- <20211029184500.2821444-4-mcgrof@kernel.org> <Yao3vtSKBKLyQY1E@kroah.com>
- <87fsl1iqg0.ffs@tglx> <YopM5XGMdqVCU+bL@kroah.com>
-Date:   Sun, 22 May 2022 17:06:44 +0200
-Message-ID: <87czg5ip2z.ffs@tglx>
+        with ESMTP id S230290AbiEVPVN (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 11:21:13 -0400
+X-Greylist: delayed 222 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 22 May 2022 08:21:10 PDT
+Received: from pb-smtp21.pobox.com (pb-smtp21.pobox.com [173.228.157.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5CB115A02
+        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 08:21:09 -0700 (PDT)
+Received: from pb-smtp21.pobox.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id B19591A9C06;
+        Sun, 22 May 2022 11:17:25 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=pobox.com; h=message-id
+        :date:mime-version:subject:to:references:from:in-reply-to
+        :content-type:content-transfer-encoding; s=sasl; bh=x7ibkrrd3xyF
+        mXR6ZvQIisxjgmNrP2POjaLj/6YZDxk=; b=CEKY2o2AUpJiVw0++rIURkW0jALc
+        37UAt3AgVxnm94Zx/U5BaDu27NNV3Rvby0SkAeAIxlInVCVQ1wITl14iiTpAnwof
+        Z2qKFoSqn+pVcl9cN4jyfmFdYSGZgOYEooSnHGOac0FB23x5XF9yf4Gn5kWHZzSl
+        qYZa2OrG+SKlRY0=
+Received: from pb-smtp21.sea.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id AA1171A9C05;
+        Sun, 22 May 2022 11:17:25 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=lohutok.net;
+ h=message-id:date:mime-version:subject:to:references:from:in-reply-to:content-type:content-transfer-encoding; s=2018-11.pbsmtp; bh=x7ibkrrd3xyFmXR6ZvQIisxjgmNrP2POjaLj/6YZDxk=; b=rODb0SS0Tgmvkb3rvFPb4IkJVqqSDEtsGaZ5LlkClj83scpXu25XhQ4zZZzdaOCJFOdzeJmAJ0uIULmbJWRE1o1xTpXuH2rDHrLReArojPCvl5QIrptFf+cFtrOiionpxxP+PCOASYbgZDvYv9SH54G3gdbhOvcAxnotY4LMiDs=
+Received: from [10.0.0.38] (unknown [24.186.244.147])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by pb-smtp21.pobox.com (Postfix) with ESMTPSA id AD80A1A9C04;
+        Sun, 22 May 2022 11:17:21 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+Message-ID: <bdbee107-aa2d-ce87-9c82-8be2f1fcb38d@lohutok.net>
+Date:   Sun, 22 May 2022 11:17:19 -0400
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: SPDX in the kernel: State of the union
+Content-Language: en-US
+To:     Thomas Gleixner <tglx@linutronix.de>, linux-spdx@vger.kernel.org
+References: <87zgjfka75.ffs@tglx>
+ <9ea648b2-3430-bec8-c697-3017283e03b1@lohutok.net> <87y1ywi5b3.ffs@tglx>
+From:   Allison Randal <allison@lohutok.net>
+In-Reply-To: <87y1ywi5b3.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Pobox-Relay-ID: 47048246-D9E2-11EC-BFC3-CBA7845BAAA9-44123303!pb-smtp21.pobox.com
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_CSS autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,25 +63,27 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Sun, May 22 2022 at 16:47, Greg KH wrote:
-> On Sun, May 22, 2022 at 04:37:19PM +0200, Thomas Gleixner wrote:
->> On Fri, Dec 03 2021 at 16:29, Greg KH wrote:
->> 
->> While I agree that we want to keep the number of licenses as small as
->> possible, we cannot really dictate which dual licensing options a
->> submitter selects unless the license is GPL-2.0-only incompatible, which
->> copyleft-next is not.
->> 
->> Can we just get over this, add the license with the SPDX identifier and
->> move on?
->
-> From what I recall, I had technical reasons I didn't take this series,
-> but that was a long time ago and I would be glad to review it again if
-> it were rebased and resubmitted after the next merge window is closed.
+On 5/20/22 11:37 AM, Thomas Gleixner wrote:
+> 
+> I ran out of cycles :)
 
-The license addition and the SPDX identifier cleanup should be seperated
-from the new test code which was part of the series.
+Nod, it happens. Really, it's a planet-wide phenomenon the past couple
+of years. :)
 
-Thanks,
+> I started to get some structure into this mess.
+[...]
+> I've generated static HTML pages from the data, which are available
+> here:
+> 
+>    https://tglx.de/~tglx/spdx/index.html
 
-        tglx
+Makes sense, and a large number of them look like they'll be easy to
+review and approve.
+
+> Which size of batches and what rate do you folks prefer?
+
+Looking back to 2019, you generally sent batches of 10-25 patches per
+day, where each patch was one match rule. Seems reasonable to start
+again there, and tune up or down as needed.
+
+Allison

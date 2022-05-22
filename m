@@ -2,46 +2,47 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE8295303A9
-	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 16:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 297195303AA
+	for <lists+linux-spdx@lfdr.de>; Sun, 22 May 2022 16:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347607AbiEVOy7 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 22 May 2022 10:54:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54960 "EHLO
+        id S244894AbiEVOzC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sun, 22 May 2022 10:55:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347589AbiEVOy7 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 10:54:59 -0400
+        with ESMTP id S1347589AbiEVOzB (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sun, 22 May 2022 10:55:01 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5BF117AA7
-        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 07:54:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896E117AA7
+        for <linux-spdx@vger.kernel.org>; Sun, 22 May 2022 07:55:00 -0700 (PDT)
 From:   Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1653231297;
+        s=2020; t=1653231299;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding;
-        bh=99ofAeRj3LdyTjaprMTNaZXI4x4FAPl0aAv/D6nfoj0=;
-        b=zH1YBPzVmnqDv0MV54rdIDbj/Tbd6/VlFGlcIdzFyD+b2ezi/2JSv05+VX4SJgRYHRGvAn
-        Ai1bI/jv3N6zAMuPUiwCx8rN680IQhZSY2WU131+n5KBW9HXgcCNHFQjljx/LiHVZrVaWc
-        J4V+72ZcolkQA2tJX8VKSCzUJ5GQDCyxdBu4p8ebYr1rdBL5HOXDSO/3WrxXSeJ6GuyzEy
-        PLeCCivfEbYnsolJVgMfB+OHjcnHXlQe4zia7B/s+SOWnFm+mS3qEPMbq7ZEXJT371P9FG
-        g23RZHWRbJjzIKfxpCP8C/zIT4+ovNmAZqQNh0DKS1O2V4cU3Z7jEMpDAr9t7Q==
+        bh=fInSg1LFJH1sqoqptTSkfwdgcx305i3Xh8tCBmNjD0g=;
+        b=vMMNqu36Kw8rt4f91APhGNBz/s2hN683YQ0o4qpIvMyZX/HzMxjVt3OfJz57R8W9+bNLQ8
+        qx7SgeWxTAm6GmudpbgPAa6sxYBNHRGVx4FgYM9x8qR4+jjC1vqAixnmCF0oaEE9bdBWoh
+        bvDizOT2sFd3slm3YRF95rZBWo26qeL/YGUvllpXIFeXIa5uPjDsIZTCEAu4IUrRdNWrl/
+        Tx+Fst/sZHdDCG33Gpz/olJGQzKG99VtgfYXA1rmfhKXCQNIxjjdkBVzRB+Y+CKMOOdkkm
+        PsoHos7m9PMTfmPzud6f1f0tl2gEPEDJh8I9r0PTtcsgAs1LP8WMwUFB68BWFQ==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1653231297;
+        s=2020e; t=1653231299;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding;
-        bh=99ofAeRj3LdyTjaprMTNaZXI4x4FAPl0aAv/D6nfoj0=;
-        b=x+NIV/q3qd6hHYm8bBZ+CBelEngDKyokYKO3yHO3I45x1s/x2rjc6I0NSmphfVMWl8v36z
-        boYfMRjPRoG95pBg==
-To:     Matthew Wilcox <willy@infradead.org>
+        bh=fInSg1LFJH1sqoqptTSkfwdgcx305i3Xh8tCBmNjD0g=;
+        b=XtqNpvEkXs0Q73Z1jQtHuu35Sr4WHeVuRJLA05UrUvvY6FJebFUfT9wXuQkYzwr4aOCvtc
+        4KT2+H6TDDvq26Bw==
+To:     Tom Zanussi <zanussi@kernel.org>,
+        Karim Yaghmour <karim.yaghmour@opersys.com>
 Cc:     linux-spdx@vger.kernel.org
-Subject: parisc: License cleanup
-Message-ID: <165322122487.3770149.883228125657116019.tglx@xen13>
+Subject: relay: License cleanup
+Message-ID: <165322122630.3770149.12589163038624151820.tglx@xen13>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Date:   Sun, 22 May 2022 16:54:57 +0200 (CEST)
+Date:   Sun, 22 May 2022 16:54:58 +0200 (CEST)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -52,7 +53,7 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Matthew!
+Tom, Karim!
 
 As you might know we are working on cleaning up the licensing mess in the
 kernel and convert it to SPDX license identifiers as the only source of
@@ -61,12 +62,9 @@ license information.
 Archaeology found unspecific GPL license references, which have been
 authored by you.
 
-1)  licensed under the gnu gpl
+1) this file is released under the gpl
 
-    arch/parisc/kernel/syscall.S
-
-    https://git.kernel.org/pub/scm/linux/kernel/git/history/history.git/commi=
-t/?id=3D9d1ec5d7a336d
+   kernel/relay.c
 
 Can you please either send cleanup patches for the affected files or
 indicate which GPLv2 variant you had in mind and I run it through my

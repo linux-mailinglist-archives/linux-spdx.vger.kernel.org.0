@@ -2,89 +2,52 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C298532BD6
-	for <lists+linux-spdx@lfdr.de>; Tue, 24 May 2022 16:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CEF7533277
+	for <lists+linux-spdx@lfdr.de>; Tue, 24 May 2022 22:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231878AbiEXN7k (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 24 May 2022 09:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33992 "EHLO
+        id S236950AbiEXU2u (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 24 May 2022 16:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237956AbiEXN7i (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 24 May 2022 09:59:38 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6B1488CB31
-        for <linux-spdx@vger.kernel.org>; Tue, 24 May 2022 06:59:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1653400776;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=2Ff+pshfC1Z6E3EzI0y8JRQ1REVK5W8crSBK2MgvYz0=;
-        b=DSpYG+4NlWiqaphu7vKYzYay3VPiwBlUqvxTWu8OmIbX4Mskwci7Mq4/rBhSfAORxlIZAO
-        /45UKtW0v9pqYZqCGvjY1+7xmtkx+nnAuzjgL+7iaAZVundzxy36n0Xn4P4A6RvPkAuotG
-        Ogq5WX3st1696iH9vkuHaC1WAatOBiw=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-312--n8qK4GBMs--qDHpcA2onw-1; Tue, 24 May 2022 09:59:33 -0400
-X-MC-Unique: -n8qK4GBMs--qDHpcA2onw-1
-Received: by mail-qk1-f198.google.com with SMTP id v14-20020a05620a0f0e00b00699f4ea852cso13547609qkl.9
-        for <linux-spdx@vger.kernel.org>; Tue, 24 May 2022 06:59:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2Ff+pshfC1Z6E3EzI0y8JRQ1REVK5W8crSBK2MgvYz0=;
-        b=ck1hBXq7gCudl38Ub3/SvvOpL/HVb1J9YYOhh3+69KprqcaKxMxoQGHo7x2lo8qssn
-         8W5IF+AJF9SV8AVCuSqtsP/gS8rXzHahTHdmjlEKGYAA+cXKRIcxdP1H73PJKwYmq5rY
-         bzzfMQ+CL+oqaE3fw3JeSulso7nDjL/YHjCd7742vGOT69/Nne2qbu4orvbVQ81vjUSi
-         z/Wg5LaEkJPVK4JdXZHuOATBBOYeVk1SMnLzdtki5p+i9IDwErtyO6e1Z8BwytF0d2UJ
-         NEO71c7LjZflnes4lCvZonQadesgHKSQCoQUZICPh2c20R1rzq5X5yHJ7jELucn/TJFC
-         FLyA==
-X-Gm-Message-State: AOAM533U8lcAbWUZLWRAeO3ZB49MN2vSnBMeNqQktISCtLNrtax0zhGw
-        hXvis8LodYBUd/Un1Iz6OtTyZwA7TmNFCawtZnhNAh7ahDC4/+Gh0kMA5SgB5YWVhEdejOg8lW5
-        7qYjrLFcpIw/sUtybt2sE524xS+axl4GbxGIwHw==
-X-Received: by 2002:a05:620a:1981:b0:507:4a52:f310 with SMTP id bm1-20020a05620a198100b005074a52f310mr17389267qkb.611.1653400773150;
-        Tue, 24 May 2022 06:59:33 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwqS+yZK5ZzpIED7qcr754PYpaiBLoHFNyuZBNAopvk3ojwwBfdu204lMoxiDpi9ZmkpuCv+gT3j6X+c8inrO8=
-X-Received: by 2002:a05:620a:1981:b0:507:4a52:f310 with SMTP id
- bm1-20020a05620a198100b005074a52f310mr17389243qkb.611.1653400772863; Tue, 24
- May 2022 06:59:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211029184500.2821444-1-mcgrof@kernel.org> <20211029184500.2821444-2-mcgrof@kernel.org>
- <87h75g0xbm.ffs@tglx>
-In-Reply-To: <87h75g0xbm.ffs@tglx>
-From:   Richard Fontana <rfontana@redhat.com>
-Date:   Tue, 24 May 2022 09:59:22 -0400
-Message-ID: <CAC1cPGz3ARW_H9cq6LY0_h3YXomMmSdVR1v1+xEYbshtK8Mvmw@mail.gmail.com>
-Subject: Re: [PATCH v9 1/6] LICENSES: Add the copyleft-next-0.3.1 license
-To:     Thomas Gleixner <tglx@linutronix.de>
-Cc:     Luis Chamberlain <mcgrof@kernel.org>, tj@kernel.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        akpm@linux-foundation.org, jeyu@kernel.org,
-        Shuah Khan <shuah@kernel.org>, bvanassche@acm.org,
-        dan.j.williams@intel.com, joe@perches.com, keescook@chromium.org,
-        rostedt@goodmis.org, minchan@kernel.org,
-        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Goldwyn Rodrigues <rgoldwyn@suse.com>,
-        Kuno Woudt <kuno@frob.nl>,
-        Richard Fontana <fontana@sharpeleven.org>,
-        copyleft-next@lists.fedorahosted.org,
-        Ciaran Farrell <Ciaran.Farrell@suse.com>,
-        Christopher De Nicolo <Christopher.DeNicolo@suse.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thorsten Leemhuis <linux@leemhuis.info>
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rfontana@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+        with ESMTP id S232087AbiEXU2t (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 24 May 2022 16:28:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D590162124
+        for <linux-spdx@vger.kernel.org>; Tue, 24 May 2022 13:28:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D7C7AB81BB5
+        for <linux-spdx@vger.kernel.org>; Tue, 24 May 2022 20:28:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 041DEC34100;
+        Tue, 24 May 2022 20:28:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653424124;
+        bh=JfFTGskkVvNGuBbWPehNVDCnZbtGHUk44ZqsQVAFRUg=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=W6n45us00RzTzNQg09HZu0L+O6+TEOuvXS36WzrgmLM30UC52zA0v+mMoE+z53+Y5
+         lnUaZkkGR5Vm7fP0QRCf46J+2xW6PxHp/2+ME3Yt5aJpIxzLtp7B4rnfAX1iFRCrNU
+         oNe3wPchZ4avuHoIATfzKaGT1I+Fu4p2WP2EuiBw5MvOKWFNR9ppikKigsCr+ojbZI
+         69birau1mTWJZ1FBOHU3zRE+1lZEcaC0SMSjRM0KdIM62Sn/GNQ8uZssH95b+6vM39
+         EyrUAZNItzXfxZSj6XWQ3lhi90/pxhW1ntX/KlmV/l8CG4wKB4cGCi3i1tHmtWphsi
+         lsmscoRK4wf/w==
+Message-ID: <c9a6c3685b9817126044cd733c57cbe9f228f4eb.camel@kernel.org>
+Subject: Re: relay: License cleanup
+From:   Tom Zanussi <zanussi@kernel.org>
+To:     Karim Yaghmour <karim.yaghmour@opersys.com>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     linux-spdx@vger.kernel.org
+Date:   Tue, 24 May 2022 15:28:42 -0500
+In-Reply-To: <ea34a747-2393-142e-3352-74426975f6f5@opersys.com>
+References: <165322122630.3770149.12589163038624151820.tglx@xen13>
+         <ea34a747-2393-142e-3352-74426975f6f5@opersys.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,44 +55,60 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, May 23, 2022 at 5:10 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->
-> On Fri, Oct 29 2021 at 11:44, Luis Chamberlain wrote:
-> > preferred. A summary of benefits why projects outside of Linux might
-> > prefer to use copyleft-next >= 0.3.1 over GPLv2:
-> >
-> <snip>
-> >
-> > o copyleft-next has a 'built-in or-later' provision
->
-> Not convinced that this is a benefit under all circumstances, but that's
-> a philosopical problem. The real problem is this:
->
-> > +Valid-License-Identifier: copyleft-next-0.3.1
->
-> and
->
-> > +11. Later License Versions
-> > +
-> > +    The Copyleft-Next Project may release new versions of copyleft-next,
-> > +    designated by a distinguishing version number ("Later Versions").
-> > +    Unless I explicitly remove the option of Distributing Covered Works
-> > +    under Later Versions, You may Distribute Covered Works under any Later
-> > +    Version.
->
-> If I want to remove this option, then how do I express this with a SPDX
-> license identifier?
+Hi Thomas and Karim,
 
-Probably off-topic but: I think as things currently stand in SPDX you
-would have to use an ad hoc LicenseRef- identifier to express the
-entirety of copyleft-next-0.3.1 coupled with an amendment that sort of
-strikes the later versions provision. This issue is also somewhat
-relevant: https://github.com/spdx/spdx-spec/issues/153
+On Sun, 2022-05-22 at 14:14 -0400, Karim Yaghmour wrote:
+> Hi Thomas,
+> 
+> On 5/22/22 10:54, Thomas Gleixner wrote:
+> > Tom, Karim!
+> > 
+> > As you might know we are working on cleaning up the licensing mess
+> > in the
+> > kernel and convert it to SPDX license identifiers as the only
+> > source of
+> > license information.
+> > 
+> > Archaeology found unspecific GPL license references, which have
+> > been
+> > authored by you.
+> > 
+> > 1) this file is released under the gpl
+> > 
+> >     kernel/relay.c
+> > 
+> > Can you please either send cleanup patches for the affected files
+> > or
+> > indicate which GPLv2 variant you had in mind and I run it through
+> > my
+> > cleanup machinery.
+> 
+> Thanks for the ping.
+> 
+> I assume you mean the GPLv2 variants from here:
+> 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred/GPL-2.0?h=v5.18-rc7
+> 
+> In that case, I'd say that the intent was to follow what Linus had
+> been 
+> using: i.e. GPL-2.0 or GPL-2.0-only.
+> 
+> That said, since it was Tom that got this code included and did most
+> of 
+> the work on it, I think he'd have to confirm what his view was as
+> well.
 
-FWIW, built-in 'or-later' clauses are actually common in copyleft open
-source licenses; the GPL family is the oddity here. (Then again, the
-whole idea of a downstream license upgradability option is sort of
-unusual in the bigger scheme of things, but that's another topic.)
+Yes, GPL-2.0-only was the intent, so please use that and run it through
+your cleanup machinery, thanks.
 
-Richard
+Or I can send a cleanup patch if that's easier for you, just let me
+know.
+
+Thanks,
+
+Tom
+
+> 
+> Cheers,
+> 
 

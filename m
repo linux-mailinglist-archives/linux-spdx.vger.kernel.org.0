@@ -2,93 +2,134 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42319531E21
-	for <lists+linux-spdx@lfdr.de>; Mon, 23 May 2022 23:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C298532BD6
+	for <lists+linux-spdx@lfdr.de>; Tue, 24 May 2022 16:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiEWVow (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 23 May 2022 17:44:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59932 "EHLO
+        id S231878AbiEXN7k (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 24 May 2022 09:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiEWVop (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 23 May 2022 17:44:45 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCEFBD5E;
-        Mon, 23 May 2022 14:44:44 -0700 (PDT)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1653342283;
+        with ESMTP id S237956AbiEXN7i (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 24 May 2022 09:59:38 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6B1488CB31
+        for <linux-spdx@vger.kernel.org>; Tue, 24 May 2022 06:59:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1653400776;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=nxgVXilPvGv5Ur4KZ/tA/GNYYCdYt1Yn3s1uc6YEbqk=;
-        b=nbcRQ3tNutokS0GPtDC5vVXNWdbB0DViz4NQZETExW9xKhmYEK4VVN4dqwY544jEgVly3q
-        LMolciIGiGhpeP/Wc1nVc/i84lSUPnNWcZY/ypc1bqrO7XO28xjtY6UWunIu4EkTpQhrtJ
-        NnPtXeG9q+TEDBbL02I2RLQE6kDuzLdZMbjV2yt7w2yPjKNcp6e9cuvN8fuFj2DwSMtz+p
-        bNXtxu3+qEq7MnmXv4o35nf1Epgy+swt2oA0s/rieEaJq4iT9WWgfAIhhkZ0/u5BpZ9AJB
-        YvcLLlMe+OcWpCh8aNMzL0Xsxyp03cwIyRUCwjpGvQb1XopRnmiC2zSfhOM/Sg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1653342283;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=nxgVXilPvGv5Ur4KZ/tA/GNYYCdYt1Yn3s1uc6YEbqk=;
-        b=7R4pFFYXUqq4lTX80SwjoCLmA6Llcc8UbK8uV+WywIygHUKWyGx/PcDpSGbfutH23DT1oF
-        /prpR3J/iiGbJtBQ==
-To:     J Lovejoy <opensource@jilayne.com>, Max Mehl <max.mehl@fsfe.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christoph Hellwig <hch@lst.de>, linux-spdx@vger.kernel.org
-Subject: Re: [patch 0/9] scripts/spdxcheck: Better statistics and exclude
- handling
-In-Reply-To: <97d8beb2-db33-1e50-eadb-6ac8d650f044@jilayne.com>
-References: <20220516101901.475557433@linutronix.de>
- <1652706350.kh41opdwg4.2220@fsfe.org> <87zgjhpawr.ffs@tglx>
- <87wnelpam3.ffs@tglx> <1652775347.3cr9dmk5qv.2220@fsfe.org>
- <8735h7ltre.ffs@tglx> <97d8beb2-db33-1e50-eadb-6ac8d650f044@jilayne.com>
-Date:   Mon, 23 May 2022 23:44:42 +0200
-Message-ID: <878rqr2ab9.ffs@tglx>
+        bh=2Ff+pshfC1Z6E3EzI0y8JRQ1REVK5W8crSBK2MgvYz0=;
+        b=DSpYG+4NlWiqaphu7vKYzYay3VPiwBlUqvxTWu8OmIbX4Mskwci7Mq4/rBhSfAORxlIZAO
+        /45UKtW0v9pqYZqCGvjY1+7xmtkx+nnAuzjgL+7iaAZVundzxy36n0Xn4P4A6RvPkAuotG
+        Ogq5WX3st1696iH9vkuHaC1WAatOBiw=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-312--n8qK4GBMs--qDHpcA2onw-1; Tue, 24 May 2022 09:59:33 -0400
+X-MC-Unique: -n8qK4GBMs--qDHpcA2onw-1
+Received: by mail-qk1-f198.google.com with SMTP id v14-20020a05620a0f0e00b00699f4ea852cso13547609qkl.9
+        for <linux-spdx@vger.kernel.org>; Tue, 24 May 2022 06:59:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Ff+pshfC1Z6E3EzI0y8JRQ1REVK5W8crSBK2MgvYz0=;
+        b=ck1hBXq7gCudl38Ub3/SvvOpL/HVb1J9YYOhh3+69KprqcaKxMxoQGHo7x2lo8qssn
+         8W5IF+AJF9SV8AVCuSqtsP/gS8rXzHahTHdmjlEKGYAA+cXKRIcxdP1H73PJKwYmq5rY
+         bzzfMQ+CL+oqaE3fw3JeSulso7nDjL/YHjCd7742vGOT69/Nne2qbu4orvbVQ81vjUSi
+         z/Wg5LaEkJPVK4JdXZHuOATBBOYeVk1SMnLzdtki5p+i9IDwErtyO6e1Z8BwytF0d2UJ
+         NEO71c7LjZflnes4lCvZonQadesgHKSQCoQUZICPh2c20R1rzq5X5yHJ7jELucn/TJFC
+         FLyA==
+X-Gm-Message-State: AOAM533U8lcAbWUZLWRAeO3ZB49MN2vSnBMeNqQktISCtLNrtax0zhGw
+        hXvis8LodYBUd/Un1Iz6OtTyZwA7TmNFCawtZnhNAh7ahDC4/+Gh0kMA5SgB5YWVhEdejOg8lW5
+        7qYjrLFcpIw/sUtybt2sE524xS+axl4GbxGIwHw==
+X-Received: by 2002:a05:620a:1981:b0:507:4a52:f310 with SMTP id bm1-20020a05620a198100b005074a52f310mr17389267qkb.611.1653400773150;
+        Tue, 24 May 2022 06:59:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwqS+yZK5ZzpIED7qcr754PYpaiBLoHFNyuZBNAopvk3ojwwBfdu204lMoxiDpi9ZmkpuCv+gT3j6X+c8inrO8=
+X-Received: by 2002:a05:620a:1981:b0:507:4a52:f310 with SMTP id
+ bm1-20020a05620a198100b005074a52f310mr17389243qkb.611.1653400772863; Tue, 24
+ May 2022 06:59:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20211029184500.2821444-1-mcgrof@kernel.org> <20211029184500.2821444-2-mcgrof@kernel.org>
+ <87h75g0xbm.ffs@tglx>
+In-Reply-To: <87h75g0xbm.ffs@tglx>
+From:   Richard Fontana <rfontana@redhat.com>
+Date:   Tue, 24 May 2022 09:59:22 -0400
+Message-ID: <CAC1cPGz3ARW_H9cq6LY0_h3YXomMmSdVR1v1+xEYbshtK8Mvmw@mail.gmail.com>
+Subject: Re: [PATCH v9 1/6] LICENSES: Add the copyleft-next-0.3.1 license
+To:     Thomas Gleixner <tglx@linutronix.de>
+Cc:     Luis Chamberlain <mcgrof@kernel.org>, tj@kernel.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        akpm@linux-foundation.org, jeyu@kernel.org,
+        Shuah Khan <shuah@kernel.org>, bvanassche@acm.org,
+        dan.j.williams@intel.com, joe@perches.com, keescook@chromium.org,
+        rostedt@goodmis.org, minchan@kernel.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Goldwyn Rodrigues <rgoldwyn@suse.com>,
+        Kuno Woudt <kuno@frob.nl>,
+        Richard Fontana <fontana@sharpeleven.org>,
+        copyleft-next@lists.fedorahosted.org,
+        Ciaran Farrell <Ciaran.Farrell@suse.com>,
+        Christopher De Nicolo <Christopher.DeNicolo@suse.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Thorsten Leemhuis <linux@leemhuis.info>
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rfontana@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, May 23 2022 at 10:11, J. Lovejoy wrote:
-> On 5/17/22 3:43 PM, Thomas Gleixner wrote:
-> I think the discussion here is hitting upon the "inconvenience" of the 
-> lack of black/white rules in the law (as to what is copyrightable) 
-> versus the convenience of downstream recipients of code who want to be 
-> sure they have proper rights (which mixes in the guidance/rules of 
-> Reuse, tooling, etc.).
-
-Correct.
-
-> I think some rules in terms of files that are clearly not copyrightable 
-> can be implemented in various tooling (hopefully, with the guidance of a 
-> lawyer steeped in copyright law), and I agree that putting a license (by 
-> way of an SPDX identifier or any other way for that matter) on such 
-> files is neither a good use of time nor a good idea (from the 
-> perspective of being inaccurate as to the need for a license and thus 
-> sending the wrong impression). That being said, there will not be a way 
-> to make clear cut rules for everything, without involving a judge. 
-> Sorry! That's just how the law works (and we actually often don't want 
-> black/white lines in the law, actually).
+On Mon, May 23, 2022 at 5:10 PM Thomas Gleixner <tglx@linutronix.de> wrote:
 >
-> I can see a policy of, "when it's not clear (as to copyrightability), 
-> then add a license", though.
+> On Fri, Oct 29 2021 at 11:44, Luis Chamberlain wrote:
+> > preferred. A summary of benefits why projects outside of Linux might
+> > prefer to use copyleft-next >= 0.3.1 over GPLv2:
+> >
+> <snip>
+> >
+> > o copyleft-next has a 'built-in or-later' provision
+>
+> Not convinced that this is a benefit under all circumstances, but that's
+> a philosopical problem. The real problem is this:
+>
+> > +Valid-License-Identifier: copyleft-next-0.3.1
+>
+> and
+>
+> > +11. Later License Versions
+> > +
+> > +    The Copyleft-Next Project may release new versions of copyleft-next,
+> > +    designated by a distinguishing version number ("Later Versions").
+> > +    Unless I explicitly remove the option of Distributing Covered Works
+> > +    under Later Versions, You may Distribute Covered Works under any Later
+> > +    Version.
+>
+> If I want to remove this option, then how do I express this with a SPDX
+> license identifier?
 
-No argument here, but trivial things like an include which file includes
-another include file are pretty clear IMO and we really should make our
-mind up on those. Even a header file which contains a single function
-declaration is questionable at best, but yes it's hard to put a hard
-line on those.
+Probably off-topic but: I think as things currently stand in SPDX you
+would have to use an ad hoc LicenseRef- identifier to express the
+entirety of copyleft-next-0.3.1 coupled with an amendment that sort of
+strikes the later versions provision. This issue is also somewhat
+relevant: https://github.com/spdx/spdx-spec/issues/153
 
-Thanks,
+FWIW, built-in 'or-later' clauses are actually common in copyleft open
+source licenses; the GPL family is the oddity here. (Then again, the
+whole idea of a downstream license upgradability option is sort of
+unusual in the bigger scheme of things, but that's another topic.)
 
-        tglx
+Richard
+

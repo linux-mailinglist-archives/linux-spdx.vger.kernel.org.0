@@ -2,153 +2,109 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02364534475
-	for <lists+linux-spdx@lfdr.de>; Wed, 25 May 2022 21:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AE745344ED
+	for <lists+linux-spdx@lfdr.de>; Wed, 25 May 2022 22:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346099AbiEYTon (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 25 May 2022 15:44:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
+        id S237806AbiEYUeT (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 25 May 2022 16:34:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346035AbiEYTo2 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 25 May 2022 15:44:28 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7209D1145C;
-        Wed, 25 May 2022 12:44:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=S6qisVcKaqKCfdGaJluvCYtDQBbD/bLcDlVDzzD0wUo=; b=d6Lzkm3nKu9wkp/Tn/FwPo54dE
-        o7OQMJ82dZigbjNoim9XQ+8czVUTEu9Q+nDeOSKu1iP5PjtnY5/D2ltdqSbP6Zdzd+v5xBWC7uKJf
-        myeuJ1iRJEmkG90gqlMTb2KwfFAUdQOm+g99VVCpyLIBc8RpcqoJQgAR2J9Z2H8/fXbWeypdpWhuG
-        3UhrDDBbXjBH2N6caTSiJGTTZMi/do7rk40BLwdHIom+fTn7+i75cTYP2GyZROV7K0RyA+ryRCp9d
-        Zx04LGEZag2yXoYwXgh6bNMu7jSwy2g1Sd6JCwGEoIdzKzREfw88nAVRndD+aAPrrCLZJLLbUqd/y
-        5UD1mlWw==;
-Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1ntwvT-00CT7x-8u; Wed, 25 May 2022 19:44:11 +0000
-Date:   Wed, 25 May 2022 12:44:11 -0700
-From:   Luis Chamberlain <mcgrof@kernel.org>
-To:     "Bird, Tim" <Tim.Bird@sony.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Richard Fontana <fontana@sharpeleven.org>,
-        "tj@kernel.org" <tj@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
-        "jeyu@kernel.org" <jeyu@kernel.org>,
-        "shuah@kernel.org" <shuah@kernel.org>,
-        "bvanassche@acm.org" <bvanassche@acm.org>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "joe@perches.com" <joe@perches.com>,
-        "keescook@chromium.org" <keescook@chromium.org>,
-        "rostedt@goodmis.org" <rostedt@goodmis.org>,
-        "minchan@kernel.org" <minchan@kernel.org>,
-        "linux-spdx@vger.kernel.org" <linux-spdx@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
-        "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
-        "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Goldwyn Rodrigues <rgoldwyn@suse.com>,
-        Kuno Woudt <kuno@frob.nl>,
-        "copyleft-next@lists.fedorahosted.org" 
-        <copyleft-next@lists.fedorahosted.org>,
-        Ciaran Farrell <Ciaran.Farrell@suse.com>,
-        Christopher De Nicolo <Christopher.DeNicolo@suse.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thorsten Leemhuis <linux@leemhuis.info>
-Subject: Re: [PATCH v9 1/6] LICENSES: Add the copyleft-next-0.3.1 license
-Message-ID: <Yo6HC9BfkCo3MBbH@bombadil.infradead.org>
-References: <20211029184500.2821444-1-mcgrof@kernel.org>
- <20211029184500.2821444-2-mcgrof@kernel.org>
- <87bkvo0wjd.ffs@tglx>
- <Yo5cxWghV/v2Fnzf@bombadil.infradead.org>
- <BN7PR13MB24998CAFCFB973C80549F308FDD69@BN7PR13MB2499.namprd13.prod.outlook.com>
- <Yo5xTwGLmbsgJhfM@bombadil.infradead.org>
- <BN7PR13MB2499BA2AFAC1C79197734D81FDD69@BN7PR13MB2499.namprd13.prod.outlook.com>
+        with ESMTP id S232975AbiEYUeS (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 25 May 2022 16:34:18 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D524EA3E
+        for <linux-spdx@vger.kernel.org>; Wed, 25 May 2022 13:34:17 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id y13so43193075eje.2
+        for <linux-spdx@vger.kernel.org>; Wed, 25 May 2022 13:34:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=jF4MxsPSKKSAh34A0y7fWqFeFSCCDQ9NCjS0um7aELU=;
+        b=Tx8eOOyiNPlvxvvU4MOMcUIHxHNKAstYL0I8b9x6xwS/CvVKgUXLkkPWCdWZFLwEqu
+         IEQ/GFTo4a8Cfz7YnqQi4rsk/No7RpbazTkFXqMYc1RoKmcO+FBkoaOJM+Obq+uJ+haL
+         mJWBOwB09LCT5jsYMsekBTC8MamdguCPodKC0pj5AkZu5tEa6j7XwKCojfG+UMyW1C28
+         y/1EzwJA+1SUO5Jylk1WGCqogkgw4xQcsa49lPcd5HblCV+tAh7dLYwGqWDbYEArZ/VL
+         FB7ilzrnLwtHveB2d4J8NwmZN0AK8FXNz4TtDedPkMWx9KIltcDUIKAmsQtjlRcEDCtW
+         TZfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=jF4MxsPSKKSAh34A0y7fWqFeFSCCDQ9NCjS0um7aELU=;
+        b=AJrPAMVRJnQt4m9fLYc3LsdO1gsL8QnQTSFY6lSXjlhXbuhNsH7W7a+nhbEDnb6Vsg
+         FI60mA9A0m5YS7qeaPFSYUoiJE2cQVgiyTjEo/X7VPAVHQ0GcbOa1UwAU1ctcZGqmIuO
+         tdIYqXDJFPj/a7w7WcRXBWWsvo2rtFmeMH/0bwdBGC1GpXGpa4k7QpPdQyipOQiEdvsn
+         dhyDJoBGLwJMhd1fKu8s4z5nm/fvTRGc9CSeIgsdAI2y9MOIJEAJNpLj0bO1hQ6/R5Zz
+         ozipQB6ju3sKNrilfqkPcyCOWuSIq8ApKvgFMeGD7ybeG7GmwJiJ1umzZrksPpeVLa0X
+         W6GA==
+X-Gm-Message-State: AOAM531u+GeqW678Re8Ph/1wbIPs/wb33nRSNIiQb63JXOJRuZfIjLR9
+        Nzz8CuibW1Nr2o8I11YzsMa6eE3gSwv1z/+ZLWA=
+X-Google-Smtp-Source: ABdhPJz0WSfR36dLjXPMZj5QNizXMV25lky/yLydrJr2K5e2iMw8OOa1MDwj8xj13Lpj/a1eqSURQtWE+AigNXx2vAA=
+X-Received: by 2002:a17:906:7953:b0:6fe:dcc0:356f with SMTP id
+ l19-20020a170906795300b006fedcc0356fmr16372668ejo.75.1653510856745; Wed, 25
+ May 2022 13:34:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN7PR13MB2499BA2AFAC1C79197734D81FDD69@BN7PR13MB2499.namprd13.prod.outlook.com>
-Sender: Luis Chamberlain <mcgrof@infradead.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Received: by 2002:ab4:a26b:0:0:0:0:0 with HTTP; Wed, 25 May 2022 13:34:16
+ -0700 (PDT)
+From:   Luisa Donstin <luisadonstin@gmail.com>
+Date:   Wed, 25 May 2022 22:34:16 +0200
+Message-ID: <CA+QBM2rC3c2M-Zb7V9n=_qW8JiCL+Dt4vBUYF+oOnS3v_q=egA@mail.gmail.com>
+Subject: Bitte kontaktaufnahme Erforderlich !!! Please Contact Required !!!
+To:     contact@firstdiamondbk.com
+Cc:     info@firstdiamondbk.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Wed, May 25, 2022 at 07:05:31PM +0000, Bird, Tim wrote:
-> > -----Original Message-----
-> > From: Luis Chamberlain <mcgrof@infradead.org> On Behalf Of Luis Chamberlain
-> > 
-> > On Wed, May 25, 2022 at 05:05:54PM +0000, Bird, Tim wrote:
-> > > I know it's being submitted as an OR, but I question
-> > > the value of introducing another license into the kernel's licensing mix.
-> > 
-> > I agree that we want to keep the number of licenses as small as
-> > possible but we cannot really dictate which dual licensing options a
-> > submitter selects unless the license is GPL-2.0-only incompatible,
-> > which copyleft-next is not.
-> 
-> Um, yes we can dictate that. 
+Guten Tag,
 
-The statement about us not being able to dictate which dual licensing
-options a submitter selects does not actually come from me, Thomas noted
-this [0].
+Ich habe mich nur gefragt, ob Sie meine vorherige E-Mail bekommen
 
-[0] https://lkml.kernel.org/r/87fsl1iqg0.ffs@tglx
+haben ?
 
-> There were good reasons that the original
-> BSD dual-licenses were allowed.
+Ich habe versucht, Sie per E-Mail zu erreichen.
 
-I helped spearhead some of that effort.
+Kommen Sie bitte schnell zu mir zur=C3=BCck, es ist sehr wichtig.
 
-> Those same reasons don't apply here.
+Danke
 
-Correct, and I noted my own reasoning for now dual licensing with
-copyleft-next, which you seem to be disregarding?
+Luisa Donstin
 
-> Each license added to the kernel (even when added as an OR), requires
-> additional legal analysis.
+luisadonstin@gmail.com
 
-And I noted in my cover letter that copyleft-next-0.3.1 has been found to be
-to be GPLv2 compatible by three attorneys at SUSE and Redhat [1], but
-to err on the side of caution we simply recommend to always use the "OR"
-language for this license [2].
 
-[1] https://lore.kernel.org/lkml/20170516232702.GL17314@wotan.suse.de/
-[2] https://lkml.kernel.org/r/1495234558.7848.122.camel@linux.intel.com
 
-> And here's the thing.
-> The copyleft-next license has a number of legal issues that make it problematic.
 
-You say number of legal issues.
 
-> Not the least of which are that some of its terms are dependent on external
-> situations that can change over time, in a matter that is uncontrolled by either
-> the licensor or the licensee.  In order to determine what terms are effective, you
-> have to know when the license was granted, and what the FSF and OSI approved
-> licenses were at various points in time.  You literally have to use the Internet
-> Archive wayback machine, and do a bunch of research, to interpret the license terms.
-> It is not, as currently constructed, a good license, due to this lack of legal clarity.
 
-But the above seems to indicate one technical pain point in so far as
-two sections:
 
-4. Condition Against Further Restrictions; Inbound License Compatibility
-7. Nullification of Copyleft/Proprietary Dual Licensing
 
-If you are going to offer to pay for an alternative proprietary
-licensing, I'm sure you can do the work.
 
-And if in so far as clause 4 is concerned, yeah I think wayback machine
-is a sensible solution. Good idea, seems like we have that covered since
-1999 [3].
+----------------------------------
 
-[3] https://web.archive.org/web/*/https://opensource.org/licenses
 
-  Luis
+
+
+Good Afternoon,
+
+I was just wondering if you got my Previous E-mail
+have ?
+
+I tried to reach you by E-mail.
+
+Please come back to me quickly, it is very Important.
+
+Thanks
+
+Luisa Donstin
+
+luisadonstin@gmail.com

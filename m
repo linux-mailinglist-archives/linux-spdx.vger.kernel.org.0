@@ -2,122 +2,87 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F30EC533FB6
-	for <lists+linux-spdx@lfdr.de>; Wed, 25 May 2022 16:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F45D5341A2
+	for <lists+linux-spdx@lfdr.de>; Wed, 25 May 2022 18:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244926AbiEYO6s (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 25 May 2022 10:58:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
+        id S242966AbiEYQoD (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 25 May 2022 12:44:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244976AbiEYO6i (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 25 May 2022 10:58:38 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 529B7AEE3A
-        for <linux-spdx@vger.kernel.org>; Wed, 25 May 2022 07:58:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1653490716;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Q/qYjRZwsKAI9dPkaWSNsjN+CazVDSjjlEWv9BGdfS8=;
-        b=cmcw7Z2OHO4KdX1dHJSVTBqYRhL5/gbN7DzjZesPF2ZHGmoP7jl9ag/+Oejx3yDAVjJ0Hv
-        ZKt51JF5e9YJjyxgLepDiYWB1w/Kerg3cDN2qkPtM/89mm03TacN5LpLRZvefxkIAQ2KcF
-        KWlTHfkjGLC6m8i88qZ8SrBLEH1OSgE=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-658-PkprimfPOlaPIpww8dut5w-1; Wed, 25 May 2022 10:58:35 -0400
-X-MC-Unique: PkprimfPOlaPIpww8dut5w-1
-Received: by mail-qk1-f197.google.com with SMTP id g14-20020ae9e10e000000b006a394d35dbfso6252117qkm.5
-        for <linux-spdx@vger.kernel.org>; Wed, 25 May 2022 07:58:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q/qYjRZwsKAI9dPkaWSNsjN+CazVDSjjlEWv9BGdfS8=;
-        b=kl9D0IxG2ll4EqBp8NYdQJu8EMoi7Zt3+fHMQBmQFjXMawM3kAkzDhnayGw7XjG31f
-         SMuExZM9HLAgpz6mp9yN4IFIZiJwdqzQr2gCTHh3npoGttPYe9A8Sn3swsqmC6+FzojD
-         hNT6OVO2F1SUBVXyrvpcR1+9YWYXLCbQj+E6Pe6kFF4c0cC7SnAhDHbTcFfacjXh2dQl
-         Z2ZHDzI9pJS+Fk2G4tD5jAppkOKJ+XloCGrKZyrEnzCSKPgviHuznZkJBGncDCc94dOl
-         jGzQQwyGFP83yLpLWyyCogIpJCLPaDWdTvU+/dU0hgDP9ZdLJsdyiVQ6lIVTJIgL3qC3
-         oeYQ==
-X-Gm-Message-State: AOAM531SoHIhsFiq3/YqM+D7zcvKJ1r8EWsrDEiY/nRvfb3EkHSAPexc
-        V7dUsQZjisHchZ7DjpraHLBHJkHQ1XMSkCWURAyyHzcEc8xMN0ygAr1ibyexzuLyghWZruLVjL9
-        UTjD8sSTWabbo3U/HsOCT
-X-Received: by 2002:a05:6214:931:b0:461:d289:b7f6 with SMTP id dk17-20020a056214093100b00461d289b7f6mr26707348qvb.55.1653490714791;
-        Wed, 25 May 2022 07:58:34 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzeXhIV5Rn0JH8NaISvi81JKLrzopSbsg9h6s5UgnJH/RQ3v82QAI5Hm5rItw73viOE/kTqUw==
-X-Received: by 2002:a05:6214:931:b0:461:d289:b7f6 with SMTP id dk17-20020a056214093100b00461d289b7f6mr26707331qvb.55.1653490714508;
-        Wed, 25 May 2022 07:58:34 -0700 (PDT)
-Received: from localhost (pool-68-160-176-52.bstnma.fios.verizon.net. [68.160.176.52])
-        by smtp.gmail.com with ESMTPSA id y21-20020a05622a005500b002fafd1643d0sm1023264qtw.8.2022.05.25.07.58.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 07:58:34 -0700 (PDT)
-Date:   Wed, 25 May 2022 10:58:33 -0400
-From:   Mike Snitzer <snitzer@redhat.com>
-To:     Thomas Gleixner <tglx@linutronix.de>
-Cc:     Richard Fontana <rfontana@redhat.com>, linux-spdx@vger.kernel.org,
-        Jonathan Brassow <jbrassow@redhat.com>, dm-devel@redhat.com
-Subject: Re: treewide: License cleanup - RedHat originated
-Message-ID: <Yo5EGfu7ST5os2R/@redhat.com>
-References: <165322121770.3770149.18166071018834854082.tglx@xen13>
- <CAC1cPGz4CVCqb7P72sWjJ5S6s6HcxzqiwuykwGFswkovOuALHA@mail.gmail.com>
- <874k1higgo.ffs@tglx>
+        with ESMTP id S233939AbiEYQoA (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 25 May 2022 12:44:00 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B2E2F5B0;
+        Wed, 25 May 2022 09:43:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=vQwYgNKDRgS2qpTyQs3mbz3qErcGxI+LPqEWaO92rGE=; b=n2pZBM60IWPdwz6eOBvZDj4IzM
+        2G/vH6A7fion2Y2H0CO8QiYZwTa4ZkjQWoymkrecPQTBZoulZ4zRXE2jD24dmQMx5O5FULR7Fy/I5
+        QNBJ568Bxr3tVC2KYMGczArz7q+0Bej5Yg3h0mZ9/n+D7EKdErCWF7yZwT6RMCz/Y5l6/+qvk1bkF
+        YkXhLAsIPoqUHWYP7aQONL1yzYWuDD/VBgkLqg6UBy/GCGZQkZuiqfl+o8FSPQ9eFwfBKc+HqUK8D
+        v5+SVGfDyoOp1QJYL8KhwJZpZyiMAHSK5L9chqo55Otl6Iu23Ri9goRXZ7Sz0jk4gMdMqIIUCmQpy
+        WP+WtZ8g==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1ntu6v-00Bsgf-HW; Wed, 25 May 2022 16:43:49 +0000
+Date:   Wed, 25 May 2022 09:43:49 -0700
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <fontana@sharpeleven.org>
+Cc:     tj@kernel.org, gregkh@linuxfoundation.org,
+        akpm@linux-foundation.org, jeyu@kernel.org, shuah@kernel.org,
+        bvanassche@acm.org, dan.j.williams@intel.com, joe@perches.com,
+        keescook@chromium.org, rostedt@goodmis.org, minchan@kernel.org,
+        linux-spdx@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Goldwyn Rodrigues <rgoldwyn@suse.com>,
+        Kuno Woudt <kuno@frob.nl>,
+        copyleft-next@lists.fedorahosted.org,
+        Ciaran Farrell <Ciaran.Farrell@suse.com>,
+        Christopher De Nicolo <Christopher.DeNicolo@suse.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Thorsten Leemhuis <linux@leemhuis.info>
+Subject: Re: [PATCH v9 1/6] LICENSES: Add the copyleft-next-0.3.1 license
+Message-ID: <Yo5cxWghV/v2Fnzf@bombadil.infradead.org>
+References: <20211029184500.2821444-1-mcgrof@kernel.org>
+ <20211029184500.2821444-2-mcgrof@kernel.org>
+ <87bkvo0wjd.ffs@tglx>
 MIME-Version: 1.0
-In-Reply-To: <874k1higgo.ffs@tglx>
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=snitzer@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <87bkvo0wjd.ffs@tglx>
+Sender: Luis Chamberlain <mcgrof@infradead.org>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Sun, May 22 2022 at  2:12P -0400,
-Thomas Gleixner <tglx@linutronix.de> wrote:
-
-> Richard!
+On Mon, May 23, 2022 at 11:27:34PM +0200, Thomas Gleixner wrote:
+> On Fri, Oct 29 2021 at 11:44, Luis Chamberlain wrote:
+> > +    "FSF-Free" means classified as 'free' by the Free Software Foundation.
+> > +
+> > +    "OSI-Approved" means approved as 'Open Source' by the Open Source
+> > +    Initiative.
 > 
-> On Sun, May 22 2022 at 13:33, Richard Fontana wrote:
-> > On Sun, May 22, 2022 at 10:55 AM Thomas Gleixner <tglx@linutronix.de> wrote:
-> > I assume you're selecting files that have some sort of Red Hat or
-> > Sistina copyright notice. Just as a disclaimer, I can't speak to
-> > copyrights in these files that may be held by other organizations or
-> > individuals (and I can't say definitively whether any file bearing a
-> > Red Hat or Sistina copyright notice has or retains any copyright owned
-> > by Red Hat). With that said:
-> >
-> >> 1) this file is released under the gpl
-> >
-> > I am fine with saying that any Red Hat copyrights (including any
-> > Sistina copyrights acquired by Red Hat) in these can be represented
-> > with SPDX-License-Identifier: GPL-2.0.
-> >
-> > I would note that the following files did not seem to have any Red Hat
-> > or Sistina copyright notices:
-> >
-> >>    drivers/md/dm-log-writes.c
-> >>    drivers/md/dm-ps-queue-length.c
-> >>    drivers/md/dm-ps-service-time.c
-> >>    drivers/md/dm-unstripe.c
-> >>    drivers/md/dm-zero.c
-> 
-> Oops, yes. They are clearly flagged as not Red Hat.
+> copyleft-next is neither nor. Confused...
 
-True, though Red Hat has contributed code to these files and continues
-to mainatin these files.
+The terms are used in two clauses:
 
-If we need further approval from original authors I can work to reach
-out to them.
+4. Condition Against Further Restrictions; Inbound License Compatibility
+7. Nullification of Copyleft/Proprietary Dual Licensing
 
-Thanks,
-Mike
+IANAL but at least as per my reading, in both cases it is used to refer to
+"other licenses", not itself, so I see no issue with that use. If there
+is an issue it would be nice to hear more details about it, so that
+perhaps new versions of the license can make this clearer somehow, if
+not already.
 
+  Luis

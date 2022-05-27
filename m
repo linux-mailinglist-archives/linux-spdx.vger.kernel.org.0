@@ -2,123 +2,74 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9E3D535B8E
-	for <lists+linux-spdx@lfdr.de>; Fri, 27 May 2022 10:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F350A5363BF
+	for <lists+linux-spdx@lfdr.de>; Fri, 27 May 2022 16:06:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349726AbiE0IgH (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 27 May 2022 04:36:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47802 "EHLO
+        id S230347AbiE0OF4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+linux-spdx@lfdr.de>); Fri, 27 May 2022 10:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349718AbiE0IgD (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 27 May 2022 04:36:03 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE37EFD34E;
-        Fri, 27 May 2022 01:36:02 -0700 (PDT)
-Date:   Fri, 27 May 2022 08:35:59 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1653640561;
-        h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=LU2Hemv1DyqCmMfvlsHA8TTggHWd5mMN5/rQVDMMSDA=;
-        b=dnmGV+mNw72FqkKMcocRpBzZmqib26oG4cSqXTLizQJTka6745nFRgmD5T35I4bCeowMQW
-        7u2ks1robNfZ2Jd9nB4vrQ3WOOoXJKv/comOxNGO8tlvfnhw3sUzWIpgpOX0epbMAZtEbp
-        2M0QBUYT17EZTnIe8sRdUeM4zdIK01wOLfKCf3ray500bclF14OMwmiNutbcs4RJdqQe7g
-        t03DqVIAxLH4j3Xpb9Br6dCaC+YVM0DyNjD9nnF+gkq5nQOYUgxdECbm4NuioSJK6LcK5g
-        W+Lon28GoPXmOVleGenunvsm8J1alwmXcrqIbxpIPc1kn28mHyoMQyMsXCn3oA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1653640561;
-        h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=LU2Hemv1DyqCmMfvlsHA8TTggHWd5mMN5/rQVDMMSDA=;
-        b=Nz2ifXUjFV2LILaBSEU22c65/m0XZrlQNJlc+kFBEHYBGXbdADYtsvGPiT8BFMC4iI+Vl1
-        icgdgok5swCRLmAw==
-From:   "tip-bot2 for Thomas Gleixner" <tip-bot2@linutronix.de>
-Sender: tip-bot2@linutronix.de
-Reply-to: linux-kernel@vger.kernel.org
-To:     linux-tip-commits@vger.kernel.org
-Subject: [tip: timers/core] clocksource/drivers/bcm_kona: Convert to SPDX identifier
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
-        linux-spdx@vger.kernel.org, x86@kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20220510171254.404209482@linutronix.de>
-References: <20220510171254.404209482@linutronix.de>
+        with ESMTP id S235298AbiE0OFz (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 27 May 2022 10:05:55 -0400
+X-Greylist: delayed 10534 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 27 May 2022 07:05:54 PDT
+Received: from mail.composit.net (mail.composit.net [195.49.185.119])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C96F03E5FC
+        for <linux-spdx@vger.kernel.org>; Fri, 27 May 2022 07:05:54 -0700 (PDT)
+Received: from mail.composit.net (localhost.localdomain [127.0.0.1])
+        by mail.composit.net (Proxmox) with ESMTP id C101B3979C9;
+        Fri, 27 May 2022 14:06:30 +0300 (MSK)
+Received: from mail.composit.net (unknown [192.168.101.14])
+        by mail.composit.net (Proxmox) with SMTP id 888933941AB;
+        Fri, 27 May 2022 14:06:30 +0300 (MSK)
+Received: from [192.168.1.105] (Unknown [197.234.219.23])
+        by mail.composit.net with ESMTPSA
+        (version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256)
+        ; Fri, 27 May 2022 14:06:31 +0300
+Message-ID: <423576E9-7AC0-48F8-95BE-26F15BE9A684@mail.composit.net>
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Message-ID: <165364055996.4207.2605979612113075422.tip-bot2@tip-bot2>
-Robot-ID: <tip-bot2@linutronix.de>
-Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from these emails
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: Greetings From Ukraine.  
+To:     Recipients <heiss@dnet.it>
+From:   "Kostiantyn Chichkov" <heiss@dnet.it>
+Date:   Fri, 27 May 2022 12:06:14 +0100
+Reply-To: kostiantync@online.ee
+X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_50,
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_SBL,RCVD_IN_SORBS_WEB,
+        RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  1.3 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
+        *      bl.spamcop.net
+        *      [Blocked - see <https://www.spamcop.net/bl.shtml?195.49.185.119>]
+        *  0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
+        *      [197.234.219.23 listed in zen.spamhaus.org]
+        *  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
+        *      [197.234.219.23 listed in dnsbl.sorbs.net]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
+        *      https://senderscore.org/blocklistlookup/
+        *      [195.49.185.119 listed in bl.score.senderscore.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 SPF_NONE SPF: sender does not publish an SPF Record
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-The following commit has been merged into the timers/core branch of tip:
+Good Morning,
 
-Commit-ID:     b89e96917dba49d9fda30f2e0c5a8effdf02cca5
-Gitweb:        https://git.kernel.org/tip/b89e96917dba49d9fda30f2e0c5a8effdf02cca5
-Author:        Thomas Gleixner <tglx@linutronix.de>
-AuthorDate:    Tue, 10 May 2022 19:24:37 +02:00
-Committer:     Daniel Lezcano <daniel.lezcano@linaro.org>
-CommitterDate: Wed, 18 May 2022 11:08:59 +02:00
+We are Kostiantyn Chychkov and Maryna Chudnovska from Ukraine, we need your service, we have gone through your profile and we will like to work with you on an important service that needs urgent attention due to the ongoing war in our country. Kindly acknowledge this inquiry as soon as possible for a detailed discussion about the service.
 
-clocksource/drivers/bcm_kona: Convert to SPDX identifier
+Thank you.
 
-The license information clearly states GPL version 2 only. The extra text
-which excludes warranties is a transcript of the corresponding GPLv2 clause
-11, which is explicitely referenced for details.
+Yours expectantly,
 
-So the SPDX identifier covers it completely.
+Kostiantyn Chichkov & Ms. Maryna Chudnovska,
+From Ukraine.
 
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Ray Jui <rjui@broadcom.com>
-Cc: Scott Branden <sbranden@broadcom.com>
-Cc: Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-spdx@vger.kernel.org
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
-Link: https://lore.kernel.org/r/20220510171254.404209482@linutronix.de
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
----
- drivers/clocksource/bcm_kona_timer.c | 14 ++------------
- 1 file changed, 2 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/clocksource/bcm_kona_timer.c b/drivers/clocksource/bcm_kona_timer.c
-index a50ab5c..39f172d 100644
---- a/drivers/clocksource/bcm_kona_timer.c
-+++ b/drivers/clocksource/bcm_kona_timer.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2012 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (C) 2012 Broadcom Corporation
- 
- #include <linux/init.h>
- #include <linux/irq.h>

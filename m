@@ -2,75 +2,104 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C2E53D1C4
-	for <lists+linux-spdx@lfdr.de>; Fri,  3 Jun 2022 20:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C75C453E841
+	for <lists+linux-spdx@lfdr.de>; Mon,  6 Jun 2022 19:08:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347962AbiFCSu0 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 3 Jun 2022 14:50:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54508 "EHLO
+        id S240471AbiFFPXt (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 6 Jun 2022 11:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347939AbiFCSuZ (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 3 Jun 2022 14:50:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B9A286E1;
-        Fri,  3 Jun 2022 11:50:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3612C619E0;
-        Fri,  3 Jun 2022 18:50:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 96E91C36AE2;
-        Fri,  3 Jun 2022 18:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654282222;
-        bh=e8DoDgkEDEte+46JWrJqOJqNQb8RpiOdFYyNIRcBG9M=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=SyK7Wq/vMNkMy3xO0WnPi2rjqBH3jE0bF0OKRZxtVuuWiA4AWVWHGWgw7hU6t7Mjz
-         SIehCut4OV0RNbfIJNwdnESFDW597jezMetLSn8QySLyvjf53C6CQ5Vk46qiTpsHBp
-         KlxroSJClv5lfh2sboAauVq9zDgm0SpBg2FubWaaY/LfLudSil6WcyA3DSOjkiyMTR
-         4d1Lh83mvNsQLk30ZbCz5JMApPV+o4Mhmz4jUny5X2NL1wGbMmR4lXklEXHwRJ6a9v
-         3eHYvUJxVwB/J+4rCaGocJzS2bIdIxz1uCzGlNIJeQwZUNYkP++sgcLM5KaAe6SJf9
-         ZfEijC12ifoMw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 81CAAF0394E;
-        Fri,  3 Jun 2022 18:50:22 +0000 (UTC)
-Subject: Re: [GIT PULL] SPDX update for 5.19-rc1
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <Ypngv8MIQ/Syj1Js@kroah.com>
-References: <Ypngv8MIQ/Syj1Js@kroah.com>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <Ypngv8MIQ/Syj1Js@kroah.com>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-5.19-rc1
-X-PR-Tracked-Commit-Id: 53c83d6d8e399fad3d3d25df0ea0d54eb0f94f88
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 04d93b2b8bc7a68ec45a6a156f34a611ede5aa60
-Message-Id: <165428222252.10974.9124112207282912341.pr-tracker-bot@kernel.org>
-Date:   Fri, 03 Jun 2022 18:50:22 +0000
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S240469AbiFFPXt (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 6 Jun 2022 11:23:49 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08FC425D5F7;
+        Mon,  6 Jun 2022 08:23:47 -0700 (PDT)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1654529026;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:cc:mime-version:mime-version:content-type:content-type;
+        bh=ZNoVfDltUyVTzFGTCv9B0gHE/HH6O1A3o5xpCJOtSTE=;
+        b=z7Y0I0zv1rNtnXBORuinDZHXKfB0UET0yYzy2eXGF7OQgmQqe9bF/zuZBYv8wyP3Bfbebu
+        MSeRzx7LLnD2g103jiBcidKZH8O2HQrl7TVA18rqjvvDFu6gmN//w80lc3BYdgvnkVqRcS
+        m+Pfg3/iU5qSREXCIDoOxZi6ltbENWjnt5EUxw5tZ9DZKwpfvoEdq6ukLWdOVwEVUkEtGG
+        Kvn+8DmX8WFYGFsLZACvMnB3E7LTF4pxPjVFJTFjKjZ9a5cglydvy5opeAA5E9coFn+rjp
+        hNx0SxYpS+sNpCzddlGpAKlKNpIMWJ2KeA/OZLytYsw1oXdAPATr1uABd/+ldQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1654529026;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:cc:mime-version:mime-version:content-type:content-type;
+        bh=ZNoVfDltUyVTzFGTCv9B0gHE/HH6O1A3o5xpCJOtSTE=;
+        b=G6M8IG84I728clYMxKjnaJZqQln3olgdCNHg6CI3oKke7UoVZ48a79DxF8BG+L5Dze215n
+        g9jz/cJg2BnOakCg==
+To:     netfilter-devel@vger.kernel.org
+Cc:     linux-spdx@vger.kernel.org,
+        Manoj Basapathi <manojbm@codeaurora.org>,
+        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        Pablo Neira Ayuso <pablo@netfilter.org>
+Cc:     netfilter-devel@vger.kernel.org
+Subject: netfilter: xtables: Bring SPDX identifier back
+Date:   Mon, 06 Jun 2022 17:23:45 +0200
+Message-ID: <87ee016cji.ffs@tglx>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-The pull request you sent on Fri, 3 Jun 2022 12:21:51 +0200:
+Commit e2be04c7f995 ("License cleanup: add SPDX license identifier to
+uapi header files with a license") added the correct SPDX identifier to
+include/uapi/linux/netfilter/xt_IDLETIMER.h.
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-5.19-rc1
+A subsequent commit removed it for no reason and reintroduced the UAPI
+license incorrectness as the file is now missing the UAPI exception
+again.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/04d93b2b8bc7a68ec45a6a156f34a611ede5aa60
+Add it back and remove the GPLv2 boilerplate while at it.
 
-Thank you!
+Fixes: 68983a354a65 ("netfilter: xtables: Add snapshot of hardidletimer target")
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Cc: Manoj Basapathi <manojbm@codeaurora.org>
+Cc: Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>
+Cc: Pablo Neira Ayuso <pablo@netfilter.org>
+Cc: netfilter-devel@vger.kernel.org
+---
+ include/uapi/linux/netfilter/xt_IDLETIMER.h |   17 +----------------
+ 1 file changed, 1 insertion(+), 16 deletions(-)
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+--- a/include/uapi/linux/netfilter/xt_IDLETIMER.h
++++ b/include/uapi/linux/netfilter/xt_IDLETIMER.h
+@@ -1,6 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
+ /*
+- * linux/include/linux/netfilter/xt_IDLETIMER.h
+- *
+  * Header file for Xtables timer target module.
+  *
+  * Copyright (C) 2004, 2010 Nokia Corporation
+@@ -10,20 +9,6 @@
+  * by Luciano Coelho <luciano.coelho@nokia.com>
+  *
+  * Contact: Luciano Coelho <luciano.coelho@nokia.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License
+- * version 2 as published by the Free Software Foundation.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+- * 02110-1301 USA
+  */
+ 
+ #ifndef _XT_IDLETIMER_H

@@ -2,44 +2,44 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0063553EF3C
-	for <lists+linux-spdx@lfdr.de>; Mon,  6 Jun 2022 22:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76A753EF3B
+	for <lists+linux-spdx@lfdr.de>; Mon,  6 Jun 2022 22:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233048AbiFFULC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        id S233278AbiFFULC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
         Mon, 6 Jun 2022 16:11:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45674 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233274AbiFFUKw (ORCPT
+        with ESMTP id S233387AbiFFUKw (ORCPT
         <rfc822;linux-spdx@vger.kernel.org>); Mon, 6 Jun 2022 16:10:52 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE7113393F
-        for <linux-spdx@vger.kernel.org>; Mon,  6 Jun 2022 13:10:46 -0700 (PDT)
-Message-ID: <20220606200811.131052922@linutronix.de>
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB2A513642E
+        for <linux-spdx@vger.kernel.org>; Mon,  6 Jun 2022 13:10:47 -0700 (PDT)
+Message-ID: <20220606200811.187515502@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1654546245;
+        s=2020; t=1654546246;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=5PKgE3epVqsA6O4vqE5g0qEkN3AlD3j8+yN3Z9duOag=;
-        b=RqMrVtfBYipgKYyGuHNROTW4/xsnhutos8umN/ePNuCK5mZ+m3acEjooAhLq3ahdRTvu90
-        T1IOXP0qVfil0wc1XkRjrQOw/T1KODr9QJvWDMsk2lIhSsi/MXxCchnqUo3STOTGqekgxv
-        zVDd6XiqywspcG1l8k6GjbxlTWWnS56Q6O5dRBHugaOm4S0aXIKTU364MxzCnPOGRg2G/f
-        PdVH0MZh7bLVVgk7eZYmZSiR5w043/ZyrP14sGRwE7LxBFBQ5cjYrguvWPuc3YRTW8Cw6y
-        G6Qcc5SCFFDpiDWhqK9DNfcxUgS9EuTCsVoU5xRtQKP/F6bQ6fNMpYh2i7Ivpw==
+         references:references; bh=MjCT1expSgEv0Hb6LTQWV9IbNgCaSGQZc0fnLnqX01g=;
+        b=KpILscoLRgxFA7TM6AqtO27RcQlTqhRPHYjNIf2AgBFSbqYNyDj41QAx3+NIEkigWYYxNq
+        hf+UEQzGWZ9L8sSYkp0Icf90KCmiP98q2CpR+ykt5w9KSbYW9uf0V5g09DyqZZ29O9J7Lz
+        Yc0o9BBD6zkELtkMm7GPFP9e7z9Tn0VUdyfSXXdL3+hMtSCCbnM4CcBkzl/20ruUDVmM0l
+        aZX07NSs2wghWwoo1eyu3zVAhLebIZCBWIscloxHY/eVBYwjdCwDtQizhn1Z5Vt2xoUJqk
+        3yjNjXZARf7l8BF7ibtOYPSVvHtY6DQ0Gxcbp+Nxlt1y7RqgJbaAik0D1KnCQg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1654546245;
+        s=2020e; t=1654546246;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=5PKgE3epVqsA6O4vqE5g0qEkN3AlD3j8+yN3Z9duOag=;
-        b=bMn3Tqrgt+k/SqY/dtG73ePhM+BDjabouICsx+8swMU5VkvTQg8iRzQSwzIPT3nfGtqF15
-        L8UTYYVdTqWU60CQ==
+         references:references; bh=MjCT1expSgEv0Hb6LTQWV9IbNgCaSGQZc0fnLnqX01g=;
+        b=kG53XJf+wN31Gob94SH18SxHGhvdqI/ybkBWrEfxMiRcE9pwEdMtUrmyB13uleWjgQPlQj
+        WIIgAxASESr13DBw==
 From:   Thomas Gleixner <tglx@linutronix.de>
 To:     linux-spdx@vger.kernel.org
-Subject: [patch 18/25] treewide: Replace GPLv2 boilerplate/reference with SPDX
- - gpl-2.0_320.RULE
+Subject: [patch 19/25] treewide: Replace GPLv2 boilerplate/reference with SPDX
+ - gpl-2.0_347.RULE
 References: <20220606200732.204209102@linutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date:   Mon,  6 Jun 2022 22:10:44 +0200 (CEST)
+Date:   Mon,  6 Jun 2022 22:10:45 +0200 (CEST)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -53,11 +53,17 @@ X-Mailing-List: linux-spdx@vger.kernel.org
 Based on the normalized pattern:
 
     this program is free software you can redistribute it and/or modify it
-    under the terms of the gnu general public license version 2 as
-    published by the free software foundation  this program is distributed
-    as is without any warranty of any kind whether express or implied
-    without even the implied warranty of merchantability or fitness for a
-    particular purpose see the gnu general public license for more details
+    under the terms of the gnu general public license as published by the
+    free software foundation version 2 of the license and no later version
+    this program is distributed in the hope that it will be useful but
+    without any warranty without even the implied warranty of
+    merchantability or fitness for a particular purpose good title or non
+    infringement see the gnu general public license for more details  you
+    should have received a copy of the gnu general public license along
+    with this program if not write to the free software foundation inc 51
+    franklin st fifth floor boston ma 02110-1301 usa  the full gnu general
+    public license is included in this distribution in the file called
+    copying
 
 extracted by the scancode license scanner the SPDX license identifier
 
@@ -67,878 +73,196 @@ has been chosen to replace the boilerplate/reference.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
- arch/arm/mach-omap1/timer.c             |   10 +---------
- arch/arm/mach-omap2/display.c           |   10 +---------
- arch/arm/mach-omap2/omap_opp_data.h     |   10 +---------
- arch/arm/mach-omap2/opp3xxx_data.c      |   10 +---------
- arch/arm/mach-omap2/opp4xxx_data.c      |   10 +---------
- arch/arm/mach-versatile/spc.c           |   10 +---------
- drivers/bus/omap_l3_noc.c               |   10 +---------
- drivers/bus/omap_l3_noc.h               |   10 +---------
- drivers/clk/keystone/sci-clk.c          |   10 +---------
- drivers/clk/ti/apll.c                   |   10 +---------
- drivers/clk/ti/autoidle.c               |   10 +---------
- drivers/clk/ti/clk-dra7-atl.c           |   10 +---------
- drivers/clk/ti/clk.c                    |   10 +---------
- drivers/clk/ti/clkctrl.c                |   10 +---------
- drivers/clk/ti/clkt_dflt.c              |   10 +---------
- drivers/clk/ti/clockdomain.c            |   10 +---------
- drivers/clk/ti/composite.c              |   10 +---------
- drivers/clk/ti/divider.c                |   10 +---------
- drivers/clk/ti/dpll.c                   |   10 +---------
- drivers/clk/ti/fixed-factor.c           |   10 +---------
- drivers/clk/ti/gate.c                   |   10 +---------
- drivers/clk/ti/interface.c              |   10 +---------
- drivers/clk/ti/mux.c                    |   10 +---------
- drivers/cpufreq/scpi-cpufreq.c          |   10 +---------
- drivers/input/misc/palmas-pwrbutton.c   |   10 +---------
- drivers/input/misc/tps65218-pwrbutton.c |   10 +---------
- drivers/misc/sram-exec.c                |   10 +---------
- drivers/power/supply/cpcap-battery.c    |   10 +---------
- drivers/regulator/ti-abb-regulator.c    |   10 +---------
- drivers/reset/reset-ti-sci.c            |   10 +---------
- drivers/reset/reset-ti-syscon.c         |   10 +---------
- drivers/thermal/hisi_thermal.c          |   10 +---------
- include/dt-bindings/clock/ti-dra7-atl.h |   10 +---------
- include/dt-bindings/pinctrl/hisi.h      |   10 +---------
- include/dt-bindings/pinctrl/keystone.h  |   10 +---------
- include/linux/clk/ti.h                  |   10 +---------
- include/linux/pm_wakeirq.h              |   14 ++------------
- include/linux/soc/ti/ti-msgmgr.h        |   10 +---------
- 38 files changed, 39 insertions(+), 345 deletions(-)
+ drivers/net/vmxnet3/Makefile          |   17 +----------------
+ drivers/net/vmxnet3/upt1_defs.h       |   19 +------------------
+ drivers/net/vmxnet3/vmxnet3_defs.h    |   19 +------------------
+ drivers/net/vmxnet3/vmxnet3_drv.c     |   19 +------------------
+ drivers/net/vmxnet3/vmxnet3_ethtool.c |   19 +------------------
+ drivers/net/vmxnet3/vmxnet3_int.h     |   19 +------------------
+ 6 files changed, 6 insertions(+), 106 deletions(-)
 
---- a/arch/arm/mach-omap1/timer.c
-+++ b/arch/arm/mach-omap1/timer.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP1 Dual-Mode Timers - platform device registration
-  *
-@@ -9,15 +10,6 @@
-  * Copyright (C) 2011 Texas Instruments Incorporated - https://www.ti.com/
-  * Tarun Kanti DebBarma <tarun.kanti@ti.com>
-  * Thara Gopinath <thara@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk.h>
---- a/arch/arm/mach-omap2/display.c
-+++ b/arch/arm/mach-omap2/display.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP2plus display device setup / initialization.
-  *
-  * Copyright (C) 2010 Texas Instruments Incorporated - https://www.ti.com/
-  *	Senthilvadivu Guruswamy
-  *	Sumit Semwal
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/string.h>
---- a/arch/arm/mach-omap2/omap_opp_data.h
-+++ b/arch/arm/mach-omap2/omap_opp_data.h
-@@ -1,3 +1,4 @@
+--- a/drivers/net/vmxnet3/Makefile
++++ b/drivers/net/vmxnet3/Makefile
+@@ -1,25 +1,10 @@
++# SPDX-License-Identifier: GPL-2.0-only
+ ################################################################################
+ #
+ # Linux driver for VMware's vmxnet3 ethernet NIC.
+ #
+ # Copyright (C) 2007-2021, VMware, Inc. All Rights Reserved.
+ #
+-# This program is free software; you can redistribute it and/or modify it
+-# under the terms of the GNU General Public License as published by the
+-# Free Software Foundation; version 2 of the License and no later version.
+-#
+-# This program is distributed in the hope that it will be useful, but
+-# WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, GOOD TITLE or
+-# NON INFRINGEMENT.  See the GNU General Public License for more
+-# details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with this program; if not, write to the Free Software
+-# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+-#
+-# The full GNU General Public License is included in this distribution in
+-# the file called "COPYING".
+ #
+ # Maintained by: pv-drivers@vmware.com
+ #
+--- a/drivers/net/vmxnet3/upt1_defs.h
++++ b/drivers/net/vmxnet3/upt1_defs.h
+@@ -1,27 +1,10 @@
 +/* SPDX-License-Identifier: GPL-2.0-only */
  /*
-  * OMAP SoC specific OPP Data helpers
+  * Linux driver for VMware's vmxnet3 ethernet NIC.
   *
-@@ -6,15 +7,6 @@
-  *	Kevin Hilman
-  * Copyright (C) 2010 Nokia Corporation.
-  *      Eduardo Valentin
+  * Copyright (C) 2008-2021, VMware, Inc. All Rights Reserved.
+  *
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License as published by the
+- * Free Software Foundation; version 2 of the License and no later version.
 - *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, GOOD TITLE or
+- * NON INFRINGEMENT.  See the GNU General Public License for more
+- * details.
 - *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * The full GNU General Public License is included in this distribution in
+- * the file called "COPYING".
+- *
+  * Maintained by: pv-drivers@vmware.com
+- *
   */
- #ifndef __ARCH_ARM_MACH_OMAP2_OMAP_OPP_DATA_H
- #define __ARCH_ARM_MACH_OMAP2_OMAP_OPP_DATA_H
---- a/arch/arm/mach-omap2/opp3xxx_data.c
-+++ b/arch/arm/mach-omap2/opp3xxx_data.c
-@@ -1,3 +1,4 @@
+ 
+ #ifndef _UPT1_DEFS_H
+--- a/drivers/net/vmxnet3/vmxnet3_defs.h
++++ b/drivers/net/vmxnet3/vmxnet3_defs.h
+@@ -1,27 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * Linux driver for VMware's vmxnet3 ethernet NIC.
+  *
+  * Copyright (C) 2008-2021, VMware, Inc. All Rights Reserved.
+  *
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License as published by the
+- * Free Software Foundation; version 2 of the License and no later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, GOOD TITLE or
+- * NON INFRINGEMENT.  See the GNU General Public License for more
+- * details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * The full GNU General Public License is included in this distribution in
+- * the file called "COPYING".
+- *
+  * Maintained by: pv-drivers@vmware.com
+- *
+  */
+ 
+ #ifndef _VMXNET3_DEFS_H_
+--- a/drivers/net/vmxnet3/vmxnet3_drv.c
++++ b/drivers/net/vmxnet3/vmxnet3_drv.c
+@@ -1,27 +1,10 @@
 +// SPDX-License-Identifier: GPL-2.0-only
  /*
-  * OMAP3 OPP table definitions.
+  * Linux driver for VMware's vmxnet3 ethernet NIC.
   *
-@@ -7,15 +8,6 @@
-  * Copyright (C) 2010-2011 Nokia Corporation.
-  *      Eduardo Valentin
-  *      Paul Walmsley
+  * Copyright (C) 2008-2021, VMware, Inc. All Rights Reserved.
+  *
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License as published by the
+- * Free Software Foundation; version 2 of the License and no later version.
 - *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, GOOD TITLE or
+- * NON INFRINGEMENT. See the GNU General Public License for more
+- * details.
 - *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * The full GNU General Public License is included in this distribution in
+- * the file called "COPYING".
+- *
+  * Maintained by: pv-drivers@vmware.com
+- *
   */
+ 
  #include <linux/module.h>
- 
---- a/arch/arm/mach-omap2/opp4xxx_data.c
-+++ b/arch/arm/mach-omap2/opp4xxx_data.c
-@@ -1,3 +1,4 @@
+--- a/drivers/net/vmxnet3/vmxnet3_ethtool.c
++++ b/drivers/net/vmxnet3/vmxnet3_ethtool.c
+@@ -1,27 +1,10 @@
 +// SPDX-License-Identifier: GPL-2.0-only
  /*
-  * OMAP4 OPP table definitions.
+  * Linux driver for VMware's vmxnet3 ethernet NIC.
   *
-@@ -8,15 +9,6 @@
-  * Copyright (C) 2010-2011 Nokia Corporation.
-  *      Eduardo Valentin
-  *      Paul Walmsley
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #include <linux/module.h>
- 
---- a/arch/arm/mach-versatile/spc.c
-+++ b/arch/arm/mach-versatile/spc.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Versatile Express Serial Power Controller (SPC) support
+  * Copyright (C) 2008-2021, VMware, Inc. All Rights Reserved.
   *
-@@ -6,15 +7,6 @@
-  * Authors: Sudeep KarkadaNagesha <sudeep.karkadanagesha@arm.com>
-  *          Achin Gupta           <achin.gupta@arm.com>
-  *          Lorenzo Pieralisi     <lorenzo.pieralisi@arm.com>
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License as published by the
+- * Free Software Foundation; version 2 of the License and no later version.
 - *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, GOOD TITLE or
+- * NON INFRINGEMENT.  See the GNU General Public License for more
+- * details.
 - *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * The full GNU General Public License is included in this distribution in
+- * the file called "COPYING".
+- *
+  * Maintained by: pv-drivers@vmware.com
+- *
   */
  
- #include <linux/clk-provider.h>
---- a/drivers/bus/omap_l3_noc.c
-+++ b/drivers/bus/omap_l3_noc.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP L3 Interconnect error handling driver
-  *
-  * Copyright (C) 2011-2015 Texas Instruments Incorporated - http://www.ti.com/
-  *	Santosh Shilimkar <santosh.shilimkar@ti.com>
-  *	Sricharan <r.sricharan@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #include <linux/init.h>
- #include <linux/interrupt.h>
---- a/drivers/bus/omap_l3_noc.h
-+++ b/drivers/bus/omap_l3_noc.h
-@@ -1,18 +1,10 @@
+ 
+--- a/drivers/net/vmxnet3/vmxnet3_int.h
++++ b/drivers/net/vmxnet3/vmxnet3_int.h
+@@ -1,27 +1,10 @@
 +/* SPDX-License-Identifier: GPL-2.0-only */
  /*
-  * OMAP L3 Interconnect  error handling driver header
+  * Linux driver for VMware's vmxnet3 ethernet NIC.
   *
-  * Copyright (C) 2011-2015 Texas Instruments Incorporated - http://www.ti.com/
-  *	Santosh Shilimkar <santosh.shilimkar@ti.com>
-  *	sricharan <r.sricharan@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #ifndef __OMAP_L3_NOC_H
- #define __OMAP_L3_NOC_H
---- a/drivers/clk/keystone/sci-clk.c
-+++ b/drivers/clk/keystone/sci-clk.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * SCI Clock driver for keystone based devices
+  * Copyright (C) 2008-2021, VMware, Inc. All Rights Reserved.
   *
-  * Copyright (C) 2015-2016 Texas Instruments Incorporated - https://www.ti.com/
-  *	Tero Kristo <t-kristo@ti.com>
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License as published by the
+- * Free Software Foundation; version 2 of the License and no later version.
 - *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, GOOD TITLE or
+- * NON INFRINGEMENT.  See the GNU General Public License for more
+- * details.
 - *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #include <linux/clk-provider.h>
- #include <linux/err.h>
---- a/drivers/clk/ti/apll.c
-+++ b/drivers/clk/ti/apll.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP APLL clock support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * J Keerthy <j-keerthy@ti.com>
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
 - *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
+- * The full GNU General Public License is included in this distribution in
+- * the file called "COPYING".
 - *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
+  * Maintained by: pv-drivers@vmware.com
+- *
   */
  
- #include <linux/clk.h>
---- a/drivers/clk/ti/autoidle.c
-+++ b/drivers/clk/ti/autoidle.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI clock autoidle support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/clk/ti/clk-dra7-atl.c
-+++ b/drivers/clk/ti/clk-dra7-atl.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * DRA7 ATL (Audio Tracking Logic) clock driver
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Peter Ujfalusi <peter.ujfalusi@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/init.h>
---- a/drivers/clk/ti/clk.c
-+++ b/drivers/clk/ti/clk.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI clock support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk.h>
---- a/drivers/clk/ti/clkctrl.c
-+++ b/drivers/clk/ti/clkctrl.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP clkctrl clock support
-  *
-  * Copyright (C) 2017 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/clk/ti/clkt_dflt.c
-+++ b/drivers/clk/ti/clkt_dflt.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Default clock type
-  *
-@@ -8,15 +9,6 @@
-  * Richard Woodruff <r-woodruff2@ti.com>
-  * Paul Walmsley
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/kernel.h>
---- a/drivers/clk/ti/clockdomain.c
-+++ b/drivers/clk/ti/clockdomain.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP clockdomain support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk.h>
---- a/drivers/clk/ti/composite.c
-+++ b/drivers/clk/ti/composite.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI composite clock support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/clk/ti/divider.c
-+++ b/drivers/clk/ti/divider.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI Divider Clock
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/clk/ti/dpll.c
-+++ b/drivers/clk/ti/dpll.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP DPLL clock support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk.h>
---- a/drivers/clk/ti/fixed-factor.c
-+++ b/drivers/clk/ti/fixed-factor.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI Fixed Factor Clock
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/clk/ti/gate.c
-+++ b/drivers/clk/ti/gate.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP gate clock support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/clk/ti/interface.c
-+++ b/drivers/clk/ti/interface.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP interface clock support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/clk/ti/mux.c
-+++ b/drivers/clk/ti/mux.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI Multiplexer Clock
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Tero Kristo <t-kristo@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/drivers/cpufreq/scpi-cpufreq.c
-+++ b/drivers/cpufreq/scpi-cpufreq.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * System Control and Power Interface (SCPI) based CPUFreq Interface driver
-  *
-  * Copyright (C) 2015 ARM Ltd.
-  * Sudeep Holla <sudeep.holla@arm.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-- * GNU General Public License for more details.
-  */
- 
- #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
---- a/drivers/input/misc/palmas-pwrbutton.c
-+++ b/drivers/input/misc/palmas-pwrbutton.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Texas Instruments' Palmas Power Button Input Driver
-  *
-  * Copyright (C) 2012-2014 Texas Instruments Incorporated - http://www.ti.com/
-  *	Girish S Ghongdemath
-  *	Nishanth Menon
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/bitfield.h>
---- a/drivers/input/misc/tps65218-pwrbutton.c
-+++ b/drivers/input/misc/tps65218-pwrbutton.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Texas Instruments' TPS65217 and TPS65218 Power Button Input Driver
-  *
-  * Copyright (C) 2014 Texas Instruments Incorporated - http://www.ti.com/
-  * Author: Felipe Balbi <balbi@ti.com>
-  * Author: Marcin Niestroj <m.niestroj@grinn-global.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/init.h>
---- a/drivers/misc/sram-exec.c
-+++ b/drivers/misc/sram-exec.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * SRAM protect-exec region helper functions
-  *
-  * Copyright (C) 2017 Texas Instruments Incorporated - https://www.ti.com/
-  *	Dave Gerlach
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/device.h>
---- a/drivers/power/supply/cpcap-battery.c
-+++ b/drivers/power/supply/cpcap-battery.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Battery driver for CPCAP PMIC
-  *
-@@ -7,15 +8,6 @@
-  * drivers:
-  *
-  * Copyright (C) 2009-2010 Motorola, Inc.
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
--
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/delay.h>
---- a/drivers/regulator/ti-abb-regulator.c
-+++ b/drivers/regulator/ti-abb-regulator.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Texas Instruments SoC Adaptive Body Bias(ABB) Regulator
-  *
-@@ -7,15 +8,6 @@
-  * Copyright (C) 2012-2013 Texas Instruments, Inc.
-  * Andrii Tseglytskyi <andrii.tseglytskyi@ti.com>
-  * Nishanth Menon <nm@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #include <linux/clk.h>
- #include <linux/delay.h>
---- a/drivers/reset/reset-ti-sci.c
-+++ b/drivers/reset/reset-ti-sci.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Texas Instrument's System Control Interface (TI-SCI) reset driver
-  *
-  * Copyright (C) 2015-2017 Texas Instruments Incorporated - https://www.ti.com/
-  *	Andrew F. Davis <afd@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/idr.h>
---- a/drivers/reset/reset-ti-syscon.c
-+++ b/drivers/reset/reset-ti-syscon.c
-@@ -1,18 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI SYSCON regmap reset driver
-  *
-  * Copyright (C) 2015-2016 Texas Instruments Incorporated - https://www.ti.com/
-  *	Andrew F. Davis <afd@ti.com>
-  *	Suman Anna <afd@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/mfd/syscon.h>
---- a/drivers/thermal/hisi_thermal.c
-+++ b/drivers/thermal/hisi_thermal.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * HiSilicon thermal sensor driver
-  *
-@@ -6,15 +7,6 @@
-  *
-  * Xinwei Kong <kong.kongxinwei@hisilicon.com>
-  * Leo Yan <leo.yan@linaro.org>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/cpufreq.h>
---- a/include/dt-bindings/clock/ti-dra7-atl.h
-+++ b/include/dt-bindings/clock/ti-dra7-atl.h
-@@ -1,3 +1,4 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * This header provides constants for DRA7 ATL (Audio Tracking Logic)
-  *
-@@ -6,15 +7,6 @@
-  * Copyright (C) 2013 Texas Instruments, Inc.
-  *
-  * Peter Ujfalusi <peter.ujfalusi@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef _DT_BINDINGS_CLK_DRA7_ATL_H
---- a/include/dt-bindings/pinctrl/hisi.h
-+++ b/include/dt-bindings/pinctrl/hisi.h
-@@ -1,17 +1,9 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * This header provides constants for hisilicon pinctrl bindings.
-  *
-  * Copyright (c) 2015 HiSilicon Limited.
-  * Copyright (c) 2015 Linaro Limited.
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef _DT_BINDINGS_PINCTRL_HISI_H
---- a/include/dt-bindings/pinctrl/keystone.h
-+++ b/include/dt-bindings/pinctrl/keystone.h
-@@ -1,16 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * This header provides constants for Keystone pinctrl bindings.
-  *
-  * Copyright (C) 2016 Texas Instruments Incorporated - http://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef _DT_BINDINGS_PINCTRL_KEYSTONE_H
---- a/include/linux/clk/ti.h
-+++ b/include/linux/clk/ti.h
-@@ -1,16 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * TI clock drivers support
-  *
-  * Copyright (C) 2013 Texas Instruments, Inc.
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #ifndef __LINUX_CLK_TI_H__
- #define __LINUX_CLK_TI_H__
---- a/include/linux/pm_wakeirq.h
-+++ b/include/linux/pm_wakeirq.h
-@@ -1,15 +1,5 @@
--/*
-- * pm_wakeirq.h - Device wakeirq helper functions
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/* pm_wakeirq.h - Device wakeirq helper functions */
- 
- #ifndef _LINUX_PM_WAKEIRQ_H
- #define _LINUX_PM_WAKEIRQ_H
---- a/include/linux/soc/ti/ti-msgmgr.h
-+++ b/include/linux/soc/ti/ti-msgmgr.h
-@@ -1,17 +1,9 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * Texas Instruments' Message Manager
-  *
-  * Copyright (C) 2015-2022 Texas Instruments Incorporated - https://www.ti.com/
-  *	Nishanth Menon
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of the GNU General Public License version 2 as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef TI_MSGMGR_H
+ #ifndef _VMXNET3_INT_H
 

@@ -2,60 +2,52 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A821653FE67
-	for <lists+linux-spdx@lfdr.de>; Tue,  7 Jun 2022 14:10:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA08A53FE83
+	for <lists+linux-spdx@lfdr.de>; Tue,  7 Jun 2022 14:14:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241135AbiFGMKb (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 7 Jun 2022 08:10:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51368 "EHLO
+        id S233904AbiFGMOi (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 7 Jun 2022 08:14:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243414AbiFGMHx (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 7 Jun 2022 08:07:53 -0400
-Received: from pb-smtp21.pobox.com (pb-smtp21.pobox.com [173.228.157.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D1A7CB39
-        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 05:07:46 -0700 (PDT)
-Received: from pb-smtp21.pobox.com (unknown [127.0.0.1])
-        by pb-smtp21.pobox.com (Postfix) with ESMTP id CB01A1962E6
-        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 08:07:45 -0400 (EDT)
-        (envelope-from allison@lohutok.net)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=pobox.com; h=message-id
-        :date:mime-version:subject:to:references:from:in-reply-to
-        :content-type:content-transfer-encoding; s=sasl; bh=4hXs8iLR92Cf
-        vrb5aIUwb4eOkMxJ5Eia2mDl89g3Da4=; b=FiBbvASDhpYWrbipPm4BqsRmm3dd
-        2nplPiYy6YgNl3wAoJBqEgmtqM196GVc4LaQoXzGqzcUy08yYZPKM9jHGHGUQ040
-        qIzBg7Z71xwNHzQ34ueHe/VCLnY2AYc58teKXrMVIGs0Q2aFKotWCJebAC01HV5S
-        /mucNgED7iS+DXU=
-Received: from pb-smtp21.sea.icgroup.com (unknown [127.0.0.1])
-        by pb-smtp21.pobox.com (Postfix) with ESMTP id C44261962E4
-        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 08:07:45 -0400 (EDT)
-        (envelope-from allison@lohutok.net)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=lohutok.net;
- h=message-id:date:mime-version:subject:to:references:from:in-reply-to:content-type:content-transfer-encoding; s=2018-11.pbsmtp; bh=4hXs8iLR92Cfvrb5aIUwb4eOkMxJ5Eia2mDl89g3Da4=; b=nRBU2zZB2c/4dtaD6P1OI/7S+rvZYydbO0fQkeUpo2YVDLFJ5oB228QPjqWQd3Vq2yJj6DiS86ALuZM9ZoK9R9yJlir2byU7AHyw80Ra418P+AifVTytwUZahj9/W7LM/IBzv4hJwSlDpjpIGzuVqHp5WqUTqZpIs+82sQTCrFk=
-Received: from [10.0.2.15] (unknown [130.117.184.210])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by pb-smtp21.pobox.com (Postfix) with ESMTPSA id A42E01962E3
-        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 08:07:41 -0400 (EDT)
-        (envelope-from allison@lohutok.net)
-Message-ID: <e8dcd456-bdb8-d492-e0be-038aeab39450@lohutok.net>
-Date:   Tue, 7 Jun 2022 08:07:35 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [patch 24/25] treewide: Replace GPLv2 boilerplate/reference with
- SPDX - gpl-2.0_406.RULE
-Content-Language: en-US
-To:     linux-spdx@vger.kernel.org
+        with ESMTP id S243532AbiFGMOg (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 7 Jun 2022 08:14:36 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E50C4E9A
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 05:14:34 -0700 (PDT)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1654604072;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=By5uMbWAKBCbK9Og0PP5rIYYIecphU5qowiDYOAbByg=;
+        b=hEhsvFsXTZxPmVkBjgtZo3qs6GprOF5Px6tc4LLudGSTbbTqDTBX48ek60vVmLR5qEY12M
+        9HkcUIZeEynct4kAggbnQt09c7FP1qDS8blrkyzpCEDyvIcSykUXaWO29CEgNhxiFp6ICE
+        sXU7tXqqeMVtIRY9P0vhS+Tq99jcaxU7eEb2PLmyp72F8tvGqurVIATn+COUEuU+KhtgBu
+        94cJ1ZY+wHSPKtkQN8n+o2SPafV26VCnpViBAqEvScSmhGB4E4J8Gi0WGDYcdRwMbw2uxt
+        N9JTciQQyrzYr9MOp9n8MaX3nz8d/XlsjYsZm8DcL7BOUsLd2ISMuey6BSOrnQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1654604072;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=By5uMbWAKBCbK9Og0PP5rIYYIecphU5qowiDYOAbByg=;
+        b=taqJRr50RDGB7eJrJnCH9rolvPgtT/VHM+3yv51osXOP9Rl3tJrzatp5fug9DbVGfAr78H
+        opjVVD/i5Qtzf2Dg==
+To:     Greg KH <greg@kroah.com>
+Cc:     linux-spdx@vger.kernel.org
+Subject: Re: [patch 01/25] treewide: Replace GPLv2 boilerplate/reference
+ with SPDX - gpl-2.0_8.RULE
+In-Reply-To: <Yp8vcm4WBF7mQi5p@kroah.com>
 References: <20220606200732.204209102@linutronix.de>
- <20220606200811.476746257@linutronix.de>
-From:   Allison Randal <allison@lohutok.net>
-In-Reply-To: <20220606200811.476746257@linutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Pobox-Relay-ID: 6E986104-E65A-11EC-8643-CBA7845BAAA9-44123303!pb-smtp21.pobox.com
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_CSS autolearn=ham autolearn_force=no
+ <20220606200810.120819557@linutronix.de> <Yp8vcm4WBF7mQi5p@kroah.com>
+Date:   Tue, 07 Jun 2022 14:14:32 +0200
+Message-ID: <87v8tc4qmv.ffs@tglx>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,19 +55,39 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On 6/6/22 16:10, Thomas Gleixner wrote:
-> Based on the normalized pattern:
-> 
->      this file is licensed under the term of the gnu general public license
->      version 2 the program licensed as is without any warranty of any kind
->      whether express or implied
-> 
-> extracted by the scancode license scanner the SPDX license identifier
-> 
->      GPL-2.0-only
-> 
-> has been chosen to replace the boilerplate/reference.
-> 
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+On Tue, Jun 07 2022 at 12:58, Greg KH wrote:
+> On Mon, Jun 06, 2022 at 10:10:17PM +0200, Thomas Gleixner wrote:
+>> ---
+>>  Documentation/driver-api/vfio-mediated-device.rst |    4 +---
+>>  arch/arm/boot/bootp/bootp.lds                     |    5 +----
+>>  include/linux/input/elan-i2c-ids.h                |    5 +----
+>>  3 files changed, 3 insertions(+), 11 deletions(-)
+>
+> I understand the goal to split this up per "rule", but that rule name
+> makes no sense to any kernel developer.  They don't know what it is, or
+> where it came from, or anything else like that.
 
-Reviewed-by: Allison Randal <allison@lohutok.net>
+I was just reusing the scripts/approach from 3 years ago :)
+
+> This also touches files across subsystems, generally not a good idea.
+> Is your goal to get acks from the people here and then split them up
+> per-subsystem later, or are you thinking you want these merged as-is?
+
+I assumed that we merge that through your spdx tree. Though it might be
+not the worst idea to route them through the maintainers, so they become
+more aware of the overall problem.
+
+It's easy enough to split them fully automated after we got green light
+from the folks on the SPDX list.
+
+> Oh, and thanks for picking this work up again.  It's amazing to me that
+> the companies/people that complain about this over the years never
+> actually send patches to do anything about it...
+
+What's more amazing is that we still have no plan what to do with the
+more complicated ones - the non-standard disclaimers are just the tip of
+the iceberg.
+
+Thanks,
+
+        tglx

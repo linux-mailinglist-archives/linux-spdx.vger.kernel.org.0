@@ -2,48 +2,48 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74E4B5400C9
-	for <lists+linux-spdx@lfdr.de>; Tue,  7 Jun 2022 16:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 795C85400C8
+	for <lists+linux-spdx@lfdr.de>; Tue,  7 Jun 2022 16:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245127AbiFGOLU (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 7 Jun 2022 10:11:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58728 "EHLO
+        id S245123AbiFGOLT (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 7 Jun 2022 10:11:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245139AbiFGOLS (ORCPT
+        with ESMTP id S245141AbiFGOLS (ORCPT
         <rfc822;linux-spdx@vger.kernel.org>); Tue, 7 Jun 2022 10:11:18 -0400
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA858A26F7
-        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 07:11:13 -0700 (PDT)
-Message-ID: <20220607131510.477785405@linutronix.de>
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E720BA3C23
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 07:11:14 -0700 (PDT)
+Message-ID: <20220607131510.535061042@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1654611072;
+        s=2020; t=1654611073;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=1M+Kzu1iXrazqNpAhphTWIrMwCAlLHvQ0LelJZN8q+Q=;
-        b=nOiqWn402071KRNJHw8NXpkkqyDk6zPpXKRuYOdO/kCOtP9EatwuO9BM3EZpNv904R577u
-        fVMg6ePsNcS2tXvdoy9SIPTeZXcyq3Zeo8+TaS4RSKa6vVu8zDqFDQQt7vFB2Itqp1v9ih
-        n1+gEZ1eThX0GxSjVoimv7WpbVctJg6B2HVYdoonbtQ3o8JNxUadH/dw5O3ha+07n8NzLD
-        vR9pM8yDuqytGbx5ijlrGnOUe+GLPweT+YcmzUu+F+RRWfwfcnHANbMuHqcxUY2cvSa3zn
-        Cvz1+ZIOoRl8sIoA5vOBw09Csr3pTCnKT2lObQBgTZr39F3WAD26S2QUjEXgJA==
+         references:references; bh=fKR3KMEgLvPPnkPCsLCAYrwotLcKVHKw0les7DyeXeo=;
+        b=SEwRQPFCVw9g17lsiZTocWrGq/DrifVz9l5vfQ3JqUdWjeQ3/vckY+A6X/NpMbj27w+vLk
+        SUpDQfmeiMnQiwLmOl179Lipm9HJxUqvzqdGktLfcDSoiJQyB9Z18Awhksk/pJPWx5GjXm
+        +JZca/BsOGWc6/Pk1Lwg7Qa2wFLyjR4swYG1NGyZtFz5a1p4OYX2K0EaKgtA/RZS8hzZ/Z
+        awLY4ZovZMpfHcqOiyBvTYeFYqi/HWgyU6cRSxKDxFTpmL0nZSAthZI84M36GHuLINTg4k
+        awTTr5HAfju2VwRdUSMTt12D2yFM0tfYr3CIxIkQZgOVOmf0syWt8eTXfZcMpg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1654611072;
+        s=2020e; t=1654611073;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=1M+Kzu1iXrazqNpAhphTWIrMwCAlLHvQ0LelJZN8q+Q=;
-        b=UJKN7YBvcCR1rDtfI587ZaBMKx9NJIZLqoYO0Q/Eem3LhJICgZUSAKRRftb5u3lBAzdmT+
-        zyxMFb5lXZi5EqAA==
+         references:references; bh=fKR3KMEgLvPPnkPCsLCAYrwotLcKVHKw0les7DyeXeo=;
+        b=rB3PoeF+6fANNgNHJFB6A7kjT5JEbygqd1v2W6msYIjg7EMw42RkE1IaMZkRkkLLvMavPJ
+        OSBnF1Bk0O2ODADw==
 From:   Thomas Gleixner <tglx@linutronix.de>
 To:     linux-spdx@vger.kernel.org
-Subject: [patch V2 02/24] treewide: Replace GPLv2 boilerplate/reference with
- SPDX - gpl-2.0_30.RULE (part 1)
+Subject: [patch V2 03/24] treewide: Replace GPLv2 boilerplate/reference with
+ SPDX - gpl-2.0_30.RULE (part 2)
 References: <20220607131425.436789559@linutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date:   Tue,  7 Jun 2022 16:11:11 +0200 (CEST)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Date:   Tue,  7 Jun 2022 16:11:13 +0200 (CEST)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_SBL autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -67,274 +67,78 @@ has been chosen to replace the boilerplate/reference.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
-V2: Split to overcome the list size limits
+V2: Split to overcome list size limits
 ---
- arch/arm/boot/dts/bcm11351.dtsi             |   14 ++------------
- arch/arm/boot/dts/bcm21664-garnet.dts       |   14 ++------------
- arch/arm/boot/dts/bcm21664.dtsi             |   14 ++------------
- arch/arm/boot/dts/bcm28155-ap.dts           |   14 ++------------
- arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi   |   10 +---------
- arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi   |   10 +---------
- arch/arm/include/debug/brcmstb.S            |   14 ++------------
- arch/arm/mach-bcm/Makefile                  |    9 +--------
- arch/arm/mach-bcm/bcm63xx.c                 |   14 ++------------
- arch/arm/mach-bcm/bcm_cygnus.c              |   14 ++------------
- arch/arm/mach-bcm/bcm_hr2.c                 |   14 ++------------
- arch/arm/mach-bcm/bcm_kona_smc.c            |   14 ++------------
- arch/arm/mach-bcm/bcm_kona_smc.h            |   14 ++------------
- arch/arm/mach-bcm/bcm_nsp.c                 |   14 ++------------
- arch/arm/mach-bcm/board_bcm21664.c          |   14 ++------------
- arch/arm/mach-bcm/board_bcm23550.c          |   14 ++------------
- arch/arm/mach-bcm/board_bcm281xx.c          |   14 ++------------
- arch/arm/mach-bcm/brcmstb.c                 |   14 ++------------
- arch/arm/mach-bcm/kona_l2_cache.c           |   14 ++------------
- arch/arm/mach-bcm/kona_l2_cache.h           |   14 ++------------
- arch/arm/mach-bcm/platsmp-brcmstb.c         |   10 +---------
- arch/arm/mach-davinci/board-dm365-evm.c     |   11 +----------
- arch/arm/mach-davinci/davinci.h             |   10 +---------
- arch/arm/mach-davinci/dm365.c               |   10 +---------
- arch/arm/mach-davinci/pm.h                  |   10 +---------
- arch/arm/mach-omap1/gpio15xx.c              |   10 +---------
- arch/arm/mach-omap1/gpio16xx.c              |   10 +---------
- arch/arm/mach-omap1/gpio7xx.c               |   10 +---------
- arch/arm/mach-omap2/am33xx.h                |   10 +---------
- arch/arm/mach-omap2/clockdomains33xx_data.c |   10 +---------
- arch/arm/mach-omap2/clockdomains81xx_data.c |   10 +---------
- arch/arm/mach-omap2/cm-regbits-33xx.h       |   10 +---------
- arch/arm/mach-omap2/cm33xx.c                |   10 +---------
- arch/arm/mach-omap2/cm33xx.h                |   10 +---------
- arch/arm/mach-omap2/cm81xx.h                |   10 +---------
- arch/arm/mach-omap2/omap_hwmod_81xx_data.c  |   11 +----------
- arch/arm/mach-omap2/powerdomains33xx_data.c |   10 +---------
- arch/arm/mach-omap2/prm-regbits-33xx.h      |   10 +---------
- arch/arm/mach-omap2/prm33xx.c               |   10 +---------
- arch/arm/mach-omap2/prm33xx.h               |   10 +---------
- arch/arm/mach-omap2/ti81xx.h                |   10 +---------
- drivers/char/hw_random/iproc-rng200.c       |    9 +--------
- drivers/clk/bcm/clk-bcm21664.c              |   10 +---------
- drivers/clk/bcm/clk-bcm281xx.c              |   10 +---------
- drivers/clk/bcm/clk-bcm63xx.c               |   14 ++------------
- drivers/clk/bcm/clk-cygnus.c                |   14 ++------------
- drivers/clk/bcm/clk-hr2.c                   |   14 ++------------
- drivers/clk/bcm/clk-iproc-armpll.c          |   14 ++------------
- drivers/clk/bcm/clk-iproc-asiu.c            |   14 ++------------
- drivers/clk/bcm/clk-iproc-pll.c             |   14 ++------------
- drivers/clk/bcm/clk-iproc.h                 |   14 ++------------
- drivers/clk/bcm/clk-kona-setup.c            |   10 +---------
- drivers/clk/bcm/clk-kona.c                  |   10 +---------
- drivers/clk/bcm/clk-kona.h                  |   10 +---------
- drivers/clk/bcm/clk-ns2.c                   |   14 ++------------
- drivers/clk/bcm/clk-nsp.c                   |   14 ++------------
- drivers/clk/ti/adpll.c                      |   11 +----------
- drivers/clk/ti/clk-2xxx.c                   |   10 +---------
- drivers/clk/ti/clk-33xx.c                   |   10 +---------
- drivers/clk/ti/clk-3xxx.c                   |   10 +---------
- drivers/clk/ti/clk-43xx.c                   |   10 +---------
- drivers/clk/ti/clk-816x.c                   |   11 +----------
- drivers/clk/ti/clock.h                      |   10 +---------
- drivers/clk/ti/fapll.c                      |   11 +----------
- 64 files changed, 90 insertions(+), 657 deletions(-)
+ drivers/dma/bcm-sba-raid.c                       |   14 ++------------
+ drivers/dma/ti/edma.c                            |   10 +---------
+ drivers/gpio/gpio-bcm-kona.c                     |   10 +---------
+ drivers/gpio/gpio-brcmstb.c                      |   14 ++------------
+ drivers/i2c/busses/i2c-bcm-iproc.c               |   14 ++------------
+ drivers/i2c/busses/i2c-bcm-kona.c                |   14 ++------------
+ drivers/i2c/busses/i2c-brcmstb.c                 |   14 ++------------
+ drivers/input/keyboard/bcm-keypad.c              |   14 ++------------
+ drivers/input/misc/gpio_decoder.c                |   10 +---------
+ drivers/input/touchscreen/bcm_iproc_tsc.c        |    9 +--------
+ drivers/irqchip/irq-keystone.c                   |   10 +---------
+ drivers/mailbox/bcm-flexrm-mailbox.c             |   14 ++------------
+ drivers/media/i2c/adv7343_regs.h                 |   10 +---------
+ drivers/media/i2c/adv7393_regs.h                 |   10 +---------
+ drivers/media/platform/ti/davinci/vpif.h         |   11 +----------
+ drivers/media/platform/ti/davinci/vpif_display.h |   10 +---------
+ drivers/memory/ti-emif-sram-pm.S                 |   10 +---------
+ drivers/mfd/lp873x.c                             |   10 +---------
+ drivers/mfd/tps65217.c                           |   10 +---------
+ drivers/mmc/host/sdhci-bcm-kona.c                |   14 ++------------
+ drivers/mmc/host/sdhci-iproc.c                   |   14 ++------------
+ drivers/net/can/ti_hecc.c                        |   11 +----------
+ drivers/nvmem/bcm-ocotp.c                        |   14 ++------------
+ drivers/phy/broadcom/phy-bcm-cygnus-pcie.c       |   14 ++------------
+ drivers/phy/broadcom/phy-bcm-ns2-pcie.c          |   14 ++------------
+ drivers/phy/broadcom/phy-bcm-ns2-usbdrd.c        |   14 ++------------
+ drivers/phy/motorola/phy-cpcap-usb.c             |   10 +---------
+ drivers/phy/ti/phy-dm816x-usb.c                  |   11 +----------
+ drivers/pinctrl/bcm/pinctrl-bcm281xx.c           |   14 ++------------
+ drivers/pinctrl/bcm/pinctrl-cygnus-mux.c         |   14 ++------------
+ drivers/pinctrl/bcm/pinctrl-ns2-mux.c            |   10 +---------
+ drivers/pinctrl/bcm/pinctrl-nsp-gpio.c           |   14 ++------------
+ drivers/pinctrl/bcm/pinctrl-nsp-mux.c            |   10 +---------
+ drivers/power/reset/brcm-kona-reset.c            |   14 ++------------
+ drivers/power/reset/brcmstb-reboot.c             |   14 ++------------
+ drivers/ptp/ptp_dte.c                            |   14 ++------------
+ drivers/pwm/pwm-bcm-iproc.c                      |   14 ++------------
+ drivers/pwm/pwm-bcm-kona.c                       |   14 ++------------
+ drivers/regulator/cpcap-regulator.c              |   10 +---------
+ drivers/regulator/isl6271a-regulator.c           |   10 +---------
+ drivers/regulator/tps65023-regulator.c           |   10 +---------
+ drivers/regulator/tps6507x-regulator.c           |   10 +---------
+ drivers/regulator/tps65217-regulator.c           |   10 +---------
+ drivers/soc/ti/knav_dma.c                        |   10 +---------
+ drivers/uio/uio_pruss.c                          |   10 +---------
+ drivers/video/backlight/tps65217_bl.c            |   10 +---------
+ include/dt-bindings/clock/bcm21664.h             |   10 +---------
+ include/dt-bindings/clock/bcm281xx.h             |   10 +---------
+ include/linux/mfd/lp873x.h                       |   10 +---------
+ include/linux/mfd/tps65217.h                     |   10 +---------
+ include/linux/platform_data/davinci_asp.h        |   10 +---------
+ include/linux/platform_data/gpio-davinci.h       |   10 +---------
+ include/linux/platform_data/uio_dmem_genirq.h    |   10 +---------
+ include/linux/platform_data/uio_pruss.h          |   10 +---------
+ include/linux/reset/bcm63xx_pmb.h                |   10 +---------
+ include/linux/soc/ti/knav_dma.h                  |   10 +---------
+ include/linux/soc/ti/knav_qmss.h                 |   10 +---------
+ include/linux/sram.h                             |   14 ++------------
+ include/linux/ti-emif-sram.h                     |   10 +---------
+ include/linux/wkup_m3_ipc.h                      |   10 +---------
+ include/media/i2c/adv7343.h                      |   10 +---------
+ include/media/i2c/adv7393.h                      |   10 +---------
+ net/hsr/hsr_debugfs.c                            |   10 +---------
+ sound/soc/bcm/cygnus-pcm.c                       |   14 ++------------
+ sound/soc/bcm/cygnus-ssp.c                       |   14 ++------------
+ sound/soc/bcm/cygnus-ssp.h                       |   14 ++------------
+ 66 files changed, 91 insertions(+), 671 deletions(-)
 
---- a/arch/arm/boot/dts/bcm11351.dtsi
-+++ b/arch/arm/boot/dts/bcm11351.dtsi
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2012-2013 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2012-2013 Broadcom Corporation
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
---- a/arch/arm/boot/dts/bcm21664-garnet.dts
-+++ b/arch/arm/boot/dts/bcm21664-garnet.dts
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
- 
- /dts-v1/;
- 
---- a/arch/arm/boot/dts/bcm21664.dtsi
-+++ b/arch/arm/boot/dts/bcm21664.dtsi
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
---- a/arch/arm/boot/dts/bcm28155-ap.dts
-+++ b/arch/arm/boot/dts/bcm28155-ap.dts
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2013 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2013 Broadcom Corporation
- 
- /dts-v1/;
- 
---- a/arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi
-+++ b/arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi
-@@ -1,16 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * MMC IOdelay values for TI's DRA72x, DRA71x and AM571x SoCs.
-  *
-  * Copyright (C) 2017 Texas Instruments Incorporated - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- /*
---- a/arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi
-+++ b/arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi
-@@ -1,16 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * MMC IOdelay values for TI's DRA74x, DRA75x and AM572x SoCs.
-  *
-  * Copyright (C) 2017 Texas Instruments Incorporated - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- /*
---- a/arch/arm/include/debug/brcmstb.S
-+++ b/arch/arm/include/debug/brcmstb.S
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2016 Broadcom
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/* Copyright (C) 2016 Broadcom */
- #include <linux/serial_reg.h>
- #include <asm/cputype.h>
- 
---- a/arch/arm/mach-bcm/Makefile
-+++ b/arch/arm/mach-bcm/Makefile
-@@ -1,14 +1,7 @@
-+# SPDX-License-Identifier: GPL-2.0-only
- #
- # Copyright (C) 2012-2015 Broadcom Corporation
- #
--# This program is free software; you can redistribute it and/or
--# modify it under the terms of the GNU General Public License as
--# published by the Free Software Foundation version 2.
--#
--# This program is distributed "as is" WITHOUT ANY WARRANTY of any
--# kind, whether express or implied; without even the implied warranty
--# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--# GNU General Public License for more details.
- 
- # Cygnus
- obj-$(CONFIG_ARCH_BCM_CYGNUS) +=  bcm_cygnus.o
---- a/arch/arm/mach-bcm/bcm63xx.c
-+++ b/arch/arm/mach-bcm/bcm63xx.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
- 
- #include <linux/of_platform.h>
- 
---- a/arch/arm/mach-bcm/bcm_cygnus.c
-+++ b/arch/arm/mach-bcm/bcm_cygnus.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
- 
- #include <asm/mach/arch.h>
- 
---- a/arch/arm/mach-bcm/bcm_hr2.c
-+++ b/arch/arm/mach-bcm/bcm_hr2.c
+--- a/drivers/dma/bcm-sba-raid.c
++++ b/drivers/dma/bcm-sba-raid.c
 @@ -1,15 +1,5 @@
 -/*
 - * Copyright (C) 2017 Broadcom
@@ -351,13 +155,54 @@ V2: Split to overcome the list size limits
 +// SPDX-License-Identifier: GPL-2.0-only
 +// Copyright (C) 2017 Broadcom
  
- #include <asm/mach/arch.h>
+ /*
+  * Broadcom SBA RAID Driver
+--- a/drivers/dma/ti/edma.c
++++ b/drivers/dma/ti/edma.c
+@@ -1,16 +1,8 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * TI EDMA DMA engine driver
+  *
+  * Copyright 2012 Texas Instruments
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
  
---- a/arch/arm/mach-bcm/bcm_kona_smc.c
-+++ b/arch/arm/mach-bcm/bcm_kona_smc.c
+ #include <linux/dmaengine.h>
+--- a/drivers/gpio/gpio-bcm-kona.c
++++ b/drivers/gpio/gpio-bcm-kona.c
+@@ -1,17 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Broadcom Kona GPIO Driver
+  *
+  * Author: Broadcom Corporation <bcm-kernel-feedback-list@broadcom.com>
+  * Copyright (C) 2012-2014 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/bitops.h>
+--- a/drivers/gpio/gpio-brcmstb.c
++++ b/drivers/gpio/gpio-brcmstb.c
 @@ -1,15 +1,5 @@
 -/*
-- * Copyright (C) 2013 Broadcom Corporation
+- * Copyright (C) 2015-2017 Broadcom
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -369,52 +214,12 @@ V2: Split to overcome the list size limits
 - * GNU General Public License for more details.
 - */
 +// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2013 Broadcom Corporation
- #include <linux/smp.h>
- #include <linux/io.h>
- #include <linux/ioport.h>
---- a/arch/arm/mach-bcm/bcm_kona_smc.h
-+++ b/arch/arm/mach-bcm/bcm_kona_smc.h
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2013 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/* Copyright (C) 2013 Broadcom Corporation */
++// Copyright (C) 2015-2017 Broadcom
  
- #ifndef BCM_KONA_SMC_H
- #define BCM_KONA_SMC_H
---- a/arch/arm/mach-bcm/bcm_nsp.c
-+++ b/arch/arm/mach-bcm/bcm_nsp.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2015 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2015 Broadcom Corporation
- 
- #include <asm/mach/arch.h>
- 
---- a/arch/arm/mach-bcm/board_bcm21664.c
-+++ b/arch/arm/mach-bcm/board_bcm21664.c
+ #include <linux/bitops.h>
+ #include <linux/gpio/driver.h>
+--- a/drivers/i2c/busses/i2c-bcm-iproc.c
++++ b/drivers/i2c/busses/i2c-bcm-iproc.c
 @@ -1,15 +1,5 @@
 -/*
 - * Copyright (C) 2014 Broadcom Corporation
@@ -431,10 +236,364 @@ V2: Split to overcome the list size limits
 +// SPDX-License-Identifier: GPL-2.0-only
 +// Copyright (C) 2014 Broadcom Corporation
  
- #include <asm/mach/arch.h>
+ #include <linux/delay.h>
+ #include <linux/i2c.h>
+--- a/drivers/i2c/busses/i2c-bcm-kona.c
++++ b/drivers/i2c/busses/i2c-bcm-kona.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2013 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2013 Broadcom Corporation
  
---- a/arch/arm/mach-bcm/board_bcm23550.c
-+++ b/arch/arm/mach-bcm/board_bcm23550.c
+ #include <linux/device.h>
+ #include <linux/kernel.h>
+--- a/drivers/i2c/busses/i2c-brcmstb.c
++++ b/drivers/i2c/busses/i2c-brcmstb.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2014 Broadcom Corporation
+ 
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+--- a/drivers/input/keyboard/bcm-keypad.c
++++ b/drivers/input/keyboard/bcm-keypad.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2014 Broadcom Corporation
+ 
+ #include <linux/bitops.h>
+ #include <linux/clk.h>
+--- a/drivers/input/misc/gpio_decoder.c
++++ b/drivers/input/misc/gpio_decoder.c
+@@ -1,15 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Copyright (C) 2016 Texas Instruments Incorporated - http://www.ti.com/
+  *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+  * A generic driver to read multiple gpio lines and translate the
+  * encoded numeric value into an input event.
+  */
+--- a/drivers/input/touchscreen/bcm_iproc_tsc.c
++++ b/drivers/input/touchscreen/bcm_iproc_tsc.c
+@@ -1,14 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+ * Copyright (C) 2015 Broadcom Corporation
+ *
+-* This program is free software; you can redistribute it and/or
+-* modify it under the terms of the GNU General Public License as
+-* published by the Free Software Foundation version 2.
+-*
+-* This program is distributed "as is" WITHOUT ANY WARRANTY of any
+-* kind, whether express or implied; without even the implied warranty
+-* of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-* GNU General Public License for more details.
+ */
+ #include <linux/module.h>
+ #include <linux/init.h>
+--- a/drivers/irqchip/irq-keystone.c
++++ b/drivers/irqchip/irq-keystone.c
+@@ -1,18 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Texas Instruments Keystone IRQ controller IP driver
+  *
+  * Copyright (C) 2014 Texas Instruments, Inc.
+  * Author: Sajesh Kumar Saran <sajesh@ti.com>
+  *	   Grygorii Strashko <grygorii.strashko@ti.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/irq.h>
+--- a/drivers/mailbox/bcm-flexrm-mailbox.c
++++ b/drivers/mailbox/bcm-flexrm-mailbox.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2017 Broadcom
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2017 Broadcom
+ 
+ /*
+  * Broadcom FlexRM Mailbox Driver
+--- a/drivers/media/i2c/adv7343_regs.h
++++ b/drivers/media/i2c/adv7343_regs.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * ADV7343 encoder related structure and register definitions
+  *
+  * Copyright (C) 2009 Texas Instruments Incorporated - http://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed .as is. WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef ADV7343_REGS_H
+--- a/drivers/media/i2c/adv7393_regs.h
++++ b/drivers/media/i2c/adv7393_regs.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * ADV7393 encoder related structure and register definitions
+  *
+@@ -7,15 +8,6 @@
+  * Based on ADV7343 driver,
+  *
+  * Copyright (C) 2009 Texas Instruments Incorporated - http://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed .as is. WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef ADV7393_REGS_H
+--- a/drivers/media/platform/ti/davinci/vpif.h
++++ b/drivers/media/platform/ti/davinci/vpif.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * VPIF header file
+  *
+  * Copyright (C) 2009 Texas Instruments Incorporated - https://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed .as is. WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef VPIF_H
+@@ -685,4 +677,3 @@ struct vpif_params {
+ };
+ 
+ #endif				/* End of #ifndef VPIF_H */
+-
+--- a/drivers/media/platform/ti/davinci/vpif_display.h
++++ b/drivers/media/platform/ti/davinci/vpif_display.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * VPIF display header file
+  *
+  * Copyright (C) 2009 Texas Instruments Incorporated - https://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed .as is. WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef VPIF_DISPLAY_H
+--- a/drivers/memory/ti-emif-sram-pm.S
++++ b/drivers/memory/ti-emif-sram-pm.S
+@@ -1,17 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * Low level PM code for TI EMIF
+  *
+  * Copyright (C) 2016-2017 Texas Instruments Incorporated - http://www.ti.com/
+  *	Dave Gerlach
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/linkage.h>
+--- a/drivers/mfd/lp873x.c
++++ b/drivers/mfd/lp873x.c
+@@ -1,16 +1,8 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Copyright (C) 2016 Texas Instruments Incorporated - https://www.ti.com/
+  *
+  * Author: Keerthy <j-keerthy@ti.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/interrupt.h>
+--- a/drivers/mfd/tps65217.c
++++ b/drivers/mfd/tps65217.c
+@@ -1,18 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * tps65217.c
+  *
+  * TPS65217 chip family multi-function driver
+  *
+  * Copyright (C) 2011 Texas Instruments Incorporated - https://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/device.h>
+--- a/drivers/mmc/host/sdhci-bcm-kona.c
++++ b/drivers/mmc/host/sdhci-bcm-kona.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2013 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2013 Broadcom Corporation
+ 
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+--- a/drivers/mmc/host/sdhci-iproc.c
++++ b/drivers/mmc/host/sdhci-iproc.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2014 Broadcom Corporation
+ 
+ /*
+  * iProc SDHCI platform driver
+--- a/drivers/net/can/ti_hecc.c
++++ b/drivers/net/can/ti_hecc.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * TI HECC (CAN) device driver
+  *
+@@ -6,16 +7,6 @@
+  *
+  * Copyright (C) 2009 Texas Instruments Incorporated - http://www.ti.com/
+  * Copyright (C) 2019 Jeroen Hofstee <jhofstee@victronenergy.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed as is WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+  */
+ 
+ #include <linux/module.h>
+--- a/drivers/nvmem/bcm-ocotp.c
++++ b/drivers/nvmem/bcm-ocotp.c
 @@ -1,15 +1,5 @@
 -/*
 - * Copyright (C) 2016 Broadcom
@@ -451,594 +610,10 @@ V2: Split to overcome the list size limits
 +// SPDX-License-Identifier: GPL-2.0-only
 +// Copyright (C) 2016 Broadcom
  
- #include <linux/of_platform.h>
- 
---- a/arch/arm/mach-bcm/board_bcm281xx.c
-+++ b/arch/arm/mach-bcm/board_bcm281xx.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2012-2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2012-2014 Broadcom Corporation
- 
- #include <linux/clocksource.h>
- #include <linux/of_address.h>
---- a/arch/arm/mach-bcm/brcmstb.c
-+++ b/arch/arm/mach-bcm/brcmstb.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2013-2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2013-2014 Broadcom Corporation
- 
- #include <linux/init.h>
- #include <linux/irqchip.h>
---- a/arch/arm/mach-bcm/kona_l2_cache.c
-+++ b/arch/arm/mach-bcm/kona_l2_cache.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2012-2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2012-2014 Broadcom Corporation
- 
- 
- #include <linux/init.h>
---- a/arch/arm/mach-bcm/kona_l2_cache.h
-+++ b/arch/arm/mach-bcm/kona_l2_cache.h
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2012-2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/* Copyright (C) 2012-2014 Broadcom Corporation */
- 
- #ifdef CONFIG_ARCH_BCM_MOBILE_L2_CACHE
- void	kona_l2_cache_init(void);
---- a/arch/arm/mach-bcm/platsmp-brcmstb.c
-+++ b/arch/arm/mach-bcm/platsmp-brcmstb.c
-@@ -1,16 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Broadcom STB CPU SMP and hotplug support for ARM
-  *
-  * Copyright (C) 2013-2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
+ #include <linux/acpi.h>
  #include <linux/delay.h>
---- a/arch/arm/mach-davinci/board-dm365-evm.c
-+++ b/arch/arm/mach-davinci/board-dm365-evm.c
-@@ -1,16 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI DaVinci DM365 EVM board support
-  *
-  * Copyright (C) 2009 Texas Instruments Incorporated
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #include <linux/kernel.h>
- #include <linux/init.h>
-@@ -861,4 +853,3 @@ MACHINE_START(DAVINCI_DM365_EVM, "DaVinc
- 	.init_late	= davinci_init_late,
- 	.dma_zone_size	= SZ_128M,
- MACHINE_END
--
---- a/arch/arm/mach-davinci/davinci.h
-+++ b/arch/arm/mach-davinci/davinci.h
-@@ -1,18 +1,10 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * This file contains the processor specific definitions
-  * of the TI DM644x, DM355, DM365, and DM646x.
-  *
-  * Copyright (C) 2011 Texas Instruments Incorporated
-  * Copyright (c) 2007 Deep Root Systems, LLC
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #ifndef __DAVINCI_H
- #define __DAVINCI_H
---- a/arch/arm/mach-davinci/dm365.c
-+++ b/arch/arm/mach-davinci/dm365.c
-@@ -1,16 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI DaVinci DM365 chip specific setup
-  *
-  * Copyright (C) 2009 Texas Instruments
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/clk-provider.h>
---- a/arch/arm/mach-davinci/pm.h
-+++ b/arch/arm/mach-davinci/pm.h
-@@ -1,16 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * TI DaVinci platform support for power management.
-  *
-  * Copyright (C) 2009 Texas Instruments, Inc. https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- #ifndef _MACH_DAVINCI_PM_H
- #define _MACH_DAVINCI_PM_H
---- a/arch/arm/mach-omap1/gpio15xx.c
-+++ b/arch/arm/mach-omap1/gpio15xx.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP15xx specific gpio init
-  *
-@@ -5,15 +6,6 @@
-  *
-  * Author:
-  *	Charulatha V <charu@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/gpio.h>
---- a/arch/arm/mach-omap1/gpio16xx.c
-+++ b/arch/arm/mach-omap1/gpio16xx.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP16xx specific gpio init
-  *
-@@ -5,15 +6,6 @@
-  *
-  * Author:
-  *	Charulatha V <charu@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/gpio.h>
---- a/arch/arm/mach-omap1/gpio7xx.c
-+++ b/arch/arm/mach-omap1/gpio7xx.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * OMAP7xx specific gpio init
-  *
-@@ -5,15 +6,6 @@
-  *
-  * Author:
-  *	Charulatha V <charu@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/gpio.h>
---- a/arch/arm/mach-omap2/am33xx.h
-+++ b/arch/arm/mach-omap2/am33xx.h
-@@ -1,16 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * This file contains the address info for various AM33XX modules.
-  *
-  * Copyright (C) 2011 Texas Instruments, Inc. - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef __ASM_ARCH_AM33XX_H
---- a/arch/arm/mach-omap2/clockdomains33xx_data.c
-+++ b/arch/arm/mach-omap2/clockdomains33xx_data.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * AM33XX Clock Domain data.
-  *
-  * Copyright (C) 2011-2012 Texas Instruments Incorporated - https://www.ti.com/
-  * Vaibhav Hiremath <hvaibhav@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/kernel.h>
---- a/arch/arm/mach-omap2/clockdomains81xx_data.c
-+++ b/arch/arm/mach-omap2/clockdomains81xx_data.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * TI81XX Clock Domain data.
-  *
-  * Copyright (C) 2010 Texas Instruments, Inc. - https://www.ti.com/
-  * Copyright (C) 2013 SKTB SKiT, http://www.skitlab.ru/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef __ARCH_ARM_MACH_OMAP2_CLOCKDOMAINS_81XX_H
---- a/arch/arm/mach-omap2/cm-regbits-33xx.h
-+++ b/arch/arm/mach-omap2/cm-regbits-33xx.h
-@@ -1,3 +1,4 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * AM33XX Power Management register bits
-  *
-@@ -5,15 +6,6 @@
-  * Vaibhav Hiremath <hvaibhav@ti.com>
-  *
-  * Copyright (C) 2011-2012 Texas Instruments Incorporated - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-- * GNU General Public License for more details.
-  */
- 
- 
---- a/arch/arm/mach-omap2/cm33xx.c
-+++ b/arch/arm/mach-omap2/cm33xx.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * AM33XX CM functions
-  *
-@@ -5,15 +6,6 @@
-  * Vaibhav Hiremath <hvaibhav@ti.com>
-  *
-  * Reference taken from from OMAP4 cminst44xx.c
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/kernel.h>
---- a/arch/arm/mach-omap2/cm33xx.h
-+++ b/arch/arm/mach-omap2/cm33xx.h
-@@ -1,17 +1,9 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * AM33XX CM offset macros
-  *
-  * Copyright (C) 2011-2012 Texas Instruments Incorporated - https://www.ti.com/
-  * Vaibhav Hiremath <hvaibhav@ti.com>
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef __ARCH_ARM_MACH_OMAP2_CM_33XX_H
---- a/arch/arm/mach-omap2/cm81xx.h
-+++ b/arch/arm/mach-omap2/cm81xx.h
-@@ -1,17 +1,9 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * Clock domain register offsets for TI81XX.
-  *
-  * Copyright (C) 2010 Texas Instruments, Inc. - https://www.ti.com/
-  * Copyright (C) 2013 SKTB SKiT, http://www.skitlab.ru/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef __ARCH_ARM_MACH_OMAP2_CM_TI81XX_H
---- a/arch/arm/mach-omap2/omap_hwmod_81xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_81xx_data.c
-@@ -1,18 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * DM81xx hwmod data.
-  *
-  * Copyright (C) 2010 Texas Instruments, Inc. - https://www.ti.com/
-  * Copyright (C) 2013 SKTB SKiT, http://www.skitlab.ru/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- *
-  */
- 
- #include <linux/types.h>
---- a/arch/arm/mach-omap2/powerdomains33xx_data.c
-+++ b/arch/arm/mach-omap2/powerdomains33xx_data.c
-@@ -1,16 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * AM33XX Power domain data
-  *
-  * Copyright (C) 2011-2012 Texas Instruments Incorporated - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/kernel.h>
---- a/arch/arm/mach-omap2/prm-regbits-33xx.h
-+++ b/arch/arm/mach-omap2/prm-regbits-33xx.h
-@@ -1,16 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * AM33XX PRM_XXX register bits
-  *
-  * Copyright (C) 2011-2012 Texas Instruments Incorporated - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef __ARCH_ARM_MACH_OMAP2_PRM_REGBITS_33XX_H
---- a/arch/arm/mach-omap2/prm33xx.c
-+++ b/arch/arm/mach-omap2/prm33xx.c
-@@ -1,16 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * AM33XX PRM functions
-  *
-  * Copyright (C) 2011-2012 Texas Instruments Incorporated - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include <linux/kernel.h>
---- a/arch/arm/mach-omap2/prm33xx.h
-+++ b/arch/arm/mach-omap2/prm33xx.h
-@@ -1,16 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * AM33XX PRM instance offset macros
-  *
-  * Copyright (C) 2011-2012 Texas Instruments Incorporated - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef __ARCH_ARM_MACH_OMAP2_PRM33XX_H
---- a/arch/arm/mach-omap2/ti81xx.h
-+++ b/arch/arm/mach-omap2/ti81xx.h
-@@ -1,16 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * This file contains the address data for various TI81XX modules.
-  *
-  * Copyright (C) 2010 Texas Instruments, Inc. - https://www.ti.com/
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #ifndef __ASM_ARCH_TI81XX_H
---- a/drivers/char/hw_random/iproc-rng200.c
-+++ b/drivers/char/hw_random/iproc-rng200.c
-@@ -1,14 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
- * Copyright (C) 2015 Broadcom Corporation
- *
--* This program is free software; you can redistribute it and/or
--* modify it under the terms of the GNU General Public License as
--* published by the Free Software Foundation version 2.
--*
--* This program is distributed "as is" WITHOUT ANY WARRANTY of any
--* kind, whether express or implied; without even the implied warranty
--* of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--* GNU General Public License for more details.
- */
- /*
-  * DESCRIPTION: The Broadcom iProc RNG200 Driver
---- a/drivers/clk/bcm/clk-bcm21664.c
-+++ b/drivers/clk/bcm/clk-bcm21664.c
-@@ -1,15 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Copyright (C) 2014 Broadcom Corporation
-  * Copyright 2014 Linaro Limited
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include "clk-kona.h"
---- a/drivers/clk/bcm/clk-bcm281xx.c
-+++ b/drivers/clk/bcm/clk-bcm281xx.c
-@@ -1,15 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Copyright (C) 2013 Broadcom Corporation
-  * Copyright 2013 Linaro Limited
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-  */
- 
- #include "clk-kona.h"
---- a/drivers/clk/bcm/clk-bcm63xx.c
-+++ b/drivers/clk/bcm/clk-bcm63xx.c
+--- a/drivers/phy/broadcom/phy-bcm-cygnus-pcie.c
++++ b/drivers/phy/broadcom/phy-bcm-cygnus-pcie.c
 @@ -1,15 +1,5 @@
 -/*
 - * Copyright (C) 2015 Broadcom Corporation
@@ -1054,14 +629,14 @@ V2: Split to overcome the list size limits
 - */
 +// SPDX-License-Identifier: GPL-2.0-only
 +// Copyright (C) 2015 Broadcom Corporation
- #include <linux/init.h>
- #include <linux/clk-provider.h>
- #include <linux/of.h>
---- a/drivers/clk/bcm/clk-cygnus.c
-+++ b/drivers/clk/bcm/clk-cygnus.c
+ 
+ #include <linux/delay.h>
+ #include <linux/io.h>
+--- a/drivers/phy/broadcom/phy-bcm-ns2-pcie.c
++++ b/drivers/phy/broadcom/phy-bcm-ns2-pcie.c
 @@ -1,15 +1,5 @@
 -/*
-- * Copyright (C) 2014 Broadcom Corporation
+- * Copyright (C) 2016 Broadcom
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1073,12 +648,12 @@ V2: Split to overcome the list size limits
 - * GNU General Public License for more details.
 - */
 +// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
++// Copyright (C) 2016 Broadcom
  
- #include <linux/kernel.h>
- #include <linux/err.h>
---- a/drivers/clk/bcm/clk-hr2.c
-+++ b/drivers/clk/bcm/clk-hr2.c
+ #include <linux/device.h>
+ #include <linux/module.h>
+--- a/drivers/phy/broadcom/phy-bcm-ns2-usbdrd.c
++++ b/drivers/phy/broadcom/phy-bcm-ns2-usbdrd.c
 @@ -1,15 +1,5 @@
 -/*
 - * Copyright (C) 2017 Broadcom
@@ -1095,95 +670,364 @@ V2: Split to overcome the list size limits
 +// SPDX-License-Identifier: GPL-2.0-only
 +// Copyright (C) 2017 Broadcom
  
- #include <linux/kernel.h>
- #include <linux/err.h>
---- a/drivers/clk/bcm/clk-iproc-armpll.c
-+++ b/drivers/clk/bcm/clk-iproc-armpll.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
- 
- #include <linux/kernel.h>
- #include <linux/slab.h>
---- a/drivers/clk/bcm/clk-iproc-asiu.c
-+++ b/drivers/clk/bcm/clk-iproc-asiu.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
- 
- #include <linux/kernel.h>
- #include <linux/err.h>
---- a/drivers/clk/bcm/clk-iproc-pll.c
-+++ b/drivers/clk/bcm/clk-iproc-pll.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2014 Broadcom Corporation
- 
- #include <linux/kernel.h>
- #include <linux/err.h>
---- a/drivers/clk/bcm/clk-iproc.h
-+++ b/drivers/clk/bcm/clk-iproc.h
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2014 Broadcom Corporation
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- * GNU General Public License for more details.
-- */
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/* Copyright (C) 2014 Broadcom Corporation */
- 
- #ifndef _CLK_IPROC_H
- #define _CLK_IPROC_H
---- a/drivers/clk/bcm/clk-kona-setup.c
-+++ b/drivers/clk/bcm/clk-kona-setup.c
-@@ -1,15 +1,7 @@
+ #include <linux/delay.h>
+ #include <linux/extcon-provider.h>
+--- a/drivers/phy/motorola/phy-cpcap-usb.c
++++ b/drivers/phy/motorola/phy-cpcap-usb.c
+@@ -1,3 +1,4 @@
 +// SPDX-License-Identifier: GPL-2.0-only
  /*
-  * Copyright (C) 2013 Broadcom Corporation
-  * Copyright 2013 Linaro Limited
+  * Motorola CPCAP PMIC USB PHY driver
+  * Copyright (C) 2017 Tony Lindgren <tony@atomide.com>
+@@ -5,15 +6,6 @@
+  * Some parts based on earlier Motorola Linux kernel tree code in
+  * board-mapphone-usb.c and cpcap-usb-det.c:
+  * Copyright (C) 2007 - 2011 Motorola, Inc.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/atomic.h>
+--- a/drivers/phy/ti/phy-dm816x-usb.c
++++ b/drivers/phy/ti/phy-dm816x-usb.c
+@@ -1,13 +1,4 @@
+-/*
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
+ 
+ #include <linux/module.h>
+ #include <linux/platform_device.h>
+--- a/drivers/pinctrl/bcm/pinctrl-bcm281xx.c
++++ b/drivers/pinctrl/bcm/pinctrl-bcm281xx.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2013-2017 Broadcom
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2013-2017 Broadcom
+ 
+ #include <linux/err.h>
+ #include <linux/io.h>
+--- a/drivers/pinctrl/bcm/pinctrl-cygnus-mux.c
++++ b/drivers/pinctrl/bcm/pinctrl-cygnus-mux.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014-2017 Broadcom
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2014-2017 Broadcom
+ 
+ /*
+  * Broadcom Cygnus IOMUX driver
+--- a/drivers/pinctrl/bcm/pinctrl-ns2-mux.c
++++ b/drivers/pinctrl/bcm/pinctrl-ns2-mux.c
+@@ -1,14 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /* Copyright (C) 2016 Broadcom Corporation
+  *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+  * This file contains the Northstar2 IOMUX driver that supports group
+  * based PINMUX configuration. The PWM is functional only when the
+  * corresponding mfio pin group is selected as gpio.
+--- a/drivers/pinctrl/bcm/pinctrl-nsp-gpio.c
++++ b/drivers/pinctrl/bcm/pinctrl-nsp-gpio.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014-2017 Broadcom
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2014-2017 Broadcom
+ 
+ /*
+  * This file contains the Broadcom Northstar Plus (NSP) GPIO driver that
+--- a/drivers/pinctrl/bcm/pinctrl-nsp-mux.c
++++ b/drivers/pinctrl/bcm/pinctrl-nsp-mux.c
+@@ -1,14 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /* Copyright (C) 2015 Broadcom Corporation
+  *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+  * This file contains the Northstar plus (NSP) IOMUX driver that supports
+  * group based PINMUX configuration. The Northstar plus IOMUX controller
+  * allows pins to be individually muxed to GPIO function. The NAND and MMC is
+--- a/drivers/power/reset/brcm-kona-reset.c
++++ b/drivers/power/reset/brcm-kona-reset.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2016 Broadcom
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2016 Broadcom
+ 
+ #include <linux/io.h>
+ #include <linux/of_address.h>
+--- a/drivers/power/reset/brcmstb-reboot.c
++++ b/drivers/power/reset/brcmstb-reboot.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2013 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2013 Broadcom Corporation
+ 
+ #include <linux/bitops.h>
+ #include <linux/device.h>
+--- a/drivers/ptp/ptp_dte.c
++++ b/drivers/ptp/ptp_dte.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright 2017 Broadcom
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright 2017 Broadcom
+ 
+ #include <linux/err.h>
+ #include <linux/io.h>
+--- a/drivers/pwm/pwm-bcm-iproc.c
++++ b/drivers/pwm/pwm-bcm-iproc.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2016 Broadcom
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2016 Broadcom
+ 
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+--- a/drivers/pwm/pwm-bcm-kona.c
++++ b/drivers/pwm/pwm-bcm-kona.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2014 Broadcom Corporation
+ 
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+--- a/drivers/regulator/cpcap-regulator.c
++++ b/drivers/regulator/cpcap-regulator.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Motorola CPCAP PMIC regulator driver
+  *
+@@ -6,15 +7,6 @@
+  *
+  * Rewritten for mainline kernel to use device tree and regmap
+  * Copyright (C) 2017 Tony Lindgren <tony@atomide.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/err.h>
+--- a/drivers/regulator/isl6271a-regulator.c
++++ b/drivers/regulator/isl6271a-regulator.c
+@@ -1,18 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * isl6271a-regulator.c
+  *
+  * Support for Intersil ISL6271A voltage regulator
+  *
+  * Copyright (C) 2010 Marek Vasut <marek.vasut@gmail.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any kind,
+- * whether express or implied; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+  */
+ 
+ #include <linux/kernel.h>
+--- a/drivers/regulator/tps65023-regulator.c
++++ b/drivers/regulator/tps65023-regulator.c
+@@ -1,18 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * tps65023-regulator.c
+  *
+  * Supports TPS65023 Regulator
+  *
+  * Copyright (C) 2009 Texas Instrument Incorporated - https://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any kind,
+- * whether express or implied; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+  */
+ 
+ #include <linux/kernel.h>
+--- a/drivers/regulator/tps6507x-regulator.c
++++ b/drivers/regulator/tps6507x-regulator.c
+@@ -1,18 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * tps6507x-regulator.c
+  *
+  * Regulator driver for TPS65073 PMIC
+  *
+  * Copyright (C) 2009 Texas Instrument Incorporated - https://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any kind,
+- * whether express or implied; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+  */
+ 
+ #include <linux/kernel.h>
+--- a/drivers/regulator/tps65217-regulator.c
++++ b/drivers/regulator/tps65217-regulator.c
+@@ -1,18 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * tps65217-regulator.c
+  *
+  * Regulator driver for TPS65217 PMIC
+  *
+  * Copyright (C) 2011 Texas Instruments Incorporated - https://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #include <linux/kernel.h>
+--- a/drivers/soc/ti/knav_dma.c
++++ b/drivers/soc/ti/knav_dma.c
+@@ -1,17 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Copyright (C) 2014 Texas Instruments Incorporated
+  * Authors:	Santosh Shilimkar <santosh.shilimkar@ti.com>
+  *		Sandeep Nair <sandeep_n@ti.com>
+  *		Cyril Chemparathy <cyril@ti.com>
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1196,13 +1040,40 @@ V2: Split to overcome the list size limits
   */
  
  #include <linux/io.h>
---- a/drivers/clk/bcm/clk-kona.c
-+++ b/drivers/clk/bcm/clk-kona.c
-@@ -1,15 +1,7 @@
+--- a/drivers/uio/uio_pruss.c
++++ b/drivers/uio/uio_pruss.c
+@@ -1,3 +1,4 @@
 +// SPDX-License-Identifier: GPL-2.0-only
  /*
-  * Copyright (C) 2013 Broadcom Corporation
-  * Copyright 2013 Linaro Limited
+  * Programmable Real-Time Unit Sub System (PRUSS) UIO driver (uio_pruss)
+  *
+@@ -5,15 +6,6 @@
+  * and DDR RAM to user space for applications interacting with PRUSS firmware
+  *
+  * Copyright (C) 2010-11 Texas Instruments Incorporated - http://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ #include <linux/device.h>
+ #include <linux/module.h>
+--- a/drivers/video/backlight/tps65217_bl.c
++++ b/drivers/video/backlight/tps65217_bl.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * tps65217_bl.c
+  *
+@@ -5,15 +6,6 @@
+  *
+  * Copyright (C) 2012 Matthias Kaehlcke
+  * Author: Matthias Kaehlcke <matthias@kaehlcke.net>
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1214,9 +1085,9 @@ V2: Split to overcome the list size limits
 - * GNU General Public License for more details.
   */
  
- #include "clk-kona.h"
---- a/drivers/clk/bcm/clk-kona.h
-+++ b/drivers/clk/bcm/clk-kona.h
+ #include <linux/kernel.h>
+--- a/include/dt-bindings/clock/bcm21664.h
++++ b/include/dt-bindings/clock/bcm21664.h
 @@ -1,15 +1,7 @@
 +/* SPDX-License-Identifier: GPL-2.0-only */
  /*
@@ -1233,12 +1104,14 @@ V2: Split to overcome the list size limits
 - * GNU General Public License for more details.
   */
  
- #ifndef _CLK_KONA_H
---- a/drivers/clk/bcm/clk-ns2.c
-+++ b/drivers/clk/bcm/clk-ns2.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2015 Broadcom Corporation
+ #ifndef _CLOCK_BCM21664_H
+--- a/include/dt-bindings/clock/bcm281xx.h
++++ b/include/dt-bindings/clock/bcm281xx.h
+@@ -1,15 +1,7 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * Copyright (C) 2013 Broadcom Corporation
+  * Copyright 2013 Linaro Limited
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1248,17 +1121,17 @@ V2: Split to overcome the list size limits
 - * kind, whether express or implied; without even the implied warranty
 - * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2015 Broadcom Corporation
+  */
  
- #include <linux/kernel.h>
- #include <linux/err.h>
---- a/drivers/clk/bcm/clk-nsp.c
-+++ b/drivers/clk/bcm/clk-nsp.c
-@@ -1,15 +1,5 @@
--/*
-- * Copyright (C) 2015 Broadcom Corporation
+ #ifndef _CLOCK_BCM281XX_H
+--- a/include/linux/mfd/lp873x.h
++++ b/include/linux/mfd/lp873x.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * Functions to access LP873X power management chip.
+  *
+  * Copyright (C) 2016 Texas Instruments Incorporated - https://www.ti.com/
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1268,38 +1141,39 @@ V2: Split to overcome the list size limits
 - * kind, whether express or implied; without even the implied warranty
 - * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (C) 2015 Broadcom Corporation
+  */
  
- #include <linux/kernel.h>
- #include <linux/err.h>
---- a/drivers/clk/ti/adpll.c
-+++ b/drivers/clk/ti/adpll.c
-@@ -1,13 +1,4 @@
--/*
+ #ifndef __LINUX_MFD_LP873X_H
+--- a/include/linux/mfd/tps65217.h
++++ b/include/linux/mfd/tps65217.h
+@@ -1,18 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * linux/mfd/tps65217.h
+  *
+  * Functions to access TPS65217 power management chip.
+  *
+  * Copyright (C) 2011 Texas Instruments Incorporated - https://www.ti.com/
+- *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
 - * published by the Free Software Foundation version 2.
 - *
 - * This program is distributed "as is" WITHOUT ANY WARRANTY of any
 - * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
+  */
  
- #include <linux/clk.h>
- #include <linux/clkdev.h>
---- a/drivers/clk/ti/clk-2xxx.c
-+++ b/drivers/clk/ti/clk-2xxx.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
+ #ifndef __LINUX_MFD_TPS65217_H
+--- a/include/linux/platform_data/davinci_asp.h
++++ b/include/linux/platform_data/davinci_asp.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
  /*
-  * OMAP2 Clock init
+  * TI DaVinci Audio Serial Port support
   *
-  * Copyright (C) 2013 Texas Instruments, Inc
-  *     Tero Kristo (t-kristo@ti.com)
+  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1311,16 +1185,15 @@ V2: Split to overcome the list size limits
 - * GNU General Public License for more details.
   */
  
- #include <linux/kernel.h>
---- a/drivers/clk/ti/clk-33xx.c
-+++ b/drivers/clk/ti/clk-33xx.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
+ #ifndef __DAVINCI_ASP_H
+--- a/include/linux/platform_data/gpio-davinci.h
++++ b/include/linux/platform_data/gpio-davinci.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
  /*
-  * AM33XX Clock init
+  * DaVinci GPIO Platform Related Defines
   *
-  * Copyright (C) 2013 Texas Instruments, Inc
-  *     Tero Kristo (t-kristo@ti.com)
+  * Copyright (C) 2013 Texas Instruments Incorporated - https://www.ti.com/
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1328,20 +1201,19 @@ V2: Split to overcome the list size limits
 - *
 - * This program is distributed "as is" WITHOUT ANY WARRANTY of any
 - * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
   */
  
- #include <linux/kernel.h>
---- a/drivers/clk/ti/clk-3xxx.c
-+++ b/drivers/clk/ti/clk-3xxx.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
+ #ifndef __DAVINCI_GPIO_PLATFORM_H
+--- a/include/linux/platform_data/uio_dmem_genirq.h
++++ b/include/linux/platform_data/uio_dmem_genirq.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
  /*
-  * OMAP3 Clock init
+  * include/linux/platform_data/uio_dmem_genirq.h
   *
-  * Copyright (C) 2013 Texas Instruments, Inc
-  *     Tero Kristo (t-kristo@ti.com)
+  * Copyright (C) 2012 Damian Hobson-Garcia
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1349,20 +1221,21 @@ V2: Split to overcome the list size limits
 - *
 - * This program is distributed "as is" WITHOUT ANY WARRANTY of any
 - * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
   */
  
- #include <linux/kernel.h>
---- a/drivers/clk/ti/clk-43xx.c
-+++ b/drivers/clk/ti/clk-43xx.c
-@@ -1,17 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
+ #ifndef _UIO_DMEM_GENIRQ_H
+--- a/include/linux/platform_data/uio_pruss.h
++++ b/include/linux/platform_data/uio_pruss.h
+@@ -1,18 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
  /*
-  * AM43XX Clock init
+  * include/linux/platform_data/uio_pruss.h
   *
-  * Copyright (C) 2013 Texas Instruments, Inc
-  *     Tero Kristo (t-kristo@ti.com)
+  * Platform data for uio_pruss driver
+  *
+  * Copyright (C) 2010-11 Texas Instruments Incorporated - https://www.ti.com/
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1370,37 +1243,20 @@ V2: Split to overcome the list size limits
 - *
 - * This program is distributed "as is" WITHOUT ANY WARRANTY of any
 - * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
   */
  
- #include <linux/kernel.h>
---- a/drivers/clk/ti/clk-816x.c
-+++ b/drivers/clk/ti/clk-816x.c
-@@ -1,13 +1,4 @@
--/*
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License as
-- * published by the Free Software Foundation version 2.
-- *
-- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-- * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-- * GNU General Public License for more details.
-- */
-+// SPDX-License-Identifier: GPL-2.0-only
- 
- #include <linux/kernel.h>
- #include <linux/list.h>
---- a/drivers/clk/ti/clock.h
-+++ b/drivers/clk/ti/clock.h
+ #ifndef _UIO_PRUSS_H_
+--- a/include/linux/reset/bcm63xx_pmb.h
++++ b/include/linux/reset/bcm63xx_pmb.h
 @@ -1,17 +1,9 @@
 +/* SPDX-License-Identifier: GPL-2.0-only */
  /*
-  * TI Clock driver internal definitions
+  * Broadcom BCM63xx Processor Monitor Bus shared routines (SMP and reset)
   *
-  * Copyright (C) 2014 Texas Instruments, Inc
-  *     Tero Kristo (t-kristo@ti.com)
+  * Copyright (C) 2015, Broadcom Corporation
+  * Author: Florian Fainelli <f.fainelli@gmail.com>
 - *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
@@ -1408,26 +1264,240 @@ V2: Split to overcome the list size limits
 - *
 - * This program is distributed "as is" WITHOUT ANY WARRANTY of any
 - * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
   */
- #ifndef __DRIVERS_CLK_TI_CLOCK__
- #define __DRIVERS_CLK_TI_CLOCK__
---- a/drivers/clk/ti/fapll.c
-+++ b/drivers/clk/ti/fapll.c
-@@ -1,13 +1,4 @@
--/*
+ #ifndef __BCM63XX_PMB_H
+ #define __BCM63XX_PMB_H
+--- a/include/linux/soc/ti/knav_dma.h
++++ b/include/linux/soc/ti/knav_dma.h
+@@ -1,17 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * Copyright (C) 2014 Texas Instruments Incorporated
+  * Authors:	Sandeep Nair <sandeep_n@ti.com
+  *		Cyril Chemparathy <cyril@ti.com
+ 		Santosh Shilimkar <santosh.shilimkar@ti.com>
+- *
 - * This program is free software; you can redistribute it and/or
 - * modify it under the terms of the GNU General Public License as
 - * published by the Free Software Foundation version 2.
 - *
 - * This program is distributed "as is" WITHOUT ANY WARRANTY of any
 - * kind, whether express or implied; without even the implied warranty
-- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef __SOC_TI_KEYSTONE_NAVIGATOR_DMA_H__
+--- a/include/linux/soc/ti/knav_qmss.h
++++ b/include/linux/soc/ti/knav_qmss.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * Keystone Navigator Queue Management Sub-System header
+  *
+@@ -5,15 +6,6 @@
+  * Author:	Sandeep Nair <sandeep_n@ti.com>
+  *		Cyril Chemparathy <cyril@ti.com>
+  *		Santosh Shilimkar <santosh.shilimkar@ti.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef __SOC_TI_KNAV_QMSS_H__
+--- a/include/linux/sram.h
++++ b/include/linux/sram.h
+@@ -1,15 +1,5 @@
+-/*
+- * Generic SRAM Driver Interface
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Generic SRAM Driver Interface */
+ #ifndef __LINUX_SRAM_H__
+ #define __LINUX_SRAM_H__
+ 
+--- a/include/linux/ti-emif-sram.h
++++ b/include/linux/ti-emif-sram.h
+@@ -1,17 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * TI AM33XX EMIF Routines
+  *
+  * Copyright (C) 2016-2017 Texas Instruments Inc.
+  *	Dave Gerlach
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ #ifndef __LINUX_TI_EMIF_H
+ #define __LINUX_TI_EMIF_H
+--- a/include/linux/wkup_m3_ipc.h
++++ b/include/linux/wkup_m3_ipc.h
+@@ -1,17 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * TI Wakeup M3 for AMx3 SoCs Power Management Routines
+  *
+  * Copyright (C) 2015 Texas Instruments Incorporated - https://www.ti.com/
+  * Dave Gerlach <d-gerlach@ti.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef _LINUX_WKUP_M3_IPC_H
+--- a/include/media/i2c/adv7343.h
++++ b/include/media/i2c/adv7343.h
+@@ -1,16 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * ADV7343 header file
+  *
+  * Copyright (C) 2009 Texas Instruments Incorporated - http://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed .as is. WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef ADV7343_H
+--- a/include/media/i2c/adv7393.h
++++ b/include/media/i2c/adv7393.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
+ /*
+  * ADV7393 header file
+  *
+@@ -7,15 +8,6 @@
+  * Based on ADV7343 driver,
+  *
+  * Copyright (C) 2009 Texas Instruments Incorporated - http://www.ti.com/
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed .as is. WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ 
+ #ifndef ADV7393_H
+--- a/net/hsr/hsr_debugfs.c
++++ b/net/hsr/hsr_debugfs.c
+@@ -1,18 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * debugfs code for HSR & PRP
+  * Copyright (C) 2019 Texas Instruments Incorporated
+  *
+  * Author(s):
+  *	Murali Karicheri <m-karicheri2@ti.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+  */
+ #include <linux/module.h>
+ #include <linux/errno.h>
+--- a/sound/soc/bcm/cygnus-pcm.c
++++ b/sound/soc/bcm/cygnus-pcm.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014-2015 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - * GNU General Public License for more details.
 - */
 +// SPDX-License-Identifier: GPL-2.0-only
- 
++// Copyright (C) 2014-2015 Broadcom Corporation
+ #include <linux/debugfs.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/init.h>
+--- a/sound/soc/bcm/cygnus-ssp.c
++++ b/sound/soc/bcm/cygnus-ssp.c
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014-2015 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (C) 2014-2015 Broadcom Corporation
  #include <linux/clk.h>
- #include <linux/clk-provider.h>
+ #include <linux/delay.h>
+ #include <linux/init.h>
+--- a/sound/soc/bcm/cygnus-ssp.h
++++ b/sound/soc/bcm/cygnus-ssp.h
+@@ -1,15 +1,5 @@
+-/*
+- * Copyright (C) 2014-2015 Broadcom Corporation
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
+- *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- */
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Copyright (C) 2014-2015 Broadcom Corporation */
+ #ifndef __CYGNUS_SSP_H__
+ #define __CYGNUS_SSP_H__
+ 
 

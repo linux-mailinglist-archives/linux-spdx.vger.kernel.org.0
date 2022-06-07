@@ -2,39 +2,60 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 751A253EFB0
-	for <lists+linux-spdx@lfdr.de>; Mon,  6 Jun 2022 22:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23CD553F9F3
+	for <lists+linux-spdx@lfdr.de>; Tue,  7 Jun 2022 11:37:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233956AbiFFUex (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 6 Jun 2022 16:34:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55808 "EHLO
+        id S229938AbiFGJg7 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 7 Jun 2022 05:36:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233911AbiFFUeb (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 6 Jun 2022 16:34:31 -0400
-Received: from protestant.ebb.org (protestant.ebb.org [50.56.179.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C792281984
-        for <linux-spdx@vger.kernel.org>; Mon,  6 Jun 2022 13:34:19 -0700 (PDT)
-Received: from localhost (unknown [216.161.86.19])
-        (Authenticated sender: bkuhn)
-        by protestant.ebb.org (Postfix) with ESMTPSA id AA6208208C;
-        Mon,  6 Jun 2022 13:34:17 -0700 (PDT)
-Date:   Mon, 6 Jun 2022 13:31:55 -0700
-From:   "Bradley M. Kuhn" <bkuhn@ebb.org>
-To:     Richard Fontana <rfontana@redhat.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     linux-spdx@vger.kernel.org
-Subject: Re: [Batch 1 - patch 12/25] treewide: Replace GPLv2
- boilerplate/reference with SPDX - gpl-2.0_208.RULE
-Message-ID: <Yp5kO61KTCpt0vDw@ebb.org>
-References: <20220606195512.584745712@linutronix.de>
- <CAC1cPGzeXeGDKtGPED1tMX1WybjRrxypfw5+SPs_kXwdO7NWiA@mail.gmail.com>
+        with ESMTP id S239781AbiFGJg6 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 7 Jun 2022 05:36:58 -0400
+Received: from pb-smtp21.pobox.com (pb-smtp21.pobox.com [173.228.157.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B8E7E731C
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 02:36:56 -0700 (PDT)
+Received: from pb-smtp21.pobox.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id C79D119544B
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 05:36:55 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=pobox.com; h=message-id
+        :date:mime-version:subject:to:references:from:in-reply-to
+        :content-type:content-transfer-encoding; s=sasl; bh=W+wAFHdqbWcD
+        AnynqjnkcUeN+WWl377H26HyJ60Vqvk=; b=j8Hq2uwegmG5mxw80YSxc9UUu1jZ
+        KBsFUd8ehxJ7j/WyiwLnVCtsZJ7oQTGyRaiieYmDN+rJI3r4q7jFnT2V2vGuT2ew
+        koABrkbwLo/X4UIvkyV5nP6ahBwboZAs9e8A2aXntR7XBbtW6yr06iqGmvhaHW12
+        +Ybyba7ZuBknhdc=
+Received: from pb-smtp21.sea.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id C178A19544A
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 05:36:55 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=lohutok.net;
+ h=message-id:date:mime-version:subject:to:references:from:in-reply-to:content-type:content-transfer-encoding; s=2018-11.pbsmtp; bh=W+wAFHdqbWcDAnynqjnkcUeN+WWl377H26HyJ60Vqvk=; b=i+99zcAM59cwtCh3PdH18cw7OldsnpUyR9gAAHEoQZfJjOIYFNYz4560Na/YKVCDJSc48R0V0OUn4iqNA8DReWfBaAQzOIuT0Q39Nk6n52by4qvSg1KceAbCj4l5w97Lo8i5jObB7mHVYXCQ5TMS8gCZve4VY/v2XeBDGOHF/ig=
+Received: from [10.0.2.15] (unknown [130.117.184.210])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by pb-smtp21.pobox.com (Postfix) with ESMTPSA id 99066195448
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 05:36:51 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+Message-ID: <de50884f-e13a-bb0b-64a7-2eb1b32904b1@lohutok.net>
+Date:   Tue, 7 Jun 2022 05:36:40 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAC1cPGzeXeGDKtGPED1tMX1WybjRrxypfw5+SPs_kXwdO7NWiA@mail.gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [patch 01/25] treewide: Replace GPLv2 boilerplate/reference with
+ SPDX - gpl-2.0_8.RULE
+Content-Language: en-US
+To:     linux-spdx@vger.kernel.org
+References: <20220606200732.204209102@linutronix.de>
+ <20220606200810.120819557@linutronix.de>
+From:   Allison Randal <allison@lohutok.net>
+In-Reply-To: <20220606200810.120819557@linutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Pobox-Relay-ID: 5C596E3A-E645-11EC-8159-CBA7845BAAA9-44123303!pb-smtp21.pobox.com
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_CSS autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -42,32 +63,19 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-> On Mon, Jun 6, 2022 at 3:58 PM Thomas Gleixner <tglx@linutronix.de> wrote:
-> > Based on the normalized pattern:
-> >     this program is free software you can redistribute it and/or modify it
-> >     under the terms of version 2 of the gnu general public license as
-> >     published by the free software foundation  this program is distributed
-> >     in the hope that it will be useful all express or implied conditions
-> >     representations and warranties including any implied warranty of
-> >     merchantability fitness for a particular purpose or non-infringement
-> >     are disclaimed except to the extent that such disclaimers are held to
-> >     be legally invalid see the gnu general public license for more details
-> >     a copy of which can be found in the file copying included with this
-> >     package
+On 6/6/22 16:10, Thomas Gleixner wrote:
+> Based on the normalized pattern:
+> 
+>      this program is free software you can redistribute it and/or modify it
+>      under the terms of the gnu general public license version 2 as
+>      published by the free software foundation
+> 
+> extracted by the scancode license scanner the SPDX license identifier
+> 
+>      GPL-2.0-only
+> 
+> has been chosen to replace the boilerplate/reference.
+> 
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 
-Richard Fontana replied today:
-> I forget how we dealt with things like this in the initial large batch some
-> years ago but I remember raising the concern that some bespoke license
-> notices contained disclaimer language that was arguably materially
-> different in some way from what is found in GPLv2 itself.
-
-I'm not surprised this is coming up again.  This is a critical bug in the
-linux-spdx approach that Karen and I had raised early on — regarding the
-GPLv2§1 requirement that one must “keep intact all the notices that refer to
-this License and to the absence of any warranty”.
-
-There are various approaches to resolving this that perhaps we should discuss
-again?
-
-
- -- bkuhn
+Reviewed-by: Allison Randal <allison@lohutok.net>

@@ -2,48 +2,60 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 405EC5400DE
-	for <lists+linux-spdx@lfdr.de>; Tue,  7 Jun 2022 16:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 435A1540186
+	for <lists+linux-spdx@lfdr.de>; Tue,  7 Jun 2022 16:36:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245161AbiFGOLr (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 7 Jun 2022 10:11:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59316 "EHLO
+        id S235493AbiFGOgE (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 7 Jun 2022 10:36:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245164AbiFGOLl (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 7 Jun 2022 10:11:41 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBA17A7E3C
-        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 07:11:40 -0700 (PDT)
-Message-ID: <20220607131511.751094871@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1654611099;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=hsm0nm2uxDd15sNJilzZyLzUStZruLIqDU6OF53yDCY=;
-        b=a9Ci0tMtmmUZFnePncI0QH7uvzS5GaQs5AKrqW/QtZeBy4Bsp4lXBW9PGHwQEEVQSOh2+Q
-        LEstXqIGonU6FLlmNH8meJfN/ThlEQkv5Vus4K9KEx5oUD3EH+mUgciSZw7J52Qlti7n9l
-        BjRStNREIdBA1c+zfiRmj5BZsY82hma1t0QEwvngsg3w3Jj4cKM6Jy1hYMPtaqR2l2V+7c
-        fpLkBJKXQvUxA6IFa+KpYwYynKvHnFYf05qUJ9sH5jLRTapxCrC8brntGdOePNHztr9rN1
-        yFErNjSgaQaC0D5EoKIFTBEzhhkndBbbj/bo8pi2FaNv81wOxE+PJHDMdxvl1g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1654611099;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         references:references; bh=hsm0nm2uxDd15sNJilzZyLzUStZruLIqDU6OF53yDCY=;
-        b=i1KIud6V4isA7by7/7ZgyyqU55HbQ4rDAimbt4G13RWhmv6CQSlos2wNoTKfH3Vd0P6dxS
-        zbND/mKzKusW8bBA==
-From:   Thomas Gleixner <tglx@linutronix.de>
-To:     linux-spdx@vger.kernel.org
-Cc:     Allison Randal <allison@lohutok.net>
-Subject: [patch V2 24/24] treewide: Replace GPLv2 boilerplate/reference with
- SPDX - gpl-2.0_406.RULE
-References: <20220607131425.436789559@linutronix.de>
+        with ESMTP id S232600AbiFGOgE (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 7 Jun 2022 10:36:04 -0400
+Received: from pb-smtp21.pobox.com (pb-smtp21.pobox.com [173.228.157.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7AC08D6B7
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 07:36:01 -0700 (PDT)
+Received: from pb-smtp21.pobox.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id F35E8197304
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 10:36:00 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=pobox.com; h=message-id
+        :date:mime-version:subject:to:references:from:in-reply-to
+        :content-type:content-transfer-encoding; s=sasl; bh=RJwqpbKslg/C
+        z/oYZjEM2znrXNUHG92/aJei1JByuMQ=; b=MvBfEAPQ26pTsKDDvrRGozD3GaHD
+        LWHNFE2MSxHIF0UGBxdH6Qo7TkWysZZbUNNFr252l4MTyBD3UbErjJmayO+l7lNE
+        dt4roIjvlk/U6YE041osGQXvAp3OZMwrqLF8r0XEBbXL73dg81+QpJlvcC6l05h8
+        pKTKno0P0WaRvcQ=
+Received: from pb-smtp21.sea.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id E9359197303
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 10:36:00 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=lohutok.net;
+ h=message-id:date:mime-version:subject:to:references:from:in-reply-to:content-type:content-transfer-encoding; s=2018-11.pbsmtp; bh=RJwqpbKslg/Cz/oYZjEM2znrXNUHG92/aJei1JByuMQ=; b=FxBPzq17P4otV/rmhMX/7U4P22f+gIVgCh9dqkButDwe3nNuMWfa3467RMJYCozkXdDTQavvnIU63ZThhiFtsXN2AbFfnfeTm+QakwqpXNm4frhC3Ig9wEC18w+Rsu5UY9nHPBHBLx4CsPMNksvi3OwSMEje4IWCQmcgGSswf48=
+Received: from [10.0.2.15] (unknown [130.117.184.210])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by pb-smtp21.pobox.com (Postfix) with ESMTPSA id 95AA21972F1
+        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 10:35:56 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+Message-ID: <e24897b0-721e-cbca-c22b-fb1d3f7a0120@lohutok.net>
+Date:   Tue, 7 Jun 2022 10:35:53 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue,  7 Jun 2022 16:11:39 +0200 (CEST)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [patch V2 02/24] treewide: Replace GPLv2 boilerplate/reference
+ with SPDX - gpl-2.0_30.RULE (part 1)
+Content-Language: en-US
+To:     linux-spdx@vger.kernel.org
+References: <20220607131425.436789559@linutronix.de>
+ <20220607131510.477785405@linutronix.de>
+From:   Allison Randal <allison@lohutok.net>
+In-Reply-To: <20220607131510.477785405@linutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Pobox-Relay-ID: 2463EDD2-E66F-11EC-9B30-CBA7845BAAA9-44123303!pb-smtp21.pobox.com
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_CSS autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,57 +63,22 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Based on the normalized pattern:
+On 6/7/22 10:11, Thomas Gleixner wrote:
+> Based on the normalized pattern:
+> 
+>      this program is free software you can redistribute it and/or modify it
+>      under the terms of the gnu general public license as published by the
+>      free software foundation version 2  this program is distributed as is
+>      without any warranty of any kind whether express or implied without
+>      even the implied warranty of merchantability or fitness for a
+>      particular purpose see the gnu general public license for more details
+> 
+> extracted by the scancode license scanner the SPDX license identifier
+> 
+>      GPL-2.0-only
+> 
+> has been chosen to replace the boilerplate/reference.
+> 
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 
-    this file is licensed under the term of the gnu general public license
-    version 2 the program licensed as is without any warranty of any kind
-    whether express or implied
-
-extracted by the scancode license scanner the SPDX license identifier
-
-    GPL-2.0-only
-
-has been chosen to replace the boilerplate/reference.
-
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 Reviewed-by: Allison Randal <allison@lohutok.net>
----
- drivers/dma/ppc4xx/dma.h |    5 +----
- drivers/dma/ppc4xx/xor.h |    5 +----
- 2 files changed, 2 insertions(+), 8 deletions(-)
-
---- a/drivers/dma/ppc4xx/dma.h
-+++ b/drivers/dma/ppc4xx/dma.h
-@@ -1,13 +1,10 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * 440SPe's DMA engines support header file
-  *
-  * 2006-2009 (C) DENX Software Engineering.
-  *
-  * Author: Yuri Tikhonov <yur@emcraft.com>
-- *
-- * This file is licensed under the term of  the GNU General Public License
-- * version 2. The program licensed "as is" without any warranty of any
-- * kind, whether express or implied.
-  */
- 
- #ifndef	_PPC440SPE_DMA_H
---- a/drivers/dma/ppc4xx/xor.h
-+++ b/drivers/dma/ppc4xx/xor.h
-@@ -1,13 +1,10 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * 440SPe's XOR engines support header file
-  *
-  * 2006-2009 (C) DENX Software Engineering.
-  *
-  * Author: Yuri Tikhonov <yur@emcraft.com>
-- *
-- * This file is licensed under the term of  the GNU General Public License
-- * version 2. The program licensed "as is" without any warranty of any
-- * kind, whether express or implied.
-  */
- 
- #ifndef _PPC440SPE_XOR_H
-

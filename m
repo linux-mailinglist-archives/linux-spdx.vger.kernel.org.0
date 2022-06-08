@@ -2,63 +2,68 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19BD354254A
-	for <lists+linux-spdx@lfdr.de>; Wed,  8 Jun 2022 08:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3D6542B31
+	for <lists+linux-spdx@lfdr.de>; Wed,  8 Jun 2022 11:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354890AbiFHBSD (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 7 Jun 2022 21:18:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49756 "EHLO
+        id S232322AbiFHJPl (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 8 Jun 2022 05:15:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1588379AbiFGXyg (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 7 Jun 2022 19:54:36 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7318965A0
-        for <linux-spdx@vger.kernel.org>; Tue,  7 Jun 2022 16:05:12 -0700 (PDT)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1654643109;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FAoCEyuMzSF2QjVbmuYWCuqCJAp+2Au+h1BpfbtN7zg=;
-        b=3MldbUGKZ1HOUUmzJLv8qzUXy/HTvLNmQ0CeSS1Qvj0N9jpXQ9PJ6eGb0AgmNC7Op49IBa
-        5meiL4pS/KHbOFIeQZ+Hzgrwo0BX7QztladZvri+CrxgGYnSegVwKo1Ra8EC/bBkDb8DcK
-        QwVDnv8Tk9I60RBDRoYMOIEsHXDqY+Lo+hNSZdYPA53XfSl98C33wUe8QVB6QEDWl2moRt
-        bYhqzvNcNW/3r29by65QTmlS+739h2ktCbWdfiZX+y/yXfVGwb6q9ARqwaP5LzkXY0BQxJ
-        oy2Fy+3eAGF/0bEIehbCh6qiqRq6lDRfBtR6ZDmMtatp84ex4dh7W0ABNLiElQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1654643109;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FAoCEyuMzSF2QjVbmuYWCuqCJAp+2Au+h1BpfbtN7zg=;
-        b=+bNnvNpNF0GL8DZ01TjuuXFkpZAKFtwyLmcTTFVqS+nAFz2EFr8ODIe0IcC9ALATN4+feg
-        mLJwOx3fsnXCBDCg==
-To:     "Bradley M. Kuhn" <bkuhn@ebb.org>,
-        Richard Fontana <rfontana@redhat.com>,
-        Allison Randal <allison@lohutok.net>
-Cc:     linux-spdx@vger.kernel.org
+        with ESMTP id S234264AbiFHJNA (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 8 Jun 2022 05:13:00 -0400
+Received: from pb-smtp2.pobox.com (pb-smtp2.pobox.com [64.147.108.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F330D1E4BD8
+        for <linux-spdx@vger.kernel.org>; Wed,  8 Jun 2022 01:34:01 -0700 (PDT)
+Received: from pb-smtp2.pobox.com (unknown [127.0.0.1])
+        by pb-smtp2.pobox.com (Postfix) with ESMTP id 9470112A613;
+        Wed,  8 Jun 2022 04:33:59 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=pobox.com; h=message-id
+        :date:mime-version:subject:to:cc:references:from:in-reply-to
+        :content-type:content-transfer-encoding; s=sasl; bh=AOytfVxa7nFv
+        7jgqyKBa8b5vmPCAL3vKL8teSSfz10A=; b=l7aa6i5jgI/rVxZ2fzSalYTHhajM
+        xhlotC/upItkIhEeplbWsVHiPXzpJExuRn6tTp0QGke6eE+oAA4yeWV4OqDqze5Z
+        ShWy5EB1niYLpsj5gkNzcwRgns40A/OUwRZ1kAvM3JyCejNTOEVWDGibfps5P7Gp
+        82D41q/3udEHKoo=
+Received: from pb-smtp2.nyi.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp2.pobox.com (Postfix) with ESMTP id 8B5C912A612;
+        Wed,  8 Jun 2022 04:33:59 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=lohutok.net;
+ h=message-id:date:mime-version:subject:to:cc:references:from:in-reply-to:content-type:content-transfer-encoding; s=2018-11.pbsmtp; bh=cHyB3cQ/qneI+bYIcBN03rc/GM69mF//UypQNMpeWP8=; b=P5MZDI1KoaMfAnU0C4m2bfKQkNbUzX4a09sMgoj7YeuOAjIWPgDWq7GnxVN2O7gRe+Sb9kxzkyC+hMSoleFfZ1STCLI8Zozk6SwZTLSvAeYrdx3WXn4A1b9Xm4ZdddBSl3XX+zaUGJzMgn4e+tqo5NA/M33FWS2MEp1nOKNFPTo=
+Received: from [10.0.2.15] (unknown [217.9.63.39])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by pb-smtp2.pobox.com (Postfix) with ESMTPSA id 6520B12A611;
+        Wed,  8 Jun 2022 04:33:58 -0400 (EDT)
+        (envelope-from allison@lohutok.net)
+Message-ID: <7c5e1900-7a9b-ac6a-87ab-bf0d38f70f26@lohutok.net>
+Date:   Wed, 8 Jun 2022 04:33:32 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
 Subject: Re: [Batch 1 - patch 12/25] treewide: Replace GPLv2
  boilerplate/reference with SPDX - gpl-2.0_208.RULE
-In-Reply-To: <87y1y8xrzx.fsf@ebb.org>
+Content-Language: en-US
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        "Bradley M. Kuhn" <bkuhn@ebb.org>,
+        Richard Fontana <rfontana@redhat.com>
+Cc:     linux-spdx@vger.kernel.org
 References: <20220606195512.584745712@linutronix.de>
  <CAC1cPGxhmK1tYJCoKxQ2ykQhZBtswye-stR_YdBAha7n082UCA@mail.gmail.com>
- <20190521210833.veltn74dcgic5zmw@ebb.org>
- <20190522133053.GE28920@kroah.com>
+ <20190521210833.veltn74dcgic5zmw@ebb.org> <20190522133053.GE28920@kroah.com>
  <bf40a3f2-3d17-b9f8-1f10-85d3adb6709b@lohutok.net>
  <CAC1cPGyzP7s7U6fKoDkb01-Edm1i329Rx=DBQ9JWQTCdbq4p3A@mail.gmail.com>
  <CAC1cPGzeXeGDKtGPED1tMX1WybjRrxypfw5+SPs_kXwdO7NWiA@mail.gmail.com>
- <87bkv55yxh.ffs@tglx> <87y1y8xrzx.fsf@ebb.org>
-Date:   Wed, 08 Jun 2022 01:05:08 +0200
-Message-ID: <87a6ao3wij.ffs@tglx>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ <87bkv55yxh.ffs@tglx> <87y1y8xrzx.fsf@ebb.org> <87a6ao3wij.ffs@tglx>
+From:   Allison Randal <allison@lohutok.net>
+In-Reply-To: <87a6ao3wij.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Pobox-Relay-ID: BDEB2006-E705-11EC-A041-CB998F0A682E-44123303!pb-smtp2.pobox.com
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_CSS autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,201 +71,102 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Bradley,
+On 6/7/22 19:05, Thomas Gleixner wrote:
+> On Tue, Jun 07 2022 at 11:12, Bradley M. Kuhn wrote:
+>>
+>> Note that was a full consensus =E2=80=94 and it included the opinion o=
+f many
+>> prominent FOSS lawyers (who were attending under the Chatham House Rul=
+e
+>> imposed on that meeting) =E2=80=94 that keeping the notices intact som=
+ewhere in the
+>> tree (not just in the Git repository) was essential.
+>=20
+> Note that the full consensus of all these prominent lawyers becomes onl=
+y
+> useful when they agree on something pragmatic which is actually
+> resolving the situation. Having full consensus on unactionable solution=
+s
+> is a pointless exercise.
+>=20
+> There was also full consensus many years before 2019 that the licensing
+> situation has to be cleaned up along with the conclusion that this need=
+s
+> to be done with the help of those companies and their respective lawyer=
+s
+> who inflicted the mess in the first place. This has been discussed and
+> concluded to death with no outcome.
 
-On Tue, Jun 07 2022 at 11:12, Bradley M. Kuhn wrote:
-> Fontana started a linux-spdx thread on 2019-05-19 with the subject line of
-> =E2=80=9CMeta-question on GPL compliance of this activity=E2=80=9D, sayin=
-g:
->>> I was at the LLW event in Barcelona last month but unfortunately did not
->>> attend the workshop relating to this activity =E2=80=A6
->>> GPLv2 section 1 says: "=E2=80=A6 keep intact all the notices that refer=
- to this
->>> License and to the absence of any warranty; and give any other recipien=
-ts
->>> of the Program a copy of this License along with the Program."=E2=80=A6=
-=20
->
->>> I have recently heard the argument that replacing a more or less standa=
-rd
->>> old-school GNU license notice =E2=80=A6 with an SPDX license identifier=
- string,
->>> without explicit permission from the copyright holder, complies with th=
-is
->>> condition =E2=80=A6  However, more conservative interpreters of GPLv2, =
-including
->>> some copyright holders, might argue otherwise.
->
->>> The discovery of GPL notices juxtaposed with warranty disclaimers
->>> imported from non-GPL licenses, or warranty disclaimers that otherwise =
-go
->>> beyond what is called out in GPLv2 and the traditional GNU license
->>> notice, also raises the question of whether this list's work is strictly
->>> compliant with the quoted language from GPLv2 section 1.
+My perspective here is shaped by my experiences with lawyers and=20
+contributor agreements. In the early 2000s, as a leader of a free=20
+software foundation, I was explicitly told by a number of lawyers that=20
+unless we had a signed contributor agreement from every contributor, the=20
+free software project had no right to distribute those contributions.=20
+Part of a lawyer's job is to advise their clients based on their best=20
+understanding of the law and common practice, and those lawyers were=20
+doing exactly that, based on their experience in corporate law, so to a=20
+certain extent I can't fault them for doing their job to the best of=20
+their ability. But, while they were giving their best assessment of what=20
+*could be* true at the time, what they weren't doing was thinking about=20
+what *should be* true, in the context of free software. Both the law and=20
+common practice evolve over time, and we need to be intelligent about=20
+evaluating both what *could be* true at the moment, and what *should be*=20
+true in the long term. The concepts of inbound=3Doutbound, DCO, and=20
+signed-off-by are now common practice, but getting there required some=20
+clever insight by some lawyers who really understoond free software, and=20
+also consistent practice by projects over time.
 
-What we have done so far is:
+With that context in mind: One reasonable interpretation of =E2=80=9Ckeep=
+ intact=20
+all the notices that refer to this License and to the absence of any=20
+warranty=E2=80=9D could be to say that the exact text must be preserved, =
+exactly=20
+as it was typed at the dawn of time, including any typos, inaccurate=20
+street addresses, etc. Another reasonable interpretation is that the=20
+notices serve to link a license to the file, and declare that the legal=20
+terms of the entire GPL license govern that file, and so what must be=20
+preserved is the link. Current practice is closer to the second, people=20
+feel free to throw in whatever garbled variant of the notice text FSF=20
+recommends, because they know that what really matters is the text of=20
+the GPL, which is invariant and has been carefully reviewed by lawyers.=20
+We absolutely want to make sure that people don't strip off the link to=20
+the GPL license, and use the file or its contents under terms other than=20
+the GPL, that is the legal purpose we're trying to achieve.
 
-  1) Add SPDX license identifiers to files which have no license
-     reference/notice/... at all
+For a new file, adding the FSF notice, or adding some garbled version=20
+that still has the same terms as the GPL and FSF notice, or adding the=20
+SPDX license identifier are all legally equivalent ways of declaring=20
+that the file is subject to the terms of the GPL license. In terms of=20
+common practice, the SPDX identifier is actually superior because it's=20
+clear, consistent, machine readable, and limits the scope of garbled=20
+variations introduced by humans. (Humans actually manage to garble even=20
+those few characters of the SPDX identifier, but since it's machine=20
+readable, it's also machine checkable, so easy to kick back an error and=20
+say "that's not a valid SPDX identifier, did you mean X or Y?")
 
-  2) Replace bog standard boilerplates
+If the full text notice and SPDX identifier are legally equivalent, then=20
+can they legally be substituted in an existing file? There is a=20
+reasonable interpretation to say that *could be* allowed, but a more=20
+important question here is whether that *should be* allowed. Allowing it=20
+does no harm, the full terms of the GPL apply to the file with either=20
+the full text notice or the SPDX identifier. Allowing it is good for the=20
+cause of free software and for GPL enforcement, because it cleans up=20
+confusing cruft from historical human inconsistencies, and clearly=20
+declares the legal terms that apply to the file. So, I would argue that=20
+substituting SPDX identifiers for text notices should be allowed (as=20
+long as the text notice has the same terms as the GPL itself). While=20
+substituting SPDX identifiers might not be common practice yet, the way=20
+we make it common practice is by practicing it repeatedly until it=20
+becomes common.
 
-     Quite some of these replacements have been reviewed by Richard as
-     documented in the changelogs and the mailing list archive.
+It's also worth noting that there's isn't any risk of a "point of no=20
+return" here. When Thomas and I say that the changes are all in git=20
+history, we aren't saying that we expect everyone to read the entire=20
+history. What we're saying is that it's easy to write a tool to scan the=20
+entire history, and generate a file that lists every file that had an=20
+SPDX identifier substituted under every match rule, if we decide that's=20
+actually necessary at some point. It really, really shouldn't be=20
+necessary (any more than contributor agreements are necessary), but it's=20
+reassuring to know have options.
 
-     So far I haven't seen any complaint from more conservative
-     interpreters or from copyrights holders which disagreed with that
-     approach and requested any of those changes to be reverted.
-
-     All I have seen so far is handwaving worryguts.
-
-We did _not_ remove/replace any of the oddball GPLv2 plus magic
-disclaimer parts or any other non-standard license boilerplate yet.
-
-The fact that I resent some of those match patterns now does not change
-that. The whole purpose of this exercise is to have enough eyeballs on
-these patches to catch those cases, sort them out and decide how to deal
-with them.
-
-> On 2019-05-21, I replied summarizing the decision from the 2019-04 meetin=
-g:
->> There was consensus at the meeting in Barcelona that moving all the noti=
-ces
->> to a single file to live inside the Linux tree "somewhere" with entries
->> like:
->>    Filenames: a.c, b.c, c.c contained this notice:
->>             NOTICE
->>       which was replaced with SPDX_IDENTIFIER on DATE.
->> and that such was a fine and acceptable way to address even the most
->> disagreeable and litigious conservative interpreters, and that such was a
->> necessary step to avoid compliance infractions on this issue.
->
-> Note that was a full consensus =E2=80=94 and it included the opinion of m=
-any
-> prominent FOSS lawyers (who were attending under the Chatham House Rule
-> imposed on that meeting) =E2=80=94 that keeping the notices intact somewh=
-ere in the
-> tree (not just in the Git repository) was essential.
-
-Note that the full consensus of all these prominent lawyers becomes only
-useful when they agree on something pragmatic which is actually
-resolving the situation. Having full consensus on unactionable solutions
-is a pointless exercise.
-
-There was also full consensus many years before 2019 that the licensing
-situation has to be cleaned up along with the conclusion that this needs
-to be done with the help of those companies and their respective lawyers
-who inflicted the mess in the first place. This has been discussed and
-concluded to death with no outcome.
-
-I surely can count the number of lawyers who actually helped with this
-effort on _one_ hand. The number of corporate developers who were
-involved in cleaning this up is not impressive either.
-
-I've got promised access to a full audited license database for the
-kernel way before 2019 from the very same crowd attending the legal
-workshop in Barcelona. That still has not materialized as of today.
-
-What I've got are a couple of private mails from corporate lawyers
-asking why the SPDX efforts have been stalled since summer 2019. When I
-told them that I ran out of copious spare time they never answered back.
-I'm pretty confident that some of those lawyers were part of the full
-consensus you mentioned.
-
-> Greg KH was the only objector to the solution, replying on 2019-05-22:
->>>> So that's just not going to be possible =E2=80=A6=20
->>>> Just use git history, we have it, why ignore it?
-
-Greg was not the only objector. There was no need to repeat the obvious
-and the resulting discussion clearly showed that.
-
-> Given that linux-spdx now uses that approach (i.e., the Git history is the
-> only place that these notices can be found), under GPLv2=C2=A71, it now m=
-eans
-> that all downstream redistributors of Linux must include the entire Git
-> repository as part of the complete, corresponding source (CCS).  That see=
-ms
-> like it is actually more inconvenient to more people than writing the tool
-> to generate the notice file (see below).
-
-That's not a problem the Linux kernel introduced.
-
-U-Boot did a wholesale SPDX conversion back in 2013 which removed every
-boilerplate including non-standard disclaimers and obscure license
-notices/references.
-
-As a matter of fact, none of these changes in the U-Boot tree has been
-reverted or challenged since 2013.
-
-How is the industry dealing with that?
-
-   1) Not having noticed within 9 years?
-
-   2) Simply ignoring the problem?
-
-   3) Shipping the git repository?
-
-   4) Using the magic tool which nobody is willing to write?
-
-Whatever the answer is, it's going to be very conclusive and I'm really
-looking forward to it.
-
-> In response to Greg's concerns, Thomas made this excellent suggestion:
->>>>> That's what tools are for. We can generate that list when generating =
-the
->>>>> tarball..=20
-> (=E2=80=A6 and Allison Randal endorsed this idea in on 2019-05-24)
->
-> The thread continued on, with Greg raising concerns that putting the noti=
-ces
-> in the release tarball would still be difficult, and Thomas and Allison m=
-ade
-> a counter-proposal that the list of notices (as described above) could go=
- on
-> a stable kernel.org URL for each release, and that just the URL is noted =
-as
-> the place to find full notices in the tarball itself.
->
-> *But*, until (a) that tool exists to auto-generate the notices, and (b) t=
-he
-> tarballs contain that URL in them, the Git repository as a whole *is now
-> required* as part of the CCS for Linux per GPLv2=C2=A71.
-
-We all discussed options for solving this, but that does not mean that
-the task to create such a tool has been assigned to anyone or that
-anyone volunteered to take it on.
-
-There was plenty of time for all involved parties, especially those who
-are complaining most to sit down themself or pay someone to get it done.
-
-> Fontana followed up later in the 2019 thread, (after work began) to say:
->>> I believe this group needs to address [this notice issue] head-on and
->>> openly, =E2=80=A6  The fact that I'm participating in these reviews sho=
-uld not be
->>> taken to mean that I am 100% comfortable with this activity. Part of why
->>> I'm doing so is to identify problems that might otherwise get overlooke=
-d.
->
-> I'm glad Fontana is doing the latter, and that he brought up this issue
-> again now.
-
-What's the point? Richards objections were expected.
-
-As I said above: This is the purpose of this list. I'm just providing
-coarse filtered data to analyse. If problems are detected and pointed
-out the changes are put aside and have to be dealt with seperately.
-
-We've been very consistent with this since this effort started as can
-be seen from the list archives and git history.
-
-> As can be seen from the list archives and Git history, neither I
-> nor anyone from Software Freedom Conservancy has signed-off any linux-spdx
-> patches.  We can't in good conscience sign-off on patches that currently
-> cause *more* GPLv2 violations (even if they are minor infractions).  This
-> problem needs attention for linux-spdx to achieve its goals.
-
-Duly noted.
-
-Thanks,
-
-        tglx
+Allison

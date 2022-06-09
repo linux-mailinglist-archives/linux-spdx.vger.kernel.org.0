@@ -2,45 +2,83 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9EB3544098
-	for <lists+linux-spdx@lfdr.de>; Thu,  9 Jun 2022 02:32:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C2F0544186
+	for <lists+linux-spdx@lfdr.de>; Thu,  9 Jun 2022 04:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiFIAcd (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 8 Jun 2022 20:32:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
+        id S236634AbiFICfj (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 8 Jun 2022 22:35:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230486AbiFIAcc (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 8 Jun 2022 20:32:32 -0400
-Received: from protestant.ebb.org (protestant.ebb.org [50.56.179.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0221D31E
-        for <linux-spdx@vger.kernel.org>; Wed,  8 Jun 2022 17:32:30 -0700 (PDT)
-Received: from localhost (unknown [216.161.86.18])
-        (Authenticated sender: bkuhn)
-        by protestant.ebb.org (Postfix) with ESMTPSA id 467988208F;
-        Wed,  8 Jun 2022 17:32:30 -0700 (PDT)
-Date:   Wed, 8 Jun 2022 17:31:36 -0700
-From:   "Bradley M. Kuhn" <bkuhn@ebb.org>
-To:     linux-spdx@vger.kernel.org
+        with ESMTP id S230391AbiFICfh (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 8 Jun 2022 22:35:37 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 10D80237C88
+        for <linux-spdx@vger.kernel.org>; Wed,  8 Jun 2022 19:35:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1654742134;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=X4k0w1uSkY4EnN8y4T2qwbirlcosnL+dKdRWkYWDJSc=;
+        b=ZvfQ49Z84U6ek8w2gCYTI3+SES6bsGOB0wY0meplZB5D10NEyXKoCqzgWU/NLCnDeqw2ee
+        lNR1hvMzazabbeqQYVq7dG95Ccd5B9M+32L2rnW7t4bkY0YAVbbLVMbk+oPXZkjjdg5J2u
+        nVeDi6W1Bgnwxvz8BpX09I67iFMRnqk=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-623-ZAMwMWeCNL2XYdz0NGSowQ-1; Wed, 08 Jun 2022 22:35:33 -0400
+X-MC-Unique: ZAMwMWeCNL2XYdz0NGSowQ-1
+Received: by mail-qk1-f197.google.com with SMTP id v14-20020a05620a0f0e00b00699f4ea852cso18080806qkl.9
+        for <linux-spdx@vger.kernel.org>; Wed, 08 Jun 2022 19:35:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=X4k0w1uSkY4EnN8y4T2qwbirlcosnL+dKdRWkYWDJSc=;
+        b=KWv6PT3uQ+XV4XGnE1p7fMP/T/ss/+Zb06wg/aYiGw7u/J7PlL+3tSvfU0nZeS+Q6h
+         ySSs1zizNKZV7R1D1Qwc+88sDEBWdTYWy2+qoQZxgnpy2DQuPDw5iaG6XLO4ayN08JY7
+         0MCzApgfZ5i7ImIYRf3GhvHlMaaIWoDqjzOEl+dYVKPnkhvzVD+twIgJA+AZgmlU4mAn
+         26UKqbgNMuGjoayUEHbF+Y2fnKDn/xlHspaz9fqrxZDdmIF9OawGh1asTjs3h/c0dANk
+         WBvLRYtmONxhI0LUU26b4YNR4Zx0yyD51fLB1fiOePFrqa60CVBiL7be68hsgEKcNxkh
+         j4rw==
+X-Gm-Message-State: AOAM530bu0mDj2qFnVEi9v9F1ixPkVSaJYfEftNw+KcGoXpCke31Lni5
+        bQh9NLdZDXvAXFgYjUT2J+PyARNGLYaj6cC9BYpZvJ7TbZTGl+kRWbCqWqJZgKeqi+lgpV1Rsm9
+        N6LzJWVMNLlhoYuZp1ijAKejhRkw5Ytw7yXNBZw==
+X-Received: by 2002:a05:620a:2546:b0:6a6:5fde:2308 with SMTP id s6-20020a05620a254600b006a65fde2308mr25526505qko.611.1654742132670;
+        Wed, 08 Jun 2022 19:35:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwNlhxWynFyZqFE/IKLjFUWKX/zz2EqHKZUdqwRxsOSxExaBk/w32VTNJgR7Y5RZyyVczvQOMTncFdgoUczHqE=
+X-Received: by 2002:a05:620a:2546:b0:6a6:5fde:2308 with SMTP id
+ s6-20020a05620a254600b006a65fde2308mr25526498qko.611.1654742132385; Wed, 08
+ Jun 2022 19:35:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAC1cPGyzP7s7U6fKoDkb01-Edm1i329Rx=DBQ9JWQTCdbq4p3A@mail.gmail.com>
+ <CAC1cPGzeXeGDKtGPED1tMX1WybjRrxypfw5+SPs_kXwdO7NWiA@mail.gmail.com>
+ <87bkv55yxh.ffs@tglx> <87y1y8xrzx.fsf@ebb.org> <87a6ao3wij.ffs@tglx>
+ <7c5e1900-7a9b-ac6a-87ab-bf0d38f70f26@lohutok.net> <YqCsfqgO07BITgfU@ebb.org>
+ <a9429d78-db06-7754-1d19-8c87b430bfcd@lohutok.net> <YqDZyOh6zQPNN0AY@ebb.org>
+ <CAC1cPGyD=C-cgPJ2+9RmLQQC80Fk8XKb+7sHp=BqEBvViXRVvw@mail.gmail.com>
+ <YqD4hjCHlRsuzNOl@ebb.org> <02f4021f-63a5-4796-d790-2bacd37b90d2@jilayne.com>
+In-Reply-To: <02f4021f-63a5-4796-d790-2bacd37b90d2@jilayne.com>
+From:   Richard Fontana <rfontana@redhat.com>
+Date:   Wed, 8 Jun 2022 22:35:21 -0400
+Message-ID: <CAC1cPGzSCYJy=4q0tE3Nw1V-r3_AzC48NTSu5NakF3jMbVRjig@mail.gmail.com>
 Subject: Re: [Batch 1 - patch 12/25] treewide: Replace GPLv2
  boilerplate/reference with SPDX - gpl-2.0_208.RULE
-Message-ID: <YqE/aNK+YXH1Bs5n@ebb.org>
-References: <87bkv55yxh.ffs@tglx>
- <87y1y8xrzx.fsf@ebb.org>
- <87a6ao3wij.ffs@tglx>
- <7c5e1900-7a9b-ac6a-87ab-bf0d38f70f26@lohutok.net>
- <YqCsfqgO07BITgfU@ebb.org>
- <a9429d78-db06-7754-1d19-8c87b430bfcd@lohutok.net>
- <YqDZyOh6zQPNN0AY@ebb.org>
- <CAC1cPGyD=C-cgPJ2+9RmLQQC80Fk8XKb+7sHp=BqEBvViXRVvw@mail.gmail.com>
- <YqD4hjCHlRsuzNOl@ebb.org>
- <02f4021f-63a5-4796-d790-2bacd37b90d2@jilayne.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <02f4021f-63a5-4796-d790-2bacd37b90d2@jilayne.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+To:     J Lovejoy <opensource@jilayne.com>
+Cc:     "Bradley M. Kuhn" <bkuhn@ebb.org>,
+        Allison Randal <allison@lohutok.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-spdx@vger.kernel.org
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rfontana@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,71 +86,22 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-J Lovejoy wrote today:
->  a second question of: and then how does "capturing it in some way" get
-> practically implemented?)
+On Wed, Jun 8, 2022 at 7:16 PM J Lovejoy <opensource@jilayne.com> wrote:
+>
+> On the topic of comparison - the warranty in the standard license notice =
+states, "This program is distributed in the hope that it will be useful, bu=
+t WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILIT=
+Y or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License f=
+or more details."
+> It is a truncated version of what is actually in the license, which (I ta=
+ke) as the reason for "see ... license for more details". Thus, the overall=
+ comparison of these variations we are finding should look to the full text=
+ of the disclaimer of warranty in the license, not just the standard notice=
+.
 
-> We are NOT answering the second question at this point in time.
+Agreed. The cases I was trying to flag (both now and in ~2019)
+generally involve ones where the author is adding disclaimers of
+implied warranties not explicitly found in GPLv2.
 
-Nor did I expect you to have an answer for that question this quickly!  (But,
-hopefully we agree it's a really important question!)
+Richard
 
-I think Fontana and I just for the first time stated clearly the root cause —
-namely: the inability for SPDX identifiers to capture non-standard
-disclaimers.  (I suspect this is something that no one noticed when this
-issue was debated previously [0].)
-
-Nevertheless, the flaw is big enough that it calls into question whether one
-*can* effectively use SPDX identifiers *alone* to mark licensing information
-for anything other than a brand-new project that has no license notices yet.
-
-> SPDX makes clear that if there is a standard license notice (which GPL is one
-> of the few license that has one), then the matching guidelines apply there too.
-> That is not really helpful here, though, where we are talking about
-> non-standard license notices.
-
-Indeed — not only that, but if, as you say, the presentation of an SPDX
-identifier at the top of a copyrighted work always means “the license with
-its standard and recommended permission notice as recommended by the license
-steward”, then *any* replacement of a notice that deviates in any way (even
-trivially) from the standard is pretty clearly an infraction of the “keep
-notices in tact” requirement of GPLv2§1.
-
-> #1 QUESTION: How much deviation from the language in the text of the
-> standard header for GPL rises to the level of being legally significant to
-> warrant capturing it in some way?
-
-If anyone but the copyright holder and/or original placer of the warranty
-disclaimer makes this determination, there is increased risk of McHardy-style
-lawsuit.  So, while I agree with your other point that it's a risk
-assessment, the stakes are presumably rather high here.
-
-OTOH, if everyone is cool with the idea of the Git repository being part of
-the CCS, I think that's a fine solution from my perspective.
-
-   -- bkuhn
-
-[0] Historically, as John Sullivan pointed out in the 2019 thread on this
-    list, the SPDX project (from its inception until recently) discouraged
-    replacing license notices with SPDX identifiers.  (As some on this list
-    know, the SPDX project changed its position to be silent on that topic
-    recently.)  Here's the context from this list on that:
-
-    John Sullivan <johns@fsf.org> wrote on Wed, 22 May 2019:
-    >> On https://spdx.org/ids-how it currently says:
-
-    [ Which can be confirmed with
-      https://web.archive.org/web/20191019153514/https://spdx.org/ids-how ]
-
-    >>>>  [W]hen a file already contains a standard header or other license
-    >>>>  notice, the SPDX project recommends that those existing notices
-    >>>>  *should not* be removed. The SPDX ID is recommended to be used to
-    >>>>  supplement, not replace, existing notices in files. …
-    >>>>  [E]xisting license texts and notices should be retained, not
-    >>>>  replaced ‐ especially a third party's license notices.
-
-    That text has since been removed from the URL in question.  IIUC SPDX has
-    no recommendation on how to solve the problem we have at hand, which is
-    certainly consistent with their position, since SPDX now officially stays
-    neutral on the question of whether one should or should not replace
-    existing license notices with merely SPDX identifiers.

@@ -2,125 +2,107 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5057545026
-	for <lists+linux-spdx@lfdr.de>; Thu,  9 Jun 2022 17:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFCE4552EE8
+	for <lists+linux-spdx@lfdr.de>; Tue, 21 Jun 2022 11:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245423AbiFIPHT (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 9 Jun 2022 11:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54944 "EHLO
+        id S1349362AbiFUJkT (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 21 Jun 2022 05:40:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343592AbiFIPHS (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 9 Jun 2022 11:07:18 -0400
-Received: from protestant.ebb.org (protestant.ebb.org [50.56.179.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F8633AB1CF
-        for <linux-spdx@vger.kernel.org>; Thu,  9 Jun 2022 08:07:12 -0700 (PDT)
-Received: from localhost (unknown [216.161.86.18])
-        (Authenticated sender: bkuhn)
-        by protestant.ebb.org (Postfix) with ESMTPSA id BFFB68208E;
-        Thu,  9 Jun 2022 08:07:11 -0700 (PDT)
-Date:   Thu, 9 Jun 2022 08:03:02 -0700
-From:   "Bradley M. Kuhn" <bkuhn@ebb.org>
-To:     linux-spdx@vger.kernel.org
-Subject: Re: [Batch 1 - patch 12/25] treewide: Replace GPLv2
- boilerplate/reference with SPDX - gpl-2.0_208.RULE
-Message-ID: <YqILppVZUrD19M6D@ebb.org>
-References: <87a6ao3wij.ffs@tglx>
- <7c5e1900-7a9b-ac6a-87ab-bf0d38f70f26@lohutok.net>
- <YqCsfqgO07BITgfU@ebb.org>
- <a9429d78-db06-7754-1d19-8c87b430bfcd@lohutok.net>
- <YqDZyOh6zQPNN0AY@ebb.org>
- <CAC1cPGyD=C-cgPJ2+9RmLQQC80Fk8XKb+7sHp=BqEBvViXRVvw@mail.gmail.com>
- <YqD4hjCHlRsuzNOl@ebb.org>
- <02f4021f-63a5-4796-d790-2bacd37b90d2@jilayne.com>
- <YqE/aNK+YXH1Bs5n@ebb.org>
- <fb857d69-b5aa-03d5-e8b0-10d734cbbfe1@jilayne.com>
+        with ESMTP id S1349363AbiFUJkI (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 21 Jun 2022 05:40:08 -0400
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B86027B05
+        for <linux-spdx@vger.kernel.org>; Tue, 21 Jun 2022 02:39:56 -0700 (PDT)
+Received: by mail-ua1-x933.google.com with SMTP id 75so3222715uav.9
+        for <linux-spdx@vger.kernel.org>; Tue, 21 Jun 2022 02:39:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=/0bRExIb6Mv4sy5raFRmeQINC+UUx7zEZcUUOWWOPJg=;
+        b=NKhg6kSkfnglJlsPDVUWhCY3Iibudx7OhZC5CePFgeNekYJKNrcmU8wB8gkktmjPqY
+         f0o4DET3nwW7oGb1WQAmWVCm6yLISrVrQXMY/9qoCppMNLX7K/jA/JZ+JMs1mNT38j+N
+         qSlM2vTiSOIkQo5cZ6oY4dkMVda7fWn0vzKRT295Q67AStI8u0BTanvw38uSxo4IMvFm
+         mtbeFJOQugEk6bmbrSLJZHxNWvSEoU0AT9TQz59V3jAGDZbWiI6U0Fx8UlroTYMr9wGQ
+         +xC78kHT5AZK7k/f6wmWhdDj3ThC5Cy20ctCKCcYvb/idPExEpgvQXB/UX/ziCu3vO07
+         Q2/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=/0bRExIb6Mv4sy5raFRmeQINC+UUx7zEZcUUOWWOPJg=;
+        b=GJ4sNU/FmQTvKo1NcejLX87LtmIMMFSJkfAI/HPL5timzpDqAKi86TukM14T4yGC2q
+         zc1mh57Biy9iPRW6/xwmVvNvk3WWek7v8tL+eCHVytrTd2xj+zNbknN8+OSnNI4L8+CG
+         e7WDCsl/Ch6Dy+mm/Y0NBPSwfH5JzY8Rku0RIMHsQbWMso9glW3cuxy9vpVnanscdr6Z
+         qtq5wfyqjFWKvOFw0HRqn1TzRMsVWPXmM+HBJbMh5ByJg/S4q0LeJnjR03Hy6riKalbG
+         kikguFBaIEpocG+xLRUcDn58LOinSylsc9OoCSjL5HcSCfrAu2QqueXeG+zDPe9nJgyu
+         QQwg==
+X-Gm-Message-State: AJIora94cZnIuPqN12Z4ewK+OA6oyiqDAWEGU46NG63E3LcDEXkqraqR
+        OwSujInIUHdYKRiMTSth9/MJJClXrCAOnzAoaBCf3Vo7Cyrwd3Ne
+X-Google-Smtp-Source: AGRyM1sTF/SvvxCyraPE52znD36ZX02jNmxmam87lP8bWzXT3yTfChS1a9JgJI9LjBXh9tpS4qLO5E/t+5efudcEruY=
+X-Received: by 2002:a0d:d7c7:0:b0:317:bfe8:4f2 with SMTP id
+ z190-20020a0dd7c7000000b00317bfe804f2mr12417910ywd.276.1655804384555; Tue, 21
+ Jun 2022 02:39:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fb857d69-b5aa-03d5-e8b0-10d734cbbfe1@jilayne.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Received: by 2002:a05:7010:e10a:b0:2d9:e631:94d0 with HTTP; Tue, 21 Jun 2022
+ 02:39:44 -0700 (PDT)
+Reply-To: dimitryedik@gmail.com
+From:   Dimitry Edik <lsbthdwrds@gmail.com>
+Date:   Tue, 21 Jun 2022 02:39:44 -0700
+Message-ID: <CAGrL05aBO8rbFuij24J-APa+Luis69gEjhj35iv_GZfkHCVYDQ@mail.gmail.com>
+Subject: Dear Partner,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=7.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        LOTS_OF_MONEY,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_MONEY_PERCENT,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM,
+        UNDISC_MONEY autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:933 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [lsbthdwrds[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  2.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+        *  2.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
+        *      email?
+        *  0.0 T_MONEY_PERCENT X% of a lot of money for you
+        *  2.0 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Jilayne, thanks for your response!
+Hello Dear,
 
-I'd written last night:
-> > Nevertheless, the flaw is big enough that it calls into question whether
-> > one *can* effectively use SPDX identifiers *alone* to mark licensing
-> > information for anything other than a brand-new project that has no
-> > license notices yet.
+My Name is Dimitry Edik from Russia A special assistance to my Russia
+boss who deals in oil import and export He was killed by the Ukraine
+soldiers at the border side. He supplied
+oil to the Philippines company and he was paid over 90 per cent of the
+transaction and the remaining $18.6 Million dollars have been paid into a
+Taiwan bank in the Philippines..i want a partner that will assist me
+with the claims. Is a (DEAL ) 40% for you and 60% for me
+I have all information for the claims.
+Kindly read and reply to me back is 100 per cent risk-free
 
-J Lovejoy replied:
-> SPDX identifiers are used, have been used, and will continue to be used
-> effectively for many open source project as a way to express the license in
-> a source file. Whether you like it or not! :)
-
-I am actually neutral on that part of the issue.  My goal here is to make
-sure licensors' rights and choices are respected.  What Fontana and I are
-mainly pointing out is that replacing license notices with SPDX identifiers
-has surprising consequences that we've just realized.  For example, in this
-project, it leads to the Git repository as a whole needing to be part of
-the CCS under GPLv2.  That outcome is not necessarily bad — it's just an
-implication of linux-spdx that will surprise most redistributors.
-
-> As for non-standard disclaimers in a license notice - this is not a huge
-> problem as it seems you are making it.
-
-It's not a numbers issue; once there is *one* of those notices that varies,
-it needs to be handled somehow.
-
-Also, does SPDX have some clear documentation that the intention is that the
-SPDX identifier means not just the license text, but *also* the standard
-notice as recommended by the license steward?  Maybe that documentation
-should be included/linked to somewhere in the Linux tree so that folks know
-that?
-
-(While I'm no longer an active SPDX contributor, I'm pretty well versed in
-SPDX (more than the average FOSS person for sure), and I didn't know that,
-so I suspect it's not well known.)
-
-> Let me put some numbers to that:
-> - of the ~400 (I've lost track) licenses currently on the SPDX License List,
-> only about 46 of them even have a
-…
-> - - 9 of them are GNU licenses (GPL - all 3 versions, LGPL - 2 versions,
-> AGPL, and GFDL - all 3 versions)
-
-Your set of numbers seem mainly an argument of: “copyleft licenses are often
-more complex than non-copyleft ones”.  Anyway, since, as you say, Linux's
-overarching license is “GPL-2.0-only” (full stop — with no additional
-permissions), the key issue for this project is that GPL-2.0-only *does*
-allow variable warranty disclaimers and/or notice terms.
-
-> So, here we are - I suppose the Linux kernel is the appropriate place to
-> have it come up, given that!
-
-I agree.  But it will come up in any project licensed under a GPL Agreement.
-
-> What would be helpful is if we (or I guess, really I) can try to ask
-> lawyers versed in interpretation of these kinds of things and get some idea
-> as to the scope of what changes we see here may or may not be likely to be
-> consequential.
-
-That's a useful data point to be sure, but what matters most is that
-representatives of the licensors / copyright holders consent to modifying
-their license notices and/or agree to switch to the standard one.
-
-Fontana has already said that if we find a Red Hat copyright with a
-non-standard warranty notice, that it *was* likely intentional and is
-meaningful (though I expect in retrospect, IBM's Red Hat would be willing to
-relicense with a more standard warranty disclaimer).  For linux-spdx to
-be successful, it seems, it will either (a) need to contact copyright
-holders of non-standard license notices to change them, (b) keep
-the file in the manner designed at the April 2019 meeting, or (c)
-the Git repsoitory stays part of the CCS.
-
-All of the solutions seem workable to me.  Bugs can be fixed. :)
-
-  -- bkuhn
+Yours Sincerely
+Dimitry Edik

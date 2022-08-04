@@ -2,88 +2,74 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD1F589104
-	for <lists+linux-spdx@lfdr.de>; Wed,  3 Aug 2022 19:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 515D658A136
+	for <lists+linux-spdx@lfdr.de>; Thu,  4 Aug 2022 21:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231966AbiHCRLA (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 3 Aug 2022 13:11:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51320 "EHLO
+        id S239864AbiHDT1U (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 4 Aug 2022 15:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237345AbiHCRK7 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 3 Aug 2022 13:10:59 -0400
-X-Greylist: delayed 1850 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 03 Aug 2022 10:10:56 PDT
-Received: from walmailout02.yourhostingaccount.com (walmailout02.yourhostingaccount.com [65.254.253.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFDF1583D
-        for <linux-spdx@vger.kernel.org>; Wed,  3 Aug 2022 10:10:56 -0700 (PDT)
-Received: from mailscan06.yourhostingaccount.com ([10.1.15.6] helo=walmailscan06.yourhostingaccount.com)
-        by walmailout02.yourhostingaccount.com with esmtp (Exim)
-        id 1oJHPh-00058z-70
-        for linux-spdx@vger.kernel.org; Wed, 03 Aug 2022 12:40:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=eldoradogems.com; s=dkim; h=Sender:Date:Message-ID:
-        Content-Transfer-Encoding:Content-Type:From:MIME-Version:Subject:To:Reply-To:
-        Cc:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=I7u1bv/IYGKjEt29vTKIw+2+b2gcnDLYbSlXrpRFTdk=; b=gdmxxbUP8kas5GVpje0QKHCR8
-        YQZKhrybZ06oKoitV2CrzH8zEvWvGrkI98O5FhCc67cgn73l5WyG1QE7bLyc8HgAoccYx1kcnZ7oD
-        LM8uRGK+PVquYPKNpBAjlEb4QWDh+u8pqPDIZIIfbDxjTialKHNG+W+4Cao1jBv8sCV29+Z7cGN8j
-        n68jtnZxLnL3VGhjnGKigtHk22NryGI5xCGIXLjGM1CJuxZZUCor+pUm80Rx6VAvGA8UrSKzQPCh2
-        DioTNlmal4/64gXvMk79xUddZmcX/lI6Ud4tC0h10D+pkWsQT/Nq+oGl8n8iQcFecakwk6r7k98UR
-        F2JMtsWsw==;
-Received: from [10.114.3.23] (helo=walimpout03)
-        by walmailscan06.yourhostingaccount.com with esmtp (Exim)
-        id 1oJHPg-0004ak-Uf
-        for linux-spdx@vger.kernel.org; Wed, 03 Aug 2022 12:40:04 -0400
-Received: from walcustweb1104.yourhostingaccount.com ([10.1.112.64])
-        by walimpout03 with 
-        id 34g12800U1PR0bN014g4pv; Wed, 03 Aug 2022 12:40:04 -0400
-X-Authority-Analysis: v=2.3 cv=VsS4/9+n c=1 sm=1 tr=0
- a=7bwhMLdmRGO9BM92vfj8Tg==:117 a=IkcTkHD0fZMA:10 a=Ipw1FqU43LUA:10
- a=biHskzXt2R4A:10 a=EHZDk6GZljIA:10 a=G7ipKTrHp8AA:10 a=FcW-cK4GAAAA:20
- a=LJCKEievAAAA:20 a=VwQbUJbxAAAA:8 a=4tTZIC_KAAAA:8 a=TOhomXQKdA9KY2okTRsA:9
- a=QEXdDO2ut3YA:10 a=1II0K_x9nDEA:10 a=AjGcO6oz07-iQ99wixmX:22
- a=ORSVQPocC9YncIH7rfm0:22
-Received: from moo.felix by walcustweb1104.yourhostingaccount.com with local (Exim)
-        id 1oJHOu-0007d7-Mj
-        for linux-spdx@vger.kernel.org; Wed, 03 Aug 2022 12:39:16 -0400
-X-EN-Info: U=moo.felix P=/index.php
-X-EN-CGIUser: moo.felix
-X-EN-CGIPath: /index.php
-X-EN-OrigIP: 181.214.218.37
-To:     linux-spdx@vger.kernel.org
-Subject: Your Account Details
-X-PHP-Originating-Script: 1487889:htmlMimeMail.php
-MIME-Version: 1.0
-From:   Eldorado Gems <orders@eldoradogems.com>
-X-Mailer: CubeCart Mailer
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <rg1sxg.41dar9@www.eldoradogems.com>
-X-EN-Timestamp: Wed, 03 Aug 2022 12:39:16 -0400
-Date:   Wed, 03 Aug 2022 12:39:16 -0400
-Sender:  Eldorado Gems <orders@eldoradogems.com>
-X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S239894AbiHDT1T (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 4 Aug 2022 15:27:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04DE6BD69;
+        Thu,  4 Aug 2022 12:27:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A0230B82718;
+        Thu,  4 Aug 2022 19:27:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5548AC433D6;
+        Thu,  4 Aug 2022 19:27:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659641236;
+        bh=cGh4BYfLRpyvCEbTkyNzUakXTF3RwU2wYJMG6Of3Pdw=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=WAVG1rHX+iCpF+9cq/EHsFgKDMDiP+g+q54z5vRHyj48JU2uy/BCgpFm9pE1E/3Pz
+         W5t82cTY/+9Sh1/u70DXsYqFARhkzmSziXmn7+/qRfV5ZjxhStBuZ7s0KGClC1tpW/
+         VO2v6U5i5iM7ZAe75W9Uff81G9F/kb62YfBWofFtE0PbEB0ZPaQ+9EIsmCInu95hhE
+         VHmnt1ulfFxedgn3/vHQeZ0Vpe+SSjxzoxnHhX/Sgpd2yXQt5ycX/8tiqN7UioQ20k
+         fBhgXejQzy7+5vFtydr2HJaxGvBG+bBl+7OjYegZz79thLjPwpp7mRk+8f6ZxNopyd
+         qo+0tiIJZ9UJg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4729EC43140;
+        Thu,  4 Aug 2022 19:27:16 +0000 (UTC)
+Subject: Re: [GIT PULL] SPDX update for 6.0-rc1
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <YuqBtvFv1gaAkD+E@kroah.com>
+References: <YuqBtvFv1gaAkD+E@kroah.com>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <YuqBtvFv1gaAkD+E@kroah.com>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.0-rc1
+X-PR-Tracked-Commit-Id: 58301e1c15db89c0edc6a122c8f6fb5af271954b
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: c1c76700a0d6e6090ccfe1209527f14c21b6681b
+Message-Id: <165964123628.8981.13216930391133803828.pr-tracker-bot@kernel.org>
+Date:   Thu, 04 Aug 2022 19:27:16 +0000
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dear CRYPTOCURRENCY WILL MAKE YOU A MILLIONAIRE &gt;&gt;&gt; https://telegra.ph/Cryptocurrency-makes-people-millionaires-at-15-people-per-hour---Page-625979-08-02  BITCOIN WILL MAKE YOU A MILLIONAIRE &gt;&gt;&gt; https://telegra.ph/Cryptocurrency-makes-people-millionaires-at-15-people-per-hour---Page-867711-08-03 ,
+The pull request you sent on Wed, 3 Aug 2022 16:09:58 +0200:
 
-For your records the following account has been setup so that you can login to our site. Once logged in you can view the status of your orders, make repeat orders efficiently and amend your profile.
+> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.0-rc1
 
-Your access details are:
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/c1c76700a0d6e6090ccfe1209527f14c21b6681b
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-Email:	linux-spdx@vger.kernel.org
-Password:	qOpb83a3t!O
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Thank you!
 
-This email was sent from https://www.eldoradogems.com
-
-Registration IP Address: 181.214.218.37
-
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html

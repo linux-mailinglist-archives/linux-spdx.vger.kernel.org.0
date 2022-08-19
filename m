@@ -2,106 +2,162 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D3AD58E30F
-	for <lists+linux-spdx@lfdr.de>; Wed, 10 Aug 2022 00:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AABDB599ABB
+	for <lists+linux-spdx@lfdr.de>; Fri, 19 Aug 2022 13:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbiHIWQW (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 9 Aug 2022 18:16:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37848 "EHLO
+        id S1348556AbiHSLFi (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 19 Aug 2022 07:05:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbiHIWPR (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 9 Aug 2022 18:15:17 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A86726129
-        for <linux-spdx@vger.kernel.org>; Tue,  9 Aug 2022 15:15:16 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id f65so12603258pgc.12
-        for <linux-spdx@vger.kernel.org>; Tue, 09 Aug 2022 15:15:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc;
-        bh=GI1h58u9NHz7rI/vIwOU5DkUcoHPmL+b4tk5i/xxv5Y=;
-        b=QTP95oQi+RYhXbI8sz4RyTZp0RSE4jP48cyyUmWbTiK1ItvOHbADVtjkGHK/8zFbqv
-         EIzUG3d4HgG5eAQxnVHuBpH33ycuIiNpMEXk8S0LHARhhQGb6AufQVVn/40aQfLvP77W
-         778oK7qnpGZXO0Q2aGCYT4Mad4FGDHlh1br3s7D4D+9Vr7gPQrhXDR8bwR1fyz6kQ1n2
-         /mI7/+oIm6xqfpBjeRephfywWnzvzUcqvvdKwYuFsxmTm/GRVEQb9jKfBsLPvHEPeyBR
-         SLk52BQ10Zm7GZ4Mv5gugSKJZhGFXVOipaGDVsAOq6ABLyMrmGMv+5RYTjL3cqduwO+M
-         O1Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc;
-        bh=GI1h58u9NHz7rI/vIwOU5DkUcoHPmL+b4tk5i/xxv5Y=;
-        b=kxNsZwKbYzrJdORgBhI852zbg7SOrLvRH3NpLm4xFglEZkaP49iqX5kNBRD4gAz1yC
-         Nl6NFwTG7dCr9pCHvB7EvSWGQtVwJVW0AOhdR2fKNTZAknu7kUlcfcca26Xt2pjshj49
-         pt1eaFEt3cWZs0a6IJKJlMYyMrqLZlm9+raCCwI5MPK3OxuLG6feTZFXinc6GKaMq7Vo
-         ihNovZi6tyaBaVbYKRtc3DBBUxEp+aP1OnVi9TH+eRlVBZ3WXLuUR08kb1UrSY/WalAw
-         fex2A+uEpJkcLezNyXK0SJv/8N3V5n3xjjn2kMh9igBTVx+BierIJ4MgaN2gdNbUqCUv
-         hsYA==
-X-Gm-Message-State: ACgBeo2J6HzEdb6WY3+pjqnNbRyc+L2vjmfZqf0TZWT3Uv9dBaa/OZOH
-        ZlrNZVjBE5A6hFjj5fnZBcUp1sF6Sja7ZRlxbEXQw75z/nTzjA==
-X-Google-Smtp-Source: AA6agR7pJ6r7fhR2kV9XLe+oV3h+/ej1weqLnpTQS1YP5ule1vsDwGSNCnOW6LlEIY2xTapZFY+hu5KXPqSjTYpoaJM=
-X-Received: by 2002:a63:4642:0:b0:41b:d353:c5c7 with SMTP id
- v2-20020a634642000000b0041bd353c5c7mr20359415pgk.568.1660083303718; Tue, 09
- Aug 2022 15:15:03 -0700 (PDT)
+        with ESMTP id S1348250AbiHSLEy (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 19 Aug 2022 07:04:54 -0400
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8687FBA51
+        for <linux-spdx@vger.kernel.org>; Fri, 19 Aug 2022 04:04:50 -0700 (PDT)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4M8Jms4SBrz4x1G;
+        Fri, 19 Aug 2022 21:04:45 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1660907086;
+        bh=tNELHKAzDyLfryPFFWAOm18Pibmr2pSODguoP2aVEUo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cv+Xf3TKy2aLhGniGRp+1SFEJilJ7MU/tg8Wbr1y1nnH2aunvxi9RyVTVaJFZnOaZ
+         d20HjqLhgTzmW+I59GNgnZlyc5ynHWVTRM7MMjt4dicx0eAk6llT0+0gue/CPfeqEU
+         8m7rnvELSt7CUmWaArGfbqjZkiTT2DDkvXyHk4cMUfAwG1utMfy6NHSGjFms1hpSHK
+         13Q5q0+vt5/WyNaZK/qa/YrsmsNVva5Me2GZUgOmVqvmrjnWxYJI2QErlBaC9IDIXn
+         dr3TEofXr2mcgZao1RXm5KUG5afF8hOSf50uBOBJNUZHNPD4SD5bVkTv+86FgRWx/E
+         jgTpu5GREio9A==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     <linuxppc-dev@lists.ozlabs.org>
+Cc:     <linux-spdx@vger.kernel.org>, <gregkh@linuxfoundation.org>,
+        <tglx@linutronix.de>
+Subject: [PATCH] powerpc/boot: Convert more files to use SPDX tags
+Date:   Fri, 19 Aug 2022 21:04:30 +1000
+Message-Id: <20220819110430.433984-1-mpe@ellerman.id.au>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Received: by 2002:a05:6a10:e8a6:b0:2d4:fb1c:cc5e with HTTP; Tue, 9 Aug 2022
- 15:15:03 -0700 (PDT)
-Reply-To: wijh555@gmail.com
-From:   "Dr. Ali Moses" <alimoses07@gmail.com>
-Date:   Tue, 9 Aug 2022 15:15:03 -0700
-Message-ID: <CADWzZe65tcOX2+bMZfMLLauGpHEQ9Cdv814nLU=uQvKzDFrEVg@mail.gmail.com>
-Subject: Good Day,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:52b listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [alimoses07[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [wijh555[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [alimoses07[at]gmail.com]
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.1 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+These files are all plain GPL 2.0, with a second sentence about being
+licensed as-is.
+
+Similar to the rule in commit 577b61cee5b2 ("treewide: Replace GPLv2
+boilerplate/reference with SPDX - gpl-2.0_398.RULE").
+
+Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
+---
+ arch/powerpc/boot/44x.h          | 5 +----
+ arch/powerpc/boot/4xx.h          | 5 +----
+ arch/powerpc/boot/ops.h          | 6 ++----
+ arch/powerpc/boot/serial.c       | 6 ++----
+ arch/powerpc/boot/simple_alloc.c | 6 ++----
+ 5 files changed, 8 insertions(+), 20 deletions(-)
+
+diff --git a/arch/powerpc/boot/44x.h b/arch/powerpc/boot/44x.h
+index 02563443788a..9b15e59522d6 100644
+--- a/arch/powerpc/boot/44x.h
++++ b/arch/powerpc/boot/44x.h
+@@ -1,11 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * PowerPC 44x related functions
+  *
+  * Copyright 2007 David Gibson, IBM Corporation.
+- *
+- * This file is licensed under the terms of the GNU General Public
+- * License version 2.  This program is licensed "as is" without any
+- * warranty of any kind, whether express or implied.
+  */
+ #ifndef _PPC_BOOT_44X_H_
+ #define _PPC_BOOT_44X_H_
+diff --git a/arch/powerpc/boot/4xx.h b/arch/powerpc/boot/4xx.h
+index 7dc5d45361bc..77f15d124c81 100644
+--- a/arch/powerpc/boot/4xx.h
++++ b/arch/powerpc/boot/4xx.h
+@@ -1,12 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * PowerPC 4xx related functions
+  *
+  * Copyright 2007 IBM Corporation.
+  * Josh Boyer <jwboyer@linux.vnet.ibm.com>
+- *
+- * This file is licensed under the terms of the GNU General Public
+- * License version 2.  This program is licensed "as is" without any
+- * warranty of any kind, whether express or implied.
+  */
+ #ifndef _POWERPC_BOOT_4XX_H_
+ #define _POWERPC_BOOT_4XX_H_
+diff --git a/arch/powerpc/boot/ops.h b/arch/powerpc/boot/ops.h
+index 8334bc3cbe49..a40c2162a4e9 100644
+--- a/arch/powerpc/boot/ops.h
++++ b/arch/powerpc/boot/ops.h
+@@ -1,12 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * Global definition of all the bootwrapper operations.
+  *
+  * Author: Mark A. Greer <mgreer@mvista.com>
+  *
+- * 2006 (c) MontaVista Software, Inc.  This file is licensed under
+- * the terms of the GNU General Public License version 2.  This program
+- * is licensed "as is" without any warranty of any kind, whether express
+- * or implied.
++ * 2006 (c) MontaVista Software, Inc.
+  */
+ #ifndef _PPC_BOOT_OPS_H_
+ #define _PPC_BOOT_OPS_H_
+diff --git a/arch/powerpc/boot/serial.c b/arch/powerpc/boot/serial.c
+index 54d2522be485..57b23ff53fde 100644
+--- a/arch/powerpc/boot/serial.c
++++ b/arch/powerpc/boot/serial.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * Generic serial console support
+  *
+@@ -6,10 +7,7 @@
+  * Code in serial_edit_cmdline() copied from <file:arch/ppc/boot/simple/misc.c>
+  * and was written by Matt Porter <mporter@kernel.crashing.org>.
+  *
+- * 2001,2006 (c) MontaVista Software, Inc.  This file is licensed under
+- * the terms of the GNU General Public License version 2.  This program
+- * is licensed "as is" without any warranty of any kind, whether express
+- * or implied.
++ * 2001,2006 (c) MontaVista Software, Inc.
+  */
+ #include <stdarg.h>
+ #include <stddef.h>
+diff --git a/arch/powerpc/boot/simple_alloc.c b/arch/powerpc/boot/simple_alloc.c
+index 65ec135d0157..eccbf3b6cc00 100644
+--- a/arch/powerpc/boot/simple_alloc.c
++++ b/arch/powerpc/boot/simple_alloc.c
+@@ -1,12 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * Implement primitive realloc(3) functionality.
+  *
+  * Author: Mark A. Greer <mgreer@mvista.com>
+  *
+- * 2006 (c) MontaVista, Software, Inc.  This file is licensed under
+- * the terms of the GNU General Public License version 2.  This program
+- * is licensed "as is" without any warranty of any kind, whether express
+- * or implied.
++ * 2006 (c) MontaVista, Software, Inc.
+  */
+ 
+ #include <stddef.h>
 -- 
-Hello,
-We the Board Directors believe you are in good health, doing great and
-with the hope that this mail will meet you in good condition, We are
-privileged and delighted to reach you via email" And we are urgently
-waiting to hear from you. and again your number is not connecting.
+2.37.1
 
-My regards,
-Dr. Ali Moses..
-
-Sincerely,
-Prof. Chin Guang

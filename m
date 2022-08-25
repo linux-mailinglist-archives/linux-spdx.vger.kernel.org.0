@@ -2,82 +2,93 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0C2D59AAD8
-	for <lists+linux-spdx@lfdr.de>; Sat, 20 Aug 2022 05:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C72D5A157B
+	for <lists+linux-spdx@lfdr.de>; Thu, 25 Aug 2022 17:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242928AbiHTDKy (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 19 Aug 2022 23:10:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58880 "EHLO
+        id S233935AbiHYPU4 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 25 Aug 2022 11:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233564AbiHTDKy (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 19 Aug 2022 23:10:54 -0400
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D20BED7D1B
-        for <linux-spdx@vger.kernel.org>; Fri, 19 Aug 2022 20:10:50 -0700 (PDT)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4M8kCR6KHTz4x1d;
-        Sat, 20 Aug 2022 13:10:43 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1660965044;
-        bh=VwNw6EZalUWQbeHPTHkC3NV0qlBnZ42I9JJo3ZONXB4=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=k1xq5LiW3h2+xEFFGDP9ievLpuxz6DciTi4h5IYhmIChna2/fDmIv4Yxk2h8t4+Jv
-         L7c1M7aPiXsoGNfcYHftPGJsCvxaYI5bJNTxnJA2aWDToKG7I7eMqYveze/rE1GJgA
-         4XBF9E/cGwgm5UQCvpKNzn4iCS2kvLNbM/OTIkAAScDWQFxAdZ4gHq1dXctQzN+ub7
-         ok+xgpbWnaXMNABgrUwevMiAYalfA8vGz3clV7aZ9eWAqLtrJdWWCPMG6Bn/tFmOEd
-         fiHYN7dyPyk0KgiALNYqcR9BkVkN6YjEsPB751EmtjrR2CS0VUj6i2W2/MVtYVZU8f
-         6wt8b4VCRNEbA==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     linuxppc-dev@lists.ozlabs.org, linux-spdx@vger.kernel.org,
-        tglx@linutronix.de
-Subject: Re: [PATCH] powerpc/boot: Convert more files to use SPDX tags
-In-Reply-To: <Yv90ZxeQbf7smJCH@kroah.com>
-References: <20220819110430.433984-1-mpe@ellerman.id.au>
- <Yv90ZxeQbf7smJCH@kroah.com>
-Date:   Sat, 20 Aug 2022 13:10:35 +1000
-Message-ID: <87zgfzlidw.fsf@mpe.ellerman.id.au>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229599AbiHYPUz (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 25 Aug 2022 11:20:55 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 917E65E573;
+        Thu, 25 Aug 2022 08:20:54 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id y3so13839153ejc.1;
+        Thu, 25 Aug 2022 08:20:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc;
+        bh=WZ8MQtJvC/KpySjQ3aROp2zGmulLJPZErMxtsAeIFY8=;
+        b=leK+enpXEtB2wG033uP8ZGyjWLkAvT6bOnLKtKm8FQqsLCEGaMyEdAmDY+RbiC4b2Y
+         7LiDN4/bZSuLYDOWkVIRRlGcgIjeVDx52aCik96/+w2Wb7o9BiD8sOSbcoe1ahmxGrR/
+         oKQZuVDMci+Qm/zXV+8/KjxSe9QRX7gka2oF+Puo2SfvFiJXmmVQe+JH8IXB48BJMnSV
+         0Zehu0CRsEoAYLSBRMNxGZR0fVrUv/Xq5dnDDL7HTd7KeJYBsrDHxjaaxBEbOIVpbUeI
+         e8wUJSjGRWFZaJ1/2Ahr7jePwlaobNoN1dMpLLAHc5XDryTBRKlkgWDSQt/SUPi7msm0
+         Nu/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=WZ8MQtJvC/KpySjQ3aROp2zGmulLJPZErMxtsAeIFY8=;
+        b=cCfWKZjkQvZWXRVbNPvTjiOjjsodH8l4UtVHDPnxvo2SkcRbfWItRLbfj0Ptt9jgOK
+         ATYepuEu1Dh6Sq4D/haUix/yskAI8SZgoUY3GUF0LmaeHvHWbsJ7DnmfPKIAyDfHMNDQ
+         n0INaozOln7C40SLxP0uh2C80RYt0yJpD2nhrnxKgdIBfde65qb+N8wdqiuhFi6JS0yo
+         Px6xdPaBUnLt6NcBR7v9wUSeOwnxUPXFIrm097w+SFLtrDDyBv1i31UtHfnYtO5Z+hm5
+         8uUmkKlLY/h+Pu07Q3hZYvCsM5egAdOwhiJt8VtM5Ww6lO2aUsHHXJEiErYzq0sK+huw
+         uYUA==
+X-Gm-Message-State: ACgBeo0rYddu3WtRCjxmQAfbd/8FpLRHpRBYuVtvaUKIb5CmdTOCuGNy
+        ftbQl0oW/G1Sz0NJw9eoFKRKAa+C45M=
+X-Google-Smtp-Source: AA6agR6i4DjhSEw5Gp1aeR1LlFSo+e1tW7M06AcHbsbz4bR53X/cpd8jeUi0ALEfMH444LQ7sCPKYw==
+X-Received: by 2002:a17:907:6eaa:b0:73d:81db:64d0 with SMTP id sh42-20020a1709076eaa00b0073d81db64d0mr2745039ejc.334.1661440853040;
+        Thu, 25 Aug 2022 08:20:53 -0700 (PDT)
+Received: from felia.fritz.box (200116b8261c3400c04988a24c54b107.dip.versatel-1u1.de. [2001:16b8:261c:3400:c049:88a2:4c54:b107])
+        by smtp.gmail.com with ESMTPSA id a24-20020a170906369800b00730979f568fsm2566580ejc.150.2022.08.25.08.20.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Aug 2022 08:20:52 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-spdx@vger.kernel.org
+Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] MAINTAINERS: add spdxexclude to LICENSES and SPDX stuff
+Date:   Thu, 25 Aug 2022 17:20:29 +0200
+Message-Id: <20220825152029.12660-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Greg KH <gregkh@linuxfoundation.org> writes:
-> On Fri, Aug 19, 2022 at 09:04:30PM +1000, Michael Ellerman wrote:
->> These files are all plain GPL 2.0, with a second sentence about being
->> licensed as-is.
->> 
->> Similar to the rule in commit 577b61cee5b2 ("treewide: Replace GPLv2
->> boilerplate/reference with SPDX - gpl-2.0_398.RULE").
->> 
->> Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
->> ---
->>  arch/powerpc/boot/44x.h          | 5 +----
->>  arch/powerpc/boot/4xx.h          | 5 +----
->>  arch/powerpc/boot/ops.h          | 6 ++----
->>  arch/powerpc/boot/serial.c       | 6 ++----
->>  arch/powerpc/boot/simple_alloc.c | 6 ++----
->>  5 files changed, 8 insertions(+), 20 deletions(-)
->
->
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Commit 0509b270a358 ("scripts/spdxcheck: Put excluded files and directories
+into a separate file") moved excluded files to the new file
+scripts/spdxexclude, but did not adjust the MAINTAINERS section. The file
+scripts/spdxexclude clearly belongs to LICENSES and SPDX stuff.
 
-Thanks.
+Add a corresponding file entry.
 
-> Do you want this to go through the SPDX tree, or will you route it
-> through the normal ppc tree?  Either is fine with me, just let me know
-> if you want me to take it in the SPDX tree.
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-I'll take it via powerpc, less likely to generate conflicts that way.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8022a4dd2ef3..b1b6e6ee2a0c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11622,6 +11622,7 @@ F:	Documentation/process/license-rules.rst
+ F:	LICENSES/
+ F:	scripts/spdxcheck-test.sh
+ F:	scripts/spdxcheck.py
++F:	scripts/spdxexclude
+ 
+ LINEAR RANGES HELPERS
+ M:	Mark Brown <broonie@kernel.org>
+-- 
+2.17.1
 
-cheers

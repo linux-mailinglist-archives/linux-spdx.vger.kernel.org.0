@@ -2,227 +2,84 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17F005B6E07
-	for <lists+linux-spdx@lfdr.de>; Tue, 13 Sep 2022 15:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6E855B8136
+	for <lists+linux-spdx@lfdr.de>; Wed, 14 Sep 2022 08:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231199AbiIMNMg (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 13 Sep 2022 09:12:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39158 "EHLO
+        id S229894AbiINGCP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 14 Sep 2022 02:02:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232200AbiIMNMd (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 13 Sep 2022 09:12:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC05B4057D
-        for <linux-spdx@vger.kernel.org>; Tue, 13 Sep 2022 06:12:32 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oY5i9-0002KX-3p; Tue, 13 Sep 2022 15:12:21 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oY5i9-000Vda-K8; Tue, 13 Sep 2022 15:12:20 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oY5i7-000bV9-67; Tue, 13 Sep 2022 15:12:19 +0200
-Date:   Tue, 13 Sep 2022 15:12:19 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Christoph Hellwig <hch@infradead.org>, kernel@pengutronix.de,
-        linux-spdx@vger.kernel.org,
-        Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: [PATCH 0/2] SPDX tags for copyright
-Message-ID: <20220913131219.27haxojlq5jbmycv@pengutronix.de>
-References: <20220908223850.13217-1-u.kleine-koenig@pengutronix.de>
- <YyAPsqKNSwdHccLj@infradead.org>
- <YyA9S9KD47D6Hoce@kroah.com>
- <20220913094635.g2gtqrpveknjusup@pengutronix.de>
- <YyBl/FUVndtEFkW9@kroah.com>
+        with ESMTP id S229773AbiINGCD (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 14 Sep 2022 02:02:03 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D6AC61DB6;
+        Tue, 13 Sep 2022 23:01:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Sender:Content-Transfer-Encoding:
+        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+        Content-ID:Content-Description:In-Reply-To:References;
+        bh=zXyGOtjB5RSZuyz9uuyrmx8YbIOe3i8LfT2A7vrECsQ=; b=IeJ49Ndbg/qRyON3k1AyApFlMH
+        5RWnKolWg65mwqsBnlt98vDFeABM4VVVLsnIGA0txfvBVNtAPMYGpvbTzJ6EmwqqNvl4/p+vdI1w+
+        Ppjm7yaFKNmJ8SsHkLF5kTlfLdga2Cx8C3DwK2S7715ybf+9GNR7pS/PsMdhvejPAOh71W6sjyK1d
+        BhnLBsC5BGJxGBGMmb2c0YdCxcJe5gR2bwshNn+xw4wnp3SvisyL0D/7sABDDGJTYHYWcngphDBMA
+        9kr41VInNV9ORayxXZN6Q/8srXOKqIi7cbuu4J/xvm/QlRcV/BucQMDZyDfe9tV6et5mQ3SARRV6y
+        jSNvq5cg==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1oYLT2-00879r-9l; Wed, 14 Sep 2022 06:01:48 +0000
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     tglx@linutronix.de, gregkh@linuxfoundation.org,
+        akpm@linux-foundation.org, shuah@kernel.org
+Cc:     joe@perches.com, mcgrof@kernel.org, keescook@chromium.org,
+        rostedt@goodmis.org, linux-spdx@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v10 0/2] SPDX: add copyleft-next-0.3.1
+Date:   Tue, 13 Sep 2022 23:01:45 -0700
+Message-Id: <20220914060147.1934064-1-mcgrof@kernel.org>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4ehefs4yetqhw4as"
-Content-Disposition: inline
-In-Reply-To: <YyBl/FUVndtEFkW9@kroah.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-spdx@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Sender: Luis Chamberlain <mcgrof@infradead.org>
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+As suggested by Thomas Gleixner, I'm following up to move on with
+the SPDX tag needed for copyleft-next-0.3.1. I've split this out
+from the test_sysfs selftest so to separate review from that.
 
---4ehefs4yetqhw4as
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes on this v10:
 
-Hello Greg,
+  o embraced paragraph from Thomas Gleixner which helps explain why             
+    the OR operator in the SPDX license name
+  o dropped the GPL-2.0 and GPL-2.0+ tags as suggested by Thomas Gleixner
+    as these are outdated (still valid) in the SPDX spec
+  o trimmed the Cc list to remove the test_sysfs / block layer / fs folks as
+    the test_sysfs stuff is now dropped from consideration in this series
 
-On Tue, Sep 13, 2022 at 01:14:04PM +0200, Greg KH wrote:
-> On Tue, Sep 13, 2022 at 11:46:35AM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Tue, Sep 13, 2022 at 10:20:27AM +0200, Greg KH wrote:
-> > > On Mon, Sep 12, 2022 at 10:05:54PM -0700, Christoph Hellwig wrote:
-> > > > On Fri, Sep 09, 2022 at 12:38:48AM +0200, Uwe Kleine-K=F6nig wrote:
-> > > > > for Debian packaging having SPDX license tags already simplifies
-> > > > > creating the required copyright documentation considerably. Anoth=
-er
-> > > > > information that is needed for Debian packaging is the copyright
-> > > > > information. There is an SPDX way for copyright information, too.=
- The
-> > > > > second patch converts scripts/kallsyms.c to that mechanism as an =
-example
-> > > > > to maybe discuss if we want to do that in the kernel.
-> > > > >=20
-> > > > > While the SPDX-FileCopyrightText is officially a free-form field,=
- I
-> > > > > suggest to just stick to the format
-> > > > >=20
-> > > > > 	(<year> )?<copyright holder>
-> > > > >=20
-> > > > > to simplify machine consumption even further.
-> > > >=20
-> > > > (which doesn't sound bad), we'll clearly need to document the format
-> > > > we want, and that people should use it.
-> > >=20
-> > > There is a well-agreed-apon legal format for copyright lines already,
-> > > and those lines should be fine in the comment text at the top of the
-> > > file.  No need to mess with SPDX-FileWhateverTagWeWant type of stuff
-> > > here at all as all of our tools can easily find those lines if they
-> > > really want to extract the copyright information.
-> >=20
-> > I didn't find a tool that can extract these informations in the
-> > collection of scripts (i.e. below scripts/). Did I miss anything?
->=20
-> It's not in the kernel tree, sorry, there are external tools that can do
-> this if you really want to.  Like 'grep' as you found :)
->=20
-> > What is that "well-agreed-upon legal format for copyright lines"?
->=20
-> There's a whole LF presentation that goes into all of the details on
-> this that is free:
-> 	https://training.linuxfoundation.org/training/open-source-licensing-basi=
-cs-for-software-developers/
-> and a short summary:
-> 	https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-so=
-ftware-projects/
+The last series was at v9 but it also had the test_sysfs and its
+changes, its history can be found here:
 
-Thanks for the link, will look into these.
+https://lore.kernel.org/all/20211029184500.2821444-1-mcgrof@kernel.org/
 
-> But many company legal departments have their own format and
-> requirements so there might be variations.  Talk to your lawyers for
-> what they require/recommend if you work for a company and want to put a
-> copyright line in a file.
+Luis Chamberlain (2):
+  LICENSES: Add the copyleft-next-0.3.1 license
+  testing: use the copyleft-next-0.3.1 SPDX tag
 
-Just for the background: My focus is currently on consuming end of these
-copyright lines. I want to package barebox for Debian and several files
-in barebox are inherited from the kernel. Debian requires to sumarize
-all licenses and copyrights in the package meta data. So formalizing
-copyrights would simplify that copyright collecting.
+ LICENSES/dual/copyleft-next-0.3.1        | 236 +++++++++++++++++++++++
+ lib/test_kmod.c                          |  12 +-
+ lib/test_sysctl.c                        |  12 +-
+ tools/testing/selftests/kmod/kmod.sh     |  13 +-
+ tools/testing/selftests/sysctl/sysctl.sh |  12 +-
+ 5 files changed, 240 insertions(+), 45 deletions(-)
+ create mode 100644 LICENSES/dual/copyleft-next-0.3.1
 
-> > Grepping a bit around, here are some examples:
-> >=20
-> >  * Portions Copyright (c) 2004-2006 Silicon Graphics, Inc.
-> >  * - Copyright (C) 2001 Junichi Morita <jun1m@mars.dti.ne.jp>
-> >  * **Copyright** |copy| 1999-2020 : LinuxTV Developers
-> >  * Copyright: |copy| 1995--1999 Martin Mares, <mj@ucw.cz>
-> >  * Copyright (c) 2000
-> >    - Jorge Nerin <comandante@zaralinux.com>
-> >  * Ben Dooks, Copyright 2006 Simtec Electronics
-> >  * Copyright, IBM Corp. 1999-2002
-> >  * :copyright:  Copyright (C) 2016  Markus Heiser
-> >  * Copyright (C) 2015 Atmel,
-> >                  2015 Nicolas Ferre <nicolas.ferre@atmel.com>
-> >=20
-> > and this is just the unusal stuff I found in a few minutes.
->=20
-> And you need to get approval from all of those owners to change that
-> text.  And the SPDX-Tag format will not help with this at all.
+-- 
+2.35.1
 
-Oh really. I wouldn't consider it critical to replace
-
-	Copyright (C) 2015 Atmel,
-	              2015 Nicolas Ferre <nicolas.ferre@atmel.com>
-
-by
-
-	SPDX-FileCopyrightText: 2015 Atmel
-	SPDX-FileCopyrightText: 2015 Nicolas Ferre <nicolas.ferre@atmel.com>
-
-=2E But maybe that's only because I didn't consume the above presentation
-yet.
-
-> As you did a simple grep to find the above, finding copyright lines is
-> not as difficult as determining license text variations that we
-> currently are dealing with.
->=20
-> So what's the benefit of changing anything right now as no one is saying
-> we have Copyright line identification issues?
-
-The benefit is that parsing formalized information is easier, so I'd
-prefer to invest time into getting the copyright information into
-machine readable format instead of creating a script in a similar
-timeframe that can determine all the variants available in the kernel
-plus some checking by hand to convince myself I did it right.
-
-> > > SPDX is great for license declarations, let's stick with only using t=
-hat
-> > > for now until we finish the whole kernel and then maybe we can worry
-> > > about adding additional meta information if it's really decided it can
-> > > benifit anyone.
-> >=20
-> > When converting a file to use SPDX-License-Identifier adding the SPDX
-> > copyright stuff in the same commit might save some churn?!
->=20
-> Again, we aren't recommending to touch copyright lines at all with the
-> current SPDX stuff.  Let's focus on licenses first please, that effort
-> is not yet complete.
->=20
-> > Wasn't the situation with licenses similar before SPDX was in use? i.e.
-> > there are scripts that more or less reliably determine the license of a
-> > given file. But the "more or less" part results in some unease and so a
-> > formalism was introduced.
->=20
-> License and copyright are two different things, and different groups
-> interact with them.  The SPDX effort on the kernel was started to
-> resolve the license questions that people had.  If you wish to also
-> address any potential copyright issue, wonderful, please work with the
-> legal groups involved to get them to agree that using the SPDX tag is an
-> ok thing to do.  But until that happens, let's leave that alone and just
-> stick with the text lines for now.
-
-Getting some discussion about what is a sensible way forward was the
-intention of my patch.=20
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---4ehefs4yetqhw4as
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMggbAACgkQwfwUeK3K
-7AkeFAf/eoMcq/VZoki0f+GKIEKAY8sarqbEfJr6YDzw9ei4g+BvIzqh4y8Fv7wW
-xP6nK8efKiIijxFynpT+W2z1DXEj+InOkXW74qB6TnASohPyLNRY1fo7G3gCp/MA
-jDjh2jr/wKw597O//BqRSH2Ev7OsooPd3Ccr/n1dtl+YkSCqp99fw5u9fsCrP2lQ
-CFEOYl7RSf+LsqcxSZLp05IPcV7hLL0lOXdNpgDQfD9aAZI9MuCbsuePnde2VOMy
-w1FYFTRJ7gZMphxsHYuyAHQGoZHrQ5QmYPeps4g6upukfHt1GFnv+04v7syf9ooG
-rDu43F/a2oFcSEbU0ulplLf4oaP9RA==
-=A1PN
------END PGP SIGNATURE-----
-
---4ehefs4yetqhw4as--

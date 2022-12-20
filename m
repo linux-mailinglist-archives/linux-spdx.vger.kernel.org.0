@@ -2,43 +2,56 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0F32651C79
-	for <lists+linux-spdx@lfdr.de>; Tue, 20 Dec 2022 09:43:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1253A65234F
+	for <lists+linux-spdx@lfdr.de>; Tue, 20 Dec 2022 16:00:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbiLTInW (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 20 Dec 2022 03:43:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49920 "EHLO
+        id S233973AbiLTPAR (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 20 Dec 2022 10:00:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiLTInU (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 20 Dec 2022 03:43:20 -0500
+        with ESMTP id S234149AbiLTPAI (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 20 Dec 2022 10:00:08 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B8BBE9F;
-        Tue, 20 Dec 2022 00:43:19 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC701638B;
+        Tue, 20 Dec 2022 07:00:07 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 04FFC612B3;
-        Tue, 20 Dec 2022 08:43:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07CCAC433D2;
-        Tue, 20 Dec 2022 08:43:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1671525798;
-        bh=OJcu6hA8zweHQLP87i9e4BjAh5/iVPitVMEfjntH0mk=;
-        h=Date:From:To:Cc:Subject:From;
-        b=pfARHx706HfMgzUbZTBCnsj7drKTlhRY4BoWE2T2RW9TtW28Bp0pbpZhaVNazhlCQ
-         YWK/69SGY6lMHhWTqJIlAqkf/FgfhNG5z3Bk9w4MAGtsJ3ZOnsqki74dFib7N68hzW
-         Xki8JB1YPa1qFUUiqps6G1I2fDNoQsOMi2uGRgYw=
-Date:   Tue, 20 Dec 2022 09:43:15 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-        linux-spdx@vger.kernel.org
-Subject: [GIT PULL] SPDX/LICENSES update for 6.2-rc1
-Message-ID: <Y6F1oyqcjVYmQ0pu@kroah.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4990B614BB;
+        Tue, 20 Dec 2022 15:00:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AA3DEC433F1;
+        Tue, 20 Dec 2022 15:00:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671548406;
+        bh=04jEh+dz958edKH/foDaYlunScZB4dk3Lz6EiJF+QQU=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=t4tnDCPiHh1G4lWm6fBZ+PsRIi/y2+ddf979bhQJrGHCBQ9dAf8QlWFYaFBG3DE70
+         ff/NBisK4Hfwm+3SzQO2kmtWxllV5lUOTvqsm5fK4UymzDCBpMZp0+G/7Cy4tpODz6
+         KTA3rNTZ3NJSRWsACejkf3caj1dgF8EyfaPA/COCkZbBa8WHkpwXnYNr6vCC4lH1fA
+         8ULnjKZ7ogoAT/QH9WDWFr8Dj7exbIcQn/nr/lJSEDwRjUSR9LNcHpx5klvJSEERFX
+         xbNIxQ7eLejoGkJY1E0NclNJAxCNF8l0XkF471vl8hhY69e5a9hLS2SSeNwSJ7HYoB
+         vk32Xjw/hQHTg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 903BBC43141;
+        Tue, 20 Dec 2022 15:00:06 +0000 (UTC)
+Subject: Re: [GIT PULL] SPDX/LICENSES update for 6.2-rc1
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <Y6F1oyqcjVYmQ0pu@kroah.com>
+References: <Y6F1oyqcjVYmQ0pu@kroah.com>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <Y6F1oyqcjVYmQ0pu@kroah.com>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.2-rc1
+X-PR-Tracked-Commit-Id: 6cad1ecd4e3213d892b70afa999a81849d1f0206
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 32d528c4b885108694f613406d9f39fa4873bd37
+Message-Id: <167154840656.23150.11199029485116262633.pr-tracker-bot@kernel.org>
+Date:   Tue, 20 Dec 2022 15:00:06 +0000
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -48,40 +61,15 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-The following changes since commit f0c4d9fc9cc9462659728d168387191387e903cc:
+The pull request you sent on Tue, 20 Dec 2022 09:43:15 +0100:
 
-  Linux 6.1-rc4 (2022-11-06 15:07:11 -0800)
+> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.2-rc1
 
-are available in the Git repository at:
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/32d528c4b885108694f613406d9f39fa4873bd37
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.2-rc1
+Thank you!
 
-for you to fetch changes up to 6cad1ecd4e3213d892b70afa999a81849d1f0206:
-
-  testing: use the copyleft-next-0.3.1 SPDX tag (2022-11-08 15:44:02 +0100)
-
-----------------------------------------------------------------
-SPDX/License additions for 6.2-rc1
-
-Here are 2 small updates for LICENSES and some kernel files that add the
-Copyleft-next license and use it in a SPDX tag as a dual-license for
-some kernel files.
-
-These have been discussed thoroughly in public on the linux-spdx mailing
-list, and have the needed acks on them, as well as having been in
-linux-next with no reported issues for quite some time.
-
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-
-----------------------------------------------------------------
-Luis Chamberlain (2):
-      LICENSES: Add the copyleft-next-0.3.1 license
-      testing: use the copyleft-next-0.3.1 SPDX tag
-
- LICENSES/dual/copyleft-next-0.3.1        | 236 +++++++++++++++++++++++++++++++
- lib/test_kmod.c                          |  12 +-
- lib/test_sysctl.c                        |  12 +-
- tools/testing/selftests/kmod/kmod.sh     |  13 +-
- tools/testing/selftests/sysctl/sysctl.sh |  12 +-
- 5 files changed, 240 insertions(+), 45 deletions(-)
- create mode 100644 LICENSES/dual/copyleft-next-0.3.1
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html

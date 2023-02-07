@@ -2,113 +2,85 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE6E666B0FC
-	for <lists+linux-spdx@lfdr.de>; Sun, 15 Jan 2023 13:35:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC0468EC22
+	for <lists+linux-spdx@lfdr.de>; Wed,  8 Feb 2023 10:51:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231174AbjAOMf1 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 15 Jan 2023 07:35:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50698 "EHLO
+        id S229508AbjBHJvb (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 8 Feb 2023 04:51:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230432AbjAOMf0 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 15 Jan 2023 07:35:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E96CDC9
-        for <linux-spdx@vger.kernel.org>; Sun, 15 Jan 2023 04:35:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 116D6B80B57
-        for <linux-spdx@vger.kernel.org>; Sun, 15 Jan 2023 12:35:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6185DC433EF;
-        Sun, 15 Jan 2023 12:35:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1673786122;
-        bh=qUv0bF9X7KJch0N3UHjTf3e6I+xEUSBxltbaPuIiFF8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u9TBlBNwqAokRFhOWBlqh69RptMideIE1chnjtRL7/zX5eo2IZ8s0PgLswncYPqPA
-         bAhCcSW6BBPBEe32cnx04+YT63+n1ASJ1zBBsHqFoDrgLAZP/rSOzkEfFJH3hhPwM3
-         jQczq/oQ7jjPPCVonU5TjgPPZ+rQTT7ubxVB+UqQ=
-Date:   Sun, 15 Jan 2023 13:35:14 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     shijm <junming@nfschina.com>
-Cc:     tglx@linutronix.de, linux-spdx@vger.kernel.org
-Subject: Re: [PATCH] scripts: modify output formatter
-Message-ID: <Y8PzAg7FF/1JN1jV@kroah.com>
-References: <20230115112618.11373-1-junming@nfschina.com>
+        with ESMTP id S230140AbjBHJvO (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 8 Feb 2023 04:51:14 -0500
+X-Greylist: delayed 88523 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 08 Feb 2023 01:51:00 PST
+Received: from mail.crawnon.pl (mail.crawnon.pl [51.68.198.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281C53C2BF
+        for <linux-spdx@vger.kernel.org>; Wed,  8 Feb 2023 01:50:59 -0800 (PST)
+Received: by mail.crawnon.pl (Postfix, from userid 1002)
+        id B0F2BA2F4F; Tue,  7 Feb 2023 09:15:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=crawnon.pl; s=mail;
+        t=1675761335; bh=C5hX24svv/9/TME4wPCHfYjl17BCtmuxEd1i9B4zdYs=;
+        h=Date:From:To:Subject:From;
+        b=VXHC95ZcNROBOvFJw2mBtag0fEO39MHkdP4RMuwNhKWKutcUyxXjZXcdbfhZXxHcT
+         EmaDTsw31sO09Jp3Rrdkozny3I86Cp8SMZNb/Z8J5YZ6WreDJ4BVPpeEirB/vSZtWV
+         c5Fgi0cbXdin2tH7P/5RXfe9vi1xlY6FWQf8ueraD++cnRHDDxFbAwJwPJeH12DG+u
+         TqTNSb+2k0mKvtwXBcAFUSssjRhlFad/1w8StLNBRlKceyzpBrJeQTAR6JbrtT4Eqj
+         ucZa3WrWt4MfKhIzs8SDn6TG8Hk+/1M6ZuwgdUJ8LR7XRnDlckA0fufAogFBo+wAuI
+         FgpNh6g7wQ7pA==
+Received: by mail.crawnon.pl for <linux-spdx@vger.kernel.org>; Tue,  7 Feb 2023 09:15:23 GMT
+Message-ID: <20230207074500-0.1.90.hvm4.0.kbn02gs6rt@crawnon.pl>
+Date:   Tue,  7 Feb 2023 09:15:23 GMT
+From:   =?UTF-8?Q? "Miko=C5=82aj_Fiodorczyk" ?= 
+        <mikolaj.fiodorczyk@crawnon.pl>
+To:     <linux-spdx@vger.kernel.org>
+Subject: Fotowoltaika - nowe warunki
+X-Mailer: mail.crawnon.pl
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230115112618.11373-1-junming@nfschina.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.7 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
+        SPF_PASS,URIBL_CSS_A,URIBL_DBL_SPAM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
+        *      blocklist
+        *      [URIs: crawnon.pl]
+        * -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+        *      [score: 0.0923]
+        *  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
+        *      [51.68.198.42 listed in zen.spamhaus.org]
+        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
+        *      blocklist
+        *      [URIs: crawnon.pl]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Sun, Jan 15, 2023 at 07:26:18PM +0800, shijm wrote:
-> modify output formatter
-> 
-> Signed-off-by: shijm <junming@nfschina.com>
-> ---
->  scripts/spdxcheck.py | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/scripts/spdxcheck.py b/scripts/spdxcheck.py
-> index 18cb9f5b3d3d..7bc13f3c5f7d 100755
-> --- a/scripts/spdxcheck.py
-> +++ b/scripts/spdxcheck.py
-> @@ -232,7 +232,7 @@ class id_parser(object):
->                  tok = pe.tok.value
->                  sys.stdout.write('%s: %d:%d %s: %s\n' %(fname, self.curline, col, pe.txt, tok))
->              else:
-> -                sys.stdout.write('%s: %d:0 %s\n' %(fname, self.curline, pe.txt))
-> +                sys.stdout.write('%s: %d:%d %s\n' %(fname, self.curline, pe.txt))
->              self.spdx_errors += 1
->  
->          if fname == '-':
-> -- 
-> 2.18.2
-> 
+Dzie=C5=84 dobry,
 
-Hi,
+chcia=C5=82bym poinformowa=C4=87, i=C5=BC mog=C4=85 Pa=C5=84stwo uzyska=C4=
+=87 dofinansowanie na systemy fotowoltaiczne w ramach nowej edycji progra=
+mu M=C3=B3j Pr=C4=85d.
 
-This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
-a patch that has triggered this response.  He used to manually respond
-to these common problems, but in order to save his sanity (he kept
-writing the same thing over and over, yet to different people), I was
-created.  Hopefully you will not take offence and will fix the problem
-in your patch and resubmit it so that it can be accepted into the Linux
-kernel tree.
+Program zapewnia 6000 z=C5=82 dofinansowania na instalacj=C4=99 paneli i =
+16 000 z=C5=82 na magazyn energii, ni=C5=BCsze cen pr=C4=85du i mo=C5=BCl=
+iwo=C5=9B=C4=87 odliczenia koszt=C3=B3w zwi=C4=85zanych z instalacj=C4=85=
+ fotowoltaiki w ramach rozliczenia PIT (tzw. ulga termomodernizacyjna).
 
-You are receiving this message because of the following common error(s)
-as indicated below:
+Czy s=C4=85 Pa=C5=84stwo otwarci na wst=C4=99pn=C4=85 rozmow=C4=99 w tym =
+temacie?
 
-- You did not specify a description of why the patch is needed, or
-  possibly, any description at all, in the email body.  Please read the
-  section entitled "The canonical patch format" in the kernel file,
-  Documentation/process/submitting-patches.rst for what is needed in
-  order to properly describe the change.
 
-- You did not write a descriptive Subject: for the patch, allowing Greg,
-  and everyone else, to know what this patch is all about.  Please read
-  the section entitled "The canonical patch format" in the kernel file,
-  Documentation/process/submitting-patches.rst for what a proper
-  Subject: line should look like.
-
-- It looks like you did not use your "real" name for the patch on either
-  the Signed-off-by: line, or the From: line (both of which have to
-  match).  Please read the kernel file,
-  Documentation/process/submitting-patches.rst for how to do this
-  correctly.
-
-If you wish to discuss this problem further, or you have questions about
-how to resolve this issue, please feel free to respond to this email and
-Greg will reply once he has dug out from the pending patches received
-from other developers.
-
-thanks,
-
-greg k-h's patch email bot
+Pozdrawiam,
+Miko=C5=82aj Fiodorczyk

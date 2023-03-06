@@ -2,65 +2,75 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09B2A69F07A
-	for <lists+linux-spdx@lfdr.de>; Wed, 22 Feb 2023 09:39:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75BCF6ABC56
+	for <lists+linux-spdx@lfdr.de>; Mon,  6 Mar 2023 11:26:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230424AbjBVIjv (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 22 Feb 2023 03:39:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57988 "EHLO
+        id S230471AbjCFK0t (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 6 Mar 2023 05:26:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231434AbjBVIjt (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 22 Feb 2023 03:39:49 -0500
-Received: from mail.crawnon.pl (mail.crawnon.pl [51.68.198.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3CD530E93
-        for <linux-spdx@vger.kernel.org>; Wed, 22 Feb 2023 00:39:46 -0800 (PST)
-Received: by mail.crawnon.pl (Postfix, from userid 1002)
-        id BAD45A4554; Wed, 22 Feb 2023 08:39:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=crawnon.pl; s=mail;
-        t=1677055185; bh=C5hX24svv/9/TME4wPCHfYjl17BCtmuxEd1i9B4zdYs=;
-        h=Date:From:To:Subject:From;
-        b=IatMLZ2xbkrn2SIIh2UVkThMvWT5jFQIqFb76Gio11CYafbVSfEzrJcurx6hn+WIW
-         CwRU4Fzjjju06OlsEw/37WIay4yiZuAp/qCbyunS1oKHx4lKmHEyvcjeUuM1KhuOug
-         vpXPWo+8nbKnMtj0d3CXMowqDT/x7rtWuFTwjB5TstNJIhZVIoEdw0UP3lpl9K+HIP
-         OzEb0LfngN68bg7WZX7UamHBSSeyu0dWkPqsuCrrzE5xf+bUoYDvk3jGoQUK2dHIul
-         W8jfwHF6UVqnWVG7gzwtXfdb/0pNIjxigkF1KS/ejH2wX87aYNizO5DinYQr2ZsElp
-         DRkrUFolsQtHA==
-Received: by mail.crawnon.pl for <linux-spdx@vger.kernel.org>; Wed, 22 Feb 2023 08:39:39 GMT
-Message-ID: <20230222073001-0.1.9b.lvgh.0.mpf9bv4qjz@crawnon.pl>
-Date:   Wed, 22 Feb 2023 08:39:39 GMT
-From:   =?UTF-8?Q? "Miko=C5=82aj_Fiodorczyk" ?= 
-        <mikolaj.fiodorczyk@crawnon.pl>
-To:     <linux-spdx@vger.kernel.org>
-Subject: Fotowoltaika - nowe warunki
-X-Mailer: mail.crawnon.pl
+        with ESMTP id S230396AbjCFK03 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 6 Mar 2023 05:26:29 -0500
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA4D25B95
+        for <linux-spdx@vger.kernel.org>; Mon,  6 Mar 2023 02:26:00 -0800 (PST)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-176b90e14a9so3189430fac.9
+        for <linux-spdx@vger.kernel.org>; Mon, 06 Mar 2023 02:26:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678098351;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Vh7FN/ulAdnmY8O0LKz7bqpIFk4oOSQ9iCZ8VQ/AkNo=;
+        b=EDbhPO1WKzSJy97Cp1KR4Ue1wIcLFSscoH9L1E67CyPoJvstONJwP7RxKCqsDiuar/
+         4XZc6UhnyOFrEHlIQ3KmGU6oX8xWOyZpiVA4bD6F27cjopM5KQeiwoXnQq1r2hu/0hkW
+         LgiQ9FGonNq8AsMsEKBqZEvtwgOfW2lv3iUKapY2ocqE+LRWfsVifUNA3eNbIcULbvPT
+         nBBU0ns0xWwmvS7ETCAh5Z5lhdCiLVSRis+m63aq8CObwyUrMLAjGQpDeSf4OVAOQav5
+         5TuEH4NOUnTGCqcHGRIE0/tBavRRplzW4HaWY1DRs+pas+nyfL/37adPjYmqfexbl/Di
+         PS3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678098351;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vh7FN/ulAdnmY8O0LKz7bqpIFk4oOSQ9iCZ8VQ/AkNo=;
+        b=Fxum9+ho5syt6EIX8RuPlp/Sdt2j7fmByGsgI4UlJKynF9ejYob7uewykIJnFVbFhn
+         fh3VyKbelqG+wrH9Yvo8kvv5TcM+Kzg8yX7ILJ/cwkFiIoMM25ix7l6ObOqlJCWUsNug
+         13fEgAJm1HnVzS3ihnZFSv2DPcDJ2MC78/oBOCR7MgrPOejk18yQDUwgcbG1DGRFuQee
+         m0mpPtkmmkJ6fF7SJuRsn6pHCX/8DGpJC8VGJPS0Zz5CTPHL9gMf8ibD5aqxcNJUT94p
+         +ei3IUT6G9EMTw20ONXymyyWgnquwnwVcm2MT71aGK5+q17VAqEpw+QJ3VkC9pP0g9PD
+         FIhg==
+X-Gm-Message-State: AO0yUKXxw8ooWOEDwG2oImjAgAiT1qJFNM4VSa03HAFMlfzwB03JyScf
+        hsbLeD4naarRmB1xCii2CZaIVUoPbrviMhWLNPzbDbBH578=
+X-Google-Smtp-Source: AK7set9YqazPiOkBuGm+YrFZOLe51O90+qKBrIr6WBjXtnVrmZ9RIOYyWRLBWcHI+/rsVoNhMQhwnCpcR6G8n2Z6mzE=
+X-Received: by 2002:a05:6102:e44:b0:402:999f:44d3 with SMTP id
+ p4-20020a0561020e4400b00402999f44d3mr6975472vst.1.1678098330725; Mon, 06 Mar
+ 2023 02:25:30 -0800 (PST)
 MIME-Version: 1.0
+Received: by 2002:a59:ce6f:0:b0:3ae:930b:3e70 with HTTP; Mon, 6 Mar 2023
+ 02:25:30 -0800 (PST)
+Reply-To: madis.scarl@terlera.it
+From:   "Ms Eve from U.N" <denisagotou@gmail.com>
+Date:   Mon, 6 Mar 2023 11:25:30 +0100
+Message-ID: <CAD6bNBi6bPCYboaF4-xBgmeUTFn6JMXqU6TNepQig=NRMqhdUg@mail.gmail.com>
+Subject: Re: Claim of Fund:
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
-        SPF_PASS,URIBL_CSS_A,URIBL_DBL_SPAM autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: ***
+X-Spam-Status: No, score=4.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HK_SCAM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_MONEY autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dzie=C5=84 dobry,
+Hello Good Morning,
+This is to bring to your notice that all our efforts to contact you
+through this your email ID failed Please Kindly contact Barrister.
+Steven Mike { mbarrsteven@gmail.com } on his private email for the
+claim of your compensation entitlement
 
-chcia=C5=82bym poinformowa=C4=87, i=C5=BC mog=C4=85 Pa=C5=84stwo uzyska=C4=
-=87 dofinansowanie na systemy fotowoltaiczne w ramach nowej edycji progra=
-mu M=C3=B3j Pr=C4=85d.
-
-Program zapewnia 6000 z=C5=82 dofinansowania na instalacj=C4=99 paneli i =
-16 000 z=C5=82 na magazyn energii, ni=C5=BCsze cen pr=C4=85du i mo=C5=BCl=
-iwo=C5=9B=C4=87 odliczenia koszt=C3=B3w zwi=C4=85zanych z instalacj=C4=85=
- fotowoltaiki w ramach rozliczenia PIT (tzw. ulga termomodernizacyjna).
-
-Czy s=C4=85 Pa=C5=84stwo otwarci na wst=C4=99pn=C4=85 rozmow=C4=99 w tym =
-temacie?
-
-
-Pozdrawiam,
-Miko=C5=82aj Fiodorczyk
+Note: You have to pay for the delivery fee.
+Yours Sincerely
+Mrs EVE LEWIS

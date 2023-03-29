@@ -2,75 +2,61 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75BCF6ABC56
-	for <lists+linux-spdx@lfdr.de>; Mon,  6 Mar 2023 11:26:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BCAA6CD361
+	for <lists+linux-spdx@lfdr.de>; Wed, 29 Mar 2023 09:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbjCFK0t (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 6 Mar 2023 05:26:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
+        id S230039AbjC2HhX (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 29 Mar 2023 03:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230396AbjCFK03 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 6 Mar 2023 05:26:29 -0500
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA4D25B95
-        for <linux-spdx@vger.kernel.org>; Mon,  6 Mar 2023 02:26:00 -0800 (PST)
-Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-176b90e14a9so3189430fac.9
-        for <linux-spdx@vger.kernel.org>; Mon, 06 Mar 2023 02:26:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678098351;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Vh7FN/ulAdnmY8O0LKz7bqpIFk4oOSQ9iCZ8VQ/AkNo=;
-        b=EDbhPO1WKzSJy97Cp1KR4Ue1wIcLFSscoH9L1E67CyPoJvstONJwP7RxKCqsDiuar/
-         4XZc6UhnyOFrEHlIQ3KmGU6oX8xWOyZpiVA4bD6F27cjopM5KQeiwoXnQq1r2hu/0hkW
-         LgiQ9FGonNq8AsMsEKBqZEvtwgOfW2lv3iUKapY2ocqE+LRWfsVifUNA3eNbIcULbvPT
-         nBBU0ns0xWwmvS7ETCAh5Z5lhdCiLVSRis+m63aq8CObwyUrMLAjGQpDeSf4OVAOQav5
-         5TuEH4NOUnTGCqcHGRIE0/tBavRRplzW4HaWY1DRs+pas+nyfL/37adPjYmqfexbl/Di
-         PS3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678098351;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vh7FN/ulAdnmY8O0LKz7bqpIFk4oOSQ9iCZ8VQ/AkNo=;
-        b=Fxum9+ho5syt6EIX8RuPlp/Sdt2j7fmByGsgI4UlJKynF9ejYob7uewykIJnFVbFhn
-         fh3VyKbelqG+wrH9Yvo8kvv5TcM+Kzg8yX7ILJ/cwkFiIoMM25ix7l6ObOqlJCWUsNug
-         13fEgAJm1HnVzS3ihnZFSv2DPcDJ2MC78/oBOCR7MgrPOejk18yQDUwgcbG1DGRFuQee
-         m0mpPtkmmkJ6fF7SJuRsn6pHCX/8DGpJC8VGJPS0Zz5CTPHL9gMf8ibD5aqxcNJUT94p
-         +ei3IUT6G9EMTw20ONXymyyWgnquwnwVcm2MT71aGK5+q17VAqEpw+QJ3VkC9pP0g9PD
-         FIhg==
-X-Gm-Message-State: AO0yUKXxw8ooWOEDwG2oImjAgAiT1qJFNM4VSa03HAFMlfzwB03JyScf
-        hsbLeD4naarRmB1xCii2CZaIVUoPbrviMhWLNPzbDbBH578=
-X-Google-Smtp-Source: AK7set9YqazPiOkBuGm+YrFZOLe51O90+qKBrIr6WBjXtnVrmZ9RIOYyWRLBWcHI+/rsVoNhMQhwnCpcR6G8n2Z6mzE=
-X-Received: by 2002:a05:6102:e44:b0:402:999f:44d3 with SMTP id
- p4-20020a0561020e4400b00402999f44d3mr6975472vst.1.1678098330725; Mon, 06 Mar
- 2023 02:25:30 -0800 (PST)
+        with ESMTP id S230051AbjC2HhF (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 29 Mar 2023 03:37:05 -0400
+Received: from mail.craftsplex.pl (mail.craftsplex.pl [162.19.155.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089AA4C3D
+        for <linux-spdx@vger.kernel.org>; Wed, 29 Mar 2023 00:35:03 -0700 (PDT)
+Received: by mail.craftsplex.pl (Postfix, from userid 1002)
+        id 7E76522DC8; Wed, 29 Mar 2023 07:34:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=craftsplex.pl;
+        s=mail; t=1680075302;
+        bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
+        h=Date:From:To:Subject:From;
+        b=Oov2MGL4jTYk0A4Ibp4H5nb60FbXA1BNpgoZl729AF6k2yKsLpQ5tK45iAj89RzB7
+         1aNd8cHiF7jkIW7FceXwK+1xZkiFhCTXnYUJKHzm0ppVkc4kpXJ/04DUFbU/RgnWC9
+         t1UffC7OQY9TVOZ7rXJdRpPT+dMe0c09wWIX9uQQyNHN78kLEh8lv7OXFfGFiI0e+c
+         wIWQl74ZaKwpUTGW9wRvYM72Iykj6gEnQiK+vSsnlVfxzE4vZ6BDEOekZt5/VTy0ap
+         ON6JOIN0ie+kWzeaKHYFeXDmcLQKizkHCCqjVVB0+8bPhd9J5F7vgUwOU/t9xzkrsG
+         JHv+7oFKsoMHQ==
+Received: by mail.craftsplex.pl for <linux-spdx@vger.kernel.org>; Wed, 29 Mar 2023 07:34:46 GMT
+Message-ID: <20230329072937-0.1.58.ks4p.0.lb3dolqw1d@craftsplex.pl>
+Date:   Wed, 29 Mar 2023 07:34:46 GMT
+From:   "Kamil Tralewski" <kamil.tralewski@craftsplex.pl>
+To:     <linux-spdx@vger.kernel.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.craftsplex.pl
 MIME-Version: 1.0
-Received: by 2002:a59:ce6f:0:b0:3ae:930b:3e70 with HTTP; Mon, 6 Mar 2023
- 02:25:30 -0800 (PST)
-Reply-To: madis.scarl@terlera.it
-From:   "Ms Eve from U.N" <denisagotou@gmail.com>
-Date:   Mon, 6 Mar 2023 11:25:30 +0100
-Message-ID: <CAD6bNBi6bPCYboaF4-xBgmeUTFn6JMXqU6TNepQig=NRMqhdUg@mail.gmail.com>
-Subject: Re: Claim of Fund:
-To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HK_SCAM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_MONEY autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Hello Good Morning,
-This is to bring to your notice that all our efforts to contact you
-through this your email ID failed Please Kindly contact Barrister.
-Steven Mike { mbarrsteven@gmail.com } on his private email for the
-claim of your compensation entitlement
+Dzie=C5=84 dobry,
 
-Note: You have to pay for the delivery fee.
-Yours Sincerely
-Mrs EVE LEWIS
+zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
+=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
+o dalszych rozm=C3=B3w.=20
+
+Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
+=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
+=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
+strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
+
+Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
+
+Pozdrawiam
+Kamil Tralewski

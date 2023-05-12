@@ -2,54 +2,63 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9474E7006E7
-	for <lists+linux-spdx@lfdr.de>; Fri, 12 May 2023 13:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D7CD700859
+	for <lists+linux-spdx@lfdr.de>; Fri, 12 May 2023 14:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240546AbjELLeo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+linux-spdx@lfdr.de>); Fri, 12 May 2023 07:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56222 "EHLO
+        id S240610AbjELMsC (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 12 May 2023 08:48:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240090AbjELLen (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 12 May 2023 07:34:43 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E59D05E;
-        Fri, 12 May 2023 04:34:42 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-3ef5b5d322dso99193501cf.2;
-        Fri, 12 May 2023 04:34:42 -0700 (PDT)
+        with ESMTP id S240719AbjELMsA (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 12 May 2023 08:48:00 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA1F12EAE
+        for <linux-spdx@vger.kernel.org>; Fri, 12 May 2023 05:47:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1683895626;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dJgqlXLztFl0MBoQFQIqJTCsGooWxTVjQq7Oro5jGqw=;
+        b=c3OBITSi0iAvjxYyegQPs7BuhxJZVs3ltIJyrOoR/jQf39v/6qbqFdRMyeKrenJYJN/P34
+        eVIjwn7XrDEwr9ItFT3hJ6Bac++h3TvU5fy4zhXLdorqkr9WJ7ZhLjCJItmG9HZkQvyaxP
+        yM/syhzx2v2XClpYbdypIhisEDoOQSA=
+Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com
+ [209.85.221.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-306-VBwObxttMgaETNDcwmGwgQ-1; Fri, 12 May 2023 08:47:05 -0400
+X-MC-Unique: VBwObxttMgaETNDcwmGwgQ-1
+Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-43fa9a00625so2089575e0c.2
+        for <linux-spdx@vger.kernel.org>; Fri, 12 May 2023 05:47:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683891281; x=1686483281;
+        d=1e100.net; s=20221208; t=1683895624; x=1686487624;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jRL0mFkBIJ4KpIHNQ0nXnFUPNdCjxMZJfjytXJxyHUs=;
-        b=RnMaoHKQty2EcLEaUL6R3/GL9nKNf2LnFZEeBqxJjdF7beqEn5Xc11wYAlgk6PC3XF
-         6OSUQcnZXziN/KMlS9Bf+/wlbyeHXHDULmj5rn+C5AFQvayMGuK4P7+wBTimmzAv9iF8
-         9J2bDyRTibimWbb2d53f2mK6cklI2cHZR+tMLt8j5c837itHN0VJcedm4hMrbeLTwdej
-         DFMjuzx9WMC8dpGlYVyHPOucQ0ZGb8bIofVrPrmF/zbHE6Q4lTEBe+sZaqWAbyc0cDmI
-         jp5R0Ix0w69Z73rtHVUeN9wkG3VkxqYsCGdkPlOf9LsA10DaRG3RE2uCz9UI1AHH9g0I
-         hkbQ==
-X-Gm-Message-State: AC+VfDxs9MZzvrF4JKEbWP4YiRuFxadQZ+xv4icyJKzNIRcsNzcHSVd6
-        2LTM22FByBb06IIS1AXlJke2xqiTSVfyUg==
-X-Google-Smtp-Source: ACHHUZ6g0qPmIXXysBtyKlJ8OBTOCCZ8wjQVTD+7qJVtXBQ1bHI8jYxrR/XdSPFvCFZmQTPVlLIYQA==
-X-Received: by 2002:a05:622a:1a21:b0:3ef:36d0:c06e with SMTP id f33-20020a05622a1a2100b003ef36d0c06emr44128699qtb.33.1683891281389;
-        Fri, 12 May 2023 04:34:41 -0700 (PDT)
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com. [209.85.160.175])
-        by smtp.gmail.com with ESMTPSA id ey16-20020a05622a4c1000b003f3941ba4d9sm385778qtb.32.2023.05.12.04.34.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 04:34:41 -0700 (PDT)
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-3ef588dcf7aso99169331cf.1;
-        Fri, 12 May 2023 04:34:41 -0700 (PDT)
-X-Received: by 2002:a0d:d691:0:b0:539:1b13:3d64 with SMTP id
- y139-20020a0dd691000000b005391b133d64mr23825102ywd.48.1683890887026; Fri, 12
- May 2023 04:28:07 -0700 (PDT)
+        bh=dJgqlXLztFl0MBoQFQIqJTCsGooWxTVjQq7Oro5jGqw=;
+        b=lcKQFNAym3TYmap4Xsbpcrdp3BafvLyedM0SwHyu0zF59fKI8j8d6W7D5gF6UBAOBX
+         ymIGH2T5WG/MQys4fbW7vv26FeLcITHsgvX+tmJJzqE7vRpQLHCRJKD/BTksLVBJGm6G
+         fMVWgVw9NCufc/yASEjpq7MpOlcvfMGrM8tSyKMJ4Fykj1AzoYTWZEVqiE57LrahAm2I
+         cTdn9qk0bsLHxPu8T8E/cubz3RczgCtTYomvcpGBMm8rTiL+qar4XOZwD8c9PQo6TodN
+         eSyZTTK0hBSDLE2s4QO3TCNn7x3zLZLtPlZipZqZDySgxm+zpxyR2X3CF6Dt5gWjpBhV
+         BUeA==
+X-Gm-Message-State: AC+VfDxkKkmXU8XoPn6nSjDHXXNHdm56A1l9jAr2TdB/z1yjs5tKn/Rs
+        IgbRmBMMEOoRiGBCEZyUbpDk2eIQ7hlXt++n7CCeTu5Mjztqh8D1fpM0sB3jAbnGcsKohRRDMc7
+        LS1XVWXm2X0WIKLaSXUjznJbszHC9fq3Yu3TMkQ==
+X-Received: by 2002:a1f:dd42:0:b0:43c:290c:25e8 with SMTP id u63-20020a1fdd42000000b0043c290c25e8mr8337214vkg.6.1683895624611;
+        Fri, 12 May 2023 05:47:04 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7yZxumejHu+zJzEaaKqa6xt9pvg90H/4AFuwccsjqfjD5b2ojZakUIS11JCd4jdY0ELP7Fv4O8lj5wR8QlcEU=
+X-Received: by 2002:a1f:dd42:0:b0:43c:290c:25e8 with SMTP id
+ u63-20020a1fdd42000000b0043c290c25e8mr8337198vkg.6.1683895624367; Fri, 12 May
+ 2023 05:47:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230512100620.36807-1-bagasdotme@gmail.com> <20230512100620.36807-5-bagasdotme@gmail.com>
-In-Reply-To: <20230512100620.36807-5-bagasdotme@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 May 2023 13:27:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWrApnnmC+p_+jeVsswc-_JRSK3FtvpS2X4PrscBCZtAA@mail.gmail.com>
-Message-ID: <CAMuHMdWrApnnmC+p_+jeVsswc-_JRSK3FtvpS2X4PrscBCZtAA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/10] net: ethernet: 8390: Replace GPL boilerplate
+References: <20230512100620.36807-1-bagasdotme@gmail.com> <20230512100620.36807-9-bagasdotme@gmail.com>
+In-Reply-To: <20230512100620.36807-9-bagasdotme@gmail.com>
+From:   Richard Fontana <rfontana@redhat.com>
+Date:   Fri, 12 May 2023 08:46:53 -0400
+Message-ID: <CAC1cPGy=78yo2XcJPNZVvdjBr2-XzSq76JrAinSe42=sNdGv3w@mail.gmail.com>
+Subject: Re: [PATCH v2 08/10] drivers: watchdog: Replace GPL license notice
  with SPDX identifier
 To:     Bagas Sanjaya <bagasdotme@gmail.com>
 Cc:     Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
@@ -81,97 +90,53 @@ Cc:     Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
         Guenter Roeck <linux@roeck-us.net>, Jan Kara <jack@suse.com>,
         =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
         Manivannan Sadhasivam <mani@kernel.org>,
-        "David A . Hinds" <dahinds@users.sourceforge.net>,
-        Donald Becker <becker@scyld.com>,
-        Peter De Schrijver <p2@mind.be>,
-        Topi Kanerva <topi@susanna.oulu.fi>,
-        Alain Malek <Alain.Malek@cryogen.com>,
-        Bruce Abbott <bhabbott@inhb.co.nz>,
+        Ray Lehtiniemi <rayl@mail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Andrey Panin <pazke@donpac.ru>, Oleg Drokin <green@crimea.edu>,
+        Marc Zyngier <maz@kernel.org>,
+        Jonas Jensen <jonas.jensen@gmail.com>,
+        Sylver Bruneau <sylver.bruneau@googlemail.com>,
+        Andrew Sharp <andy.sharp@lsi.com>,
+        Denis Turischev <denis@compulab.co.il>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
         Alan Cox <alan@linux.intel.com>,
-        Greg Ungerer <gerg@linux-m68k.org>,
         Simon Horman <simon.horman@corigine.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Hi Bagas,
+On Fri, May 12, 2023 at 6:07=E2=80=AFAM Bagas Sanjaya <bagasdotme@gmail.com=
+> wrote:
 
-On Fri, May 12, 2023 at 12:08 PM Bagas Sanjaya <bagasdotme@gmail.com> wrote:
-> Replace GPL boilerplate notice on remaining files with appropriate SPDX
-> tag. For files mentioning COPYING, use GPL 2.0; otherwise GPL 1.0+.
->
-> Cc: David A. Hinds <dahinds@users.sourceforge.net>
-> Cc: Donald Becker <becker@scyld.com>
-> Cc: Peter De Schrijver <p2@mind.be>
-> Cc: Topi Kanerva <topi@susanna.oulu.fi>
-> Cc: Alain Malek <Alain.Malek@cryogen.com>
-> Cc: Bruce Abbott <bhabbott@inhb.co.nz>
-> Cc: Alan Cox <alan@linux.intel.com>
-> Acked-by: Greg Ungerer <gerg@linux-m68k.org>
-> Reviewed-by: Simon Horman <simon.horman@corigine.com>
-> Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 
-Thanks for your patch!
-
-> --- a/drivers/net/ethernet/8390/apne.c
-> +++ b/drivers/net/ethernet/8390/apne.c
+> diff --git a/drivers/watchdog/sb_wdog.c b/drivers/watchdog/sb_wdog.c
+> index 504be461f992a9..822bf8905bf3ce 100644
+> --- a/drivers/watchdog/sb_wdog.c
+> +++ b/drivers/watchdog/sb_wdog.c
 > @@ -1,3 +1,4 @@
 > +// SPDX-License-Identifier: GPL-1.0+
-
-As per the removed lines below, this should be GPL-2.0-only.
-
 >  /*
->   * Amiga Linux/68k 8390 based PCMCIA Ethernet Driver for the Amiga 1200
+>   * Watchdog driver for SiByte SB1 SoCs
 >   *
-> @@ -19,12 +20,6 @@
+> @@ -38,10 +39,6 @@
+>   *     (c) Copyright 1996 Alan Cox <alan@lxorguk.ukuu.org.uk>,
+>   *                                             All Rights Reserved.
 >   *
->   * ----------------------------------------------------------------------------
->   *
-> - * This file is subject to the terms and conditions of the GNU General Public
-> - * License.  See the file COPYING in the main directory of the Linux
-> - * distribution for more details.
-> - *
-> - * ----------------------------------------------------------------------------
-> - *
->   */
->
->
+> - *     This program is free software; you can redistribute it and/or
+> - *     modify it under the terms of the GNU General Public License
+> - *     version 1 or 2 as published by the Free Software Foundation.
 
-> --- a/drivers/net/ethernet/8390/hydra.c
-> +++ b/drivers/net/ethernet/8390/hydra.c
-> @@ -1,10 +1,8 @@
-> +// SPDX-License-Identifier: GPL-1.0+
+Shouldn't this be
+// SPDX-License-Identifier: GPL-1.0 OR GPL-2.0
+(or in current SPDX notation GPL-1.0-only OR GPL-2.0-only) ?
 
-Likewise.
-
-> +
->  /* New Hydra driver using generic 8390 core */
->  /* Based on old hydra driver by Topi Kanerva (topi@susanna.oulu.fi) */
->
-> -/* This file is subject to the terms and conditions of the GNU General      */
-> -/* Public License.  See the file COPYING in the main directory of the       */
-> -/* Linux distribution for more details.                                     */
-> -
->  /* Peter De Schrijver (p2@mind.be) */
->  /* Oldenburg 2000 */
->
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds

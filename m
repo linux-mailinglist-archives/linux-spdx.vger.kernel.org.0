@@ -2,64 +2,62 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3920270091A
-	for <lists+linux-spdx@lfdr.de>; Fri, 12 May 2023 15:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2223970159E
+	for <lists+linux-spdx@lfdr.de>; Sat, 13 May 2023 11:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240972AbjELNWh (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 12 May 2023 09:22:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44082 "EHLO
+        id S233212AbjEMJZN (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sat, 13 May 2023 05:25:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240646AbjELNWg (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 12 May 2023 09:22:36 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED04312EB1
-        for <linux-spdx@vger.kernel.org>; Fri, 12 May 2023 06:21:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1683897680;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4AlaRyQOy36sXdqy+JwhbCuIDwi8LlxpgbISw/CDPFM=;
-        b=WVuFVWO6/FlQSCVBFPSJC0w1/VEBS0do9vDz6gEOk7BY/kXbJ95LDYOtcqNM3WjHSaCZvw
-        q/dgJfGUO6xLvfizoSIiTsitotncXfuAFLv1jnZRfGTt6H0zQ0NrHOXe6e+urH9J6WHINu
-        +MPeFTCgNTF61UxaqRCOdNs9ZQWVvng=
-Received: from mail-vk1-f199.google.com (mail-vk1-f199.google.com
- [209.85.221.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-407-zR65ONkEOYmqvfzXDsZ28A-1; Fri, 12 May 2023 09:21:19 -0400
-X-MC-Unique: zR65ONkEOYmqvfzXDsZ28A-1
-Received: by mail-vk1-f199.google.com with SMTP id 71dfb90a1353d-450ddbc9431so1993864e0c.2
-        for <linux-spdx@vger.kernel.org>; Fri, 12 May 2023 06:21:19 -0700 (PDT)
+        with ESMTP id S233605AbjEMJZM (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sat, 13 May 2023 05:25:12 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBFE40FB;
+        Sat, 13 May 2023 02:25:11 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1aaea43def7so75178055ad.2;
+        Sat, 13 May 2023 02:25:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683969911; x=1686561911;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SlCH0G2m8kRJpvkxVEbC2XIL/mZruz0Jkv7EOy6aMxk=;
+        b=fhQmRZtAHOH36wyJU2rlLs/w4OhknwgCOTsAGH2bgx5fytY08pzzIFphrFGUASWOq4
+         OJdOATuTGchZKM4Uo+PM0gi4v5ssEvxQhbP9KKE13C8v98wtMD+0EMeZmXHJisssn9sc
+         7wGGpl0vvH/oFaYAgkHUwbLvVLaE0veCNt8KAH1NSlY0Ed94HnOpf02KjqHMKTPNVWsf
+         lMUUQdgfMZhaDM5dvZ4gH8K/KW3Wyksje5KN4bUk6rttnH8+qeZslb3Bvhz7270CMq2l
+         WdoKImJ+rRYO0op8mHBawLeEcMBCh9GypjQC/Wdr3VxZSQh9TBvdN/qnGyyB1EcUBmob
+         2ZRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683897678; x=1686489678;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4AlaRyQOy36sXdqy+JwhbCuIDwi8LlxpgbISw/CDPFM=;
-        b=X9ifMEvD1QubCDFQvRhVCWG3oQKOyKHQ3ID7jd3azqvZH2WJ08ptN64lUNEN9Nv5dM
-         9DOAoMmT64j4qgZA+UsBaDKncBaPWWuAia5EtceY3fSzyLeTLV7TsX8Ilt0Xm2fgSbbY
-         jGyn0p7/5C++4tKLiNn/bBQ+tQ2vLaeNeXX5sDRjmHagF7F2h+OhKC1/YEKmLogWRDFa
-         32lsISbaPdKNWdIutO9DhAcenU9fCH7sdgWxp+11xuD+TbrMaHWdlwZm/KV1T7M9ZEv6
-         Bwpj8h6IX+5rELvfBmRFfVdR8IW21k4HSZLR3il1L2EtKY3vLAxL+q7WVRcKS0wLgmMm
-         FPtw==
-X-Gm-Message-State: AC+VfDyTCxI5TgceHjs0aVKpYqzCk0h8oQehUGWmH+v8Xqv28TI7Fua5
-        rm4qMNUK1cdids2/Kha9QvpMb6MKX+CWMgEpDGof/n34OZuGFfjFZdjeXfWDgBQhiu8IA5X8kKL
-        8IQ73R6AtoRV6d8KqF2RfVZK2XgAjRduP3RVkBA==
-X-Received: by 2002:a67:ffd5:0:b0:434:69be:8495 with SMTP id w21-20020a67ffd5000000b0043469be8495mr9541621vsq.9.1683897678642;
-        Fri, 12 May 2023 06:21:18 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ56EVhPNDeIWeojbtIxhXDW0jsNAxPEwZjDUE5jSg6VIr1fyKKsgmU+sCABqffj01zeSX7annq0Y5IBzbAanRE=
-X-Received: by 2002:a67:ffd5:0:b0:434:69be:8495 with SMTP id
- w21-20020a67ffd5000000b0043469be8495mr9541577vsq.9.1683897678350; Fri, 12 May
- 2023 06:21:18 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683969911; x=1686561911;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SlCH0G2m8kRJpvkxVEbC2XIL/mZruz0Jkv7EOy6aMxk=;
+        b=g228uvaO4KlmzKLuE+CgCyUcJdPdUXJ/dlnVzinhJqjrwlG9/HsEhM65oqmR4OJMrK
+         195b0u7NokxwWWtmyLAPGc6YdXCBQHBARHAcUCvl2B3D6f1JgwKmdi7yBL2dOG8luT2a
+         gkkZPDH2Z7TqlK8409QlP+me3gHBH41o4BYoL3voGei2UiK1jTzgdblE0Bx9JYDKlZt5
+         BkoaZh/T0NyGAFIKzP089aFyyuEyk4IKSisAX8R6RomU+kiI9bJd716Lipbxgs4zQnc1
+         t55ntGEa4+Gv6/2Tv1TRwkKxIq0JqTjx6bT9TCimLVHws3hS2Zcc3zajN+Dc77EX9Lwi
+         If0A==
+X-Gm-Message-State: AC+VfDw/SaT3vcnPX1VweePkOqmkTNV6EfAJe0TiCCoXRF8igwBs7ijl
+        R76CRu2TmwUki2h67xXSuuw=
+X-Google-Smtp-Source: ACHHUZ7LknF76h0kIjVXmGlmqNXZ+WVcST0A5b/F7jca+bKv9M+VoFiYWPkLa51Ng/PS0qu7yYpFQg==
+X-Received: by 2002:a17:903:338e:b0:1a9:8ba4:d0d3 with SMTP id kb14-20020a170903338e00b001a98ba4d0d3mr24277429plb.8.1683969911004;
+        Sat, 13 May 2023 02:25:11 -0700 (PDT)
+Received: from [192.168.43.80] (subs02-180-214-232-69.three.co.id. [180.214.232.69])
+        by smtp.gmail.com with ESMTPSA id d13-20020a170902728d00b001a217a7a11csm6335741pll.131.2023.05.13.02.25.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 May 2023 02:25:10 -0700 (PDT)
+Message-ID: <e53ccc96-49f5-6e01-6edf-d44b1cff405f@gmail.com>
+Date:   Sat, 13 May 2023 16:25:01 +0700
 MIME-Version: 1.0
-References: <20230512100620.36807-1-bagasdotme@gmail.com> <20230512100620.36807-10-bagasdotme@gmail.com>
-In-Reply-To: <20230512100620.36807-10-bagasdotme@gmail.com>
-From:   Richard Fontana <rfontana@redhat.com>
-Date:   Fri, 12 May 2023 09:21:07 -0400
-Message-ID: <CAC1cPGzSpMZC3oJOpzjqiEDvgWUszzSztMri6uxW6vZ7oZtD5w@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] udf: Replace license notice with SPDX identifier
-To:     Bagas Sanjaya <bagasdotme@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 00/10] Treewide GPL SPDX conversion and cleanup (in
+ response to Didi's GPL full name fixes)
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
         Linux DRI Development <dri-devel@lists.freedesktop.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
@@ -84,168 +82,41 @@ Cc:     Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
         Daniel Mack <daniel@zonque.org>,
         Haojian Zhuang <haojian.zhuang@gmail.com>,
         Robert Jarzmik <robert.jarzmik@free.fr>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Wim Van Sebroeck <wim@linux-watchdog.org>,
         Guenter Roeck <linux@roeck-us.net>, Jan Kara <jack@suse.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>
+References: <20230512100620.36807-1-bagasdotme@gmail.com>
+ <2023051243-bunch-goliath-7380@gregkh>
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+In-Reply-To: <2023051243-bunch-goliath-7380@gregkh>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Fri, May 12, 2023 at 6:07=E2=80=AFAM Bagas Sanjaya <bagasdotme@gmail.com=
-> wrote:
+On 5/12/23 18:23, Greg Kroah-Hartman wrote:
+> I'm glad to take these types of changes through the SPDX tree, but
+> please break them up into smaller changes that show the justification
+> for each type of change in each subsystem, so that we can evaluate them
+> on an individual basis.  As you did here, you are lumping things
+> together only by the existance of the file in the tree, not by the
+> logical type of change happening, which isn't ok.
+> 
+> Also, you can send them as subsystem-specific series, so as to not have
+> to cross-post all of the changes all over the place.  I doubt the drm
+> developers care about ethernet driver license issues :)
+> 
 
-> diff --git a/fs/udf/ecma_167.h b/fs/udf/ecma_167.h
-> index de17a97e866742..b2b5bca45758df 100644
-> --- a/fs/udf/ecma_167.h
-> +++ b/fs/udf/ecma_167.h
-> @@ -1,3 +1,4 @@
-> +/* SPDX-License-Identifier: BSD-2-Clause OR GPL-1.0+ */
->  /*
->   * ecma_167.h
->   *
-> @@ -8,29 +9,6 @@
->   * Copyright (c) 2017-2019  Pali Roh=C3=A1r <pali@kernel.org>
->   * All rights reserved.
->   *
-> - * Redistribution and use in source and binary forms, with or without
-> - * modification, are permitted provided that the following conditions
-> - * are met:
-> - * 1. Redistributions of source code must retain the above copyright
-> - *    notice, this list of conditions, and the following disclaimer,
-> - *    without modification.
-> - * 2. The name of the author may not be used to endorse or promote produ=
-cts
-> - *    derived from this software without specific prior written permissi=
-on.
-> - *
-> - * Alternatively, this software may be distributed under the terms of th=
-e
-> - * GNU Public License ("GPL").
-> - *
-> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AN=
-D
-> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PU=
-RPOSE
-> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABL=
-E FOR
-> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIA=
-L
-> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOO=
-DS
-> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, S=
-TRICT
-> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY=
- WAY
-> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY O=
-F
-> - * SUCH DAMAGE.
->   */
+OK, thanks!
 
-This is not BSD-2-Clause. Ignoring the interior statement about the
-GPL, I think the closest SPDX identifier might be
-https://spdx.org/licenses/BSD-Source-Code.html
-but it doesn't quite match.
-
-
-> diff --git a/fs/udf/osta_udf.h b/fs/udf/osta_udf.h
-> index 157de0ec0cd530..6c09a4cb46f4a7 100644
-> --- a/fs/udf/osta_udf.h
-> +++ b/fs/udf/osta_udf.h
-> @@ -1,3 +1,4 @@
-> +/* SPDX-License-Identifier: BSD-2-Clause OR GPL-1.0+ */
->  /*
->   * osta_udf.h
->   *
-> @@ -8,29 +9,6 @@
->   * Copyright (c) 2017-2019  Pali Roh=C3=A1r <pali@kernel.org>
->   * All rights reserved.
->   *
-> - * Redistribution and use in source and binary forms, with or without
-> - * modification, are permitted provided that the following conditions
-> - * are met:
-> - * 1. Redistributions of source code must retain the above copyright
-> - *    notice, this list of conditions, and the following disclaimer,
-> - *    without modification.
-> - * 2. The name of the author may not be used to endorse or promote produ=
-cts
-> - *    derived from this software without specific prior written permissi=
-on.
-> - *
-> - * Alternatively, this software may be distributed under the terms of th=
-e
-> - * GNU Public License ("GPL").
-> - *
-> - * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AN=
-D
-> - * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-> - * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PU=
-RPOSE
-> - * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABL=
-E FOR
-> - * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIA=
-L
-> - * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOO=
-DS
-> - * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-> - * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, S=
-TRICT
-> - * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY=
- WAY
-> - * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY O=
-F
-> - * SUCH DAMAGE.
->   */
-
-Same comment - this is not BSD-2-Clause.
-
-> diff --git a/fs/udf/udftime.c b/fs/udf/udftime.c
-> index fce4ad976c8c29..d0fce5348fd3f3 100644
-> --- a/fs/udf/udftime.c
-> +++ b/fs/udf/udftime.c
-> @@ -1,21 +1,4 @@
-> -/* Copyright (C) 1993, 1994, 1995, 1996, 1997 Free Software Foundation, =
-Inc.
-> -   This file is part of the GNU C Library.
-> -   Contributed by Paul Eggert (eggert@twinsun.com).
-> -
-> -   The GNU C Library is free software; you can redistribute it and/or
-> -   modify it under the terms of the GNU Library General Public License a=
-s
-> -   published by the Free Software Foundation; either version 2 of the
-> -   License, or (at your option) any later version.
-> -
-> -   The GNU C Library is distributed in the hope that it will be useful,
-> -   but WITHOUT ANY WARRANTY; without even the implied warranty of
-> -   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-> -   Library General Public License for more details.
-> -
-> -   You should have received a copy of the GNU Library General Public
-> -   License along with the GNU C Library; see the file COPYING.LIB.  If n=
-ot,
-> -   write to the Free Software Foundation, Inc., 59 Temple Place - Suite =
-330,
-> -   Boston, MA 02111-1307, USA.  */
-> +// SPDX-License-Identifier: GPL-2.0-only
-
-Shouldn't this be
-// SPDX-License-Identifier: LGPL-2.0-or-later ?
-(or are you implicitly using the obscure LGPLv2.x section ... 3 mechanism?)
-
-Richard
+-- 
+An old man doll... just what I always wanted! - Clara
 

@@ -2,153 +2,115 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2485970B96D
-	for <lists+linux-spdx@lfdr.de>; Mon, 22 May 2023 11:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B610F70E515
+	for <lists+linux-spdx@lfdr.de>; Tue, 23 May 2023 21:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbjEVJxS (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 22 May 2023 05:53:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
+        id S233536AbjEWTFa (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 23 May 2023 15:05:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231872AbjEVJxM (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 22 May 2023 05:53:12 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E21DAE9;
-        Mon, 22 May 2023 02:53:10 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 62355219CD;
-        Mon, 22 May 2023 09:53:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-        t=1684749189; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=4tAwcv/0opqfAzTbZ8LE0GBtCVCfivuLmJ0kcePdhuY=;
-        b=s3s3DclJNCwaeJ9NFCQUFHdp4pkETcTo5YzWGy+WPgte0mb7JqT3ABd+YPspWJ8hSvwj4G
-        wqLi9x/0LsNH7GuKx8EJjSRwk5xkL1KasUR/OsHy+nxarb10mDlYRCUV4s3hRvpL6SclWA
-        sa/AhHPyzQebet5WBez2jG5AcWW+I38=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-        s=susede2_ed25519; t=1684749189;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=4tAwcv/0opqfAzTbZ8LE0GBtCVCfivuLmJ0kcePdhuY=;
-        b=fk5AIWrEN2Pty919DCwiJny2xQwClVGTKKR2gDmHjB/c4VM/kEgyk6xuc22QrleutCMwe1
-        Vl8HZucOtpm8bzCQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4964313336;
-        Mon, 22 May 2023 09:53:09 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id 9i7gEYU7a2QJfwAAMHmgww
-        (envelope-from <jack@suse.cz>); Mon, 22 May 2023 09:53:09 +0000
-Received: by quack3.suse.cz (Postfix, from userid 1000)
-        id A9ED5A075B; Mon, 22 May 2023 11:53:08 +0200 (CEST)
-Date:   Mon, 22 May 2023 11:53:08 +0200
-From:   Jan Kara <jack@suse.cz>
-To:     Bagas Sanjaya <bagasdotme@gmail.com>
-Cc:     Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
+        with ESMTP id S232915AbjEWTF3 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 23 May 2023 15:05:29 -0400
+X-Greylist: delayed 1157 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 23 May 2023 12:05:28 PDT
+Received: from mx1.supremebox.com (mx1.supremebox.com [198.23.53.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5861791;
+        Tue, 23 May 2023 12:05:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jilayne.com
+        ; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=t+H9Rtw1YMvfAwG8SQ51Xq058S4AzfCgWZgK3pTC+nI=; b=bLx0vJb/Mjs6VPpKfmNtiaCCR7
+        uVcC6DIVWHRGhEvJItcx3aNPHX/zXavZ13CSRnK5L996SBTQweS0wk4oMbqfw5cfkVsJzMwIIiRsE
+        N2AND5kyVcJt47NZKFXHjA4IUPORQIAmJ234Qsp6m4pn+SqbsVwOIAN0lwmcdKGgm0MI=;
+Received: from 75-166-155-104.hlrn.qwest.net ([75.166.155.104] helo=[192.168.1.227])
+        by mx1.supremebox.com with esmtpa (Exim 4.92)
+        (envelope-from <opensource@jilayne.com>)
+        id 1q1WF1-0000Am-AA; Tue, 23 May 2023 17:56:11 +0000
+Message-ID: <6f2e13c1-6d99-f9a5-057c-e127efc69457@jilayne.com>
+Date:   Tue, 23 May 2023 11:56:10 -0600
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.11.0
+Subject: Re: [PATCH v2 2/2] fs: udf: udftime: Replace LGPL boilerplate with
+ SPDX identifier
+Content-Language: en-US
+To:     Bagas Sanjaya <bagasdotme@gmail.com>,
+        Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Actions <linux-actions@lists.infradead.org>,
-        Linux Memory Management List <linux-mm@kvack.org>,
-        Jan Kara <jack@suse.com>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
+        Linux Memory Management List <linux-mm@kvack.org>
+Cc:     Jan Kara <jack@suse.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
         Manivannan Sadhasivam <mani@kernel.org>,
         Christoph Hellwig <hch@infradead.org>,
         Andrew Morton <akpm@linux-foundation.org>,
         Diederik de Haas <didi.debian@cknow.org>,
         Kate Stewart <kstewart@linuxfoundation.org>,
         Philippe Ombredanne <pombredanne@nexb.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v2 0/2] SPDX conversion from UDF
-Message-ID: <20230522095308.ypwi5txynkbvnfw7@quack3>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Paul Eggert <eggert@twinsun.com>,
+        Richard Fontana <rfontana@redhat.com>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
 References: <20230522005434.22133-1-bagasdotme@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230522005434.22133-1-bagasdotme@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+ <20230522005434.22133-3-bagasdotme@gmail.com>
+From:   J Lovejoy <opensource@jilayne.com>
+In-Reply-To: <20230522005434.22133-3-bagasdotme@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Sender-Ident-agJab5osgicCis: opensource@jilayne.com
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon 22-05-23 07:54:33, Bagas Sanjaya wrote:
-> This small SPDX conversion series targets UDF file system, which is
-> splitted from v2 of my SPDX conversion series that is triggered by
-> Didi's GPL full name fixes [1]. It is done to ease review.
-> 
-> All boilerplates in fs/udf/ is converted, except fs/udf/ecma_167.h.
-> The latter file apparently looks like 2-clause BSD Source-Code
-> license, yet the second clause is from third clause of 3-Clause BSD.
-> This custom license can't be expressed satisfiably in SPDX license
-> identifier, hence the file doesn't get converted.
-> 
-> This series is based on mm-nonmm-unstable branch.
-> 
-> Changes since v1 [2]:
->   * Correct SPDX tag for LGPL (correct spdxcheck warning)
-> 
-> [1]: https://lore.kernel.org/linux-spdx/20230512100620.36807-1-bagasdotme@gmail.com/
-> [2]: https://lore.kernel.org/linux-mm/20230517083344.1090863-1-bagasdotme@gmail.com/
-> 
-> Bagas Sanjaya (2):
->   fs: udf: Replace GPL 2.0 boilerplate license notice with SPDX
->     identifier
->   fs: udf: udftime: Replace LGPL boilerplate with SPDX identifier
 
-The patches look good to me. So unless someone objects in a few days, I'll
-queue them into my tree. Thanks!
 
-								Honza
-
-> 
->  fs/udf/balloc.c    |  6 +-----
->  fs/udf/dir.c       |  6 +-----
->  fs/udf/directory.c |  6 +-----
->  fs/udf/file.c      |  6 +-----
->  fs/udf/ialloc.c    |  6 +-----
->  fs/udf/inode.c     |  6 +-----
->  fs/udf/lowlevel.c  |  6 +-----
->  fs/udf/misc.c      |  6 +-----
->  fs/udf/namei.c     |  6 +-----
->  fs/udf/partition.c |  6 +-----
->  fs/udf/super.c     |  6 +-----
->  fs/udf/symlink.c   |  6 +-----
->  fs/udf/truncate.c  |  6 +-----
->  fs/udf/udftime.c   | 18 ++----------------
->  fs/udf/unicode.c   |  6 +-----
->  15 files changed, 16 insertions(+), 86 deletions(-)
-> 
-> 
-> base-commit: 7e61b33831bc7680b24bc04af9ed9c1553dac406
-> 
-> Range-diff against v1:
-> 
-> 1:  442194d17ed043 = 1:  30fb64a215be1c fs: udf: Replace GPL 2.0 boilerplate license notice with SPDX identifier
-> 2:  ccb407446ab324 ! 2:  f7cfeaa5cec879 fs: udf: udftime: Replace LGPL boilerplate with SPDX identifier
->     @@ Commit message
->      
->       ## fs/udf/udftime.c ##
->      @@
->     -+// SPDX-License-Identifier: LGPL-2.0-or-later
->     ++// SPDX-License-Identifier: LGPL-2.0+
->       /* Copyright (C) 1993, 1994, 1995, 1996, 1997 Free Software Foundation, Inc.
->          This file is part of the GNU C Library.
->      -   Contributed by Paul Eggert (eggert@twinsun.com).
-> 
-> -- 
-> An old man doll... just what I always wanted! - Clara
-> 
--- 
-Jan Kara <jack@suse.com>
-SUSE Labs, CR
+On 5/21/23 6:54 PM, Bagas Sanjaya wrote:
+> Replace license boilerplate in udftime.c with SPDX identifier for
+> LGPL-2.0.
+>
+> Cc: Paul Eggert <eggert@twinsun.com>
+> Cc: Richard Fontana <rfontana@redhat.com>
+> Cc: Pali Rohár <pali@kernel.org>
+> Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
+> ---
+>   fs/udf/udftime.c | 18 ++----------------
+>   1 file changed, 2 insertions(+), 16 deletions(-)
+>
+> diff --git a/fs/udf/udftime.c b/fs/udf/udftime.c
+> index fce4ad976c8c29..758163af39c262 100644
+> --- a/fs/udf/udftime.c
+> +++ b/fs/udf/udftime.c
+> @@ -1,21 +1,7 @@
+> +// SPDX-License-Identifier: LGPL-2.0+
+>   /* Copyright (C) 1993, 1994, 1995, 1996, 1997 Free Software Foundation, Inc.
+>      This file is part of the GNU C Library.
+> -   Contributed by Paul Eggert (eggert@twinsun.com).
+> -
+> -   The GNU C Library is free software; you can redistribute it and/or
+> -   modify it under the terms of the GNU Library General Public License as
+> -   published by the Free Software Foundation; either version 2 of the
+> -   License, or (at your option) any later version.
+> -
+> -   The GNU C Library is distributed in the hope that it will be useful,
+> -   but WITHOUT ANY WARRANTY; without even the implied warranty of
+> -   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+> -   Library General Public License for more details.
+> -
+> -   You should have received a copy of the GNU Library General Public
+> -   License along with the GNU C Library; see the file COPYING.LIB.  If not,
+> -   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+> -   Boston, MA 02111-1307, USA.  */
+> +   Contributed by Paul Eggert (eggert@twinsun.com). */
+>   
+>   /*
+>    * dgb 10/02/98: ripped this from glibc source to help convert timestamps
+Reviewed-by: Jilayne Lovejoy opensource@jilayne.com

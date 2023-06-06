@@ -2,129 +2,126 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5F2724B67
-	for <lists+linux-spdx@lfdr.de>; Tue,  6 Jun 2023 20:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0231724EF6
+	for <lists+linux-spdx@lfdr.de>; Tue,  6 Jun 2023 23:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238143AbjFFS3T (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 6 Jun 2023 14:29:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45526 "EHLO
+        id S239762AbjFFVn4 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 6 Jun 2023 17:43:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233949AbjFFS3S (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 6 Jun 2023 14:29:18 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12291715
-        for <linux-spdx@vger.kernel.org>; Tue,  6 Jun 2023 11:29:15 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f735bfcbbbso27349825e9.2
-        for <linux-spdx@vger.kernel.org>; Tue, 06 Jun 2023 11:29:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686076154; x=1688668154;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JSdrg+UUFQJRbBaT65t9KQ0k6wnVcWDvrdEoLF/qj3w=;
-        b=TjbNAs5eMwUHdtHoS35R2Dg2L8xWx1/jmWIkC2AcnZcWafaM0RToQXl+enz4B83MWV
-         bYJC1LhCRD4PXWbh5GyYb7tl9KVsARHZx/BVirT5IsUjZkMOv+FRYDDfhDxvGXg7Ae7J
-         f+E1fRGRsyZ1Z5tKfgWz3bL4OuE1w9bZTv+MD9r8gyYoylTsy0rDjWRcu+lv2QM0jD3Q
-         0UC1nbAT60mtNmsM/+NVtRL5+GF4maumi46cLoScJy/VGCzFh/0sm2msxAw5dMrlLfZZ
-         qAd4X/PnJaUM4KvZUh+vFPcXtxQ8tvM8cd4K2CPf86xj5XFpE2uZ2yeke6dymTMqEJSP
-         ctEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686076154; x=1688668154;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JSdrg+UUFQJRbBaT65t9KQ0k6wnVcWDvrdEoLF/qj3w=;
-        b=HWG49o9MpMi50s6ogZo6I1kNG0bMMKeFh2b/DUFaIuh/yVCyKi4al4fsoONKtr+5J+
-         XQnJM+vSmgz5TwT53WrSVSRo4QzmjvEbfUeFh23U9tTy1Iq2nREHhEFoOj3AqZPQEPEQ
-         jmBpsNli5DgZGGIwTtyy0Lpeet5z4wONVVh2BqYZ5HVyN2T23CxZsqL5iH+g57o8WS8h
-         DHkRyuzfsUpSCZqdYgr3laYUaaLypm/J0+th+Bz+fCOoW9nStOEnkPJSCcwPDRduNA1H
-         2BrFxaovDzfXnjiSvU389RqTwvbozWXWAKMt5cgOk8VlWj3X0QFqKod1f/FaPa3ngCbK
-         +FSg==
-X-Gm-Message-State: AC+VfDzGgh95lZPFC5VmIVRNvVFC2fXqrITNXzKkHQi/GJdC+NvUu6Rv
-        qpV2UT1T08p4RJNbLhwewDHY60Gr3ZpFBJvE5Vw=
-X-Google-Smtp-Source: ACHHUZ6tnE3ZQrR14O8GiKBB5dGR00syzyGfixjm4MzBP0Syxdz4Y/iAzcQs0+KLT6/Sfa/QUIjZnQ==
-X-Received: by 2002:adf:ea48:0:b0:2ce:d84d:388f with SMTP id j8-20020adfea48000000b002ced84d388fmr2824604wrn.40.1686076154172;
-        Tue, 06 Jun 2023 11:29:14 -0700 (PDT)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id p12-20020a5d458c000000b00307acec258esm13353778wrq.3.2023.06.06.11.29.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jun 2023 11:29:12 -0700 (PDT)
-Date:   Tue, 6 Jun 2023 21:29:08 +0300
-From:   Dan Carpenter <dan.carpenter@linaro.org>
-To:     Franziska =?iso-8859-1?Q?N=E4pelt?= 
-        <franziska.naepelt@googlemail.com>
+        with ESMTP id S234403AbjFFVnz (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 6 Jun 2023 17:43:55 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73BDBA7;
+        Tue,  6 Jun 2023 14:43:54 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 7EBC75C00FE;
+        Tue,  6 Jun 2023 17:43:51 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 06 Jun 2023 17:43:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=benboeckel.net;
+         h=cc:cc:content-transfer-encoding:content-type:content-type
+        :date:date:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to;
+         s=fm2; t=1686087831; x=1686174231; bh=Cj7jNwhxEUWz3YGh46Ym6JKeV
+        BhfBtfYbafJNC47oEc=; b=EV6cSfJN/+e3O6NPk2xHDyMT0iYg1wsYBZhxSjecy
+        necIJN0wcdKSXBrum8wXN/IV131ScLJdjTJzUcID3c0Vmzf8ed7H6EB+aM8RdoZr
+        0H4Rq36LU/FXSjS9pvR5RfT+wEIN/mrwGqdZ66w0BZaNWyPMwFRTLipHexRg3K9F
+        qxNfTFqfCutTh8yRGWCQzpei/2pp2DaXle8MKtlYMqpZJjD0ZPDhBuS+D69acFAf
+        3Re5bzAzetDHSwmBXREc76FkrVAse5aLlFZ8dP+Kt7b1csZlB1p61RmbyDb8NphK
+        m2CbsuwR6nwLI+x0LudylpBCVNIn6vfoTptRVWJc0TorA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1686087831; x=1686174231; bh=Cj7jNwhxEUWz3YGh46Ym6JKeVBhfBtfYbaf
+        JNC47oEc=; b=bsCXGcDKILNgxPxyfhGhZOgD2Ku0A24dQgt+FCCKwsjnAmTcPsY
+        RpzPykyxZbJzUHfT9KESssrWnaCaL1aiZd5w66Ac+cWl4BZSESnY2W3t43ojopTK
+        R4G/+7GWonDsHu2a1dLQwxaa6RjYbZn9A1k2TH15fX571hmjLM3O7ZIQh3ZAsRMz
+        7p2pneFyn/7azJ2O9hSP/r/Xa4fzS7SusL8P4hf7mxgR/PMOn6L9f94GBb67VRk4
+        sNvoP5yap146P8HTZ1AZnYoAJ3ROTIJsVATcJdhqkrnQRD7uHnsEWvsIAYzaP5GX
+        vLQKMBdKMegrYFPS4nKZfdrYTRmwG+PQXTQ==
+X-ME-Sender: <xms:l6h_ZB-4reFOSFf3a2L0Jr1oKB0xLuCt8naNMFgYi2LC3HifdZnB6w>
+    <xme:l6h_ZFtb7RAkk3d9I8wuXI0_o6OQlC3xo8syjugZDCDPzNeJp4IFUMa4EFBw77OYy
+    nwKL11HG9xGSYjqVao>
+X-ME-Received: <xmr:l6h_ZPD_Z45mDs7vkq46FfGDnhh2H_np6lOeD_M0bhBIll0I6tNMBkGoPCIH6YGNCGz_vR-NEuVXA4PWQOXA-6NupPrnOM2mJ3IX>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgedtuddgudeiiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtugfgjggfsehtkeertddtreejnecuhfhrohhmpeeu
+    vghnuceuohgvtghkvghluceomhgvsegsvghnsghovggtkhgvlhdrnhgvtheqnecuggftrf
+    grthhtvghrnhepudekvdejteeuudffveffhfelfefgjeehffefhffhgeeiieduveehfeej
+    ffetveefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epmhgvsegsvghnsghovggtkhgvlhdrnhgvth
+X-ME-Proxy: <xmx:l6h_ZFcFXWg4DzmX1yFfdukFl9HMQpQlUs-N4jO1Iul-wPgpDTYq5w>
+    <xmx:l6h_ZGM035zFSDaoF1VoqiAC3rGBreVDrlGp6acY4ppU1c7R5JKpJw>
+    <xmx:l6h_ZHncRPrMU1ywF1JVrgPIZTYLUqDs9X0lMvprq7e5HZJQL2ehvw>
+    <xmx:l6h_ZHGlVwAWYNImAeT8mnjoQrrKetjPkHbIteN7YfAO2z-vTA798Q>
+Feedback-ID: iffc1478b:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 6 Jun 2023 17:43:50 -0400 (EDT)
+Date:   Tue, 6 Jun 2023 17:43:50 -0400
+From:   Ben Boeckel <me@benboeckel.net>
+To:     Dan Carpenter <dan.carpenter@linaro.org>
 Cc:     Jarkko Sakkinen <jarkko@kernel.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>, keyrings@vger.kernel.org,
-        dhowells@redhat.com, dwmw2@infradead.org,
-        linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Franziska Naepelt <franziska.naepelt@googlemail.com>,
+        keyrings@vger.kernel.org, dhowells@redhat.com, dwmw2@infradead.org,
+        linux-kernel@vger.kernel.org,
+        Franziska Naepelt <franziska.naepelt@gmail.com>,
+        kernel test robot <lkp@intel.com>,
         Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
         Linux Kernel Janitors <kernel-janitors@vger.kernel.org>
 Subject: Re: [PATCH v2] certs/extract-cert: Fix checkpatch issues
-Message-ID: <93f96b93-2f2e-4c98-8ffd-1bd0bd441347@kadam.mountain>
+Message-ID: <20230606214350.GA142397@farprobe>
 References: <20230601190508.56610-1-franziska.naepelt@gmail.com>
  <20230602085902.59006-1-franziska.naepelt@gmail.com>
  <ZH8mhIrjyBvTF4oZ@debian.me>
  <e39efb7f-5d8f-4433-83b3-8eea8a6c0486@kadam.mountain>
  <CT5NH4XXIYQF.5XXJE6JA5FZP@suppilovahvero>
  <e44d03cf-9993-483c-b3d4-6185f5c028cc@kadam.mountain>
- <CT5P0JH7NOTO.3P08AWR6O128R@suppilovahvero>
- <CAAUT3iPVFZEQE+bFk4HhWbaAtnsbQLYrzggeD2Va4mC0Q09SNQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAAUT3iPVFZEQE+bFk4HhWbaAtnsbQLYrzggeD2Va4mC0Q09SNQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <e44d03cf-9993-483c-b3d4-6185f5c028cc@kadam.mountain>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 07:59:02PM +0200, Franziska Näpelt wrote:
-> Am Di., 6. Juni 2023 um 18:03 Uhr schrieb Jarkko Sakkinen <jarkko@kernel.org>:
-> > On Tue Jun 6, 2023 at 6:25 PM EEST, Dan Carpenter wrote:
-> > > On Tue, Jun 06, 2023 at 05:51:09PM +0300, Jarkko Sakkinen wrote:
-> > > > On Tue Jun 6, 2023 at 4:38 PM EEST, Dan Carpenter wrote:
-> > > > > On Tue, Jun 06, 2023 at 07:28:52PM +0700, Bagas Sanjaya wrote:
-> > > > > > On Fri, Jun 02, 2023 at 10:59:02AM +0200, Franziska Naepelt wrote:
-> > > > > > > The following issues are fixed:
-> > > > > > > - WARNING: Missing or malformed SPDX-License-Identifier tag
-> > > > > > > - ERROR: trailing statements should be on next line
-> > > > > > > - WARNING: braces {} are not necessary for single statement blocks
-> > > > > > > - ERROR: space required before the open parenthesis '('
-> > > > > > > - ERROR: code indent should use tabs where possible
-> > > > > > > - WARNING: please, no spaces at the start of a line
-> > > > > > > - WARNING: Missing a blank line after declarations
-> > > > > >
-
-[ snip ]
-
+On Tue, Jun 06, 2023 at 18:25:24 +0300, Dan Carpenter wrote:
+> I'm looking through the git log to see if it's true the imperative tense
+> commit message are shorter and better and neither one of those things is
+> obvious to me.
 > 
-> I'm a bit puzzled now since there are different opinions on my patch.
-> I'm struggling to draw a conclusion whether to split the patch into smaller
-> single line patches or not.
-> 
-> I'd propose to split it into two patches:
-> * One for SPDX license tag fix
-> * One for spacing, tab, blank line, unnecessary braces etc.
+> This patch had an imperative subject already so it was already kind of
+> imperative.  Does every sentence have to be imperative or can you just
+> add a "Fix it." to the end?
 
-You should definitely pull the SPDX change into its own patch because
-it's sightly controversial and important.
+I don't know about the length argument, but it feels like it reads
+better when skimming summaries with the imperative mood. The way I think
+about it is that the subject should complete the phrase:
 
-In drivers/staging/ we would say pull each type of checkpatch warning
-into its own patch so it would be something like 6 patches.  But I don't
-know how it's done in this subsystem.  I feel like Greg maybe goes
-overboard on splitting patches up, but the advantage of Greg's system is
-that it's easy to explain the rules to newbies.  There is a lot about
-staging/ which designed around newbies.
+    When applied, this patch willâ€¦
 
-If I'm totally honest, in a lot of subsystems the policy is just leave
-it alone.  Don't bother cleaning up checkpatch stuff because it just
-creates more work and makes the git log noisier.
+The body then gives more context and description as necessary. I don't
+really worry so much about the mood/tense/whatever in the body except
+that I try to use the present tense for anything the patch is doing and
+past for any historical context. I understand that kernel maintainers
+may care a lot more about it though.
 
-regards,
-dan carpenter
+Basically, a patch, on its own, does nothing (just like a recipe). It is
+only when it is applied that anything actually happens. I read it as
+"`git apply`, please $summary".
+
+--Ben

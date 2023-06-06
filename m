@@ -2,69 +2,130 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF36720F37
-	for <lists+linux-spdx@lfdr.de>; Sat,  3 Jun 2023 12:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1DD1724107
+	for <lists+linux-spdx@lfdr.de>; Tue,  6 Jun 2023 13:36:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbjFCK3y (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sat, 3 Jun 2023 06:29:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47746 "EHLO
+        id S236512AbjFFLgu (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 6 Jun 2023 07:36:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbjFCK3x (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sat, 3 Jun 2023 06:29:53 -0400
-X-Greylist: delayed 4201 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 03 Jun 2023 03:29:52 PDT
-Received: from mail.webtopbits.pl (mail.webtopbits.pl [195.231.64.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE03136
-        for <linux-spdx@vger.kernel.org>; Sat,  3 Jun 2023 03:29:52 -0700 (PDT)
-Received: by mail.webtopbits.pl (Postfix, from userid 1001)
-        id 37A9BA3867; Fri,  2 Jun 2023 09:40:50 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=webtopbits.pl;
-        s=mail; t=1685695250;
-        bh=Eh8ECMiYd4baGAwPAzhz8mhJACXX7NSRkYjh+plaY18=;
-        h=Date:From:To:Subject:From;
-        b=f9wqck0T3hVHLccajSrvjclPaldNDxB8WJp7d/4K8utgZZCCsqx/r5TIFp/CNzOoB
-         bHfQA2x8jFJvXoUUH0wuxoMEW+I9DPIAJRgL1IFqjmRbYzFo7/wpFKHDXZIJRrM4TR
-         0KrMv+kWolFawvrBz55+PmF/0gzj/d2aN0hWArQ9dreVRRDHc9LGBTH6jowUW5ikXD
-         13impcLbypeqrPEF0rHWyhdfYDp1+gt2CDmjqosI9Vb7ZsdAhHLNCHJWqTD/g5Q5+h
-         QwkuHs3CAKa5C7ZfYxvfrGLi0AF7cX1BWe1TM7A5wcMcDGCw256TkZWXrX/bNLJKVU
-         eyBfU4yVJvwTA==
-Received: by mail.webtopbits.pl for <linux-spdx@vger.kernel.org>; Fri,  2 Jun 2023 08:40:50 GMT
-Message-ID: <20230602085530-0.1.8w.5k80.0.q1dqfu4hp8@webtopbits.pl>
-Date:   Fri,  2 Jun 2023 08:40:50 GMT
-From:   "Kamil Durjasz" <kamil.durjasz@webtopbits.pl>
-To:     <linux-spdx@vger.kernel.org>
-Subject: =?UTF-8?Q?Wy=C5=BCsza_konwersja_w_e-sklepie_?=
-X-Mailer: mail.webtopbits.pl
+        with ESMTP id S235498AbjFFLgt (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 6 Jun 2023 07:36:49 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C428F196;
+        Tue,  6 Jun 2023 04:36:48 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id 5614622812f47-39c503bc770so306517b6e.0;
+        Tue, 06 Jun 2023 04:36:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686051408; x=1688643408;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=R92KuS7gawSx2LWw+ooVWTPC6JkJv9bdowpbo01HVAw=;
+        b=KWM8ThY/M3uM372kffwhthc6oRXcuseLvAve9vjPRRuzhSZxcV1WgKQCyntbH7Esu7
+         cZlAzbtguAWGAxejMBdHHv7Ibvu3VWnpXyGRw51hrlfbOSnejVz5vCPbsh/1WI68Tp91
+         +2zdkEy/aDO0dcopt49vPZlstLrxUbp3PTlfEZTa6+LPHMdIllJ4PoXLh07CjiT7nuQ8
+         zvPy+HIydi7yjsqanQcMr/fRwI8lILVvDkxnyN3ALPKafYzdFFsXqpoREvA2TTNqZd8Q
+         qPXyI1Qq9XWu8GIrE7whBTX+FxVv/27CHPmeIfnsdcKICNNIHkymjVSYNnEZNgQMLg8X
+         E+xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686051408; x=1688643408;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R92KuS7gawSx2LWw+ooVWTPC6JkJv9bdowpbo01HVAw=;
+        b=V5w5nPzymjIZOVSOF9Cwjg4LjVkKPXDyEP+xAa+sRAnzh3fipUAf1Rm/bPV0vpRAzO
+         j+XgWfnPX33SIZcsiQdt+rWHDSUl9thhVznhypkSF1tTo+e+L7sBaJf27YEiyzg5Z1oR
+         xE6Vpl5eizeopF6jMplH6q7tiKx/CXLBnhUvRAGfGToLfJku45C0PkZL8biAy7MVh+AP
+         HwEsP2wR2S7ncBlR1blrF07Dmpiu74wwIMpBB8iCFn+5X3k+WUyOKbdPyYQw0w/rYR3N
+         UcpBhbOrfyvaUAsmLSN9IPSkclx0Zam+O5Qmt7hJwR3lhwK53cRQWxMknrQdA4GM/XHV
+         zsJA==
+X-Gm-Message-State: AC+VfDxlULC5abDy8BDp/keCUxy3OCjOF305h0DbpOIoklTtBIPOqvHp
+        X5e3LKc/3//j5dkcxLkxlHzoTEhOnv4=
+X-Google-Smtp-Source: ACHHUZ6076hhAKQCiN1ZGGrVzz/fYBz/bp2CAfqnll20uGWpIG1MlOWX50Uveq2xE2o3dLht+3Ugsw==
+X-Received: by 2002:aca:130c:0:b0:396:3b9b:d217 with SMTP id e12-20020aca130c000000b003963b9bd217mr2133146oii.18.1686051407914;
+        Tue, 06 Jun 2023 04:36:47 -0700 (PDT)
+Received: from debian.me (subs09a-223-255-225-71.three.co.id. [223.255.225.71])
+        by smtp.gmail.com with ESMTPSA id g12-20020a63e60c000000b00502ecc282e2sm7244378pgh.5.2023.06.06.04.36.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jun 2023 04:36:47 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id BD9E2106A3A; Tue,  6 Jun 2023 18:36:43 +0700 (WIB)
+Date:   Tue, 6 Jun 2023 18:36:43 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Franziska Naepelt <franziska.naepelt@googlemail.com>,
+        linux-crypto@vger.kernel.org
+Cc:     herbert@gondor.apana.org.au, davem@davemloft.net,
+        linux-kernel@vger.kernel.org,
+        Franziska Naepelt <franziska.naepelt@gmail.com>,
+        Linux SPDX Licenses <linux-spdx@vger.kernel.org>,
+        Linux Kernel Janitors <kernel-janitors@vger.kernel.org>,
+        David Howells <dhowells@redhat.com>
+Subject: Re: [PATCH] crypto: frcypt Fix checkpatch warnings
+Message-ID: <ZH8aS-rMMKaxRD50@debian.me>
+References: <20230606111042.96855-1-franziska.naepelt@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dC9uVHJs6Xkabe7S"
+Content-Disposition: inline
+In-Reply-To: <20230606111042.96855-1-franziska.naepelt@gmail.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dzie=C5=84 dobry,
 
-w jaki spos=C3=B3b docieraj=C4=85 Pa=C5=84stwo do odbiorc=C3=B3w?
+--dC9uVHJs6Xkabe7S
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Tworzymy pot=C4=99=C5=BCne narz=C4=99dzia sprzeda=C5=BCy, kt=C3=B3re pozw=
-alaj=C4=85 kompleksowo rozwi=C4=85za=C4=87 problemy potencjalnych klient=C3=
-=B3w i skutecznie wp=C5=82yn=C4=85=C4=87 na ich decyzje zakupowe.=20
+[Also Cc: linux-spdx list and original author mentioned in the license
+boilerplate]
 
-Skupiamy si=C4=99 na Pa=C5=84stwa potrzebach zwi=C4=85zanych z obs=C5=82u=
-g=C4=85 sklepu, oczekiwaniach i planach sprzeda=C5=BCowych. Szczeg=C3=B3=C5=
-=82owo dopasowujemy grafik=C4=99, funkcjonalno=C5=9Bci, struktur=C4=99 i =
-mikrointerakcje do Pa=C5=84stwa grupy docelowej, co przek=C5=82ada si=C4=99=
- na oczekiwane rezultaty.
+On Tue, Jun 06, 2023 at 01:10:42PM +0200, Franziska Naepelt wrote:
+> The following checkpatch warnings have been fixed:
+> - WARNING: Missing or malformed SPDX-License-Identifier tag
+> - WARNING: Block comments use a trailing */ on a separate line
 
-Ch=C4=99tnie przedstawi=C4=99 dotychczasowe realizacje, aby mogli Pa=C5=84=
-stwo przekona=C4=87 si=C4=99 o naszych mo=C5=BCliwo=C5=9Bciach. Mog=C4=99=
- si=C4=99 skontaktowa=C4=87?
+Two different logical changes in a patch - please break them into a
+2-patch series, with each patch do one job. And please write the patch
+description in imperative mood instead (e.g. "Do foo").
 
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+>  /* FCrypt encryption algorithm
+>   *
+>   * Copyright (C) 2006 Red Hat, Inc. All Rights Reserved.
 
-Pozdrawiam
-Kamil Durjasz
+NAK!
+
+There is also BSD 3-clause boilerplate (from original code that fcrypt.c
+is based on). Thus, the proper SPDX tag should have been:
+
+```
+// SPDX-License-Identifier: GPL-2.0-or-later AND BSD-3-Clause
+```
+
+And please also delete the boilerplate.
+
+Thanks.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--dC9uVHJs6Xkabe7S
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZH8aSAAKCRD2uYlJVVFO
+o+5nAQDtfVmY2eW2DPOLirsfAmVGuQiWkV0+NL/MsYP9RNXafwD/ZPj7b2dzkhai
+PZb6kQJeq9muOKeXuk5Bf4e3ZxhizAI=
+=p0tN
+-----END PGP SIGNATURE-----
+
+--dC9uVHJs6Xkabe7S--

@@ -2,32 +2,32 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA6274212B
-	for <lists+linux-spdx@lfdr.de>; Thu, 29 Jun 2023 09:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF44F746AED
+	for <lists+linux-spdx@lfdr.de>; Tue,  4 Jul 2023 09:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231838AbjF2Hk5 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Thu, 29 Jun 2023 03:40:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55650 "EHLO
+        id S230382AbjGDHoE (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 4 Jul 2023 03:44:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232101AbjF2HkM (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Thu, 29 Jun 2023 03:40:12 -0400
+        with ESMTP id S231477AbjGDHoD (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 4 Jul 2023 03:44:03 -0400
 Received: from mail.durme.pl (mail.durme.pl [217.182.69.186])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4E172D78
-        for <linux-spdx@vger.kernel.org>; Thu, 29 Jun 2023 00:37:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD8CE64
+        for <linux-spdx@vger.kernel.org>; Tue,  4 Jul 2023 00:43:58 -0700 (PDT)
 Received: by mail.durme.pl (Postfix, from userid 1002)
-        id 3585D4D4FF; Thu, 29 Jun 2023 07:35:52 +0000 (UTC)
+        id 9E2E94C619; Tue,  4 Jul 2023 07:41:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=durme.pl; s=mail;
-        t=1688024201; bh=hFxZwVw4rIL+JwfEOGI47p+fdoVOAeqVswP6NWoHSHQ=;
+        t=1688456546; bh=hFxZwVw4rIL+JwfEOGI47p+fdoVOAeqVswP6NWoHSHQ=;
         h=Date:From:To:Subject:From;
-        b=hJxKevP02gARJfd5CCqit6rDstGS1YPMbOj4BJmbFXVZT+kCNWFKb3pudXjDU489K
-         8RMFhDHxQkPZKHsKjvC4S+lFQ8D1Iv/hmVyz3FGgF7LM1mDOecF8JfH/yMIOEw/JGg
-         rxXAoX+ELkeXgHR7GYRYYoifqEPhA8khWd+DFz0UPNBjCyy6PzjdagVUzSiZOJF9ur
-         VRh45eL3zQXLwU3K7rjI6KvKCczsI+VMK8n9hpjJ+mMI6tt7MCihIX0vuBC/dANsPL
-         KNqZIm8KqJK6WP8b8nGvVLe8eSRnVjvdiD3yiXZ/v1/5hexAojEBKJ88K5DBV72wXq
-         wqDauD7taqIoA==
-Received: by mail.durme.pl for <linux-spdx@vger.kernel.org>; Thu, 29 Jun 2023 07:35:27 GMT
-Message-ID: <20230629064500-0.1.2s.dmmx.0.64y10nkf7j@durme.pl>
-Date:   Thu, 29 Jun 2023 07:35:27 GMT
+        b=Ioo85XuwLIBJ9hjYl/Fh3WSzEnZ0jSM3cCTo6euMmBOH7yAreV8o6/TU/fTxvaLv5
+         V7QZU+gRxf9vtpYJD64dtvNWkSRwscrtuyvICPL0VvBwcVOVGogBrV3gRoSM/oBZDQ
+         LIo3Nc2em6gCbRnhOsW3bm2+8MmgW+vfpUb1BD2Q0YAZHHmbwO5ofjSiMvptmEciwZ
+         0VyqVsvVfQsbyE7TgVY0/MBAfpFHZ1RMOb8WQGML40zgOSmkbTBloJEBkqvoH/z6T/
+         pw0XDaF7mRFnwxuEpdBXQFAg4FPI1VIm0Be5FOcri5mqZTRYill+hsI0cukkL3gamt
+         CP0j/FSlMqUHg==
+Received: by mail.durme.pl for <linux-spdx@vger.kernel.org>; Tue,  4 Jul 2023 07:40:35 GMT
+Message-ID: <20230704064501-0.1.2v.dmmx.0.iyoslyc80p@durme.pl>
+Date:   Tue,  4 Jul 2023 07:40:35 GMT
 From:   "Krystian Wieczorek" <krystian.wieczorek@durme.pl>
 To:     <linux-spdx@vger.kernel.org>
 Subject: W sprawie samochodu
@@ -35,9 +35,11 @@ X-Mailer: mail.durme.pl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED,URIBL_CSS_A autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk

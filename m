@@ -2,43 +2,42 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCDA77B315
-	for <lists+linux-spdx@lfdr.de>; Mon, 14 Aug 2023 09:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 287D9780680
+	for <lists+linux-spdx@lfdr.de>; Fri, 18 Aug 2023 09:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232763AbjHNH4q (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 14 Aug 2023 03:56:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60500 "EHLO
+        id S244035AbjHRHl5 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 18 Aug 2023 03:41:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234378AbjHNH4Z (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 14 Aug 2023 03:56:25 -0400
-Received: from mail.commercesolutions.pl (unknown [162.19.155.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE0CB5
-        for <linux-spdx@vger.kernel.org>; Mon, 14 Aug 2023 00:56:24 -0700 (PDT)
-Received: by mail.commercesolutions.pl (Postfix, from userid 1002)
-        id 13D4722CAF; Mon, 14 Aug 2023 07:56:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=commercesolutions.pl;
-        s=mail; t=1691999783;
-        bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
+        with ESMTP id S1358242AbjHRHlw (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 18 Aug 2023 03:41:52 -0400
+Received: from mail.durme.pl (mail.durme.pl [217.182.69.186])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A5430F1
+        for <linux-spdx@vger.kernel.org>; Fri, 18 Aug 2023 00:41:51 -0700 (PDT)
+Received: by mail.durme.pl (Postfix, from userid 1002)
+        id 1841B48FAE; Fri, 18 Aug 2023 07:40:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=durme.pl; s=mail;
+        t=1692344476; bh=hFxZwVw4rIL+JwfEOGI47p+fdoVOAeqVswP6NWoHSHQ=;
         h=Date:From:To:Subject:From;
-        b=g0OOSkyG1OtrmtgwPJMXpiYA5fffZaAWbjCyvU+ZmYPHEsVzGzZ7GGwT4jPuGsvMq
-         wZgRR3U3u2LWlMwc9uTbwtMKQK+X+mpK1MN4Xo7QctHTtwRsp4QT/ivs/YWJU812q5
-         zliOXlKvga7lpQ+hVWKa78HVpTaWEnok4fzifX+DD0vsMJmz/aersbx5bSSXPUOrUB
-         fWwxz6NGWP4DmUf3gKl/1JDzPIhd0fXrWvDeQ3aM1PjosCesGzGyXZQYZu6Sk7WtHI
-         FxNdpe4pta+xqQ1tWAbpQaxJffCjT9961Yu4qzJZgz6iiSKcFllTrwIk9dMns3QYIg
-         lK1+7yXqMEQVA==
-Received: by mail.commercesolutions.pl for <linux-spdx@vger.kernel.org>; Mon, 14 Aug 2023 07:56:12 GMT
-Message-ID: <20230814064500-0.1.80.1flur.0.jrr8g5fwbq@commercesolutions.pl>
-Date:   Mon, 14 Aug 2023 07:56:12 GMT
-From:   "Kamil Tralewski" <kamil.tralewski@commercesolutions.pl>
+        b=eXhIl1p/2t2LeCbPZqp43abw9IAfgnXQKBLW+nVF7qNzQeEQawAiOzse+dbQv3roh
+         KJ2K5tlnzfDfx4KjzUcFOzyhYEcm+06X42Nbbgnr4CzXWe3mu7C5pYI3oLTBpHIK53
+         ad5qAGLUUhRW/z82eCUtFmr1U+Dx4llbCClwODo0X8KVDD/9kyjdaUCvPuALh9XfuD
+         3q0d+6AYOQ5MaXeM5vNsuFYkiorDIl2+5W6pgw7WvsV7U/3mHgg1QtGHv4JrxYAW+K
+         ispYOiL7ogR4f78mHDth1iZf3AL1OdbhfdYOYTlGl+qcOEgt3HNZDytOuTQ1LYAMfR
+         Wj83EJDpuQz3Q==
+Received: by mail.durme.pl for <linux-spdx@vger.kernel.org>; Fri, 18 Aug 2023 07:40:52 GMT
+Message-ID: <20230818064500-0.1.3r.dmmx.0.x7kyrdn3lb@durme.pl>
+Date:   Fri, 18 Aug 2023 07:40:52 GMT
+From:   "Krystian Wieczorek" <krystian.wieczorek@durme.pl>
 To:     <linux-spdx@vger.kernel.org>
-Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.commercesolutions.pl
+Subject: W sprawie samochodu
+X-Mailer: mail.durme.pl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -47,16 +46,21 @@ X-Mailing-List: linux-spdx@vger.kernel.org
 
 Dzie=C5=84 dobry,
 
-zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
-=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
-o dalszych rozm=C3=B3w.=20
+chcieliby=C5=9Bmy zapewni=C4=87 Pa=C5=84stwu kompleksowe rozwi=C4=85zania=
+, je=C5=9Bli chodzi o system monitoringu GPS.
 
-Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
-=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
-=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
-strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
+Precyzyjne monitorowanie pojazd=C3=B3w na mapach cyfrowych, =C5=9Bledzeni=
+e ich parametr=C3=B3w eksploatacyjnych w czasie rzeczywistym oraz kontrol=
+a paliwa to kluczowe funkcjonalno=C5=9Bci naszego systemu.=20
 
-Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
+Organizowanie pracy pracownik=C3=B3w jest dzi=C4=99ki temu prostsze i bar=
+dziej efektywne, a oszcz=C4=99dno=C5=9Bci i optymalizacja w zakresie pono=
+szonych koszt=C3=B3w, maj=C4=85 dla ka=C5=BCdego przedsi=C4=99biorcy ogro=
+mne znaczenie.
+
+Dopasujemy nasz=C4=85 ofert=C4=99 do Pa=C5=84stwa oczekiwa=C5=84 i potrze=
+b organizacji. Czy mogliby=C5=9Bmy porozmawia=C4=87 o naszej propozycji?
+
 
 Pozdrawiam
-Kamil Tralewski
+Krystian Wieczorek

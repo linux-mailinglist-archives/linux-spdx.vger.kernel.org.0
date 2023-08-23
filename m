@@ -2,71 +2,67 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC2A87807FF
-	for <lists+linux-spdx@lfdr.de>; Fri, 18 Aug 2023 11:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5B77851D7
+	for <lists+linux-spdx@lfdr.de>; Wed, 23 Aug 2023 09:42:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243328AbjHRJHo (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 18 Aug 2023 05:07:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49016 "EHLO
+        id S233504AbjHWHmR (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 23 Aug 2023 03:42:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358959AbjHRJH3 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 18 Aug 2023 05:07:29 -0400
-X-Greylist: delayed 333 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 18 Aug 2023 02:07:26 PDT
-Received: from mail.cassleycruden.pl (mail.cassleycruden.pl [217.61.97.118])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A5E5100
-        for <linux-spdx@vger.kernel.org>; Fri, 18 Aug 2023 02:07:26 -0700 (PDT)
-Received: by mail.cassleycruden.pl (Postfix, from userid 1001)
-        id E20E4842C2; Fri, 18 Aug 2023 10:01:47 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=cassleycruden.pl;
-        s=mail; t=1692349309;
-        bh=PMKe/ZGJ6BzTndUs3U4s+9I0+VR2MMUK715AFNxw4AM=;
+        with ESMTP id S233509AbjHWHmQ (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 23 Aug 2023 03:42:16 -0400
+Received: from mail.bizcodes.pl (mail.bizcodes.pl [151.80.57.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBC9E5F
+        for <linux-spdx@vger.kernel.org>; Wed, 23 Aug 2023 00:42:10 -0700 (PDT)
+Received: by mail.bizcodes.pl (Postfix, from userid 1002)
+        id 7A0C2A3C25; Wed, 23 Aug 2023 07:41:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bizcodes.pl; s=mail;
+        t=1692776487; bh=5QPMt7jNntM5ZbstM20BWsHIeLbmRE8lVU4Iu89IleQ=;
         h=Date:From:To:Subject:From;
-        b=ICeyE5d48M4Qy+JfPoZi4g2+hRw2c4uqnqT73JmQeR645Py/qcn3Kr477ZRZoBxFP
-         /CrcV5t+/9G6wU7NAD6TZ4Mis1LswiDGsys4FZsDQC1GnDFtVZF7QRFuLFqvDiF8xh
-         aviqj/B+oYbO4J9AVSIM5jTNthSfSzJ41Tm2ADYZ0OtjkaOqYkPepDHrl/jNJQhqoN
-         W5hDJeR2WgUH2hw0wk4gL/vgxAkRpUOmPbYipe0fJLkVW6qd1c8G9nmnWI+asufZhN
-         /QGSI5h9sCix6USTeeKMREZe2G4yjM7ax2t5kmdAyG3jzH42kEx1dt3WQhIodV+oVv
-         BrKgCpOjpMioA==
-Received: by mail.cassleycruden.pl for <linux-spdx@vger.kernel.org>; Fri, 18 Aug 2023 09:00:48 GMT
-Message-ID: <20230818090522-0.1.6m.f4cj.0.rdli660mw9@cassleycruden.pl>
-Date:   Fri, 18 Aug 2023 09:00:48 GMT
-From:   "Adrian Giermata" <adrian.giermata@cassleycruden.pl>
+        b=YSvVo1WVJGs2CTBxvLqYheBRPt9Pma47HDuYOFj3CG2xK+u5+LB+R50GDQTdIZreX
+         QqsNOsKANTRpole2YszMGvgFWyYXRGwcsS70CJCVfTnXAHpFNq2SCv1hJFoZJ+zkL1
+         o+QbTFTYwWlteqyfaiTh4MoMGvFsGU4BNELZCjrS+W6EmHkKevTReoeluwvqadKU/N
+         dewfzDdUsRImirYFCGOw5tR8Te7qYlacob5h1hOU+1LipMyxTu5A4RGe3L9DZeiulI
+         0X2KvNpcJoGUriRHgyhFUh/D9OyededODOf5mfMHQ0ryG7B9EygEnwrGhlO9kW356g
+         5TPCjjymd+NDw==
+Received: by mail.bizcodes.pl for <linux-spdx@vger.kernel.org>; Wed, 23 Aug 2023 07:41:06 GMT
+Message-ID: <20230823064500-0.1.b8.1ciwh.0.xcoa5e8asi@bizcodes.pl>
+Date:   Wed, 23 Aug 2023 07:41:06 GMT
+From:   "Marcin Chruszcz" <marcin.chruszcz@bizcodes.pl>
 To:     <linux-spdx@vger.kernel.org>
-Subject: Nowa strona www
-X-Mailer: mail.cassleycruden.pl
+Subject: Prezentacja
+X-Mailer: mail.bizcodes.pl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_BL,RCVD_IN_MSPIKE_L3,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Szanowni Pa=C5=84stwo,
+Dzie=C5=84 dobry!
 
-czy wiedz=C4=85 Pa=C5=84stwo, =C5=BCe internauta ocenia Pa=C5=84stwa firm=
-ow=C4=85 stron=C4=99 www ju=C5=BC w ci=C4=85gu pierwszych 5 sekund?
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
 
-Je=C5=9Bli pierwsze wra=C5=BCenie, jakie wywrze witryna, jest pozytywne, =
-to klient zak=C5=82ada, =C5=BCe za dobr=C4=85 stron=C4=85 stoi godna zauf=
-ania i rzetelna firma, a jej oferta jest atrakcyjna.
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
 
-Reprezentuj=C4=99 software house, kt=C3=B3ry buduje nowoczesne strony int=
-ernetowe oraz dochodowe sklepy online, zmieniaj=C4=85c wirtualny =C5=9Bwi=
-at w rzeczywiste zyski. Dzi=C4=99ki nowoczesnym funkcjonalno=C5=9Bciom i =
-niestandardowej kreacji umacniamy wizerunek marki, dodaj=C4=85c jej warto=
-=C5=9Bci i to=C5=BCsamo=C5=9Bci, kt=C3=B3rej szukaj=C4=85 Klienci.
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
 
-Z przyjemno=C5=9Bci=C4=85 poznamy Pa=C5=84stwa oczekiwania, aby wsp=C3=B3=
-lnie przeanalizowa=C4=87 potencja=C5=82 wsp=C3=B3=C5=82pracy. Prosz=C4=99=
- o kontakt zwrotny, przedstawimy dok=C5=82adniej nasze mo=C5=BCliwo=C5=9B=
-ci.
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
 
 
 Pozdrawiam
-Adrian Giermata
+Marcin Chruszcz

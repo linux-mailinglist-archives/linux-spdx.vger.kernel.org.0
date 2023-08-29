@@ -2,32 +2,32 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5B77851D7
-	for <lists+linux-spdx@lfdr.de>; Wed, 23 Aug 2023 09:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D6878BF43
+	for <lists+linux-spdx@lfdr.de>; Tue, 29 Aug 2023 09:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233504AbjHWHmR (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Wed, 23 Aug 2023 03:42:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35746 "EHLO
+        id S229507AbjH2HcL (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 29 Aug 2023 03:32:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233509AbjHWHmQ (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Wed, 23 Aug 2023 03:42:16 -0400
+        with ESMTP id S233876AbjH2HcE (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 29 Aug 2023 03:32:04 -0400
 Received: from mail.bizcodes.pl (mail.bizcodes.pl [151.80.57.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBC9E5F
-        for <linux-spdx@vger.kernel.org>; Wed, 23 Aug 2023 00:42:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821E3B5
+        for <linux-spdx@vger.kernel.org>; Tue, 29 Aug 2023 00:31:58 -0700 (PDT)
 Received: by mail.bizcodes.pl (Postfix, from userid 1002)
-        id 7A0C2A3C25; Wed, 23 Aug 2023 07:41:11 +0000 (UTC)
+        id 1484EA33D3; Tue, 29 Aug 2023 07:30:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bizcodes.pl; s=mail;
-        t=1692776487; bh=5QPMt7jNntM5ZbstM20BWsHIeLbmRE8lVU4Iu89IleQ=;
+        t=1693294266; bh=5QPMt7jNntM5ZbstM20BWsHIeLbmRE8lVU4Iu89IleQ=;
         h=Date:From:To:Subject:From;
-        b=YSvVo1WVJGs2CTBxvLqYheBRPt9Pma47HDuYOFj3CG2xK+u5+LB+R50GDQTdIZreX
-         QqsNOsKANTRpole2YszMGvgFWyYXRGwcsS70CJCVfTnXAHpFNq2SCv1hJFoZJ+zkL1
-         o+QbTFTYwWlteqyfaiTh4MoMGvFsGU4BNELZCjrS+W6EmHkKevTReoeluwvqadKU/N
-         dewfzDdUsRImirYFCGOw5tR8Te7qYlacob5h1hOU+1LipMyxTu5A4RGe3L9DZeiulI
-         0X2KvNpcJoGUriRHgyhFUh/D9OyededODOf5mfMHQ0ryG7B9EygEnwrGhlO9kW356g
-         5TPCjjymd+NDw==
-Received: by mail.bizcodes.pl for <linux-spdx@vger.kernel.org>; Wed, 23 Aug 2023 07:41:06 GMT
-Message-ID: <20230823064500-0.1.b8.1ciwh.0.xcoa5e8asi@bizcodes.pl>
-Date:   Wed, 23 Aug 2023 07:41:06 GMT
+        b=RdilfTzUFctuq4Hn4XNytfR3Uqsu+R8PkB6K5hPR83beqVLPs3b6MakA/32nM3gQf
+         GfhVRN01lghnDEwwtwa2vd+EpcBOG2bEs/iFK/+RO2RlfXELma3DRyE5RcDtTCQGMK
+         rSPbcdaGP3MaGVUZUCXSUKIxhS2Bl/vi+0pkjD03bU6ci2zP4oL+RHE1Yb+uwjRpI6
+         BjfJgOg25L5fX9VUqGI4MzIFr5BAdS0TS6Rzbq93cwMQNy6eUVJs2JWjZNUEyH6Q5N
+         WJsMMmI+F53V39oNzVU9EnsPy/mqJ31zUd94c+P2ZhqG0u458GSQT9p2PZQVpebc/Q
+         Y5WhdKwqHFmeg==
+Received: by mail.bizcodes.pl for <linux-spdx@vger.kernel.org>; Tue, 29 Aug 2023 07:30:39 GMT
+Message-ID: <20230829064500-0.1.bc.1ciwh.0.w1l0kprzzo@bizcodes.pl>
+Date:   Tue, 29 Aug 2023 07:30:39 GMT
 From:   "Marcin Chruszcz" <marcin.chruszcz@bizcodes.pl>
 To:     <linux-spdx@vger.kernel.org>
 Subject: Prezentacja
@@ -37,8 +37,8 @@ Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_BL,RCVD_IN_MSPIKE_L3,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk

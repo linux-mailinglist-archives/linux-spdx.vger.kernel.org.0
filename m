@@ -2,43 +2,46 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D6878BF43
-	for <lists+linux-spdx@lfdr.de>; Tue, 29 Aug 2023 09:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8990792A48
+	for <lists+linux-spdx@lfdr.de>; Tue,  5 Sep 2023 18:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbjH2HcL (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 29 Aug 2023 03:32:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52100 "EHLO
+        id S243759AbjIEQen (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 5 Sep 2023 12:34:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233876AbjH2HcE (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 29 Aug 2023 03:32:04 -0400
-Received: from mail.bizcodes.pl (mail.bizcodes.pl [151.80.57.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821E3B5
-        for <linux-spdx@vger.kernel.org>; Tue, 29 Aug 2023 00:31:58 -0700 (PDT)
-Received: by mail.bizcodes.pl (Postfix, from userid 1002)
-        id 1484EA33D3; Tue, 29 Aug 2023 07:30:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bizcodes.pl; s=mail;
-        t=1693294266; bh=5QPMt7jNntM5ZbstM20BWsHIeLbmRE8lVU4Iu89IleQ=;
+        with ESMTP id S1354105AbjIEJj1 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 5 Sep 2023 05:39:27 -0400
+X-Greylist: delayed 4368 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Sep 2023 02:39:24 PDT
+Received: from mail.equinoxrise.pl (mail.equinoxrise.pl [217.61.112.157])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5819D1A7
+        for <linux-spdx@vger.kernel.org>; Tue,  5 Sep 2023 02:39:24 -0700 (PDT)
+Received: by mail.equinoxrise.pl (Postfix, from userid 1002)
+        id B1E03837FF; Mon,  4 Sep 2023 09:40:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=equinoxrise.pl;
+        s=mail; t=1693813286;
+        bh=v6OgBfK5dN7P5dQ0wCu59rOfZaiqziJeLNblJ8dOcGI=;
         h=Date:From:To:Subject:From;
-        b=RdilfTzUFctuq4Hn4XNytfR3Uqsu+R8PkB6K5hPR83beqVLPs3b6MakA/32nM3gQf
-         GfhVRN01lghnDEwwtwa2vd+EpcBOG2bEs/iFK/+RO2RlfXELma3DRyE5RcDtTCQGMK
-         rSPbcdaGP3MaGVUZUCXSUKIxhS2Bl/vi+0pkjD03bU6ci2zP4oL+RHE1Yb+uwjRpI6
-         BjfJgOg25L5fX9VUqGI4MzIFr5BAdS0TS6Rzbq93cwMQNy6eUVJs2JWjZNUEyH6Q5N
-         WJsMMmI+F53V39oNzVU9EnsPy/mqJ31zUd94c+P2ZhqG0u458GSQT9p2PZQVpebc/Q
-         Y5WhdKwqHFmeg==
-Received: by mail.bizcodes.pl for <linux-spdx@vger.kernel.org>; Tue, 29 Aug 2023 07:30:39 GMT
-Message-ID: <20230829064500-0.1.bc.1ciwh.0.w1l0kprzzo@bizcodes.pl>
-Date:   Tue, 29 Aug 2023 07:30:39 GMT
-From:   "Marcin Chruszcz" <marcin.chruszcz@bizcodes.pl>
+        b=v0UZBtzSzkCxA8BcqngkxdIpfeYCfjO0lqN7wZDIon4vZm7XMJEyKJGXMvwytlkFG
+         1AcULNaZHWXHzOshCLB4ETnm4vc45+l2L+HC8FdV2Q26nCUhBeBj4DdgRh6MDhF2ZJ
+         biB4PNjbDraWTPfXNxALIoeP753QUsYTKfnwt/7JnTzeBT0VfWzO3yTLtlZcddu9Bi
+         db3tIhOA6DrPWvcqbBqJ/SimE8VbA6NzrwYmfA3bqBIZOpNA3843f5UNxSutBAcxK5
+         KsKQ+tFK5/bMckSBiuvvyK9Yu3kacX+ABmeEb6ef8D2wywLWjAWQFfo7vOqqCWEqi4
+         w+v5Cl8IEPwsQ==
+Received: by mail.equinoxrise.pl for <linux-spdx@vger.kernel.org>; Mon,  4 Sep 2023 07:40:34 GMT
+Message-ID: <20230904084500-0.1.7.qlt.0.maqeea4egc@equinoxrise.pl>
+Date:   Mon,  4 Sep 2023 07:40:34 GMT
+From:   "Mateusz Talaga" <mateusz.talaga@equinoxrise.pl>
 To:     <linux-spdx@vger.kernel.org>
 Subject: Prezentacja
-X-Mailer: mail.bizcodes.pl
+X-Mailer: mail.equinoxrise.pl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_CSS_A,URIBL_DBL_SPAM
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -65,4 +68,4 @@ zania w Pa=C5=84stwa firmie.
 
 
 Pozdrawiam
-Marcin Chruszcz
+Mateusz Talaga

@@ -2,33 +2,37 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F100D7A46BA
-	for <lists+linux-spdx@lfdr.de>; Mon, 18 Sep 2023 12:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D19B7A5741
+	for <lists+linux-spdx@lfdr.de>; Tue, 19 Sep 2023 04:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236959AbjIRKPP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 18 Sep 2023 06:15:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32834 "EHLO
+        id S230393AbjISCNP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Mon, 18 Sep 2023 22:13:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239426AbjIRKPB (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 18 Sep 2023 06:15:01 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A50AA
-        for <linux-spdx@vger.kernel.org>; Mon, 18 Sep 2023 03:14:55 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:9622:9b2f:73fd:43ad])
-        by baptiste.telenet-ops.be with bizsmtp
-        id nNEr2A00d4u9dj801NEr9R; Mon, 18 Sep 2023 12:14:53 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qiBGw-003wYZ-LZ;
-        Mon, 18 Sep 2023 12:14:51 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qiBHH-006GjX-FP;
-        Mon, 18 Sep 2023 12:14:51 +0200
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Greg Ungerer <gerg@linux-m68k.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
+        with ESMTP id S229522AbjISCNO (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Mon, 18 Sep 2023 22:13:14 -0400
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DD2E10D;
+        Mon, 18 Sep 2023 19:13:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1695089583;
+        bh=yK4i0fyc5ITTA94RNhwm6rcVMib+w9bmcMtOgracjcM=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=Qgq3yOvs6gGgFR80VJ38hn9Cwo84MntwgzdO4oF59tS94tUSQ+ttUeM62Md9g0evl
+         QwxqqXHzTm0ZtXxHKOmH012krt4g6qLXwQqCcACUN9RAEK5rUwACqiaf7RoMw1FOyl
+         ZTwD3Xgl+uCB5EB82Miw5QQLBETwXpqUklZDJebz8yRAPQJnNJnUKjdUYGFd6CrHGL
+         aPdh7qQ2Zmpjb0XdtHZNfc/vJrR9SZ/u/U8/lKWQKBanezPW8J2OSuHQbaxR7IPbBr
+         a0T9M2Y6rySu6F95/tCoaF9JDGhU28j1/sxXlCznmtM34o3lt3q8+k2toEAfmN+E5g
+         L4oylx7S2wosg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4RqQDZ3JWCz4xDB;
+        Tue, 19 Sep 2023 12:13:01 +1000 (AEST)
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Greg Ungerer <gerg@linux-m68k.org>,
         Nicholas Piggin <npiggin@gmail.com>,
         Christophe Leroy <christophe.leroy@csgroup.eu>,
         Thomas Gleixner <tglx@linutronix.de>,
@@ -36,96 +40,37 @@ To:     Greg Ungerer <gerg@linux-m68k.org>,
 Cc:     linux-m68k@lists.linux-m68k.org, linuxppc-dev@lists.ozlabs.org,
         linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org,
         Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v2 2/2] powerpc: Replace GPL 2.0+ README.legal boilerplate with SPDX
-Date:   Mon, 18 Sep 2023 12:14:44 +0200
-Message-Id: <d91725ff1ed5d4b6ba42474e2ebfeebe711cba23.1695031668.git.geert@linux-m68k.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1695031668.git.geert@linux-m68k.org>
+Subject: Re: [PATCH v2 2/2] powerpc: Replace GPL 2.0+ README.legal
+ boilerplate with SPDX
+In-Reply-To: <d91725ff1ed5d4b6ba42474e2ebfeebe711cba23.1695031668.git.geert@linux-m68k.org>
 References: <cover.1695031668.git.geert@linux-m68k.org>
+ <d91725ff1ed5d4b6ba42474e2ebfeebe711cba23.1695031668.git.geert@linux-m68k.org>
+Date:   Tue, 19 Sep 2023 12:12:57 +1000
+Message-ID: <87h6nqlxli.fsf@mail.lhotse>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Upstream Linux never had a "README.legal" file, but it was present
-in early source releases of Linux/m68k.  It contained a simple copyright
-notice and a link to a version of the "COPYING" file that predated the
-addition of the "only valid GPL version is v2" clause.
+Geert Uytterhoeven <geert@linux-m68k.org> writes:
+> Upstream Linux never had a "README.legal" file, but it was present
+> in early source releases of Linux/m68k.  It contained a simple copyright
+> notice and a link to a version of the "COPYING" file that predated the
+> addition of the "only valid GPL version is v2" clause.
+>
+> Get rid of the references to non-existent files by replacing the
+> boilerplate with SPDX license identifiers.
+>
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-Get rid of the references to non-existent files by replacing the
-boilerplate with SPDX license identifiers.
+LGTM.
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
-v2:
-  - s/existant/existent/.
----
- arch/powerpc/kernel/ptrace/ptrace.c | 5 +----
- arch/powerpc/kernel/signal.c        | 5 +----
- arch/powerpc/kernel/signal.h        | 7 ++-----
- 3 files changed, 4 insertions(+), 13 deletions(-)
+Acked-by: Michael Ellerman <mpe@ellerman.id.au> (powerpc)
 
-diff --git a/arch/powerpc/kernel/ptrace/ptrace.c b/arch/powerpc/kernel/ptrace/ptrace.c
-index 5d7a72b41ae71158..727ed4a145451356 100644
---- a/arch/powerpc/kernel/ptrace/ptrace.c
-+++ b/arch/powerpc/kernel/ptrace/ptrace.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
- /*
-  *  PowerPC version
-  *    Copyright (C) 1995-1996 Gary Thomas (gdt@linuxppc.org)
-@@ -9,10 +10,6 @@
-  *
-  * Modified by Cort Dougan (cort@hq.fsmlabs.com)
-  * and Paul Mackerras (paulus@samba.org).
-- *
-- * This file is subject to the terms and conditions of the GNU General
-- * Public License.  See the file README.legal in the main directory of
-- * this archive for more details.
-  */
- 
- #include <linux/regset.h>
-diff --git a/arch/powerpc/kernel/signal.c b/arch/powerpc/kernel/signal.c
-index 68a91e553e14cea2..aa17e62f37547a79 100644
---- a/arch/powerpc/kernel/signal.c
-+++ b/arch/powerpc/kernel/signal.c
-@@ -1,12 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
- /*
-  * Common signal handling code for both 32 and 64 bits
-  *
-  *    Copyright (c) 2007 Benjamin Herrenschmidt, IBM Corporation
-  *    Extracted from signal_32.c and signal_64.c
-- *
-- * This file is subject to the terms and conditions of the GNU General
-- * Public License.  See the file README.legal in the main directory of
-- * this archive for more details.
-  */
- 
- #include <linux/resume_user_mode.h>
-diff --git a/arch/powerpc/kernel/signal.h b/arch/powerpc/kernel/signal.h
-index a429c57ed4331805..58ecea1cdc27ae80 100644
---- a/arch/powerpc/kernel/signal.h
-+++ b/arch/powerpc/kernel/signal.h
-@@ -1,10 +1,7 @@
--/*
-+/* SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  *    Copyright (c) 2007 Benjamin Herrenschmidt, IBM Corporation
-  *    Extracted from signal_32.c and signal_64.c
-- *
-- * This file is subject to the terms and conditions of the GNU General
-- * Public License.  See the file README.legal in the main directory of
-- * this archive for more details.
-  */
- 
- #ifndef _POWERPC_ARCH_SIGNAL_H
--- 
-2.34.1
-
+cheers

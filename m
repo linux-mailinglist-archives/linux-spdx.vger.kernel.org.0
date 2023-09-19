@@ -2,75 +2,104 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D19B7A5741
-	for <lists+linux-spdx@lfdr.de>; Tue, 19 Sep 2023 04:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 958567A5A1C
+	for <lists+linux-spdx@lfdr.de>; Tue, 19 Sep 2023 08:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbjISCNP (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Mon, 18 Sep 2023 22:13:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55868 "EHLO
+        id S231565AbjISGoT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+linux-spdx@lfdr.de>); Tue, 19 Sep 2023 02:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjISCNO (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Mon, 18 Sep 2023 22:13:14 -0400
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DD2E10D;
-        Mon, 18 Sep 2023 19:13:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1695089583;
-        bh=yK4i0fyc5ITTA94RNhwm6rcVMib+w9bmcMtOgracjcM=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=Qgq3yOvs6gGgFR80VJ38hn9Cwo84MntwgzdO4oF59tS94tUSQ+ttUeM62Md9g0evl
-         QwxqqXHzTm0ZtXxHKOmH012krt4g6qLXwQqCcACUN9RAEK5rUwACqiaf7RoMw1FOyl
-         ZTwD3Xgl+uCB5EB82Miw5QQLBETwXpqUklZDJebz8yRAPQJnNJnUKjdUYGFd6CrHGL
-         aPdh7qQ2Zmpjb0XdtHZNfc/vJrR9SZ/u/U8/lKWQKBanezPW8J2OSuHQbaxR7IPbBr
-         a0T9M2Y6rySu6F95/tCoaF9JDGhU28j1/sxXlCznmtM34o3lt3q8+k2toEAfmN+E5g
-         L4oylx7S2wosg==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4RqQDZ3JWCz4xDB;
-        Tue, 19 Sep 2023 12:13:01 +1000 (AEST)
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Greg Ungerer <gerg@linux-m68k.org>,
+        with ESMTP id S230006AbjISGoS (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 19 Sep 2023 02:44:18 -0400
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B6A115;
+        Mon, 18 Sep 2023 23:44:12 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-d7b91422da8so5028689276.2;
+        Mon, 18 Sep 2023 23:44:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695105851; x=1695710651;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kAmWc6PGNbz/v7P4Pzb+X6jxKjTax8yaPXnsgZKZYbo=;
+        b=SSHXJn+MLNZwZdH8jlFn1yYGZd0JEdL5pG20q020iO3z2q4dCLi27ZsSTHWp7d5qnY
+         OD3FxO812XCgS9k2YTAFk0YlTLGxmg9eF2d8IR0xVZbYdh3wS5v06FJdkWX1dqF64aEO
+         jgYjUoWgEfJtZBmwHj99L8fQUgg8ODQrIzoL0HesmcQVaJ+GPWbzVk/bfbjPWeASwCz9
+         APdOY0eBJPU9Vn7EMh1aYjNnOLqSYZyWTDWERA16+s5dxdXzLH3+oubhqb+dXsVVDXkP
+         meqneunQwKV/zV81pMviiyTQQBcn5j1+lVK65SF+z/NPt+1wDz6EE/TQtGKZbbOi9xuf
+         hiQQ==
+X-Gm-Message-State: AOJu0YxChQSV1Dn3xRS/g4/tb2UCQpn8x7hvOXw+jHbVjngwRbjRmQ/b
+        MEVXGaSUP5c+bRyvmj28q2Nk4U+7J7Jg0A==
+X-Google-Smtp-Source: AGHT+IEcxHY4M/YxU2pZZWjmfn/XpUMrWsX/IfE0zhicBNCaVyWag5fY9lpN0cnS5N6glbdRHj+0BA==
+X-Received: by 2002:a25:d744:0:b0:d06:f99e:6345 with SMTP id o65-20020a25d744000000b00d06f99e6345mr8570277ybg.22.1695105851437;
+        Mon, 18 Sep 2023 23:44:11 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id l198-20020a2525cf000000b00d801440ed1dsm2733080ybl.23.2023.09.18.23.44.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Sep 2023 23:44:10 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-59c2ca01f27so29323687b3.2;
+        Mon, 18 Sep 2023 23:44:10 -0700 (PDT)
+X-Received: by 2002:a81:d352:0:b0:59b:cfe1:bcf1 with SMTP id
+ d18-20020a81d352000000b0059bcfe1bcf1mr10748173ywl.44.1695105850445; Mon, 18
+ Sep 2023 23:44:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1695031668.git.geert@linux-m68k.org> <d91725ff1ed5d4b6ba42474e2ebfeebe711cba23.1695031668.git.geert@linux-m68k.org>
+ <87h6nqlxli.fsf@mail.lhotse>
+In-Reply-To: <87h6nqlxli.fsf@mail.lhotse>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 19 Sep 2023 08:43:58 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW6=wnOjT7qG4tHvc5X4JAJkkHMnVDsQ-dKM6i3FKyWWw@mail.gmail.com>
+Message-ID: <CAMuHMdW6=wnOjT7qG4tHvc5X4JAJkkHMnVDsQ-dKM6i3FKyWWw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] powerpc: Replace GPL 2.0+ README.legal boilerplate
+ with SPDX
+To:     Michael Ellerman <mpe@ellerman.id.au>
+Cc:     Greg Ungerer <gerg@linux-m68k.org>,
         Nicholas Piggin <npiggin@gmail.com>,
         Christophe Leroy <christophe.leroy@csgroup.eu>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-m68k@lists.linux-m68k.org, linuxppc-dev@lists.ozlabs.org,
-        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH v2 2/2] powerpc: Replace GPL 2.0+ README.legal
- boilerplate with SPDX
-In-Reply-To: <d91725ff1ed5d4b6ba42474e2ebfeebe711cba23.1695031668.git.geert@linux-m68k.org>
-References: <cover.1695031668.git.geert@linux-m68k.org>
- <d91725ff1ed5d4b6ba42474e2ebfeebe711cba23.1695031668.git.geert@linux-m68k.org>
-Date:   Tue, 19 Sep 2023 12:12:57 +1000
-Message-ID: <87h6nqlxli.fsf@mail.lhotse>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-m68k@lists.linux-m68k.org, linuxppc-dev@lists.ozlabs.org,
+        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Geert Uytterhoeven <geert@linux-m68k.org> writes:
-> Upstream Linux never had a "README.legal" file, but it was present
-> in early source releases of Linux/m68k.  It contained a simple copyright
-> notice and a link to a version of the "COPYING" file that predated the
-> addition of the "only valid GPL version is v2" clause.
+Hi Michael,
+
+On Tue, Sep 19, 2023 at 4:13 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
+> Geert Uytterhoeven <geert@linux-m68k.org> writes:
+> > Upstream Linux never had a "README.legal" file, but it was present
+> > in early source releases of Linux/m68k.  It contained a simple copyright
+> > notice and a link to a version of the "COPYING" file that predated the
+> > addition of the "only valid GPL version is v2" clause.
+> >
+> > Get rid of the references to non-existent files by replacing the
+> > boilerplate with SPDX license identifiers.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 >
-> Get rid of the references to non-existent files by replacing the
-> boilerplate with SPDX license identifiers.
+> LGTM.
 >
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Acked-by: Michael Ellerman <mpe@ellerman.id.au> (powerpc)
 
-LGTM.
+Can you please take it through the PPC tree?
+Thanks!
 
-Acked-by: Michael Ellerman <mpe@ellerman.id.au> (powerpc)
+Gr{oetje,eeting}s,
 
-cheers
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds

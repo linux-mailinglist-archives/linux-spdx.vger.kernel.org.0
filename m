@@ -2,55 +2,69 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 009D37AAA47
-	for <lists+linux-spdx@lfdr.de>; Fri, 22 Sep 2023 09:32:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C5EE7AE6E7
+	for <lists+linux-spdx@lfdr.de>; Tue, 26 Sep 2023 09:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231262AbjIVHc2 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 22 Sep 2023 03:32:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47796 "EHLO
+        id S233395AbjIZHeQ (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 26 Sep 2023 03:34:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231376AbjIVHc1 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 22 Sep 2023 03:32:27 -0400
-Received: from mail.loanfly.pl (mail.loanfly.pl [141.94.250.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BECB6180
-        for <linux-spdx@vger.kernel.org>; Fri, 22 Sep 2023 00:32:21 -0700 (PDT)
-Received: by mail.loanfly.pl (Postfix, from userid 1002)
-        id 72F44A5B46; Fri, 22 Sep 2023 07:31:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=loanfly.pl; s=mail;
-        t=1695367916; bh=Y0HnXqH+26AP5Uq6M8BQXaj1HIAPQY/WndV9tkpAHHU=;
-        h=Date:From:To:Subject:From;
-        b=renlQv3bEdQTK4QMQ/r6rAgM8UA675ppQSFDdN/A6lNmVGDwoyb1OhL41Z8jAl0YR
-         5OuIWPFWAyk6lipmfcrOG2+X6hJMrFhNyAySo3hRHvPiKzGTjh7s4CfzUS3fjb5g04
-         fOG2D7KVxWx+2h2Wly3ufi3RronDZDkFM0N07TJ3HnuMHg/WJb5+geu7JrxowIUc3s
-         vshvaKxBN3E/uuTKu2ugomLL8wY7Ti6/NIKp3OSjO7Tr+o89WPJKBWzgZuS7WXwI88
-         kM/FXjQ1QTXosW2vfsG8Ksf6PaxabmPbr2fVTkNscMOOLr8XbQUE9hlnqzgqwyy8cO
-         ftGrJFw3hPczw==
-Received: by mail.loanfly.pl for <linux-spdx@vger.kernel.org>; Fri, 22 Sep 2023 07:31:14 GMT
-Message-ID: <20230922064500-0.1.cp.1gt0q.0.pd8i0uwea7@loanfly.pl>
-Date:   Fri, 22 Sep 2023 07:31:14 GMT
-From:   "Damian Cichocki" <damian.cichocki@loanfly.pl>
-To:     <linux-spdx@vger.kernel.org>
-Subject: =?UTF-8?Q?Pytanie_o_samoch=C3=B3d?=
-X-Mailer: mail.loanfly.pl
+        with ESMTP id S232369AbjIZHeP (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 26 Sep 2023 03:34:15 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90770FC;
+        Tue, 26 Sep 2023 00:34:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=C1oF1souaSCsz59IjXXjb/BNhj0xydUEaApGSGUHy90=; b=aY+1KO44igHYvwLagvz+nCyGOn
+        WGrzW0/F0SuFYB7E4Thmtw6gAezYczmBcJqEpApJNBQSr7PXo5QZ/jUCIpaE5iF2g8qnNeodljmMA
+        4k/2qhDLPF4xTyiKZoanq8MJ2QelFrI4q6cH7HPRcpXO+yzNwoU3wyKiNaPNIDKSfBlhYIIVzOAsi
+        hXADgpM5gOpx+jPGo9ocWELvlctVJevKI3+6blg9xCKU4IYbMCktuH1m5EqTTeSNDj5c1JyEXpaAO
+        JjT1t6DjWk4TXvZZmDlPn9LQ47443wbwoWd2D5vZlPYaOUDC4VMx5/uWtJwrO9mQmHEeAJTUyQ1/o
+        MiuaZTlA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat Linux))
+        id 1ql2a3-00Fnl9-2H;
+        Tue, 26 Sep 2023 07:34:03 +0000
+Date:   Tue, 26 Sep 2023 00:34:03 -0700
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Prarit Bhargava <prarit@redhat.com>
+Cc:     Dave Miller <davem@redhat.com>,
+        Vitaly Kuznetsov <vkuznets@redhat.com>, jschlst@samba.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-spdx@vger.kernel.org
+Subject: Re: SPDX: Appletalk FW license in the kernel
+Message-ID: <ZRKJa+cMsFxiizKb@infradead.org>
+References: <6100798b-ab1d-262a-fd5b-435d6dfc4a53@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_ABUSE_SURBL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6100798b-ab1d-262a-fd5b-435d6dfc4a53@redhat.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Dzie=C5=84 dobry,
+On Fri, Sep 15, 2023 at 09:39:05AM -0400, Prarit Bhargava wrote:
+> To be clear, I am not asking for their removal, however, I do think a better
+> license should be issued for these files.  The files were trivially modified
+> in 2006. It could be that the code in question is now unused and it is just
+> easier to remove them.
+> 
+> Is there anyone you know of that we could approach to determine a proper
+> SPDX License for these files?
 
-Czy interesuje Pa=C5=84stwa rozwi=C4=85zanie umo=C5=BCliwiaj=C4=85ce moni=
-torowanie samochod=C3=B3w firmowych oraz optymalizacj=C4=99 koszt=C3=B3w =
-ich utrzymania?=20
+The code contains firmware that is downloaded to the device.  The proper
+thing would be to convert them to separate binary files in the
+linux-firmware packages.  But given that the driver has seen nothing
+but tree wide cleanups since the dawn of git I suspect there is no
+maintainer and probably no user left.  The best might be to indeed just
+remove it and see if anyone screams, in which case we could bring it
+back after doing the above.
 
-
-Pozdrawiam,
-Damian Cichocki

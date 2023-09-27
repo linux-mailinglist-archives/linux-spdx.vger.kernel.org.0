@@ -2,83 +2,66 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 444C47AF18D
-	for <lists+linux-spdx@lfdr.de>; Tue, 26 Sep 2023 19:09:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 414D17AFD86
+	for <lists+linux-spdx@lfdr.de>; Wed, 27 Sep 2023 10:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbjIZRJN (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 26 Sep 2023 13:09:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42210 "EHLO
+        id S230079AbjI0IDO (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Wed, 27 Sep 2023 04:03:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbjIZRJM (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 26 Sep 2023 13:09:12 -0400
-X-Greylist: delayed 4985 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 26 Sep 2023 10:09:03 PDT
-Received: from mx1.supremebox.com (mx2-c1.supremebox.com [198.23.53.234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ABB0127;
-        Tue, 26 Sep 2023 10:09:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jilayne.com
-        ; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=QpVqjqaIqyh1bD1+m2fo7n8+tqggRTSMwKBxxg++NTo=; b=A8URxLyWVgqMPJr7O4urR9cRow
-        cZu/k6/VJvIMjUaRID8TXXWgvUzXA+HiNQOie93yAV36xPPNe7pMGzSb+XbknE25vdH7C693bljJZ
-        oyipmip4a2Lh/4u7qzDC0q4qaKjOZx/wQrz+gyyyo6ZGtBFl3vDfzE3/ZWWw/Lr4i9Ik=;
-Received: from 71-211-134-218.hlrn.qwest.net ([71.211.134.218] helo=[192.168.1.151])
-        by mx1.supremebox.com with esmtpa (Exim 4.92)
-        (envelope-from <opensource@jilayne.com>)
-        id 1qlAG3-00023a-Lu; Tue, 26 Sep 2023 15:45:55 +0000
-Message-ID: <7fc54cc9-a53a-46ba-9f16-02d8c638dd26@jilayne.com>
-Date:   Tue, 26 Sep 2023 09:45:54 -0600
+        with ESMTP id S230118AbjI0IDH (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Wed, 27 Sep 2023 04:03:07 -0400
+Received: from mail.bizcodes.pl (mail.bizcodes.pl [151.80.57.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B51193
+        for <linux-spdx@vger.kernel.org>; Wed, 27 Sep 2023 01:03:06 -0700 (PDT)
+Received: by mail.bizcodes.pl (Postfix, from userid 1002)
+        id 0E7AFA4B63; Wed, 27 Sep 2023 08:01:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bizcodes.pl; s=mail;
+        t=1695801725; bh=5QPMt7jNntM5ZbstM20BWsHIeLbmRE8lVU4Iu89IleQ=;
+        h=Date:From:To:Subject:From;
+        b=VstlaQQQCh3TgkFrVwr5C4BZThiLhJcQ+wvgOmo77WIG97lWc0icLEZtu7BCFFvlB
+         +/0FK0Tm6O6EurgjxpziQ5uor+o+TlQHTa8PQU5m8O1ZqBUBwW+AWi7gwEOyiTgxcB
+         xaYrVSVcEX40THdM6mw3NzalJjfmJJk8/pt1txi/iUaKHwr+P5XE9R0mgknpFhexcu
+         MlxR76cLZnOY6dkbpO1Y4MjPyPvzZo6clAb57b1TBy+MfkCajvfawsJmTjp7xtUJsR
+         JzEV+YeMwbObmHjQcGHVCE8COuKVbZGO2ApOsx1XAmBgbipGrCxfFg9hJV+ja25Mrq
+         KU4TFav5C2ggg==
+Received: by mail.bizcodes.pl for <linux-spdx@vger.kernel.org>; Wed, 27 Sep 2023 08:01:00 GMT
+Message-ID: <20230927064500-0.1.by.1ha35.0.lk5kbbeqq7@bizcodes.pl>
+Date:   Wed, 27 Sep 2023 08:01:00 GMT
+From:   "Marcin Chruszcz" <marcin.chruszcz@bizcodes.pl>
+To:     <linux-spdx@vger.kernel.org>
+Subject: Prezentacja
+X-Mailer: mail.bizcodes.pl
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: SPDX: Appletalk FW license in the kernel
-Content-Language: en-US
-To:     Christoph Hellwig <hch@infradead.org>,
-        Prarit Bhargava <prarit@redhat.com>
-Cc:     Dave Miller <davem@redhat.com>,
-        Vitaly Kuznetsov <vkuznets@redhat.com>, jschlst@samba.org,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-spdx@vger.kernel.org
-References: <6100798b-ab1d-262a-fd5b-435d6dfc4a53@redhat.com>
- <ZRKJa+cMsFxiizKb@infradead.org>
-From:   J Lovejoy <opensource@jilayne.com>
-In-Reply-To: <ZRKJa+cMsFxiizKb@infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Sender-Ident-agJab5osgicCis: opensource@jilayne.com
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+Dzie=C5=84 dobry!
+
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
+
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
+
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
+
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
 
 
-On 9/26/23 1:34 AM, Christoph Hellwig wrote:
-> On Fri, Sep 15, 2023 at 09:39:05AM -0400, Prarit Bhargava wrote:
->>
->> Is there anyone you know of that we could approach to determine a proper
->> SPDX License for these files?
-Answering this question generally, even though it sounds like it wasn't 
-needed for this particular situation:
-
-YES! If you find a license in the kernel that does not match a license 
-already on the SPDX License List and want to submit the license for 
-inclusion on the SPDX License List (which, if accepted, means the 
-license will get an SPDX id assigned), please follow this process: 
-https://github.com/spdx/license-list-XML/blob/main/DOCS/request-new-license.md
-
-By the way, people on the linux-spdx list may be interested to know that 
-Fedora has adopted the use of SPDX license ids in the license field of 
-Fedora package metadata. There has been close collaboration between the 
-two projects, which has resulted in 95 licenses or exceptions added to 
-the SPDX License List so far. I think this is a great thing (even if a 
-lot of work) as it is making the SPDX License List more reflective of 
-the reality of open source software licensing (including all the 
-variations on old permissive licenses).
-
-Jilayne
+Pozdrawiam
+Marcin Chruszcz

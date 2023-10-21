@@ -2,73 +2,231 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 080387C9890
-	for <lists+linux-spdx@lfdr.de>; Sun, 15 Oct 2023 12:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81DFD7D1CC6
+	for <lists+linux-spdx@lfdr.de>; Sat, 21 Oct 2023 13:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbjJOKGN (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Sun, 15 Oct 2023 06:06:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
+        id S229831AbjJULXt (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Sat, 21 Oct 2023 07:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbjJOKGM (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Sun, 15 Oct 2023 06:06:12 -0400
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DDBDE;
-        Sun, 15 Oct 2023 03:06:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1697364368;
-        bh=i4UWmSXRdf8U3S13I3kD1JSY13lhFBz1uoD0N3O5gJM=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=gJBgCvZaEh9UB1j8l9jgl1lcm9tKhfgJp9ItNPM9Hj3n7fbEgL8m+iRP9O0vHZAgR
-         UBK77/niEbZXGJQWrrYT2xxm8zjejGl14XMaPzkLlLLTeAE9m7RPyXvuXYonrP4ZYm
-         MeAcgvITgft32SbCtgN+Sv7eCSiaHlr8BPPua5qvKAtqfxmlppHwkbqhvXA8WlX1Kt
-         LVr0BPr3a/zXmElcDvv8bj7MGn5nly4LU/6t1w8esohXrYX7wTBqXs4vAWpKDf362v
-         yyR5RTdmpoVzPLvXesfWxE2zH6UJTKLkzyzght/sVyGAmETiC7k0N6sJpWsFBvrNHg
-         VRK1ozDCF1xJg==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        with ESMTP id S229478AbjJULXt (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Sat, 21 Oct 2023 07:23:49 -0400
+Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5CC1A4;
+        Sat, 21 Oct 2023 04:23:43 -0700 (PDT)
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4S7bVQ4zgTz4wcc;
-        Sun, 15 Oct 2023 21:06:06 +1100 (AEDT)
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Greg Ungerer <gerg@linux-m68k.org>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Gleixner <tglx@linutronix.de>,
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "*.hostsharing.net", Issuer "RapidSSL Global TLS RSA4096 SHA256 2022 CA1" (verified OK))
+        by bmailout2.hostsharing.net (Postfix) with ESMTPS id 71EBC2800B75F;
+        Sat, 21 Oct 2023 13:23:41 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+        id 64FAB11768A; Sat, 21 Oct 2023 13:23:41 +0200 (CEST)
+Message-Id: <143690ecc1102c0f67fa7faec437ec7b02bb2304.1697885975.git.lukas@wunner.de>
+From:   Lukas Wunner <lukas@wunner.de>
+Date:   Sat, 21 Oct 2023 13:23:44 +0200
+Subject: [PATCH] treewide: Add SPDX identifier to IETF ASN.1 modules
+To:     Thomas Gleixner <tglx@linutronix.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     linux-m68k@lists.linux-m68k.org, linuxppc-dev@lists.ozlabs.org,
-        linux-spdx@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <cover.1695031668.git.geert@linux-m68k.org>
-References: <cover.1695031668.git.geert@linux-m68k.org>
-Subject: Re: (subset) [PATCH v2 0/2] m68k/powerpc: Kill references to non-existent README.legal
-Message-Id: <169736429851.960528.8922488798725928458.b4-ty@ellerman.id.au>
-Date:   Sun, 15 Oct 2023 21:04:58 +1100
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-spdx@vger.kernel.org
+Cc:     David Howells <dhowells@redhat.com>,
+        Tadeusz Struk <tadeusz.struk@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, keyrings@vger.kernel.org,
+        linux-crypto@vger.kernel.org, Hyunchul Lee <hyc.lee@gmail.com>,
+        Namjae Jeon <linkinjeon@kernel.org>,
+        Steve French <sfrench@samba.org>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Tom Talpey <tom@talpey.com>, linux-cifs@vger.kernel.org,
+        Taehee Yoo <ap420073@gmail.com>,
+        Pablo Neira Ayuso <pablo@netfilter.org>,
+        Jozsef Kadlecsik <kadlec@netfilter.org>,
+        Florian Westphal <fw@strlen.de>, coreteam@netfilter.org,
+        netfilter-devel@vger.kernel.org
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URI_TRY_3LD autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Mon, 18 Sep 2023 12:14:42 +0200, Geert Uytterhoeven wrote:
-> Note that the "COPYING" file at that time corresponded to the version
-> from upstream Linux v0.99.11 until v2.1.104, and thus predated the
-> addition of the "only valid GPL version is v2" clause in v2.4.0-test8.
-> 
-> This patch series gets rid of the references to README.legal by
-> replacing the boilerplate with SPDX license identifiers.
-> 
-> [...]
+Per section 4.c. of the IETF Trust Legal Provisions, "Code Components"
+in IETF Documents are licensed on the terms of the BSD-3-Clause license:
 
-Applied to powerpc/next.
+https://trustee.ietf.org/documents/trust-legal-provisions/tlp-5/
 
-[2/2] powerpc: Replace GPL 2.0+ README.legal boilerplate with SPDX
-      https://git.kernel.org/powerpc/c/6fcb13972bc2b41211e1dddb02f5e73199addc75
+The term "Code Components" specifically includes ASN.1 modules:
 
-cheers
+https://trustee.ietf.org/documents/trust-legal-provisions/code-components-list-3/
+
+Add an SPDX identifier as well as a copyright notice pursuant to section
+6.d. of the Trust Legal Provisions to all ASN.1 modules in the tree
+which are derived from IETF Documents.
+
+Section 4.d. of the Trust Legal Provisions requests that each Code
+Component identify the RFC from which it is taken, so link that RFC
+in every ASN.1 module.
+
+Signed-off-by: Lukas Wunner <lukas@wunner.de>
+---
+ I'm adding a new IETF ASN.1 module for PCI device authentication, hence
+ had to research what the correct license is.  Thought I'd fix this up
+ treewide while at it.
+
+ Not included here is fs/smb/client/cifs_spnego_negtokeninit.asn1,
+ which is similar to fs/smb/client/ksmbd_spnego_negtokeninit.asn1,
+ but contains a Microsoft extension published as Open Specifications
+ Documentation.  It's unclear to me what license they use:
+ https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-spng/
+
+ crypto/asymmetric_keys/pkcs7.asn1            | 7 +++++++
+ crypto/asymmetric_keys/pkcs8.asn1            | 6 ++++++
+ crypto/asymmetric_keys/x509.asn1             | 7 +++++++
+ crypto/asymmetric_keys/x509_akid.asn1        | 5 +++++
+ crypto/rsaprivkey.asn1                       | 7 +++++++
+ crypto/rsapubkey.asn1                        | 7 +++++++
+ fs/smb/server/ksmbd_spnego_negtokeninit.asn1 | 8 ++++++++
+ fs/smb/server/ksmbd_spnego_negtokentarg.asn1 | 7 +++++++
+ net/ipv4/netfilter/nf_nat_snmp_basic.asn1    | 8 ++++++++
+ 9 files changed, 62 insertions(+)
+
+diff --git a/crypto/asymmetric_keys/pkcs7.asn1 b/crypto/asymmetric_keys/pkcs7.asn1
+index 1eca740..28e1f4a 100644
+--- a/crypto/asymmetric_keys/pkcs7.asn1
++++ b/crypto/asymmetric_keys/pkcs7.asn1
+@@ -1,3 +1,10 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 2009 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc5652#section-3
++
+ PKCS7ContentInfo ::= SEQUENCE {
+ 	contentType	ContentType ({ pkcs7_check_content_type }),
+ 	content		[0] EXPLICIT SignedData OPTIONAL
+diff --git a/crypto/asymmetric_keys/pkcs8.asn1 b/crypto/asymmetric_keys/pkcs8.asn1
+index 702c41a..a2a8af2 100644
+--- a/crypto/asymmetric_keys/pkcs8.asn1
++++ b/crypto/asymmetric_keys/pkcs8.asn1
+@@ -1,3 +1,9 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 2010 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc5958#section-2
+ --
+ -- This is the unencrypted variant
+ --
+diff --git a/crypto/asymmetric_keys/x509.asn1 b/crypto/asymmetric_keys/x509.asn1
+index 92d59c3..feb9573 100644
+--- a/crypto/asymmetric_keys/x509.asn1
++++ b/crypto/asymmetric_keys/x509.asn1
+@@ -1,3 +1,10 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 2008 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc5280#section-4
++
+ Certificate ::= SEQUENCE {
+ 	tbsCertificate		TBSCertificate ({ x509_note_tbs_certificate }),
+ 	signatureAlgorithm	AlgorithmIdentifier,
+diff --git a/crypto/asymmetric_keys/x509_akid.asn1 b/crypto/asymmetric_keys/x509_akid.asn1
+index 1a33231..164b2ed 100644
+--- a/crypto/asymmetric_keys/x509_akid.asn1
++++ b/crypto/asymmetric_keys/x509_akid.asn1
+@@ -1,3 +1,8 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 2008 IETF Trust and the persons identified as authors
++-- of the code
++--
+ -- X.509 AuthorityKeyIdentifier
+ -- rfc5280 section 4.2.1.1
+ 
+diff --git a/crypto/rsaprivkey.asn1 b/crypto/rsaprivkey.asn1
+index 4ce0675..76865124 100644
+--- a/crypto/rsaprivkey.asn1
++++ b/crypto/rsaprivkey.asn1
+@@ -1,3 +1,10 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 2016 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc8017#appendix-A.1.2
++
+ RsaPrivKey ::= SEQUENCE {
+ 	version		INTEGER,
+ 	n		INTEGER ({ rsa_get_n }),
+diff --git a/crypto/rsapubkey.asn1 b/crypto/rsapubkey.asn1
+index 725498e..0d32b1c 100644
+--- a/crypto/rsapubkey.asn1
++++ b/crypto/rsapubkey.asn1
+@@ -1,3 +1,10 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 2016 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc8017#appendix-A.1.1
++
+ RsaPubKey ::= SEQUENCE {
+ 	n INTEGER ({ rsa_get_n }),
+ 	e INTEGER ({ rsa_get_e })
+diff --git a/fs/smb/server/ksmbd_spnego_negtokeninit.asn1 b/fs/smb/server/ksmbd_spnego_negtokeninit.asn1
+index 0065f19..00151380 100644
+--- a/fs/smb/server/ksmbd_spnego_negtokeninit.asn1
++++ b/fs/smb/server/ksmbd_spnego_negtokeninit.asn1
+@@ -1,3 +1,11 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 1998, 2000 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc2478#section-3.2.1
++-- https://www.rfc-editor.org/rfc/rfc2743#section-3.1
++
+ GSSAPI ::=
+ 	[APPLICATION 0] IMPLICIT SEQUENCE {
+ 		thisMech
+diff --git a/fs/smb/server/ksmbd_spnego_negtokentarg.asn1 b/fs/smb/server/ksmbd_spnego_negtokentarg.asn1
+index 1151933..797e485 100644
+--- a/fs/smb/server/ksmbd_spnego_negtokentarg.asn1
++++ b/fs/smb/server/ksmbd_spnego_negtokentarg.asn1
+@@ -1,3 +1,10 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 1998 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc2478#section-3.2.1
++
+ GSSAPI ::=
+ 	CHOICE {
+ 		negTokenInit
+diff --git a/net/ipv4/netfilter/nf_nat_snmp_basic.asn1 b/net/ipv4/netfilter/nf_nat_snmp_basic.asn1
+index 24b7326..dc2cc57 100644
+--- a/net/ipv4/netfilter/nf_nat_snmp_basic.asn1
++++ b/net/ipv4/netfilter/nf_nat_snmp_basic.asn1
+@@ -1,3 +1,11 @@
++-- SPDX-License-Identifier: BSD-3-Clause
++--
++-- Copyright (C) 1990, 2002 IETF Trust and the persons identified as authors
++-- of the code
++--
++-- https://www.rfc-editor.org/rfc/rfc1157#section-4
++-- https://www.rfc-editor.org/rfc/rfc3416#section-3
++
+ Message ::=
+ 	SEQUENCE {
+ 		version
+-- 
+2.40.1
+

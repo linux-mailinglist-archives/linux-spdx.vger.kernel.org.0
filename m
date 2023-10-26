@@ -2,49 +2,41 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1703A7D95BB
-	for <lists+linux-spdx@lfdr.de>; Fri, 27 Oct 2023 12:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A55A7DA4C9
+	for <lists+linux-spdx@lfdr.de>; Sat, 28 Oct 2023 04:09:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345693AbjJ0K4n (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 27 Oct 2023 06:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53982 "EHLO
+        id S229712AbjJ1CJ6 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 27 Oct 2023 22:09:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345598AbjJ0K4m (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 27 Oct 2023 06:56:42 -0400
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE4329C;
-        Fri, 27 Oct 2023 03:56:39 -0700 (PDT)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1qwKVK-00Bece-Dv; Fri, 27 Oct 2023 18:55:51 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 27 Oct 2023 18:55:56 +0800
-Date:   Fri, 27 Oct 2023 18:55:56 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Lukas Wunner <lukas@wunner.de>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-spdx@vger.kernel.org, David Howells <dhowells@redhat.com>,
-        Tadeusz Struk <tadeusz.struk@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>, keyrings@vger.kernel.org,
-        linux-crypto@vger.kernel.org, Hyunchul Lee <hyc.lee@gmail.com>,
-        Namjae Jeon <linkinjeon@kernel.org>,
-        Steve French <sfrench@samba.org>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Tom Talpey <tom@talpey.com>, linux-cifs@vger.kernel.org,
-        Taehee Yoo <ap420073@gmail.com>,
-        Pablo Neira Ayuso <pablo@netfilter.org>,
-        Jozsef Kadlecsik <kadlec@netfilter.org>,
-        Florian Westphal <fw@strlen.de>, coreteam@netfilter.org,
-        netfilter-devel@vger.kernel.org
-Subject: Re: [PATCH] treewide: Add SPDX identifier to IETF ASN.1 modules
-Message-ID: <ZTuXPAZWVkLvVPHq@gondor.apana.org.au>
-References: <143690ecc1102c0f67fa7faec437ec7b02bb2304.1697885975.git.lukas@wunner.de>
+        with ESMTP id S229446AbjJ1CJ5 (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 27 Oct 2023 22:09:57 -0400
+Received: from mail.durme.pl (mail.durme.pl [217.182.69.186])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEF3B8
+        for <linux-spdx@vger.kernel.org>; Fri, 27 Oct 2023 19:09:55 -0700 (PDT)
+Received: by mail.durme.pl (Postfix, from userid 1002)
+        id 05E224D854; Thu, 26 Oct 2023 07:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=durme.pl; s=mail;
+        t=1698311589; bh=hFxZwVw4rIL+JwfEOGI47p+fdoVOAeqVswP6NWoHSHQ=;
+        h=Date:From:To:Subject:From;
+        b=m7SgojQw2F/ZOUHGUyZ+DKodRIhZ0V6UzchCpNcXo7w2c3AHFPBiVqiCEZVq2/xoZ
+         0/UGJWGFzIKX7qGtlDzQeTEpfpd/PiHh9vbHgq36U+9j3KBlsCm9xWcKx5bjHqMGfE
+         A6QIEQq/U/4May9+XiOYROo6kk8HskVp+37UcHe8GODnM4ju4zU2NH+8zxBmJWkj6c
+         g4c94OMXye2GJRZqL9infpCzOo9aTnm4y0bw0O28N8XZMgIZZsKryQ89dGB3ALsO9A
+         JpsH41kv6EGA39ipdYyZa5Hlq2mSwUuChhhAOULTcR+mxKdM4YGPUnN1a03gjWCPls
+         T+KOLYW9iidYg==
+Received: by mail.durme.pl for <linux-spdx@vger.kernel.org>; Thu, 26 Oct 2023 07:40:07 GMT
+Message-ID: <20231026064500-0.1.56.pqi1.0.7nppqdbjge@durme.pl>
+Date:   Thu, 26 Oct 2023 07:40:07 GMT
+From:   "Krystian Wieczorek" <krystian.wieczorek@durme.pl>
+To:     <linux-spdx@vger.kernel.org>
+Subject: W sprawie samochodu
+X-Mailer: mail.durme.pl
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <143690ecc1102c0f67fa7faec437ec7b02bb2304.1697885975.git.lukas@wunner.de>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,49 +44,23 @@ Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-On Sat, Oct 21, 2023 at 01:23:44PM +0200, Lukas Wunner wrote:
-> Per section 4.c. of the IETF Trust Legal Provisions, "Code Components"
-> in IETF Documents are licensed on the terms of the BSD-3-Clause license:
-> 
-> https://trustee.ietf.org/documents/trust-legal-provisions/tlp-5/
-> 
-> The term "Code Components" specifically includes ASN.1 modules:
-> 
-> https://trustee.ietf.org/documents/trust-legal-provisions/code-components-list-3/
-> 
-> Add an SPDX identifier as well as a copyright notice pursuant to section
-> 6.d. of the Trust Legal Provisions to all ASN.1 modules in the tree
-> which are derived from IETF Documents.
-> 
-> Section 4.d. of the Trust Legal Provisions requests that each Code
-> Component identify the RFC from which it is taken, so link that RFC
-> in every ASN.1 module.
-> 
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> ---
->  I'm adding a new IETF ASN.1 module for PCI device authentication, hence
->  had to research what the correct license is.  Thought I'd fix this up
->  treewide while at it.
-> 
->  Not included here is fs/smb/client/cifs_spnego_negtokeninit.asn1,
->  which is similar to fs/smb/client/ksmbd_spnego_negtokeninit.asn1,
->  but contains a Microsoft extension published as Open Specifications
->  Documentation.  It's unclear to me what license they use:
->  https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-spng/
-> 
->  crypto/asymmetric_keys/pkcs7.asn1            | 7 +++++++
->  crypto/asymmetric_keys/pkcs8.asn1            | 6 ++++++
->  crypto/asymmetric_keys/x509.asn1             | 7 +++++++
->  crypto/asymmetric_keys/x509_akid.asn1        | 5 +++++
->  crypto/rsaprivkey.asn1                       | 7 +++++++
->  crypto/rsapubkey.asn1                        | 7 +++++++
->  fs/smb/server/ksmbd_spnego_negtokeninit.asn1 | 8 ++++++++
->  fs/smb/server/ksmbd_spnego_negtokentarg.asn1 | 7 +++++++
->  net/ipv4/netfilter/nf_nat_snmp_basic.asn1    | 8 ++++++++
->  9 files changed, 62 insertions(+)
+Dzie=C5=84 dobry,
 
-Patch applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+chcieliby=C5=9Bmy zapewni=C4=87 Pa=C5=84stwu kompleksowe rozwi=C4=85zania=
+, je=C5=9Bli chodzi o system monitoringu GPS.
+
+Precyzyjne monitorowanie pojazd=C3=B3w na mapach cyfrowych, =C5=9Bledzeni=
+e ich parametr=C3=B3w eksploatacyjnych w czasie rzeczywistym oraz kontrol=
+a paliwa to kluczowe funkcjonalno=C5=9Bci naszego systemu.=20
+
+Organizowanie pracy pracownik=C3=B3w jest dzi=C4=99ki temu prostsze i bar=
+dziej efektywne, a oszcz=C4=99dno=C5=9Bci i optymalizacja w zakresie pono=
+szonych koszt=C3=B3w, maj=C4=85 dla ka=C5=BCdego przedsi=C4=99biorcy ogro=
+mne znaczenie.
+
+Dopasujemy nasz=C4=85 ofert=C4=99 do Pa=C5=84stwa oczekiwa=C5=84 i potrze=
+b organizacji. Czy mogliby=C5=9Bmy porozmawia=C4=87 o naszej propozycji?
+
+
+Pozdrawiam
+Krystian Wieczorek

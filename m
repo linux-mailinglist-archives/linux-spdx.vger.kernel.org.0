@@ -2,62 +2,34 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBC657E00C6
-	for <lists+linux-spdx@lfdr.de>; Fri,  3 Nov 2023 11:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A8567E0056
+	for <lists+linux-spdx@lfdr.de>; Fri,  3 Nov 2023 11:29:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235490AbjKCIUq (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 3 Nov 2023 04:20:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34898 "EHLO
+        id S234691AbjKCIuF (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Fri, 3 Nov 2023 04:50:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232184AbjKCIUp (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 3 Nov 2023 04:20:45 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F2C123;
-        Fri,  3 Nov 2023 01:20:42 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1cc330e8f58so14953955ad.3;
-        Fri, 03 Nov 2023 01:20:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698999642; x=1699604442; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hzIuuzO3uYHLPMAhKmKgXl6SVxtXUKy5EFHDGv0rKEs=;
-        b=fRbU1EaYSZQxiSWNORlvfdLactCu4AIqfWQQh+Ms6ma1Cm28m1JCtc/jcyKv9AcZl0
-         uHEQ8DJdSksJJnwPHb+7gxmlZX2ic3US89T8x4QeaSgI4TDfFSfehj5r6bOGCF94poOR
-         YDQewlsEnYkz90fL6WCk5Ts+pzZaE2hJSskgsZ7vCok4yVCunplRHeQa5BNs3ye9DvVu
-         +NIMTOmPYOBiQL8c5eODoreE73wsSJGAyhbq/UFK7JvQnQhMHOJJ3M/IsnLFRUsuKqjo
-         mRKFlsD9YIP5+Ufs7QKOVbzMFe9jikNbKcDjyHO8S6DfJZEFTP3sK2ItdNdn4FiB5mQm
-         udoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698999642; x=1699604442;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hzIuuzO3uYHLPMAhKmKgXl6SVxtXUKy5EFHDGv0rKEs=;
-        b=IvWMLRBzJa/UvNnvPAiEMMDBfTU79aHQmG6xmcArHX2PNQoT5sbN51I7YgvBbnCCsz
-         YMu6KAAvPV+KQJmx/vNVpv2hrRW45vmqepD4Khd4NETl34PLkKOybDrJNrlWrN2L63jK
-         x8R5TA4bG0uyvuIFSkzhq4Wpa2n6cc1OsRT9SDsMfleywtC1QaBqUnE5HLKkaf/MqZYt
-         xwF/yqSz8PhkN1yl7laICsgTlPIYtJsaBaUBJh0mKoo4NVuaV9Zh/9NWjIyd+NSzmyO8
-         STu2qhgKr7bAYSBEPk8pIW157tfr+LOKv3j49+JPC9/jjXYx49ffIDcOgMbM5mal0nL4
-         58Nw==
-X-Gm-Message-State: AOJu0Ywem8udj/ib1RBkAzl03THIIlPO2Mb26vG7gOSj3VEW9cztu/kO
-        u9CdAOzZMWXAUFKIcTJXgss=
-X-Google-Smtp-Source: AGHT+IFbupEpJpBE+fPw+rFY6GrjPvAE08fDttD7Zs0YqYx0aVVq4X1zOCepX4KqV49KntGdn8jXvA==
-X-Received: by 2002:a17:902:ea02:b0:1cc:5648:f15c with SMTP id s2-20020a170902ea0200b001cc5648f15cmr14620023plg.48.1698999641966;
-        Fri, 03 Nov 2023 01:20:41 -0700 (PDT)
-Received: from debian.me ([103.131.18.64])
-        by smtp.gmail.com with ESMTPSA id a17-20020a170902ee9100b001bb99e188fcsm889447pld.194.2023.11.03.01.20.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Nov 2023 01:20:41 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 6407591D6704; Fri,  3 Nov 2023 15:20:36 +0700 (WIB)
-Date:   Fri, 3 Nov 2023 15:20:36 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Richard Fontana <rfontana@redhat.com>
+        with ESMTP id S234811AbjKCIuE (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Fri, 3 Nov 2023 04:50:04 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D67CE;
+        Fri,  3 Nov 2023 01:49:57 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 071A1C433C8;
+        Fri,  3 Nov 2023 08:49:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1699001397;
+        bh=Ofczzi1jOkw0vNrrSnkW9v3BzVIAL4bIxgVuUOXMTqg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QwYJFGNqvz8Axixfu9jsq3mxC60EdJcXHwusEqN9sP2JpS+9xqL+Zng3IWiDJOkMK
+         UUC2BbOiQ/9G9cAd77y6lD5y1ddMOlGWIQjsj3pNLyj1uEDdf0G+MO1pnZ/0INaeF8
+         Ln2goZa+7rxe6xigUGWpluhfvPmkmNMYRwqgsGBw=
+Date:   Fri, 3 Nov 2023 09:49:54 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Bagas Sanjaya <bagasdotme@gmail.com>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Documentation <linux-doc@ger.kernel.org>,
+        Linux Documentation <linux-doc@vger.kernel.org>,
         Jonathan Corbet <corbet@lwn.net>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Akira Yokosawa <akiyks@gmail.com>,
         Stanislav Fomichev <sdf@google.com>,
         David Vernet <void@manifault.com>,
@@ -65,104 +37,109 @@ Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Daniel Vetter <daniel.vetter@ffwll.ch>,
         Federico Vaga <federico.vaga@vaga.pv.it>,
         Carlos Bilbao <carlos.bilbao@amd.com>,
-        linux-spdx@vger.kernel.org
+        linux-spdx@vger.kernel.org, Richard Fontana <rfontana@redhat.com>
 Subject: Re: [PATCH RFC 1/4] LICENSES: Add SIL Open Font License 1.1
-Message-ID: <ZUStVO0VSJ6CN_xe@debian.me>
+Message-ID: <2023110317-unhealthy-playable-d5d6@gregkh>
 References: <20231102120053.30630-1-bagasdotme@gmail.com>
  <20231102120053.30630-2-bagasdotme@gmail.com>
- <CAC1cPGyLGEwMBRGhwoGmGBeM8qTbuuUsbeZTiiMNUvk4MT75Gw@mail.gmail.com>
+ <2023110222-renewed-monologue-008e@gregkh>
+ <ZUSrOKDuvcSL6gOH@debian.me>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mQMlOV5B+hEL++/T"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAC1cPGyLGEwMBRGhwoGmGBeM8qTbuuUsbeZTiiMNUvk4MT75Gw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ZUSrOKDuvcSL6gOH@debian.me>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
+On Fri, Nov 03, 2023 at 03:11:36PM +0700, Bagas Sanjaya wrote:
+> On Thu, Nov 02, 2023 at 03:06:19PM +0100, Greg Kroah-Hartman wrote:
+> > On Thu, Nov 02, 2023 at 07:00:43PM +0700, Bagas Sanjaya wrote:
+> > > Add the license text along with appropriate tags for reference and
+> > > tooling. The text is taken from the text as distributed in Google
+> > > Fonts's zip files.
+> > > 
+> > > As the license itself may or may note be compatible with GPLv2,
+> > > let's take on the err side and require combining it with
+> > > GPL-compatible licenses when using the license.
+> > > 
+> > > Cc: linux-spdx@vger.kernel.org
+> > > Cc: Richard Fontana <rfontana@redhat.com>
+> > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
+> > > ---
+> > >  LICENSES/dual/OFL-1.1 | 107 ++++++++++++++++++++++++++++++++++++++++++
+> > 
+> > You add this license, but then never actually reference it in the later
+> > changes, so it's going to be very confusing as to why it is here.  Any
+> > way to add it to the font files themselves so our checker tools can
+> > handle this properly?
+> 
+> There is TTF name string ID called "License". For example, on IBM Plex Sans,
+> the string value is:
+> 
+> ```
+> This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL
+> ```
+> 
+> Checking that string requires scripting fontforge, and since the string value
+> may differ (but has the same license) across different fonts, scripting it
+> can be non-trivial.
 
---mQMlOV5B+hEL++/T
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+And is that in the files you added?  They are binary so it's hard to
+determine this :(
 
-On Thu, Nov 02, 2023 at 10:09:57AM -0400, Richard Fontana wrote:
-> On Thu, Nov 2, 2023 at 8:01=E2=80=AFAM Bagas Sanjaya <bagasdotme@gmail.co=
-m> wrote:
-> >
-> > Add the license text along with appropriate tags for reference and
-> > tooling. The text is taken from the text as distributed in Google
-> > Fonts's zip files.
-> >
-> > As the license itself may or may note be compatible with GPLv2,
-> > let's take on the err side and require combining it with
-> > GPL-compatible licenses when using the license.
->=20
-> I don't really  understand this, though maybe it doesn't practically matt=
-er -
-> "It's best to use it together
-> +  with a GPL2 compatible license using "OR", as OFL-1.1 texts processed =
-by
-> +  the kernel's build system might combine it with content taken from more
-> +  restrictive licenses."
->=20
-> I didn't check if this text is just copied from that in other license fil=
-es.
+> > 
+> > And, it's not going to work as a dual-license, you can't just suddenly
+> > dual-license those font files, right?
+> 
+> I was thinking of putting OFL in LICENSES/exceptions instead due to this
+> nature.
 
-Yes, indeed I adapted it from LICENSES/dual/CC-BY-4.0.
+Yes, it can not be a dual one.
 
->=20
-> I'm not sure how this would actually come up in practice for OFL-1.1.
-> I assume that typically the way OFL-1.1 can cover stuff in the kernel
-> is through font files, and that therefore it would be unlikely for a
-> source file to include any code covered by OFL-1.1. Indeed, as you
-> say:
->=20
-> > +  Do NOT use this license for code, but it's acceptable for fonts (whe=
-re the
-> > +  license is specifically written for them). It's best to use it toget=
-her
->=20
-> Even if that did occur, the use of `OR` is only appropriate if the
-> stuff covered by OFL-1.1 is actually dual-licensed.
->=20
+> > >  1 file changed, 107 insertions(+)
+> > >  create mode 100644 LICENSES/dual/OFL-1.1
+> > > 
+> > > diff --git a/LICENSES/dual/OFL-1.1 b/LICENSES/dual/OFL-1.1
+> > > new file mode 100644
+> > > index 00000000000000..00b8db08bd0e54
+> > > --- /dev/null
+> > > +++ b/LICENSES/dual/OFL-1.1
+> > > @@ -0,0 +1,107 @@
+> > > +Valid-License-Identifier: OFL-1.1
+> > > +SPDX-URL: https://spdx.org/licenses/OFL-1.1
+> > > +Usage-Guide:
+> > > +  Do NOT use this license for code, but it's acceptable for fonts (where the
+> > > +  license is specifically written for them). It's best to use it together
+> > > +  with a GPL2 compatible license using "OR", as OFL-1.1 texts processed by
+> > > +  the kernel's build system might combine it with content taken from more
+> > > +  restrictive licenses.
+> > > +  To use the SIL Open Font License 1.1, put the following SPDX tag/value pair
+> > > +  into a comment according to the placement guidelines in the licensing rules
+> > > +  documentation:
+> > > +    SPDX-License-Identifier: OFL-1.1
+> > 
+> > Where did this Usage-Guide from?
+> 
+> Adapted from LICENSES/dual/CC-BY-4.0.
 
-Another alternative is to put license notice on CSS code that includes
-the font. In this case, in Documentation/sphinx-static/fonts.css, the top
-of the file should've been written as:
+Which it shouldn't be :(
 
-```
-/* SPDX-License-Identifier: GPL-2.0 */
-/* IBM Plex Sans, IBM Plex Mono, and Newsreader is licensed under the SIL O=
-pen
- * Font License, version 1.1. See OFL.txt in the same directory as this file
- * for details. */
-<actual stylesheet>
-=2E..
-```
+Anyway, this is independent of the issue if we actually should take
+these fonts into the kernel tree, and mandate their use (my opinion is
+no, that's not for us to use, and especially for any action that might
+cause a web browser to look elsewhere outside of our documentation.)
 
-Is above acceptable?
+Also, for documentation, I'm pretty sure that serif fonts is proven to
+be "nicer" overall by many studies.
 
-Thanks.
+thanks,
 
---=20
-An old man doll... just what I always wanted! - Clara
-
---mQMlOV5B+hEL++/T
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZUStVAAKCRD2uYlJVVFO
-o9gLAQDXh5KuHQXosius1a/fheR87htYw1ghwPHEieWn7c3wCwEA845XRPFLf/07
-dW6DDLQVWuFKmhu7qx9KDrsNapzPXQA=
-=T3vu
------END PGP SIGNATURE-----
-
---mQMlOV5B+hEL++/T--
+greg k-h

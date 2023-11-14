@@ -2,69 +2,61 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 566E27E88EF
-	for <lists+linux-spdx@lfdr.de>; Sat, 11 Nov 2023 04:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9091A7EAC02
+	for <lists+linux-spdx@lfdr.de>; Tue, 14 Nov 2023 09:49:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230172AbjKKDU7 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Fri, 10 Nov 2023 22:20:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60344 "EHLO
+        id S232383AbjKNIt3 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Tue, 14 Nov 2023 03:49:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbjKKDU6 (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Fri, 10 Nov 2023 22:20:58 -0500
-X-Greylist: delayed 5304 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 10 Nov 2023 19:20:55 PST
-Received: from mail.maprial.com (mail.maprial.com [190.181.35.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EFA22D7F
-        for <linux-spdx@vger.kernel.org>; Fri, 10 Nov 2023 19:20:55 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.maprial.com (Postfix) with ESMTP id 9563386B2729;
-        Fri, 10 Nov 2023 18:56:00 -0400 (-04)
-Received: from mail.maprial.com ([127.0.0.1])
-        by localhost (mail.maprial.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 60xbyK38Z6aG; Fri, 10 Nov 2023 18:56:00 -0400 (-04)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.maprial.com (Postfix) with ESMTP id 893C486B2746;
-        Fri, 10 Nov 2023 17:47:01 -0400 (-04)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.maprial.com 893C486B2746
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maprial.com;
-        s=8A254412-65B9-11ED-A564-8B9C10001A2B; t=1699652821;
-        bh=WOZURJ77pkiMUL2pPLC14ifVPRvyTQIBEQmxuN1ezAA=;
-        h=MIME-Version:To:From:Date:Message-Id;
-        b=YvQjCkQnpC3RVOvYeE0YtGJTe1PG6kej97+Rlk7Df13Upri7cmAmixNniNnlb1kGM
-         zlU+OujMt9ZM5wg4y5hc6AsAO0btuCcuYcww0SCsPlBMnIaNGZyg8ibOfMa256hDu+
-         iM81nxMCH/ruNKhyV6019duS/tCSZAcgSeJTkNOo=
-X-Virus-Scanned: amavisd-new at mail.maprial.com
-Received: from mail.maprial.com ([127.0.0.1])
-        by localhost (mail.maprial.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id YkVrldljaBim; Fri, 10 Nov 2023 17:47:01 -0400 (-04)
-Received: from [192.168.1.152] (unknown [51.179.104.230])
-        by mail.maprial.com (Postfix) with ESMTPSA id 857D0816E28B;
-        Fri, 10 Nov 2023 17:04:22 -0400 (-04)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S232441AbjKNItR (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Tue, 14 Nov 2023 03:49:17 -0500
+Received: from mail.commercesolutions.pl (unknown [162.19.155.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494CC1980
+        for <linux-spdx@vger.kernel.org>; Tue, 14 Nov 2023 00:48:08 -0800 (PST)
+Received: by mail.commercesolutions.pl (Postfix, from userid 1002)
+        id CDB0F235DB; Tue, 14 Nov 2023 08:46:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=commercesolutions.pl;
+        s=mail; t=1699951611;
+        bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
+        h=Date:From:To:Subject:From;
+        b=sWs2gNCTQ1YdIMDjJCM+TphHKQwZYP517NrlEJs19OKxRe2o+4CrJ0xGy1xnJcQ62
+         mmecphtNW4PIg+qPDqLm+xxi6OGY6kgr+4yjoDaaTSzrlFKfBlaAfP12OKt2nPgFdb
+         OkDAclPBRKQ5f3kpu5wZKYHymFchBpfXh2NIeSjiZNCrX1L6ENJ/yjnPxXontYqKZE
+         pZnPjWwkz1GLe7aVtGbWs7QR8Ax6BH927R3dsX63wdSM1fBwcUza3VLpHzUHQ38S2L
+         +fAStSsSDDdxqRFin/FCiRbU3WJERaxMjQF6Y6IlctRXF2bMHVp3rRL6A0OCANN98u
+         C69CESPu0cmQg==
+Received: by mail.commercesolutions.pl for <linux-spdx@vger.kernel.org>; Tue, 14 Nov 2023 08:46:03 GMT
+Message-ID: <20231114074500-0.1.9w.2070b.0.sewupjzafc@commercesolutions.pl>
+Date:   Tue, 14 Nov 2023 08:46:03 GMT
+From:   "Kamil Tralewski" <kamil.tralewski@commercesolutions.pl>
+To:     <linux-spdx@vger.kernel.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.commercesolutions.pl
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: =?utf-8?b?4oKsIDEwMC4wMDAuMDAwPw==?=
-To:     Recipients <gvalencia@maprial.com>
-From:   gvalencia@maprial.com
-Date:   Fri, 10 Nov 2023 22:04:13 +0100
-Reply-To: joliushk@gmail.com
-Message-Id: <20231110210423.857D0816E28B@mail.maprial.com>
-X-Spam-Status: No, score=3.1 required=5.0 tests=BAYES_50,DKIM_INVALID,
-        DKIM_SIGNED,FREEMAIL_FORGED_REPLYTO,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: ***
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <linux-spdx.vger.kernel.org>
 X-Mailing-List: linux-spdx@vger.kernel.org
 
-Goededag,
-Ik ben mevrouw Joanna Liu en een medewerker van Citi Bank Hong Kong.
-Kan ik =E2=82=AC 100.000.000 aan u overmaken? Kan ik je vertrouwen
+Dzie=C5=84 dobry,
 
+zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
+=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
+o dalszych rozm=C3=B3w.=20
 
-Ik wacht op jullie reacties
-Met vriendelijke groeten
-mevrouw Joanna Liu
+Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
+=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
+=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
+strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
+
+Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
+
+Pozdrawiam
+Kamil Tralewski

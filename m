@@ -2,43 +2,45 @@ Return-Path: <linux-spdx-owner@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9091A7EAC02
-	for <lists+linux-spdx@lfdr.de>; Tue, 14 Nov 2023 09:49:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CE947EDF09
+	for <lists+linux-spdx@lfdr.de>; Thu, 16 Nov 2023 11:59:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232383AbjKNIt3 (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
-        Tue, 14 Nov 2023 03:49:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57674 "EHLO
+        id S1345029AbjKPK7w (ORCPT <rfc822;lists+linux-spdx@lfdr.de>);
+        Thu, 16 Nov 2023 05:59:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232441AbjKNItR (ORCPT
-        <rfc822;linux-spdx@vger.kernel.org>); Tue, 14 Nov 2023 03:49:17 -0500
-Received: from mail.commercesolutions.pl (unknown [162.19.155.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494CC1980
-        for <linux-spdx@vger.kernel.org>; Tue, 14 Nov 2023 00:48:08 -0800 (PST)
-Received: by mail.commercesolutions.pl (Postfix, from userid 1002)
-        id CDB0F235DB; Tue, 14 Nov 2023 08:46:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=commercesolutions.pl;
-        s=mail; t=1699951611;
-        bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
+        with ESMTP id S1345056AbjKPK7w (ORCPT
+        <rfc822;linux-spdx@vger.kernel.org>); Thu, 16 Nov 2023 05:59:52 -0500
+X-Greylist: delayed 525 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Nov 2023 02:59:45 PST
+Received: from mail.raportygospodarcze.pl (mail.raportygospodarcze.pl [51.195.117.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A6E9A
+        for <linux-spdx@vger.kernel.org>; Thu, 16 Nov 2023 02:59:44 -0800 (PST)
+Received: by mail.raportygospodarcze.pl (Postfix, from userid 1002)
+        id 5CB8CA3517; Thu, 16 Nov 2023 10:50:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=raportygospodarcze.pl; s=mail; t=1700131857;
+        bh=Q787bUI8wqiKELAtyWRvCTxaBwNaZfpooGhkyk63cfU=;
         h=Date:From:To:Subject:From;
-        b=sWs2gNCTQ1YdIMDjJCM+TphHKQwZYP517NrlEJs19OKxRe2o+4CrJ0xGy1xnJcQ62
-         mmecphtNW4PIg+qPDqLm+xxi6OGY6kgr+4yjoDaaTSzrlFKfBlaAfP12OKt2nPgFdb
-         OkDAclPBRKQ5f3kpu5wZKYHymFchBpfXh2NIeSjiZNCrX1L6ENJ/yjnPxXontYqKZE
-         pZnPjWwkz1GLe7aVtGbWs7QR8Ax6BH927R3dsX63wdSM1fBwcUza3VLpHzUHQ38S2L
-         +fAStSsSDDdxqRFin/FCiRbU3WJERaxMjQF6Y6IlctRXF2bMHVp3rRL6A0OCANN98u
-         C69CESPu0cmQg==
-Received: by mail.commercesolutions.pl for <linux-spdx@vger.kernel.org>; Tue, 14 Nov 2023 08:46:03 GMT
-Message-ID: <20231114074500-0.1.9w.2070b.0.sewupjzafc@commercesolutions.pl>
-Date:   Tue, 14 Nov 2023 08:46:03 GMT
-From:   "Kamil Tralewski" <kamil.tralewski@commercesolutions.pl>
+        b=ee26juOm4jG1Zg1v4++kCKlAWUqOGhOMzpQGtRcXZLnwDjzW8jBU6s0iYuSwf0mKR
+         lrP72LXYs+GxBXnr2CI/lydTw/S7sTE9RE27EMBkdMrLSjMu3OBbpolss/uQ9hl/Jl
+         e+e1tWfcOJffKuEDKIk4YyZFZPirZIfoTYfLsm4TNwTbAeX9WNRkfNNT8AhgL50NhG
+         3hlA++5SqxDlUdgP+R5BGJm2psx5MpQbXWjhgkBhksJDMuUy1WKs9wZ2qwQse9Y4QF
+         RkCJtb3i1fZw3U5NgxmdHEHqob1BvQt9qrwKU1cmUkVJmjjatM/jB0W+0RE9A/cCBy
+         V0YzLGSDjtcQA==
+Received: by mail.raportygospodarcze.pl for <linux-spdx@vger.kernel.org>; Thu, 16 Nov 2023 10:50:35 GMT
+Message-ID: <20231116093111-0.1.bm.1hw4n.0.9ilka0ep2e@raportygospodarcze.pl>
+Date:   Thu, 16 Nov 2023 10:50:35 GMT
+From:   "Maksymilian Ciszewski" <maksymilian.ciszewski@raportygospodarcze.pl>
 To:     <linux-spdx@vger.kernel.org>
-Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.commercesolutions.pl
+Subject: =?UTF-8?Q?Prosz=C4=99_o_kontakt?=
+X-Mailer: mail.raportygospodarcze.pl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_40,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -47,16 +49,16 @@ X-Mailing-List: linux-spdx@vger.kernel.org
 
 Dzie=C5=84 dobry,
 
-zapozna=C5=82em si=C4=99 z Pa=C5=84stwa ofert=C4=85 i z przyjemno=C5=9Bci=
-=C4=85 przyznaj=C4=99, =C5=BCe przyci=C4=85ga uwag=C4=99 i zach=C4=99ca d=
-o dalszych rozm=C3=B3w.=20
+Czy jest mo=C5=BCliwo=C5=9B=C4=87 nawi=C4=85zania wsp=C3=B3=C5=82pracy z =
+Pa=C5=84stwem?
 
-Pomy=C5=9Bla=C5=82em, =C5=BCe mo=C5=BCe m=C3=B3g=C5=82bym mie=C4=87 sw=C3=
-=B3j wk=C5=82ad w Pa=C5=84stwa rozw=C3=B3j i pom=C3=B3c dotrze=C4=87 z t=C4=
-=85 ofert=C4=85 do wi=C4=99kszego grona odbiorc=C3=B3w. Pozycjonuj=C4=99 =
-strony www, dzi=C4=99ki czemu generuj=C4=85 =C5=9Bwietny ruch w sieci.
+Z ch=C4=99ci=C4=85 porozmawiam z osob=C4=85 zajmuj=C4=85c=C4=85 si=C4=99 =
+dzia=C5=82aniami zwi=C4=85zanymi ze sprzeda=C5=BC=C4=85.
 
-Mo=C5=BCemy porozmawia=C4=87 w najbli=C5=BCszym czasie?
+Pomagamy skutecznie pozyskiwa=C4=87 nowych klient=C3=B3w.
+
+Zapraszam do kontaktu.
+
 
 Pozdrawiam
-Kamil Tralewski
+Maksymilian Ciszewski

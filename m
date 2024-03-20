@@ -1,59 +1,108 @@
-Return-Path: <linux-spdx+bounces-1-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-3-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460047F22E7
-	for <lists+linux-spdx@lfdr.de>; Tue, 21 Nov 2023 02:10:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FCB88177A
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Mar 2024 19:48:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77E571C20D64
-	for <lists+linux-spdx@lfdr.de>; Tue, 21 Nov 2023 01:10:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CF651C214DD
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Mar 2024 18:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F52524C;
-	Tue, 21 Nov 2023 01:10:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="S24mjDjJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E5B8565E;
+	Wed, 20 Mar 2024 18:47:49 +0000 (UTC)
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailscanner01.zoner.fi (mailscanner01.zoner.fi [84.34.166.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 064B2522C
-	for <linux-spdx@vger.kernel.org>; Tue, 21 Nov 2023 01:10:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABA43C433C7;
-	Tue, 21 Nov 2023 01:10:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1700529029;
-	bh=WydedWHI5hgSzmjYaAgFcEvQrWisnvd0Tah1sl3VwoE=;
-	h=Date:From:To:Subject:From;
-	b=S24mjDjJXi0+y/7WMkLWPaspFF3bW+oC0R6i99c392bAUP7007JMxQlaQGEtFUUAc
-	 DjKFyQiAZACwiUcYMNfl74hD9dOIEqs84CJvwif4Vgt0YDa3YlLOzkhU/QTy9s8s6i
-	 41vybn0qU02ovLAYXOoOzewGW7FR5EUv+BljetWw=
-Date: Mon, 20 Nov 2023 20:10:28 -0500
-From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-To: linux-spdx@vger.kernel.org
-Subject: PSA: this list has moved to new vger infra (no action required)
-Message-ID: <20231120-literate-prehistoric-aardwark-aca7ad@nitro>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAD285266;
+	Wed, 20 Mar 2024 18:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.34.166.10
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710960469; cv=none; b=Fg8A0GZQ6KQEuZKYzWxYLgDgeoDM4/B7BDnlFfiEn9pQz1LfjWGzV7y+Zw3pJqtgJWubJGAV84Wc//i03B1N6BfiLJ6ORvCukdXj2fDfOHlZHhlyuQS1NLR5gn7SS+9U3CA/7lBJN9j1hS1rlQyd8vNmaTOig4RStDzkUgaC7wI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710960469; c=relaxed/simple;
+	bh=VmUzXlBLA59J9Pdr+pMwk3dhjJxt13xaiba0K2cr7oc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=P4NovFwnjQPMDLHmTot47fclAcXWCeLFLDY3NOjcxxYNjr2jHD/7Xhe2oEKElCN6rXs7XEgILUgdG3WSYe+NEwBzub8ol4zPOjJ8RF+rqXnb+huPrUpVQsuOK7zNqGD48PAy5z0FUbDqOiWHZocivIADyOK9gDN+U5bzCVbC29w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tukaani.org; spf=pass smtp.mailfrom=tukaani.org; arc=none smtp.client-ip=84.34.166.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tukaani.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tukaani.org
+Received: from www25.zoner.fi (www25.zoner.fi [84.34.147.45])
+	by mailscanner01.zoner.fi (Postfix) with ESMTPS id 2141D4247B;
+	Wed, 20 Mar 2024 20:39:26 +0200 (EET)
+Received: from mail.zoner.fi ([84.34.147.244])
+	by www25.zoner.fi with esmtp (Exim 4.96.1-7-g79877b70e)
+	(envelope-from <lasse.collin@tukaani.org>)
+	id 1rn0qT-0001dW-2r;
+	Wed, 20 Mar 2024 20:39:25 +0200
+From: Lasse Collin <lasse.collin@tukaani.org>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Lasse Collin <lasse.collin@tukaani.org>,
+	Jia Tan <jiat0218@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	linux-spdx@vger.kernel.org
+Subject: [PATCH 02/11] LICENSES: Add 0BSD license text
+Date: Wed, 20 Mar 2024 20:38:35 +0200
+Message-ID: <20240320183846.19475-3-lasse.collin@tukaani.org>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240320183846.19475-1-lasse.collin@tukaani.org>
+References: <20240320183846.19475-1-lasse.collin@tukaani.org>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Hello, all:
+The license text was copied from:
 
-This list has been migrated to new vger infrastructure. No action is required
-on your part and there should be no change in how you interact with this list.
+    https://spdx.org/licenses/0BSD.html
 
-This message acts as a verification test that the archives are properly
-updating.
+Reviewed-by: Jia Tan <jiat0218@gmail.com>
+Signed-off-by: Lasse Collin <lasse.collin@tukaani.org>
+---
 
-If something isn't working or looking right, please reach out to
-helpdesk@kernel.org.
+Notes:
+    0BSD is the ISC license without the requirements to preserve copyright
+    and license notices.
 
-Best regards,
--K
+ LICENSES/deprecated/0BSD | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 LICENSES/deprecated/0BSD
+
+diff --git a/LICENSES/deprecated/0BSD b/LICENSES/deprecated/0BSD
+new file mode 100644
+index 000000000000..e4b95b749966
+--- /dev/null
++++ b/LICENSES/deprecated/0BSD
+@@ -0,0 +1,23 @@
++Valid-License-Identifier: 0BSD
++SPDX-URL: https://spdx.org/licenses/0BSD.html
++Usage-Guide:
++  To use the BSD Zero Clause License put the following SPDX tag/value
++  pair into a comment according to the placement guidelines in the
++  licensing rules documentation:
++    SPDX-License-Identifier: 0BSD
++License-Text:
++
++BSD Zero Clause License
++
++Copyright (c) <year> <copyright holders>
++
++Permission to use, copy, modify, and/or distribute this software for any
++purpose with or without fee is hereby granted.
++
++THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
++WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
++MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
++SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
++WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
++OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
++CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+-- 
+2.44.0
+
 

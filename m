@@ -1,88 +1,115 @@
-Return-Path: <linux-spdx+bounces-10-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-11-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90B19D129A
-	for <lists+linux-spdx@lfdr.de>; Mon, 18 Nov 2024 15:04:31 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DDBB9D6383
+	for <lists+linux-spdx@lfdr.de>; Fri, 22 Nov 2024 18:45:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80251280B97
-	for <lists+linux-spdx@lfdr.de>; Mon, 18 Nov 2024 14:04:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76F57160606
+	for <lists+linux-spdx@lfdr.de>; Fri, 22 Nov 2024 17:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 145591A9B30;
-	Mon, 18 Nov 2024 14:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B1A1DF970;
+	Fri, 22 Nov 2024 17:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="XlUzgVwZ"
+	dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b="dViaIwAC"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90F919923C;
-	Mon, 18 Nov 2024 14:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512731DE3CF;
+	Fri, 22 Nov 2024 17:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.79.88.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731938649; cv=none; b=C+5VL0RgcHTZW/xzYzbd3h02K+P3gN7jqVhxR6ELb+YCjbuU57Y3+FFS1mHDWugHjKOBEUUgswWrj9+H7YO6Pu/vEFkk/FqIbCmbjJMiAqJOB3jQaiZkzz8TYLZfEjaPkC44SHRml4oC598GSF6HGZvCRmBYVkMMPCPgYpSd+zM=
+	t=1732297546; cv=none; b=hJprXxAgL15+90RT5I2NvCeNxGBipy+iiWTGk9wn3HkElhHS+dSMNg02HoP5G7iPIFrBdlwr/9Yxak2TCg62HRfuiGPgr2yA07FFnHO8m02GyA1j6YVseRFQdV5y8Z40gw5VBdcn3wKiQTgBGRRUtmSRYnZkJlir9f/eY724zik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731938649; c=relaxed/simple;
-	bh=2fTyCTdjlOUp1jeLsMB22Hjo9p8qmllhGShucuPmrcw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VcnjtUzs6KBtQchaBP6+NM5uBvawZus5IUI/Dz3ilGusZxZJtU24ibjj+SGTciOCs5uW6iq5XnQllEk89XHqc4RRDsAkgHor2KeU33j5kZ+9ua298KfF6iBfTu03YJakpwM0+Td4HL+Tuj0K1UMEHRYbGPJI81Wh/Dv/jXGfNDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=XlUzgVwZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E11C4CECC;
-	Mon, 18 Nov 2024 14:04:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1731938648;
-	bh=2fTyCTdjlOUp1jeLsMB22Hjo9p8qmllhGShucuPmrcw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XlUzgVwZeLLUku5L/HPS0MdcUF1JNDorGzzxikoo78QS+GV3AR5+BZCKzXsrcvirN
-	 +97iflMwbM26K2GK7HS0EVAeI9xJFY9XojcYctTbsg23L1B55r/RNj6aAGyznV/0hM
-	 N3DXDHjZNvB5hbACL4CxAEUIZzSLns7D2D3Bozys=
-Date: Mon, 18 Nov 2024 15:03:39 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Daniel Gomez <da.gomez@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	Daniel Gomez <d+samsung@kruces.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Werner Sembach <wse@tuxedocomputers.com>, mcgrof@kernel.org,
-	petr.pavlu@suse.com, samitolvanen@google.com,
-	linux-modules@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux@leemhuis.info, vv@tuxedocomputers.com, cs@tuxedo.de,
-	linux-spdx@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] module: Block a module by TUXEDO from accessing
- GPL symbols
-Message-ID: <2024111821-gathering-storage-04c3@gregkh>
-References: <20241115185253.1299264-1-wse@tuxedocomputers.com>
- <20241115185253.1299264-3-wse@tuxedocomputers.com>
- <D5NGCPSP7EO8.28YI337NY203X@kruces.com>
- <CGME20241116172026eucas1p2ae18643501640a7c6a3a796c30b60fed@eucas1p2.samsung.com>
- <wnfqe7q2aby76zokkh77jhlwc2dbr243kycmejc4wj5wflywgi@6sox742ip22g>
- <D5P6NQ9ZWP13.K9G49CLMO6LV@samsung.com>
+	s=arc-20240116; t=1732297546; c=relaxed/simple;
+	bh=vo5DD1G4HjAe0fJgN8P4fzE9QAvxxL7XdNWAXnMCSD0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=o9s/yGKPr3DRgsd8MiQItYLqA7oNEOD8o/VHfAqLybhWGfwUQWw3/WANugsXYWuyTW9v2AJDR9PMO7izxYTuUGmUcrMEgQhm1tc5af+hKJbn+3ebYpwH1AIGFFuo63V4HB0w24a4M6nV/+OcVLcx4NN6KuWX6NC67/UD2fyNI+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net; spf=pass smtp.mailfrom=lwn.net; dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b=dViaIwAC; arc=none smtp.client-ip=45.79.88.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lwn.net
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 6D11A403E5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+	t=1732297544; bh=WPSuqGBXOdJi9AKpOIzbIVnx/Y85j5L193AofJsBr74=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=dViaIwACZ70Y65Lmsog2t5yeJ0Mq2lNfO3SwoYHD8C27nX8XDrUrsXAdbTK3S2HHS
+	 pmo3KNSDOEgHAkxq1wf0xmpDA01ZZymg4/FS+2fcyrLoKglZNyb+CtrfOxg+EStfYM
+	 ZNEolV/MFyph83DKhyN7upaBlbYM/+kUAwN+HmWcKI3lKfnhI84gdJbesT8LLsHIAt
+	 Lqni9luRvm4hL9ULMtwlci8q4A1LR+Z1ALxzynhZJsR4B35uFFPH14cInmcK8WFnHF
+	 W3tzhWWg/V/glcDS2XdOQzbfTa1IfaUTn0NCSxUllahBq/Gfi9wGG2hWkdfMG8FBUn
+	 /iylAglaH68TA==
+Received: from localhost (unknown [IPv6:2601:280:5e00:625::1fe])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ms.lwn.net (Postfix) with ESMTPSA id 6D11A403E5;
+	Fri, 22 Nov 2024 17:45:44 +0000 (UTC)
+From: Jonathan Corbet <corbet@lwn.net>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Thomas Gleixner
+ <tglx@linutronix.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Werner Sembach <wse@tuxedocomputers.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org,
+ workflows@vger.kernel.org
+Subject: Re: [PATCH] docs/licensing: Clarify wording about "GPL" and
+ "Proprietary"
+In-Reply-To: <20241115103842.585207-2-ukleinek@kernel.org>
+References: <20241115103842.585207-2-ukleinek@kernel.org>
+Date: Fri, 22 Nov 2024 10:45:43 -0700
+Message-ID: <87iksf2md4.fsf@trenco.lwn.net>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D5P6NQ9ZWP13.K9G49CLMO6LV@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 18, 2024 at 10:05:27AM +0100, Daniel Gomez wrote:
-> Thomas, Greg, are we using any specific SPDX version for kernel license
-> identifiers? Why the new identifiers where amended as valid and not
-> replacing [2] the old ones? Was it to avoid replacing all files with the
-> old id?
+Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org> writes:
 
-Yes it was.  Let's worry about getting all files in the kernel properly
-tagged before even considering moving to newer versions of the SPDX
-specification.  When we started this, we used the most up to date tags,
-but then they changed, and we didn't want to change all of the kernel
-while half-way in the middle of the conversion.
+> There are currently some doubts about out-of-tree kernel modules licensed
+> under GPLv3 and if they are supposed to be able to use symbols exported
+> using EXPORT_SYMBOL_GPL.
+>
+> Clarify that "Proprietary" means anything non-GPL2 even though the
+> license might be an open source license. Also disambiguate "GPL
+> compatible" to "GPLv2 compatible".
+>
+> Signed-off-by: Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org>
+> ---
+> Hello,
+>
+> these are the locations that I found by a quick grep. If you spot a
+> document that needs similar updating, please tell.
+>
+> The change in license-rules.rst looks bigger than it actually is due to
+> changing where the line wrappings occur. With `git diff --word-diff` it
+> reduces to:
+>
+>     "Proprietary"                 The module is under a proprietary licen=
+se.
+>                                   {+"Proprietary" is to be understood onl=
+y as+}
+> {+                                "The license is not compatible to GPLv2=
+".+}
+>                                   This string is solely for [-proprietary=
+-]{+non-GPL2 compatible+}
+>                                   third party modules and cannot be used =
+for
+>
+> Best regards
+> Uwe
+>
+>  Documentation/kernel-hacking/hacking.rst |  2 +-
+>  Documentation/process/license-rules.rst  | 18 ++++++++++--------
+>  2 files changed, 11 insertions(+), 9 deletions(-)
 
-Just leave it as-is please.
+There seem to be no objections, so I've applied this.
 
-thanks,
+Thanks,
 
-greg k-h
+jon
 

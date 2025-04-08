@@ -1,78 +1,78 @@
-Return-Path: <linux-spdx+bounces-21-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-22-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C1E0A7F814
-	for <lists+linux-spdx@lfdr.de>; Tue,  8 Apr 2025 10:39:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D61A7FA13
+	for <lists+linux-spdx@lfdr.de>; Tue,  8 Apr 2025 11:44:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D52D189775A
-	for <lists+linux-spdx@lfdr.de>; Tue,  8 Apr 2025 08:39:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 241481889053
+	for <lists+linux-spdx@lfdr.de>; Tue,  8 Apr 2025 09:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD97F263C77;
-	Tue,  8 Apr 2025 08:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8996526562B;
+	Tue,  8 Apr 2025 09:33:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CXIozNZU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nMyBRgND"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED8120B7EF;
-	Tue,  8 Apr 2025 08:39:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A970825FA04;
+	Tue,  8 Apr 2025 09:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744101550; cv=none; b=gU97a/E/88z7IQhJ96qrRKfGKA7sWfMlq9oXd4ZM1FnRNx6faDSXpGYMbGulrgVbDKHYSziO2p9aEp7DcVxfxVF2GTSub0B5AEnH7dzDcHjYihs5p8F7tRFqGG7NdrFxYhfWmyAt+6eeAvEOEo6b+Ec11MtsTP6jXW8jWbn98mc=
+	t=1744104804; cv=none; b=ibSUOOUnMRI6sev8y0N07SyCVRxevd0FJO56VSpWYpS2BwNcMHNZYPTOCFb/OX+w/uuSLMtGrKQ1QDvAEtjAFRdgOQv0JA1FP4nefnwLF9ibClaWjgZhQIpBFaVxXa5HFQ4suYAoYJ/pEMEXD8TjRahMausMTugB77P3QWn+V/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744101550; c=relaxed/simple;
-	bh=405oCv0v0rr+OMkwd4+3qXpKT+1Zz2yzY0VGQnD72Mk=;
+	s=arc-20240116; t=1744104804; c=relaxed/simple;
+	bh=380mMZGsW2w+OgssflwNeYDmZyu212sTwAYryOrAOVU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FPA1cJjxmVK1TpIPVQ+uwzOTtnczL7J4hCnYN7PD1ugkTNRdI1HuPNy7taERFf17sSX1qQCpnh/XsO5Y6kB0Qx4FXwXrc5kr97TzWHGS4m9ek+QkqQj6A4ypp3/1TaqA0//VrzVgqa+vjoPkZd4D4p0yGpqk6Hs9mwtIhgzkQp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CXIozNZU; arc=none smtp.client-ip=209.85.218.44
+	 Content-Type:Content-Disposition:In-Reply-To; b=rY/69wb7rKg/ZC0IFnUSAaFP0EFwPMgn+d6gbHYhu8OPG7ExVvQ+HNjxswzot6JhwNsWOciCiS7FVt9eWwCm1TPPNFmzQFI4+VsS79IAAPKKoI8xrDjdhRIyQwBYY9Q2qTwzBjKN2GbTfE8FcYQoUZ8mguXnUnOLF04jkVpj960=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nMyBRgND; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ac345bd8e13so889164166b.0;
-        Tue, 08 Apr 2025 01:39:08 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aaee2c5ee6eso717625966b.1;
+        Tue, 08 Apr 2025 02:33:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744101547; x=1744706347; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1744104801; x=1744709601; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=HDyIU+FiexlI8Yp4O22LTNSEscJysno17gzKYI5gbtg=;
-        b=CXIozNZUON3/l+Ds6C22g475uqduIrepAkmPC/PiorJyV3vjUgrWZZ4DUsVTSV4MFF
-         vI1aq0viq1CHqyJDSw6Qww2BVPaiPJXKp7l1borenr35lsdlMSpur0Vn2OmkxzfqldYI
-         ChLHI0/NPGCgzuzfWgL9bnGREQaUgRmRPXvhSr7fDySRvU4T12z79Wrt5ZVc0oIMp70V
-         oy+7IfQyjI3HEWquBntbd/afeEQHy3HGSXxYbcmg/q4gEdsUqddBTDmw0Ozhdd/gogDo
-         5aI03oyMu4yeLrvmd4ubUMKkTZTEhghtnlNobGK3ipytkMcPLtQMANex+1QN+/SqjKaM
-         kgVw==
+        bh=MU/Lb/1w/rHKsFuc9Ox3Kn8a905i0mooFwtMAQiNnDM=;
+        b=nMyBRgNDCL1wCac9VXJdCsnfz3GHZVqQgM9Rxm5QqgYslQbZp6qWEnBvhxbWexGh6t
+         LJXYEYKcBCBlhYSpxOFr3GCY5MxgZJI5sEF+/hJ18QEZu9ClxHrJ37kj5kBF6zkSmuFY
+         vAqUtiSiblVpRYRbVpRQLU1rQO3DjtLMKDMH/zFjLSS9wsdUgbCVCNTZuOk766xf8/jP
+         Hojc9nVLGZDI/22g2w7MFvjwC7edUVf1WHLP/2CNw9y/T0ChcTV3RwuRHDQaf8GP+Cup
+         H4lkp4UB9ohzvk5P8qFCZz9bWpuZzZSWhDnJ0fB5+V4VO+HaEoIybOkQPelvg3q3iGlH
+         oOHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744101547; x=1744706347;
+        d=1e100.net; s=20230601; t=1744104801; x=1744709601;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HDyIU+FiexlI8Yp4O22LTNSEscJysno17gzKYI5gbtg=;
-        b=iuaOri0GI6XG2HxJV0PH9nBql4wsUYiaGEBzN03Aqft++ch1sFJGWfbYnSS6hgKyMX
-         N1EGJ6DxWYCUkNNV/G8bDpQNZ1e+hRUarpKXdQ1iIy6IE6XZ+JXCxmxR1rwluvrzFVPZ
-         p+mP0wd/0jFjypnc8kPzdwoBzLsO5v1kJmgoV/ziVl7EO0JutIqFxILPUthNTVHzJMBy
-         jZ7vePZK5lvP7yOSpbCO5WRiVbAyDv9S8vhNupN64satQxUzC63+cN3Lw0EjTwYAYmUZ
-         K4IK4s6yrveRjl5t9UXsN1YMD94G2vKBWPbbvwKnEdJHJabqpFOdSP35ISXqP9w5Q0mD
-         7nJA==
-X-Forwarded-Encrypted: i=1; AJvYcCUO7H5TeGV79bL4VirdsLFj6/gQmmEavTLBr22+faH+EmjvxQSJT71N/ksAoSywImfrJpee/eVOGApbXA==@vger.kernel.org, AJvYcCXvbZ4tZYpkAFAe1YDSKCVLGVBeEAmbu6ntMMAYUBeiqL1IEg5iJmOpYxtANFCRd07JB1MWs0dq1Icwr08=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1mgShSEqWjHsxIag6TDTBebW6wVtvic94dic/giZg0X9YdMn8
-	a17oFiCGgtg7WJS3wXrPhBgCG2yst7osLxe53CeOr2BmJwT6v/C7
-X-Gm-Gg: ASbGncvzPdBRK1QSo2Pwlhx4vnBRgjxZwcFBn8ehX5J+gD3EoozwgJOcim0qdrpiR/b
-	XTBmV6bDZ8LWmxCqg2qcZ44LmfMpo9bVFGcNcwqWjANvaIE/k0uPg/7DbSvBKmHyS3CyZwgopdW
-	guTA07KUiM8hkXY5cBKewOoZb82arZNMGGfhH1UjPrlWgRnXvYuqz7nibN6dBCZClPoWtk1chsY
-	dwnRUZNRECtzHZvq+jwplqRXW8r2Q5seYA7fkpJbRJPBCZhA78BzLRL46KF4dXG7FEngSHcqbZ7
-	PjK/vjhc0RpkDgnNs8+JurEHYSjr1LcPHM5QLM6EHQ==
-X-Google-Smtp-Source: AGHT+IEUyxsnKMR2pN/zngJ52KbnL+3wxUCetigjHGAUCRCf9j2zB/J8TMaNKDu9bR1vrEE6PVzIzg==
-X-Received: by 2002:a17:907:983:b0:ac1:e332:b1f5 with SMTP id a640c23a62f3a-ac7e76510dbmr1070164666b.37.1744101546443;
-        Tue, 08 Apr 2025 01:39:06 -0700 (PDT)
+        bh=MU/Lb/1w/rHKsFuc9Ox3Kn8a905i0mooFwtMAQiNnDM=;
+        b=FNybgHPlq28qopk89aDHDykxPgAo5Q+qqXd0g+Tybzt6aDg1B6682MNMc4iYJiELWc
+         5NNUmJw8+b7t3+TaIbdjb1cTqhnCq26iwNZNCXXCQB3M+nxzPMOPIOlNoVf9gRHpcNG8
+         lxmXDyp0MU+tpHNoHpD6qMKoTiMv5LqdU25WTQBTqVMfePbQ4aQ7tQbK6210n7s0acsY
+         Vi2b+XN6Qjvb7sHLxhs0J4YuqyGmtEbKSgSJIXJlukM+x4nQsPLMmFqzZtMsYVtJdUoZ
+         KTLNz9eOGUJrvkr4hchSGzJ5ZqlAHhaxlZO5Wy1YV61GoHAXPDq6hH2MHPKYwh8QnD6f
+         ktIw==
+X-Forwarded-Encrypted: i=1; AJvYcCVoOijlhuslNcKd87Lr/I+Vmuzxx3d+KD3pBabXQKlQtK2XMw7p5Z8zObx8Tdf56fgWIvOi7GmfIXuS5g==@vger.kernel.org, AJvYcCWXTEgB0xyjCxC/rZjmPX5bxKt+vfYg97nsDFkn6E9Z0JqIZay8uZ4w4Y3omeLYqKNVgjO8g4+Qpf3oK/I=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9Dz80acZHZ4TRtS8sS/yu3wIs/6RvF+O9fyV39N/xBZAjhdAL
+	AdHrR4yBdNCEVoX3b7PbACzxFWlfKZTOp5z48YFR4jb72DD2EFuDajCSM5oM
+X-Gm-Gg: ASbGnctvZiAAVw1l2PxYP1UoLDhv6hPq/9LRhaJevmm2O36ILh67uJZTmO1oef9FVNz
+	ymMWRPLPLHz6ULYurjeM0dSMG8yab/NxKDPeK5cSZwuKOvz/ll5bRuiTKihBC62nLbYRFAXhrud
+	GUJPVXfb0dlQp9Kmm6ZXeUrzUGC2G3T073dLs0XhI5rn9Gj0NUono5bZV21A5FxvTIJ/fNg323j
+	HUSsqNISHLS847f4Df7c8n/WYmv0o8esxsTCJxBoJPPfVK6joWA3XG146kG7aQXlW8yU1K1CYF6
+	HGQc0s/QpRVMrDZ62qyidgFgwySgUUq8dV4pB1VPPw==
+X-Google-Smtp-Source: AGHT+IE0KYYx7bE/EVmjlRl3D2LqDqHhYsu+wBqvqMzldnaAZvuJXr5HkgzH7KqKnJ5lSYJP1ouIEg==
+X-Received: by 2002:a17:907:db11:b0:ac7:d7f3:86c6 with SMTP id a640c23a62f3a-ac7d7f38826mr1174819866b.9.1744104800590;
+        Tue, 08 Apr 2025 02:33:20 -0700 (PDT)
 Received: from pampelmuse ([2a02:810d:a1:6000:959d:6b59:1561:d2b4])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7c0184d0dsm869057066b.130.2025.04.08.01.39.05
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7bfe9be51sm894916566b.50.2025.04.08.02.33.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 01:39:05 -0700 (PDT)
-Date: Tue, 8 Apr 2025 10:39:03 +0200
+        Tue, 08 Apr 2025 02:33:20 -0700 (PDT)
+Date: Tue, 8 Apr 2025 11:33:17 +0200
 From: Gon Solo <gonsolo@gmail.com>
 To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
 Cc: Thomas Gleixner <tglx@linutronix.de>,
@@ -80,9 +80,10 @@ Cc: Thomas Gleixner <tglx@linutronix.de>,
 	Ricardo Ribalda <ribalda@chromium.org>, linux-spdx@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] scripts/spdxcheck: Limit the scope of git.Repo
-Message-ID: <Z_Tgp8L_8goc63K1@pampelmuse>
+Message-ID: <Z_TtXaRnaU1zXbXv@pampelmuse>
 References: <20250225-spx-v1-1-e935b27eb80d@chromium.org>
  <12647854.O9o76ZdvQC@radijator>
+ <Z_Tgp8L_8goc63K1@pampelmuse>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
@@ -92,15 +93,55 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <12647854.O9o76ZdvQC@radijator>
+In-Reply-To: <Z_Tgp8L_8goc63K1@pampelmuse>
 
-> checkpatch suddenly broke for me with the same error as shown here and the 
-> patch fixed it.
-> 
-> Tested-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> > checkpatch suddenly broke for me with the same error as shown here and the 
+> > patch fixed it.
+> > 
+> > Tested-by: Duje Mihanović <duje.mihanovic@skole.hr>
 
-Same for me.
+Turns out, it was not enough; the variable is used later.
+How about the following patch?
 
-Tested-by: Andreas Wendleder <gonsolo@gmail.com>
+From 763f25c8ca2e29f343bfd109a17501de71b38d43 Mon Sep 17 00:00:00 2001
+From: Andreas Wendleder <gonsolo@gmail.com>
+Date: Tue, 8 Apr 2025 11:21:17 +0200
+Subject: [PATCH] Fix spdxcheck.py.
+
+As explained in Ricardo Ribalda's patch:
+
+If the git.Repo object's scope extends to the Python interpreter's
+shutdown phase, its destructor may fail due to the interpreter's state.
+
+Exception ignored in: <function Git.AutoInterrupt.__del__ at 0x76e6b0148040>
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/site-packages/git/cmd.py", line 790, in __del__
+  File "/usr/lib/python3.13/site-packages/git/cmd.py", line 781, in _terminate
+  File "/usr/lib/python3.13/subprocess.py", line 2227, in terminate
+ImportError: sys.meta_path is None, Python is likely shutting down
+
+Unfortunately, repo is used later at line 392 and 399, so we have to
+keep it and manually delete it before exiting. This can be checked by
+testing a directory instead of a file.
+
+Signed-off--by: Andreas Wendleder <gonsolo@gmail.com>
+---
+ scripts/spdxcheck.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/scripts/spdxcheck.py b/scripts/spdxcheck.py
+index 8d608f61bf37..6a89e2b2faba 100755
+--- a/scripts/spdxcheck.py
++++ b/scripts/spdxcheck.py
+@@ -448,6 +448,7 @@ if __name__ == '__main__':
+                     for f in sorted(di.files):
+                         sys.stderr.write('    %s\n' %f)
+ 
++            del repo
+             sys.exit(0)
+ 
+     except Exception as ex:
+-- 
+2.49.0
 
 

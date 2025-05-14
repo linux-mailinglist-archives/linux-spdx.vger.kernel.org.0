@@ -1,84 +1,84 @@
-Return-Path: <linux-spdx+bounces-40-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-41-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C41FAB62C7
-	for <lists+linux-spdx@lfdr.de>; Wed, 14 May 2025 08:11:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9447AB62CE
+	for <lists+linux-spdx@lfdr.de>; Wed, 14 May 2025 08:14:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7D77188BA64
-	for <lists+linux-spdx@lfdr.de>; Wed, 14 May 2025 06:12:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E0894632CB
+	for <lists+linux-spdx@lfdr.de>; Wed, 14 May 2025 06:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C951EFFAC;
-	Wed, 14 May 2025 06:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A48231F03C0;
+	Wed, 14 May 2025 06:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Lc0qU0rS";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="C2OiZVCH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g7Nkxql7"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B286717BD9;
-	Wed, 14 May 2025 06:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B1BC1E5734;
+	Wed, 14 May 2025 06:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747203105; cv=none; b=BqefIFM/TbFnf/4snEObH3WN1MHNC5hnI9PuaGk43BEv0Wke5EHHjrJMeAzUpNDr8tbokBgcp9tQDN/4ONDakW5/Yepa/1TffmzEX8TbzkA/WMmbKRmxyq2Nwexu4MipasfniL0W1Xn2iWgTPKeRk+3rU7mcUqsCyECTDXaqJ2M=
+	t=1747203273; cv=none; b=m3T2g+jwWR+jL7xKn/T76dV5CKM3qfgVnhJtTu3ZpENuvK7STh7N/ju1ALlfHaS0OV0vpZi+uK469SdKX7atCBCYRR7rAZQQujFox/ypfZxiei4mNBu5zkCnr6swMCN9fjz0OKO7UBjo6h8hIvxsI9pSlyLjyaT9s2kNFZPo+yY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747203105; c=relaxed/simple;
-	bh=iNU6ZFsalzDyKnD1IiR2gOQH8W45WCdfKMygp0FZwTM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=odqwkwZV1y27LOF65A/5zUVB2KasnJkZXblIcEsluYQK/8/GShKqc6RKvX4b5fuMBBjlfYaeM3xONgbCrW2pE555o3Q5apmKlJliLo8RbI/7nTeySeidiWJoHamh7KHFe5D/RMaz/fOxaX+D9mTXFwwLlV24okcs6J7p8I3PPjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Lc0qU0rS; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=C2OiZVCH; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1747203101;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GrmuZxfTRtnulKtYxDhvbAWRofpg2amaJKto0xOSi+w=;
-	b=Lc0qU0rSmQcbXtw4owpu6pzK25+krkMKrLZyG56MaIWscwY6bb2B3DL1D0Go5WcHfge3Eu
-	lxCfp+yp+is7I1rPQ5Trvd31rARtPHZ07F59xFhHL+yj2m797Zb/mdtOcQ16X/rjYfOgQm
-	gUcnyVdLyDgwu+dWmK7C75h68G2tWFYRa9beXzIksHVeBQlY3Md3CJ8pp5e/Po7FJFPuDR
-	ipa7VfzEPE1bz7UQfsB4Belz/2neN9lMtO8qS5+zq0KnNBf/+vcboujXcl13uEZmv/dLuN
-	FPoyPw0i1d9+kAgpqOQ5Q6JCzil0jxXT++q6lS4GDes8VGRnGHx3odqCadgtew==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1747203101;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GrmuZxfTRtnulKtYxDhvbAWRofpg2amaJKto0xOSi+w=;
-	b=C2OiZVCHMpU2C9yqUWM5qSKvMGi0RNuyEKmGWPyIoH5DN1wK9Os+Zam2W96Ax+YZ+akqLW
-	wVXux8PF6QLeJJCw==
-To: Eric Biggers <ebiggers@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Ard Biesheuvel <ardb@kernel.org>, linux-spdx@vger.kernel.org
+	s=arc-20240116; t=1747203273; c=relaxed/simple;
+	bh=NuwWWHYzNw6teorTXRaKxlO2wDN676m7pABvKMLgQKQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mUAJ5eFDvSuc4JKM4dtlJGhlqAnMKkpfUnhdlb6DISjdFAcsSxtDja/Zqr9b2m4z3khM8N32JVNT8nCwvAc2PmvcqSmwVHsq7ijoi4fouZeqYUovjPo9URyWvqEA0dP1PTimcjqgPXhGyK/3ztOYDZGVqFx8ptGMJHB13uOPuFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g7Nkxql7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE72FC4CEE9;
+	Wed, 14 May 2025 06:14:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747203272;
+	bh=NuwWWHYzNw6teorTXRaKxlO2wDN676m7pABvKMLgQKQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g7Nkxql7UkIOb2dyWNyMZCDiATfWRsh6tRuA89bW9LSZwL1pCuZsYWRbWrplzzvoS
+	 /7GqPARlUQwp8Rmrvap1SGSMC/xNV2Nc6xBSa9EePjPTLDmzdxVzrpuEbeTknIOO1A
+	 /YC88wIbr+f6FddI+XpYcN76OnfmQ1re19WT/FcPgJn/NoU+S3PYExZmbwDsE4pqp5
+	 a/5dZJY3l8ehrYw9ciqgoWnKoT0xz33rGVzCgrsh0EKb18iZTEgoe7KhJt5ZBMBCqz
+	 qyZ46npP+Mjfye7zUm0SxDDWZb7lSJ3bS9Xt/ll5kNiJWq9OdKjrahz9sqR2QwpCFb
+	 SpYmkLp3i4Yrw==
+Date: Tue, 13 May 2025 23:14:25 -0700
+From: Eric Biggers <ebiggers@kernel.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-kernel@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>,
+	linux-spdx@vger.kernel.org
 Subject: Re: [PATCH] lib/crc32: add SPDX license identifier
-In-Reply-To: <20250514052409.194822-1-ebiggers@kernel.org>
+Message-ID: <20250514061425.GA237199@sol>
 References: <20250514052409.194822-1-ebiggers@kernel.org>
-Date: Wed, 14 May 2025 08:11:40 +0200
-Message-ID: <87bjrvk9gj.ffs@tglx>
+ <87bjrvk9gj.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87bjrvk9gj.ffs@tglx>
 
-On Tue, May 13 2025 at 22:24, Eric Biggers wrote:
+On Wed, May 14, 2025 at 08:11:40AM +0200, Thomas Gleixner wrote:
+> On Tue, May 13 2025 at 22:24, Eric Biggers wrote:
+> 
+> > From: Eric Biggers <ebiggers@google.com>
+> >
+> > lib/crc32.c and include/linux/crc32.h got missed by the bulk SPDX
+> > conversion because of the nonstandard explanation of the license.
+> > However, crc32.c clearly states that it's licensed under the GNU General
+> > Public License, Version 2.  And the comment in crc32.h clearly indicates
+> > that it's meant to have the same license as crc32.c.  Therefore, apply
+> > SPDX-License-Identifier: GPL-2.0-only to both files.
+> >
+> > Signed-off-by: Eric Biggers <ebiggers@google.com>
+> 
+> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
 
-> From: Eric Biggers <ebiggers@google.com>
->
-> lib/crc32.c and include/linux/crc32.h got missed by the bulk SPDX
-> conversion because of the nonstandard explanation of the license.
-> However, crc32.c clearly states that it's licensed under the GNU General
-> Public License, Version 2.  And the comment in crc32.h clearly indicates
-> that it's meant to have the same license as crc32.c.  Therefore, apply
-> SPDX-License-Identifier: GPL-2.0-only to both files.
->
-> Signed-off-by: Eric Biggers <ebiggers@google.com>
+Thanks.
 
-Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+I forgot to mention: I'm planning to take this patch through the crc tree.
+
+- Eric
 

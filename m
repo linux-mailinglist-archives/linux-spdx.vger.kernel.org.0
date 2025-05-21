@@ -1,44 +1,52 @@
-Return-Path: <linux-spdx+bounces-42-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-43-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B98AB64B1
-	for <lists+linux-spdx@lfdr.de>; Wed, 14 May 2025 09:41:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5532ABF4D9
+	for <lists+linux-spdx@lfdr.de>; Wed, 21 May 2025 14:54:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CBBA3A613A
-	for <lists+linux-spdx@lfdr.de>; Wed, 14 May 2025 07:41:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7601D7B2233
+	for <lists+linux-spdx@lfdr.de>; Wed, 21 May 2025 12:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D30E2063F0;
-	Wed, 14 May 2025 07:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51FBF26F440;
+	Wed, 21 May 2025 12:54:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Gvp/ed8X"
 X-Original-To: linux-spdx@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C9483A14;
-	Wed, 14 May 2025 07:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1271E26E176;
+	Wed, 21 May 2025 12:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747208482; cv=none; b=fYOzKlHECPTac+JEjlw+HWvJdItj1llfc2daDZz74F010x2OGpVpk7kI9cv6b6KBzo/NiZ9TTFrp9rhM4ebsLBSmPgDmHcZae9dW3T/bBGXg7lzJtDr/ufFJ6cC3eK4W6aj23hcjiGRkejNw3VE/2PwYaA/YtxHfvFejdpTBs+s=
+	t=1747832074; cv=none; b=YZ6AegJUKKhg+PZ5G9zterLPDKaw9+HYHAekEo7oSU6Mj4C1oclvlYE9JZds2PiPK5TriKQ5PrNT0I9oKcN/fcYQEMw7344jrYfjohTFGqV2husmjitM5ViCBg6IfvqRl3xkv1wOPKSwdkkXjObzDDuhXm0ivo5DrISC5gn3vrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747208482; c=relaxed/simple;
-	bh=JsiVAsFG1XKaIWx9sq38p2xafzRumZE3uqYzsBqzHes=;
+	s=arc-20240116; t=1747832074; c=relaxed/simple;
+	bh=VMYoNOJ5wE9KwUkDnF09JicN3hKPriwy1qJHDvdDpM0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ejzVmXW2rRrndUytHBms1TGV34Ov+vBkZq117BzS8NVuRjGF3M2jP8PJTahpwE2P1awllI9x5CXL9DppXENMs8IvNJUllLqeUDHtUHd8pLJW7H1N6+7TVCojvguZFmXbGxT1jHeySMRiU+MyCOYuiI+2Ygj1ReGrIh/M9/g+vwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4043EC4CEF3;
-	Wed, 14 May 2025 07:41:20 +0000 (UTC)
-Date: Wed, 14 May 2025 09:39:33 +0200
-From: Greg KH <greg@kroah.com>
-To: Eric Biggers <ebiggers@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-	Ard Biesheuvel <ardb@kernel.org>, linux-spdx@vger.kernel.org
-Subject: Re: [PATCH] lib/crc32: add SPDX license identifier
-Message-ID: <2025051423-gallstone-carpentry-1c5a@gregkh>
-References: <20250514052409.194822-1-ebiggers@kernel.org>
- <87bjrvk9gj.ffs@tglx>
- <20250514061425.GA237199@sol>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eep9uhUoqtr7nTEGgLhJbCmteqqYukBuaN/h/fhvUjd9eZcFZFcs1TWD4vhLDwAO4XSokzL1V6hwS92DW2/ecce8Ctm6prqIFTO7oLsbGg4DXLOWVYEuR/0Y+u/3Nlvtb/LlDjSixbJuCSr+vqxpDEQ7BzUJBhv6VHSSM1HaD6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Gvp/ed8X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06D2AC4CEE4;
+	Wed, 21 May 2025 12:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1747832073;
+	bh=VMYoNOJ5wE9KwUkDnF09JicN3hKPriwy1qJHDvdDpM0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gvp/ed8XwFy7sJSkMi+wEhLq2DrCdOEOZN1MX+cDd/vNe7AM6jKoFcB8WHBTJtPeN
+	 9mY3wzgC/Oc3LfowIQinrhDL6vabZVT4DQ47R0nXoeZcJ7mZ8i68f7WUmr3+mO7Umc
+	 GB/DTmAwF3mOWOpNgh+7YSV1JvWG/carnKG4dHE0=
+Date: Wed, 21 May 2025 14:54:30 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Lukas Bulwahn <lbulwahn@redhat.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, linux-spdx@vger.kernel.org,
+	kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lukas Bulwahn <lukas.bulwahn@redhat.com>
+Subject: Re: [PATCH] LICENSES: add CC0-1.0 license text
+Message-ID: <2025052118-handbook-dowry-bae9@gregkh>
+References: <20250513115912.303082-1-lukas.bulwahn@redhat.com>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
@@ -47,30 +55,44 @@ List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250514061425.GA237199@sol>
+In-Reply-To: <20250513115912.303082-1-lukas.bulwahn@redhat.com>
 
-On Tue, May 13, 2025 at 11:14:25PM -0700, Eric Biggers wrote:
-> On Wed, May 14, 2025 at 08:11:40AM +0200, Thomas Gleixner wrote:
-> > On Tue, May 13 2025 at 22:24, Eric Biggers wrote:
-> > 
-> > > From: Eric Biggers <ebiggers@google.com>
-> > >
-> > > lib/crc32.c and include/linux/crc32.h got missed by the bulk SPDX
-> > > conversion because of the nonstandard explanation of the license.
-> > > However, crc32.c clearly states that it's licensed under the GNU General
-> > > Public License, Version 2.  And the comment in crc32.h clearly indicates
-> > > that it's meant to have the same license as crc32.c.  Therefore, apply
-> > > SPDX-License-Identifier: GPL-2.0-only to both files.
-> > >
-> > > Signed-off-by: Eric Biggers <ebiggers@google.com>
-> > 
-> > Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+On Tue, May 13, 2025 at 01:59:12PM +0200, Lukas Bulwahn wrote:
+> From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
 > 
-> Thanks.
+> Commit cbbd847d107f ("tools/x86/kcpuid: Introduce a complete cpuid
+> bitfields CSV file") turns the tools/arch/x86/kcpuid/cpuid.csv to be an
+> auto-generated file from an input file maintained at x86-cpuid.org project.
+> The x86-cpuid.org project clearly states that the auto-generated file is to
+> be licensed with CC0-1.0 (see Link below). So, the SPDX-License-Identifier
+> CC0-1.0 in the file is correct as intended.
 > 
-> I forgot to mention: I'm planning to take this patch through the crc tree.
+> The spdxcheck.py script reports that tools/arch/x86/kcpuid/cpuid.csv uses
+> an Invalid License ID: CC0-1.0, though, as the LICENSES directory in the
+> kernel tree does not contain a file with license information for CC0-1.0.
+> 
+> Add a suitable CC0-1.0 file with the license text into LICENSES/deprecated
+> to make spdxcheck.py happy.
+> 
+> The directory deprecated is the best fit, by exclusion of the
+> alternatives. CC0-1.0 should not be considered among the preferred licenses
+> in the kernel, nor is it a license exception case or intended for
+> dual-licensing some copyrighted material. So, deprecated is the best fit
+> here, even if the license and its use is fine and it does not suggest to
+> actually deprecate use of this license.
+> 
+> The license text for the CC0-1.0 file was obtained from the spdx
+> license-list-data git repository (see Link below).
+> 
+> Link: https://gitlab.com/x86-cpuid.org/x86-cpuid-db/-/blob/v2.4/LICENSE.rst
+> Link: https://github.com/spdx/license-list-data/blob/main/text/CC0-1.0.txt
+> 
+> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+> ---
+>  LICENSES/deprecated/CC0-1.0 | 129 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 129 insertions(+)
 
-Great!
+Thanks for this, I'll add it to the spdx tree now.
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+greg k-h
 

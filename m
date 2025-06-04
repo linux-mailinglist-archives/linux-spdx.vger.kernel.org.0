@@ -1,52 +1,51 @@
-Return-Path: <linux-spdx+bounces-43-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-44-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5532ABF4D9
-	for <lists+linux-spdx@lfdr.de>; Wed, 21 May 2025 14:54:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E6EACD9F0
+	for <lists+linux-spdx@lfdr.de>; Wed,  4 Jun 2025 10:36:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7601D7B2233
-	for <lists+linux-spdx@lfdr.de>; Wed, 21 May 2025 12:53:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DEF1172F1C
+	for <lists+linux-spdx@lfdr.de>; Wed,  4 Jun 2025 08:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51FBF26F440;
-	Wed, 21 May 2025 12:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00DF269898;
+	Wed,  4 Jun 2025 08:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Gvp/ed8X"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="oiGtOyPO"
 X-Original-To: linux-spdx@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1271E26E176;
-	Wed, 21 May 2025 12:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF7410E9;
+	Wed,  4 Jun 2025 08:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747832074; cv=none; b=YZ6AegJUKKhg+PZ5G9zterLPDKaw9+HYHAekEo7oSU6Mj4C1oclvlYE9JZds2PiPK5TriKQ5PrNT0I9oKcN/fcYQEMw7344jrYfjohTFGqV2husmjitM5ViCBg6IfvqRl3xkv1wOPKSwdkkXjObzDDuhXm0ivo5DrISC5gn3vrQ=
+	t=1749026207; cv=none; b=BEFO/lnVlFrIGvcrInJ0f0Ean1cTKgJc4lSUd4X93kJ/O2tpMGGAZ3pE+bbv9rAa7/OOnyc9aet3rrfiz8Zk2dWL46dWqEcc8Pd8fOl9sVQHyj4w89ymSewwhsHzY7FzMKhWF/Vl+n9I0yVo55t+FZLiIHeu53t/6Vcy3RbgGCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747832074; c=relaxed/simple;
-	bh=VMYoNOJ5wE9KwUkDnF09JicN3hKPriwy1qJHDvdDpM0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eep9uhUoqtr7nTEGgLhJbCmteqqYukBuaN/h/fhvUjd9eZcFZFcs1TWD4vhLDwAO4XSokzL1V6hwS92DW2/ecce8Ctm6prqIFTO7oLsbGg4DXLOWVYEuR/0Y+u/3Nlvtb/LlDjSixbJuCSr+vqxpDEQ7BzUJBhv6VHSSM1HaD6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Gvp/ed8X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06D2AC4CEE4;
-	Wed, 21 May 2025 12:54:32 +0000 (UTC)
+	s=arc-20240116; t=1749026207; c=relaxed/simple;
+	bh=ZsEnkxSND0iQyLVpiJb2vzSLzVyMRpaJVYLGoP5pIX4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=m514Z2eIu3Lk7O9KEwRCI7DCf4lxYxXWORHWeH57GVfOFS15w4rWJr8OkoqSPFbxL9MajZkx2lg8Je4rM8sqEEK+HlyiAfeVTZPCUzYTn+1LlNwHOve2Xr9c61Vx9/6y0nvf7DfGuctvsqnmSpnhRlpfIt7OJK6XUkMaZvhaf1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=oiGtOyPO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3077C4CEE7;
+	Wed,  4 Jun 2025 08:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1747832073;
-	bh=VMYoNOJ5wE9KwUkDnF09JicN3hKPriwy1qJHDvdDpM0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gvp/ed8XwFy7sJSkMi+wEhLq2DrCdOEOZN1MX+cDd/vNe7AM6jKoFcB8WHBTJtPeN
-	 9mY3wzgC/Oc3LfowIQinrhDL6vabZVT4DQ47R0nXoeZcJ7mZ8i68f7WUmr3+mO7Umc
-	 GB/DTmAwF3mOWOpNgh+7YSV1JvWG/carnKG4dHE0=
-Date: Wed, 21 May 2025 14:54:30 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Lukas Bulwahn <lbulwahn@redhat.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, linux-spdx@vger.kernel.org,
-	kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Lukas Bulwahn <lukas.bulwahn@redhat.com>
-Subject: Re: [PATCH] LICENSES: add CC0-1.0 license text
-Message-ID: <2025052118-handbook-dowry-bae9@gregkh>
-References: <20250513115912.303082-1-lukas.bulwahn@redhat.com>
+	s=korg; t=1749026207;
+	bh=ZsEnkxSND0iQyLVpiJb2vzSLzVyMRpaJVYLGoP5pIX4=;
+	h=Date:From:To:Cc:Subject:From;
+	b=oiGtOyPOjBV0IGS+9CIt6SNgqi7nNOKswSum7qQ1sJSKvrMP0tA9tFcNjHaze9NW6
+	 U/vlkhbKiRkq9MJzWyF3zo596flWxordfDxlzHi7zOCN2WuLIVjeL6p0oJy2OaoHOg
+	 egyiFAb0jbN2NZrFcMl6004zC4QaxkrbEbDG85Uc=
+Date: Wed, 4 Jun 2025 10:36:44 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+	Andrew Morton <akpm@linux-foundation.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+	linux-spdx@vger.kernel.org
+Subject: [GIT PULL] SPDX/LICENSES update for 6.16-rc1
+Message-ID: <aEAFnFOS-8tH00ko@kroah.com>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
@@ -55,44 +54,36 @@ List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250513115912.303082-1-lukas.bulwahn@redhat.com>
 
-On Tue, May 13, 2025 at 01:59:12PM +0200, Lukas Bulwahn wrote:
-> From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
-> 
-> Commit cbbd847d107f ("tools/x86/kcpuid: Introduce a complete cpuid
-> bitfields CSV file") turns the tools/arch/x86/kcpuid/cpuid.csv to be an
-> auto-generated file from an input file maintained at x86-cpuid.org project.
-> The x86-cpuid.org project clearly states that the auto-generated file is to
-> be licensed with CC0-1.0 (see Link below). So, the SPDX-License-Identifier
-> CC0-1.0 in the file is correct as intended.
-> 
-> The spdxcheck.py script reports that tools/arch/x86/kcpuid/cpuid.csv uses
-> an Invalid License ID: CC0-1.0, though, as the LICENSES directory in the
-> kernel tree does not contain a file with license information for CC0-1.0.
-> 
-> Add a suitable CC0-1.0 file with the license text into LICENSES/deprecated
-> to make spdxcheck.py happy.
-> 
-> The directory deprecated is the best fit, by exclusion of the
-> alternatives. CC0-1.0 should not be considered among the preferred licenses
-> in the kernel, nor is it a license exception case or intended for
-> dual-licensing some copyrighted material. So, deprecated is the best fit
-> here, even if the license and its use is fine and it does not suggest to
-> actually deprecate use of this license.
-> 
-> The license text for the CC0-1.0 file was obtained from the spdx
-> license-list-data git repository (see Link below).
-> 
-> Link: https://gitlab.com/x86-cpuid.org/x86-cpuid-db/-/blob/v2.4/LICENSE.rst
-> Link: https://github.com/spdx/license-list-data/blob/main/text/CC0-1.0.txt
-> 
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
-> ---
->  LICENSES/deprecated/CC0-1.0 | 129 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 129 insertions(+)
+The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
 
-Thanks for this, I'll add it to the spdx tree now.
+  Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
 
-greg k-h
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.16-rc1
+
+for you to fetch changes up to 59c11a7a9a138a28c7dff81032a7b7b6f1794540:
+
+  LICENSES: add CC0-1.0 license text (2025-05-21 14:54:17 +0200)
+
+----------------------------------------------------------------
+LICENSES update for 6.16-rc1
+
+Here is a single patch to the LICENSES/ directory to add the CC0 license
+that is currently used in the kcpuid x86 tool for one of their files.
+This fixes the error that spdxcheck.py currently has with the kcpuid
+file due to a missing LICENSE file for this specific license.
+
+This change has been in linux-next for weeks with no reported issues.
+
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Lukas Bulwahn (1):
+      LICENSES: add CC0-1.0 license text
+
+ LICENSES/deprecated/CC0-1.0 | 129 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 129 insertions(+)
+ create mode 100644 LICENSES/deprecated/CC0-1.0
 

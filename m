@@ -1,89 +1,79 @@
-Return-Path: <linux-spdx+bounces-44-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-45-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E6EACD9F0
-	for <lists+linux-spdx@lfdr.de>; Wed,  4 Jun 2025 10:36:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19381ACE245
+	for <lists+linux-spdx@lfdr.de>; Wed,  4 Jun 2025 18:37:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DEF1172F1C
-	for <lists+linux-spdx@lfdr.de>; Wed,  4 Jun 2025 08:36:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B20433A351C
+	for <lists+linux-spdx@lfdr.de>; Wed,  4 Jun 2025 16:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00DF269898;
-	Wed,  4 Jun 2025 08:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27001DE4E0;
+	Wed,  4 Jun 2025 16:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="oiGtOyPO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mKbMHIey"
 X-Original-To: linux-spdx@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF7410E9;
-	Wed,  4 Jun 2025 08:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA40D1DC98C;
+	Wed,  4 Jun 2025 16:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749026207; cv=none; b=BEFO/lnVlFrIGvcrInJ0f0Ean1cTKgJc4lSUd4X93kJ/O2tpMGGAZ3pE+bbv9rAa7/OOnyc9aet3rrfiz8Zk2dWL46dWqEcc8Pd8fOl9sVQHyj4w89ymSewwhsHzY7FzMKhWF/Vl+n9I0yVo55t+FZLiIHeu53t/6Vcy3RbgGCU=
+	t=1749055031; cv=none; b=T1Vra5Zrx3YjmIY40ppbjNMlCAZlXLI9Sqaaxfdk92nHEaw8b6ZbQiS31WflNRN0s3B0MHXtulNhBvtxc9gXWg/lFRfXJ+5MKSK/+bl2QgU2NDDbOBpiga1LK4tf/I4Z8R5y3ZNNrebdlm090iWP5iPIb8pvrr6WOY/KhQoxuCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749026207; c=relaxed/simple;
-	bh=ZsEnkxSND0iQyLVpiJb2vzSLzVyMRpaJVYLGoP5pIX4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=m514Z2eIu3Lk7O9KEwRCI7DCf4lxYxXWORHWeH57GVfOFS15w4rWJr8OkoqSPFbxL9MajZkx2lg8Je4rM8sqEEK+HlyiAfeVTZPCUzYTn+1LlNwHOve2Xr9c61Vx9/6y0nvf7DfGuctvsqnmSpnhRlpfIt7OJK6XUkMaZvhaf1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=oiGtOyPO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3077C4CEE7;
-	Wed,  4 Jun 2025 08:36:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1749026207;
-	bh=ZsEnkxSND0iQyLVpiJb2vzSLzVyMRpaJVYLGoP5pIX4=;
-	h=Date:From:To:Cc:Subject:From;
-	b=oiGtOyPOjBV0IGS+9CIt6SNgqi7nNOKswSum7qQ1sJSKvrMP0tA9tFcNjHaze9NW6
-	 U/vlkhbKiRkq9MJzWyF3zo596flWxordfDxlzHi7zOCN2WuLIVjeL6p0oJy2OaoHOg
-	 egyiFAb0jbN2NZrFcMl6004zC4QaxkrbEbDG85Uc=
-Date: Wed, 4 Jun 2025 10:36:44 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>,
-	Andrew Morton <akpm@linux-foundation.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-	linux-spdx@vger.kernel.org
-Subject: [GIT PULL] SPDX/LICENSES update for 6.16-rc1
-Message-ID: <aEAFnFOS-8tH00ko@kroah.com>
+	s=arc-20240116; t=1749055031; c=relaxed/simple;
+	bh=2OJ1OM9loK83DVZMpQuXau4isC73/KHxvpXf6wuAVA0=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=AOLG5w3Y/pZ24k/NSBG4Mbz3RFbpOPQXEdIhfdXW7xun7vfVXrudRYLFL3pCfjsfJluU3Ax6+x+S123bfdBneZiZhzosNmSIgm9b6mcs+KiNY5qgnX5iuwqQM3bOQU7qZaSXbronii6M4U6CewwJafw7P/0PyyoOOYjt40UdHtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKbMHIey; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D6F2C4CEE4;
+	Wed,  4 Jun 2025 16:37:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749055031;
+	bh=2OJ1OM9loK83DVZMpQuXau4isC73/KHxvpXf6wuAVA0=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=mKbMHIeydVd5bKp2Otqj59fuE5Rbc0h17KXff+xgAvHZnTa0K635Rk/LoHdi0Irf0
+	 pTAKQOTiDEORsYAZA61HXmZrIrhJHOIPBHmypIJfNx8CP7ZrpaZKDbBR/RSQfgWJFx
+	 y1rPFAaDtdAD5BdYQYCxmRYOh1YWakTxgeheSO5MnFeFFvSlqSuv4DGQ4SEb/koMQo
+	 Y/2AHdHSuYvHeHD8aMqn3WIIshp7c92Y9haWmnBZ5uGP6Cu/Bn0//jRyn1Xj4ED23H
+	 dv9auJZz+Lyslkn2ZsuFvTpc4Y7cJUZW42gQs5ZgqDXskC6tcq/omOJz0QRHroukVF
+	 GeMKcQpu81KXA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70D7338111E5;
+	Wed,  4 Jun 2025 16:37:44 +0000 (UTC)
+Subject: Re: [GIT PULL] SPDX/LICENSES update for 6.16-rc1
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <aEAFnFOS-8tH00ko@kroah.com>
+References: <aEAFnFOS-8tH00ko@kroah.com>
+X-PR-Tracked-List-Id: <linux-spdx.vger.kernel.org>
+X-PR-Tracked-Message-Id: <aEAFnFOS-8tH00ko@kroah.com>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.16-rc1
+X-PR-Tracked-Commit-Id: 59c11a7a9a138a28c7dff81032a7b7b6f1794540
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: f5ebe7bb87e04537b37573f0a2516baa90ee23c0
+Message-Id: <174905506287.2350857.11142661323825669523.pr-tracker-bot@kernel.org>
+Date: Wed, 04 Jun 2025 16:37:42 +0000
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Andrew Morton <akpm@linux-foundation.org>, Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+The pull request you sent on Wed, 4 Jun 2025 10:36:44 +0200:
 
-  Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.16-rc1
 
-are available in the Git repository at:
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/f5ebe7bb87e04537b37573f0a2516baa90ee23c0
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.16-rc1
+Thank you!
 
-for you to fetch changes up to 59c11a7a9a138a28c7dff81032a7b7b6f1794540:
-
-  LICENSES: add CC0-1.0 license text (2025-05-21 14:54:17 +0200)
-
-----------------------------------------------------------------
-LICENSES update for 6.16-rc1
-
-Here is a single patch to the LICENSES/ directory to add the CC0 license
-that is currently used in the kcpuid x86 tool for one of their files.
-This fixes the error that spdxcheck.py currently has with the kcpuid
-file due to a missing LICENSE file for this specific license.
-
-This change has been in linux-next for weeks with no reported issues.
-
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-
-----------------------------------------------------------------
-Lukas Bulwahn (1):
-      LICENSES: add CC0-1.0 license text
-
- LICENSES/deprecated/CC0-1.0 | 129 ++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 LICENSES/deprecated/CC0-1.0
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 

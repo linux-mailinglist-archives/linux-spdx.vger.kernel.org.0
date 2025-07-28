@@ -1,186 +1,97 @@
-Return-Path: <linux-spdx+bounces-84-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-85-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F394CB13F2C
-	for <lists+linux-spdx@lfdr.de>; Mon, 28 Jul 2025 17:49:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 276F0B13F30
+	for <lists+linux-spdx@lfdr.de>; Mon, 28 Jul 2025 17:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D0253A3627
-	for <lists+linux-spdx@lfdr.de>; Mon, 28 Jul 2025 15:46:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45E11165C91
+	for <lists+linux-spdx@lfdr.de>; Mon, 28 Jul 2025 15:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C22273816;
-	Mon, 28 Jul 2025 15:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B146C271A84;
+	Mon, 28 Jul 2025 15:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="NCk6FzlP"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="UA7db/0Y"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B08E273D8E
-	for <linux-spdx@vger.kernel.org>; Mon, 28 Jul 2025 15:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898D926FA6A;
+	Mon, 28 Jul 2025 15:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753717601; cv=none; b=SUxa6hVB+KmzRH8rmHDjCr/Z1p1+aYM2NIoTj7NJLaHNxgwq2OD81Jm+NRFvKEhC8uyAqMoZLGXb4Dn4n8xn1EFc4DMiZkm6WP5f6EbOzlkB7lPpAMxLtFI9QTtIe3lKrNwKUMTCJdiqM5jxhoQdqKDcvvfOJsK6k9Je/mx+NVU=
+	t=1753717677; cv=none; b=hiXL1XbD98LeJdt+lXz30XGof5jiMga00zKsulVGICHf4+1hG8yMYk9mBqRTlxnQpNQiCs0N4A/QMc37duXRjWMwqVYVF8KXllG/6X/yaECpdHDrUc/5lmTMaDFu0OB5qfxgVu5SvXYf0uttFNLYM1VEwlFIIUQfxxLo0Q2nv4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753717601; c=relaxed/simple;
-	bh=61vn1enfbazbBU97QrpkUJdiQOHm/6mlocOHaoQekHY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bDIJJHfT99GRJvUpKxkIUVcTjySDYg9rJfQ7mmuZO2kB7OgWftVXgd07hLHWLrCIeC6FDAVHEXxlOTZGlGPfGu6BObfpMhBRaYIl0PPU9s/ifMovpGS1PX116bFEG5gcpqw5Wd9hqg4bUxG32HK28X6gevyyNuqoQ6pCegc+otg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=NCk6FzlP; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1753717595;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=f7oic3FoXTqk2yfNwBYbh+AFvbYd6u94tqfvzWajS/Q=;
-	b=NCk6FzlPSpwz4LxCHZYqrdmEbSHNlWjyWi4uIz+9jjEHUcNaz5IrlH3wW8+C0DoPnW9BwA
-	iyOa8f0WZuPqHsFncMXoOvIC68jxpUUUPMnqBJMF+HVs9HODzHQRf5nbAlcS0DI7DKPcbW
-	GnvZOT4vusz4Q4UEW7kZa8NVu2zKovU=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-90-Zm2PYILCObu6NVaxa-PSlA-1; Mon, 28 Jul 2025 11:46:32 -0400
-X-MC-Unique: Zm2PYILCObu6NVaxa-PSlA-1
-X-Mimecast-MFC-AGG-ID: Zm2PYILCObu6NVaxa-PSlA_1753717591
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-451d7de4ae3so21655435e9.2
-        for <linux-spdx@vger.kernel.org>; Mon, 28 Jul 2025 08:46:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753717591; x=1754322391;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f7oic3FoXTqk2yfNwBYbh+AFvbYd6u94tqfvzWajS/Q=;
-        b=XSbQfFJ3HyOIpqIY/4X0yCelnIk4TIgjm/n0Bp44nARKb4DpJDycM050KqoItjPpgm
-         uWpshGdagUyL6pFwvo8XpMaHCpwrS6ymIXY4C8hY45UTOTXgA4hzNfISt1jAdh32DpZZ
-         w+u8SSL2D0BI5a6FL8NR7KS68FehSOUZgwzqdULzKTu6byOyCTJrv0Vg4CDO8E0PY0S6
-         byU/bJhYAksoPa9yCriizDO7+U+sbv76ZeIUvWHVDIt706ehpxVGHhM2VIwwQnDD1o4c
-         uuP6qq+8FGCbfM/h6TptC3e7QAXgYxGYDv79aw8mnj/aYzdiwb+l4/Y9viz9s6BknSs6
-         fJbg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6dJoy7SsFWVT6LH5MOor7JXrlEKW00TI9MXuLMDt3yZGCeFdKus+TVXChQqKA0yKrNSgB7E6hZJFc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8ksUsYbvOSlTnKrzIExXxVPNWDYi/R8M6Bq6tHaYhL5cP7jhe
-	VPdbOceMKc4C6qApcFNh4i3mCcJz0NjfSQJMhFhRQgnbL1ABvg65cRkM6714rWoabRElOZt8LY1
-	PfbLfl8Aw1lz4eATvGnPWmLHyWYE48L9Z5CJKU3neBipD78ucXIdwy9XQkTORN80=
-X-Gm-Gg: ASbGncsF9vr4sYG2WqZ/LsDgQzVcYZrDy8ArqpeXN8VMZcQVgHMujPWITQbd+Uw+4NX
-	kjdollzxaSRcTWHAOV61855N777RfLB+obQFITP6aHjoHQNNz5Z4C+4MBbpYM/QD8w87VZa6lmS
-	Crt9CCTMY9a3tpHoFfdfEEz2gCINPsbYXBPU7fwj+F/rsHSIGegFAjSBg9gKGj0MBZka5aJcWPB
-	cSNwyJFn4oSGNjbaxkaHxyFy9t7jm73jllM4J0Oqo9mh4Hae6rdVzwPRiS5ep/WDeMEw3BA1AiH
-	rsWhUP6g8Y5zO+ZoAFieKDYe+gyUe1xb1Cg5qHs+bxJPGFE5+RK/lRxcEfToZFmnGGlu1ygkhPV
-	FSyCw
-X-Received: by 2002:a05:600c:821a:b0:455:f380:32e2 with SMTP id 5b1f17b1804b1-45876449d73mr111224415e9.18.1753717591018;
-        Mon, 28 Jul 2025 08:46:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFmrsUao+mUw4BQB4gPUpkJyG+uDCqaGsCW0FsgdeXraTBq/babl0tGuvtigi2h6t7PYnkl1w==
-X-Received: by 2002:a05:600c:821a:b0:455:f380:32e2 with SMTP id 5b1f17b1804b1-45876449d73mr111224025e9.18.1753717590538;
-        Mon, 28 Jul 2025 08:46:30 -0700 (PDT)
-Received: from [192.168.0.6] (ltea-047-064-113-169.pools.arcor-ip.net. [47.64.113.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4586eeb5f3asm108794855e9.2.2025.07.28.08.46.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Jul 2025 08:46:30 -0700 (PDT)
-Message-ID: <5fb2159f-12cc-4395-ae53-b686d185be45@redhat.com>
-Date: Mon, 28 Jul 2025 17:46:28 +0200
+	s=arc-20240116; t=1753717677; c=relaxed/simple;
+	bh=Vpr1e6NmDO0zcMg4pbHnj+HTs48wUbI1Rb/JHzcIqnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=jHqkx4dZEcdurcQrzeskQIQt/vaN7EjxeFtFQ8n+TEgN+yweavFlR9zcRGTrykUu7lfRTRul8C8wxxQT13Jie4D9pTN4whCg3x0GSuvQyqgBFRmPre7qQhTbBChMzsOl2vz0k/Jjmr6EfZtryee1AyI5ibB/gszbSlW6asgHpPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=UA7db/0Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F723C4CEE7;
+	Mon, 28 Jul 2025 15:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1753717677;
+	bh=Vpr1e6NmDO0zcMg4pbHnj+HTs48wUbI1Rb/JHzcIqnk=;
+	h=Date:From:To:Cc:Subject:From;
+	b=UA7db/0YAkld33v1+a1kEe3GwXnttFB4Bs31eZARp7mhFkSU+JXetadPJSnPWJq6s
+	 GrNR7YPwJaLGILKl4AcLNFFiEJevIxGHa9m3RuSQjbYNl8wVQ8+K28v6POpRvH3ToM
+	 YtmkvBVjjdeGFZ+Les/15atRgQQb71uHykCc6K+w=
+Date: Mon, 28 Jul 2025 17:47:53 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+	Andrew Morton <akpm@linux-foundation.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+	linux-spdx@vger.kernel.org
+Subject: [GIT PULL] SPDX/LICENSES update for 6.17-rc1
+Message-ID: <aIebqSE7UXDL-jeN@kroah.com>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arch/x86/kvm/ioapic: Remove license boilerplate with
- bad FSF address
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Sean Christopherson <seanjc@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, kvm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-spdx@vger.kernel.org
-References: <20250728152843.310260-1-thuth@redhat.com>
- <2025072819-bobcat-ragged-81a7@gregkh>
-From: Thomas Huth <thuth@redhat.com>
-Autocrypt: addr=thuth@redhat.com; keydata=
- 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
-In-Reply-To: <2025072819-bobcat-ragged-81a7@gregkh>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: hCbnCJ8k8qJR-wR1W3snRl9_3-KiNw57bpI4T69eb8w_1753717591
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 28/07/2025 17.36, Greg Kroah-Hartman wrote:
-> On Mon, Jul 28, 2025 at 05:28:43PM +0200, Thomas Huth wrote:
->> From: Thomas Huth <thuth@redhat.com>
->>
->> The Free Software Foundation does not reside in "59 Temple Place"
->> anymore, so we should not mention that address in the source code here.
->> But instead of updating the address to their current location, let's
->> rather drop the license boilerplate text here and use a proper SPDX
->> license identifier instead. The text talks about the "GNU *Lesser*
->> General Public License" and "any later version", so LGPL-2.1+ is the
->> right choice here.
->>
->> Signed-off-by: Thomas Huth <thuth@redhat.com>
->> ---
->>   v2: Don't use the deprecated LGPL-2.1+ identifier
-> 
-> If you look at the LICENSES/preferred/LGPL-2.1 file, it says to use:
-> 	SPDX-License-Identifier: LGPL-2.1+
-> 
-> as the kernel's SPDX level is older than you might think.
+The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494:
 
-Ok, got it, then please ignore this v2 and use v1 instead.
+  Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
 
-> Also, doesn't the scripts/spdxcheck.pl tool object to the "or-later"
-> when you run it on the tree with this change in it?
+are available in the Git repository at:
 
-I used the scripts/checkpatch.pl which is also supposed to check SPDX tags, 
-and it did not complain...
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.17-rc1
 
-  Thomas
+for you to fetch changes up to 06a9a4408697aaf0b4bd88936a3075a9a0b30124:
 
+  LICENSES: Replace the obsolete address of the FSF in the GFDL-1.2 (2025-07-24 11:15:39 +0200)
+
+----------------------------------------------------------------
+LICENSES update for 6.17-rc1
+
+Here are some small changes to the LICENSES files, removing the physical
+address of the FSF as the old one was incorrect and they finally no
+longer have that listed in the license files.  These updates come
+directly from the FSF copies of the files, so they mirror what they want
+the files to look like.
+
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Thomas Huth (6):
+      LICENSES: Replace the obsolete address of the FSF in the GPL-1.0
+      LICENSES: Replace the obsolete address of the FSF in the GPL-2.0
+      LICENSES: Replace the obsolete address of the FSF in the LGPL-2.0
+      LICENSES: Replace the obsolete address of the FSF in the LGPL-2.1
+      LICENSES: Replace the obsolete address of the FSF in the GFDL-1.1
+      LICENSES: Replace the obsolete address of the FSF in the GFDL-1.2
+
+ LICENSES/deprecated/GFDL-1.1 |  2 +-
+ LICENSES/deprecated/GFDL-1.2 |  2 +-
+ LICENSES/deprecated/GPL-1.0  |  6 +++---
+ LICENSES/preferred/GPL-2.0   | 10 ++++------
+ LICENSES/preferred/LGPL-2.0  |  5 ++---
+ LICENSES/preferred/LGPL-2.1  |  8 ++++----
+ 6 files changed, 15 insertions(+), 18 deletions(-)
 

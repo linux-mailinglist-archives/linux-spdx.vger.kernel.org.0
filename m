@@ -1,127 +1,75 @@
-Return-Path: <linux-spdx+bounces-94-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-95-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FDB5B2DD12
-	for <lists+linux-spdx@lfdr.de>; Wed, 20 Aug 2025 14:55:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA492B2DD50
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Aug 2025 15:07:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AFB67AFEF0
-	for <lists+linux-spdx@lfdr.de>; Wed, 20 Aug 2025 12:54:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE5C7584F16
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Aug 2025 13:05:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D58231A046;
-	Wed, 20 Aug 2025 12:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87A03093CB;
+	Wed, 20 Aug 2025 13:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="QMhgQCTn"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="vBLx+yKZ"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0943821ABB0
-	for <linux-spdx@vger.kernel.org>; Wed, 20 Aug 2025 12:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9580E29BDBB;
+	Wed, 20 Aug 2025 13:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755694531; cv=none; b=Kn9UGimBwtFZhwvLNL9p5fQTM6hGvwD2f2TgZNZHhTJwrmO4EnaTTpxV7MMhmJRqCeTu/ft6N4IhzHHJOdeByLOayTbfeXAVo0AaJ9aFgtaVIfIqQkE7xE+/K7SnQuXWQNfQSTY3Z9hKGmqLh2eyU7IAwRndZW5p/HXiuF8JaWU=
+	t=1755695143; cv=none; b=kV1Pbm7E0SLpuibB45y0c5V0GS1qShiFPXIzMuox6Q4tHqGLmki0c3L4sVeG4b8EUy/3ksBLBiw0bwLbafAWcnEdNs84Dvv/t5V8jXqKkPPZnDPrgMH/hR2mQeWCr9RAMVg3tblceFVvx9Lm6XnSf9am9CT1HRpiR+5pA6m1WEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755694531; c=relaxed/simple;
-	bh=lL8x/9KDpVicQ/pWxB+BmbZOpVSGoD7P8hoG3VKVMYw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VCLTn9/0UlumM94cULRnrq6Ckf0w3+MF1e29kKJ9xIxUE7mfwxSJf4ilxN53XbbImhIgjBUospkLMlBvz9nWkP0XA6CNz63DX/fb5z0uCMGGRY5mGQws19urcRVbO3TNipA4sLPlo/pqGKZvP6ezTKfCi3dQXS4tNQLADoFU2ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=QMhgQCTn; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1755694528;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=dm1NRLchXLDSQBjMe4pkfY+BF3IXkVG44fzPD1wqdVQ=;
-	b=QMhgQCTnK3Fgr9dKcCrrk/iASPHJq+I8A0Gyf+rI8oOWBKbHRUQFRPp+cpc5MmFeoKNGnc
-	8pFqOddGGhlPaW2FjDBDH/MwiMhJYqgD/m0KCjEpKLrUKonvD07YxziDvwk6+uk/+iSqqp
-	mYFaN/DuQLOHJfWwJdApoRbn28HDE8M=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-613-SzdwF1EAPnCny74lnWenmA-1; Wed,
- 20 Aug 2025 08:55:24 -0400
-X-MC-Unique: SzdwF1EAPnCny74lnWenmA-1
-X-Mimecast-MFC-AGG-ID: SzdwF1EAPnCny74lnWenmA_1755694522
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 767321800370;
-	Wed, 20 Aug 2025 12:55:22 +0000 (UTC)
-Received: from thuth-p1g4.redhat.com (unknown [10.44.32.164])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id A84A219560B0;
-	Wed, 20 Aug 2025 12:55:18 +0000 (UTC)
-From: Thomas Huth <thuth@redhat.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	linux-kernel@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-spdx@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: [PATCH] media: mxl5005s: Replace GPLv2 boilerplate text with SPDX
-Date: Wed, 20 Aug 2025 14:55:16 +0200
-Message-ID: <20250820125516.494408-1-thuth@redhat.com>
+	s=arc-20240116; t=1755695143; c=relaxed/simple;
+	bh=+AqIPw9Y2etgWZe0N4FwV/BwFuaDUEfDSkYmfB7gxRE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QkDSyB5DDTNNOSN/baaktL2EZ969bGOk1SmLdNQzFs681rSX3MVA6ngO+7MXZiddFJMMKjFCjkaHeIvyCZYcNcGRf/1gb6YzQr/Unxn9Jqf84uJMBbbHhzcyDn3LurVe+k4QLx+fspLuF3HYeBauNyERKhAEQBG3Owk16w5rL0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=vBLx+yKZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A96ACC4CEEB;
+	Wed, 20 Aug 2025 13:05:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1755695141;
+	bh=+AqIPw9Y2etgWZe0N4FwV/BwFuaDUEfDSkYmfB7gxRE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vBLx+yKZTrKXgZg9itXzJUVoin1rvWq7yOAdeXrdCP+qe1Pby2FFQ+k7G7+7QQQ5g
+	 nYmTW0zENrOzCU2hAHi0OXit17bP9CjV6UAO7thPSYqSeaSmjIYfRjpGYFY23AeJf5
+	 XJQDXIOBTvTzQ9nVYQ/M0eTAI2tnaV7cj5NYM1jE=
+Date: Wed, 20 Aug 2025 15:05:37 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Thomas Huth <thuth@redhat.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+	linux-spdx@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH] media: mxl5005s: Replace GPLv2 boilerplate text with SPDX
+Message-ID: <2025082031-swab-rewire-83b2@gregkh>
+References: <20250820125516.494408-1-thuth@redhat.com>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250820125516.494408-1-thuth@redhat.com>
 
-From: Thomas Huth <thuth@redhat.com>
+On Wed, Aug 20, 2025 at 02:55:16PM +0200, Thomas Huth wrote:
+> From: Thomas Huth <thuth@redhat.com>
+> 
+> The FSF does not reside in "675 Mass Ave" anymore, so we should
+> not ask the people to write to that address in case they need a
+> copy of the GPL.
+> 
+> Anyway, all other mxl* files in this directory (including the
+> corresponding header mxl5005s.h) already had their boilerplate
+> text replaced by a proper SPDX tag in the earlier commits, so
+> let's do the same in the remaining mxl5005s.c file now, too.
+> 
+> Signed-off-by: Thomas Huth <thuth@redhat.com>
 
-The FSF does not reside in "675 Mass Ave" anymore, so we should
-not ask the people to write to that address in case they need a
-copy of the GPL.
-
-Anyway, all other mxl* files in this directory (including the
-corresponding header mxl5005s.h) already had their boilerplate
-text replaced by a proper SPDX tag in the earlier commits, so
-let's do the same in the remaining mxl5005s.c file now, too.
-
-Signed-off-by: Thomas Huth <thuth@redhat.com>
----
- drivers/media/tuners/mxl5005s.c | 16 +---------------
- 1 file changed, 1 insertion(+), 15 deletions(-)
-
-diff --git a/drivers/media/tuners/mxl5005s.c b/drivers/media/tuners/mxl5005s.c
-index 0e811c5eae6cb..eeacebf0a8752 100644
---- a/drivers/media/tuners/mxl5005s.c
-+++ b/drivers/media/tuners/mxl5005s.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
- /*
-     MaxLinear MXL5005S VSB/QAM/DVBT tuner driver
- 
-@@ -20,21 +21,6 @@
-     Copyright (C) 2008 Jan Hoogenraad
-       Functions:
- 	mxl5005s_SetRfFreqHz()
--
--    This program is free software; you can redistribute it and/or modify
--    it under the terms of the GNU General Public License as published by
--    the Free Software Foundation; either version 2 of the License, or
--    (at your option) any later version.
--
--    This program is distributed in the hope that it will be useful,
--    but WITHOUT ANY WARRANTY; without even the implied warranty of
--    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--    GNU General Public License for more details.
--
--    You should have received a copy of the GNU General Public License
--    along with this program; if not, write to the Free Software
--    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
--
- */
- 
- /*
--- 
-2.50.1
-
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 

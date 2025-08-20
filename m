@@ -1,111 +1,127 @@
-Return-Path: <linux-spdx+bounces-93-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-94-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 890D2B2CFC6
-	for <lists+linux-spdx@lfdr.de>; Wed, 20 Aug 2025 01:20:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FDB5B2DD12
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Aug 2025 14:55:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FB4F1C46280
-	for <lists+linux-spdx@lfdr.de>; Tue, 19 Aug 2025 23:17:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AFB67AFEF0
+	for <lists+linux-spdx@lfdr.de>; Wed, 20 Aug 2025 12:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46C32620C3;
-	Tue, 19 Aug 2025 23:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D58231A046;
+	Wed, 20 Aug 2025 12:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="0jiiniF5"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="QMhgQCTn"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from mail-pg1-f201.google.com (mail-pg1-f201.google.com [209.85.215.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67536274669
-	for <linux-spdx@vger.kernel.org>; Tue, 19 Aug 2025 23:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0943821ABB0
+	for <linux-spdx@vger.kernel.org>; Wed, 20 Aug 2025 12:55:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755645357; cv=none; b=og46l7ANwVNClxIT8H3CrSP6BOVlKIjYxGJIjFcxEWsl42a0dezdKok7T4NiighK7ZzKVxthpHNCr3ngxN5mL73OcpH6jrfcRagpbuYxcEkDUhxOuym/0TFG0aIlcXXh4FICAeTIzCYm5L+804dJ7K1V58gk3K7ePq54R/Z90/o=
+	t=1755694531; cv=none; b=Kn9UGimBwtFZhwvLNL9p5fQTM6hGvwD2f2TgZNZHhTJwrmO4EnaTTpxV7MMhmJRqCeTu/ft6N4IhzHHJOdeByLOayTbfeXAVo0AaJ9aFgtaVIfIqQkE7xE+/K7SnQuXWQNfQSTY3Z9hKGmqLh2eyU7IAwRndZW5p/HXiuF8JaWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755645357; c=relaxed/simple;
-	bh=NO69rq7d5HUh7N31HaJu2N7TJPqjMuDJlwxFXJM/PEI=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=muBOeTBCy6NOZ3x+DrLK255zvEvX1uVWR7AmdQutmEr28xX/UMOAPoNiOz12LjA0D506xhNZKBOaMY8YIqgVkYC0HipIs98VsjMfpra5r2UjHuHp9MxwJjt88fJ0ZAUkeHv0+YjTH6eqrbySmb4PSdkY0ESt53MoA7GvfYZLPIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--seanjc.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=0jiiniF5; arc=none smtp.client-ip=209.85.215.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--seanjc.bounces.google.com
-Received: by mail-pg1-f201.google.com with SMTP id 41be03b00d2f7-b47174c667aso5157401a12.2
-        for <linux-spdx@vger.kernel.org>; Tue, 19 Aug 2025 16:15:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1755645355; x=1756250155; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=d0DUi8ibOczq1f4cubQAD/UGcZ0gSQdUjEwCmiQNclU=;
-        b=0jiiniF5PNQN+L/lP5Ij4gxIKdLW1U0Jk5/76Yr3aaKa4rtgr+3Uu9L1ynNV8yJnJv
-         PYImhFu8DxueJxyXym9MgRdN5WSd+r5pdDQmT6RQkY6FwHhoidaxU9pntC0oI9DnhjxL
-         7ivOFo7QvUANISrNdyxyYz5Dsr5WYkYuZEMVguROyZelVP4Vx2QPG8vGbiTkOiTH/81z
-         10Veow0tt60uzpwr+pN+bsBA3YWVQ1CCwMzP9SFhDn65y2lqawttkepwZ9Kw0vw3CcYo
-         H55kqftKYcb20Gn8pgz9Rkva+5idxiLO9rOtrKUsEv2Wqw++ExNMUQiSNpKFu4dlsiVq
-         ax4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755645355; x=1756250155;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d0DUi8ibOczq1f4cubQAD/UGcZ0gSQdUjEwCmiQNclU=;
-        b=O/WH4IXPmCMMIkTGP2PHjAA0PrbmwUa023wFmxcCQmKQf1tZze9lWWNggDfk8w8+vM
-         LL/Q5PYSMnoHnZnXhemjJ4mfironODcCrNAofGxUbZHEtYr7h7MbAQyBHXgxlQhnntmd
-         enGUcZDlNISRt/VE/qd8tgQU4w8khS+czMg03x6/2TrR3zEXkrNPTOUdOel/TQ6mUx8L
-         w04zzQEqriaZBa/6iIutt9zhlIl2Xj6AKsjFGHp0Af8s4Z2EPZhIS05WIHsj4GcefLBb
-         Xas9dQUQLA7lY49HPKweXgtzp/p3Ioe8Wj+eUktddohEio9UqWlDBC/cwx+efQt7St5g
-         zmxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqiW50ABpClx0dKXERLgoTKsLniAP70zGE5sUw/NdVc34UK4K88qOlwcXNDQhuudiFMQ6n6SMVGDf8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5QQWpaB3sZwYSNX0vvx6ES2h9CJsLNC/xBauD6Zs75M0jEVvU
-	ihcBWntt+vIs/RyHXIWKxKR28+qVMQ3drwuhlD48Ew5h+aezCMG4meblrhup1Pdh/EQfGYjsW0u
-	kb6OKxw==
-X-Google-Smtp-Source: AGHT+IHcf88wRiO1+bkleq0IuKOV9laDBxE+jirJg6ycDufA1xP3QL4fw1Og2N36QTHGeFtGqJnDCCaMSGU=
-X-Received: from plgq10.prod.google.com ([2002:a17:902:eb8a:b0:23f:efa6:2e49])
- (user=seanjc job=prod-delivery.src-stubby-dispatcher) by 2002:a17:902:cecc:b0:234:cf24:3be8
- with SMTP id d9443c01a7336-245ef2341bfmr7178255ad.28.1755645355614; Tue, 19
- Aug 2025 16:15:55 -0700 (PDT)
-Date: Tue, 19 Aug 2025 16:12:07 -0700
-In-Reply-To: <20250728152843.310260-1-thuth@redhat.com>
+	s=arc-20240116; t=1755694531; c=relaxed/simple;
+	bh=lL8x/9KDpVicQ/pWxB+BmbZOpVSGoD7P8hoG3VKVMYw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VCLTn9/0UlumM94cULRnrq6Ckf0w3+MF1e29kKJ9xIxUE7mfwxSJf4ilxN53XbbImhIgjBUospkLMlBvz9nWkP0XA6CNz63DX/fb5z0uCMGGRY5mGQws19urcRVbO3TNipA4sLPlo/pqGKZvP6ezTKfCi3dQXS4tNQLADoFU2ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=QMhgQCTn; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1755694528;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=dm1NRLchXLDSQBjMe4pkfY+BF3IXkVG44fzPD1wqdVQ=;
+	b=QMhgQCTnK3Fgr9dKcCrrk/iASPHJq+I8A0Gyf+rI8oOWBKbHRUQFRPp+cpc5MmFeoKNGnc
+	8pFqOddGGhlPaW2FjDBDH/MwiMhJYqgD/m0KCjEpKLrUKonvD07YxziDvwk6+uk/+iSqqp
+	mYFaN/DuQLOHJfWwJdApoRbn28HDE8M=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-613-SzdwF1EAPnCny74lnWenmA-1; Wed,
+ 20 Aug 2025 08:55:24 -0400
+X-MC-Unique: SzdwF1EAPnCny74lnWenmA-1
+X-Mimecast-MFC-AGG-ID: SzdwF1EAPnCny74lnWenmA_1755694522
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 767321800370;
+	Wed, 20 Aug 2025 12:55:22 +0000 (UTC)
+Received: from thuth-p1g4.redhat.com (unknown [10.44.32.164])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id A84A219560B0;
+	Wed, 20 Aug 2025 12:55:18 +0000 (UTC)
+From: Thomas Huth <thuth@redhat.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	linux-kernel@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-spdx@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH] media: mxl5005s: Replace GPLv2 boilerplate text with SPDX
+Date: Wed, 20 Aug 2025 14:55:16 +0200
+Message-ID: <20250820125516.494408-1-thuth@redhat.com>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20250728152843.310260-1-thuth@redhat.com>
-X-Mailer: git-send-email 2.51.0.rc1.167.g924127e9c0-goog
-Message-ID: <175564466081.3065897.4757741827876819544.b4-ty@google.com>
-Subject: Re: [PATCH v2] arch/x86/kvm/ioapic: Remove license boilerplate with
- bad FSF address
-From: Sean Christopherson <seanjc@google.com>
-To: Sean Christopherson <seanjc@google.com>, Paolo Bonzini <pbonzini@redhat.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Thomas Huth <thuth@redhat.com>
-Cc: Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
-	"H. Peter Anvin" <hpa@zytor.com>, kvm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-spdx@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 
-On Mon, 28 Jul 2025 17:28:43 +0200, Thomas Huth wrote:
-> The Free Software Foundation does not reside in "59 Temple Place"
-> anymore, so we should not mention that address in the source code here.
-> But instead of updating the address to their current location, let's
-> rather drop the license boilerplate text here and use a proper SPDX
-> license identifier instead. The text talks about the "GNU *Lesser*
-> General Public License" and "any later version", so LGPL-2.1+ is the
-> right choice here.
-> 
-> [...]
+From: Thomas Huth <thuth@redhat.com>
 
-Applied to kvm-x86 misc.  I followed the conversation as best as I could, holler
-if I picked the wrong version in the end.
+The FSF does not reside in "675 Mass Ave" anymore, so we should
+not ask the people to write to that address in case they need a
+copy of the GPL.
 
-Thanks!
+Anyway, all other mxl* files in this directory (including the
+corresponding header mxl5005s.h) already had their boilerplate
+text replaced by a proper SPDX tag in the earlier commits, so
+let's do the same in the remaining mxl5005s.c file now, too.
 
-[1/1] arch/x86/kvm/ioapic: Remove license boilerplate with bad FSF address
-      https://github.com/kvm-x86/linux/commit/49be82d4ad2e
+Signed-off-by: Thomas Huth <thuth@redhat.com>
+---
+ drivers/media/tuners/mxl5005s.c | 16 +---------------
+ 1 file changed, 1 insertion(+), 15 deletions(-)
 
---
-https://github.com/kvm-x86/linux/tree/next
+diff --git a/drivers/media/tuners/mxl5005s.c b/drivers/media/tuners/mxl5005s.c
+index 0e811c5eae6cb..eeacebf0a8752 100644
+--- a/drivers/media/tuners/mxl5005s.c
++++ b/drivers/media/tuners/mxl5005s.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
+ /*
+     MaxLinear MXL5005S VSB/QAM/DVBT tuner driver
+ 
+@@ -20,21 +21,6 @@
+     Copyright (C) 2008 Jan Hoogenraad
+       Functions:
+ 	mxl5005s_SetRfFreqHz()
+-
+-    This program is free software; you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation; either version 2 of the License, or
+-    (at your option) any later version.
+-
+-    This program is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-    GNU General Public License for more details.
+-
+-    You should have received a copy of the GNU General Public License
+-    along with this program; if not, write to the Free Software
+-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+-
+ */
+ 
+ /*
+-- 
+2.50.1
+
 

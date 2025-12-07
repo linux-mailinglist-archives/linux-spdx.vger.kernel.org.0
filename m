@@ -1,75 +1,84 @@
-Return-Path: <linux-spdx+bounces-99-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-100-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D07C6D8E2
-	for <lists+linux-spdx@lfdr.de>; Wed, 19 Nov 2025 10:01:51 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 4041D2D997
-	for <lists+linux-spdx@lfdr.de>; Wed, 19 Nov 2025 09:01:50 +0000 (UTC)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02F7ACAAFE3
+	for <lists+linux-spdx@lfdr.de>; Sun, 07 Dec 2025 01:45:37 +0100 (CET)
+Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
+	by sea.lore.kernel.org (Postfix) with ESMTP id B96743005BBD
+	for <lists+linux-spdx@lfdr.de>; Sun,  7 Dec 2025 00:45:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A0C32F77B;
-	Wed, 19 Nov 2025 09:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE66521D011;
+	Sun,  7 Dec 2025 00:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=novencio.pl header.i=@novencio.pl header.b="C3DRqmDN"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="A60eFHNh"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from mail.novencio.pl (mail.novencio.pl [162.19.155.164])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D543630CD94
-	for <linux-spdx@vger.kernel.org>; Wed, 19 Nov 2025 09:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.19.155.164
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0C921C9FD;
+	Sun,  7 Dec 2025 00:45:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763542906; cv=none; b=jwLJmzj4RAf1hASTjn0oehS7wvwLJZmM+tQ96J7gvRYvij/Vi0J9Ra9rhR8gZfhRwwwAfwNjlYrS4M0Tz4DV8dqEydf1yGhLsYmOOgklRIA0yDRtfLcHqeULx3H7EFRJwMR7kiCoZD7ne0MpxVgFznb+iJnJQTpABuU5itLPHUU=
+	t=1765068313; cv=none; b=Rez6IoT0jfK+068s7m8+VjkzXg1P1yzQUjgNenqgTn6GjqTe3hyryDSLbciXPb9Kj9/ty2mgVtUA9i3Pc1TFN0q+IhAJwk48jNQw8qwY3FEi5di7wrv946Zu6xQ9RwPOPwKLpoNPHPpx96/xlflmLgvhuJLyhhzBO0MHPSxIuzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763542906; c=relaxed/simple;
-	bh=fIh67CnJs35z4uTVN1yEzBZIG1sWJSjOc8Phu/rB5ug=;
-	h=Message-ID:Date:From:To:Subject:MIME-Version:Content-Type; b=MgVNAyNL4SQddBXFRZx9EyTBm9slDZFqqkmxwY7z7aEC0lTHHoCnl+xYqcj2KxVerNvQQ1vYWmC523yJ5zKi8Uz3LnT4KKdDeiF2IrK++JdzP1eaesFX0l67qIzmgFacR/FjSC2rCJBzZxmEyDFHMxHxUqcuPoyRHmNDVjuoRY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=novencio.pl; spf=pass smtp.mailfrom=novencio.pl; dkim=pass (2048-bit key) header.d=novencio.pl header.i=@novencio.pl header.b=C3DRqmDN; arc=none smtp.client-ip=162.19.155.164
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=novencio.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=novencio.pl
-Received: by mail.novencio.pl (Postfix, from userid 1002)
-	id 3905722B81; Wed, 19 Nov 2025 09:01:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=novencio.pl; s=mail;
-	t=1763542903; bh=fIh67CnJs35z4uTVN1yEzBZIG1sWJSjOc8Phu/rB5ug=;
-	h=Date:From:To:Subject:From;
-	b=C3DRqmDNmDrgwVgqMVat76bMyWAfyEboUXLBsEjlm/Ehvf3uFr/VLqXhcxPAilLVO
-	 VPWF1zZLl5SVkel/iVXbAHiXU3f6KPIr6RGSmSts/cOn2Jtehu1l5YEBEyaEY5Uoz+
-	 XLJ3xDp83y0X1tKwyoaFYQnJohJdQA2Ethd9pXteS4j+iDYFvNZA0AfCgG7AR1x8pr
-	 ENEsB9RN951eU3GCLp+1qc8RxWhLUN4JR44ydCuT3LdeAr2pT8gbCFy4KN/HjVj++V
-	 NQ3iADuEXp2azoQGmZUFcTTHdrP9/Nt89fOpLlJozt6mq45WD7557AyR/AhnJJxUe1
-	 PkOSbgk+KWGNw==
-Received: by mail.novencio.pl for <linux-spdx@vger.kernel.org>; Wed, 19 Nov 2025 09:01:03 GMT
-Message-ID: <20251119074742-0.1.5y.z4ia.0.tpzdb7gynn@novencio.pl>
-Date: Wed, 19 Nov 2025 09:01:03 GMT
-From: "Marek Poradecki" <marek.poradecki@novencio.pl>
-To: <linux-spdx@vger.kernel.org>
-Subject: =?UTF-8?Q?Wiadomo=C5=9B=C4=87_z_ksi=C4=99gowo=C5=9Bci?=
-X-Mailer: mail.novencio.pl
+	s=arc-20240116; t=1765068313; c=relaxed/simple;
+	bh=4/TmN59JTFe9pM5OJdR82xB3uYeog56EjSHQP39Jurs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Ih3Ik3lYcUSB3+0AXgHcRzUgQlmvDhsWWulQGvkshCuAUuW27IhRmPLx6SkVvJVaTxg3lUKcPNDVn4K2VmG9JjBpnx4OusGPlNZ6ruRPN/sbt78iP4At/j1RWUgl+evFsZf49pGt1LqXKFSpVTerV37qm+OpC/zxLR2CADfesOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=A60eFHNh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0080DC4CEF5;
+	Sun,  7 Dec 2025 00:45:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1765068312;
+	bh=4/TmN59JTFe9pM5OJdR82xB3uYeog56EjSHQP39Jurs=;
+	h=Date:From:To:Cc:Subject:From;
+	b=A60eFHNhkRHlWqUS58xE3hMPEklzpnNi5SyP0glE4KIbmmu6yIcxUtfa+A60jR8NB
+	 DprKNKjrh9mUjVhoMc7JJU3P5qQdlNRUN8wXKz1U+drnACGVHeudEahSrcol/egQF1
+	 6oe1bheOVdG2nXVfib55YOcL3jBhxoIqkGlgq8zo=
+Date: Sun, 7 Dec 2025 09:45:10 +0900
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+	Andrew Morton <akpm@linux-foundation.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+	linux-spdx@vger.kernel.org
+Subject: [GIT PULL] SPDX/LICENSES update for 6.19-rc1
+Message-ID: <aTTOFjcK2SMZ8MQs@kroah.com>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Dzie=C5=84 dobry,
+The following changes since commit 211ddde0823f1442e4ad052a2f30f050145ccada:
 
-pomagamy przedsi=C4=99biorcom wprowadzi=C4=87 model wymiany walut, kt=C3=B3=
-ry minimalizuje wahania koszt=C3=B3w przy rozliczeniach mi=C4=99dzynarodo=
-wych.
+  Linux 6.18-rc2 (2025-10-19 15:19:16 -1000)
 
-Kiedyv mo=C5=BCemy um=C3=B3wi=C4=87 si=C4=99 na 15-minutow=C4=85 rozmow=C4=
-=99, aby zaprezentowa=C4=87, jak taki model m=C3=B3g=C5=82by dzia=C5=82a=C4=
-=87 w Pa=C5=84stwa firmie - z gwarancj=C4=85 indywidualnych kurs=C3=B3w i=
- pe=C5=82nym uproszczeniem p=C5=82atno=C5=9Bci? Prosz=C4=99 o propozycj=C4=
-=99 dogodnego terminu.
+are available in the Git repository at:
 
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/spdx.git tags/spdx-6.19-rc1
 
-Pozdrawiam
-Marek Poradecki
+for you to fetch changes up to 89373f5695dc918a0118fa71ee4dc423bc8c8476:
+
+  LICENSES: Add modern form of the LGPL-2.1 tags to the usage guide section (2025-10-22 07:58:19 +0200)
+
+----------------------------------------------------------------
+SPDX License update for 6.19-rc1
+
+Here is a single patch that updates the LGPL-2.1 license text with the
+"alternate" SPDX tags that are allowed for this license type.
+
+It's been in linux-next for a very long time with no reported issues
+
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Thomas Huth (1):
+      LICENSES: Add modern form of the LGPL-2.1 tags to the usage guide section
+
+ LICENSES/preferred/LGPL-2.1 | 4 ++++
+ 1 file changed, 4 insertions(+)
 

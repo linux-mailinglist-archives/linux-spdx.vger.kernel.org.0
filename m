@@ -1,453 +1,204 @@
-Return-Path: <linux-spdx+bounces-102-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-103-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4908BCCA1BE
-	for <lists+linux-spdx@lfdr.de>; Thu, 18 Dec 2025 03:47:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF58CFF628
+	for <lists+linux-spdx@lfdr.de>; Wed, 07 Jan 2026 19:19:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9A2F1301F016
-	for <lists+linux-spdx@lfdr.de>; Thu, 18 Dec 2025 02:45:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C73DD3536926
+	for <lists+linux-spdx@lfdr.de>; Wed,  7 Jan 2026 17:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C272FD7D0;
-	Thu, 18 Dec 2025 02:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E197336D515;
+	Wed,  7 Jan 2026 17:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ZtBfjNrQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N093k1cA";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="a8K1Euzb"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B402FDC26
-	for <linux-spdx@vger.kernel.org>; Thu, 18 Dec 2025 02:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C6036CDF5
+	for <linux-spdx@vger.kernel.org>; Wed,  7 Jan 2026 17:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766025918; cv=none; b=nhZdjzpY7xAnJnF8mgo0hf2fgT1kh3dPXbS4YZOJcuIxTp1AebgZ3yGk1RHPh3EsgnDaHaU1phSHUk0mO90rCZKM8ymajXClYeaPD1rk8BIu7NJuhdQhbBAVUmnVpjYVLBcMiqETOkZYdRdcI5jSY6ly1oEwLu9Ur2R4BnDgcsY=
+	t=1767805976; cv=none; b=baz9OR//eFB6alns/GxaAioWrPENeJ/UQaaQoE49WLdiijdYYtWcRq+soEVi5z4cKgAdwgGI037chrwdba7mL9YsNR3jDiyn/vvgy51ZdbMzfD5yK41Jf2kJUURv+tzJOTV94+RIqsZLs4ImNE6wBRkFqbMXiy1rGSsE4czrjkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766025918; c=relaxed/simple;
-	bh=BkvuruiWNZyEaOoAcAJAB4uIhK5ph1LtL1o25UPnK24=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oj2r9qfvJtARYO5TaYTENnZcwPw8AkbxURTAblzGk6rvWO3kf6WQFhwvcx1RMwiz+VCMG+kjg2ywC6KO7i0YYGpm3BAc4JoRdUGbFPv2q+letdoESXS22NuLydJE/Qq8pq/J2RFVYVyUgkWkfOyMAA67pbb/5psj1Uu3IfOCL68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org; spf=pass smtp.mailfrom=linuxfoundation.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=ZtBfjNrQ; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linuxfoundation.org
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-93f5761e09aso122724241.1
-        for <linux-spdx@vger.kernel.org>; Wed, 17 Dec 2025 18:45:14 -0800 (PST)
+	s=arc-20240116; t=1767805976; c=relaxed/simple;
+	bh=N0G2ffuDBbq7gpywhPKYxodelqUo83XYdwlcWpXg4Hk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pqCw9DnO9+P1B79l4SYPvX3PFF3D3DLkLmjZz3CPK305/Q8CE/6HpXnTH+Bl6kXY+lt6UdT+rsEg5JeNKD3xNQ2+kQGlZFqVyvMyO9bilBnApjAi57yS9kN+n6nAQNqjnC04+Qlouz9tkoh5PUEob3IUo2GMihQgqSdGkXPurR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N093k1cA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=a8K1Euzb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 607H7f9p3673063
+	for <linux-spdx@vger.kernel.org>; Wed, 7 Jan 2026 17:12:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=BhnC1bjxr1aLOi+Ek+VPvbB77/IQtQmkLcU
+	O8GRpqt4=; b=N093k1cABGW2OOdeQRvGwlARqfhw4rQpyRh1/2yUxeFxcPGcj0j
+	4iBJMWJZxZHV5GqApW/70CN2AP+O1DH7tNgxdlJ2k+KXRmaE88J2rJiXV2k6rVhc
+	+YBZmDFkx1/zQdcDsX6rc6OXwvEUhozI+uhxHZXr4PIq/ZZCpxRF8W9d55/GSjw8
+	Tbxa8fNZfiWq45QxEVpublEitrIEyO8PIYW7nWoG6iFOFVOBAWovz0tu68vedHy1
+	0QFC+0ohks2uIN0Uvkx+KiCzuGCClMrAEozgADrR5OyMPYTZsw8n3nndeRfv0LR9
+	eP1V1RYr03ZF6jDTh1gTz0L8Pkg+GKUgZow==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhum500qj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-spdx@vger.kernel.org>; Wed, 07 Jan 2026 17:12:53 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b2ea3d12fcso554279485a.0
+        for <linux-spdx@vger.kernel.org>; Wed, 07 Jan 2026 09:12:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1766025914; x=1766630714; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VgiZBeX1dPkU0ieHh/xD02Dhrx9rrUaNhY85jIApCVs=;
-        b=ZtBfjNrQ8nEF/dcisyVgZPu74ywrGgL+6LxFgO/3y7uaVd8DetmMoaqs2kSG3EY9a8
-         RIseGv2m09TLy2rBootSLPwGwVqgHf6pZ6aGHS8HEFe+ho+x9c+7lf5Y9eWgpJsACx+f
-         kIdhCN5YkTEv4tNnsAdVICky4jjj0gB/vQVWw=
+        d=oss.qualcomm.com; s=google; t=1767805973; x=1768410773; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BhnC1bjxr1aLOi+Ek+VPvbB77/IQtQmkLcUO8GRpqt4=;
+        b=a8K1Euzb6KNH+LgPPk9Y4CJiqsHMeNgDiUErYxZgHxxWmiiia3HFY05ODl19ZWDrkf
+         1PGMDnWP+wFBsCxCGloLkaoI+ZOEoT7Y75b8oip5WqZgVxAYLzr14c30I23yPzGIhNcA
+         4wUAHk0wNlmfLYJvvzqjNgQSzQP0H2SPGRaP2Z689JmchlhM5tAd9BzxLo157JuXlk3A
+         uwG7zZq6lthf42bJAcBFO2IrpswmnU6pJ4rI3+N217mUwOEEO4y/pwB1e8m2okv+7Xty
+         hAlpljnsguQdTa1y5P4PORoJdFm+1ZBr8MVs4QH8u+aEbuT/9itfxN+s5ZFe/MqYjHkz
+         Vsyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766025914; x=1766630714;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VgiZBeX1dPkU0ieHh/xD02Dhrx9rrUaNhY85jIApCVs=;
-        b=euKXwut7jYkEhCcktJ9/sNNvmDp1YcYQiP12uW+WayP7edYqs+Kd8zX0dEdyhN7slx
-         8v3ytT7f8C7x7WA6PomVq5UyZV1PqSHFAjcKxyZpX3A+0Lnc19WKj9UyTXgt+QgD5Tyw
-         LpUNVOyhkTD9sIPn5OvjuksUozLB4TH8gNy9fl5V0QOrIDwXynVK3HFxv8SxFkhM1cWt
-         Mq1GvGjDKCpFuxgVCuy8lP/RegINV7Bsffxj4R5iUe5KHaNdYDfQiUq+czM1z3Cj1Oc8
-         FmNy5G5gcV85leIbFd3BfP5ETrrmaicnIzXJUDHg7B5CXJTAKafzYU4BJUZRgyes6gy4
-         XVEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWabEWS6qE3F4iZBg5JgXhqqWveV7ch6hzSKzu4vjsxhQPvpjDaG2bP7WNMaNp+IbQR3GR2XF6tFXtp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNZDwm4+oAQ08ooS5Cxyu6Q2Tq0pKxs1y1JqMNtRgLp2tV/EPD
-	oTQWYa/oMNm/w7vKvy+a+NLMxuDH4FmvPPiutCm8/1e8puZE03ae5Y3QoqxmTm2aZ8+UCEbsHdM
-	tDqtvhZS6KUJxuyBVoZPSZxmUkjgHssC0epd761aNdg==
-X-Gm-Gg: AY/fxX5GBLYne9NEDYP/nS6IxuPbtW3bf/ytfh/Rqflr4NkTsHDHGg+Y0Bf5GE2bVSD
-	WN3kSHnZ/D3jeUOu+apyxej3qLdm/8lTjjyOXJ4x1NbFOgdhII8Z9tKd/KWXCnkNJ4B72PRD9EE
-	NYL4gCE5tuQnJKFSQMBJtSm+jjdLLVjsb/riNJtc+EsSmMgYcw2JuJ12/aBfjQIi9hDla6UPTji
-	4u1bv06JlbVjYmOqQM4hb3XgixjZhCK6WhByjm4Dgw5cBB5/c5TDN6bkEIuri4/gxm/hMXGUrWk
-	YTR8Ah6WMhDmcYcpWphk2v0fdg==
-X-Google-Smtp-Source: AGHT+IGHhccKNAmE/0sF2jQnsWrWGWzk6cK8+JFenz7zlUCGiEOoABTPS8MedzG24pNmUCRaBKGrL4dnJ8WH2iK2i6E=
-X-Received: by 2002:a05:6102:5e87:b0:5db:e373:f0af with SMTP id
- ada2fe7eead31-5e8277e7a95mr6826030137.31.1766025913777; Wed, 17 Dec 2025
- 18:45:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767805973; x=1768410773;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BhnC1bjxr1aLOi+Ek+VPvbB77/IQtQmkLcUO8GRpqt4=;
+        b=Ynynk+qY+Amzme23PppSQK4IOeMyKJcYruJC0DD7RA1QQxXGyPdXYVlmzt0wnqD7ov
+         +Swu1cN2FHcq02b245snBB7Kpujac1KJk4njE2qU6SPoI0K8GKkMR78nUFqgT3sJSqLV
+         vE5VsrVplXhyfwzxkRwdLYeE3fZwtGY4xGmy6Pdz2Fh+XBR8kJkWH8oj0DqNKP+Yybjo
+         n+ofcKyJ0I2gG1zcvz6fIrJx8TTdUsPV9ThvmXPgvUN+SfrsXIR/sPMJw7brlX8G1I5A
+         gHqn5Vmu+cTy0vKZqsxa7G3LbU/l7x5gQEnL3J0A7Hrsgh0d1LAiBmF+DrxHoShSe7qa
+         G4MQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcsF/5AwtV+C2sQ+9HvzjQnTjsarYJcOvr5Cz4GnU/fFvSj5oFvs+z0rfVSvijO9crKj11e7Edbl/N@vger.kernel.org
+X-Gm-Message-State: AOJu0YxltqpfkujXmG8oJJjIdmvl6n0q42oEZ5gRTgnKvJAswSctPBA/
+	39m53S+z5IJT2Wqq0U+Fc3U/rqvx8Q7hl7tr3kr2+m7JubxfCJ7LHSzTsVSZHZeS5RN6zEOOpsB
+	0kA+GoSUfVDwZwmOPI9kzVf6R8LFYohoCWx2fn41xhU0C+dVIO4qggjBPL1rq+uNO
+X-Gm-Gg: AY/fxX6CXVUlKGpXgca59uBIZdYkvqMy1oYziBPV7O9Xxgv1FrMcPKeNkN8VwGkCPHb
+	9oifXzV2eIbLfM1RG97KfGdVkKzaRAMfC2spYvFd9oXHZkr2LFJBTKd9e5YgIgQIDFhNKHEK2KE
+	bhxwDeKdRndYcC1gY/a3Bips4DLa9d59H8Xg4qz2bw23+HFUlnUfjeo81QIS9VEYk5x0sbXSZXr
+	yWW1N7US+6lYhd8eevxm0YMHnbcZeTHoQeGGvx13SlTzurzEy9mATS+X62ISe9ooWluAUbJ8MKu
+	iFIM8l4sppGoDZDiDIz198w/ted9JCmTAjTVUK676zar7sFdIztc2lALGmm8sXluierjiC4AfBe
+	btiwZ/YXxd8Ax7Dcjws/ruTadhQ==
+X-Received: by 2002:a05:620a:298c:b0:89f:764b:a4aa with SMTP id af79cd13be357-8c389368df1mr410775785a.18.1767805973280;
+        Wed, 07 Jan 2026 09:12:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGLq08CZ8nR23ucExLb4CvsXiIo6kX5gKzzk5m3Bnc4mP9c5+jrDXuBenuswHmQfCHvBHgBhQ==
+X-Received: by 2002:a05:620a:298c:b0:89f:764b:a4aa with SMTP id af79cd13be357-8c389368df1mr410770885a.18.1767805972725;
+        Wed, 07 Jan 2026 09:12:52 -0800 (PST)
+Received: from quoll ([178.197.218.229])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507b9d4c89sm5013433a12.10.2026.01.07.09.12.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jan 2026 09:12:52 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>, Andy Whitcroft <apw@canonical.com>,
+        Joe Perches <joe@perches.com>, Dwaipayan Ray <dwaipayanray1@gmail.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>, linux-spdx@vger.kernel.org,
+        workflows@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH] LICENSES: Explicitly allow SPDX-FileCopyrightText
+Date: Wed,  7 Jan 2026 18:12:47 +0100
+Message-ID: <20260107171246.242973-2-krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251107185732.23992-1-jkacur@redhat.com> <20251107185732.23992-2-jkacur@redhat.com>
-In-Reply-To: <20251107185732.23992-2-jkacur@redhat.com>
-From: Kate Stewart <kstewart@linuxfoundation.org>
-Date: Wed, 17 Dec 2025 20:45:02 -0600
-X-Gm-Features: AQt7F2peBPMzyK4gs6EDgnDMf4_pMOLWfcrUTrtTyYarYpv0_n8F6OF9yNiRQJI
-Message-ID: <CAG_66ZRxvig6TZz0Vx6y7gt=F8PrSWx=d3qGr55==1-LHrFyeQ@mail.gmail.com>
-Subject: Re: [PATCH 01/23] Add SPDX license identifiers
-To: John Kacur <jkacur@redhat.com>
-Cc: linux-rt-users <linux-rt-users@vger.kernel.org>, Clark Williams <williams@redhat.com>, 
-	Clark Williams <clrkwllms@kernel.org>, linux-spdx@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2059; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=N0G2ffuDBbq7gpywhPKYxodelqUo83XYdwlcWpXg4Hk=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpXpQONpIx8JizfVZLFVjxx6DLOMsYGW8KsBkpa
+ qAMvsTQAxaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaV6UDgAKCRDBN2bmhouD
+ 1/LiD/92HMWwthUq97pAgrlmQK2KTUMQjI9xM8nj8LLUUNsUwbFN3r27YcK9rePVTFHJ/zN5sWB
+ cly/tUfSL+BxCpmm6bAfN3UYQESDPPl9mXRI7CxoBVxLax0+pyEtUThr3efoWCFDNKfoCMCTOIZ
+ M9Uk/bs2QH9zQEXqerzDItocxG3uQmWF97/NFmMWVf5ehWLVjsl7X9IuZ20QnW7gx5WdB7GPalN
+ hFNsBnCJTvGXxVBL18k0oAFbBo5w0fTdTt/j+naBjpbv1NA5DrGpyPoe5xfs/wRZZusyX7uOLjU
+ N8Q3ULMTn9zGOU3w2itOFTh5cXH1W/11epzr9pDrrF4tJ0TFC6uS+x6kMkClIdfS+ds5DhdPnG5
+ J6BrnYHLXWq/Jx/uSVQm4kP68pKhUCevjA5wC+n1DpApFGpgR9J0351hgzmA2Bjqe04OL/P17BL
+ bg7plkzZCQWcI07zR3d9Owmp8AGL7YJrE986nITr4A0ienJOxvodLSMQnVclW8UhtbiL4gcMrSx
+ hVsDwlB81FUhIbmMqSQzNaaSEFvOZCGYkK/mBr2yI0XljFoZDl+8a9WouxnXzgVTi/214PHmoqF
+ s7HzuOJ0C0BIdNlysX4O7GHLRO3oPXsHJt7uTTWgFbAIepIoyyDTuRKobcIHJCWpTHVcS0ROdb/ R4X+yxCv2lZz9Hw==
+X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: QPpl_6xVeRwNufyBVlKv4N7JpFvgsik5
+X-Proofpoint-ORIG-GUID: QPpl_6xVeRwNufyBVlKv4N7JpFvgsik5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDEzNSBTYWx0ZWRfX5Az/bZluwtie
+ ZPhXJ29fbeBd3uXQ+5WBTfGTVRRYK48Z6aJEP9BtLzJb1+3KOGV3RndGwVclRGYcy5CqPslfWR5
+ bfGIqMI4Jx3XxhqBlA23JiBzbrYJQPyvpdj+i41B8Pc5X3x0EdLNMpM8tzKvKaX3SDnQBbhVM+Z
+ JvRWB2gYmDRduXX6BNhXpFzuyiTO11/t+liJK0H670QlCh7ECJ9aSvO6maIJ2oZpJkGwJsLBQex
+ bhDNhc49ie8A85CHZ1qy63lvLK0Q1I/ior8cSTGSgkXVAYJeIDg5vduMl88rIIjcNLC8WHGEx8p
+ MnyH3nEUMFOc+vfhAXxzszuWrCFnWCrbRHGTUNe4UTtk1DurrmDq/8l7ut7o5ESOPednF/vAh1z
+ 2g7iYXC2SNhgMbLZisXniUkbS1SbzWnE8B96p95yv5FlVMe2ONGtRYf3flK3k+u304+g1dF2Li1
+ oigs3Z/nWFoqSv/Ec+A==
+X-Authority-Analysis: v=2.4 cv=KNZXzVFo c=1 sm=1 tr=0 ts=695e9415 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=dRIqDbwSeJKetXV8Y-0A:9 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_03,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 priorityscore=1501 clxscore=1011 impostorscore=0
+ phishscore=0 adultscore=0 suspectscore=0 bulkscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070135
 
-adding linux-spdx for review
+Sources already have SPDX-FileCopyrightText (~40 instances) and more
+appear on the mailing list, so document that it is allowed.  On the
+other hand SPDX defines several other tags like SPDX-FileType, so add
+checkpatch rule to narrow desired tags only to two of them - license and
+copyright.  That way no new tags would sneak in to the kernel unnoticed.
 
-On Mon, Dec 15, 2025 at 1:52=E2=80=AFPM John Kacur <jkacur@redhat.com> wrot=
-e:
->
-> From: Clark Williams <clrkwllms@kernel.org>
->
-> use SPDX license identifiers to clarify the licences under which
-> tuna is released.
->
-> Signed-off-by: Clark Williams <williams@redhat.com>
-> Signed-off-by: John Kacur <jkacur@redhat.com>
-Reviewed-by: Kate Stewart <kstewart@linuxfoundation.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
+---
 
-> ---
->  Makefile                |  3 +++
->  org.tuna.policy         |  1 +
->  oscilloscope-cmd.py     | 15 +--------------
->  setup.py                |  1 +
->  testuna                 | 10 +++++-----
->  tuna-cmd.py             |  9 +--------
->  tuna.desktop            |  1 +
->  tuna/__init__.py        |  2 +-
->  tuna/config.py          |  2 ++
->  tuna/gui/__init__.py    |  2 ++
->  tuna/gui/commonview.py  |  2 ++
->  tuna/gui/cpuview.py     |  1 +
->  tuna/gui/irqview.py     |  1 +
->  tuna/gui/procview.py    |  1 +
->  tuna/gui/profileview.py |  1 +
->  tuna/gui/util.py        |  1 +
->  tuna/new_eth.py         |  1 +
->  tuna/oscilloscope.py    | 15 +--------------
->  tuna/sysfs.py           |  2 ++
->  tuna/tuna.py            |  7 ++++---
->  tuna/tuna_gui.py        |  1 +
->  tuna/tuna_sched.py      |  1 +
->  22 files changed, 35 insertions(+), 45 deletions(-)
->
-> diff --git a/Makefile b/Makefile
-> index 50ded3985743..a3d71d2de896 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1,3 +1,6 @@
-> +#
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
->  PACKAGE :=3D tuna
->  VERSION :=3D $(shell rpm -q --qf '%{VERSION} ' --specfile rpm/SPECS/$(PA=
-CKAGE).spec | cut -d' ' -f1)
->
-> diff --git a/org.tuna.policy b/org.tuna.policy
-> index 4f71d4ad65f4..b3b3900a4d76 100644
-> --- a/org.tuna.policy
-> +++ b/org.tuna.policy
-> @@ -1,4 +1,5 @@
->  <?xml version=3D"1.0" encoding=3D"UTF-8"?>
-> +<!-- SPDX-License-Identifier: GPL-2.0-only -->
->  <!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD polkit Policy Configu=
-ration 1.0//EN"
->  "http://www.freedesktop.org/software/polkit/policyconfig-1.dtd">
->  <policyconfig>
-> diff --git a/oscilloscope-cmd.py b/oscilloscope-cmd.py
-> index 2ca87e9edc62..a65117637160 100755
-> --- a/oscilloscope-cmd.py
-> +++ b/oscilloscope-cmd.py
-> @@ -5,20 +5,7 @@
->  # http://git.kernel.org/?p=3Dlinux/kernel/git/acme/tuna.git;a=3Dtree
->  # For newer versions and to see it integrated with tuna
->  #
-> -# This library is free software; you can redistribute it and/or
-> -# modify it under the terms of the GNU Lesser General Public
-> -# License as published by the Free Software Foundation;
-> -# version 2.1 of the License.
-> -#
-> -# This library is distributed in the hope that it will be useful,
-> -# but WITHOUT ANY WARRANTY; without even the implied warranty of
-> -# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-> -# Lesser General Public License for more details.
-> -#
-> -# You should have received a copy of the GNU Lesser General Public
-> -# License along with this library; if not, write to the Free Software
-> -# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
-> -# USA
-> +# SPDX-License-Identifier: LGPL-2.1-only
->
->  import getopt
->  import sys
-> diff --git a/setup.py b/setup.py
-> index db0f00735524..f119e75abdeb 100755
-> --- a/setup.py
-> +++ b/setup.py
-> @@ -1,4 +1,5 @@
->  #!/usr/bin/python3
-> +# SPDX-License-Identifier: GPL-2.0-only
->  import os
->  import sysconfig
->  from os.path import isfile, relpath
-> diff --git a/testuna b/testuna
-> index 4bf91ebdb76f..cb98640c0167 100755
-> --- a/testuna
-> +++ b/testuna
-> @@ -2,7 +2,7 @@
->  # Regression tests for tuna
->  # (c) 2008 Red Hat Inc.
->  # Arnaldo Carvalho de Melo <acme@redhat.com>
-> -# Released under the GPLv2
-> +# SPDX-License-Identifier: GPL-2.0-only
->
->  dprint() {
->         [ -n "$VERBOSE" ] && echo $1
-> @@ -111,21 +111,21 @@ PID=3D$(ktpidof "watchdog")
->  RTPRIO=3D$(get_rtprio $PID)
->  POLICY=3D$(get_policy $PID)
->  POLICY=3D$(echo ${POLICY:6:1} | tr 'A-Z' 'a-z')
-> -chrt -$POLICY -p $((RTPRIO - 1)) $PID
-> +chrt -$POLICY -p $((RTPRIO - 1)) $PID
->
->  die_if_not_saved 1 'Saving changes to a kernel thread priority'
->
-> -chrt -$POLICY -p $RTPRIO $PID
-> +chrt -$POLICY -p $RTPRIO $PID
->
->  die_if_conf_changed 'Restoring kernel thread priority'
->
->  new_policy=3D$(echo $POLICY | tr fr rf)
->
-> -chrt -$new_policy -p $RTPRIO $PID
-> +chrt -$new_policy -p $RTPRIO $PID
->
->  die_if_not_saved 1 'Changing kernel thread sched policy'
->
-> -chrt -$POLICY -p $RTPRIO $PID
-> +chrt -$POLICY -p $RTPRIO $PID
->
->  die_if_conf_changed 'Restoring kernel thread sched policy'
->
-> diff --git a/tuna-cmd.py b/tuna-cmd.py
-> index 6a980598526f..e953869c4f48 100755
-> --- a/tuna-cmd.py
-> +++ b/tuna-cmd.py
-> @@ -5,14 +5,7 @@
->  #   Copyright (C) 2008, 2009, 2010, 2011 Red Hat Inc.
->  #   Arnaldo Carvalho de Melo <acme@redhat.com>
->  #
-> -#   This application is free software; you can redistribute it and/or
-> -#   modify it under the terms of the GNU General Public License
-> -#   as published by the Free Software Foundation; version 2.
-> -#
-> -#   This application is distributed in the hope that it will be useful,
-> -#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-> -#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-> -#   General Public License for more details.
-> +# SPDX-License-Identifier: GPL-2.0-only
->
->  """ tuna - Application Tuning Program"""
->
-> diff --git a/tuna.desktop b/tuna.desktop
-> index 603011f79467..87ca3a35ce63 100644
-> --- a/tuna.desktop
-> +++ b/tuna.desktop
-> @@ -1,3 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
->  [Desktop Entry]
->  Name=3Dtuna
->  GenericName=3DApplication Tuner
-> diff --git a/tuna/__init__.py b/tuna/__init__.py
-> index 30924a00cf96..614e3e4c7ed8 100755
-> --- a/tuna/__init__.py
-> +++ b/tuna/__init__.py
-> @@ -4,4 +4,4 @@ Copyright (c) 2008, 2009 Red Hat Inc.
->  Application Tuning GUI
->  """
->  __author__ =3D "Arnaldo Carvalho de Melo <acme@redhat.com>"
-> -__license__ =3D "GPLv2 License"
-> +__license__ =3D "SPDX-License-Identifier: GPL-2.0-only"
-> diff --git a/tuna/config.py b/tuna/config.py
-> index 09d26dd87029..63c9f23bb09b 100644
-> --- a/tuna/config.py
-> +++ b/tuna/config.py
-> @@ -1,3 +1,5 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
->  import io
->  import os
->  import re
-> diff --git a/tuna/gui/__init__.py b/tuna/gui/__init__.py
-> index ad1191c13d8d..a40f86292e6f 100755
-> --- a/tuna/gui/__init__.py
-> +++ b/tuna/gui/__init__.py
-> @@ -1,3 +1,5 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
->  """
->  Copyright (c) 2009  Red Hat Inc.
->
-> diff --git a/tuna/gui/commonview.py b/tuna/gui/commonview.py
-> index cc8f913819a2..8089ed154dae 100644
-> --- a/tuna/gui/commonview.py
-> +++ b/tuna/gui/commonview.py
-> @@ -1,3 +1,5 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
->  from gi.repository import Gtk
->  from tuna import tuna
->
-> diff --git a/tuna/gui/cpuview.py b/tuna/gui/cpuview.py
-> index cc3f0f905ae7..844705a4bb21 100755
-> --- a/tuna/gui/cpuview.py
-> +++ b/tuna/gui/cpuview.py
-> @@ -1,5 +1,6 @@
->  # -*- python -*-
->  # -*- coding: utf-8 -*-
-> +# SPDX-License-Identifier: GPL-2.0-only
->
->  from functools import reduce
->
-> diff --git a/tuna/gui/irqview.py b/tuna/gui/irqview.py
-> index 5143d6dc0df5..e89fb70197fc 100755
-> --- a/tuna/gui/irqview.py
-> +++ b/tuna/gui/irqview.py
-> @@ -1,5 +1,6 @@
->  # -*- python -*-
->  # -*- coding: utf-8 -*-
-> +# SPDX-License-Identifier: GPL-2.0-only
->  from tuna import tuna, gui
->  import procfs
->  from gi.repository import Gdk
-> diff --git a/tuna/gui/procview.py b/tuna/gui/procview.py
-> index 440a289a1b29..78d5f573dd49 100755
-> --- a/tuna/gui/procview.py
-> +++ b/tuna/gui/procview.py
-> @@ -1,3 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
->  import re
->  import os
->  import tuna.tuna_sched as tuna_sched
-> diff --git a/tuna/gui/profileview.py b/tuna/gui/profileview.py
-> index 26f58cbc8f4f..7570bc0e57ce 100644
-> --- a/tuna/gui/profileview.py
-> +++ b/tuna/gui/profileview.py
-> @@ -1,3 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
->  import os
->  import shutil
->  import gi
-> diff --git a/tuna/gui/util.py b/tuna/gui/util.py
-> index ec368ae4b2c9..92bd368179cc 100644
-> --- a/tuna/gui/util.py
-> +++ b/tuna/gui/util.py
-> @@ -1,3 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
->  import errno
->  import os
->  import gi
-> diff --git a/tuna/new_eth.py b/tuna/new_eth.py
-> index 98f9179d5695..e2888d4cef36 100755
-> --- a/tuna/new_eth.py
-> +++ b/tuna/new_eth.py
-> @@ -1,4 +1,5 @@
->  # Copyright (C) 2022 John Kacur
-> +# SPDX-License-Identifier: GPL-2.0-only
->  """ A few functions similar to ethtool """
->  import os
->  import socket
-> diff --git a/tuna/oscilloscope.py b/tuna/oscilloscope.py
-> index 317fe4554c60..a44ace53ec27 100755
-> --- a/tuna/oscilloscope.py
-> +++ b/tuna/oscilloscope.py
-> @@ -8,20 +8,7 @@
->  # http://git.kernel.org/?p=3Dlinux/kernel/git/acme/tuna.git;a=3Dtree
->  # For newer versions and to see it integrated with tuna
->  #
-> -# This library is free software; you can redistribute it and/or
-> -# modify it under the terms of the GNU Lesser General Public
-> -# License as published by the Free Software Foundation;
-> -# version 2.1 of the License.
-> -#
-> -# This library is distributed in the hope that it will be useful,
-> -# but WITHOUT ANY WARRANTY; without even the implied warranty of
-> -# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-> -# Lesser General Public License for more details.
-> -#
-> -# You should have received a copy of the GNU Lesser General Public
-> -# License along with this library; if not, write to the Free Software
-> -# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
-> -# USA
-> +# SPDX-License-Identifier: LGPL-2.1-only
->
->  import os
->  import sys
-> diff --git a/tuna/sysfs.py b/tuna/sysfs.py
-> index 1c903e106a44..cd2377a8df26 100755
-> --- a/tuna/sysfs.py
-> +++ b/tuna/sysfs.py
-> @@ -1,5 +1,7 @@
->  # -*- python -*-
->  # -*- coding: utf-8 -*-
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
->  """
->  classes for /sys/devices/system/cpu/
->  so we can get topology information and do CPU hotplug operations
-> diff --git a/tuna/tuna.py b/tuna/tuna.py
-> index e527facb151c..bd678e2dc7ae 100755
-> --- a/tuna/tuna.py
-> +++ b/tuna/tuna.py
-> @@ -1,5 +1,6 @@
->  # -*- python -*-
->  # -*- coding: utf-8 -*-
-> +# SPDX-License-Identifier: GPL-2.0-only
->
->  import copy
->  import errno
-> @@ -647,12 +648,12 @@ def generate_rtgroups(filename, kthreads, nr_cpus):
->      f.write('''# Generated by tuna
->  #
->  # Use it with rtctl:
-> -#
-> +#
->  # rtctl --file %s reset
->  #
->  # Please use 'man rtctl' for more operations
->  #
-> -# Associate processes into named groups with default priority and
-> +# Associate processes into named groups with default priority and
->  # scheduling policy.
->  #
->  # Format is: <groupname>:<sched>:<prio>:<regex>
-> @@ -661,7 +662,7 @@ def generate_rtgroups(filename, kthreads, nr_cpus):
->  # sched must be one of: 'f' (fifo)
->  #                       'b' (batch)
->  #                       'r' (round-robin)
-> -#                       'o' (other)
-> +#                       'o' (other)
->  #                       '*' (leave alone)
->  # regex is an awk regex
->  #
-> diff --git a/tuna/tuna_gui.py b/tuna/tuna_gui.py
-> index 459f90303ed5..cefee4a57697 100755
-> --- a/tuna/tuna_gui.py
-> +++ b/tuna/tuna_gui.py
-> @@ -1,5 +1,6 @@
->  # -*- python -*-
->  # -*- coding: utf-8 -*-
-> +# SPDX-License-Identifier: GPL-2.0-only
->
->  import sys
->  import os
-> diff --git a/tuna/tuna_sched.py b/tuna/tuna_sched.py
-> index de9846bb5fae..1051983e53f9 100644
-> --- a/tuna/tuna_sched.py
-> +++ b/tuna/tuna_sched.py
-> @@ -1,5 +1,6 @@
->  #!/usr/bin/python3
->  #   Copyright (C) 2022 John Kacur
-> +# SPDX-License-Identifier: GPL-2.0-only
->  """
->  Functions to translate a scheduling policy into either a string name or =
-an
->  equivalent integer
-> --
-> 2.51.1
->
->
+Other way would be to remove SPDX-FileCopyrightText from existing files
+and disallow this, but one way or another we should be explicit about
+it.  Otherwise people will be sending more of these and each maintainer
+would need to make their own call.
+---
+ Documentation/process/license-rules.rst | 2 ++
+ scripts/checkpatch.pl                   | 9 +++++++++
+ 2 files changed, 11 insertions(+)
+
+diff --git a/Documentation/process/license-rules.rst b/Documentation/process/license-rules.rst
+index 59a7832df7d0..8d7c0214f283 100644
+--- a/Documentation/process/license-rules.rst
++++ b/Documentation/process/license-rules.rst
+@@ -66,6 +66,8 @@ License identifier syntax
+    '#!PATH_TO_INTERPRETER' in the first line.  For those scripts the SPDX
+    identifier goes into the second line.
+ 
++   Identifier line can be followed by another one with SPDX-FileCopyrightText.
++
+ |
+ 
+ 2. Style:
+diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+index 362a8d1cd327..98261ee97e2b 100755
+--- a/scripts/checkpatch.pl
++++ b/scripts/checkpatch.pl
+@@ -3844,6 +3844,15 @@ sub process {
+ 			     "Misplaced SPDX-License-Identifier tag - use line $checklicenseline instead\n" . $herecurr);
+ 		}
+ 
++# check for unused SPDX file tags
++		if ($rawline =~ /\bSPDX-.*:/ &&
++		    $rawline !~ /\bSPDX-License-Identifier:/ &&
++		    $rawline !~ /\bSPDX-FileCopyrightText:/) {
++			WARN("SPDX_LICENSE_TAG",
++			     "Unsupported SPDX tag\n" . $herecurr);
++		}
++
++
+ # line length limit (with some exclusions)
+ #
+ # There are a few types of lines that may extend beyond $max_line_length:
+-- 
+2.51.0
+
 

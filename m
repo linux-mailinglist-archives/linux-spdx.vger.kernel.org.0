@@ -1,91 +1,227 @@
-Return-Path: <linux-spdx+bounces-108-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-109-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA285CFFD0F
-	for <lists+linux-spdx@lfdr.de>; Wed, 07 Jan 2026 20:45:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 437D7D0029E
+	for <lists+linux-spdx@lfdr.de>; Wed, 07 Jan 2026 22:28:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5C7DE301E6E9
-	for <lists+linux-spdx@lfdr.de>; Wed,  7 Jan 2026 19:45:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AAA5E30019D1
+	for <lists+linux-spdx@lfdr.de>; Wed,  7 Jan 2026 21:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBDB33D4F7;
-	Wed,  7 Jan 2026 19:39:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B6E26ED41;
+	Wed,  7 Jan 2026 21:28:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="An4KhGaK";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NDEu2z4e"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from relay.hostedemail.com (smtprelay0011.hostedemail.com [216.40.44.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7736A33B6F9;
-	Wed,  7 Jan 2026 19:38:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=216.40.44.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8EA72877DE
+	for <linux-spdx@vger.kernel.org>; Wed,  7 Jan 2026 21:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767814741; cv=none; b=tYUeCxBotB+3gMquNYLfpMHoWThHC4crhRmYEpVaJA8aNl2WYalrImQZHOFvnBso749itSm4eY27ppoGRH5jOCkzRWJoQL/SzhsZg4+yhT2wl8lk6wRiLKj8LdBBpcoFjW8CpF7UHJM+nzvOZ9dHlb7AbEZ3inc0cgJZCx9rnJU=
+	t=1767821302; cv=none; b=eLXpS02BQyUOVNm5tUQOBIS/6XuQjkxZK3+aun0gYdOd4mPOR3SMICnDyVZa6Rv1q6w9BN5jjjJNf6+AL3GGrIhcP0jyLocHYlUB6nXlt9MqWYeToACyMpYTu8+i2cZ1YTP9Auh8WgCnHM2FTziLeeoX2QMsqslOllWA2PDUFZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767814741; c=relaxed/simple;
-	bh=OiHKxYtjxg32qIgexqg9vuqB56t7QY266JHqWTwOE0U=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DBiCDoEW5xXPihECgJU2KBVbQVuZc7HbzSAETjAAOs+2VAHKHyXDslrZOkUVe1zUMkMGZM2aSBh/xuhkfH7IiBkpF9nx2wm9BJWb0boPeDJjGXjREIrFEDTj4c6EdNORph/BduZzJt3xmr79uwJaEBDZZjCuk9oNP8iUFvKUVDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com; spf=pass smtp.mailfrom=perches.com; arc=none smtp.client-ip=216.40.44.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=perches.com
-Received: from omf03.hostedemail.com (a10.router.float.18 [10.200.18.1])
-	by unirelay07.hostedemail.com (Postfix) with ESMTP id C6EBD1604ED;
-	Wed,  7 Jan 2026 19:38:45 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf03.hostedemail.com (Postfix) with ESMTPA id ACF326000C;
-	Wed,  7 Jan 2026 19:38:42 +0000 (UTC)
-Message-ID: <dc44dd2c6efb16ace506085922707c70126117e7.camel@perches.com>
-Subject: Re: [PATCH] LICENSES: Explicitly allow SPDX-FileCopyrightText
-From: Joe Perches <joe@perches.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Thomas
- Gleixner <tglx@linutronix.de>, Jonathan Corbet <corbet@lwn.net>, Andy
- Whitcroft <apw@canonical.com>,  Dwaipayan Ray <dwaipayanray1@gmail.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>, linux-spdx@vger.kernel.org, 
-	workflows@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 07 Jan 2026 11:38:41 -0800
-In-Reply-To: <2026010726-crusader-recoup-4825@gregkh>
-References: <20260107171246.242973-2-krzysztof.kozlowski@oss.qualcomm.com>
-	 <4702253d918c8edb899a91fbd79b40199a013264.camel@perches.com>
-	 <2026010726-crusader-recoup-4825@gregkh>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1767821302; c=relaxed/simple;
+	bh=QE0TuUd0ZtnFsYMLcc0LCISHHaywTbsKMgtAJ5LeFQk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gCh0UEPe4FTvVBNkciP0NJ3JxRWsU9CSNdLm2Um0zu+eEzktrirutIFyjjTSAqWZkPmBgN/w8P5m4fFp9FOdRVxOCU9KOI0G4M/vZITy0H+1aGzKaS1gZ0B0qVtk9YCCAfSb5usI94XMg4P9EKO+1bJsvctD+HxSIKOKjTZwqMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=An4KhGaK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NDEu2z4e; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 607HVOhp3890482
+	for <linux-spdx@vger.kernel.org>; Wed, 7 Jan 2026 21:28:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KBn0nYVbtuh8wufBeWR0pZ21pfC/Ns9D4ekZeoAHe+A=; b=An4KhGaKBKW8dWFo
+	6Baozy07xxegetf68aGX7spaEC0q0/gm4cxNrsCE5QhZlJnPWSVZ1iC4+akxJZfM
+	3HYemorym0t4iUD3PFBbiNMwC0OLBWGxeq+wBE/fWx47Z9LlQhhKJpcXFvfQOk7l
+	KQqG+EI+aH94UZnqugIfWfu3Ye0xw4nMSqCNgFE340zqFtt9OKvFyLi2jPcVAerJ
+	HXMSJdUtNYe2Iasr5dS51fHK2OvANsBVrsOXL8cvOxXMrZg+seLrcYWxz4SXWQAz
+	vvJ3hX+M1+9dwg45rr8yFepWElQK7A0+/XqzE2G3LzYUkon6cCXKtxVW0Eu35PXl
+	B4BOjw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhuy70npj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-spdx@vger.kernel.org>; Wed, 07 Jan 2026 21:28:19 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b9fa6f808cso744253385a.1
+        for <linux-spdx@vger.kernel.org>; Wed, 07 Jan 2026 13:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767821299; x=1768426099; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=KBn0nYVbtuh8wufBeWR0pZ21pfC/Ns9D4ekZeoAHe+A=;
+        b=NDEu2z4ePasrR1o4S3bxP2j+y9tYQO7xmA5RpthvF218lxlpR2WzFcNv6yctBKCSRI
+         z2/TZHQndntCcarVQrxUZGMjOI3Nv0wV6o9Nm2M1S4yZnA2a3UdghGmRcZZEW5vSRZNw
+         Enb4N1HnqjR+9CD+lwQ3NbEtkWW+rKBv22ngJ1XAYkFdkr0Cv2kGMwYfjdTh2UeiDk+F
+         pJD42xCzNgmcN5k3nQrHp9V9QXKnFLYfJua5lzdXZFBNA0M8RHW35o/+LUDdLVWp3DYM
+         fYIMnyEGSkfIWP508bvp9TKUJ/SMShC43CGRrkBNmDkFviS9YmYr+PENyccCes/Xx882
+         c+gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767821299; x=1768426099;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KBn0nYVbtuh8wufBeWR0pZ21pfC/Ns9D4ekZeoAHe+A=;
+        b=MLPNOkTdLM3c3MqE/OGBgo+zFMDq8DjoGcbk1w8sGzbQFgLeC7pM0yaqsw9LcYxEMZ
+         bdIz5Goa8cWc0SIFihwLv3cRdxk/5FHzgPzxCgO1dD54qGlzAxayyZLjxHDLtx6wV+Tw
+         wOSuq77woYirlVsIrSsVDrQTrCZHNHFYk8nkXD9xC2MFPkZ2Wlm+P4zQkKEUvBOo2/qp
+         BhJPWqvPJIAGAayTHEN6hy1P6jWwMiZcn+1btPGD9nZ77iEerF4WhvnwKHSCAbPV+6Bw
+         65XwnuSGnVKNAnATS6sq03NnkwvdCvV4WE3nvAYpP4CdSHHWVg/oJULG16GgOjR/amee
+         M7MQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVkTSxONj1Q9aFSh2vezj+OgB7OS1zy+kxtykliT/oposX1Pb5AUdHq64w7XW2bRvJ4YemHt88P+kYF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaJotGDeeuV2NORwmcf7HkTIwEB9l2BN873pW52dr+xgYasmdV
+	EHJH4oPFGts2CosfQnLyXkYzeTojwurh8AXpwYxzsBnx0rtxSUb6IBCA+hgKWmbjFpigugl7/85
+	Vt4MrgtAOyH314uc/7ZriUsqky/8kRURvkvkv/sgPoiTDEaphfCeNcBtOgwcyy1QQ
+X-Gm-Gg: AY/fxX5cVII7/40mtg2bBxL33JumzmLGDGAaB/H+iMJODG5hl+4GlmtAAjrCMTQt0sP
+	6xGDuQodcyLVSKY245R4jInCf/HeSVyklPX8u6FXVPbIruoJCMfwQ4o3MsrcI6MiphaiaE8hMJG
+	AJoUhCSSveKWyjZCRHAdegap2AtGEv49KzUpm4vqL96JgKhO3qMw7WQU+4E5HuP3w1ep0HCNe9P
+	vBHBe90Kt06iIpoeI91gDWuqXyplg3wlj7YoDaGnrcADPB7WqR7rms4AHOeAU9I61JVaQbGTh6d
+	OOucDnk/31uNivsTf2hHogMfesenKCrlULyr8ZvL116TK6AjPBOcTq11z4y/iUKIOM5fKAt0ZCZ
+	Da+qDavGXB1jJhmHqW5FoPWKMwBoaG4MHFG3FSA==
+X-Received: by 2002:a05:620a:46ab:b0:85c:bb2:ad8c with SMTP id af79cd13be357-8c389406276mr531913985a.74.1767821299051;
+        Wed, 07 Jan 2026 13:28:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEs7vmOfk/MRKXOdvX0ksXjWl8U/ducOM0tlNsCZnnSfq/R7R/rY6mUOUVWGr/MBtI3NfPuHw==
+X-Received: by 2002:a05:620a:46ab:b0:85c:bb2:ad8c with SMTP id af79cd13be357-8c389406276mr531911985a.74.1767821298642;
+        Wed, 07 Jan 2026 13:28:18 -0800 (PST)
+Received: from [192.168.1.29] ([178.197.218.229])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507b9eb402sm5765916a12.15.2026.01.07.13.28.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 13:28:18 -0800 (PST)
+Message-ID: <2b681eaa-e71b-4c6a-8cea-ba7eb5915220@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 22:28:16 +0100
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Stat-Signature: o3hjh6u665w7q1ngwpwac6i3ej9cbx99
-X-Rspamd-Server: rspamout02
-X-Rspamd-Queue-Id: ACF326000C
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX18xLqUBePl34TjQp3oJfOe+LD+Un8ATmTY=
-X-HE-Tag: 1767814722-932982
-X-HE-Meta: U2FsdGVkX18aCjojfg6QQg+nfGB6yvucaBoY0VG/q7KUNvDi5cXqYKd4zyfc5630hpLafsLCQU182krvPHPfdLx2AjVQ64DIkjUbRvRCGPXR1Wx8NN8pxN6b1XdlU2jsntzfgmJobSfYyECcW9J8uh8GZZFQDcdVPQoNPodDnFjdXkRREPRbEQhLhC+UuV2kA5TjrBIJEkbHnQ8FQQm7BpLRxEBHBfD7fLGSbGFh2DbFRuzbtDLuEudQNujteSaGsVNAkp3bx8TM4Rw1gM8SgeezIvdzFI+Muke/8haWyjl3IJAJS5tOflFIAvEgS0qq
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] LICENSES: Explicitly allow SPDX-FileCopyrightText
+To: Joe Perches <joe@perches.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Jonathan Corbet <corbet@lwn.net>,
+        Andy Whitcroft <apw@canonical.com>,
+        Dwaipayan Ray <dwaipayanray1@gmail.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>, linux-spdx@vger.kernel.org,
+        workflows@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Torvalds <torvalds@linux-foundation.org>
+References: <20260107171246.242973-2-krzysztof.kozlowski@oss.qualcomm.com>
+ <4702253d918c8edb899a91fbd79b40199a013264.camel@perches.com>
+ <2026010726-crusader-recoup-4825@gregkh>
+ <dc44dd2c6efb16ace506085922707c70126117e7.camel@perches.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@oss.qualcomm.com; keydata=
+ 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
+ cwzYbmi/Et7T2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <dc44dd2c6efb16ace506085922707c70126117e7.camel@perches.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: GGeVnnCtJm2K9VeAJmcAR97s9KseyiyB
+X-Proofpoint-GUID: GGeVnnCtJm2K9VeAJmcAR97s9KseyiyB
+X-Authority-Analysis: v=2.4 cv=DZEaa/tW c=1 sm=1 tr=0 ts=695ecff3 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=iQpfymHqp41Ck2fXHbgA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDE3MCBTYWx0ZWRfX0K6YtjzVphOq
+ 13nfPh7lA9nfb/oY83qJVN9XHnSpe/YlWu98nuTBIthI4uLcXRditcH3UwY74BM6J4uJj88XSc8
+ iZ7MJ3OiCkD8Z0TF6Fnu99PB79QorTkHNe/L1z71H6jBTNrSGhS85zAyAB6ebDpNirVhnPtRdn7
+ PqW8RnVHdlZxaHCidbGbrP9a62qNKv/MWz/kZqZfPrX4sv156sJaqhNjhR8U+VuljNTBF33gEEX
+ Lt3jrFESXKXkEkdO1ahUIYgXUM1lHzJ2FJ0GyKSQM+ZaOyMJ8YfQk48EMzfwX4OunKIxf7rAU8n
+ MEjrF3lwQYhu0YCFlipVfPDHBidn/sNn9+gHkCOAxgxdYxVnkEUYajHzAgYy85MxBOHFCcyX7uO
+ MJtModvpvylj4x7N1beOjJ+tbsqjYWheO/MwEgvVGFk5DZZCW2I22NNleI1E/PQIuqbVivIVOYh
+ ZEtjOdJi4H/FrzJbdXQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_03,2026-01-07_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 phishscore=0 bulkscore=0 adultscore=0
+ spamscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070170
 
-On Wed, 2026-01-07 at 20:35 +0100, Greg Kroah-Hartman wrote:
-> On Wed, Jan 07, 2026 at 10:40:11AM -0800, Joe Perches wrote:
-> > On Wed, 2026-01-07 at 18:12 +0100, Krzysztof Kozlowski wrote:
-> > > Sources already have SPDX-FileCopyrightText (~40 instances) and more
-> > > appear on the mailing list, so document that it is allowed.  On the
-> > > other hand SPDX defines several other tags like SPDX-FileType, so add
-> > > checkpatch rule to narrow desired tags only to two of them - license =
-and
-> > > copyright.  That way no new tags would sneak in to the kernel unnotic=
-ed.
-> >=20
-> > I find no value in this tag.  I think it should be discouraged.
-> >=20
-> > How is it different or more useful than a typical Copyright or =A9 symb=
-ol ?
->=20
-> It's easier to parse automatically and put into other places (like a
-> software bill of materials).
->=20
-> I don't like it all that much either, as really, it doesn't mean much
-> (go talk to a lawyer for details), but it's already in our tree so we
-> might as well document it...
+On 07/01/2026 20:38, Joe Perches wrote:
+> On Wed, 2026-01-07 at 20:35 +0100, Greg Kroah-Hartman wrote:
+>> On Wed, Jan 07, 2026 at 10:40:11AM -0800, Joe Perches wrote:
+>>> On Wed, 2026-01-07 at 18:12 +0100, Krzysztof Kozlowski wrote:
+>>>> Sources already have SPDX-FileCopyrightText (~40 instances) and more
+>>>> appear on the mailing list, so document that it is allowed.  On the
+>>>> other hand SPDX defines several other tags like SPDX-FileType, so add
+>>>> checkpatch rule to narrow desired tags only to two of them - license and
+>>>> copyright.  That way no new tags would sneak in to the kernel unnoticed.
+>>>
+>>> I find no value in this tag.  I think it should be discouraged.
+>>>
+>>> How is it different or more useful than a typical Copyright or © symbol ?
+>>
+>> It's easier to parse automatically and put into other places (like a
+>> software bill of materials).
+>>
+>> I don't like it all that much either, as really, it doesn't mean much
+>> (go talk to a lawyer for details), but it's already in our tree so we
+>> might as well document it...
+> 
+> Document it doesn't mean encourage it.
 
-Document it doesn't mean encourage it.
+
+Just like I explained in the changelog --- part, we should either accept
+it or mark it as incorrect in the checkpatch. I am fine with both (I
+don't have actual preference), but what I do not want is to have it in
+limbo/open stage, where everyone has to guess if it is desired/allowed.
+
+Lack of documented policy enforced by checkpatch means every maintainer
+upon seeing it will do the same as me - git grep and try to understand
+whether this is approved or not. Pretty waste of everyone's time.
+
+Best regards,
+Krzysztof
 

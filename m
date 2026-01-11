@@ -1,227 +1,219 @@
-Return-Path: <linux-spdx+bounces-109-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-110-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 437D7D0029E
-	for <lists+linux-spdx@lfdr.de>; Wed, 07 Jan 2026 22:28:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 529EBD0F667
+	for <lists+linux-spdx@lfdr.de>; Sun, 11 Jan 2026 17:08:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AAA5E30019D1
-	for <lists+linux-spdx@lfdr.de>; Wed,  7 Jan 2026 21:28:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 819953040D0C
+	for <lists+linux-spdx@lfdr.de>; Sun, 11 Jan 2026 16:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B6E26ED41;
-	Wed,  7 Jan 2026 21:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F1534B69B;
+	Sun, 11 Jan 2026 16:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="An4KhGaK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NDEu2z4e"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SZEh7Fna";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OVi0knrj"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8EA72877DE
-	for <linux-spdx@vger.kernel.org>; Wed,  7 Jan 2026 21:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9054834B433
+	for <linux-spdx@vger.kernel.org>; Sun, 11 Jan 2026 16:08:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767821302; cv=none; b=eLXpS02BQyUOVNm5tUQOBIS/6XuQjkxZK3+aun0gYdOd4mPOR3SMICnDyVZa6Rv1q6w9BN5jjjJNf6+AL3GGrIhcP0jyLocHYlUB6nXlt9MqWYeToACyMpYTu8+i2cZ1YTP9Auh8WgCnHM2FTziLeeoX2QMsqslOllWA2PDUFZI=
+	t=1768147683; cv=none; b=k47yiffp0hCn15ihQs3njB4ulU6JFNtfzv+x9EPtLr2zSzb5nsp6MTA9Voe7/VfmfCO7zpifO2EcPT+b8A0mFVIqVz949Llg9PdBX1CayH4mkwvd9V8dyRV1/M2DoSkd4cg2ouMWjsVhjqP5EUs8uOdvHeHvRTiyczC2KU8MxGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767821302; c=relaxed/simple;
-	bh=QE0TuUd0ZtnFsYMLcc0LCISHHaywTbsKMgtAJ5LeFQk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gCh0UEPe4FTvVBNkciP0NJ3JxRWsU9CSNdLm2Um0zu+eEzktrirutIFyjjTSAqWZkPmBgN/w8P5m4fFp9FOdRVxOCU9KOI0G4M/vZITy0H+1aGzKaS1gZ0B0qVtk9YCCAfSb5usI94XMg4P9EKO+1bJsvctD+HxSIKOKjTZwqMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=An4KhGaK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NDEu2z4e; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1768147683; c=relaxed/simple;
+	bh=mrJ2r/higfpselGc6ELPbZ4mu5aGxqm5xTx8ZYso3Q8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ejDiLtVqnnn+whKiVRq5wjyOMpxvrCApItd28opZp+38vJR3wJ4j/xe+uZai0xuResgovYQK9FqdTmTVaFyKrUM94tu87S+ZlC2vHnfCTzR8x25OUjWJYdSTyDazfZLnFYQKksgp93pOs3M4FxWXFtOjLxNTg7PUD0AbYyAy+JY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SZEh7Fna; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OVi0knrj; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 607HVOhp3890482
-	for <linux-spdx@vger.kernel.org>; Wed, 7 Jan 2026 21:28:19 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60B5jAfx1207738
+	for <linux-spdx@vger.kernel.org>; Sun, 11 Jan 2026 16:07:59 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KBn0nYVbtuh8wufBeWR0pZ21pfC/Ns9D4ekZeoAHe+A=; b=An4KhGaKBKW8dWFo
-	6Baozy07xxegetf68aGX7spaEC0q0/gm4cxNrsCE5QhZlJnPWSVZ1iC4+akxJZfM
-	3HYemorym0t4iUD3PFBbiNMwC0OLBWGxeq+wBE/fWx47Z9LlQhhKJpcXFvfQOk7l
-	KQqG+EI+aH94UZnqugIfWfu3Ye0xw4nMSqCNgFE340zqFtt9OKvFyLi2jPcVAerJ
-	HXMSJdUtNYe2Iasr5dS51fHK2OvANsBVrsOXL8cvOxXMrZg+seLrcYWxz4SXWQAz
-	vvJ3hX+M1+9dwg45rr8yFepWElQK7A0+/XqzE2G3LzYUkon6cCXKtxVW0Eu35PXl
-	B4BOjw==
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=UfXDHbQVS5pwkRsJmLRMNBG+krLGYWt0QDZ
+	Ek+fS9RM=; b=SZEh7FnavRWYsAtKGkrVniuyYpnHDKWlXD8k9EFcuM3NvMZ0Lse
+	9pMRLlLMPMNgI+A4+oQRBdBc095R8G7p2I7iAK4xvAlssdrhS52D1KWX4Cg8r/jl
+	IKZEL5FHcspB5J/GmUE36I+uSu3MULYaXiG7+A2F59rptaxPVDv+aFZcmQJhOJnO
+	Mm41ebNgLt8dGzTT5gquOTv2I6uC+/t82EQefZGYGfCl9mfAjliImMEYbELpLeN7
+	YxMA4RcAQQgvqsmkqGJR2x1dGStQ1Uvx2r4olY9F7WRiMa92xsF8nQgKnsPqnbgt
+	5qUmjB5cgkH2nsajRReMjZ1ANb+ZJUNgMPA==
 Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhuy70npj-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bkntuhuvc-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-spdx@vger.kernel.org>; Wed, 07 Jan 2026 21:28:19 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b9fa6f808cso744253385a.1
-        for <linux-spdx@vger.kernel.org>; Wed, 07 Jan 2026 13:28:19 -0800 (PST)
+	for <linux-spdx@vger.kernel.org>; Sun, 11 Jan 2026 16:07:59 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b1d8f56e24so1503029485a.2
+        for <linux-spdx@vger.kernel.org>; Sun, 11 Jan 2026 08:07:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767821299; x=1768426099; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KBn0nYVbtuh8wufBeWR0pZ21pfC/Ns9D4ekZeoAHe+A=;
-        b=NDEu2z4ePasrR1o4S3bxP2j+y9tYQO7xmA5RpthvF218lxlpR2WzFcNv6yctBKCSRI
-         z2/TZHQndntCcarVQrxUZGMjOI3Nv0wV6o9Nm2M1S4yZnA2a3UdghGmRcZZEW5vSRZNw
-         Enb4N1HnqjR+9CD+lwQ3NbEtkWW+rKBv22ngJ1XAYkFdkr0Cv2kGMwYfjdTh2UeiDk+F
-         pJD42xCzNgmcN5k3nQrHp9V9QXKnFLYfJua5lzdXZFBNA0M8RHW35o/+LUDdLVWp3DYM
-         fYIMnyEGSkfIWP508bvp9TKUJ/SMShC43CGRrkBNmDkFviS9YmYr+PENyccCes/Xx882
-         c+gQ==
+        d=oss.qualcomm.com; s=google; t=1768147679; x=1768752479; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UfXDHbQVS5pwkRsJmLRMNBG+krLGYWt0QDZEk+fS9RM=;
+        b=OVi0knrjhTvug/OjX79DrMfVRb6dbHrjvHnFa1kXV/lZXV1B3IohD/Ci5NoFxr2yqW
+         LQP/b6sYah6IoM40+laAsZGGKAeqGS7oWaRSa+hVxYQ6E36MZHfK2qLVdkV5VJ0K8NF2
+         b9YI8Rxmhg9aeC0oN9zsV6MBXBHEFEvmhdgGrbcmWhYbfcVpxJiqVfxGYD6Dil719YOM
+         1TYoKIf3nP3NoeFoCXYPHv4rCQkGu/7h+s3nyzkzpy0CZzSoTeqn1u/AZR2376jR+Jmr
+         s0dkDBSFxy7YI2VRjphD6ZEHgz04MY0PdtviHfhllQFg428fuf+1DT8nM8nqlKpNpGfz
+         ytug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767821299; x=1768426099;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1768147679; x=1768752479;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KBn0nYVbtuh8wufBeWR0pZ21pfC/Ns9D4ekZeoAHe+A=;
-        b=MLPNOkTdLM3c3MqE/OGBgo+zFMDq8DjoGcbk1w8sGzbQFgLeC7pM0yaqsw9LcYxEMZ
-         bdIz5Goa8cWc0SIFihwLv3cRdxk/5FHzgPzxCgO1dD54qGlzAxayyZLjxHDLtx6wV+Tw
-         wOSuq77woYirlVsIrSsVDrQTrCZHNHFYk8nkXD9xC2MFPkZ2Wlm+P4zQkKEUvBOo2/qp
-         BhJPWqvPJIAGAayTHEN6hy1P6jWwMiZcn+1btPGD9nZ77iEerF4WhvnwKHSCAbPV+6Bw
-         65XwnuSGnVKNAnATS6sq03NnkwvdCvV4WE3nvAYpP4CdSHHWVg/oJULG16GgOjR/amee
-         M7MQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVkTSxONj1Q9aFSh2vezj+OgB7OS1zy+kxtykliT/oposX1Pb5AUdHq64w7XW2bRvJ4YemHt88P+kYF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaJotGDeeuV2NORwmcf7HkTIwEB9l2BN873pW52dr+xgYasmdV
-	EHJH4oPFGts2CosfQnLyXkYzeTojwurh8AXpwYxzsBnx0rtxSUb6IBCA+hgKWmbjFpigugl7/85
-	Vt4MrgtAOyH314uc/7ZriUsqky/8kRURvkvkv/sgPoiTDEaphfCeNcBtOgwcyy1QQ
-X-Gm-Gg: AY/fxX5cVII7/40mtg2bBxL33JumzmLGDGAaB/H+iMJODG5hl+4GlmtAAjrCMTQt0sP
-	6xGDuQodcyLVSKY245R4jInCf/HeSVyklPX8u6FXVPbIruoJCMfwQ4o3MsrcI6MiphaiaE8hMJG
-	AJoUhCSSveKWyjZCRHAdegap2AtGEv49KzUpm4vqL96JgKhO3qMw7WQU+4E5HuP3w1ep0HCNe9P
-	vBHBe90Kt06iIpoeI91gDWuqXyplg3wlj7YoDaGnrcADPB7WqR7rms4AHOeAU9I61JVaQbGTh6d
-	OOucDnk/31uNivsTf2hHogMfesenKCrlULyr8ZvL116TK6AjPBOcTq11z4y/iUKIOM5fKAt0ZCZ
-	Da+qDavGXB1jJhmHqW5FoPWKMwBoaG4MHFG3FSA==
-X-Received: by 2002:a05:620a:46ab:b0:85c:bb2:ad8c with SMTP id af79cd13be357-8c389406276mr531913985a.74.1767821299051;
-        Wed, 07 Jan 2026 13:28:19 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEs7vmOfk/MRKXOdvX0ksXjWl8U/ducOM0tlNsCZnnSfq/R7R/rY6mUOUVWGr/MBtI3NfPuHw==
-X-Received: by 2002:a05:620a:46ab:b0:85c:bb2:ad8c with SMTP id af79cd13be357-8c389406276mr531911985a.74.1767821298642;
-        Wed, 07 Jan 2026 13:28:18 -0800 (PST)
-Received: from [192.168.1.29] ([178.197.218.229])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507b9eb402sm5765916a12.15.2026.01.07.13.28.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jan 2026 13:28:18 -0800 (PST)
-Message-ID: <2b681eaa-e71b-4c6a-8cea-ba7eb5915220@oss.qualcomm.com>
-Date: Wed, 7 Jan 2026 22:28:16 +0100
+        bh=UfXDHbQVS5pwkRsJmLRMNBG+krLGYWt0QDZEk+fS9RM=;
+        b=VAgh/XPiGy7/eZOX1RIFSxfkhbpOKxa0AziqSBqq4iSbas8EfNQQvcHKc7iX/+kKdJ
+         SeBT54a+f2v6j05fZMC7VzzAz4RHFERyKk/K4MABhp1lZajHWaM6AGxVJb2wsQGsN7bh
+         LaTZMaxj1JFTpFoN9JnN7CIy3qWIlY+J8624RS+MJa535GYsuEGsfkO6jlF4BzEvtUGM
+         CF1t/WbXpSj6Mj7CNem5Qp+gq3gliNgQI1Jdt1Cg/Sp90SjAm5VRJ0CHX045Ms6/uQY+
+         avF6iBVxpdRC6RMErgVQ2BYhLm7TDR8wzZB8wvn5KsmP9ACtX8ehnfkyL4wgY/vJKyVu
+         /PPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2HNFKks6NX7N+hXxapYsrQs5U74hkhgG4mps1/d6xBvmIfhYEqsJAzXFVrKHS6mCn5b1KpQpaospz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcNBo0qcowtl9JPa0z8WKskAdCMSib1OOvoVMDwp3hXAsgyKh7
+	D31sUdffeKcO/TgOAO50sBBUiJLZ4XbddcDi9kylL46+nggPDlCcGzaO+I/RvL0n1B67ALPCze8
+	xqgHIirDpIT4h364uA6jdQD+FeFuAjB//hlxL0usOyDe4wujxURBE+zUb/eOai+xu
+X-Gm-Gg: AY/fxX6+5uwnRmu/Gh03koh+wnFiFe0n5gjQW6o7BN+EdUWVvchfNG4M60AxifdIYcz
+	Rg6TvuJkp2JMgGsAHiYwncOAA458kvwOMzU3dxgDJ0z/yzp+ykfN+BKko/WKXzX7CrUAf61tqsg
+	f94D+RvpvkPCFH0SuJ7BXQNbx43QXQReokJ1Nhti34ec3KK53UBueJsG0jFVdZtxt2WNxBODUVk
+	FR6/KAIq3pWwvW1i1CYiVN31fCei8xInuj6TdO0olXitfLtXhmjIZjNhew0fTQ6cqxSy67sv1pq
+	DEhfKIh/oK7i7XsJmiEOAIPv2s5mFLVyl9gR4o0VxlSTDkN31nki5rP5thCXxxxwLIwN9Kwrfqd
+	Ct9+ZkWM3P9U2BOpyDIVmyIps7A==
+X-Received: by 2002:a05:620a:2915:b0:8b2:dfb3:dc2a with SMTP id af79cd13be357-8c3894072a3mr2212355585a.75.1768147678706;
+        Sun, 11 Jan 2026 08:07:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGwCjCH6EdXW2J7irnqLz5o/yB3SzSXcXwviTX1wmXmPQwpzYcLaFaox6xfVLe5CbPSPXUU3Q==
+X-Received: by 2002:a05:620a:2915:b0:8b2:dfb3:dc2a with SMTP id af79cd13be357-8c3894072a3mr2212351785a.75.1768147678294;
+        Sun, 11 Jan 2026 08:07:58 -0800 (PST)
+Received: from quoll ([178.197.218.229])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f6f0e15sm307246465e9.10.2026.01.11.08.07.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jan 2026 08:07:56 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>, Andy Whitcroft <apw@canonical.com>,
+        Joe Perches <joe@perches.com>, Dwaipayan Ray <dwaipayanray1@gmail.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>, linux-spdx@vger.kernel.org,
+        workflows@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v2] LICENSES: Explicitly allow SPDX-FileCopyrightText
+Date: Sun, 11 Jan 2026 17:07:51 +0100
+Message-ID: <20260111160750.17569-2-krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] LICENSES: Explicitly allow SPDX-FileCopyrightText
-To: Joe Perches <joe@perches.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Jonathan Corbet <corbet@lwn.net>,
-        Andy Whitcroft <apw@canonical.com>,
-        Dwaipayan Ray <dwaipayanray1@gmail.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>, linux-spdx@vger.kernel.org,
-        workflows@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linus Torvalds <torvalds@linux-foundation.org>
-References: <20260107171246.242973-2-krzysztof.kozlowski@oss.qualcomm.com>
- <4702253d918c8edb899a91fbd79b40199a013264.camel@perches.com>
- <2026010726-crusader-recoup-4825@gregkh>
- <dc44dd2c6efb16ace506085922707c70126117e7.camel@perches.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@oss.qualcomm.com; keydata=
- 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
- cwzYbmi/Et7T2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <dc44dd2c6efb16ace506085922707c70126117e7.camel@perches.com>
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2749; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=mrJ2r/higfpselGc6ELPbZ4mu5aGxqm5xTx8ZYso3Q8=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpY8rWn4lKtNED4bXwPlQGOV2waA/b7Ss9A0shQ
+ JaUJWeko+WJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWPK1gAKCRDBN2bmhouD
+ 1xFWD/92jI3k/cDAvEeWpS0m/rW9JKqyC+dXTlXNEjYOdi9kh4F0TP1H5C75exA91rVOncDuBTi
+ XsdsRmcYK1wNS3cPjmqsUEU/axosOqgvqLH8LZ/zZgkbTjDur5sF6YYKFfgJDy7zO+nYPRWPxTo
+ M7TREvFci/b1Fdzk4p0qhXu8mIxofsTHqpA4mBM+l2qHoHhWKnuxC0XZE2sXw9FyfxRIL6E1BnB
+ zDi9PER2GG5LNNbjPUhN2Tt6u16An+vqZx9By2ccLAxg5E7H3Y/19qrOXi5BirPQsdbkGh7uuMh
+ xCbmfVyMWmRprbEjg2wFIJ0LWNz4MRdiD/1Zgv0Rxu2k5ZJONzG/EycoAZ9PseivLDBnJ03SVCz
+ ylE2sI68mSbTnfzUqa1wbUaYQ9r6RnQHK+/CM/zwmt9bnLo4pxEMPvKBAx7gYvYkhRRDlRm2e3r
+ D6ZnCeD30Q1npEpVCcuxsC3Lr+xdIKA/LoiUfxbJepaRbQh5Vg+N4JHYkcw3CW/77Xu3FKbE8xL
+ ESnVAwUUBWhR7KS1+9P4zaY5GKSOPMxiDcacU/x0kXM4Ys3qivg3APpXCM+zDXXgcpRaGVq5s93
+ llk5SBAyLcWZn9fbJIjaHL1nW6ztUPvKdnYy2HMbzKSb4L9yuCjYRWlpuNvzFRNsiyvHtYwwano 19EIqgGPxKabXxQ==
+X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: GGeVnnCtJm2K9VeAJmcAR97s9KseyiyB
-X-Proofpoint-GUID: GGeVnnCtJm2K9VeAJmcAR97s9KseyiyB
-X-Authority-Analysis: v=2.4 cv=DZEaa/tW c=1 sm=1 tr=0 ts=695ecff3 cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTExMDE0OSBTYWx0ZWRfXwbwtlpZpMNHT
+ G/A01fKwalOXOn6nyle+si3wvAeULXII+Cp+6OjzKC81JG7Lg/wAPe/HjlkT6MbiMIEE+Em9Hrh
+ dqdJriiMAXScRPU2YoESlI7k1tPKijlxX2oLq+MP86NmZxtjUFyDvlyHiYM6YKctr67zaG1mhHv
+ FUyC1IaziB7JRgHRxyu9FMXfBXGcM6nXE0fYsNUrjfmCmtO3lqxFuPDsJNtNGZ8m72NGq0lEoBE
+ 1z0Vpw6lH3vTj9Kd3/nV4ZhDeDruKo6s8KMlgyPaMWOQcQzCPvO6WfJGJaX0kR43XsO9rODKiZY
+ jG2tuI9W718D/Cs2MpTzkwH5tXEbAMGI8zHA3dKK2SrirorNI+eSiZ93bg4udR1R+V8mhk1dnKr
+ 8MKyYX4COWcx9XohnjyGeK6KHSOAdNyLwHjVTD4lGa3LubMQNIPkHmQSX+akErDQShcOXGU9wrI
+ z8Hx9LQvtOozPINn8aQ==
+X-Authority-Analysis: v=2.4 cv=R6AO2NRX c=1 sm=1 tr=0 ts=6963cadf cx=c_pps
  a=HLyN3IcIa5EE8TELMZ618Q==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=iQpfymHqp41Ck2fXHbgA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDE3MCBTYWx0ZWRfX0K6YtjzVphOq
- 13nfPh7lA9nfb/oY83qJVN9XHnSpe/YlWu98nuTBIthI4uLcXRditcH3UwY74BM6J4uJj88XSc8
- iZ7MJ3OiCkD8Z0TF6Fnu99PB79QorTkHNe/L1z71H6jBTNrSGhS85zAyAB6ebDpNirVhnPtRdn7
- PqW8RnVHdlZxaHCidbGbrP9a62qNKv/MWz/kZqZfPrX4sv156sJaqhNjhR8U+VuljNTBF33gEEX
- Lt3jrFESXKXkEkdO1ahUIYgXUM1lHzJ2FJ0GyKSQM+ZaOyMJ8YfQk48EMzfwX4OunKIxf7rAU8n
- MEjrF3lwQYhu0YCFlipVfPDHBidn/sNn9+gHkCOAxgxdYxVnkEUYajHzAgYy85MxBOHFCcyX7uO
- MJtModvpvylj4x7N1beOjJ+tbsqjYWheO/MwEgvVGFk5DZZCW2I22NNleI1E/PQIuqbVivIVOYh
- ZEtjOdJi4H/FrzJbdXQ==
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=P1BnusSwAAAA:8 a=ag1SF4gXAAAA:8 a=IJv9LcIfAAAA:8 a=EUspDBNiAAAA:8
+ a=_UQAGB7oVweOm72raGYA:9 a=bTQJ7kPSJx9SKPbeHEYW:22 a=D0XLA9XvdZm18NrgonBM:22
+ a=Yupwre4RP9_Eg_Bd0iYG:22 a=cmr4hm9N53k6aw-X_--Q:22
+X-Proofpoint-ORIG-GUID: 4tKkRpUpyVug3jsORE6mAmuQesI3Xav8
+X-Proofpoint-GUID: 4tKkRpUpyVug3jsORE6mAmuQesI3Xav8
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-07_03,2026-01-07_03,2025-10-01_01
+ definitions=2026-01-11_06,2026-01-09_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 phishscore=0 bulkscore=0 adultscore=0
- spamscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 priorityscore=1501
+ adultscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070170
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601110149
 
-On 07/01/2026 20:38, Joe Perches wrote:
-> On Wed, 2026-01-07 at 20:35 +0100, Greg Kroah-Hartman wrote:
->> On Wed, Jan 07, 2026 at 10:40:11AM -0800, Joe Perches wrote:
->>> On Wed, 2026-01-07 at 18:12 +0100, Krzysztof Kozlowski wrote:
->>>> Sources already have SPDX-FileCopyrightText (~40 instances) and more
->>>> appear on the mailing list, so document that it is allowed.  On the
->>>> other hand SPDX defines several other tags like SPDX-FileType, so add
->>>> checkpatch rule to narrow desired tags only to two of them - license and
->>>> copyright.  That way no new tags would sneak in to the kernel unnoticed.
->>>
->>> I find no value in this tag.  I think it should be discouraged.
->>>
->>> How is it different or more useful than a typical Copyright or © symbol ?
->>
->> It's easier to parse automatically and put into other places (like a
->> software bill of materials).
->>
->> I don't like it all that much either, as really, it doesn't mean much
->> (go talk to a lawyer for details), but it's already in our tree so we
->> might as well document it...
-> 
-> Document it doesn't mean encourage it.
+Sources already have SPDX-FileCopyrightText (~40 instances) and more
+appear on the mailing list, so document that it is allowed.  On the
+other hand SPDX defines several other tags like SPDX-FileType, so add
+checkpatch rule to narrow desired tags only to two of them - license and
+copyright.  That way no new tags would sneak in to the kernel unnoticed.
 
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Joe Perches <joe@perches.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Just like I explained in the changelog --- part, we should either accept
-it or mark it as incorrect in the checkpatch. I am fine with both (I
-don't have actual preference), but what I do not want is to have it in
-limbo/open stage, where everyone has to guess if it is desired/allowed.
+---
 
-Lack of documented policy enforced by checkpatch means every maintainer
-upon seeing it will do the same as me - git grep and try to understand
-whether this is approved or not. Pretty waste of everyone's time.
+Other way would be to remove SPDX-FileCopyrightText from existing files
+and disallow this, but one way or another we should be explicit about
+it.  Otherwise people will be sending more of these and each maintainer
+would need to make their own call.
 
-Best regards,
-Krzysztof
+Changes in v2:
+1. Doc adjustments based on feedback from Greg and Laurent.
+2. "unused" -> "unsupported"
+3. Drop redundant blank line
+---
+ Documentation/process/license-rules.rst | 7 +++++--
+ scripts/checkpatch.pl                   | 8 ++++++++
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/process/license-rules.rst b/Documentation/process/license-rules.rst
+index 59a7832df7d0..5cc58168e3d9 100644
+--- a/Documentation/process/license-rules.rst
++++ b/Documentation/process/license-rules.rst
+@@ -63,8 +63,11 @@ License identifier syntax
+    The SPDX license identifier in kernel files shall be added at the first
+    possible line in a file which can contain a comment.  For the majority
+    of files this is the first line, except for scripts which require the
+-   '#!PATH_TO_INTERPRETER' in the first line.  For those scripts the SPDX
+-   identifier goes into the second line.
++   '#!PATH_TO_INTERPRETER' in the first line.  For those scripts, the SPDX
++   license identifier goes into the second line.
++
++   The license identifier line can then be followed by one of multiple
++   SPDX-FileCopyrightText lines if desired.
+ 
+ |
+ 
+diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+index 362a8d1cd327..cc2a5882fef8 100755
+--- a/scripts/checkpatch.pl
++++ b/scripts/checkpatch.pl
+@@ -3844,6 +3844,14 @@ sub process {
+ 			     "Misplaced SPDX-License-Identifier tag - use line $checklicenseline instead\n" . $herecurr);
+ 		}
+ 
++# check for unsupported SPDX file tags
++		if ($rawline =~ /\bSPDX-.*:/ &&
++		    $rawline !~ /\bSPDX-License-Identifier:/ &&
++		    $rawline !~ /\bSPDX-FileCopyrightText:/) {
++			WARN("SPDX_LICENSE_TAG",
++			     "Unsupported SPDX tag\n" . $herecurr);
++		}
++
+ # line length limit (with some exclusions)
+ #
+ # There are a few types of lines that may extend beyond $max_line_length:
+-- 
+2.51.0
+
 

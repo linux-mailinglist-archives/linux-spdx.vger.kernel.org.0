@@ -1,152 +1,131 @@
-Return-Path: <linux-spdx+bounces-111-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-112-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E571AD0F6AD
-	for <lists+linux-spdx@lfdr.de>; Sun, 11 Jan 2026 17:15:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC0ED1BBE3
+	for <lists+linux-spdx@lfdr.de>; Wed, 14 Jan 2026 00:44:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 88FC03044B8C
-	for <lists+linux-spdx@lfdr.de>; Sun, 11 Jan 2026 16:15:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1E61B3045485
+	for <lists+linux-spdx@lfdr.de>; Tue, 13 Jan 2026 23:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562D933DEFA;
-	Sun, 11 Jan 2026 16:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="SHsEEalJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA32A36A039;
+	Tue, 13 Jan 2026 23:44:25 +0000 (UTC)
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from omta34.uswest2.a.cloudfilter.net (omta34.uswest2.a.cloudfilter.net [35.89.44.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32BAB500952;
-	Sun, 11 Jan 2026 16:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E451355036
+	for <linux-spdx@vger.kernel.org>; Tue, 13 Jan 2026 23:44:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768148152; cv=none; b=L9dJM4dt0Gdz6EeA8faFRsfElFYMuhpGhiTJ/5fwN79EkTNZ46njK1PU+R7c6t17LUO6OrLFGPfNmfQnmJKK7IiXY7fXU0AeZL1/OvBn2kw9+B94AwbkXgPbOkUb/fRfAORoGMHMGfDHq6+L7lP8MR/U5kCpi4Gccj8BYXpi36o=
+	t=1768347865; cv=none; b=I7YhaXkBBuLo5Rsfp2cwyrORX4Gz2xUwTZSot+VatHM4/bloJaQAfBzFgeWX5o/k2TS7MBe7lC36QtRs0cdeY1O/iweePe2W6jbi9PMFtxppCrFsTxu7H2MddYNPdOJ1rdZiikT1LMKlirVXqwUAlL1+kiNbG9ACUlS5TWjrmCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768148152; c=relaxed/simple;
-	bh=kLhMisAa/rBUQQBL287Z1+puYPJeMaVUYKgaDJ1OfqU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KDEQ0SiU7HG+M3X8EjfRmgxUpECbTHKSF1UiuoBZBbk3ofWxX/6JyTDtDPPmvKDzYglLiyvVR14+ZxkMDyU/R9EwVRps/ixaWz2QbCDyu2j9jX7+mhYJAw2SFNP4Vf5XT5jPi1YdbZUFpEa3ZkEVACrWdHKUJfTpIUsxtHybS2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=SHsEEalJ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 414AD447;
-	Sun, 11 Jan 2026 17:15:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1768148123;
-	bh=kLhMisAa/rBUQQBL287Z1+puYPJeMaVUYKgaDJ1OfqU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SHsEEalJP2kuxnEMaspwjZ1Vm2KYFs8IpEwbjO4m2uOsrgf9FzQ6o+uIpi6wWgKzy
-	 ZOmdoiZ/1vRC/6t8QI13/G4Kw29mXiRy+wNRzDaQPZTWMUPt4pyMRr6rDP17wTZeH1
-	 InITH6hAfWySuJoRTiC5AvtgWrSYNyo3tlzk6nTM=
-Date: Sun, 11 Jan 2026 18:15:27 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
-	Dwaipayan Ray <dwaipayanray1@gmail.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, linux-spdx@vger.kernel.org,
-	workflows@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] LICENSES: Explicitly allow SPDX-FileCopyrightText
-Message-ID: <20260111161527.GA25101@pendragon.ideasonboard.com>
-References: <20260111160750.17569-2-krzysztof.kozlowski@oss.qualcomm.com>
+	s=arc-20240116; t=1768347865; c=relaxed/simple;
+	bh=NHlqLSKTQdmTjPTCli5lxUQ6D35ipS88brfqDnFNUUY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nMXiTXi53g2J1WfF5p5UuFaHqMDrRFlg16hu8PI+NdP7t/VdSInkNFW+nLv3goPchE+C6xk+ork6KMw9dZlJUm+42Vw5n06K8vDY2n/A450yfid4p8frD1TbNfaa/siee9b0t4kl/5uOtAwyaiZtAOFi1Z25FZF1m+G6Mrb0KqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com; spf=fail smtp.mailfrom=sony.com; arc=none smtp.client-ip=35.89.44.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=sony.com
+Received: from eig-obgw-6006b.ext.cloudfilter.net ([10.0.30.211])
+	by cmsmtp with ESMTPS
+	id flBQvXqZGKjfofo3dvQ2Vt; Tue, 13 Jan 2026 23:44:17 +0000
+Received: from host2044.hostmonster.com ([67.20.76.238])
+	by cmsmtp with ESMTPS
+	id fo3cvVXu1vXvHfo3dvaDA5; Tue, 13 Jan 2026 23:44:17 +0000
+X-Authority-Analysis: v=2.4 cv=e4IGSbp/ c=1 sm=1 tr=0 ts=6966d8d1
+ a=O1AQXT3IpLm5MaED65xONQ==:117 a=uc9KWs4yn0V/JYYSH7YHpg==:17
+ a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=_ZhYKdCeAAAA:8 a=Ye4B9Piu8SXky65a7lAA:9
+ a=uqOk3ZSnBfCTOznnrPA1:22 a=iekntanDnrheIxGr1pkv:22
+Received: from [66.118.46.62] (port=58892 helo=timdesk..)
+	by host2044.hostmonster.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <tim.bird@sony.com>)
+	id 1vfo3a-000000039bP-0jcZ;
+	Tue, 13 Jan 2026 16:44:14 -0700
+From: Tim Bird <tim.bird@sony.com>
+To: karim@opersys.com,
+	akpm@linuxfoundation.org,
+	rusty@rustcorp.com.au,
+	tglx@kernel.org
+Cc: tom.zanussi@linux.intel.com,
+	kernelxing@tencent.com,
+	perterz@infradead.org,
+	linux-spdx@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tim Bird <tim.bird@sony.com>
+Subject: [PATCH] kernel: add SPDX-License-Identifier lines
+Date: Tue, 13 Jan 2026 16:44:05 -0700
+Message-ID: <20260113234405.539422-1-tim.bird@sony.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260111160750.17569-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - host2044.hostmonster.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - sony.com
+X-BWhitelist: no
+X-Source-IP: 66.118.46.62
+X-Source-L: No
+X-Exim-ID: 1vfo3a-000000039bP-0jcZ
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (timdesk..) [66.118.46.62]:58892
+X-Source-Auth: tim@bird.org
+X-Email-Count: 3
+X-Org: HG=bhshared_hm;ORG=bluehost;
+X-Source-Cap: YmlyZG9yZztiaXJkb3JnO2hvc3QyMDQ0Lmhvc3Rtb25zdGVyLmNvbQ==
+X-Local-Domain: no
+X-CMAE-Envelope: MS4xfNwZx3HO56V5qjeEAPJQjVc/huEpt7UPcVTf7Gst9837ixIAWi3Sb9fQ4SwlmUkFzFOrc+ymyY2wR357DSGd0uISV7NV63QTP+usNhTIzPv9FvLYBRFd
+ G67qTyCn/KYy7KuX3pWSNPrOcX2t4KkI0gngwOV/ZwF0rqJADZxeuvcf7Ajj6InlaEH6MqEmORyoKH/Or7z9YN1njgXdz6EdnHM=
 
-On Sun, Jan 11, 2026 at 05:07:51PM +0100, Krzysztof Kozlowski wrote:
-> Sources already have SPDX-FileCopyrightText (~40 instances) and more
-> appear on the mailing list, so document that it is allowed.  On the
-> other hand SPDX defines several other tags like SPDX-FileType, so add
-> checkpatch rule to narrow desired tags only to two of them - license and
-> copyright.  That way no new tags would sneak in to the kernel unnoticed.
-> 
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Joe Perches <joe@perches.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
-> ---
-> 
-> Other way would be to remove SPDX-FileCopyrightText from existing files
-> and disallow this, but one way or another we should be explicit about
-> it.  Otherwise people will be sending more of these and each maintainer
-> would need to make their own call.
+Add SPDX-License-Identifier lines to some old kernel
+files.
 
-My only concern is that we're endorsing two different ways to express
-copyright information. That usually leads to different subsystem setting
-different rules, and worse, to people sending conversion patches.
+Signed-off-by: Tim Bird <tim.bird@sony.com>
+---
+ kernel/cpu.c   | 3 +--
+ kernel/relay.c | 3 +--
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
-I don't mind how copyright information is expressed. The
-SPDX-FileCopyrightText tag has the advantage of being machine-parseable,
-even if the value of the extracted information is somehow dubious from a
-legal point of view. Other than than, both ways seem fine. I have a
-slight personal preference for standardizing things, but the SPDX
-specification doesn't mandate a particular formatting of the
-SPDX-FileCopyrightText value, so there will always be different styles
-anyway.
-
-> Changes in v2:
-> 1. Doc adjustments based on feedback from Greg and Laurent.
-> 2. "unused" -> "unsupported"
-> 3. Drop redundant blank line
-> ---
->  Documentation/process/license-rules.rst | 7 +++++--
->  scripts/checkpatch.pl                   | 8 ++++++++
->  2 files changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/process/license-rules.rst b/Documentation/process/license-rules.rst
-> index 59a7832df7d0..5cc58168e3d9 100644
-> --- a/Documentation/process/license-rules.rst
-> +++ b/Documentation/process/license-rules.rst
-> @@ -63,8 +63,11 @@ License identifier syntax
->     The SPDX license identifier in kernel files shall be added at the first
->     possible line in a file which can contain a comment.  For the majority
->     of files this is the first line, except for scripts which require the
-> -   '#!PATH_TO_INTERPRETER' in the first line.  For those scripts the SPDX
-> -   identifier goes into the second line.
-> +   '#!PATH_TO_INTERPRETER' in the first line.  For those scripts, the SPDX
-> +   license identifier goes into the second line.
-> +
-> +   The license identifier line can then be followed by one of multiple
-
-s/of multiple/or multiple/
-
-> +   SPDX-FileCopyrightText lines if desired.
->  
->  |
->  
-> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> index 362a8d1cd327..cc2a5882fef8 100755
-> --- a/scripts/checkpatch.pl
-> +++ b/scripts/checkpatch.pl
-> @@ -3844,6 +3844,14 @@ sub process {
->  			     "Misplaced SPDX-License-Identifier tag - use line $checklicenseline instead\n" . $herecurr);
->  		}
->  
-> +# check for unsupported SPDX file tags
-> +		if ($rawline =~ /\bSPDX-.*:/ &&
-> +		    $rawline !~ /\bSPDX-License-Identifier:/ &&
-> +		    $rawline !~ /\bSPDX-FileCopyrightText:/) {
-> +			WARN("SPDX_LICENSE_TAG",
-> +			     "Unsupported SPDX tag\n" . $herecurr);
-> +		}
-> +
->  # line length limit (with some exclusions)
->  #
->  # There are a few types of lines that may extend beyond $max_line_length:
-
+diff --git a/kernel/cpu.c b/kernel/cpu.c
+index 8df2d773fe3b..5185c0be847a 100644
+--- a/kernel/cpu.c
++++ b/kernel/cpu.c
+@@ -1,7 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0
+ /* CPU control.
+  * (C) 2001, 2002, 2003, 2004 Rusty Russell
+- *
+- * This code is licenced under the GPL.
+  */
+ #include <linux/sched/mm.h>
+ #include <linux/proc_fs.h>
+diff --git a/kernel/relay.c b/kernel/relay.c
+index e36f6b926f7f..6ed6bc929bf9 100644
+--- a/kernel/relay.c
++++ b/kernel/relay.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Public API and common code for kernel->userspace relay file support.
+  *
+@@ -9,8 +10,6 @@
+  * Moved to kernel/relay.c by Paul Mundt, 2006.
+  * November 2006 - CPU hotplug support by Mathieu Desnoyers
+  * 	(mathieu.desnoyers@polymtl.ca)
+- *
+- * This file is released under the GPL.
+  */
+ #include <linux/errno.h>
+ #include <linux/stddef.h>
 -- 
-Regards,
+2.43.0
 
-Laurent Pinchart
 

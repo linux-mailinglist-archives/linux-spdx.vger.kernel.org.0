@@ -1,158 +1,145 @@
-Return-Path: <linux-spdx+bounces-113-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-114-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803B3D1FC8C
-	for <lists+linux-spdx@lfdr.de>; Wed, 14 Jan 2026 16:34:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3FE3D212ED
+	for <lists+linux-spdx@lfdr.de>; Wed, 14 Jan 2026 21:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6B0FB3008C70
-	for <lists+linux-spdx@lfdr.de>; Wed, 14 Jan 2026 15:24:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9A068301E18D
+	for <lists+linux-spdx@lfdr.de>; Wed, 14 Jan 2026 20:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40EAB319605;
-	Wed, 14 Jan 2026 15:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=opersys-com.20230601.gappssmtp.com header.i=@opersys-com.20230601.gappssmtp.com header.b="qfZPCHx4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6178B2F39DD;
+	Wed, 14 Jan 2026 20:31:17 +0000 (UTC)
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from omta34.uswest2.a.cloudfilter.net (omta34.uswest2.a.cloudfilter.net [35.89.44.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67E02472AA
-	for <linux-spdx@vger.kernel.org>; Wed, 14 Jan 2026 15:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96007214204
+	for <linux-spdx@vger.kernel.org>; Wed, 14 Jan 2026 20:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768404278; cv=none; b=PmyK7mF9toEpfHdCUzHwQgBhAJaLfhSA8QmopfXMiligdjQMl5Qc9Q8ABcxMtuPsCCXc3wIVgdPPAE3wzDayLjp+VAc8CYLRDHOW4d7HIJwmN+PypPrGm86CQ9cSDKpFfyZQws8l9h/XfDMjyIUkv4af6AgpVbbU4AuNTYBxtnU=
+	t=1768422677; cv=none; b=RG0NYPtjaeOkSJXRJh2hlD+5NgdfykeddBvJF7qpivEWCr7+lTwUtWS+hktZPI9t4oe3K+krzwtEn/eB3ufwp2Z1aiHJ2BpPKf2oX2JfB9Dv8DTTZy9IMS6OgeMDlVJeIAVrjQsivA5ic2wAVN/lAf1J0+sruM1i8jYSpOvkL5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768404278; c=relaxed/simple;
-	bh=L/XE2tP+7B/yV7Ns+S5Lzh05qgN0j4wTc57fEIa9ATI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FY5oOfi3gJ/8WdWQY9SNrfyRrVTISAMlOAj0p4MWYpSXXr3navSBNryAFjpVujArY/aYHStI4IKW8VAIHBkpSVvYUNEVFp3EV4nbGc9Y2/nsbfaWMOrkAfZcPcjMkRDWPHRQAbyr9T6xjjKvgn88sFXaBMj+R7FbdNeJvExEG9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=opersys.com; spf=none smtp.mailfrom=opersys.com; dkim=pass (2048-bit key) header.d=opersys-com.20230601.gappssmtp.com header.i=@opersys-com.20230601.gappssmtp.com header.b=qfZPCHx4; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=opersys.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=opersys.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-4f1aecac2c9so12423761cf.1
-        for <linux-spdx@vger.kernel.org>; Wed, 14 Jan 2026 07:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=opersys-com.20230601.gappssmtp.com; s=20230601; t=1768404273; x=1769009073; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G5Wv1GljxLnekVGmR9xi2rnqayZbvVnZY1deF7EjfMk=;
-        b=qfZPCHx49Bar6q34Eu62x0OIlHOdVYhsnwck6aIV+0I4UCnRHpDOOh7h1Q1Ub2DJ9h
-         pCWIxbNVwqw7p9Nzhy910T9QCPXhE1ohNx3l86KFpIwVmTtxGixxA1VX0lPs7r/1lRhP
-         5i2M7KGp8yhY2dmuESaUZhVPywoXLAMwzKpz1JeMzMtFm5wetp81gIyKnTsDfuuH7PZ8
-         scIbvFgFLP6yBGo2OtxDj6En/RPZuNbIZpM4R5jU/ZG43hWPG119qHXf1PDfBXsK808A
-         U9dXrA+pSrDPhPnbBuAFkBPGZz+eybbYyuaw2ELOy8+BZreP4q0wVbwolFawTccNcNFC
-         etgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768404273; x=1769009073;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G5Wv1GljxLnekVGmR9xi2rnqayZbvVnZY1deF7EjfMk=;
-        b=mBOJ5txx7vfo+PMYyc615Sjimx0K/A3kSxdtoq15DvG72AvdX9ZurBNU1AalTQ2UvD
-         G+9hqJSyxs+FaiFiroPFcB38I+8Po+7K4tZVm71vijQfOhwltdjFwKZk0EZJH0e0WlNk
-         59tpuFEqdCb1Qt9C0ZGFDKMamYSxiCwGmq6vyGFpZgexj1Ts9WBPvP+a75UtOqpQeDBu
-         T+AyluueDo+Wwm7HvZ4rRVJWnGbUmhEDfAhtxLYIBKWOVNj41V7cFIgZahOs3RFNNDtk
-         dAGTrtEo23d8U5RoOY41/aLDjNn8FYZUuXdbyL7Y4CftpQxp59HtxRNJ24UL1e67UwqX
-         TL+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXGd0VTQOjHIvp2PDnTbFFdIEfeEy+SVC5ZKG1FXTlivov/YofKOr2HFb60q2lGhMLcCC0FjEMQi5Kg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJl4yW5Ey2RgPgXDjxPtuCN8t/oyRh94i4M9mImVhC6p8m3QZM
-	klEHexYgL+erJHRNDD8akJ4koy/Xvi5x1sbG7S9sTzp6rYzXBzk+L+tQNeqBnXyiHn7hcVl3GYy
-	1Q9gG
-X-Gm-Gg: AY/fxX70YEQfxf+xrvSphArB4nWms7+dbiajU+MppUWIgPEafOqvFZ2VRYjK+FFMkTA
-	XFCo/5PTE3bqng7T97VpsW6eP0yVA0CMgWYQECXhENnAWcdch3UP++Y5xeY2mD/KH5rPYUdydSu
-	qC7FvOFk+xCT3nX+nndOqBfByCwwXt8b9vIamW6xZJWJbEQLPx8Sl5BHy7Y7ifwbFb/MZX8K9NX
-	S/CCZiL9Om9qBz3ZmdufqQSIO5k7meutNKPnvwmu4eMlT87iddGpn1OIM5G9NaPLjTk/yXqGfx1
-	4/57r9MJnJnMbWY3DRh6O8sCu20u4FZwYFT9meESMK80+znbQWeHbxW6O8lSa1wbnLjFHp5D36e
-	UjKFayUDPvjZ+4nkmAxSBDMxD1b8jp28IihiUbCustCjGYvZWB7eDqLCwGbpPEtFtxHg4RLHSnL
-	3KLsjrQvdV9PBDMYnasQ2VhyW0SGJXvpyFm9zOD1r8F0er4AwdZI6UVBwI+Y0ApEwyZpo=
-X-Received: by 2002:a05:622a:400c:b0:4f1:8bfe:e447 with SMTP id d75a77b69052e-5014883bdc9mr33847411cf.42.1768404272443;
-        Wed, 14 Jan 2026 07:24:32 -0800 (PST)
-Received: from ?IPV6:2605:b100:535:80fa:cdfa:21dd:9d71:16fd? ([2605:b100:535:80fa:cdfa:21dd:9d71:16fd])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50148dd7bdesm16281041cf.1.2026.01.14.07.24.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 07:24:31 -0800 (PST)
-Message-ID: <7a526887-00ec-4599-bfa2-383896c0c688@opersys.com>
-Date: Wed, 14 Jan 2026 10:24:25 -0500
+	s=arc-20240116; t=1768422677; c=relaxed/simple;
+	bh=fPNIrtHOwtvKHv5gfyvkaJJhd7+dCr/wt9TWn3PivKs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NAoG90ZKUZ0Of7K1JveYA+J2Z7w9mbuLOv5q+tOONq/qlCHbpYKjqEBYHCNLWh2ro8LwN3UcA/UsKnvoTcGL6emBwHdCs4GQB/Z2Td+KhENhSuR78eZHd6bcm00ZzoP4EbueX3lRldggiiCsK/CfHBbaJvb0T97e7fEmFsRf1tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com; spf=fail smtp.mailfrom=sony.com; arc=none smtp.client-ip=35.89.44.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=sony.com
+Received: from eig-obgw-5002b.ext.cloudfilter.net ([10.0.29.226])
+	by cmsmtp with ESMTPS
+	id g1PovcMdEKjfog7WNvZnLj; Wed, 14 Jan 2026 20:31:15 +0000
+Received: from host2044.hostmonster.com ([67.20.76.238])
+	by cmsmtp with ESMTPS
+	id g7WMvXz1mN3K1g7WMvF9EC; Wed, 14 Jan 2026 20:31:14 +0000
+X-Authority-Analysis: v=2.4 cv=UdRRSLSN c=1 sm=1 tr=0 ts=6967fd12
+ a=O1AQXT3IpLm5MaED65xONQ==:117 a=uc9KWs4yn0V/JYYSH7YHpg==:17
+ a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=gD5sdRmai7KXGru0wTQA:9
+ a=iekntanDnrheIxGr1pkv:22
+Received: from [66.118.46.62] (port=39514 helo=timdesk..)
+	by host2044.hostmonster.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <tim.bird@sony.com>)
+	id 1vg7WJ-000000037mZ-3KK4;
+	Wed, 14 Jan 2026 13:31:11 -0700
+From: Tim Bird <tim.bird@sony.com>
+To: menage@google.com,
+	simon.derr@bull.net,
+	pj@sgi.com,
+	longman@redhat.com,
+	tj@kernel.org,
+	hannes@cmpxchg.org,
+	mkoutny@suse.com
+Cc: linux-spdx@vger.kernel.org,
+	cgroups@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tim Bird <tim.bird@sony.com>
+Subject: [PATCH] kernel: cgroup: Add SPDX-License-Identifier lines
+Date: Wed, 14 Jan 2026 13:30:27 -0700
+Message-ID: <20260114203027.584517-1-tim.bird@sony.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] kernel: add SPDX-License-Identifier lines
-To: Tim Bird <tim.bird@sony.com>, akpm@linuxfoundation.org,
- rusty@rustcorp.com.au, tglx@kernel.org
-Cc: tom.zanussi@linux.intel.com, kernelxing@tencent.com,
- perterz@infradead.org, linux-spdx@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260113234405.539422-1-tim.bird@sony.com>
-Content-Language: en-US
-From: Karim Yaghmour <karim.yaghmour@opersys.com>
-In-Reply-To: <20260113234405.539422-1-tim.bird@sony.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - host2044.hostmonster.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - sony.com
+X-BWhitelist: no
+X-Source-IP: 66.118.46.62
+X-Source-L: No
+X-Exim-ID: 1vg7WJ-000000037mZ-3KK4
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (timdesk..) [66.118.46.62]:39514
+X-Source-Auth: tim@bird.org
+X-Email-Count: 4
+X-Org: HG=bhshared_hm;ORG=bluehost;
+X-Source-Cap: YmlyZG9yZztiaXJkb3JnO2hvc3QyMDQ0Lmhvc3Rtb25zdGVyLmNvbQ==
+X-Local-Domain: no
+X-CMAE-Envelope: MS4xfGVkk5/gG5UTH1hKGaX9Tt/h/j80SrwQNR84PXpCUUUgWdFb1FEuRTvjiykJTWqrdP88KlyanfBKdXfMo+zmS2qbv3xGgEmYSA4nFE1wT5XPaFIF/+g7
+ lAVQFoc3jFfowrfjex57hPEqGcH/D26OpTQYusmsWyNGEt1Jhgqrh/uba3xwDoKYw8Ns9WEjynHyGOUPmw0PEWJSeb4gXRcPLHY=
 
+Add GPL-2.0 SPDX license id lines to a few old
+files, replacing the reference to the COPYING file.
 
-Hi Tim,
+The COPYING file at the time of creation of these files
+(2007 and 2005) was GPL-v2.0, with an additional clause
+indicating that only v2 applied.
 
-Thanks for taking care of this following our discussion at LPC.
+Signed-off-by: Tim Bird <tim.bird@sony.com>
+---
+ kernel/cgroup/cgroup.c | 5 +----
+ kernel/cgroup/cpuset.c | 5 +----
+ 2 files changed, 2 insertions(+), 8 deletions(-)
 
-Just addressing the relay.c part below.
-
-On 1/13/26 18:44, Tim Bird wrote:
-> Add SPDX-License-Identifier lines to some old kernel
-> files.
-> 
-> Signed-off-by: Tim Bird <tim.bird@sony.com>
-> ---
->   kernel/cpu.c   | 3 +--
->   kernel/relay.c | 3 +--
->   2 files changed, 2 insertions(+), 4 deletions(-)
-> 
-> diff --git a/kernel/cpu.c b/kernel/cpu.c
-> index 8df2d773fe3b..5185c0be847a 100644
-> --- a/kernel/cpu.c
-> +++ b/kernel/cpu.c
-> @@ -1,7 +1,6 @@
-> +// SPDX-License-Identifier: GPL-2.0
->   /* CPU control.
->    * (C) 2001, 2002, 2003, 2004 Rusty Russell
-> - *
-> - * This code is licenced under the GPL.
->    */
->   #include <linux/sched/mm.h>
->   #include <linux/proc_fs.h>
-
-For this part:
-> diff --git a/kernel/relay.c b/kernel/relay.c
-> index e36f6b926f7f..6ed6bc929bf9 100644
-> --- a/kernel/relay.c
-> +++ b/kernel/relay.c
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: GPL-2.0
->   /*
->    * Public API and common code for kernel->userspace relay file support.
->    *
-> @@ -9,8 +10,6 @@
->    * Moved to kernel/relay.c by Paul Mundt, 2006.
->    * November 2006 - CPU hotplug support by Mathieu Desnoyers
->    * 	(mathieu.desnoyers@polymtl.ca)
-> - *
-> - * This file is released under the GPL.
->    */
->   #include <linux/errno.h>
->   #include <linux/stddef.h>
-
-Acked-by: Karim Yaghmour <karim.yaghmour@opersys.com>
-
-Cheers,
-
+diff --git a/kernel/cgroup/cgroup.c b/kernel/cgroup/cgroup.c
+index 554a02ee298b..5f0d33b04910 100644
+--- a/kernel/cgroup/cgroup.c
++++ b/kernel/cgroup/cgroup.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  *  Generic process-grouping system.
+  *
+@@ -20,10 +21,6 @@
+  *  2003-10-22 Updates by Stephen Hemminger.
+  *  2004 May-July Rework by Paul Jackson.
+  *  ---------------------------------------------------
+- *
+- *  This file is subject to the terms and conditions of the GNU General Public
+- *  License.  See the file COPYING in the main directory of the Linux
+- *  distribution for more details.
+  */
+ 
+ #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+diff --git a/kernel/cgroup/cpuset.c b/kernel/cgroup/cpuset.c
+index 3e8cc34d8d50..c06e2e96f79d 100644
+--- a/kernel/cgroup/cpuset.c
++++ b/kernel/cgroup/cpuset.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  *  kernel/cpuset.c
+  *
+@@ -16,10 +17,6 @@
+  *  2006 Rework by Paul Menage to use generic cgroups
+  *  2008 Rework of the scheduler domains and CPU hotplug handling
+  *       by Max Krasnyansky
+- *
+- *  This file is subject to the terms and conditions of the GNU General Public
+- *  License.  See the file COPYING in the main directory of the Linux
+- *  distribution for more details.
+  */
+ #include "cpuset-internal.h"
+ 
 -- 
-Karim Yaghmour
-CEO - Opersys inc. / www.opersys.com
-https://www.linkedin.com/in/karimyaghmour/
+2.43.0
 
 

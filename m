@@ -1,61 +1,59 @@
-Return-Path: <linux-spdx+bounces-115-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-116-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EDD5D21C00
-	for <lists+linux-spdx@lfdr.de>; Thu, 15 Jan 2026 00:23:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFBD1D22086
+	for <lists+linux-spdx@lfdr.de>; Thu, 15 Jan 2026 02:32:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C52C3302CF53
-	for <lists+linux-spdx@lfdr.de>; Wed, 14 Jan 2026 23:23:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B0BC73016B83
+	for <lists+linux-spdx@lfdr.de>; Thu, 15 Jan 2026 01:31:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B293938FEFB;
-	Wed, 14 Jan 2026 23:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A967C12CD8B;
+	Thu, 15 Jan 2026 01:31:58 +0000 (UTC)
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from omta040.useast.a.cloudfilter.net (omta040.useast.a.cloudfilter.net [44.202.169.39])
+Received: from omta038.useast.a.cloudfilter.net (omta038.useast.a.cloudfilter.net [44.202.169.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BCC38B7D0
-	for <linux-spdx@vger.kernel.org>; Wed, 14 Jan 2026 23:22:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.39
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CC58F4A
+	for <linux-spdx@vger.kernel.org>; Thu, 15 Jan 2026 01:31:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.37
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768432980; cv=none; b=oNTUqX2bZ1RCjzxL/zBgQggsBicNE3O6vu0pxQidejTJoIsxdaJgu8cRIpkv52I1oBSLoxP2uE6YxrUsw8qw6XcGJ6M4OEfwDz1iGeiKOH9QETjtfJxGXR2I0e0fXbnOBCxLts56KIL48Y3buhjolaP4krvD/EX/Yj/8uOcF5vY=
+	t=1768440718; cv=none; b=pmsrthw8hfBNacVl+ukGFcvYf1k/4Dk6OvMD6L7FtTcVsaBSqb/oC2TTHHD3fNPokOUQv+DPwQC/X5fYXEQEPkOs2AzO3SXZAERV/jmAaRZ7O4sE6D3yYQFG0JLk+APrbCxxb5ZlRu6oq1LqwoJoI8Cqlq/jEGlqkzNuQC/dAY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768432980; c=relaxed/simple;
-	bh=u898Lcp1FuXk3wlOY/VvFyiXKVlKxrnp6D7HFuBfvPE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R/1G3zS6QwVsDBwmeiNAUkWrBc69RqCS1X6XnkWakhuDOzgGb2wsAEiAK6AIkPmPoDE1rv6teHd3IIUEwdVxUWjTzIl2sjDJhCB2mEM85mPGK5fkmCnSK5NHuYfgwE0qVG6FAs6ONqNwHeVSRl4MXNQKhGLTUZ8Wm6M+3hedakE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com; spf=fail smtp.mailfrom=sony.com; arc=none smtp.client-ip=44.202.169.39
+	s=arc-20240116; t=1768440718; c=relaxed/simple;
+	bh=AlGkuX55E+iwWNCiSmQbkU502zKTm6EkPkUORp4GlAI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BPjnhJcrGF+fh3CI6J0GCbZsxnp53LjhYHWVCtdjd0eA7x8ByQkNMwfdNzDcgq5doQuHaDxLA/mzbtpMG7nWXA3IF0pRoCDM1zMMPKVxfiPmAGq6TzuNBFJpO/lDWetdP5+y1P5mH4bZrz5VdP0tPdIg9OLrlQOywXmcQv4A8pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com; spf=fail smtp.mailfrom=sony.com; arc=none smtp.client-ip=44.202.169.37
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=sony.com
-Received: from eig-obgw-5006b.ext.cloudfilter.net ([10.0.29.217])
+Received: from eig-obgw-5002b.ext.cloudfilter.net ([10.0.29.226])
 	by cmsmtp with ESMTPS
-	id g8PQvJWAnCxrGgACDvYFyM; Wed, 14 Jan 2026 23:22:37 +0000
+	id gAXNveMIoSkcfgCDLv3DmU; Thu, 15 Jan 2026 01:31:55 +0000
 Received: from host2044.hostmonster.com ([67.20.76.238])
 	by cmsmtp with ESMTPS
-	id gACDvTA5KOs9RgACDvm6UO; Wed, 14 Jan 2026 23:22:37 +0000
-X-Authority-Analysis: v=2.4 cv=HPPDFptv c=1 sm=1 tr=0 ts=6968253d
+	id gCDKvcUMyN3K1gCDLvJ32b; Thu, 15 Jan 2026 01:31:55 +0000
+X-Authority-Analysis: v=2.4 cv=UdRRSLSN c=1 sm=1 tr=0 ts=6968438b
  a=O1AQXT3IpLm5MaED65xONQ==:117 a=uc9KWs4yn0V/JYYSH7YHpg==:17
- a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=VnNF1IyMAAAA:8 a=oTZ0yMsC93kIkOJjF8UA:9
- a=iekntanDnrheIxGr1pkv:22
-Received: from [66.118.46.62] (port=42648 helo=timdesk..)
+ a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=odGvurlAbDJ6Lck-HAUA:9
+ a=bcJbkyMg_6Rm9PQ4FUss:22 a=iekntanDnrheIxGr1pkv:22
+Received: from [66.118.46.62] (port=34982 helo=timdesk..)
 	by host2044.hostmonster.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.99.1)
 	(envelope-from <tim.bird@sony.com>)
-	id 1vgACA-00000001DR0-3yAe;
-	Wed, 14 Jan 2026 16:22:35 -0700
+	id 1vgCDI-000000033kt-3tTM;
+	Wed, 14 Jan 2026 18:31:53 -0700
 From: Tim Bird <tim.bird@sony.com>
-To: clg@redhat.com,
-	mhelsley@vmware.com,
-	longman@redhat.com,
-	tj@kernel.org,
-	hannes@cmpxchg.org,
-	mkoutny@suse.com
+To: kuba@kernel.org,
+	andrii@kernel.org,
+	daniel@iogearbox.net,
+	ast@kernel.org
 Cc: linux-spdx@vger.kernel.org,
-	cgroups@vger.kernel.org,
+	bpf@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Tim Bird <tim.bird@sony.com>
-Subject: [PATCH] kernel: cgroup: Add LGPL-2.1 SPDX license ID to legacy_freezer.c
-Date: Wed, 14 Jan 2026 16:22:08 -0700
-Message-ID: <20260114232208.592606-1-tim.bird@sony.com>
+Subject: [PATCH] kernel: bpf: Add SPDX license identifiers to a few files
+Date: Wed, 14 Jan 2026 18:31:29 -0700
+Message-ID: <20260115013129.598705-1-tim.bird@sony.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
@@ -72,50 +70,70 @@ X-AntiAbuse: Sender Address Domain - sony.com
 X-BWhitelist: no
 X-Source-IP: 66.118.46.62
 X-Source-L: No
-X-Exim-ID: 1vgACA-00000001DR0-3yAe
+X-Exim-ID: 1vgCDI-000000033kt-3tTM
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-X-Source-Sender: (timdesk..) [66.118.46.62]:42648
+X-Source-Sender: (timdesk..) [66.118.46.62]:34982
 X-Source-Auth: tim@bird.org
 X-Email-Count: 4
 X-Org: HG=bhshared_hm;ORG=bluehost;
 X-Source-Cap: YmlyZG9yZztiaXJkb3JnO2hvc3QyMDQ0Lmhvc3Rtb25zdGVyLmNvbQ==
 X-Local-Domain: no
-X-CMAE-Envelope: MS4xfOQTlWdehDgBU1IW6/gmDnNSvgI0DJezjtYS+LhIQEQBHWTNt3NiTb/YCZgHq7H/GCuhMHaOzJpzPIbU/xCxbUeGTni/8xBpoUh0OYyQzaBMdUN0KFOI
- N7t5mq/shsRz9qC+CJmbt47bQNoqpPmPa/+h6dVimk/qTmNqVe758r8y2v+LUanww6in3qVR8X5mut07NgSYfMqu+b5ykS4ET4Y=
+X-CMAE-Envelope: MS4xfEODfzut2gjbv+6ev6raaChfnfXqWqFsICLN2wFGnFLt3fgeG6SU8RnLCH1nVufY84IRtO97FBMxGbixeC8NzZqLwcxk8elf6jTv0AUVD80WtJyQs097
+ 0mKYemiPGKJHhhq9Gare6qV0vx15Cuj/X5xLNO+mPUi28X//FqRxrg6rwPVw7gaVEKhgw01b59wRFdR6aIelASA5JqSxiOjFuE0=
 
-Add an appropriate SPDX-License-Identifier line to the file,
-and remove the GNU boilerplate text.
+Add GPL-2.0 SPDX-License-Identifier lines to some files,
+and remove a reference to COPYING, and boilerplate warranty
+text, from offload.c.
 
 Signed-off-by: Tim Bird <tim.bird@sony.com>
 ---
- kernel/cgroup/legacy_freezer.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ kernel/bpf/offload.c | 12 +-----------
+ kernel/bpf/ringbuf.c |  1 +
+ kernel/bpf/token.c   |  1 +
+ 3 files changed, 3 insertions(+), 11 deletions(-)
 
-diff --git a/kernel/cgroup/legacy_freezer.c b/kernel/cgroup/legacy_freezer.c
-index 915b02f65980..817c33450fee 100644
---- a/kernel/cgroup/legacy_freezer.c
-+++ b/kernel/cgroup/legacy_freezer.c
-@@ -1,17 +1,10 @@
-+// SPDX-License-Identifier: LGPL-2.1
+diff --git a/kernel/bpf/offload.c b/kernel/bpf/offload.c
+index 42ae8d595c2c..227f9b5f388b 100644
+--- a/kernel/bpf/offload.c
++++ b/kernel/bpf/offload.c
+@@ -1,16 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0
  /*
-  * cgroup_freezer.c -  control group freezer subsystem
-  *
-  * Copyright IBM Corporation, 2007
-  *
-  * Author : Cedric Le Goater <clg@fr.ibm.com>
+  * Copyright (C) 2017-2018 Netronome Systems, Inc.
 - *
-- * This program is free software; you can redistribute it and/or modify it
-- * under the terms of version 2.1 of the GNU Lesser General Public License
-- * as published by the Free Software Foundation.
+- * This software is licensed under the GNU General License Version 2,
+- * June 1991 as shown in the file COPYING in the top-level directory of this
+- * source tree.
 - *
-- * This program is distributed in the hope that it would be useful, but
-- * WITHOUT ANY WARRANTY; without even the implied warranty of
-- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+- * THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS"
+- * WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+- * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+- * FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE
+- * OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME
+- * THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
   */
  
- #include <linux/export.h>
+ #include <linux/bpf.h>
+diff --git a/kernel/bpf/ringbuf.c b/kernel/bpf/ringbuf.c
+index f6a075ffac63..35ae64ade36b 100644
+--- a/kernel/bpf/ringbuf.c
++++ b/kernel/bpf/ringbuf.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ #include <linux/bpf.h>
+ #include <linux/btf.h>
+ #include <linux/err.h>
+diff --git a/kernel/bpf/token.c b/kernel/bpf/token.c
+index feecd8f4dbf9..7e4aa1e44b50 100644
+--- a/kernel/bpf/token.c
++++ b/kernel/bpf/token.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ #include <linux/bpf.h>
+ #include <linux/vmalloc.h>
+ #include <linux/file.h>
 -- 
 2.43.0
 

@@ -1,59 +1,59 @@
-Return-Path: <linux-spdx+bounces-116-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-117-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBD1D22086
-	for <lists+linux-spdx@lfdr.de>; Thu, 15 Jan 2026 02:32:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65707D295D0
+	for <lists+linux-spdx@lfdr.de>; Fri, 16 Jan 2026 01:05:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B0BC73016B83
-	for <lists+linux-spdx@lfdr.de>; Thu, 15 Jan 2026 01:31:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5474830389AD
+	for <lists+linux-spdx@lfdr.de>; Fri, 16 Jan 2026 00:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A967C12CD8B;
-	Thu, 15 Jan 2026 01:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512631862A;
+	Fri, 16 Jan 2026 00:04:58 +0000 (UTC)
 X-Original-To: linux-spdx@vger.kernel.org
 Received: from omta038.useast.a.cloudfilter.net (omta038.useast.a.cloudfilter.net [44.202.169.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CC58F4A
-	for <linux-spdx@vger.kernel.org>; Thu, 15 Jan 2026 01:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0A5BA45
+	for <linux-spdx@vger.kernel.org>; Fri, 16 Jan 2026 00:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.37
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768440718; cv=none; b=pmsrthw8hfBNacVl+ukGFcvYf1k/4Dk6OvMD6L7FtTcVsaBSqb/oC2TTHHD3fNPokOUQv+DPwQC/X5fYXEQEPkOs2AzO3SXZAERV/jmAaRZ7O4sE6D3yYQFG0JLk+APrbCxxb5ZlRu6oq1LqwoJoI8Cqlq/jEGlqkzNuQC/dAY8=
+	t=1768521898; cv=none; b=pRSP6k0OJti+PQ96ZK/OyZydpjWER5DDxzA3Jn0bgZVsE2JPdmDlqabSzrBfbV1tv9UiecZyP1zEY9JrpcCBueSzuZG3/4+aw4UJaJzxeIx4gQYlJ/TCIQNqijrB0/Igk0y/kJ0mn9UFzg7bNAO9KsFWdHARKUoRshlI4b8fcBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768440718; c=relaxed/simple;
-	bh=AlGkuX55E+iwWNCiSmQbkU502zKTm6EkPkUORp4GlAI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BPjnhJcrGF+fh3CI6J0GCbZsxnp53LjhYHWVCtdjd0eA7x8ByQkNMwfdNzDcgq5doQuHaDxLA/mzbtpMG7nWXA3IF0pRoCDM1zMMPKVxfiPmAGq6TzuNBFJpO/lDWetdP5+y1P5mH4bZrz5VdP0tPdIg9OLrlQOywXmcQv4A8pY=
+	s=arc-20240116; t=1768521898; c=relaxed/simple;
+	bh=0vsSIAvl/ImXHMP0ElVUbBoGN50hVFzvXE0aU8VJAsM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nlhTc+Nnqhhn/1td9Ls0k57DunJzVl3EcbZu7YOYsBenMIAQUNIEjJ2ieX0qc/sxWTARrGymGMiuFsYSC7OyW92rzqjVE6hr9QdB2yCU8g3s5d+BgydQU+jKCeZNTM7fHBl5AmGtoqwhoFyoIdj9LsvxAZWAHjjOew+WNMFBkZY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com; spf=fail smtp.mailfrom=sony.com; arc=none smtp.client-ip=44.202.169.37
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=sony.com
-Received: from eig-obgw-5002b.ext.cloudfilter.net ([10.0.29.226])
+Received: from eig-obgw-5003b.ext.cloudfilter.net ([10.0.29.155])
 	by cmsmtp with ESMTPS
-	id gAXNveMIoSkcfgCDLv3DmU; Thu, 15 Jan 2026 01:31:55 +0000
+	id gUSHvkLcTSkcfgXKbvEeZs; Fri, 16 Jan 2026 00:04:49 +0000
 Received: from host2044.hostmonster.com ([67.20.76.238])
 	by cmsmtp with ESMTPS
-	id gCDKvcUMyN3K1gCDLvJ32b; Thu, 15 Jan 2026 01:31:55 +0000
-X-Authority-Analysis: v=2.4 cv=UdRRSLSN c=1 sm=1 tr=0 ts=6968438b
+	id gXKavmWBw2l0kgXKavNZWJ; Fri, 16 Jan 2026 00:04:49 +0000
+X-Authority-Analysis: v=2.4 cv=UfRRSLSN c=1 sm=1 tr=0 ts=696980a1
  a=O1AQXT3IpLm5MaED65xONQ==:117 a=uc9KWs4yn0V/JYYSH7YHpg==:17
- a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=odGvurlAbDJ6Lck-HAUA:9
- a=bcJbkyMg_6Rm9PQ4FUss:22 a=iekntanDnrheIxGr1pkv:22
-Received: from [66.118.46.62] (port=34982 helo=timdesk..)
+ a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=5uySVRI38VskozMhrtQA:9
+ a=iekntanDnrheIxGr1pkv:22
+Received: from [66.118.46.62] (port=41710 helo=timdesk..)
 	by host2044.hostmonster.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.99.1)
 	(envelope-from <tim.bird@sony.com>)
-	id 1vgCDI-000000033kt-3tTM;
-	Wed, 14 Jan 2026 18:31:53 -0700
+	id 1vgXKY-00000001kKi-2ZdU;
+	Thu, 15 Jan 2026 17:04:46 -0700
 From: Tim Bird <tim.bird@sony.com>
-To: kuba@kernel.org,
-	andrii@kernel.org,
-	daniel@iogearbox.net,
-	ast@kernel.org
+To: torvalds@linux-foundation.org,
+	mcgrof@kernel.org,
+	petr.pavlu@suse.com,
+	da.gomez@kernel.org
 Cc: linux-spdx@vger.kernel.org,
-	bpf@vger.kernel.org,
+	linux-modules@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Tim Bird <tim.bird@sony.com>
-Subject: [PATCH] kernel: bpf: Add SPDX license identifiers to a few files
-Date: Wed, 14 Jan 2026 18:31:29 -0700
-Message-ID: <20260115013129.598705-1-tim.bird@sony.com>
+Subject: [PATCH] kernel: modules: Add SPDX license identifier to kmod.c
+Date: Thu, 15 Jan 2026 17:04:31 -0700
+Message-ID: <20260116000431.643070-1-tim.bird@sony.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
@@ -70,70 +70,39 @@ X-AntiAbuse: Sender Address Domain - sony.com
 X-BWhitelist: no
 X-Source-IP: 66.118.46.62
 X-Source-L: No
-X-Exim-ID: 1vgCDI-000000033kt-3tTM
+X-Exim-ID: 1vgXKY-00000001kKi-2ZdU
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-X-Source-Sender: (timdesk..) [66.118.46.62]:34982
+X-Source-Sender: (timdesk..) [66.118.46.62]:41710
 X-Source-Auth: tim@bird.org
 X-Email-Count: 4
 X-Org: HG=bhshared_hm;ORG=bluehost;
 X-Source-Cap: YmlyZG9yZztiaXJkb3JnO2hvc3QyMDQ0Lmhvc3Rtb25zdGVyLmNvbQ==
 X-Local-Domain: no
-X-CMAE-Envelope: MS4xfEODfzut2gjbv+6ev6raaChfnfXqWqFsICLN2wFGnFLt3fgeG6SU8RnLCH1nVufY84IRtO97FBMxGbixeC8NzZqLwcxk8elf6jTv0AUVD80WtJyQs097
- 0mKYemiPGKJHhhq9Gare6qV0vx15Cuj/X5xLNO+mPUi28X//FqRxrg6rwPVw7gaVEKhgw01b59wRFdR6aIelASA5JqSxiOjFuE0=
+X-CMAE-Envelope: MS4xfBrDI9sQaKT1Q+t++MTaBj85lIGaQZlrHT87+p7GnP+PFeuklJ1XkY89ZOT3vxIc4e8sGkzokBeTJGB+nvzfOb4POfD9G+i+rSYlJmDEGaB0waTf9b94
+ kKR1nLeYwcBAZ4L5OrSdPluBijjrERTwaOSrK6FWv2E37TmJgXXd8fGZY4ddsTaaXzRHxCLDrrnopfEVjprVaG/vmVcaA/psnYY=
 
-Add GPL-2.0 SPDX-License-Identifier lines to some files,
-and remove a reference to COPYING, and boilerplate warranty
-text, from offload.c.
+Add a GPL-2.0 license identifier line for this file.
+
+kmod.c was originally introduced in the kernel in February
+of 1998 by Linus Torvalds - who was familiar with kernel
+licensing at the time this was introduced.
 
 Signed-off-by: Tim Bird <tim.bird@sony.com>
 ---
- kernel/bpf/offload.c | 12 +-----------
- kernel/bpf/ringbuf.c |  1 +
- kernel/bpf/token.c   |  1 +
- 3 files changed, 3 insertions(+), 11 deletions(-)
+ kernel/module/kmod.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/kernel/bpf/offload.c b/kernel/bpf/offload.c
-index 42ae8d595c2c..227f9b5f388b 100644
---- a/kernel/bpf/offload.c
-+++ b/kernel/bpf/offload.c
-@@ -1,16 +1,6 @@
+diff --git a/kernel/module/kmod.c b/kernel/module/kmod.c
+index 25f253812512..a25dccdf7aa7 100644
+--- a/kernel/module/kmod.c
++++ b/kernel/module/kmod.c
+@@ -1,3 +1,4 @@
 +// SPDX-License-Identifier: GPL-2.0
  /*
-  * Copyright (C) 2017-2018 Netronome Systems, Inc.
-- *
-- * This software is licensed under the GNU General License Version 2,
-- * June 1991 as shown in the file COPYING in the top-level directory of this
-- * source tree.
-- *
-- * THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS"
-- * WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
-- * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-- * FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE
-- * OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME
-- * THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
-  */
- 
- #include <linux/bpf.h>
-diff --git a/kernel/bpf/ringbuf.c b/kernel/bpf/ringbuf.c
-index f6a075ffac63..35ae64ade36b 100644
---- a/kernel/bpf/ringbuf.c
-+++ b/kernel/bpf/ringbuf.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
- #include <linux/bpf.h>
- #include <linux/btf.h>
- #include <linux/err.h>
-diff --git a/kernel/bpf/token.c b/kernel/bpf/token.c
-index feecd8f4dbf9..7e4aa1e44b50 100644
---- a/kernel/bpf/token.c
-+++ b/kernel/bpf/token.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
- #include <linux/bpf.h>
- #include <linux/vmalloc.h>
- #include <linux/file.h>
+  * kmod - the kernel module loader
+  *
 -- 
 2.43.0
 

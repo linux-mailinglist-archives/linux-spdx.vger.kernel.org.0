@@ -1,48 +1,60 @@
-Return-Path: <linux-spdx+bounces-124-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-125-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CB0AD3897D
-	for <lists+linux-spdx@lfdr.de>; Fri, 16 Jan 2026 23:53:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D413D38ACF
+	for <lists+linux-spdx@lfdr.de>; Sat, 17 Jan 2026 01:36:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF1FF304BE5F
-	for <lists+linux-spdx@lfdr.de>; Fri, 16 Jan 2026 22:53:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CCF4E300A900
+	for <lists+linux-spdx@lfdr.de>; Sat, 17 Jan 2026 00:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49051314D21;
-	Fri, 16 Jan 2026 22:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGkLRokL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F06F1D514E;
+	Sat, 17 Jan 2026 00:36:34 +0000 (UTC)
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from omta40.uswest2.a.cloudfilter.net (omta40.uswest2.a.cloudfilter.net [35.89.44.39])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22136314D03;
-	Fri, 16 Jan 2026 22:53:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E6D70810
+	for <linux-spdx@vger.kernel.org>; Sat, 17 Jan 2026 00:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.39
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768604018; cv=none; b=kt9gpg8n3kqyyfBq6i1eRL7XgQ3YYRIDLzwDnhl38sVVqFvFp3nhUphvWzeK0d6AOuMNgQYry/xzWlAV8g7OaDkqDlmxzTL9XM5klzzQvzMNe9ZKzSZ33mNS1QbinbUwxejApQ0VVvd2Tt08Vha4kIEVy8mYt49TxtRbBHSkjq4=
+	t=1768610194; cv=none; b=I2GBnZYGjmY5ZRu646gBJr0de5ZIpWzozdvRjJFxP0gdEW3lgkRB2c8UnArXbm4Z+m1CUirGN39NQl3vpr1Veb+MvGL6QQuA2xFeDmTOwDOcqlqVNbPmATkN7OfZpn/z22BypzLh+a3vKvWM8b1vffRbwIR9KKfDt/pketp9rCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768604018; c=relaxed/simple;
-	bh=GS7mxjxjkXJMbohs2toFBDo7wSZMU0YxLbLwwl4Nqdo=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=uEnT3KLFh0yuFhDjxNjWvfgt/7EfTaQD9OVg8zyyD4lKcl0B/PLUn0nMBxhLWZA1M0X7VSZTy0fuu8XWA8LX3AL11ZysnOnbp/B0h+YD7bsc8NN4FlNb44hqYWQn2FYrPLKR2tcr8/MAYkJioNbrlBXZ5a2SC7L6wgVM0/9yN20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGkLRokL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D33ADC116C6;
-	Fri, 16 Jan 2026 22:53:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768604017;
-	bh=GS7mxjxjkXJMbohs2toFBDo7wSZMU0YxLbLwwl4Nqdo=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=NGkLRokL/94tZEUWbYl/0KgzstyFnbx58ViTwm4XvmJyB6YHPoUb7GPAs8VLtMnRb
-	 cKglNRLnBkIruNchFhH4Y3Tylt8AqPzD2IBP2wfDLcnuhSphTNxSAUBuC52OrBaC8D
-	 tHH0H3X33urW87k3HHHGjkxwBuJRJ4IXwQkfoCxC5X5nNbJVJFUQGeraUGhp1L+sdF
-	 9FoB31KEr9JGdl6SvKP1dbl9gxyqgnQYE3/FnRcLbqcL4MNJkb+UehGJqFs9C5qK4T
-	 3074AAPwXmHwtJ9HTcpqTDxj01ucUbZRDC1BcByL5Uogrc3vDLR6aA3qRl2OiZsTvT
-	 DuRGAzg4FHqcQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 789D2380CECB;
-	Fri, 16 Jan 2026 22:50:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1768610194; c=relaxed/simple;
+	bh=1mEX1/blWnUKfy5zmcpnW4aL+clxbDLu5FS1ILtRXyc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=A2Aef2tbhw1X1EkWYOZJNVAV0Qcl72IJT7+ERp+zz05I3D74L/M2ZNwc6FwlN5+7KTMyZBLGkKhKyn//18lWYe91f0+vD0p1C4Ql1ZNTlw8kmq3c8Goo4dkiiC2ib7oHr7cZ+R7sDUUxcGrHxONDJj4pNsFKpjNT44w0dmXu3s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com; spf=fail smtp.mailfrom=sony.com; arc=none smtp.client-ip=35.89.44.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=sony.com
+Received: from eig-obgw-5006b.ext.cloudfilter.net ([10.0.29.217])
+	by cmsmtp with ESMTPS
+	id gkUzvghz1aPqLguIovAVLB; Sat, 17 Jan 2026 00:36:30 +0000
+Received: from host2044.hostmonster.com ([67.20.76.238])
+	by cmsmtp with ESMTPS
+	id guInvCE5fOs9RguIovOSdW; Sat, 17 Jan 2026 00:36:30 +0000
+X-Authority-Analysis: v=2.4 cv=HPPDFptv c=1 sm=1 tr=0 ts=696ad98e
+ a=O1AQXT3IpLm5MaED65xONQ==:117 a=uc9KWs4yn0V/JYYSH7YHpg==:17
+ a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=cH6R9-kdAAAA:8 a=t7CeM3EgAAAA:8
+ a=wMNdZWldAAAA:8 a=R93Jy7f2AAAA:8 a=_Adn2NLSSP_36NI2X3kA:9 a=RVmHIydaz68A:10
+ a=FdTzh2GWekK77mhwV6Dw:22 a=FUarYpL4UH3yWsho8X8J:22 a=_4ULuFcjZWfTdIrHNsp6:22
+ a=iekntanDnrheIxGr1pkv:22
+Received: from [66.118.46.62] (port=54282 helo=timdesk..)
+	by host2044.hostmonster.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <tim.bird@sony.com>)
+	id 1vguIm-00000003dqH-1lc2;
+	Fri, 16 Jan 2026 17:36:28 -0700
+From: Tim Bird <tim.bird@sony.com>
+To: jason.wessel@windriver.com,
+	danielt@kernel.org
+Cc: linux-spdx@vger.kernel.org,
+	kgdb-bugreport@lists.sourceforge.net,
+	linux-kernel@vger.kernel.org,
+	Tim Bird <tim.bird@sony.com>
+Subject: [PATCH] kernel: debug: Add SPDX license ids to kdb files
+Date: Fri, 16 Jan 2026 17:36:21 -0700
+Message-ID: <20260117003621.669382-1-tim.bird@sony.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
@@ -50,43 +62,216 @@ List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] kernel: bpf: Add SPDX license identifiers to a few files
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <176860380903.826620.14876814103190343010.git-patchwork-notify@kernel.org>
-Date: Fri, 16 Jan 2026 22:50:09 +0000
-References: <20260115013129.598705-1-tim.bird@sony.com>
-In-Reply-To: <20260115013129.598705-1-tim.bird@sony.com>
-To: Bird@codeaurora.org, Tim <Tim.Bird@sony.com>
-Cc: kuba@kernel.org, andrii@kernel.org, daniel@iogearbox.net, ast@kernel.org,
- linux-spdx@vger.kernel.org, bpf@vger.kernel.org,
- linux-kernel@vger.kernel.org, tim.bird@sony.com
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - host2044.hostmonster.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - sony.com
+X-BWhitelist: no
+X-Source-IP: 66.118.46.62
+X-Source-L: No
+X-Exim-ID: 1vguIm-00000003dqH-1lc2
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (timdesk..) [66.118.46.62]:54282
+X-Source-Auth: tim@bird.org
+X-Email-Count: 4
+X-Org: HG=bhshared_hm;ORG=bluehost;
+X-Source-Cap: YmlyZG9yZztiaXJkb3JnO2hvc3QyMDQ0Lmhvc3Rtb25zdGVyLmNvbQ==
+X-Local-Domain: no
+X-CMAE-Envelope: MS4xfHUAqh4bNOw/Ee7DCOY9Kz0M9NzHwcUEJblJo0LA4P/aNPNZA6fl7KPYj5s99ozO3N70wPnpaPcnRyJXiM2AAfVmU2J5HrKWYl66PMv4wDY1L7haMurs
+ bO8GJwtbMJ4XY7BozqOpO8NGb5u27lAwMGrYK8YaYaWfmqA0sMH2d5cyY4g6YuNush+7K+lxKoNw9sma4+hYCVZswYZlSnvypgg=
 
-Hello:
+Add GPL-2.0 license id to some files related to kdb and kgdb,
+replacing references to GPL or COPYING.
 
-This patch was applied to bpf/bpf-next.git (master)
-by Andrii Nakryiko <andrii@kernel.org>:
+These files were introduced into the kernel in 2008 and 2010.
 
-On Wed, 14 Jan 2026 18:31:29 -0700 you wrote:
-> Add GPL-2.0 SPDX-License-Identifier lines to some files,
-> and remove a reference to COPYING, and boilerplate warranty
-> text, from offload.c.
-> 
-> Signed-off-by: Tim Bird <tim.bird@sony.com>
-> ---
->  kernel/bpf/offload.c | 12 +-----------
->  kernel/bpf/ringbuf.c |  1 +
->  kernel/bpf/token.c   |  1 +
->  3 files changed, 3 insertions(+), 11 deletions(-)
+Signed-off-by: Tim Bird <tim.bird@sony.com>
+---
+ include/linux/kdb.h             | 5 +----
+ include/linux/kgdb.h            | 4 +---
+ kernel/debug/debug_core.h       | 5 +----
+ kernel/debug/kdb/kdb_bp.c       | 5 +----
+ kernel/debug/kdb/kdb_bt.c       | 5 +----
+ kernel/debug/kdb/kdb_debugger.c | 1 +
+ kernel/debug/kdb/kdb_io.c       | 5 +----
+ kernel/debug/kdb/kdb_keyboard.c | 4 +---
+ kernel/debug/kdb/kdb_main.c     | 5 +----
+ kernel/debug/kdb/kdb_private.h  | 1 +
+ kernel/debug/kdb/kdb_support.c  | 5 +----
+ 11 files changed, 11 insertions(+), 34 deletions(-)
 
-Here is the summary with links:
-  - kernel: bpf: Add SPDX license identifiers to a few files
-    https://git.kernel.org/bpf/bpf-next/c/4787eaf7c171
-
-You are awesome, thank you!
+diff --git a/include/linux/kdb.h b/include/linux/kdb.h
+index 741c58e86431..26fe4ab81b42 100644
+--- a/include/linux/kdb.h
++++ b/include/linux/kdb.h
+@@ -1,13 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ #ifndef _KDB_H
+ #define _KDB_H
+ 
+ /*
+  * Kernel Debugger Architecture Independent Global Headers
+  *
+- * This file is subject to the terms and conditions of the GNU General Public
+- * License.  See the file "COPYING" in the main directory of this archive
+- * for more details.
+- *
+  * Copyright (c) 2000-2007 Silicon Graphics, Inc.  All Rights Reserved.
+  * Copyright (C) 2000 Stephane Eranian <eranian@hpl.hp.com>
+  * Copyright (C) 2009 Jason Wessel <jason.wessel@windriver.com>
+diff --git a/include/linux/kgdb.h b/include/linux/kgdb.h
+index 5eebbe7a3545..22b3f3839f30 100644
+--- a/include/linux/kgdb.h
++++ b/include/linux/kgdb.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * This provides the callbacks and functions that KGDB needs to share between
+  * the core, I/O and arch-specific portions.
+@@ -6,9 +7,6 @@
+  *         Tom Rini <trini@kernel.crashing.org>
+  *
+  * 2001-2004 (c) Amit S. Kale and 2003-2005 (c) MontaVista Software, Inc.
+- * This file is licensed under the terms of the GNU General Public License
+- * version 2. This program is licensed "as is" without any warranty of any
+- * kind, whether express or implied.
+  */
+ #ifndef _KGDB_H_
+ #define _KGDB_H_
+diff --git a/kernel/debug/debug_core.h b/kernel/debug/debug_core.h
+index cd22b5f68831..a4882f7aaff7 100644
+--- a/kernel/debug/debug_core.h
++++ b/kernel/debug/debug_core.h
+@@ -1,11 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0
+ /*
+  * Created by: Jason Wessel <jason.wessel@windriver.com>
+  *
+  * Copyright (c) 2009 Wind River Systems, Inc.  All Rights Reserved.
+- *
+- * This file is licensed under the terms of the GNU General Public
+- * License version 2. This program is licensed "as is" without any
+- * warranty of any kind, whether express or implied.
+  */
+ 
+ #ifndef _DEBUG_CORE_H_
+diff --git a/kernel/debug/kdb/kdb_bp.c b/kernel/debug/kdb/kdb_bp.c
+index c0c2072f5452..eb8d851d620f 100644
+--- a/kernel/debug/kdb/kdb_bp.c
++++ b/kernel/debug/kdb/kdb_bp.c
+@@ -1,10 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Kernel Debugger Architecture Independent Breakpoint Handler
+  *
+- * This file is subject to the terms and conditions of the GNU General Public
+- * License.  See the file "COPYING" in the main directory of this archive
+- * for more details.
+- *
+  * Copyright (c) 1999-2004 Silicon Graphics, Inc.  All Rights Reserved.
+  * Copyright (c) 2009 Wind River Systems, Inc.  All Rights Reserved.
+  */
+diff --git a/kernel/debug/kdb/kdb_bt.c b/kernel/debug/kdb/kdb_bt.c
+index 137ba73f56fc..c561aa076970 100644
+--- a/kernel/debug/kdb/kdb_bt.c
++++ b/kernel/debug/kdb/kdb_bt.c
+@@ -1,10 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Kernel Debugger Architecture Independent Stack Traceback
+  *
+- * This file is subject to the terms and conditions of the GNU General Public
+- * License.  See the file "COPYING" in the main directory of this archive
+- * for more details.
+- *
+  * Copyright (c) 1999-2004 Silicon Graphics, Inc.  All Rights Reserved.
+  * Copyright (c) 2009 Wind River Systems, Inc.  All Rights Reserved.
+  */
+diff --git a/kernel/debug/kdb/kdb_debugger.c b/kernel/debug/kdb/kdb_debugger.c
+index e91fc3e4edd5..59b81032bbab 100644
+--- a/kernel/debug/kdb/kdb_debugger.c
++++ b/kernel/debug/kdb/kdb_debugger.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Created by: Jason Wessel <jason.wessel@windriver.com>
+  *
+diff --git a/kernel/debug/kdb/kdb_io.c b/kernel/debug/kdb/kdb_io.c
+index 61c1690058ed..c399f11740ef 100644
+--- a/kernel/debug/kdb/kdb_io.c
++++ b/kernel/debug/kdb/kdb_io.c
+@@ -1,10 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Kernel Debugger Architecture Independent Console I/O handler
+  *
+- * This file is subject to the terms and conditions of the GNU General Public
+- * License.  See the file "COPYING" in the main directory of this archive
+- * for more details.
+- *
+  * Copyright (c) 1999-2006 Silicon Graphics, Inc.  All Rights Reserved.
+  * Copyright (c) 2009 Wind River Systems, Inc.  All Rights Reserved.
+  */
+diff --git a/kernel/debug/kdb/kdb_keyboard.c b/kernel/debug/kdb/kdb_keyboard.c
+index 386d30e530b7..c7ebcb9e9d8f 100644
+--- a/kernel/debug/kdb/kdb_keyboard.c
++++ b/kernel/debug/kdb/kdb_keyboard.c
+@@ -1,9 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Kernel Debugger Architecture Dependent Console I/O handler
+  *
+- * This file is subject to the terms and conditions of the GNU General Public
+- * License.
+- *
+  * Copyright (c) 1999-2006 Silicon Graphics, Inc.  All Rights Reserved.
+  * Copyright (c) 2009 Wind River Systems, Inc.  All Rights Reserved.
+  */
+diff --git a/kernel/debug/kdb/kdb_main.c b/kernel/debug/kdb/kdb_main.c
+index dddf2b5aad57..314787fb8ce7 100644
+--- a/kernel/debug/kdb/kdb_main.c
++++ b/kernel/debug/kdb/kdb_main.c
+@@ -1,10 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Kernel Debugger Architecture Independent Main Code
+  *
+- * This file is subject to the terms and conditions of the GNU General Public
+- * License.  See the file "COPYING" in the main directory of this archive
+- * for more details.
+- *
+  * Copyright (C) 1999-2004 Silicon Graphics, Inc.  All Rights Reserved.
+  * Copyright (C) 2000 Stephane Eranian <eranian@hpl.hp.com>
+  * Xscale (R) modifications copyright (C) 2003 Intel Corporation.
+diff --git a/kernel/debug/kdb/kdb_private.h b/kernel/debug/kdb/kdb_private.h
+index a2fc7d2bc9fc..92a28b8ab604 100644
+--- a/kernel/debug/kdb/kdb_private.h
++++ b/kernel/debug/kdb/kdb_private.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ #ifndef _KDBPRIVATE_H
+ #define _KDBPRIVATE_H
+ 
+diff --git a/kernel/debug/kdb/kdb_support.c b/kernel/debug/kdb/kdb_support.c
+index 56f7b906e7cc..0a2e54e77ce6 100644
+--- a/kernel/debug/kdb/kdb_support.c
++++ b/kernel/debug/kdb/kdb_support.c
+@@ -1,10 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Kernel Debugger Architecture Independent Support Functions
+  *
+- * This file is subject to the terms and conditions of the GNU General Public
+- * License.  See the file "COPYING" in the main directory of this archive
+- * for more details.
+- *
+  * Copyright (c) 1999-2004 Silicon Graphics, Inc.  All Rights Reserved.
+  * Copyright (c) 2009 Wind River Systems, Inc.  All Rights Reserved.
+  * 03/02/13    added new 2.5 kallsyms <xavier.bru@bull.net>
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.43.0
 
 

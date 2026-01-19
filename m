@@ -1,113 +1,92 @@
-Return-Path: <linux-spdx+bounces-130-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-131-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76BF8D39DC7
-	for <lists+linux-spdx@lfdr.de>; Mon, 19 Jan 2026 06:32:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88916D3A699
+	for <lists+linux-spdx@lfdr.de>; Mon, 19 Jan 2026 12:18:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E80AA30047BD
-	for <lists+linux-spdx@lfdr.de>; Mon, 19 Jan 2026 05:32:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C0FFE30449A3
+	for <lists+linux-spdx@lfdr.de>; Mon, 19 Jan 2026 11:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC2E247295;
-	Mon, 19 Jan 2026 05:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89C0B3596EC;
+	Mon, 19 Jan 2026 11:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rustcorp.com.au header.i=@rustcorp.com.au header.b="IvVGbJQC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QFhqM6kv"
 X-Original-To: linux-spdx@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B338313A3F7;
-	Mon, 19 Jan 2026 05:32:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668F430AAD6;
+	Mon, 19 Jan 2026 11:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768800756; cv=none; b=jdbadA4W0pvAMUmJs7eJBupPDxuxCxayvx61rxgP1ywpUY3/krP+h6GoiKLvsBGm7ldK3vPLplmO4klpUtUw67/L+eGQNf7B3q3uTcFJYmg09/BIBAJMbJ2UmcH1g3XC65eznoJPEuXUDVPoqpu86JZU8OL0kb9pMx3vo7s8cfM=
+	t=1768821293; cv=none; b=um5FKnANrg3g8EgMm+hNMsl8LTuvLw8w5k8OQ8e8nBFI6WcAdJWHlh19wJCNRNHtkwO1eJL2pOEJUaUwZiEat2oh9r9aE6/1+A00gouDSIHSpc9sN5b+XnuMS256kKPJ5OpWRVDflLVsTdgc770QHiRPY5yku5iV3wySCMgbGkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768800756; c=relaxed/simple;
-	bh=/rJpco0fis9U6xoi9JfyUf8aHWne/nixKadn8OvxYtc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=hrKeuFti3Tz4+cl6bibdlhwhQcN1WlRh4LYdimqCnv+Nc2G2kLxsWC0e3sg94EoXsx4IC/KzHHoqTQilGrS4LVqLSAmX0Zczs9G10O+gO9Kyq7+gT3nVVZtXaJGpF5/rT8XLc5ySj3zV5gZAAePTzQTYayml2mnhso/oqGdox0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rustcorp.com.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=rustcorp.com.au header.i=@rustcorp.com.au header.b=IvVGbJQC; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rustcorp.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rustcorp.com.au;
-	s=202305; t=1768800752;
-	bh=Dp7mMrG0130vpzJD8hA+H7PfHk46S3Ctka8m2tCurDE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=IvVGbJQCaedMi2ZXGgPch/JvVMOkYRG2slBUHZUAbzwX7bDD2+iC+HRAzsIt6rGn1
-	 KuPQv6Ia2+pgAeIdjLSwZPORTPvITp/ctkXct1i9+QLLJSgQpoIrLV30KHy+AFvyRe
-	 mpzdpMxgMArkoEDJf2S+nYV3TmdHra6Z2isTC7sSbhQTQCmT59R2kmGPJzuJwWCMmi
-	 NiduhgPOspuhleoXralEoX//PxYZOAhUWptaq/9Bio4oUlP2JCf8A/1aC2ZLirj514
-	 yBOt0sm7T56xM5EatV74nVj5TU0UwXCjxfPsh/JoLRTPIfN4TUsuDR8fK48Rur4jIC
-	 27yhpZJwI9Bug==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1011)
-	id 4dvfH403twz4wGx; Mon, 19 Jan 2026 16:32:32 +1100 (AEDT)
-From: Rusty Russell <rusty@rustcorp.com.au>
-To: Tim Bird <tim.bird@sony.com>, karim@opersys.com,
- akpm@linuxfoundation.org, tglx@kernel.org
-Cc: tom.zanussi@linux.intel.com, kernelxing@tencent.com,
- perterz@infradead.org, linux-spdx@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tim Bird <tim.bird@sony.com>
-Subject: Re: [PATCH] kernel: add SPDX-License-Identifier lines
-In-Reply-To: <20260113234405.539422-1-tim.bird@sony.com>
-References: <20260113234405.539422-1-tim.bird@sony.com>
-Date: Mon, 19 Jan 2026 16:00:37 +1030
-Message-ID: <875x8yw4n6.fsf@rustcorp.com.au>
+	s=arc-20240116; t=1768821293; c=relaxed/simple;
+	bh=4mxQthn4Tg5q7S/M58Kd8cnS4v6txzVr6RszyUOe69A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hFw0Fxkg8L1yXSUYLbtAi9KSIxnZZPlCFgoMtDnFRCHbE1j+L5bRfmsmV/jUXfzUPL2ll8qApvf6+pamUZ9JmOCTiCqR4NBDLfAA577XRGRkvXj+5kJrNzmBLX8/W8aiW0NH9qy23R6pTKAvL0q8Oa4h4zCVbkkZpocNHlPE1ME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QFhqM6kv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC296C116C6;
+	Mon, 19 Jan 2026 11:14:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768821293;
+	bh=4mxQthn4Tg5q7S/M58Kd8cnS4v6txzVr6RszyUOe69A=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=QFhqM6kvhOyCDsycjszNIGEQFWt7bxYAWhmNr47b7bOkqtO4lTs8zkbc1kTI20J6S
+	 K1g5TkGcy2c6k+YEIOREMQMpanFaVFq5evlwhlzfpPbBRmUW4RvEqJ5ddheeRle5mQ
+	 4tKEQW5KjOkyuMqHeC8zFIajZOXqSjABoUPKeekz73JfweiSl/prLfm/sDwQ9h4Trd
+	 sVHSnegaWXWw2bjoXQaMZ3RVNgY3d+LhRA+kY42fQpBHSvJJBZEahCpi+uNThR2QHK
+	 5Ovkyu8VK592pacR3i00M+mT6EsgJUQN6fS+Mtk++sPw6JjwhgxfJ19+iMWuVh/FuU
+	 /8xk9jnK1cF8Q==
+From: Christian Brauner <brauner@kernel.org>
+To: Tim Bird <tim.bird@sony.com>
+Cc: Christian Brauner <brauner@kernel.org>,
+	linux-spdx@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	michal.wronski@gmail.com,
+	golbi@mat.uni.torun.pl,
+	manfred@colorfullife.com,
+	neil@brown.name,
+	viro@zenivlinux.ork.uk
+Subject: Re: [PATCH] ipc: Add SPDX license id to mqueue.c
+Date: Mon, 19 Jan 2026 12:14:37 +0100
+Message-ID: <20260119-heimcomputer-antiseptisch-d26168914a0d@brauner>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260117202759.692347-1-tim.bird@sony.com>
+References: <20260117202759.692347-1-tim.bird@sony.com>
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=918; i=brauner@kernel.org; h=from:subject:message-id; bh=4mxQthn4Tg5q7S/M58Kd8cnS4v6txzVr6RszyUOe69A=; b=owGbwMvMwCU28Zj0gdSKO4sYT6slMWTmCakfrxQLvi16Yu2Txz49CcK5kocjj+7yfLQkt6qvr 3iDWOivjlIWBjEuBlkxRRaHdpNwueU8FZuNMjVg5rAygQxh4OIUgIkUfGb4H3Vy9vGYL7fnxL13 6V940Cg6+1eu0oe6rqcJ+5eFqW9vNWJkeHTdbu38vc9uXGC2a+IV73jJGrfzwXUNM7n5F3KXz24 y4wIA
+X-Developer-Key: i=brauner@kernel.org; a=openpgp; fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
+Content-Transfer-Encoding: 8bit
 
-Actually, all my kernel licenses were intended "GPL v2 or any later version".
+On Sat, 17 Jan 2026 13:27:59 -0700, Tim Bird wrote:
+> Add GPL-2.0 license id to file, replacing reference to
+> GPL in the header comment.
+> 
+> 
 
-Sorry if that makes trouble for your licensing theater group!
+Applied to the kernel-7.0.misc branch of the vfs/vfs.git tree.
+Patches in the kernel-7.0.misc branch should appear in linux-next soon.
 
-Cheers,
-Rusty.
+Please report any outstanding bugs that were missed during review in a
+new review to the original patch series allowing us to drop it.
 
-Tim Bird <tim.bird@sony.com> writes:
-> Add SPDX-License-Identifier lines to some old kernel
-> files.
->
-> Signed-off-by: Tim Bird <tim.bird@sony.com>
-> ---
->  kernel/cpu.c   | 3 +--
->  kernel/relay.c | 3 +--
->  2 files changed, 2 insertions(+), 4 deletions(-)
->
-> diff --git a/kernel/cpu.c b/kernel/cpu.c
-> index 8df2d773fe3b..5185c0be847a 100644
-> --- a/kernel/cpu.c
-> +++ b/kernel/cpu.c
-> @@ -1,7 +1,6 @@
-> +// SPDX-License-Identifier: GPL-2.0
->  /* CPU control.
->   * (C) 2001, 2002, 2003, 2004 Rusty Russell
-> - *
-> - * This code is licenced under the GPL.
->   */
->  #include <linux/sched/mm.h>
->  #include <linux/proc_fs.h>
-> diff --git a/kernel/relay.c b/kernel/relay.c
-> index e36f6b926f7f..6ed6bc929bf9 100644
-> --- a/kernel/relay.c
-> +++ b/kernel/relay.c
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: GPL-2.0
->  /*
->   * Public API and common code for kernel->userspace relay file support.
->   *
-> @@ -9,8 +10,6 @@
->   * Moved to kernel/relay.c by Paul Mundt, 2006.
->   * November 2006 - CPU hotplug support by Mathieu Desnoyers
->   * 	(mathieu.desnoyers@polymtl.ca)
-> - *
-> - * This file is released under the GPL.
->   */
->  #include <linux/errno.h>
->  #include <linux/stddef.h>
-> -- 
-> 2.43.0
+It's encouraged to provide Acked-bys and Reviewed-bys even though the
+patch has now been applied. If possible patch trailers will be updated.
+
+Note that commit hashes shown below are subject to change due to rebase,
+trailer updates or similar. If in doubt, please check the listed branch.
+
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
+branch: kernel-7.0.misc
+
+[1/1] ipc: Add SPDX license id to mqueue.c
+      https://git.kernel.org/vfs/vfs/c/f54c7e54d2de
 

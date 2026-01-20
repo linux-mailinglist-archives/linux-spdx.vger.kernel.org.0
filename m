@@ -1,137 +1,181 @@
-Return-Path: <linux-spdx+bounces-133-lists+linux-spdx=lfdr.de@vger.kernel.org>
+Return-Path: <linux-spdx+bounces-134-lists+linux-spdx=lfdr.de@vger.kernel.org>
 X-Original-To: lists+linux-spdx@lfdr.de
 Delivered-To: lists+linux-spdx@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFE7ED3BAFB
-	for <lists+linux-spdx@lfdr.de>; Mon, 19 Jan 2026 23:40:55 +0100 (CET)
-Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C7D6B302758B
-	for <lists+linux-spdx@lfdr.de>; Mon, 19 Jan 2026 22:40:54 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAC1E271456;
-	Mon, 19 Jan 2026 22:40:53 +0000 (UTC)
-X-Original-To: linux-spdx@vger.kernel.org
-Received: from omta038.useast.a.cloudfilter.net (omta038.useast.a.cloudfilter.net [44.202.169.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DC66D3BF2A
+	for <lists+linux-spdx@lfdr.de>; Tue, 20 Jan 2026 07:29:18 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2561E32A2
-	for <linux-spdx@vger.kernel.org>; Mon, 19 Jan 2026 22:40:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.37
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 29F7C383E4E
+	for <lists+linux-spdx@lfdr.de>; Tue, 20 Jan 2026 06:27:19 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8895350D4D;
+	Tue, 20 Jan 2026 06:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=colorfullife-com.20230601.gappssmtp.com header.i=@colorfullife-com.20230601.gappssmtp.com header.b="fmvkLGNe"
+X-Original-To: linux-spdx@vger.kernel.org
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74566363C77
+	for <linux-spdx@vger.kernel.org>; Tue, 20 Jan 2026 06:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768862453; cv=none; b=AF/CV+cpXc/eGZ4nxz2pkkjV0cNllOMXXirv5OlIpPKwHNeuFEd81ektchTBYguOYnFw2/Uhw3G+Qo/gY/wtEzKNV5WnpfWQcm3gwvHinWQQl6Tgi/1mf00TWHRqVXSoOBSspbWeHTOiNHAsBkzRaxh7KM+uixz+uP79XgES5pY=
+	t=1768890435; cv=none; b=QuIM5Kho4dQpjZ2aquqLN3C+4nAWMsBjLMYr1JOhVAymR4N1wTWWJEgHb32OypYU87P1azM1aYwm7GkGCYmF3fxsL4T1AV8dwOcLXP0iyBDr097RcInJOXeDDt/QTRN5VDewzTYiOWI+hiv5XeTSRJD8n8OiDHeFZp7jWas/cak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768862453; c=relaxed/simple;
-	bh=D1SAt/Pm2+W3RdTNteARngULz5LgK7NSbTjrQCivRn0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FteuxBAuZJPrH4Yh3c2FPy2vZTDp+oKR8jJUBuLuTt/2shsvc6w3DI4mbqK7PsT5So/hQWNtSBDNkNpVB2hKgInMASYwQ81cb0/sLnXZrqlH/RTxO9hZK4AeA307zCQV9U3Wvf+DSBOjhF2ho0zMitSzr777Q121ROQXX6qrPzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com; spf=fail smtp.mailfrom=sony.com; arc=none smtp.client-ip=44.202.169.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=sony.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=sony.com
-Received: from eig-obgw-5003b.ext.cloudfilter.net ([10.0.29.155])
-	by cmsmtp with ESMTPS
-	id hwfev7Lk4SkcfhxvQvorPU; Mon, 19 Jan 2026 22:40:44 +0000
-Received: from host2044.hostmonster.com ([67.20.76.238])
-	by cmsmtp with ESMTPS
-	id hxvPv7GbE2l0khxvQvWECW; Mon, 19 Jan 2026 22:40:44 +0000
-X-Authority-Analysis: v=2.4 cv=UfRRSLSN c=1 sm=1 tr=0 ts=696eb2ec
- a=O1AQXT3IpLm5MaED65xONQ==:117 a=uc9KWs4yn0V/JYYSH7YHpg==:17
- a=vUbySO9Y5rIA:10 a=z6gsHLkEAAAA:8 a=x39xcJdIAAAA:8 a=_ZhYKdCeAAAA:8
- a=Ye4B9Piu8SXky65a7lAA:9 a=lZ9kT4By1ObJQgvuf1ma:22 a=uqOk3ZSnBfCTOznnrPA1:22
- a=iekntanDnrheIxGr1pkv:22
-Received: from [66.118.46.62] (port=58166 helo=timdesk..)
-	by host2044.hostmonster.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.99.1)
-	(envelope-from <tim.bird@sony.com>)
-	id 1vhxvN-00000001aD5-41Ji;
-	Mon, 19 Jan 2026 15:40:42 -0700
-From: Tim Bird <tim.bird@sony.com>
-To: rusty@rustcorp.com.au,
-	karim.yaghmour@opersys.com,
-	akpm@linuxfoundation.org,
-	tglx@kernel.org
-Cc: kernelxing@tencent.com,
-	peterz@infradead.org,
-	linux-spdx@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tim Bird <tim.bird@sony.com>
-Subject: [PATCH v2] kernel: Add SPDX-License-Identifier lines
-Date: Mon, 19 Jan 2026 15:40:21 -0700
-Message-ID: <20260119224021.793309-1-tim.bird@sony.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260113234405.539422-1-tim.bird@sony.com>
-References: <20260113234405.539422-1-tim.bird@sony.com>
+	s=arc-20240116; t=1768890435; c=relaxed/simple;
+	bh=qj5zC4BFCMBLOQ7/w214kNE/FtH4ooMr3u7lNV999xI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LVB5GMBci37NDJCqGCI+YS/CFkzaSq+juaS98YjoFosc4pOSIx32vU/xB2Uiwwj8wOQEHI1y2+sLBG+SKPZQcq5PPEtKa5h8V6PQkZ3MR1LTgniGCNC4fxq/uIVJI2jO7yAEQoknBc/e52p8vqyDKrWrzKd4fTqlsz94rzibbQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=colorfullife.com; spf=pass smtp.mailfrom=colorfullife.com; dkim=pass (2048-bit key) header.d=colorfullife-com.20230601.gappssmtp.com header.i=@colorfullife-com.20230601.gappssmtp.com header.b=fmvkLGNe; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=colorfullife.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=colorfullife.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6505d141d02so8607543a12.3
+        for <linux-spdx@vger.kernel.org>; Mon, 19 Jan 2026 22:27:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=colorfullife-com.20230601.gappssmtp.com; s=20230601; t=1768890429; x=1769495229; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+euDLiPTeGNUCv7DmnbnaQBNhzEXKUHc3BWfwIfdO3o=;
+        b=fmvkLGNe4wD9XKrGWGA4KgRqoxxG9lgnvFxWFkhid1tAjj39mz2fggk3gPbFmQYqZv
+         K2wTszhW5NtT4Dlehb7ZfAq0tpvPhd3LlOO7ELGQ9fnnUo2VrT+zsnelKd3ptSrPAPTL
+         gT0XcKMNpUwt86yrMT7LILPfKDElbAJEaQb1pSTokbZ6awNIA4d/DmV+KHJKLs9GbhHf
+         +S/Fxhy1UAXhKjU/FvQ1C6MphFi/FT1LGOcnhVBtpCwWbLCXPBWeWQggAh0jtd1ueWiZ
+         PShKvL2IXafVjjDRI108rUlC2f/73TsnlFyxuxmYSubyloBPM9hoXF4su2yu07NwBgxW
+         3rLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768890429; x=1769495229;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+euDLiPTeGNUCv7DmnbnaQBNhzEXKUHc3BWfwIfdO3o=;
+        b=xOsuMoTKzTU7GLJBuOWabDaRiImK5I5g+IjObOCwcSfsHbNeJVkX8w8X0uCHJKjWWp
+         4TZCk/TGqwRiEdUi92SqGgsjkxtRsr7jcxM8t89NFZ37D8tS4F41SgQ6uruwfI5AxdRM
+         zc+O2oQcrK80Wtv1hPrj44+dPqpemXd4KTxiDnC6vMwEKXFLEAq7HC7AO4YZEKYnNqU8
+         JVOOtI4vLEpbzyz0LMMd45Tc8Y9fdjze/T6K4769IeHZq9+r5Zg2VbHFPJ7k3atGKCny
+         1pJFJnjsxmiN7stxTIIUyl876l8ZXaxivtHmw/90nYpGChaxn/UjhzO6H9I/sx5ZiwWS
+         OY/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVOvrYsipiQR/jr2BrxDCLvk2WjyjEqMLP4dCo5Dss82r8GSDkr0KCnwbnR5Y5tEL3X4fBQpjID0zrp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXOS4BsbqUTp5oyRgRYl/pTWmC5KIGHmh17FMvqBIJTOpoIfEk
+	bkMrf8UAL9jDcjwQ6JBpw4JIvRVr/aVMKfrSz+9Kt4Gi25Hfr8qZlYmmc+NNYH8pCA==
+X-Gm-Gg: AZuq6aIy5n3Q4+X0kATsJOeLKRYYRVhpptVFzihO1gX8yVRJj4hNj+0TBa9WAaDbxYS
+	WTeYYPsrH54qHsnm0y9cjjD8Io0nO5y6MowRuUC5St5gE8xm6XJP1L6zrLr+4RXRHsIg5HfP7jX
+	IvV/ktMg8kuUamKw/jzlcpBqXPW314l8utGkmCUhxP6TC/ZW5HWb9oeTW/QTuFzy+FPRICG+ySt
+	4JRpm60uP4iPLRApHC1jO6qLFKCyCLbh3C/gpRxdeENATzG76ph6XqI+I2TrdDflahMGwNpjZg2
+	6j1vQFvOrtFu853zl9qNVF9J1bmPdvDNzPpbXZew3/EjzYw2okqsNOZqCj8QOiymIh3vgh2DJSN
+	Kt4NCQjRZehoOYkXtLVxOhSikmatQTuFXwvCWgAhyQ8uYjoYQ+cyz3ibUu2pJd843kY2ttuTKyh
+	zV4ukdwrvYibAfEvTGJNNlj4195KbkYIfCja4q2VoNLZRqBZ/o4sTy7uhavVWSZBuJfCEkiZP73
+	Kp8Sztq7486vDbs9ywtp+9C65ErCezDyKeIGnQRYkoFoDnUjFU=
+X-Received: by 2002:a17:906:dc90:b0:b87:5464:8b5c with SMTP id a640c23a62f3a-b88003d7062mr77486366b.63.1768890429355;
+        Mon, 19 Jan 2026 22:27:09 -0800 (PST)
+Received: from ?IPV6:2003:d9:9708:4800:2bb1:17a:8125:85df? (p200300d9970848002bb1017a812585df.dip0.t-ipconnect.de. [2003:d9:9708:4800:2bb1:17a:8125:85df])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795168b2esm1331066966b.17.2026.01.19.22.27.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 22:27:08 -0800 (PST)
+Message-ID: <357ec464-099f-46b0-8afe-261adb10f173@colorfullife.com>
+Date: Tue, 20 Jan 2026 07:27:07 +0100
 Precedence: bulk
 X-Mailing-List: linux-spdx@vger.kernel.org
 List-Id: <linux-spdx.vger.kernel.org>
 List-Subscribe: <mailto:linux-spdx+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:linux-spdx+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: ipc: License cleanup
+To: Michal Wronski <michal.wronski@gmail.com>, tim.bird@sony.com
+Cc: Thomas Gleixner <tglx@linutronix.de>, linux-spdx@vger.kernel.org,
+ golbi@icm.edu.pl, Christian Brauner <brauner@kernel.org>
+References: <165322122199.3770149.6631395213068803310.tglx@xen13>
+ <4129afa8-1c92-7a6e-e9d8-33712c21c649@colorfullife.com>
+ <CAACB_9hMwWAP9s3rekpyaFYkA4NAsN2sTGDDxXHEhcWPxGxzoQ@mail.gmail.com>
+ <CAACB_9i9GLbsMH1Tea6oTxC9oyxkECpO+AEykx=1acLM+V9iEQ@mail.gmail.com>
+Content-Language: en-US
+From: Manfred Spraul <manfred@colorfullife.com>
+In-Reply-To: <CAACB_9i9GLbsMH1Tea6oTxC9oyxkECpO+AEykx=1acLM+V9iEQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - host2044.hostmonster.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - sony.com
-X-BWhitelist: no
-X-Source-IP: 66.118.46.62
-X-Source-L: No
-X-Exim-ID: 1vhxvN-00000001aD5-41Ji
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: (timdesk..) [66.118.46.62]:58166
-X-Source-Auth: tim@bird.org
-X-Email-Count: 3
-X-Org: HG=bhshared_hm;ORG=bluehost;
-X-Source-Cap: YmlyZG9yZztiaXJkb3JnO2hvc3QyMDQ0Lmhvc3Rtb25zdGVyLmNvbQ==
-X-Local-Domain: no
-X-CMAE-Envelope: MS4xfASitxrZvfZTMwwaNpzfeKS4rX+VZpJkObjIHs2cs1xJQxoiuIEkq10GV4TxplbCOVGCUTCQYbxEyUcz6jnGLjQTpHrSPe3o+2sTXo9UzvnKTTgjcHnV
- n/QX6gAJWQ4ATm9uwiwPbD1wPQcnYtszl3M9HOUzmXIl5OZYrqjbd1B6Oo5cMt7S2auW93O2d9OeUbLgwZ8zqYCKB/UkN2t15KI=
 
-Add SPDX-License-Identifier lines to some old kernel
-files.
+Hi,
 
-Signed-off-by: Tim Bird <tim.bird@sony.com>
-Acked-by: Karim Yaghmour <karim.yaghmour@opersys.com>
+// reply to old mail. The old mail was multipart html/text, thus it is 
+not archived on lore.
+
+@Michal: Thanks.
+@Tim: Please add a reference to this mail to your change:
+https://lore.kernel.org/linux-spdx/20260119-heimcomputer-antiseptisch-d26168914a0d@brauner/T/#t
+
+For me, GPL-V2 is ok.
+For Michal as well, see below.
+
 --
-V1 -> V2  Use GPL-2.0-or-later for cpu.c
----
- kernel/cpu.c   | 3 +--
- kernel/relay.c | 3 +--
- 2 files changed, 2 insertions(+), 4 deletions(-)
+     Manfred
 
-diff --git a/kernel/cpu.c b/kernel/cpu.c
-index 8df2d773fe3b..a7a1cf8ea8e0 100644
---- a/kernel/cpu.c
-+++ b/kernel/cpu.c
-@@ -1,7 +1,6 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
- /* CPU control.
-  * (C) 2001, 2002, 2003, 2004 Rusty Russell
-- *
-- * This code is licenced under the GPL.
-  */
- #include <linux/sched/mm.h>
- #include <linux/proc_fs.h>
-diff --git a/kernel/relay.c b/kernel/relay.c
-index e36f6b926f7f..6ed6bc929bf9 100644
---- a/kernel/relay.c
-+++ b/kernel/relay.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
- /*
-  * Public API and common code for kernel->userspace relay file support.
-  *
-@@ -9,8 +10,6 @@
-  * Moved to kernel/relay.c by Paul Mundt, 2006.
-  * November 2006 - CPU hotplug support by Mathieu Desnoyers
-  * 	(mathieu.desnoyers@polymtl.ca)
-- *
-- * This file is released under the GPL.
-  */
- #include <linux/errno.h>
- #include <linux/stddef.h>
--- 
-2.43.0
+On 5/23/22 8:00 PM, Michal Wronski wrote:
+> Added valid Krzysztof's email
+>
+> On Mon, May 23, 2022 at 7:58 PM Michal Wronski 
+> <michal.wronski@gmail.com> wrote:
+>
+>     Hello,
+>     Any license compliant with linux kernel licensing rules is fine
+>     for me. I don't know which one is preferred though.
+>
+>     best regards,
+>     Michal
+>
+>     On Sun, May 22, 2022 at 8:58 PM Manfred Spraul
+>     <manfred@colorfullife.com> wrote:
+>
+>         Hello Thomas,
+>
+>         On 5/22/22 16:54, Thomas Gleixner wrote:
+>         > Manfred!
+>         >
+>         > As you might know we are working on cleaning up the
+>         licensing mess in the
+>         > kernel and convert it to SPDX license identifiers as the
+>         only source of
+>         > license information.
+>         >
+>         > Archaeology found unspecific GPL license references, which
+>         have been
+>         > authored by you.
+>
+>         Sorry, no, the initial authors of the file were:
+>
+>           * Copyright (C) 2003,2004  Krzysztof Benedyczak
+>         (golbi@mat.uni.torun.pl)
+>           *                          Michal Wronski
+>         (michal.wronski@gmail.com)
+>           *
+>
+>
+>         I did cleanup & merge support and probably many small changes.
+>
+>         But from what I remember, the majority of the code is from
+>         Krzysztof and
+>         Michal.
+>
+>
+>         > 1) this file is released under the gpl
+>         >
+>         >       ipc/mqueue.c
+>         >
+>         >
+>         https://git.kernel.org/pub/scm/linux/kernel/git/tglx/history.git/commit/?id=be94d44e818a5
+>         >
+>         > Can you please either send cleanup patches for the affected
+>         files or
+>         > indicate which GPLv2 variant you had in mind and I run it
+>         through my
+>         > cleanup machinery.
+>
+>         --
+>
+>              Manfred
+>
 
 
